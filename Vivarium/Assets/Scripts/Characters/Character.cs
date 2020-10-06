@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
-[CreateAssetMenu(fileName = "New Character", menuName = "Character", order = 1)]
-public class Character : ScriptableObject
+public class Character
 {
-    public int Id;
+    public Guid Id;
     public string Name;
     public float MaxHealth;
     public float MoveRange;

@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(fileName = "New Action", menuName = "Action", order = 3)]
 public class Action : ScriptableObject
 {
-    public int Id;
+    public Guid Id;
     public string Name;
     public float BaseDamage;
     [Range(0, 1)]
@@ -13,5 +14,6 @@ public class Action : ScriptableObject
     public float Range;
     public float AreaOfAffect;
     public ActionTarget ActionTargetType;
+    public ActionControllerType ControllerType;
     public List<Attribute> Attributes;
 }
