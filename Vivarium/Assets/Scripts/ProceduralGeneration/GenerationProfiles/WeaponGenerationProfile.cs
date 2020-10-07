@@ -8,7 +8,5 @@ public class WeaponGenerationProfile : ScriptableObject
     public List<string> PossibleNames;
 
     public AttributesGenerationProfile AttributeProfile;
-
-    public List<Action> PossibleActions;
-    public List<Attribute> GarantueedActions;
+    public ActionsGenerationProfile ActionsProfile;
 }

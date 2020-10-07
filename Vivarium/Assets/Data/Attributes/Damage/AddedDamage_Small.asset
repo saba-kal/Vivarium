@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6af6a96cdd45662408ed80088cace267, type: 3}
-  m_Name: TestEnemyCharacter
+  m_Script: {fileID: 11500000, guid: b00855adbae6926439d2d4c4aee4ea82, type: 3}
+  m_Name: AddedDamage_Small
   m_EditorClassIdentifier: 
-  Id: 2
-  Name: Enemy McEnemyFace
-  MaxHealth: 200
-  MoveRange: 3
-  Attributes: []
-  Weapon: {fileID: 0}
-  NavigableTiles: 00000000
+  Name: Small Added Damage
+  MinValue: 20
+  MaxValue: 50
+  ChanceToApply: 1
+  Formula: 1
+  Type: 2

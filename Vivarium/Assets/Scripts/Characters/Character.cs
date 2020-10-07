@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System;
 
+[Serializable]
 public class Character
 {
-    public Guid Id;
+    public string Id;
     public string Name;
     public float MaxHealth;
     public float MoveRange;

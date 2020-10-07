@@ -7,7 +7,6 @@ public class EnemyAIManager : MonoBehaviour
     public static event FinishExecute OnFinishExecute;
 
     public List<CharacterController> AICharacters;
-    public float DelayBetweenActions = 0f;
 
     private bool _isPerformingActions = false;
     private float _timeSinceLastAction = 0f;
@@ -16,7 +15,7 @@ public class EnemyAIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        var playerCharacterObjects = GameObject.FindGameObjectsWithTag(Globals.Instance.PlayerCharacterTag);
+        var playerCharacterObjects = GameObject.FindGameObjectsWithTag(Constants.PLAYER_CHAR_TAG);
         foreach (var playerCharacterObject in playerCharacterObjects)
         {
             var playerCharacter = playerCharacterObject.GetComponent<CharacterController>();
@@ -35,7 +34,7 @@ public class EnemyAIManager : MonoBehaviour
         {
             _timeSinceLastAction += Time.deltaTime;
 
-            if (_timeSinceLastAction >= DelayBetweenActions && !CommandController.Instance.CommandsAreExecuting())
+            if (_timeSinceLastAction >= Constants.AI_DELAY_BETWEEN_ACTIONS && !CommandController.Instance.CommandsAreExecuting())
             {
                 Execute();
                 _isPerformingActions = false;

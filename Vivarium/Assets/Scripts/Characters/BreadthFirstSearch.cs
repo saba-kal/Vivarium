@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 public class BreadthFirstSearch
@@ -57,7 +58,7 @@ public class BreadthFirstSearch
             x < _bfsGrid.GetLength(0) && y < _bfsGrid.GetLength(1) &&
             !_bfsGrid[x, y].Visited &&
             navigableTiles.Contains(_grid[x, y].Type) &&
-            _grid[x, y].CharacterControllerId == null;
+            string.IsNullOrEmpty(_grid[x, y].CharacterControllerId);
     }
 
     private bool VisitTile(int x, int y, Queue<Tile> queue, Tile fromTile, Tile toTile, int maxSteps)

@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _grid = TileGridController.Instance.GetGrid();
-        var enemyObjects = GameObject.FindGameObjectsWithTag(Globals.Instance.EnemyTag);
+        var enemyObjects = GameObject.FindGameObjectsWithTag(Constants.ENEMY_CHAR_TAG);
         foreach (var enemyObject in enemyObjects)
         {
             var enemy = enemyObject.GetComponent<CharacterController>();
@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour
         if (_actionIsSelected && ActionIsWithinRange(selectedTile))
         {
             PerformAction(selectedTile);
-            UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Character.Name);
+            UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Character.Id);
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
             _selectedCharacter.IsAbleToMoveToTile(selectedTile))
         {
             _selectedCharacter.MoveToTile(selectedTile);
-            UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Character.Name);
+            UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Character.Id);
         }
         //Grid cell click was probably on a character.
         else

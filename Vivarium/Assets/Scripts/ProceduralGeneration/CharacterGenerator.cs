@@ -4,13 +4,6 @@ using System;
 
 public class CharacterGenerator
 {
-    private Grid<Tile> _grid;
-
-    public CharacterGenerator(Grid<Tile> grid)
-    {
-        _grid = grid;
-    }
-
     public GameObject GenerateCharacter(CharacterGenerationProfile characterProfile, bool isEnemy)
     {
         var characterData = GenerateCharacterData(characterProfile);
@@ -20,22 +13,26 @@ public class CharacterGenerator
         var characterGameObject = new GameObject(characterData.Name);
 
         var characterController = characterGameObject.AddComponent<CharacterController>();
+        characterController.Id = Guid.NewGuid().ToString();
         characterController.Character = characterData;
         characterController.IsEnemy = isEnemy;
 
         characterGameObject.AddComponent<MoveController>();
 
+        CreateHealthBar(characterGameObject, characterProfile, characterData);
+
         if (isEnemy)
         {
-            characterGameObject.tag = Globals.Instance.EnemyTag;
+            characterGameObject.tag = Constants.ENEMY_CHAR_TAG;
             characterGameObject.AddComponent<AIController>();
         }
         else
         {
-            characterGameObject.tag = Globals.Instance.PlayerCharacterTag;
+            characterGameObject.tag = Constants.PLAYER_CHAR_TAG;
         }
 
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
+        GenerateCharacterModel(characterGameObject, characterProfile);
 
         return characterGameObject;
     }
@@ -43,13 +40,34 @@ public class CharacterGenerator
     private Character GenerateCharacterData(CharacterGenerationProfile characterProfile)
     {
         var character = new Character();
-        character.Id = Guid.NewGuid();
+        character.Id = Guid.NewGuid().ToString();
         character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
         character.MaxHealth = UnityEngine.Random.Range(characterProfile.MinMaxHealth, characterProfile.MaxMaxHealth);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
 
         return character;
+    }
+
+    private void CreateHealthBar(
+        GameObject characterGameObject,
+        CharacterGenerationProfile characterProfile,
+        Character characterData)
+    {
+        var healthController = characterGameObject.AddComponent<HealthController>();
+
+        var healthBarObject = GameObject.Instantiate(characterProfile.HealthBarPrefab);
+        healthBarObject.transform.SetParent(characterGameObject.transform);
+
+        var healthBar = healthBarObject.GetComponentInChildren<HealthBar>();
+        if (healthBar != null)
+        {
+            healthController.HealthBar = healthBar;
+        }
+        else
+        {
+            Debug.LogError($"There was an error adding a health bar to character {characterData.Name}");
+        }
     }
 
     private void AddActionHandlingToGameObject(
@@ -92,5 +110,13 @@ public class CharacterGenerator
 
             //TODO: add animations and particle affects to the action controller.
         }
+    }
+
+    private void GenerateCharacterModel(
+        GameObject characterGameObject,
+        CharacterGenerationProfile characterProfile)
+    {
+        var characterModelPrefab = characterProfile.PossibleModels[UnityEngine.Random.Range(0, characterProfile.PossibleModels.Count)];
+        GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
     }
 }

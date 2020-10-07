@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d8888e2455b1a4c8d96c80c1fa39a3, type: 3}
+  m_Name: SwordActionsProfile
+  m_EditorClassIdentifier: 
+  PossibleNames: []
+  MinNumberOfActions: 2
+  MaxNumberOfActions: 2
+  PossibleActions:
+  - {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
+  - {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
+  GuaranteedActions: []

@@ -4,7 +4,7 @@ using System.Collections;
 public class GridGenerator
 {
 
-    public static Grid<Tile> Generate(int width, int height, float cellSize, Vector3 origin)
+    public Grid<Tile> Generate(int width, int height, float cellSize, Vector3 origin)
     {
         return new Grid<Tile>(
             width,

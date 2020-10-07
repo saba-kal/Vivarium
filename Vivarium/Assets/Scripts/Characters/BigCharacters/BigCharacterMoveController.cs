@@ -46,6 +46,6 @@ public class BigCharacterMoveController : MoveController
             }
         }
 
-        CommandController.Instance.ExecuteCommand(new MoveCommand(gameObject, _breadthFirstSearch.GetPathToTile(toTile), Globals.Instance.CharacterMoveSpeed));
+        CommandController.Instance.ExecuteCommand(new MoveCommand(gameObject, _breadthFirstSearch.GetPathToTile(toTile), Constants.CHAR_MOVE_SPEED));
     }
 }

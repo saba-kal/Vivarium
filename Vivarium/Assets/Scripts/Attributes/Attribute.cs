@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-[CreateAssetMenu(fileName = "New Attribute", menuName = "Attribute", order = 4)]
+[CreateAssetMenu(fileName = "New Attribute", menuName = "Attribute", order = 5)]
 public class Attribute : ScriptableObject
 {
     public string Name;

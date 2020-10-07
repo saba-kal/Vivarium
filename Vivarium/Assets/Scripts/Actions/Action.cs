@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System;
 
-[CreateAssetMenu(fileName = "New Action", menuName = "Action", order = 3)]
+[CreateAssetMenu(fileName = "New Action", menuName = "Action", order = 6)]
 public class Action : ScriptableObject
 {
-    public Guid Id;
+    public string Id;
     public string Name;
     public float BaseDamage;
     [Range(0, 1)]

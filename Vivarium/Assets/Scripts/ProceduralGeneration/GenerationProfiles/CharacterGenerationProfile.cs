@@ -18,4 +18,6 @@ public class CharacterGenerationProfile : ScriptableObject
 
     public WeaponGenerationProfile WeaponProfile;
     public AttributesGenerationProfile AttributeProfile;
+
+    public GameObject HealthBarPrefab;
 }

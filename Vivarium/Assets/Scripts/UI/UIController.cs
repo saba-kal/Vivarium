@@ -54,7 +54,7 @@ public class UIController : MonoBehaviour
         HideCharacterInfo();
 
         CharacterInfoPanel.SetActive(true);
-        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(character.Name);
+        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(character.Id);
 
         var yOffset = 0f;
         foreach (var action in character?.Weapon?.Actions ?? new List<Action>())
@@ -64,7 +64,7 @@ public class UIController : MonoBehaviour
             actionButton.transform.Translate(new Vector3(0, yOffset));
             _existingActionButtons.Add(actionButton);
 
-            if (_charactersWithDisabledActions.Contains(character.Name))
+            if (_charactersWithDisabledActions.Contains(character.Id))
             {
                 actionButton.interactable = false;
             }
@@ -93,19 +93,19 @@ public class UIController : MonoBehaviour
         CharacterInfoPanel.SetActive(false);
     }
 
-    public void DisableActionsForCharacter(string characterName)
+    public void DisableActionsForCharacter(string characterId)
     {
-        _charactersWithDisabledActions.Add(characterName);
+        _charactersWithDisabledActions.Add(characterId);
         foreach (var button in _existingActionButtons)
         {
             button.interactable = false;
         }
     }
 
-    public void DisableMoveForCharacter(string characterName)
+    public void DisableMoveForCharacter(string characterId)
     {
         MoveButton.interactable = false;
-        _charactersWithDisabledMoves.Add(characterName);
+        _charactersWithDisabledMoves.Add(characterId);
     }
 
     public void EnableAllButtons()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 public class ActionController : MonoBehaviour
 {
@@ -27,13 +28,13 @@ public class ActionController : MonoBehaviour
 
     protected virtual void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
     {
-        var targetCharacterIds = new List<int>();
+        var targetCharacterIds = new List<string>();
 
         foreach (var tile in affectedTiles)
         {
-            if (tile.Value.CharacterControllerId.HasValue)
+            if (!string.IsNullOrEmpty(tile.Value.CharacterControllerId))
             {
-                targetCharacterIds.Add(tile.Value.CharacterControllerId.Value);
+                targetCharacterIds.Add(tile.Value.CharacterControllerId);
             }
         }
 

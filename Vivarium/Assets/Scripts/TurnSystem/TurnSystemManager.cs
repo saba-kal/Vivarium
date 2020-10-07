@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class TurnSystemManager : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class TurnSystemManager : MonoBehaviour
 
     private void Start()
     {
-        var ids = new List<int>();
+        var ids = new List<string>();
         foreach (var character in PlayerController.PlayerCharacters.Concat(AIManager.AICharacters))
         {
             if (ids.Contains(character.Id))
@@ -61,7 +62,7 @@ public class TurnSystemManager : MonoBehaviour
         PlayerController.EnableCharacters();
     }
 
-    public List<CharacterController> GetCharacterWithIds(List<int> ids, CharacterSearchType characterSearchType)
+    public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)
     {
         var characters = new List<CharacterController>();
         if (characterSearchType == CharacterSearchType.Player || characterSearchType == CharacterSearchType.Both)

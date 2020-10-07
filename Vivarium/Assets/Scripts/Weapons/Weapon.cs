@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class Weapon : ScriptableObject
+[Serializable]
+public class Weapon
 {
     public string Name;
     public List<Attribute> Attributes;

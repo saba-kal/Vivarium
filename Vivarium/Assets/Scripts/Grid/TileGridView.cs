@@ -66,7 +66,7 @@ public class TileGridView : MonoBehaviour
 
     public void DestroyGridMesh()
     {
-        var tiles = GameObject.FindGameObjectsWithTag("GridTile");
+        var tiles = GameObject.FindGameObjectsWithTag(Constants.TILE_GRID_TAG);
         foreach (var tile in tiles)
         {
             DestroyImmediate(tile);

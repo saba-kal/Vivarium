@@ -3,8 +3,8 @@
 [Serializable]
 public class Tile
 {
-    private int? _characterControllerId;
-    public int? CharacterControllerId
+    private string _characterControllerId;
+    public string CharacterControllerId
     {
         get { return _characterControllerId; }
         set

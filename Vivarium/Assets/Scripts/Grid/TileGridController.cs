@@ -48,7 +48,7 @@ public class TileGridController : MonoBehaviour
         //If grid data is not there, generate a new grid.
         if (string.IsNullOrWhiteSpace(GridData))
         {
-            _grid = GridGenerator.Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
+            _grid = new GridGenerator().Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
             GridData = GridSerializer.Serialize(_grid);
         }
         //Otherwise, parse the grid data that's there.
@@ -57,7 +57,7 @@ public class TileGridController : MonoBehaviour
             _grid = GridSerializer.Deserialize(GridData);
             if (_grid == null)
             {
-                _grid = GridGenerator.Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
+                _grid = new GridGenerator().Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
             }
             else
             {
@@ -86,8 +86,8 @@ public class TileGridController : MonoBehaviour
     {
         _mouseHoverHighlightObject = Instantiate(PrimaryHighlightPrefab);
         _mouseHoverHighlightObject.SetActive(false);
-        StoreCharacterControllers(Globals.Instance.PlayerCharacterTag);
-        StoreCharacterControllers(Globals.Instance.EnemyTag);
+        StoreCharacterControllers(Constants.ENEMY_CHAR_TAG);
+        StoreCharacterControllers(Constants.PLAYER_CHAR_TAG);
     }
 
     private void Update()
@@ -148,6 +148,11 @@ public class TileGridController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current == null)
+            {
+                Debug.LogError("This scene is missing an event system. Please create an event system game object.");
+                return;
+            }
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 return;

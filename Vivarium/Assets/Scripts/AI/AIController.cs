@@ -102,7 +102,7 @@ public class AIController : MonoBehaviour
                 out var distance);
 
             if (closestTileToPlayer != null &&
-                closestTileToPlayer.CharacterControllerId == null &&
+                string.IsNullOrEmpty(closestTileToPlayer.CharacterControllerId) &&
                 distance < minDistance)
             {
                 targetTile = closestTileToPlayer;

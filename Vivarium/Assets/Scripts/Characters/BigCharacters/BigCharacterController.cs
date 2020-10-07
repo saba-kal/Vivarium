@@ -62,7 +62,7 @@ public class BigCharacterController : CharacterController
             for (int y = 0; y < CharacterTileSize; y++)
             {
                 var adjascentTile = _grid.GetValue(tile.GridX + x, tile.GridY + y);
-                if (adjascentTile == null || adjascentTile.CharacterControllerId != null)
+                if (adjascentTile == null || !string.IsNullOrEmpty(adjascentTile.CharacterControllerId))
                 {
                     return false;
                 }

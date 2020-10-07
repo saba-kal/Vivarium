@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    public int Id;
+    public string Id;
     public Character Character;
     public bool IsEnemy;
 
@@ -67,7 +68,7 @@ public class CharacterController : MonoBehaviour
             tile != null &&
             !_hasMoved && _isSelected &&
             _moveController.IsAbleToMoveToTile(tile) &&
-            tile.CharacterControllerId == null;
+            string.IsNullOrEmpty(tile.CharacterControllerId);
     }
 
     public bool IsAbleToAttack()
