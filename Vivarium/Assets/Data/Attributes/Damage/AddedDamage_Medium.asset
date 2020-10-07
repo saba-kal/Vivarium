@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Added Damage Medium
   MinValue: 50
-  MaxValue: 100
+  MaxValue: 90
   ChanceToApply: 1
   Formula: 1
   Type: 2
