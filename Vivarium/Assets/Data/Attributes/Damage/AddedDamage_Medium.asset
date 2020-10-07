@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00855adbae6926439d2d4c4aee4ea82, type: 3}
   m_Name: AddedDamage_Medium
   m_EditorClassIdentifier: 
-  Name: Small Added Damage
+  Name: Added Damage Medium
   MinValue: 50
   MaxValue: 100
   ChanceToApply: 1

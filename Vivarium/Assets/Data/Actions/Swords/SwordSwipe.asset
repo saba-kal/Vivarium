@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
   m_Name: SwordSwipe
   m_EditorClassIdentifier: 
-  Name: Sword Swing
-  BaseDamage: 5
+  Id: 3a27d779-c439-4e14-b75c-7bccc0d32a8d
+  Name: Swipe
+  BaseDamage: 15
   CriticalChance: 0
   CriticalMultiplier: 0
   Range: 2
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 0
-  Attributes: []
+  Attributes:
+  - {fileID: 11400000, guid: 7d0e09f2a97b2d94ea7c8d3589981244, type: 2}
