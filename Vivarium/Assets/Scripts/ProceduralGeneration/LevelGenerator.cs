@@ -7,7 +7,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public LevelGenerationProfile LevelProfile;
-    public string LevelData;
+    public bool GenerateLevelOnStart = false;
 
     private const int MAX_SPAWN_ITERATIONS = 1000;
 
@@ -15,10 +15,14 @@ public class LevelGenerator : MonoBehaviour
     private EnemyAIManager _enemyAIManager;
     private PlayerController _playerController;
     private Grid<Tile> _grid;
+    private TileGridController _gridController;
 
-    private void Start()
+    private void Awake()
     {
-        //GenerateLevel();
+        if (GenerateLevelOnStart)
+        {
+            GenerateLevel();
+        }
     }
 
     public void GenerateLevel()
@@ -47,19 +51,16 @@ public class LevelGenerator : MonoBehaviour
         var grid = new GameObject("Grid");
         grid.transform.parent = _levelContainer.transform;
 
-        var tileGridController = grid.AddComponent<TileGridController>();
-        tileGridController.GridWidth = Random.Range(LevelProfile.MinGridWidth, LevelProfile.MaxGridWidth);
-        tileGridController.GridHeight = Random.Range(LevelProfile.MinGridHeight, LevelProfile.MaxGridHeight);
-        tileGridController.GridCellSize = LevelProfile.GridCellSize;
-        tileGridController.GridOrigin = LevelProfile.GridOrigin;
-        tileGridController.PrimaryHighlightPrefab = LevelProfile.PrimaryHighlightPrefab;
-        tileGridController.SecondaryHighlightPrefab = LevelProfile.SecondaryHighlightPrefab;
-        tileGridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab;
-        _grid = tileGridController.GenerateGridData();
+        _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
+        _gridController = grid.AddComponent<TileGridController>();
+        _gridController.Initialize(_grid);
+        _gridController.PrimaryHighlightPrefab = LevelProfile.PrimaryHighlightPrefab;
+        _gridController.SecondaryHighlightPrefab = LevelProfile.SecondaryHighlightPrefab;
+        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab;
 
         var tileGridView = grid.AddComponent<TileGridView>();
-        tileGridView.GridController = tileGridController;
-        tileGridView.TileInfos = LevelProfile.TileInfos;
+        tileGridView.GridController = _gridController;
+        tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
         tileGridView.CreateGridMesh();
     }
 

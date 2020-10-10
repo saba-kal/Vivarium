@@ -20,20 +20,13 @@ public class TileGridView : MonoBehaviour
 
     private void GetGridData()
     {
-        if (GridController != null)
+        if (GridController != null && GridController.GridIsGenerated())
         {
-            if (GridController.GridIsGenerated())
-            {
-                _grid = GridController.GetGrid();
-            }
-            else
-            {
-                _grid = GridController.GenerateGridData();
-            }
+            _grid = GridController.GetGrid();
         }
         else
         {
-            Debug.LogError("The tile grid view needs a reference to the grid controller to generate a grid.");
+            Debug.LogError("The tile grid view is missing a reference to the grid controller or the grid is not yet generated.");
         }
     }
 

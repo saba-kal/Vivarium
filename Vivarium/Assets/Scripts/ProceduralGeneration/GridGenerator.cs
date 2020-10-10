@@ -4,8 +4,13 @@ using System.Collections;
 public class GridGenerator
 {
 
-    public Grid<Tile> Generate(int width, int height, float cellSize, Vector3 origin)
+    public Grid<Tile> Generate(GridGenerationProfile gridProfile)
     {
+        var width = Random.Range(gridProfile.MinGridWidth, gridProfile.MaxGridWidth);
+        var height = Random.Range(gridProfile.MinGridHeight, gridProfile.MaxGridHeight);
+        var cellSize = gridProfile.GridCellSize;
+        var origin = gridProfile.GridOrigin;
+
         return new Grid<Tile>(
             width,
             height,
@@ -15,11 +20,11 @@ public class GridGenerator
             {
                 var tile = new Tile(x, y, grid);
                 var randomValue = Random.Range(0f, 1f);
-                if (randomValue < 0.05f)
+                if (randomValue < gridProfile.ObstacleSpawnChance)
                 {
                     tile.Type = TileType.Obstacle;
                 }
-                else if (randomValue < 0.1f)
+                else if (randomValue < gridProfile.ObstacleSpawnChance + gridProfile.WaterSpawnChance)
                 {
                     tile.Type = TileType.Water;
                 }

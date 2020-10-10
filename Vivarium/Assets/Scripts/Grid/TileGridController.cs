@@ -25,61 +25,12 @@ public class TileGridController : MonoBehaviour
     private Tile _mouseHoverTile;
     private GameObject _mouseHoverHighlightObject;
     private GridHighlightRank? _mouseTrackedHighlight;
-    private Dictionary<(int, int), Tile> _mouseHighlightRadiusTiles;
     private Dictionary<GridHighlightRank, List<GameObject>> _gridHighlightObjects = new Dictionary<GridHighlightRank, List<GameObject>>();
     private List<CharacterController> _allCharacters = new List<CharacterController>();
 
     private void Awake()
     {
-        GenerateGridData();
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
-    public Grid<Tile> GenerateGridData()
-    {
-        //If grid data is not there, generate a new grid.
-        if (string.IsNullOrWhiteSpace(GridData))
-        {
-            _grid = new GridGenerator().Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
-            GridData = GridSerializer.Serialize(_grid);
-        }
-        //Otherwise, parse the grid data that's there.
-        else
-        {
-            _grid = GridSerializer.Deserialize(GridData);
-            if (_grid == null)
-            {
-                _grid = new GridGenerator().Generate(GridWidth, GridHeight, GridCellSize, GridOrigin);
-            }
-            else
-            {
-                GridWidth = _grid.GetGrid().GetLength(0);
-                GridHeight = _grid.GetGrid().GetLength(1);
-                GridCellSize = _grid.GetCellSize();
-                GridOrigin = _grid.GetOrigin();
-            }
-        }
-
-        return _grid;
-    }
-
-    public void ClearGridData()
-    {
-        GridData = null;
-        _grid = null;
-    }
-
-    public bool GridIsGenerated()
-    {
-        return GridData != null && _grid != null;
+        Initialize();
     }
 
     private void Start()
@@ -95,6 +46,53 @@ public class TileGridController : MonoBehaviour
         GetMousePosition();
         ShowMouseHover();
         HandleMouseClick();
+    }
+
+    public void Initialize(Grid<Tile> grid = null)
+    {
+        if (grid == null && string.IsNullOrEmpty(GridData))
+        {
+            return;
+        }
+
+        if (grid == null)
+        {
+            _grid = GridSerializer.Deserialize(GridData);
+            if (_grid == null)
+            {
+                Debug.LogError("There was an error deserializing the grid data.");
+            }
+        }
+        else
+        {
+            _grid = grid;
+            GridData = GridSerializer.Serialize(_grid);
+        }
+
+        GridWidth = _grid.GetGrid().GetLength(0);
+        GridHeight = _grid.GetGrid().GetLength(1);
+        GridCellSize = _grid.GetCellSize();
+        GridOrigin = _grid.GetOrigin();
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    public void ClearGridData()
+    {
+        GridData = null;
+        _grid = null;
+    }
+
+    public bool GridIsGenerated()
+    {
+        return GridData != null && _grid != null;
     }
 
     private void StoreCharacterControllers(string tag)
