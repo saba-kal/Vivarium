@@ -3,7 +3,9 @@ using System.Collections;
 
 public class GridGenerator
 {
-
+    /// <summary>
+    /// Generates a grid.
+    /// </summary>
     public Grid<Tile> Generate(GridGenerationProfile gridProfile)
     {
         var width = Random.Range(gridProfile.MinGridWidth, gridProfile.MaxGridWidth);
