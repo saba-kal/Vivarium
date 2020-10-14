@@ -17,6 +17,8 @@ public class InventoryUIController : MonoBehaviour
     public Button RemovePlayerItemButton;
     public Button GetPlayerItemButton;
     public Button GetPlayerInventoryButton;
+    public Button GetNearbyCharactersButton;
+    public Button EquipButton;
     #endregion
 
     private CharacterController _selectedCharacterController;
@@ -78,6 +80,20 @@ public class InventoryUIController : MonoBehaviour
         {
             LogPlayerInventory();
         });
+        GetNearbyCharactersButton.onClick.AddListener(() =>
+        {
+            //LogCharacters(_selectedCharacterController.GetN)
+        });
+        EquipButton.onClick.AddListener(() =>
+        {
+            if (_selectedCharacterController != null)
+            {
+                _selectedCharacterController.Equip(TestItem);
+
+                //Refresh character UI to show new abilities from the weapon.
+                UIController.Instance.ShowCharacterInfo(_selectedCharacterController);
+            }
+        });
     }
 
     private void LogCharacterInventory()
@@ -123,6 +139,17 @@ public class InventoryUIController : MonoBehaviour
         foreach (var item in InventoryManager.GetPlayerInventory().Values)
         {
             logMessage += $"{item.Name}, ";
+        }
+
+        Debug.Log(logMessage);
+    }
+
+    private void LogCharacters(List<CharacterController> characterControllers)
+    {
+        var logMessage = "Nearby characters: ";
+        foreach (var characterController in characterControllers)
+        {
+            logMessage += $"{characterController.Character.Name}, ";
         }
 
         Debug.Log(logMessage);

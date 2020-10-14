@@ -47,7 +47,7 @@ public class CharacterController : MonoBehaviour
         {
             ShowMoveRadius();
         }
-        UIController.Instance.ShowCharacterInfo(Character);
+        UIController.Instance.ShowCharacterInfo(this);
     }
 
     public void Deselect()
@@ -187,6 +187,16 @@ public class CharacterController : MonoBehaviour
         if (item.Type != ItemType.Weapon)
         {
             Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
+            return;
         }
+
+        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot equip item that does not exist in character's inventory.");
+            return;
+        }
+
+        Character.Weapon = (Weapon)item;
+        //TODO: switch out weapon model here.
     }
 }
