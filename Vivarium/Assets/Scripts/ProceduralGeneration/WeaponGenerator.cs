@@ -5,11 +5,11 @@ public class WeaponGenerator
 {
     public Weapon GenerateWeapon(WeaponGenerationProfile weaponProfile)
     {
-        var weapon = new Weapon();
-        weapon.Name = weaponProfile.PossibleNames[Random.Range(0, weaponProfile.PossibleNames.Count)];
-        weapon.Attributes = new AttributesGenerator().GenerateAttributes(weaponProfile.AttributeProfile);
-        weapon.Actions = new ActionsGenerator().GenerateActions(weaponProfile.ActionsProfile);
+        if (weaponProfile.PossibleWeapons == null || weaponProfile.PossibleWeapons.Count == 0)
+        {
+            return null;
+        }
 
-        return weapon;
+        return weaponProfile.PossibleWeapons[Random.Range(0, weaponProfile.PossibleWeapons.Count)];
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -180,5 +180,13 @@ public class CharacterController : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void Equip(Item item)
+    {
+        if (item.Type != ItemType.Weapon)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
+        }
     }
 }

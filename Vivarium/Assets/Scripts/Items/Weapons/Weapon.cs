@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-[Serializable]
-public class Weapon
+[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon", order = 7)]
+public class Weapon : Item
 {
-    public string Name;
     public List<Attribute> Attributes;
     public List<Action> Actions;
 }
