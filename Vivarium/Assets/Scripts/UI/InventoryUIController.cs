@@ -82,7 +82,7 @@ public class InventoryUIController : MonoBehaviour
         });
         GetNearbyCharactersButton.onClick.AddListener(() =>
         {
-            //LogCharacters(_selectedCharacterController.GetN)
+            LogCharacters(_selectedCharacterController.GetAdjacentCharacters(CharacterSearchType.Player));
         });
         EquipButton.onClick.AddListener(() =>
         {

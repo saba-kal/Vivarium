@@ -199,4 +199,37 @@ public class CharacterController : MonoBehaviour
         Character.Weapon = (Weapon)item;
         //TODO: switch out weapon model here.
     }
+
+    public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
+    {
+        var adjacentCharacterIds = new List<string>();
+        var currentGridPosition = _grid.GetValue(transform.position);
+
+        //Right
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY).CharacterControllerId);
+        }
+
+        //Left
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY).CharacterControllerId);
+        }
+
+        //Up
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1).CharacterControllerId);
+        }
+
+        //Down
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1).CharacterControllerId);
+        }
+
+        return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
+    }
+
 }
