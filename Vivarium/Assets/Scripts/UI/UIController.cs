@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
+    public InventoryUIController InventoryUIController;
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;
@@ -49,22 +50,30 @@ public class UIController : MonoBehaviour
         EndTurnButton.onClick.AddListener(() => OnEndTurnClick?.Invoke());
     }
 
-    public void ShowCharacterInfo(Character character)
+    public void ShowCharacterInfo(CharacterController characterController)
     {
         HideCharacterInfo();
 
         CharacterInfoPanel.SetActive(true);
-        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(character.Id);
+        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
+
+        DisplayActions(characterController);
+        InventoryUIController.DisplayCharacterInventory(characterController);
+    }
+
+    private void DisplayActions(CharacterController characterController)
+    {
+        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
 
         var yOffset = 0f;
-        foreach (var action in character?.Weapon?.Actions ?? new List<Action>())
+        foreach (var action in characterController?.Character?.Weapon?.Actions ?? new List<Action>())
         {
             var actionButton = Instantiate(ActionButtonPrefab);
             actionButton.transform.SetParent(ActionButtonsContainer.transform, false);
             actionButton.transform.Translate(new Vector3(0, yOffset));
             _existingActionButtons.Add(actionButton);
 
-            if (_charactersWithDisabledActions.Contains(character.Id))
+            if (_charactersWithDisabledActions.Contains(characterController.Id))
             {
                 actionButton.interactable = false;
             }

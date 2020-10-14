@@ -13,7 +13,7 @@ public class CharacterGenerator
         var characterGameObject = new GameObject(characterData.Name);
 
         var characterController = characterGameObject.AddComponent<CharacterController>();
-        characterController.Id = Guid.NewGuid().ToString();
+        characterController.Id = characterData.Id;
         characterController.Character = characterData;
         characterController.IsEnemy = isEnemy;
 

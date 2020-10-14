@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +47,7 @@ public class CharacterController : MonoBehaviour
         {
             ShowMoveRadius();
         }
-        UIController.Instance.ShowCharacterInfo(Character);
+        UIController.Instance.ShowCharacterInfo(this);
     }
 
     public void Deselect()
@@ -181,4 +181,55 @@ public class CharacterController : MonoBehaviour
 
         return null;
     }
+
+    public void Equip(Item item)
+    {
+        if (item.Type != ItemType.Weapon)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
+            return;
+        }
+
+        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot equip item that does not exist in character's inventory.");
+            return;
+        }
+
+        Character.Weapon = (Weapon)item;
+        //TODO: switch out weapon model here.
+    }
+
+    public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
+    {
+        var adjacentCharacterIds = new List<string>();
+        var currentGridPosition = _grid.GetValue(transform.position);
+
+        //Right
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY).CharacterControllerId);
+        }
+
+        //Left
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY).CharacterControllerId);
+        }
+
+        //Up
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1).CharacterControllerId);
+        }
+
+        //Down
+        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1)?.CharacterControllerId))
+        {
+            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1).CharacterControllerId);
+        }
+
+        return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
+    }
+
 }

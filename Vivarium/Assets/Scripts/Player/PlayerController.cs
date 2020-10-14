@@ -55,14 +55,14 @@ public class PlayerController : MonoBehaviour
         if (_actionIsSelected && ActionIsWithinRange(selectedTile))
         {
             PerformAction(selectedTile);
-            UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Character.Id);
+            UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
             _selectedCharacter.IsAbleToMoveToTile(selectedTile))
         {
             _selectedCharacter.MoveToTile(selectedTile);
-            UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Character.Id);
+            UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Id);
         }
         //Grid cell click was probably on a character.
         else

@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b13207c9db97b498130cdd0413251c, type: 3}
   m_Name: TestWeaponProfile
   m_EditorClassIdentifier: 
-  PossibleNames:
-  - Great Sword
-  - Buster Blade
-  AttributeProfile: {fileID: 11400000, guid: 3c1bffc4ff3cb204a83c85fd554be68d, type: 2}
-  ActionsProfile: {fileID: 11400000, guid: 57d70840010ef3049862bf1365164739, type: 2}
+  PossibleWeapons:
+  - {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
