@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
+    public InventoryUIController InventoryUIController;
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;
@@ -57,6 +58,7 @@ public class UIController : MonoBehaviour
         MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
 
         DisplayActions(characterController);
+        InventoryUIController.DisplayCharacterInventory(characterController);
     }
 
     private void DisplayActions(CharacterController characterController)

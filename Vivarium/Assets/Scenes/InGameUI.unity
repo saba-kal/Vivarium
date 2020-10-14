@@ -155,10 +155,11 @@ MonoBehaviour:
   CharacterInfoPanel: {fileID: 1945382069}
   ActionButtonsContainer: {fileID: 648306795}
   SelectedButtonIndicator: {fileID: 1474463239}
+  InventoryUIController: {fileID: 2058109996}
   ActionButtonPrefab: {fileID: 6322638362991229208, guid: a3236504331991649ad5f75d762ad467, type: 3}
   MoveButton: {fileID: 1508797344}
   EndTurnButton: {fileID: 1068581950}
-  SpaceBetweenButtons: 50
+  SpaceBetweenButtons: 100
 --- !u!4 &2853928
 Transform:
   m_ObjectHideFlags: 0
@@ -833,8 +834,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 205.7}
-  m_SizeDelta: {x: 0, y: 411.47455}
+  m_AnchoredPosition: {x: 0, y: 195.2}
+  m_SizeDelta: {x: 0, y: 390.3877}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &715444480
 GameObject:
@@ -3700,18 +3701,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9d66ce5fa637c41a2ece0afc1bae16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestItem: {fileID: 0}
-  PlaceCharacterItemButton: {fileID: 0}
-  RemoveCharacterItemButton: {fileID: 0}
-  GetCharacterItemButton: {fileID: 0}
-  GetCharacterInventoryButton: {fileID: 0}
-  GetAllCharacterInventoriesButton: {fileID: 0}
-  PlacePlayerItemButton: {fileID: 0}
-  RemovePlayerItemButton: {fileID: 0}
-  GetPlayerItemButton: {fileID: 0}
-  GetPlayerInventoryButton: {fileID: 0}
-  GetNearbyCharactersButton: {fileID: 0}
-  EquipButton: {fileID: 0}
+  TestItem: {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
+  PlaceCharacterItemButton: {fileID: 2121574698}
+  RemoveCharacterItemButton: {fileID: 1104752390}
+  GetCharacterItemButton: {fileID: 1884025960}
+  GetCharacterInventoryButton: {fileID: 367271754}
+  GetAllCharacterInventoriesButton: {fileID: 448456192}
+  PlacePlayerItemButton: {fileID: 1618330999}
+  RemovePlayerItemButton: {fileID: 733311908}
+  GetPlayerItemButton: {fileID: 1170672551}
+  GetPlayerInventoryButton: {fileID: 861997527}
+  GetNearbyCharactersButton: {fileID: 522285911}
+  EquipButton: {fileID: 1296522935}
 --- !u!1 &2078806931
 GameObject:
   m_ObjectHideFlags: 0

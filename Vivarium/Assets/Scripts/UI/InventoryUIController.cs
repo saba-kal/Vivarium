@@ -52,7 +52,11 @@ public class InventoryUIController : MonoBehaviour
         GetCharacterItemButton.onClick.AddListener(() =>
         {
             var item = InventoryManager.GetCharacterItem(_selectedCharacterController.Id, TestItem.Id);
-            Debug.Log($"Retrieved the following item: {item.Name}");
+            Debug.Log($"Retrieved the following item: {item?.Name}");
+        });
+        GetCharacterInventoryButton.onClick.AddListener(() =>
+        {
+            LogCharacterInventory();
         });
         GetAllCharacterInventoriesButton.onClick.AddListener(() =>
         {
@@ -74,7 +78,7 @@ public class InventoryUIController : MonoBehaviour
         GetPlayerItemButton.onClick.AddListener(() =>
         {
             var item = InventoryManager.GetPlayerItem(TestItem.Id);
-            Debug.Log($"Retrieved the following item: {item.Name}");
+            Debug.Log($"Retrieved the following item: {item?.Name}");
         });
         GetPlayerInventoryButton.onClick.AddListener(() =>
         {
