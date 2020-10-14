@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class InventoryUIController : MonoBehaviour
 {
-    public Image TestItemIcon;
+    public Image TestItemIconHolder;
 
     //The properties below are for demoing the inventory API. They can be removed once actual UI is implemented.
     #region Inventory API demo properties
@@ -39,7 +39,7 @@ public class InventoryUIController : MonoBehaviour
 
     private void DisplayItemIcon()
     {
-        TestItemIcon.sprite = TestItem.Icon;
+        TestItemIconHolder.sprite = TestItem.Icon;
     }
 
     //Note: the region below is just logic for demoing the inventory API. Please remove the code below once actual UI is implemented.

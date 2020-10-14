@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2853928}
   - component: {fileID: 2853927}
+  - component: {fileID: 2853929}
   m_Layer: 0
   m_Name: UIMasterController
   m_TagString: Untagged
@@ -155,7 +156,7 @@ MonoBehaviour:
   CharacterInfoPanel: {fileID: 1945382069}
   ActionButtonsContainer: {fileID: 648306795}
   SelectedButtonIndicator: {fileID: 1474463239}
-  InventoryUIController: {fileID: 2058109996}
+  InventoryUIController: {fileID: 2853929}
   ActionButtonPrefab: {fileID: 6322638362991229208, guid: a3236504331991649ad5f75d762ad467, type: 3}
   MoveButton: {fileID: 1508797344}
   EndTurnButton: {fileID: 1068581950}
@@ -174,6 +175,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2853929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2853926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9d66ce5fa637c41a2ece0afc1bae16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestItemIconHolder: {fileID: 1079565501}
+  TestItem: {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
+  PlaceCharacterItemButton: {fileID: 2121574698}
+  RemoveCharacterItemButton: {fileID: 1104752390}
+  GetCharacterItemButton: {fileID: 1884025960}
+  GetCharacterInventoryButton: {fileID: 367271754}
+  GetAllCharacterInventoriesButton: {fileID: 448456192}
+  PlacePlayerItemButton: {fileID: 1618330999}
+  RemovePlayerItemButton: {fileID: 733311908}
+  GetPlayerItemButton: {fileID: 1170672551}
+  GetPlayerInventoryButton: {fileID: 861997527}
+  GetNearbyCharactersButton: {fileID: 522285911}
+  EquipButton: {fileID: 1296522935}
 --- !u!1 &133573242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1710,7 @@ GameObject:
   - component: {fileID: 1079565502}
   - component: {fileID: 1079565501}
   m_Layer: 5
-  m_Name: TestItemIcon
+  m_Name: TestItemIconHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3736,7 +3762,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2058109995}
-  - component: {fileID: 2058109996}
   m_Layer: 5
   m_Name: InventoryAPIDemo
   m_TagString: Untagged
@@ -3765,31 +3790,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -264.1}
   m_SizeDelta: {x: 0, y: 528.2662}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2058109996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058109994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de9d66ce5fa637c41a2ece0afc1bae16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TestItemIcon: {fileID: 1079565501}
-  TestItem: {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
-  PlaceCharacterItemButton: {fileID: 2121574698}
-  RemoveCharacterItemButton: {fileID: 1104752390}
-  GetCharacterItemButton: {fileID: 1884025960}
-  GetCharacterInventoryButton: {fileID: 367271754}
-  GetAllCharacterInventoriesButton: {fileID: 448456192}
-  PlacePlayerItemButton: {fileID: 1618330999}
-  RemovePlayerItemButton: {fileID: 733311908}
-  GetPlayerItemButton: {fileID: 1170672551}
-  GetPlayerInventoryButton: {fileID: 861997527}
-  GetNearbyCharactersButton: {fileID: 522285911}
-  EquipButton: {fileID: 1296522935}
 --- !u!1 &2078806931
 GameObject:
   m_ObjectHideFlags: 0
