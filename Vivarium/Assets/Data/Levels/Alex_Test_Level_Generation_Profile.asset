@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
+  m_Name: Alex_Test_Level_Generation_Profile
+  m_EditorClassIdentifier: 
+  GridProfile: {fileID: 11400000, guid: 5f1f18164184ed542bdfb32625adc9dc, type: 2}
+  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
+  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
+  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
+  MinEnemyCharacters: 1
+  MaxEnemyCharacters: 3
+  PossibleEnemyCharacters:
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  MinPlayerCharacters: 1
+  MaxPlayerCharacters: 3
+  PossiblePlayerCharacters:
+  - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
+  - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
+  - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
+  - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
+  - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}

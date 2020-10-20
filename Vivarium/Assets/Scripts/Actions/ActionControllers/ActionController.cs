@@ -26,8 +26,33 @@ public class ActionController : MonoBehaviour
         this.ExecuteAction(affectedTiles);
     }
 
+    // Looks at the action's animation type and performs the animation accordingly 
+    protected virtual void PerformAnimation()
+    {
+        Debug.Log(ActionReference.AnimType);
+        var animationType = ActionReference.AnimType;
+        switch (animationType)
+        {
+            case AnimationType.sword_swing:
+                {
+                    Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+                    myAnimator.SetTrigger("Jump");
+                    break;
+                }
+            case AnimationType.sword_swipe:
+                {
+                    Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+                    myAnimator.SetTrigger("Swerve");
+                    break;
+                }
+
+        }
+    }
+
     protected virtual void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
     {
+        this.PerformAnimation();
+
         var targetCharacterIds = new List<string>();
 
         foreach (var tile in affectedTiles)
@@ -71,6 +96,8 @@ public class ActionController : MonoBehaviour
 
         foreach (var targetCharacter in targetCharacters)
         {
+
+            // executing the actual action on target character
             ExecuteActionOnCharacter(targetCharacter);
         }
 

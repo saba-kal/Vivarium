@@ -20,4 +20,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public AttributesGenerationProfile AttributeProfile;
 
     public GameObject HealthBarPrefab;
+
+    // for animation
+    public RuntimeAnimatorController AnimationController;
 }

@@ -25,6 +25,8 @@ public class CommandController : MonoBehaviour
         StartCoroutine(CoroutineCoordinator());
     }
 
+    // possibly change frames
+    // add animation action to queue 
     IEnumerator CoroutineCoordinator()
     {
         while (true)
