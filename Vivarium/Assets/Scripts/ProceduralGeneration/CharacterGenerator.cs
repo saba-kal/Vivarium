@@ -107,8 +107,6 @@ public class CharacterGenerator
             {
                 actionViewer.ActionReference = action;
             }
-
-            //TODO: add animations and particle affects to the action controller.
         }
     }
 
@@ -117,6 +115,12 @@ public class CharacterGenerator
         CharacterGenerationProfile characterProfile)
     {
         var characterModelPrefab = characterProfile.PossibleModels[UnityEngine.Random.Range(0, characterProfile.PossibleModels.Count)];
-        GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
+
+        // creates the prefab and model onto the scene
+        var prefabInstance = GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
+
+        // adds animator to the model of the INSTANCE of the character
+        Animator animator = prefabInstance.gameObject.AddComponent<Animator>() as Animator;
+        animator.runtimeAnimatorController = characterProfile.AnimationController;
     }
 }

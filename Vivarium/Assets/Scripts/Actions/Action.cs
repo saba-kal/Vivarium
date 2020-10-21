@@ -16,4 +16,5 @@ public class Action : ScriptableObject
     public ActionTarget ActionTargetType;
     public ActionControllerType ControllerType;
     public List<Attribute> Attributes;
+    public AnimationType AnimType;
 }
