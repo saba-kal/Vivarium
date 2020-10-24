@@ -34,7 +34,8 @@ public class GridSerializer
                     Name = gridArray[x, y].Name,
                     Type = gridArray[x, y].Type,
                     GridX = gridArray[x, y].GridX,
-                    GridY = gridArray[x, y].GridY
+                    GridY = gridArray[x, y].GridY,
+                    IsObjective = gridArray[x, y].IsObjective
                 });
             }
             gridJObject.Rows.Add(gridRowJObject);
@@ -58,6 +59,7 @@ public class GridSerializer
                     var tile = new Tile(x, y, grid);
                     tile.CharacterControllerId = gridJObject.Rows[x].Tiles[y].CharacterControllerId;
                     tile.Type = gridJObject.Rows[x].Tiles[y].Type;
+                    tile.IsObjective = gridJObject.Rows[x].Tiles[y].IsObjective;
                     return tile;
                 });
         }

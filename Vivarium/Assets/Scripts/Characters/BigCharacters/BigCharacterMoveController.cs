@@ -21,7 +21,7 @@ public class BigCharacterMoveController : MoveController
         return base.CalculateAvailableMoves();
     }
 
-    public override void MoveToTile(Tile fromTile, Tile toTile)
+    public override void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
     {
         if (fromTile == null || toTile == null)
         {
@@ -46,6 +46,11 @@ public class BigCharacterMoveController : MoveController
             }
         }
 
-        CommandController.Instance.ExecuteCommand(new MoveCommand(gameObject, _breadthFirstSearch.GetPathToTile(toTile), Constants.CHAR_MOVE_SPEED));
+        CommandController.Instance.ExecuteCommand(
+            new MoveCommand(
+                gameObject,
+                _breadthFirstSearch.GetPathToTile(toTile),
+                Constants.CHAR_MOVE_SPEED,
+                onMoveComplete));
     }
 }

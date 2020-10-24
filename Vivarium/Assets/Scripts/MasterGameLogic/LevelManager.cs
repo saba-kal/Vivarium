@@ -9,6 +9,16 @@ public class LevelManager : MonoBehaviour
 
     private List<Level> _levels;
 
+    void OnEnable()
+    {
+        PlayerController.OnObjectiveCapture += CompleteLevel;
+    }
+
+    void OnDisable()
+    {
+        PlayerController.OnObjectiveCapture -= CompleteLevel;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +29,7 @@ public class LevelManager : MonoBehaviour
     private void LoadGame()
     {
         _levels = new List<Level>();
+        //TODO: implement loading here.
     }
 
     private void StartGame()
@@ -27,5 +38,10 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("");
         }
+    }
+
+    private void CompleteLevel()
+    {
+        Debug.Log("You beat the level.");
     }
 }

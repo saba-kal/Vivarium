@@ -50,7 +50,7 @@ public class MoveController : MonoBehaviour
             _availableMoves.ContainsKey((tile.GridX, tile.GridY));
     }
 
-    public virtual void MoveToTile(Tile fromTile, Tile toTile)
+    public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
     {
         if (fromTile == null || toTile == null)
         {
@@ -58,7 +58,12 @@ public class MoveController : MonoBehaviour
         }
 
         fromTile.CharacterControllerId = null;
-        CommandController.Instance.ExecuteCommand(new MoveCommand(gameObject, _breadthFirstSearch.GetPathToTile(toTile), Constants.CHAR_MOVE_SPEED));
+        CommandController.Instance.ExecuteCommand(
+            new MoveCommand(
+                gameObject,
+                _breadthFirstSearch.GetPathToTile(toTile),
+                Constants.CHAR_MOVE_SPEED,
+                onMoveComplete));
         toTile.CharacterControllerId = _characterController.Id;
     }
 }

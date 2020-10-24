@@ -40,9 +40,9 @@ public class BigCharacterController : CharacterController
         }
     }
 
-    public override void MoveToTile(Tile tile)
+    public override void MoveToTile(Tile tile, System.Action onMoveComplete = null)
     {
-        base.MoveToTile(tile);
+        base.MoveToTile(tile, onMoveComplete);
     }
 
     public int GetSize()

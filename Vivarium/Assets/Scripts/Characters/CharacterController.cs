@@ -76,7 +76,7 @@ public class CharacterController : MonoBehaviour
         return !_hasAttacked;
     }
 
-    public virtual void MoveToTile(Tile tile)
+    public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null)
     {
         if (tile == null)
         {
@@ -85,7 +85,7 @@ public class CharacterController : MonoBehaviour
         }
         if (_moveController != null)
         {
-            _moveController.MoveToTile(GetGridPosition(), tile);
+            _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete);
             _hasMoved = true;
             Deselect();
         }
