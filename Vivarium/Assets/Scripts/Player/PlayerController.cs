@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public delegate void ObjectiveCapture();
+    public static event ObjectiveCapture OnObjectiveCapture;
 
     public List<CharacterController> PlayerCharacters;
 
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick += OnGridCellClick;
         UIController.OnActionClick += SelectAction;
         UIController.OnMoveClick += SelectMove;
+        CharacterController.OnDeath += OnCharacterDeath;
     }
 
     void OnDisable()
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick -= OnGridCellClick;
         UIController.OnActionClick -= SelectAction;
         UIController.OnMoveClick -= SelectMove;
+        CharacterController.OnDeath -= OnCharacterDeath;
     }
 
 
@@ -61,7 +65,10 @@ public class PlayerController : MonoBehaviour
         else if (_selectedCharacter != null &&
             _selectedCharacter.IsAbleToMoveToTile(selectedTile))
         {
-            _selectedCharacter.MoveToTile(selectedTile);
+            _selectedCharacter.MoveToTile(selectedTile, () =>
+            {
+                OnCharacterMoveComplete(selectedTile);
+            });
             UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Id);
         }
         //Grid cell click was probably on a character.
@@ -162,5 +169,32 @@ public class PlayerController : MonoBehaviour
     {
         var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
         return Vector3.Distance(_selectedCharacter.transform.position, targetPosition) < _selectedActionRange + 0.01f;
+    }
+
+    private void OnCharacterMoveComplete(Tile toTile)
+    {
+        if (toTile.IsObjective)
+        {
+            OnObjectiveCapture?.Invoke();
+        }
+    }
+
+    private void OnCharacterDeath(CharacterController deadCharacterController)
+    {
+        for (var i = 0; i < PlayerCharacters.Count; i++)
+        {
+            if (PlayerCharacters[i].Id == deadCharacterController.Id)
+            {
+                Debug.Log($"Player character {deadCharacterController.Character.Name} died.");
+                PlayerCharacters.RemoveAt(i);
+                Destroy(deadCharacterController.gameObject);
+            }
+        }
+
+        if (PlayerCharacters.Count == 0)
+        {
+            Debug.Log("GAME OVER");
+            //TODO: Call game over screen to show up here.
+        }
     }
 }

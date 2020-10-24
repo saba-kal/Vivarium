@@ -39,6 +39,16 @@ public class Tile
     public int GridX { get; private set; }
     public int GridY { get; private set; }
 
+    private bool _isObjective;
+    public bool IsObjective
+    {
+        get { return _isObjective; }
+        set
+        {
+            _isObjective = value;
+            _grid.TriggerGridCellChange(GridX, GridY);
+        }
+    }
 
     private Grid<Tile> _grid;
 

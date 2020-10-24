@@ -10,4 +10,5 @@ public class TileJObject
     public TileType Type;
     public int GridX;
     public int GridY;
+    public bool IsObjective;
 }

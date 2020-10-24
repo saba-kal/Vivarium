@@ -5,13 +5,14 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public LevelGenerationProfile LevelProfile;
+    public List<CharacterController> PlayerCharacters;
+    public PlayerController PlayerController;
     public bool GenerateLevelOnStart = false;
 
     private const int MAX_SPAWN_ITERATIONS = 1000;
 
     private GameObject _levelContainer;
     private EnemyAIManager _enemyAIManager;
-    private PlayerController _playerController;
     private Grid<Tile> _grid;
     private TileGridController _gridController;
 
@@ -26,10 +27,8 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateLevel()
     {
         DestroyExistingLevel();
-
-        _levelContainer = new GameObject("Level");
-        _levelContainer.tag = Constants.LEVEL_CONTAINER_TAG;
-
+        SetupLevelContainer();
+        SetupPlayerController();
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
@@ -42,6 +41,37 @@ public class LevelGenerator : MonoBehaviour
         {
             DestroyImmediate(levelContainer);
         }
+
+        var playerController = GameObject.FindGameObjectWithTag(Constants.PLAYER_CONTROLLER_TAG);
+        if (PlayerCharacters.Count == 0 && playerController != null)
+        {
+            if (playerController != null)
+            {
+                DestroyImmediate(playerController);
+            }
+        }
+        else if (playerController != null)
+        {
+            PlayerController = playerController.GetComponent<PlayerController>();
+        }
+    }
+
+    public void SetupLevelContainer()
+    {
+        _levelContainer = new GameObject("Level");
+        _levelContainer.tag = Constants.LEVEL_CONTAINER_TAG;
+    }
+
+    public void SetupPlayerController()
+    {
+        if (PlayerController == null)
+        {
+            var playerControllerObj = new GameObject("PlayerController");
+            playerControllerObj.tag = Constants.PLAYER_CONTROLLER_TAG;
+
+            PlayerController = playerControllerObj.AddComponent<PlayerController>();
+            PlayerController.PlayerCharacters = new List<CharacterController>();
+        }
     }
 
     private void GenerateGrid()
@@ -50,16 +80,31 @@ public class LevelGenerator : MonoBehaviour
         grid.transform.parent = _levelContainer.transform;
 
         _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
+        //TODO: move this to grid generator. Placing it here for now so that it will not cause merge conflicts.
+        PlaceObjective();
+
         _gridController = grid.AddComponent<TileGridController>();
         _gridController.Initialize(_grid);
         _gridController.PrimaryHighlightPrefab = LevelProfile.PrimaryHighlightPrefab;
         _gridController.SecondaryHighlightPrefab = LevelProfile.SecondaryHighlightPrefab;
-        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab;
+        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab; ;
 
         var tileGridView = grid.AddComponent<TileGridView>();
         tileGridView.GridController = _gridController;
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
+        tileGridView.LevelObjectivePrefab = LevelProfile.LevelObjectivePrefab;
         tileGridView.CreateGridMesh();
+    }
+
+    private void PlaceObjective()
+    {
+        //TODO: figure out better objective placement than a completely random position.
+        var xPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
+        var yPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
+
+        var objectiveTile = _grid.GetValue(xPosition, yPosition);
+        objectiveTile.IsObjective = true;
+        objectiveTile.Type = TileType.Grass;
     }
 
     private void GenerateCharacters()
@@ -71,7 +116,7 @@ public class LevelGenerator : MonoBehaviour
             LevelProfile.MinPlayerCharacters < 0 ||
             LevelProfile.MaxPlayerCharacters > LevelProfile.PossiblePlayerCharacters.Count;
 
-        if (enemyGenerationOutOfRange || playerGenerationOutOfRange)
+        if (enemyGenerationOutOfRange || (PlayerCharacters.Count == 0 && playerGenerationOutOfRange))
         {
             var characterType = enemyGenerationOutOfRange ? "enemy" : "player";
             Debug.LogError($"The minimum and maximum number of {characterType} characters it out of range of the possible characters.");
@@ -79,7 +124,14 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        GeneratePlayerCharacters();
+        if (PlayerCharacters.Count == 0)
+        {
+            GeneratePlayerCharacters();
+        }
+        foreach (var characterController in PlayerCharacters)
+        {
+            PlaceCharacterOnGrid(characterController);
+        }
     }
 
     private void GenerateEnemyCharacters()
@@ -98,26 +150,23 @@ public class LevelGenerator : MonoBehaviour
             var characterGameObject = GenerateCharacter(enemyProfile, true);
             characterGameObject.transform.parent = aiManagerObj.transform;
             _enemyAIManager.AICharacters.Add(characterGameObject.GetComponent<CharacterController>());
+            PlaceCharacterOnGrid(characterGameObject.GetComponent<CharacterController>());
         }
     }
 
     private void GeneratePlayerCharacters()
     {
-        var playerControllerObj = new GameObject("PlayerController");
-        playerControllerObj.transform.parent = _levelContainer.transform;
-
-        _playerController = playerControllerObj.AddComponent<PlayerController>();
-        _playerController.PlayerCharacters = new List<CharacterController>();
-
         var numberOfPlayerCharacters = Random.Range(LevelProfile.MinPlayerCharacters, LevelProfile.MaxPlayerCharacters + 1);
         var playerProfiles = LevelProfile.PossiblePlayerCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfPlayerCharacters);
 
         foreach (var playerProfile in playerProfiles)
         {
             var characterGameObject = GenerateCharacter(playerProfile, false);
-            characterGameObject.transform.parent = playerControllerObj.transform;
-            _playerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
+            characterGameObject.transform.parent = PlayerController.transform;
+            PlayerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
         }
+
+        PlayerCharacters = PlayerController.PlayerCharacters;
     }
 
     private GameObject GenerateCharacter(
@@ -125,14 +174,18 @@ public class LevelGenerator : MonoBehaviour
         bool isEnemy)
     {
         var characterGameObject = new CharacterGenerator().GenerateCharacter(characterProfile, isEnemy);
+        return characterGameObject;
+    }
 
+    private void PlaceCharacterOnGrid(CharacterController characterController)
+    {
         var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
         var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
         var tile = _grid.GetValue(tileXPosition, tileYPosition);
         var iterations = 0;
 
-        while (!CharacterCanSpawnOnTile(tile, characterProfile) &&
+        while (!CharacterCanSpawnOnTile(tile, characterController) &&
             iterations < MAX_SPAWN_ITERATIONS)
         {
             tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
@@ -141,17 +194,16 @@ public class LevelGenerator : MonoBehaviour
             iterations++;
         }
 
-        characterGameObject.transform.position = _grid.GetWorldPositionCentered(tile.GridX, tile.GridY);
-        tile.CharacterControllerId = characterGameObject.GetComponent<CharacterController>().Id;
-        return characterGameObject;
+        characterController.gameObject.transform.position = _grid.GetWorldPositionCentered(tile.GridX, tile.GridY);
+        tile.CharacterControllerId = characterController.Id;
     }
 
-    private bool CharacterCanSpawnOnTile(Tile tile, CharacterGenerationProfile characterProfile)
+    private bool CharacterCanSpawnOnTile(Tile tile, CharacterController characterController)
     {
         return
             tile != null &&
             string.IsNullOrEmpty(tile.CharacterControllerId) &&
-            characterProfile.NavigableTiles.Contains(tile.Type);
+            characterController.Character.NavigableTiles.Contains(tile.Type);
     }
 
     private void GenerateGameMaster()
@@ -160,7 +212,7 @@ public class LevelGenerator : MonoBehaviour
         gameMaster.transform.parent = _levelContainer.transform;
 
         var turnSystemManager = gameMaster.AddComponent<TurnSystemManager>();
-        turnSystemManager.PlayerController = _playerController;
+        turnSystemManager.PlayerController = PlayerController;
         turnSystemManager.AIManager = _enemyAIManager;
 
         gameMaster.AddComponent<CommandController>();

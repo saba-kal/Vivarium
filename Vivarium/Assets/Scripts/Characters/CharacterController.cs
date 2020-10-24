@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public delegate void Death(CharacterController characterController);
+    public static event Death OnDeath;
+
     public string Id;
     public Character Character;
     public bool IsEnemy;
@@ -76,7 +79,7 @@ public class CharacterController : MonoBehaviour
         return !_hasAttacked;
     }
 
-    public virtual void MoveToTile(Tile tile)
+    public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null)
     {
         if (tile == null)
         {
@@ -85,7 +88,7 @@ public class CharacterController : MonoBehaviour
         }
         if (_moveController != null)
         {
-            _moveController.MoveToTile(GetGridPosition(), tile);
+            _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete);
             _hasMoved = true;
             Deselect();
         }
@@ -116,7 +119,14 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot take damage because character is missing a health controller.");
             return false;
         }
-        return _healthController.TakeDamage(damage);
+
+        if (_healthController.TakeDamage(damage))
+        {
+            OnDeath(this);
+            return true;
+        }
+
+        return false;
     }
 
     public void SetHasMoved(bool hasMoved)

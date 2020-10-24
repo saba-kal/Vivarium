@@ -11,4 +11,5 @@ public static class Constants
     public const string ENEMY_CHAR_TAG = "EnemyCharacter";
     public const string LEVEL_CONTAINER_TAG = "LevelContainer";
     public const string TILE_GRID_TAG = "GridTile";
+    public const string PLAYER_CONTROLLER_TAG = "PlayerController";
 }

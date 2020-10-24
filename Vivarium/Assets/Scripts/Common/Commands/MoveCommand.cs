@@ -9,16 +9,19 @@ public class MoveCommand : ICommand
     private List<Tile> _path;
     private float _speed;
     private Grid<Tile> _grid;
+    private System.Action _onMoveComplete;
 
     public MoveCommand(
         GameObject gameObject,
         List<Tile> path,
-        float speed)
+        float speed,
+        System.Action onMoveComplete = null)
     {
         _gameObject = gameObject;
         _path = path;
         _speed = speed;
         _grid = TileGridController.Instance.GetGrid();
+        _onMoveComplete = onMoveComplete;
     }
 
     public IEnumerator Execute()
@@ -50,5 +53,7 @@ public class MoveCommand : ICommand
             }
             yield return null;
         }
+
+        _onMoveComplete?.Invoke();
     }
 }

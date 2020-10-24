@@ -8,6 +8,7 @@ TagManager:
   - EnemyCharacter
   - PlayerCharacter
   - LevelContainer
+  - PlayerController
   layers:
   - Default
   - TransparentFX
