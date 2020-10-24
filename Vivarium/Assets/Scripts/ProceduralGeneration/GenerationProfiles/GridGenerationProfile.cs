@@ -16,8 +16,13 @@ public class GridGenerationProfile : ScriptableObject
     public float GridCellSize;
     public Vector3 GridOrigin;
 
+    public int MinWallLength;
+    public int MaxWallLength;
+
     [Range(0f, 1f)]
     public float ObstacleSpawnChance = 0.05f;
     [Range(0f, 1f)]
     public float WaterSpawnChance = 0.05f;
+    [Range(0f, 1f)]
+    public float WaterGrouping = 0.05f;
 }
