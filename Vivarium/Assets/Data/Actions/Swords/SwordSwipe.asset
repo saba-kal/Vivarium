@@ -17,9 +17,10 @@ MonoBehaviour:
   BaseDamage: 15
   CriticalChance: 0
   CriticalMultiplier: 0
-  Range: 2
-  AreaOfAffect: 0
+  Range: 5
+  AreaOfAffect: 2
   ActionTargetType: 0
   ControllerType: 0
   Attributes:
   - {fileID: 11400000, guid: 7d0e09f2a97b2d94ea7c8d3589981244, type: 2}
+  AnimType: 0

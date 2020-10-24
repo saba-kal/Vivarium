@@ -10,6 +10,7 @@ public class LevelGenerationProfile : ScriptableObject
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
+    public GameObject LevelObjectivePrefab;
 
     public int MinEnemyCharacters;
     public int MaxEnemyCharacters;

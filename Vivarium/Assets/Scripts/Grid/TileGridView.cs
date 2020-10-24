@@ -8,6 +8,7 @@ public class TileGridView : MonoBehaviour
 {
     public TileGridController GridController;
     public List<TileDisplayInfo> TileInfos;
+    public GameObject LevelObjectivePrefab;
 
     private Grid<Tile> _grid;
 
@@ -50,9 +51,22 @@ public class TileGridView : MonoBehaviour
                     return;
                 }
 
-                var tileObject = Instantiate(tileInfo.TilePrefab);
-                tileObject.transform.SetParent(transform);
+                var tileObject = Instantiate(tileInfo.TilePrefab, transform);
                 tileObject.transform.position = _grid.GetWorldPositionCentered(x, y);
+
+                if (_grid.GetValue(x, y).IsObjective)
+                {
+                    if (LevelObjectivePrefab != null)
+                    {
+                        var objectiveWorldPosition = _grid.GetWorldPositionCentered(x, y);
+                        var objective = Instantiate(LevelObjectivePrefab, transform);
+                        objective.transform.position = objectiveWorldPosition;
+                    }
+                    else
+                    {
+                        Debug.LogError("Unable to spawn objective model because the prefab is null.");
+                    }
+                }
             }
         }
     }
