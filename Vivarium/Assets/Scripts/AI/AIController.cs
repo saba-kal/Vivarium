@@ -8,6 +8,16 @@ public class AIController : MonoBehaviour
     protected Grid<Tile> _grid;
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
 
+    void OnEnable()
+    {
+        CharacterController.OnDeath += OnCharacterDeath;
+    }
+
+    void OnDisable()
+    {
+        CharacterController.OnDeath -= OnCharacterDeath;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -133,5 +143,16 @@ public class AIController : MonoBehaviour
         }
 
         return closestTile;
+    }
+
+    private void OnCharacterDeath(CharacterController deadCharacterController)
+    {
+        for (var i = 0; i < _playerCharacters.Count; i++)
+        {
+            if (_playerCharacters[i].Id == deadCharacterController.Id)
+            {
+                _playerCharacters.RemoveAt(i);
+            }
+        }
     }
 }

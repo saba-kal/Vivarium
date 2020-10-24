@@ -12,6 +12,16 @@ public class EnemyAIManager : MonoBehaviour
     private float _timeSinceLastAction = 0f;
     private List<CharacterController> _playerCharacters = new List<CharacterController>();
 
+    void OnEnable()
+    {
+        CharacterController.OnDeath += OnCharacterDeath;
+    }
+
+    void OnDisable()
+    {
+        CharacterController.OnDeath -= OnCharacterDeath;
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -67,6 +77,19 @@ public class EnemyAIManager : MonoBehaviour
         {
             character.SetHasAttacked(false);
             character.SetHasMoved(false);
+        }
+    }
+
+    private void OnCharacterDeath(CharacterController deadCharacterController)
+    {
+        for (var i = 0; i < AICharacters.Count; i++)
+        {
+            if (AICharacters[i].Id == deadCharacterController.Id)
+            {
+                Debug.Log($"Enemy character {deadCharacterController.Character.Name} died.");
+                AICharacters.RemoveAt(i);
+                Destroy(deadCharacterController.gameObject);
+            }
         }
     }
 }

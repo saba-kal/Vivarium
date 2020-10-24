@@ -6,13 +6,13 @@ public class LevelGenerator : MonoBehaviour
 {
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
+    public PlayerController PlayerController;
     public bool GenerateLevelOnStart = false;
 
     private const int MAX_SPAWN_ITERATIONS = 1000;
 
     private GameObject _levelContainer;
     private EnemyAIManager _enemyAIManager;
-    private PlayerController _playerController;
     private Grid<Tile> _grid;
     private TileGridController _gridController;
 
@@ -52,7 +52,7 @@ public class LevelGenerator : MonoBehaviour
         }
         else if (playerController != null)
         {
-            _playerController = playerController.GetComponent<PlayerController>();
+            PlayerController = playerController.GetComponent<PlayerController>();
         }
     }
 
@@ -64,13 +64,13 @@ public class LevelGenerator : MonoBehaviour
 
     public void SetupPlayerController()
     {
-        if (_playerController == null)
+        if (PlayerController == null)
         {
             var playerControllerObj = new GameObject("PlayerController");
             playerControllerObj.tag = Constants.PLAYER_CONTROLLER_TAG;
 
-            _playerController = playerControllerObj.AddComponent<PlayerController>();
-            _playerController.PlayerCharacters = new List<CharacterController>();
+            PlayerController = playerControllerObj.AddComponent<PlayerController>();
+            PlayerController.PlayerCharacters = new List<CharacterController>();
         }
     }
 
@@ -162,11 +162,11 @@ public class LevelGenerator : MonoBehaviour
         foreach (var playerProfile in playerProfiles)
         {
             var characterGameObject = GenerateCharacter(playerProfile, false);
-            characterGameObject.transform.parent = _playerController.transform;
-            _playerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
+            characterGameObject.transform.parent = PlayerController.transform;
+            PlayerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
         }
 
-        PlayerCharacters = _playerController.PlayerCharacters;
+        PlayerCharacters = PlayerController.PlayerCharacters;
     }
 
     private GameObject GenerateCharacter(
@@ -212,7 +212,7 @@ public class LevelGenerator : MonoBehaviour
         gameMaster.transform.parent = _levelContainer.transform;
 
         var turnSystemManager = gameMaster.AddComponent<TurnSystemManager>();
-        turnSystemManager.PlayerController = _playerController;
+        turnSystemManager.PlayerController = PlayerController;
         turnSystemManager.AIManager = _enemyAIManager;
 
         gameMaster.AddComponent<CommandController>();

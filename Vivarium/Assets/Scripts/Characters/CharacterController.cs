@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
+    public delegate void Death(CharacterController characterController);
+    public static event Death OnDeath;
+
     public string Id;
     public Character Character;
     public bool IsEnemy;
@@ -116,7 +119,14 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot take damage because character is missing a health controller.");
             return false;
         }
-        return _healthController.TakeDamage(damage);
+
+        if (_healthController.TakeDamage(damage))
+        {
+            OnDeath(this);
+            return true;
+        }
+
+        return false;
     }
 
     public void SetHasMoved(bool hasMoved)

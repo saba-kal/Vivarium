@@ -42,6 +42,17 @@ public class LevelManager : MonoBehaviour
 
     private void CompleteLevel()
     {
-        Debug.Log("You beat the level.");
+        PlayerData.CurrentLevelIndex++;
+        if (PlayerData.CurrentLevelIndex >= LevelGenerationProfiles.Count)
+        {
+            Debug.Log("You beat the game.");
+        }
+        else
+        {
+            Debug.Log("Level complete. Generating next level...");
+            LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
+            LevelGenerator.GenerateLevel();
+            LevelGenerator.PlayerController.EnableCharacters();
+        }
     }
 }
