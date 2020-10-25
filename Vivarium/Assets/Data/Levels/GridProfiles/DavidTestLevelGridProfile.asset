@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ea837de799063348b4b26bae38e7ca9, type: 3}
-  m_Name: SabaTestLevelGridProfile
+  m_Name: DavidTestLevelGridProfile
   m_EditorClassIdentifier: 
   TileInfos:
   - Type: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
   MaxGridHeight: 25
   GridCellSize: 1
   GridOrigin: {x: -12.5, y: 0, z: -12.5}
-  MinWallLength: 0
-  MaxWallLength: 0
-  ObstacleSpawnChance: 0.334
-  WaterSpawnChance: 0.184
-  WaterContinuity: 0.05
+  MinWallLength: 2
+  MaxWallLength: 4
+  ObstacleSpawnChance: 0.045
+  WaterSpawnChance: 0.098
+  WaterContinuity: 0.3
