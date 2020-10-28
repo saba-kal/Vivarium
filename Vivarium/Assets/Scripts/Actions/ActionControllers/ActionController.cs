@@ -29,24 +29,12 @@ public class ActionController : MonoBehaviour
     // Looks at the action's animation type and performs the animation accordingly 
     protected virtual void PerformAnimation()
     {
-        Debug.Log(ActionReference.AnimType);
         var animationType = ActionReference.AnimType;
-        switch (animationType)
-        {
-            case AnimationType.sword_swing:
-                {
-                    Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
-                    myAnimator.SetTrigger("Jump");
-                    break;
-                }
-            case AnimationType.sword_swipe:
-                {
-                    Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
-                    myAnimator.SetTrigger("Swerve");
-                    break;
-                }
+        var animationTypeName = Enum.GetName(typeof(AnimationType), animationType);
+        Debug.Log("DOING ANIMATION: " + animationTypeName);
 
-        }
+        Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+        myAnimator.SetTrigger(animationTypeName);
     }
 
     protected virtual void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
