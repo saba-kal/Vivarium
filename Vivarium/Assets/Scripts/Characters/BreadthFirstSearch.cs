@@ -7,10 +7,12 @@ public class BreadthFirstSearch
     private Tile[,] _grid;
     private BFSTile[,] _bfsGrid;
     private Dictionary<(int, int), Tile> _visitedTiles;
+    private readonly bool _ignoreCharacters = false;
 
-    public BreadthFirstSearch()
+    public BreadthFirstSearch(Grid<Tile> grid = null, bool ignoreCharacters = false)
     {
-        Reset();
+        Reset(grid);
+        _ignoreCharacters = ignoreCharacters;
     }
 
     public void Execute(Tile startingTile, int maxSteps, List<TileType> navigableTiles)
@@ -53,12 +55,12 @@ public class BreadthFirstSearch
         //x and y must be within the grid range.
         //The tile must not have been visited previously.
         //The tile terrain type must be navigable.
-        //Another character must not be on the tile.
+        //Another character must not be on the tile, unless we are ignoring characters.
         return x >= 0 && y >= 0 &&
             x < _bfsGrid.GetLength(0) && y < _bfsGrid.GetLength(1) &&
             !_bfsGrid[x, y].Visited &&
             navigableTiles.Contains(_grid[x, y].Type) &&
-            string.IsNullOrEmpty(_grid[x, y].CharacterControllerId);
+            (_ignoreCharacters || string.IsNullOrEmpty(_grid[x, y].CharacterControllerId));
     }
 
     private bool VisitTile(int x, int y, Queue<Tile> queue, Tile fromTile, Tile toTile, int maxSteps)
@@ -90,9 +92,16 @@ public class BreadthFirstSearch
         return _visitedTiles;
     }
 
-    public void Reset()
+    public void Reset(Grid<Tile> grid = null)
     {
-        _grid = TileGridController.Instance.GetGrid().GetGrid();
+        if (grid != null)
+        {
+            _grid = grid.GetGrid();
+        }
+        else
+        {
+            _grid = TileGridController.Instance.GetGrid().GetGrid();
+        }
         _bfsGrid = new BFSTile[_grid.GetLength(0), _grid.GetLength(1)];
         for (var x = 0; x < _grid.GetLength(0); x++)
         {

@@ -18,7 +18,6 @@ public class CharacterController : MonoBehaviour
     private MoveController _moveController;
     private List<ActionController> _actionControllers;
     private List<ActionViewer> _actionViewers;
-    protected Grid<Tile> _grid;
     private bool _isSelected = false;
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
@@ -38,7 +37,6 @@ public class CharacterController : MonoBehaviour
         _moveController = GetComponent<MoveController>();
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
-        _grid = TileGridController.Instance.GetGrid();
         PlaceSelfInGrid();
     }
 
@@ -141,7 +139,7 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void PlaceSelfInGrid()
     {
-        var gricCellPosition = _grid.ConvertToGridCellPosition(transform.position);
+        var gricCellPosition = TileGridController.Instance.GetGrid().ConvertToGridCellPosition(transform.position);
         transform.position = gricCellPosition;
         GetGridPosition().CharacterControllerId = Id;
     }
@@ -176,7 +174,7 @@ public class CharacterController : MonoBehaviour
 
     private Tile GetGridPosition()
     {
-        return _grid.GetValue(transform.position);
+        return TileGridController.Instance.GetGrid().GetValue(transform.position);
     }
 
     public ActionViewer GetActionViewer(Action action)
@@ -212,34 +210,50 @@ public class CharacterController : MonoBehaviour
 
     public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
     {
+        var grid = TileGridController.Instance.GetGrid();
         var adjacentCharacterIds = new List<string>();
-        var currentGridPosition = _grid.GetValue(transform.position);
+        var currentGridPosition = grid.GetValue(transform.position);
 
         //Right
-        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY)?.CharacterControllerId))
+        if (!string.IsNullOrEmpty(grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY)?.CharacterControllerId))
         {
-            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY).CharacterControllerId);
+            adjacentCharacterIds.Add(grid.GetValue(currentGridPosition.GridX + 1, currentGridPosition.GridY).CharacterControllerId);
         }
 
         //Left
-        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY)?.CharacterControllerId))
+        if (!string.IsNullOrEmpty(grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY)?.CharacterControllerId))
         {
-            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY).CharacterControllerId);
+            adjacentCharacterIds.Add(grid.GetValue(currentGridPosition.GridX - 1, currentGridPosition.GridY).CharacterControllerId);
         }
 
         //Up
-        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1)?.CharacterControllerId))
+        if (!string.IsNullOrEmpty(grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1)?.CharacterControllerId))
         {
-            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1).CharacterControllerId);
+            adjacentCharacterIds.Add(grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY + 1).CharacterControllerId);
         }
 
         //Down
-        if (!string.IsNullOrEmpty(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1)?.CharacterControllerId))
+        if (!string.IsNullOrEmpty(grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1)?.CharacterControllerId))
         {
-            adjacentCharacterIds.Add(_grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1).CharacterControllerId);
+            adjacentCharacterIds.Add(grid.GetValue(currentGridPosition.GridX, currentGridPosition.GridY - 1).CharacterControllerId);
         }
 
         return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
     }
 
+
+    public void DestroyCharacter()
+    {
+        Debug.Log($"Character {Character.Name} died.");
+        var currentGridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
+        if (currentGridPosition != null)
+        {
+            currentGridPosition.CharacterControllerId = null;
+        }
+        else
+        {
+            Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
+        }
+        Destroy(gameObject, 0.1f);
+    }
 }

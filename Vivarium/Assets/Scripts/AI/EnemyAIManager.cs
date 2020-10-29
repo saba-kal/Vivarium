@@ -86,10 +86,10 @@ public class EnemyAIManager : MonoBehaviour
         {
             if (AICharacters[i].Id == deadCharacterController.Id)
             {
-                Debug.Log($"Enemy character {deadCharacterController.Character.Name} died.");
                 AICharacters.RemoveAt(i);
-                Destroy(deadCharacterController.gameObject);
             }
         }
+
+        deadCharacterController.DestroyCharacter();
     }
 }
