@@ -25,8 +25,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
-  MinPlayerCharacters: 1
-  MaxPlayerCharacters: 3
+  MinPlayerCharacters: 3
+  MaxPlayerCharacters: 5
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}

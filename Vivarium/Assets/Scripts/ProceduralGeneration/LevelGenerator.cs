@@ -80,8 +80,6 @@ public class LevelGenerator : MonoBehaviour
         grid.transform.parent = _levelContainer.transform;
 
         _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
-        //TODO: move this to grid generator. Placing it here for now so that it will not cause merge conflicts.
-        PlaceObjective();
 
         _gridController = grid.AddComponent<TileGridController>();
         _gridController.Initialize(_grid);
@@ -94,17 +92,6 @@ public class LevelGenerator : MonoBehaviour
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
         tileGridView.LevelObjectivePrefab = LevelProfile.LevelObjectivePrefab;
         tileGridView.CreateGridMesh();
-    }
-
-    private void PlaceObjective()
-    {
-        //TODO: figure out better objective placement than a completely random position.
-        var xPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
-        var yPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
-
-        var objectiveTile = _grid.GetValue(xPosition, yPosition);
-        objectiveTile.IsObjective = true;
-        objectiveTile.Type = TileType.Grass;
     }
 
     private void GenerateCharacters()
