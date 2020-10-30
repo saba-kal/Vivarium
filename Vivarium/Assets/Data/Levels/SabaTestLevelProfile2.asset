@@ -18,7 +18,7 @@ MonoBehaviour:
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
   MinEnemyCharacters: 7
-  MaxEnemyCharacters: 10
+  MaxEnemyCharacters: 9
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}

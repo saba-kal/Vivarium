@@ -7,7 +7,7 @@ public class HealthController : MonoBehaviour
 
     private float _currentHealth;
 
-    public void SetHealthStats(float currentHealth, float maxHealth)
+    public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth)
     {
         _currentHealth = currentHealth;
         HealthBar.SetMaxHealth(maxHealth);

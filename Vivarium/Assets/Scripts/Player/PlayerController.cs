@@ -8,13 +8,11 @@ public class PlayerController : MonoBehaviour
 
     public List<CharacterController> PlayerCharacters;
 
-    private Grid<Tile> _grid;
     private CharacterController _selectedCharacter;
 
     private bool _actionIsSelected = false;
     private Action _selectedAction;
     private float _selectedActionRange;
-    private List<CharacterController> _enemies = new List<CharacterController>();
 
     void OnEnable()
     {
@@ -32,24 +30,9 @@ public class PlayerController : MonoBehaviour
         CharacterController.OnDeath -= OnCharacterDeath;
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        _grid = TileGridController.Instance.GetGrid();
-        var enemyObjects = GameObject.FindGameObjectsWithTag(Constants.ENEMY_CHAR_TAG);
-        foreach (var enemyObject in enemyObjects)
-        {
-            var enemy = enemyObject.GetComponent<CharacterController>();
-            if (enemy != null)
-            {
-                _enemies.Add(enemy);
-            }
-        }
-    }
-
     private void OnGridCellClick(Tile selectedTile)
     {
+
         if (selectedTile == null || CommandController.Instance.CommandsAreExecuting())
         {
             return;
@@ -80,9 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void GetSelectedCharacter(Tile tile)
     {
+        var grid = TileGridController.Instance.GetGrid();
         foreach (var character in PlayerCharacters)
         {
-            _grid.GetGridCoordinates(character.transform.position, out var x, out var y);
+            grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
             {
                 //UIController.Instance
@@ -185,11 +169,11 @@ public class PlayerController : MonoBehaviour
         {
             if (PlayerCharacters[i].Id == deadCharacterController.Id)
             {
-                Debug.Log($"Player character {deadCharacterController.Character.Name} died.");
                 PlayerCharacters.RemoveAt(i);
-                Destroy(deadCharacterController.gameObject);
             }
         }
+
+        deadCharacterController.DestroyCharacter();
 
         if (PlayerCharacters.Count == 0)
         {

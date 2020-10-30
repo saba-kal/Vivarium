@@ -9,6 +9,7 @@ public class CharacterGenerator
         var characterData = GenerateCharacterData(characterProfile);
         characterData.Attributes = new AttributesGenerator().GenerateAttributes(characterProfile.AttributeProfile);
         characterData.Weapon = new WeaponGenerator().GenerateWeapon(characterProfile.WeaponProfile);
+        characterData.Shield = new ShieldGenerator().GenerateShield(characterProfile.ShieldProfile);
 
         var characterGameObject = new GameObject(characterData.Name);
 

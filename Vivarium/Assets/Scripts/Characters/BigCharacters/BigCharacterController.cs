@@ -23,15 +23,15 @@ public class BigCharacterController : CharacterController
 
     protected override void PlaceSelfInGrid()
     {
-        var gricCellPosition = _grid.ConvertToGridCellPosition(transform.position);
+        var gricCellPosition = TileGridController.Instance.GetGrid().ConvertToGridCellPosition(transform.position);
         transform.position = gricCellPosition;
-        var gridPosition = _grid.GetValue(transform.position);
+        var gridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
 
         for (int x = 0; x < CharacterTileSize; x++)
         {
             for (int y = 0; y < CharacterTileSize; y++)
             {
-                var adjascentTile = _grid.GetValue(gridPosition.GridX + x, gridPosition.GridY + y);
+                var adjascentTile = TileGridController.Instance.GetGrid().GetValue(gridPosition.GridX + x, gridPosition.GridY + y);
                 if (adjascentTile != null)
                 {
                     adjascentTile.CharacterControllerId = Id;
@@ -61,7 +61,7 @@ public class BigCharacterController : CharacterController
         {
             for (int y = 0; y < CharacterTileSize; y++)
             {
-                var adjascentTile = _grid.GetValue(tile.GridX + x, tile.GridY + y);
+                var adjascentTile = TileGridController.Instance.GetGrid().GetValue(tile.GridX + x, tile.GridY + y);
                 if (adjascentTile == null || !string.IsNullOrEmpty(adjascentTile.CharacterControllerId))
                 {
                     return false;
