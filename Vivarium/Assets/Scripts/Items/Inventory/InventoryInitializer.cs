@@ -5,7 +5,7 @@ using System.Linq;
 
 public class InventoryInitializer : MonoBehaviour
 {
-
+    public List<Item> startingItems;
     private void Start()
     {
         var turnSystemManager = TurnSystemManager.Instance;
@@ -17,11 +17,22 @@ public class InventoryInitializer : MonoBehaviour
                 {
                     InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Weapon);
                 }
+<<<<<<< Updated upstream
 
                 if (playerCharacterController?.Character?.Shield != null)
                 {
                     InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Shield);
                 }
+=======
+                foreach (var startingItem in startingItems){
+                    var consumable = (Consumable)startingItem;
+                    for (var i = 0; i < consumable.charges; i++)
+                    {
+                        InventoryManager.PlaceCharacterItem(playerCharacterController.Id, startingItem);
+                    }
+                }
+                
+>>>>>>> Stashed changes
             }
         }
         else

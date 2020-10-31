@@ -251,6 +251,7 @@ public class CharacterController : MonoBehaviour
         return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
     }
 
+<<<<<<< Updated upstream
 
     public void DestroyCharacter()
     {
@@ -265,5 +266,30 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         Destroy(gameObject, 0.1f);
+=======
+    public void Consume(Item item)
+    {
+        if (item.Type != ItemType.Consumable)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot eat non-consumable items.");
+            return;
+        }
+
+        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot eat item that does not exist.");
+            return;
+        }
+            
+        var consumable = (Consumable)item;
+        switch (consumable.ConsumableType)
+        {
+            case (ConsumableType.Honey):
+                _healthController.Healing(consumable.value);
+                break;
+        }
+        InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+        
+>>>>>>> Stashed changes
     }
 }

@@ -19,4 +19,5 @@ public class LevelGenerationProfile : ScriptableObject
     public int MinPlayerCharacters;
     public int MaxPlayerCharacters;
     public List<CharacterGenerationProfile> PossiblePlayerCharacters;
+    public List<Item> startingItems;
 }
