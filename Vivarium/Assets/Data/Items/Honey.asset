@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: 333333333333
   Name: Honey
   Description: small consumable
-  Type: 2
+  Type: 3
   Icon: {fileID: 0}
   Model: {fileID: 0}
   ConsumableType: 1
