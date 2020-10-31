@@ -17,6 +17,11 @@ public class InventoryInitializer : MonoBehaviour
                 {
                     InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Weapon);
                 }
+
+                if (playerCharacterController?.Character?.Shield != null)
+                {
+                    InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Shield);
+                }
             }
         }
         else

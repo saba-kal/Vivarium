@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -14,6 +15,7 @@ public class CharacterController : MonoBehaviour
     public bool IsEnemy;
 
     private float _currentHealth;
+    private float _currentshieldHealth;
     private HealthController _healthController;
     private MoveController _moveController;
     private List<ActionController> _actionControllers;
@@ -32,8 +34,9 @@ public class CharacterController : MonoBehaviour
     {
         var maxHealth = StatCalculator.CalculateStat(Character, StatType.Health);
         _currentHealth = maxHealth;
+        _currentshieldHealth = Character.Shield?.Health??0;
         _healthController = GetComponent<HealthController>();
-        _healthController?.SetHealthStats(_currentHealth, maxHealth);
+        _healthController?.SetHealthStats(_currentHealth, maxHealth, _currentshieldHealth, _currentshieldHealth);
         _moveController = GetComponent<MoveController>();
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
@@ -192,7 +195,7 @@ public class CharacterController : MonoBehaviour
 
     public void Equip(Item item)
     {
-        if (item.Type != ItemType.Weapon)
+        if ((item.Type != ItemType.Weapon) || (item.Type != ItemType.Shield))
         {
             Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
             return;
@@ -204,7 +207,14 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
-        Character.Weapon = (Weapon)item;
+        if (item.Type == ItemType.Weapon)
+        { 
+            Character.Weapon = (Weapon)item;
+        }
+        else if (item.Type == ItemType.Shield)
+        {
+            Character.Shield = (Shield)item;
+        }
         //TODO: switch out weapon model here.
     }
 

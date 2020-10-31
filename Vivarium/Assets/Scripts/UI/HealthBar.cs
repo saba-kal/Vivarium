@@ -7,6 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     public Slider HealthBarSlider;
     public TextMeshProUGUI HealthBarText;
+    public bool isShieldBar;
 
     private float _maxHealth = 0f;
     private float _currentHealth = 0f;

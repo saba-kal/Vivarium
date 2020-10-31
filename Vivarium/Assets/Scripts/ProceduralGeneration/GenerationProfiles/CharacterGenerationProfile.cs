@@ -17,6 +17,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public List<TileType> NavigableTiles;
 
     public WeaponGenerationProfile WeaponProfile;
+    public ShieldGenerationProfile ShieldProfile;
     public AttributesGenerationProfile AttributeProfile;
 
     public GameObject HealthBarPrefab;

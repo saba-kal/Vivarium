@@ -11,5 +11,6 @@ public class Character
     public float MoveRange;
     public List<Attribute> Attributes;
     public Weapon Weapon;
+    public Shield Shield;
     public List<TileType> NavigableTiles;
 }
