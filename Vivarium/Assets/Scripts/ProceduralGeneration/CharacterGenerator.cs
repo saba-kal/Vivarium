@@ -92,6 +92,13 @@ public class CharacterGenerator
                         actionViewer = characterGameObject.AddComponent<ActionViewer>();
                     }
                     break;
+                case ActionControllerType.Projectile:
+                    actionController = characterGameObject.AddComponent<ProjectileActionController>();
+                    if (isPlayer)
+                    {
+                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
+                    }
+                    break;
                 case ActionControllerType.Default:
                 default:
                     actionController = characterGameObject.AddComponent<ActionController>();
