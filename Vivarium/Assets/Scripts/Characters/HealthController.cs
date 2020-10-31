@@ -7,21 +7,15 @@ public class HealthController : MonoBehaviour
     public HealthBar ShieldBar;
 
     private float _currentHealth;
-<<<<<<< Updated upstream
     private float _shieldHealth;
-=======
     private float _maxHealth;
->>>>>>> Stashed changes
 
     public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth, float maxShield)
     {
         _currentHealth = currentHealth;
-<<<<<<< Updated upstream
         _shieldHealth = shieldHealth;
-
-=======
         _maxHealth = maxHealth;
->>>>>>> Stashed changes
+
         HealthBar.SetMaxHealth(maxHealth);
         HealthBar.SetHealth(currentHealth);
         ShieldBar?.SetMaxHealth(maxShield);
@@ -42,11 +36,11 @@ public class HealthController : MonoBehaviour
                 damage -= _shieldHealth;
                 _shieldHealth = 0;
             }
-         
+
         }
         _currentHealth -= damage;
         HealthBar.SetHealth(_currentHealth);
-        ShieldBar.SetHealth(_shieldHealth);
+        ShieldBar?.SetHealth(_shieldHealth);
         return _currentHealth <= 0;
     }
 

@@ -20,7 +20,7 @@ public class CharacterGenerator
 
         characterGameObject.AddComponent<MoveController>();
 
-        CreateHealthBar(characterGameObject, characterProfile, characterData);
+        CreateHealthBar(characterGameObject, characterProfile);
 
         if (isEnemy)
         {
@@ -31,7 +31,7 @@ public class CharacterGenerator
         {
             characterGameObject.tag = Constants.PLAYER_CHAR_TAG;
         }
-    
+
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
         GenerateCharacterModel(characterGameObject, characterProfile);
 
@@ -52,8 +52,7 @@ public class CharacterGenerator
 
     private void CreateHealthBar(
         GameObject characterGameObject,
-        CharacterGenerationProfile characterProfile,
-        Character characterData)
+        CharacterGenerationProfile characterProfile)
     {
         var healthController = characterGameObject.AddComponent<HealthController>();
 
@@ -68,7 +67,9 @@ public class CharacterGenerator
                 healthController.ShieldBar = healthbar;
             }
             else
+            {
                 healthController.HealthBar = healthbar;
+            }
         }
     }
 
