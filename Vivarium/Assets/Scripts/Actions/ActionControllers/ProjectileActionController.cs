@@ -28,7 +28,7 @@ public class ProjectileActionController : ActionController
             if (!tile.Equals(startTile))
             {
                 affectedTiles.Add((tile.GridX, tile.GridY), tile);
-                if (tile.Type == TileType.Obstacle || tile.CharacterControllerId != null)
+                if (tile.Type == TileType.Obstacle || !string.IsNullOrEmpty(tile.CharacterControllerId))
                 {
                     break;
                 }
