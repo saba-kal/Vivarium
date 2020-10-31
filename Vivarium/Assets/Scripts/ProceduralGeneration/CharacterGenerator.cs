@@ -31,7 +31,7 @@ public class CharacterGenerator
         {
             characterGameObject.tag = Constants.PLAYER_CHAR_TAG;
         }
-
+    
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
         GenerateCharacterModel(characterGameObject, characterProfile);
 
@@ -60,14 +60,15 @@ public class CharacterGenerator
         var healthBarObject = GameObject.Instantiate(characterProfile.HealthBarPrefab);
         healthBarObject.transform.SetParent(characterGameObject.transform);
 
-        var healthBar = healthBarObject.GetComponentInChildren<HealthBar>();
-        if (healthBar != null)
+        var healthBars = healthBarObject.GetComponentsInChildren<HealthBar>();
+        foreach (var healthbar in healthBars)
         {
-            healthController.HealthBar = healthBar;
-        }
-        else
-        {
-            Debug.LogError($"There was an error adding a health bar to character {characterData.Name}");
+            if (healthbar.isShieldBar)
+            {
+                healthController.ShieldBar = healthbar;
+            }
+            else
+                healthController.HealthBar = healthbar;
         }
     }
 
