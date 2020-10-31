@@ -34,7 +34,7 @@ public class CharacterController : MonoBehaviour
     {
         var maxHealth = StatCalculator.CalculateStat(Character, StatType.Health);
         _currentHealth = maxHealth;
-        _currentshieldHealth = Character.Shield?.Health??0;
+        _currentshieldHealth = Character.Shield?.Health ?? 0;
         _healthController = GetComponent<HealthController>();
         _healthController?.SetHealthStats(_currentHealth, maxHealth, _currentshieldHealth, _currentshieldHealth);
         _moveController = GetComponent<MoveController>();
@@ -208,7 +208,7 @@ public class CharacterController : MonoBehaviour
         }
 
         if (item.Type == ItemType.Weapon)
-        { 
+        {
             Character.Weapon = (Weapon)item;
         }
         else if (item.Type == ItemType.Shield)
@@ -251,7 +251,6 @@ public class CharacterController : MonoBehaviour
         return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
     }
 
-
     public void DestroyCharacter()
     {
         Debug.Log($"Character {Character.Name} died.");
@@ -265,5 +264,29 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         Destroy(gameObject, 0.1f);
+    }
+
+    public void Consume(Item item)
+    {
+        if (item.Type != ItemType.Consumable)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot eat non-consumable items.");
+            return;
+        }
+
+        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        {
+            Debug.LogError($"Character {Character.Name}: cannot eat item that does not exist.");
+            return;
+        }
+
+        var consumable = (Consumable)item;
+        switch (consumable.ConsumableType)
+        {
+            case (ConsumableType.Honey):
+                _healthController.Healing(consumable.value);
+                break;
+        }
+        InventoryManager.RemoveCharacterItem(Id, consumable.Id);
     }
 }

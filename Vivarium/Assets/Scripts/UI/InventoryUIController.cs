@@ -21,6 +21,7 @@ public class InventoryUIController : MonoBehaviour
     public Button GetPlayerInventoryButton;
     public Button GetNearbyCharactersButton;
     public Button EquipButton;
+    public Button ConsumeButton;
     #endregion
 
     private CharacterController _selectedCharacterController;
@@ -106,6 +107,17 @@ public class InventoryUIController : MonoBehaviour
                 UIController.Instance.ShowCharacterInfo(_selectedCharacterController);
             }
         });
+        ConsumeButton.onClick.AddListener(() =>
+        {
+            foreach (var item in InventoryManager.GetCharacterInventory(_selectedCharacterController.Id).Items.Values)
+            {
+                if (item.Type == ItemType.Consumable)
+                {
+                    _selectedCharacterController.Consume(item);
+                    break;
+                }
+            }
+        });
     }
 
     private void LogCharacterInventory()
@@ -124,6 +136,11 @@ public class InventoryUIController : MonoBehaviour
         foreach (var item in InventoryManager.GetCharacterInventory(characterController.Id).Items.Values)
         {
             logMessage += $"{item.Name}, ";
+            if (item.Type == ItemType.Consumable)
+            {
+                var consumable = (Consumable)item;
+                logMessage += $"{consumable.charges}";
+            }
         }
 
         Debug.Log(logMessage);

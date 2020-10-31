@@ -23,21 +23,12 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         LoadGame();
-        StartGame();
     }
 
     private void LoadGame()
     {
         _levels = new List<Level>();
         //TODO: implement loading here.
-    }
-
-    private void StartGame()
-    {
-        if (LevelGenerationProfiles.Count <= PlayerData.CurrentLevelIndex)
-        {
-            Debug.LogError("");
-        }
     }
 
     private void CompleteLevel()

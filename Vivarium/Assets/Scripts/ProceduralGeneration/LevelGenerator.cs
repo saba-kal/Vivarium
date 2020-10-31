@@ -202,7 +202,9 @@ public class LevelGenerator : MonoBehaviour
         turnSystemManager.PlayerController = PlayerController;
         turnSystemManager.AIManager = _enemyAIManager;
 
+        var InventoryInitializer = gameMaster.AddComponent<InventoryInitializer>();
+        InventoryInitializer.startingItems = LevelProfile.startingItems;
+
         gameMaster.AddComponent<CommandController>();
-        gameMaster.AddComponent<InventoryInitializer>();
     }
 }
