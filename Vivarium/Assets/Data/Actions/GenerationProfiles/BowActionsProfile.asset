@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b13207c9db97b498130cdd0413251c, type: 3}
-  m_Name: TestWeaponProfile
+  m_Script: {fileID: 11500000, guid: 55d8888e2455b1a4c8d96c80c1fa39a3, type: 3}
+  m_Name: BowActionsProfile
   m_EditorClassIdentifier: 
-  PossibleWeapons:
-  - {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
-  - {fileID: 11400000, guid: b5edf485eb332e74f934b6aaeaafd02f, type: 2}
+  PossibleNames: []
+  MinNumberOfActions: 1
+  MaxNumberOfActions: 1
+  PossibleActions:
+  - {fileID: 11400000, guid: abfe129832467654c8133f012f618ab1, type: 2}
+  GuaranteedActions: []

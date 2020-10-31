@@ -4,5 +4,6 @@ using System.Collections;
 public enum ActionControllerType
 {
     Default = 0,
-    GiantLazer = 1
+    GiantLazer = 1,
+    Projectile = 2
 }
