@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InGameUI.unity
     guid: f44e03e79975a4a48bdc006b31ecb202
+  - enabled: 1
+    path: Assets/Scenes/DennisTestLevel.unity
+    guid: f550e9d35b6f65a4d8b1ac970a264cd4
+  - enabled: 1
+    path: Assets/Scenes/SabaTestLevel.unity
+    guid: 226032aa0a0c3a84d91412f955b62956
   m_configObjects: {}

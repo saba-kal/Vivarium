@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
+    public GameObject GameOverScreen;
+    public TextMeshProUGUI GameOverText;
     public InventoryUIController InventoryUIController;
     public Button ActionButtonPrefab;
     public Button MoveButton;
@@ -121,5 +123,12 @@ public class UIController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+    }
+
+    public void GameOver(string gameoverText)
+    {
+        GameOverText.text = gameoverText;
+        GameOverScreen.SetActive(true);
+        Instance = null;
     }
 }
