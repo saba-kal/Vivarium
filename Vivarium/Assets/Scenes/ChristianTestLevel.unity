@@ -8467,6 +8467,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+    Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
 --- !u!114 &216359390
@@ -8524,6 +8525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1455624300}
+  ShieldBar: {fileID: 0}
 --- !u!114 &216359394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9100,6 +9102,7 @@ MonoBehaviour:
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+    Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
 --- !u!114 &224353997
@@ -9171,6 +9174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 757339109}
+  ShieldBar: {fileID: 0}
 --- !u!114 &224354002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12921,6 +12925,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+    Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
 --- !u!114 &330263539
@@ -12978,6 +12983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 570765978}
+  ShieldBar: {fileID: 0}
 --- !u!114 &330263543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20834,6 +20840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 570765980}
   HealthBarText: {fileID: 789533621}
+  isShieldBar: 0
 --- !u!224 &570765979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27039,6 +27046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 757339111}
   HealthBarText: {fileID: 21643504}
+  isShieldBar: 0
 --- !u!224 &757339110
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44871,6 +44879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 1179598007}
   HealthBarText: {fileID: 204598997}
+  isShieldBar: 0
 --- !u!114 &1179598007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56537,6 +56546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 1455624302}
   HealthBarText: {fileID: 1418716349}
+  isShieldBar: 0
 --- !u!224 &1455624301
 RectTransform:
   m_ObjectHideFlags: 0
@@ -69201,6 +69211,7 @@ MonoBehaviour:
     Attributes:
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+    Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
 --- !u!114 &1806176175
@@ -69258,6 +69269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1940819911}
+  ShieldBar: {fileID: 0}
 --- !u!114 &1806176179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75614,6 +75626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 1940819913}
   HealthBarText: {fileID: 2081023150}
+  isShieldBar: 0
 --- !u!224 &1940819912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76874,6 +76887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1179598006}
+  ShieldBar: {fileID: 0}
 --- !u!114 &1969988791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76907,6 +76921,7 @@ MonoBehaviour:
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+    Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
 --- !u!1 &1970121147

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Assets.Scripts.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class UIController : MonoBehaviour
     public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
     public InventoryUIController InventoryUIController;
+    public RewardsUIController RewardsUIController;
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;

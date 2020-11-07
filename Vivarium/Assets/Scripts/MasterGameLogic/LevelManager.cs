@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -45,12 +47,15 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Level complete. Generating next level...");
-            LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
-            LevelGenerator.GenerateLevel();
-            LevelGenerator.PlayerController.EnableCharacters();
-            LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
-            LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
+            UIController.Instance.RewardsUIController.ShowRewardsScreen(() =>
+            {
+                Debug.Log("Level complete. Generating next level...");
+                LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
+                LevelGenerator.GenerateLevel();
+                LevelGenerator.PlayerController.EnableCharacters();
+                LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
+                LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
+            });
         }
     }
 
