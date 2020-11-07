@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerCharacters.Count == 0)
         {
             Debug.Log("GAME OVER");
-            //TODO: Call game over screen to show up here.
+            UIController.Instance.GameOver("GAME OVER");
         }
     }
 }

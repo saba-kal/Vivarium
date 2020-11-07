@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
         if (PlayerData.CurrentLevelIndex >= LevelGenerationProfiles.Count)
         {
             Debug.Log("You beat the game.");
+            UIController.Instance.GameOver("YOU WIN");
         }
         else
         {
