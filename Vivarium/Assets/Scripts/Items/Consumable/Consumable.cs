@@ -7,6 +7,5 @@ using System;
 public class Consumable : Item
 {
     public ConsumableType ConsumableType;
-    public int charges;
     public float value;
 }

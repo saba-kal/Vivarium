@@ -24525,7 +24525,7 @@ MonoBehaviour:
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
   - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
-  - {fileID: 11400000, guid: e8a3277f94523fb4fa053d1b7490b625, type: 2}
+  - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
 --- !u!1 &546132666
 GameObject:
   m_ObjectHideFlags: 0

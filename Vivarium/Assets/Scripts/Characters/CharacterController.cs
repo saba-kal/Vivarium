@@ -284,9 +284,19 @@ public class CharacterController : MonoBehaviour
         switch (consumable.ConsumableType)
         {
             case (ConsumableType.Honey):
-                _healthController.Healing(consumable.value);
+                Heal(consumable.value);
                 break;
         }
         InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+    }
+
+    public void Heal(float healAmount)
+    {
+        _healthController.Healing(healAmount);
+    }
+
+    public void RegenShield(float shieldAmount)
+    {
+        _healthController.RegenerateShield(shieldAmount);
     }
 }

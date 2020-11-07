@@ -51,7 +51,7 @@ public class GridGenerator
             tile.Type = grid.GetValue(x, y).Type;
             return tile;
         }
-        catch (S.NullReferenceException e) { }
+        catch (S.NullReferenceException) { }
 
         if (randomValue < gridProfile.ObstacleSpawnChance)
         {
@@ -89,7 +89,7 @@ public class GridGenerator
                             count++;
                         }
                     }
-                    catch (S.NullReferenceException e) { }
+                    catch (S.NullReferenceException) { }
                 }
             }
         }
