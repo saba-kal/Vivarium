@@ -47,20 +47,14 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-
-            Debug.Log("Level complete. Generating next level...");
-            LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
-            LevelGenerator.GenerateLevel();
-            LevelGenerator.PlayerController.EnableCharacters();
-            LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
-            LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
-
             UIController.Instance.RewardsUIController.ShowRewardsScreen(() =>
             {
                 Debug.Log("Level complete. Generating next level...");
                 LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
                 LevelGenerator.GenerateLevel();
                 LevelGenerator.PlayerController.EnableCharacters();
+                LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
+                LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
             });
         }
     }
