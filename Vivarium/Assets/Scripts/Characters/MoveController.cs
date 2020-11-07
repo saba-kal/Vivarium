@@ -52,7 +52,7 @@ public class MoveController : MonoBehaviour
 
     public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
     {
-        if (fromTile == null || toTile == null)
+        if (fromTile == null || toTile == null || _characterController.IsEnemy == true)
         {
             return;
         }

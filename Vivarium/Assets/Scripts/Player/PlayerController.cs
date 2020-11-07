@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public static event ObjectiveCapture OnObjectiveCapture;
 
     public List<CharacterController> PlayerCharacters;
-
     private CharacterController _selectedCharacter;
 
     private bool _actionIsSelected = false;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     private void GetSelectedCharacter(Tile tile)
     {
         var grid = TileGridController.Instance.GetGrid();
-        foreach (var character in PlayerCharacters)
+        foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
         {
             grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
