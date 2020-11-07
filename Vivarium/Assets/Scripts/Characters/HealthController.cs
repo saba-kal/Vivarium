@@ -9,12 +9,14 @@ public class HealthController : MonoBehaviour
     private float _currentHealth;
     private float _shieldHealth;
     private float _maxHealth;
+    private float _maxShield;
 
     public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth, float maxShield)
     {
         _currentHealth = currentHealth;
         _shieldHealth = shieldHealth;
         _maxHealth = maxHealth;
+        _maxShield = maxShield;
 
         HealthBar.SetMaxHealth(maxHealth);
         HealthBar.SetHealth(currentHealth);
@@ -55,6 +57,20 @@ public class HealthController : MonoBehaviour
         {
             _currentHealth = _maxHealth;
             HealthBar.SetHealth(_currentHealth);
+        }
+    }
+
+    public void RegenerateShield(float shieldAmount)
+    {
+        if (_shieldHealth + shieldAmount <= _maxShield)
+        {
+            _shieldHealth += shieldAmount;
+            ShieldBar?.SetHealth(_shieldHealth);
+        }
+        else
+        {
+            _shieldHealth = _maxShield;
+            ShieldBar?.SetHealth(_shieldHealth);
         }
     }
 }

@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     public delegate void ObjectiveCapture();
     public static event ObjectiveCapture OnObjectiveCapture;
+    public delegate void AllCharactersDead();
+    public static event AllCharactersDead OnAllCharactersDead;
 
     public List<CharacterController> PlayerCharacters;
 
@@ -63,6 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void GetSelectedCharacter(Tile tile)
     {
+        DeselectAction();
+        _selectedCharacter?.Deselect();
+        _selectedCharacter = null;
+
         var grid = TileGridController.Instance.GetGrid();
         foreach (var character in PlayerCharacters)
         {
@@ -75,10 +81,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-
-        DeselectAction();
-        _selectedCharacter?.Deselect();
-        _selectedCharacter = null;
     }
 
     private void SelectMove()
@@ -177,8 +179,23 @@ public class PlayerController : MonoBehaviour
 
         if (PlayerCharacters.Count == 0)
         {
-            Debug.Log("GAME OVER");
-            UIController.Instance.GameOver("GAME OVER");
+            OnAllCharactersDead?.Invoke();
+        }
+    }
+
+    public void HealCharacters(float healAmount)
+    {
+        foreach (var characterController in PlayerCharacters)
+        {
+            characterController.Heal(healAmount);
+        }
+    }
+
+    public void RegenCharacterShields(float regenAmount)
+    {
+        foreach (var characterController in PlayerCharacters)
+        {
+            characterController.RegenShield(regenAmount);
         }
     }
 }

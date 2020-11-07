@@ -19,5 +19,8 @@ public class LevelGenerationProfile : ScriptableObject
     public int MinPlayerCharacters;
     public int MaxPlayerCharacters;
     public List<CharacterGenerationProfile> PossiblePlayerCharacters;
-    public List<Item> startingItems;
+
+    public List<InventoryItem> StartingItems;
+    public float OnLevelStartHeal = 500;
+    public float OnLevelStartShieldRegen = 500;
 }
