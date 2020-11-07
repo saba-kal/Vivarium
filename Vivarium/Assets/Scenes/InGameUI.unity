@@ -1478,7 +1478,6 @@ GameObject:
   - component: {fileID: 228816594}
   - component: {fileID: 228816593}
   m_Layer: 0
-<<<<<<< Updated upstream
   m_Name: OptionsScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1517,9 +1516,6 @@ GameObject:
   - component: {fileID: 212211725}
   m_Layer: 5
   m_Name: QuitButton
-=======
-  m_Name: Option3
->>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9683,11 +9679,8 @@ RectTransform:
   - {fileID: 173294434}
   - {fileID: 986294553}
   - {fileID: 1934798819}
-<<<<<<< Updated upstream
   - {fileID: 1037409250}
-=======
   - {fileID: 1394285596}
->>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
