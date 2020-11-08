@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
-            _selectedCharacter.IsAbleToMoveToTile(selectedTile))
+            _selectedCharacter.IsAbleToMoveToTile(selectedTile) && _selectedCharacter.IsEnemy == false)
         {
             _selectedCharacter.MoveToTile(selectedTile, () =>
             {
