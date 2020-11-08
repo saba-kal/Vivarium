@@ -19,6 +19,8 @@ public class GridGenerationProfile : ScriptableObject
     public int MinWallLength;
     public int MaxWallLength;
 
+    public int ObjectiveSpawnVariation;
+
     [Range(0f, 1f)]
     public float ObstacleSpawnChance = 0.05f;
     [Range(0f, 1f)]
