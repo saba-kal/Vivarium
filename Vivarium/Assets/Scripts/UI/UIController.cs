@@ -54,6 +54,18 @@ public class UIController : MonoBehaviour
         EndTurnButton.onClick.AddListener(() => OnEndTurnClick?.Invoke());
     }
 
+    private void Update()
+    {
+        if (CommandController.Instance?.CommandsAreExecuting() == true)
+        {
+            EndTurnButton.interactable = false;
+        }
+        else
+        {
+            EndTurnButton.interactable = true;
+        }
+    }
+
     public void ShowCharacterInfo(CharacterController characterController)
     {
         HideCharacterInfo();
