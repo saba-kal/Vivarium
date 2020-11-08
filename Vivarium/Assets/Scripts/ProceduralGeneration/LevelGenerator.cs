@@ -16,6 +16,9 @@ public class LevelGenerator : MonoBehaviour
     private Grid<Tile> _grid;
     private TileGridController _gridController;
 
+    private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
+    private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
+
     private void Awake()
     {
         if (GenerateLevelOnStart)
@@ -92,8 +95,25 @@ public class LevelGenerator : MonoBehaviour
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
         tileGridView.LevelObjectivePrefab = LevelProfile.LevelObjectivePrefab;
         tileGridView.CreateGridMesh();
+        GeneratePossiblePlayerSpawnTiles();
     }
 
+    private void GeneratePossiblePlayerSpawnTiles()
+    {
+        if (_possiblePlayerSpawnTiles.Count == 0)
+        {
+            for (int i = 0; i < _grid.GetGrid().GetLength(0); i++)
+            {
+                for (int j = 0; j < _grid.GetGrid().GetLength(1); j++)
+                {
+                    if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Player)
+                    {
+                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                    }
+                }
+            }
+        }
+    }
     private void GenerateCharacters()
     {
         var enemyGenerationOutOfRange =
@@ -117,7 +137,7 @@ public class LevelGenerator : MonoBehaviour
         }
         foreach (var characterController in PlayerCharacters)
         {
-            PlaceCharacterOnGrid(characterController);
+            PlacePlayerOnGrid(characterController);
         }
     }
 
@@ -164,8 +184,27 @@ public class LevelGenerator : MonoBehaviour
         return characterGameObject;
     }
 
+    private void PlacePlayerOnGrid(CharacterController characterController)
+    {
+        var tile = _possiblePlayerSpawnTiles.ElementAt(Random.Range(0, _possiblePlayerSpawnTiles.Count)).Value;
+        var iterations = 0;
+        while (!CharacterCanSpawnOnTile(tile, characterController) &&
+            iterations < MAX_SPAWN_ITERATIONS)
+        {
+            tile = _possiblePlayerSpawnTiles.ElementAt(Random.Range(0, _possiblePlayerSpawnTiles.Count)).Value;
+            iterations++;
+        }
+        characterController.gameObject.transform.position = _grid.GetWorldPositionCentered(tile.GridX, tile.GridY);
+        tile.CharacterControllerId = characterController.Id;
+    }
+
     private void PlaceCharacterOnGrid(CharacterController characterController)
     {
+        if (characterController == null)
+        {
+            return;
+        }
+
         var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
         var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
