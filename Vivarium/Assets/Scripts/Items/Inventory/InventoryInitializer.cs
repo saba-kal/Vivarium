@@ -5,7 +5,8 @@ using System.Linq;
 
 public class InventoryInitializer : MonoBehaviour
 {
-    public List<Item> startingItems;
+    public List<InventoryItem> StartingItems;
+
     private void Start()
     {
         var turnSystemManager = TurnSystemManager.Instance;
@@ -21,12 +22,14 @@ public class InventoryInitializer : MonoBehaviour
                 {
                     InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Shield);
                 }
-                foreach (var startingItem in startingItems)
+                if (StartingItems != null)
                 {
-                    var consumable = (Consumable)startingItem;
-                    for (var i = 0; i < consumable.charges; i++)
+                    foreach (var inventoryItem in StartingItems)
                     {
-                        InventoryManager.PlaceCharacterItem(playerCharacterController.Id, startingItem);
+                        for (var i = 0; i < inventoryItem.Count; i++)
+                        {
+                            InventoryManager.PlaceCharacterItem(playerCharacterController.Id, inventoryItem.Item);
+                        }
                     }
                 }
             }

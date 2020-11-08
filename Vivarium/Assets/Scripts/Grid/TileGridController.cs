@@ -35,7 +35,7 @@ public class TileGridController : MonoBehaviour
 
     private void Start()
     {
-        _mouseHoverHighlightObject = Instantiate(PrimaryHighlightPrefab);
+        _mouseHoverHighlightObject = Instantiate(PrimaryHighlightPrefab, transform);
         _mouseHoverHighlightObject.SetActive(false);
         StoreCharacterControllers(Constants.ENEMY_CHAR_TAG);
         StoreCharacterControllers(Constants.PLAYER_CHAR_TAG);
@@ -272,7 +272,7 @@ public class TileGridController : MonoBehaviour
 
     private void CreateHighlightObject(int x, int y, GridHighlightRank highlightRank)
     {
-        var tileHighlight = Instantiate(GetHighlightPrefab(highlightRank));
+        var tileHighlight = Instantiate(GetHighlightPrefab(highlightRank), transform);
         tileHighlight.SetActive(true);
         var targetPosition = _grid.GetWorldPositionCentered(x, y);
         targetPosition.y += 0.01f;

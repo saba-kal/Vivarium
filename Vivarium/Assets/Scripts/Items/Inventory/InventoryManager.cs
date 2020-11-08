@@ -5,7 +5,7 @@ using UnityEditor;
 
 public static class InventoryManager
 {
-    private static Dictionary<string, Item> _playerInventory = new Dictionary<string, Item>();
+    private static Dictionary<string, InventoryItem> _playerInventory = new Dictionary<string, InventoryItem>();
     private static Dictionary<string, CharacterInventory> _characterInventories = new Dictionary<string, CharacterInventory>();
 
     public static void PlaceCharacterItem(string characterId, Item item)
@@ -14,17 +14,17 @@ public static class InventoryManager
         {
             if (_characterInventories[characterId].Items.ContainsKey(item.Id))
             {
-                _characterInventories[characterId].Items[item.Id] = item;
+                _characterInventories[characterId].Items[item.Id].Count++;
             }
             else
             {
-                _characterInventories[characterId].Items.Add(item.Id, item);
+                _characterInventories[characterId].Items.Add(item.Id, new InventoryItem { Count = 1, Item = item });
             }
         }
         else
         {
             var characterInventory = new CharacterInventory();
-            characterInventory.Items.Add(item.Id, item);
+            characterInventory.Items.Add(item.Id, new InventoryItem { Count = 1, Item = item });
             _characterInventories.Add(characterId, characterInventory);
         }
     }
@@ -34,7 +34,14 @@ public static class InventoryManager
         if (_characterInventories.ContainsKey(characterId) &&
             _characterInventories[characterId].Items.ContainsKey(itemId))
         {
-            _characterInventories[characterId].Items.Remove(itemId);
+            if (_characterInventories[characterId].Items[itemId].Count <= 1)
+            {
+                _characterInventories[characterId].Items.Remove(itemId);
+            }
+            else
+            {
+                _characterInventories[characterId].Items[itemId].Count--;
+            }
         }
     }
 
@@ -43,7 +50,7 @@ public static class InventoryManager
         if (_characterInventories.ContainsKey(characterId) &&
             _characterInventories[characterId].Items.ContainsKey(itemId))
         {
-            return _characterInventories[characterId].Items[itemId];
+            return _characterInventories[characterId].Items[itemId].Item;
         }
 
         return null;
@@ -68,11 +75,11 @@ public static class InventoryManager
     {
         if (_playerInventory.ContainsKey(item.Id))
         {
-            _playerInventory[item.Id] = item;
+            _playerInventory[item.Id].Count++;
         }
         else
         {
-            _playerInventory.Add(item.Id, item);
+            _playerInventory.Add(item.Id, new InventoryItem { Count = 1, Item = item });
         }
     }
 
@@ -80,7 +87,14 @@ public static class InventoryManager
     {
         if (_playerInventory.ContainsKey(itemId))
         {
-            _playerInventory.Remove(itemId);
+            if (_playerInventory[itemId].Count <= 1)
+            {
+                _playerInventory.Remove(itemId);
+            }
+            else
+            {
+                _playerInventory[itemId].Count--;
+            }
         }
     }
 
@@ -88,13 +102,13 @@ public static class InventoryManager
     {
         if (_playerInventory.ContainsKey(itemId))
         {
-            return _playerInventory[itemId];
+            return _playerInventory[itemId].Item;
         }
 
         return null;
     }
 
-    public static Dictionary<string, Item> GetPlayerInventory()
+    public static Dictionary<string, InventoryItem> GetPlayerInventory()
     {
         return _playerInventory;
     }

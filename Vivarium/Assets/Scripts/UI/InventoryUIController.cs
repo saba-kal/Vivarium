@@ -109,11 +109,11 @@ public class InventoryUIController : MonoBehaviour
         });
         ConsumeButton.onClick.AddListener(() =>
         {
-            foreach (var item in InventoryManager.GetCharacterInventory(_selectedCharacterController.Id).Items.Values)
+            foreach (var inventoryItem in InventoryManager.GetCharacterInventory(_selectedCharacterController.Id).Items.Values)
             {
-                if (item.Type == ItemType.Consumable)
+                if (inventoryItem.Item.Type == ItemType.Consumable)
                 {
-                    _selectedCharacterController.Consume(item);
+                    _selectedCharacterController.Consume(inventoryItem.Item);
                     break;
                 }
             }
@@ -133,14 +133,9 @@ public class InventoryUIController : MonoBehaviour
         }
 
         var logMessage = $"Inventory for character \"{characterController.Character.Name}\": ";
-        foreach (var item in InventoryManager.GetCharacterInventory(characterController.Id).Items.Values)
+        foreach (var inventoryItem in InventoryManager.GetCharacterInventory(characterController.Id).Items.Values)
         {
-            logMessage += $"{item.Name}, ";
-            if (item.Type == ItemType.Consumable)
-            {
-                var consumable = (Consumable)item;
-                logMessage += $"{consumable.charges}";
-            }
+            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
         }
 
         Debug.Log(logMessage);
@@ -154,9 +149,9 @@ public class InventoryUIController : MonoBehaviour
         }
 
         var logMessage = $"Character Inventory: ";
-        foreach (var item in characterInventory.Items.Values)
+        foreach (var inventoryItem in characterInventory.Items.Values)
         {
-            logMessage += $"{item.Name}, ";
+            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
         }
 
         Debug.Log(logMessage);
@@ -165,9 +160,9 @@ public class InventoryUIController : MonoBehaviour
     private void LogPlayerInventory()
     {
         var logMessage = "Player inventory: ";
-        foreach (var item in InventoryManager.GetPlayerInventory().Values)
+        foreach (var inventoryItem in InventoryManager.GetPlayerInventory().Values)
         {
-            logMessage += $"{item.Name}, ";
+            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
         }
 
         Debug.Log(logMessage);

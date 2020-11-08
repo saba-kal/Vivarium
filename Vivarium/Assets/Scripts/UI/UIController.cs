@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Assets.Scripts.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class UIController : MonoBehaviour
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
+    public GameObject GameOverScreen;
+    public TextMeshProUGUI GameOverText;
     public InventoryUIController InventoryUIController;
+    public RewardsUIController RewardsUIController;
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;
@@ -121,5 +125,12 @@ public class UIController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+    }
+
+    public void GameOver(string gameoverText)
+    {
+        GameOverText.text = gameoverText;
+        GameOverScreen.SetActive(true);
+        Instance = null;
     }
 }

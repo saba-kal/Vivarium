@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,21 +14,24 @@ public class LevelManager : MonoBehaviour
     void OnEnable()
     {
         PlayerController.OnObjectiveCapture += CompleteLevel;
+        PlayerController.OnAllCharactersDead += GameOver;
     }
 
     void OnDisable()
     {
         PlayerController.OnObjectiveCapture -= CompleteLevel;
+        PlayerController.OnAllCharactersDead -= GameOver;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadGame();
+        StartGame();
     }
 
-    private void LoadGame()
+    private void StartGame()
     {
+        PlayerData.CurrentLevelIndex = 0;
         _levels = new List<Level>();
         //TODO: implement loading here.
     }
@@ -37,13 +42,27 @@ public class LevelManager : MonoBehaviour
         if (PlayerData.CurrentLevelIndex >= LevelGenerationProfiles.Count)
         {
             Debug.Log("You beat the game.");
+            UIController.Instance.GameOver("YOU WIN");
+            PlayerData.CurrentLevelIndex = 0;
         }
         else
         {
-            Debug.Log("Level complete. Generating next level...");
-            LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
-            LevelGenerator.GenerateLevel();
-            LevelGenerator.PlayerController.EnableCharacters();
+            UIController.Instance.RewardsUIController.ShowRewardsScreen(() =>
+            {
+                Debug.Log("Level complete. Generating next level...");
+                LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
+                LevelGenerator.GenerateLevel();
+                LevelGenerator.PlayerController.EnableCharacters();
+                LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
+                LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
+            });
         }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("GAME OVER");
+        UIController.Instance.GameOver("GAME OVER");
+        PlayerData.CurrentLevelIndex = 0;
     }
 }
