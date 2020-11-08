@@ -166,6 +166,11 @@ public class LevelGenerator : MonoBehaviour
 
     private void PlaceCharacterOnGrid(CharacterController characterController)
     {
+        if (characterController == null)
+        {
+            return;
+        }
+
         var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
         var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
