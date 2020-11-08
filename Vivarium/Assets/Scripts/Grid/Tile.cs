@@ -50,6 +50,18 @@ public class Tile
         }
     }
 
+
+    private TileSpawnType _spawnType;
+    public TileSpawnType SpawnType
+    {
+        get { return _spawnType; }
+        set
+        {
+            _spawnType = value;
+            _grid.TriggerGridCellChange(GridX, GridY);
+        }
+    }
+
     private Grid<Tile> _grid;
 
     public Tile(int x, int y, Grid<Tile> grid)
