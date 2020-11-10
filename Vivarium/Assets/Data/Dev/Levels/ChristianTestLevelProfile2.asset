@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
+  m_Name: ChristianTestLevelProfile2
+  m_EditorClassIdentifier: 
+  GridProfile: {fileID: 11400000, guid: 5f1f18164184ed542bdfb32625adc9dc, type: 2}
+  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
+  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
+  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
+  LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
+  MinEnemyCharacters: 7
+  MaxEnemyCharacters: 9
+  PossibleEnemyCharacters:
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  MinPlayerCharacters: 1
+  MaxPlayerCharacters: 3
+  PossiblePlayerCharacters:
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  StartingItems: []
+  OnLevelStartHeal: 500
+  OnLevelStartShieldRegen: 500
+  PossilbleRewards:
+  - {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
+  - {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
+  - {fileID: 11400000, guid: b5edf485eb332e74f934b6aaeaafd02f, type: 2}
