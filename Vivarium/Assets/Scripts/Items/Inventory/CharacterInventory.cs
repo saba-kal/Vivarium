@@ -2,10 +2,10 @@
 
 public class CharacterInventory
 {
-    public Dictionary<string, InventoryItem> Items { get; set; }
+    public Dictionary<string, List<InventoryItem>> Items { get; set; }
 
     public CharacterInventory()
     {
-        Items = new Dictionary<string, InventoryItem>();
+        Items = new Dictionary<string, List<InventoryItem>>();
     }
 }

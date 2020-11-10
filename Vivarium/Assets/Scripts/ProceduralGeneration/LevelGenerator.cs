@@ -131,7 +131,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0)
+        if (PlayerCharacters.Count == 0 || PlayerController.PlayerCharacters.Count == 0)
         {
             GeneratePlayerCharacters();
         }

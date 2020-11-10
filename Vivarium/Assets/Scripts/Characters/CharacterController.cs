@@ -195,7 +195,7 @@ public class CharacterController : MonoBehaviour
 
     public void Equip(Item item)
     {
-        if ((item.Type != ItemType.Weapon) || (item.Type != ItemType.Shield))
+        if ((item.Type != ItemType.Weapon) && (item.Type != ItemType.Shield))
         {
             Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
             return;

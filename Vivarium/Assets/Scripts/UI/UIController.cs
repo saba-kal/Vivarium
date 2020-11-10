@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     public Button EndTurnButton;
     public float SpaceBetweenButtons = 2f;
 
+    private CharacterController _selectedCharacter;
     private List<Button> _existingActionButtons = new List<Button>();
     private List<string> _charactersWithDisabledActions = new List<string>();
     private List<string> _charactersWithDisabledMoves = new List<string>();
@@ -69,12 +70,14 @@ public class UIController : MonoBehaviour
     public void ShowCharacterInfo(CharacterController characterController)
     {
         HideCharacterInfo();
+        _selectedCharacter = characterController;
 
         CharacterInfoPanel.SetActive(true);
         MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
 
         DisplayActions(characterController);
         InventoryUIController.DisplayCharacterInventory(characterController);
+        InventoryUIController.SetActionButtonsDisabled(_charactersWithDisabledActions.Contains(characterController.Id));
     }
 
     private void DisplayActions(CharacterController characterController)
@@ -109,6 +112,8 @@ public class UIController : MonoBehaviour
 
     public void HideCharacterInfo()
     {
+        _selectedCharacter = null;
+
         SelectedButtonIndicator.transform.SetParent(MoveButton.transform, false);
         foreach (var button in _existingActionButtons)
         {
@@ -118,6 +123,14 @@ public class UIController : MonoBehaviour
         CharacterInfoPanel.SetActive(false);
     }
 
+    public void DisableActionsForCharacter()
+    {
+        if (_selectedCharacter != null)
+        {
+            DisableActionsForCharacter(_selectedCharacter.Id);
+        }
+    }
+
     public void DisableActionsForCharacter(string characterId)
     {
         _charactersWithDisabledActions.Add(characterId);
@@ -125,6 +138,7 @@ public class UIController : MonoBehaviour
         {
             button.interactable = false;
         }
+        InventoryUIController.SetActionButtonsDisabled(true);
     }
 
     public void DisableMoveForCharacter(string characterId)
@@ -137,6 +151,7 @@ public class UIController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+        InventoryUIController.SetActionButtonsDisabled(false);
     }
 
     public void GameOver(string gameoverText)

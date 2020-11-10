@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using System.Linq;
 
 public static class InventoryManager
 {
-    private static Dictionary<string, InventoryItem> _playerInventory = new Dictionary<string, InventoryItem>();
+    private static Dictionary<string, List<InventoryItem>> _playerInventory = new Dictionary<string, List<InventoryItem>>();
     private static Dictionary<string, CharacterInventory> _characterInventories = new Dictionary<string, CharacterInventory>();
 
     public static void PlaceCharacterItem(string characterId, Item item)
@@ -14,43 +15,85 @@ public static class InventoryManager
         {
             if (_characterInventories[characterId].Items.ContainsKey(item.Id))
             {
-                _characterInventories[characterId].Items[item.Id].Count++;
+                if (_characterInventories[characterId].Items[item.Id] == null ||
+                    _characterInventories[characterId].Items[item.Id].Count == 0)
+                {
+                    _characterInventories[characterId].Items[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
+                }
+                else if (item.CanBeStacked)
+                {
+                    _characterInventories[characterId].Items[item.Id][0].Count++;
+                }
+                else
+                {
+                    _characterInventories[characterId].Items[item.Id].Add(new InventoryItem { Count = 1, Item = item });
+                }
             }
             else
             {
-                _characterInventories[characterId].Items.Add(item.Id, new InventoryItem { Count = 1, Item = item });
+                _characterInventories[characterId].Items[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
             }
         }
         else
         {
             var characterInventory = new CharacterInventory();
-            characterInventory.Items.Add(item.Id, new InventoryItem { Count = 1, Item = item });
+            characterInventory.Items.Add(item.Id, new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } });
             _characterInventories.Add(characterId, characterInventory);
         }
+
+
+        if (GetCharacterItemCount(characterId) > Constants.MAX_CHARACTER_ITEMS)
+        {
+            Debug.LogWarning("Character has reached maximum items. Cannot place more in inventory.");
+            RemoveCharacterItem(characterId, item.Id);
+            return;
+        }
+    }
+
+    public static int GetCharacterItemCount(string characterId)
+    {
+        var characterInventory = GetCharacterInventory(characterId);
+        if (characterInventory == null)
+        {
+            return 0;
+        }
+
+        return GetCharacterItems(characterId).Count;
     }
 
     public static void RemoveCharacterItem(string characterId, string itemId)
     {
-        if (_characterInventories.ContainsKey(characterId) &&
-            _characterInventories[characterId].Items.ContainsKey(itemId))
+        var inventoryItem = GetCharacterItem(characterId, itemId);
+        if (inventoryItem == null)
         {
-            if (_characterInventories[characterId].Items[itemId].Count <= 1)
+            return;
+        }
+
+        if (inventoryItem.Item.CanBeStacked &&
+            _characterInventories[characterId].Items[itemId].Count >= 1)
+        {
+            _characterInventories[characterId].Items[itemId][0].Count--;
+            if (_characterInventories[characterId].Items[itemId][0].Count == 0)
             {
                 _characterInventories[characterId].Items.Remove(itemId);
             }
-            else
-            {
-                _characterInventories[characterId].Items[itemId].Count--;
-            }
+        }
+        else if (_characterInventories[characterId].Items[itemId].Count >= 2)
+        {
+            _characterInventories[characterId].Items[itemId].RemoveAt(0);
+        }
+        else
+        {
+            _characterInventories[characterId].Items.Remove(itemId);
         }
     }
 
-    public static Item GetCharacterItem(string characterId, string itemId)
+    public static InventoryItem GetCharacterItem(string characterId, string itemId)
     {
         if (_characterInventories.ContainsKey(characterId) &&
             _characterInventories[characterId].Items.ContainsKey(itemId))
         {
-            return _characterInventories[characterId].Items[itemId].Item;
+            return _characterInventories[characterId].Items[itemId].FirstOrDefault();
         }
 
         return null;
@@ -66,6 +109,27 @@ public static class InventoryManager
         return null;
     }
 
+    public static List<InventoryItem> GetCharacterItems(string characterId)
+    {
+        var characterItems = new List<InventoryItem>();
+
+        var characterInventory = GetCharacterInventory(characterId);
+        if (characterInventory == null)
+        {
+            return characterItems;
+        }
+
+        foreach (var inventoryItems in characterInventory.Items.Values)
+        {
+            foreach (var inventoryItem in inventoryItems)
+            {
+                characterItems.Add(inventoryItem);
+            }
+        }
+
+        return characterItems;
+    }
+
     public static Dictionary<string, CharacterInventory> GetAllCharacterInventories()
     {
         return _characterInventories;
@@ -73,42 +137,77 @@ public static class InventoryManager
 
     public static void PlacePlayerItem(Item item)
     {
-        if (_playerInventory.ContainsKey(item.Id))
+        var inventoryItem = GetPlayerItem(item.Id);
+        if (inventoryItem == null)
         {
-            _playerInventory[item.Id].Count++;
+            _playerInventory[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
+            return;
+        }
+
+        if (inventoryItem.Item.CanBeStacked)
+        {
+            inventoryItem.Count++;
         }
         else
         {
-            _playerInventory.Add(item.Id, new InventoryItem { Count = 1, Item = item });
+            _playerInventory[item.Id].Add(new InventoryItem { Count = 1, Item = item });
         }
+
+        if (GetPlayerItemCount() > Constants.MAX_PLAYER_ITEMS)
+        {
+            RemovePlayerItem(item.Id);
+            Debug.LogWarning("The player has reached maximum items. Cannot place more in inventory.");
+            return;
+        }
+    }
+
+    public static int GetPlayerItemCount()
+    {
+        var count = 0;
+        foreach (var inventoryItems in _playerInventory.Values)
+        {
+            foreach (var inventoryItem in inventoryItems)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     public static void RemovePlayerItem(string itemId)
     {
-        if (_playerInventory.ContainsKey(itemId))
+        var inventoryItem = GetPlayerItem(itemId);
+        if (inventoryItem == null)
         {
-            if (_playerInventory[itemId].Count <= 1)
+            return;
+        }
+
+        if (inventoryItem.Item.CanBeStacked)
+        {
+            inventoryItem.Count--;
+            if (inventoryItem.Count <= 0)
             {
                 _playerInventory.Remove(itemId);
             }
-            else
-            {
-                _playerInventory[itemId].Count--;
-            }
+        }
+        else
+        {
+            _playerInventory.Remove(itemId);
         }
     }
 
-    public static Item GetPlayerItem(string itemId)
+    public static InventoryItem GetPlayerItem(string itemId)
     {
         if (_playerInventory.ContainsKey(itemId))
         {
-            return _playerInventory[itemId].Item;
+            return _playerInventory[itemId].FirstOrDefault();
         }
 
         return null;
     }
 
-    public static Dictionary<string, InventoryItem> GetPlayerInventory()
+    public static Dictionary<string, List<InventoryItem>> GetPlayerInventory()
     {
         return _playerInventory;
     }

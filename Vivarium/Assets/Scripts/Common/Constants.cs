@@ -6,6 +6,8 @@ public static class Constants
 
     public const float CHAR_MOVE_SPEED = 10f;
     public const float AI_DELAY_BETWEEN_ACTIONS = 0.5f;
+    public const int MAX_CHARACTER_ITEMS = 3;
+    public const int MAX_PLAYER_ITEMS = 100;
 
     public const string PLAYER_CHAR_TAG = "PlayerCharacter";
     public const string ENEMY_CHAR_TAG = "EnemyCharacter";
