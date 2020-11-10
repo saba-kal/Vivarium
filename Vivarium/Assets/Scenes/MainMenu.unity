@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AvailableScenes:
-  - MainSceneName: SabaTestLevel
+  - MainSceneName: MainGame
     AdditiveScenes:
     - InGameUI
 --- !u!4 &2068646260

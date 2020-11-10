@@ -26,6 +26,9 @@ public class GridGenerator
             origin,
             (int x, int y, Grid<Tile> grid) => InitializeTile(x, y, grid, gridProfile));
 
+        int objectiveVariation = gridProfile.ObjectiveSpawnVariation;
+        SetPossibleObjectiveTiles(resultGrid, objectiveVariation);
+        SetPossiblePlayerSpawn(resultGrid);
         PlaceObjective(resultGrid);
         CreatePathsToAllGreenTiles(resultGrid);
 
@@ -127,13 +130,45 @@ public class GridGenerator
         }
     }
 
+    private void SetPossibleObjectiveTiles(Grid<Tile> grid, int objectiveVariation)
+    {
+
+        for (int i = 0; i <= objectiveVariation; i++)
+        {
+            for (int j = 0; j <= objectiveVariation; j++)
+            {
+                grid.GetValue(grid.GetGrid().GetLength(0) - i - 1, grid.GetGrid().GetLength(1) - j - 1).SpawnType = TileSpawnType.Objective;
+            }
+        }
+    }
+
+    private void SetPossiblePlayerSpawn(Grid<Tile> grid)
+    {
+        for (int i = 0; i <= 3; i++)
+        {
+            for (int j = 0; j <= 3; j++)
+            {
+                grid.GetValue(i, j).SpawnType = TileSpawnType.Player;
+                grid.GetValue(i, j).Type = TileType.Grass;
+            }
+        }
+    }
+
     private void PlaceObjective(Grid<Tile> grid)
     {
-        //TODO: figure out better objective placement than a completely random position.
-        var xPosition = Random.Range(0, grid.GetGrid().GetLength(0));
-        var yPosition = Random.Range(0, grid.GetGrid().GetLength(1));
-
-        var objectiveTile = grid.GetValue(xPosition, yPosition);
+        var possibleTiles = new Dictionary<(int, int), Tile>();
+        for(int i = 0; i < grid.GetGrid().GetLength(0); i++)
+        {
+            for(int j = 0; j < grid.GetGrid().GetLength(1); j++)
+            {
+                if(grid.GetValue(i,j).SpawnType == TileSpawnType.Objective)
+                {
+                    possibleTiles.Add((i, j), grid.GetValue(i, j));
+                }
+                    
+            }
+        }
+        var objectiveTile = possibleTiles.ElementAt(Random.Range(0, possibleTiles.Count)).Value;
         objectiveTile.IsObjective = true;
         objectiveTile.Type = TileType.Grass;
     }
