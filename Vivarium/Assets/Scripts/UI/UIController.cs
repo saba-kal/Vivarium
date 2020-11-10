@@ -19,6 +19,8 @@ public class UIController : MonoBehaviour
     public GameObject SelectedButtonIndicator;
     public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI MoveRangeText;
+    public TextMeshProUGUI DamageText;
     public InventoryUIController InventoryUIController;
     public RewardsUIController RewardsUIController;
     public Button ActionButtonPrefab;
