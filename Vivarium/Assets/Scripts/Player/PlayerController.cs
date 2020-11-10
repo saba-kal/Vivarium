@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile))
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy)
         {
             PerformAction(selectedTile);
             UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);

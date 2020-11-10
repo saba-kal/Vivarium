@@ -46,7 +46,6 @@ public class CharacterController : MonoBehaviour
     public void Select()
     {
         _isSelected = true;
-        ShowMoveRadius();
         UIController.Instance.ShowCharacterInfo(this);
     }
 

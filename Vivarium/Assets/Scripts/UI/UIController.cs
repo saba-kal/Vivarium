@@ -69,10 +69,8 @@ public class UIController : MonoBehaviour
     public void ShowCharacterInfo(CharacterController characterController)
     {
         HideCharacterInfo();
-
         CharacterInfoPanel.SetActive(true);
         MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
-
         DisplayActions(characterController);
         InventoryUIController.DisplayCharacterInventory(characterController);
     }
