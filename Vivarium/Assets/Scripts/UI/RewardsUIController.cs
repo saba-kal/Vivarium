@@ -37,27 +37,34 @@ namespace Assets.Scripts.UI
         public void ShowRewardsScreen(System.Action callback, List<Item> possibleRewards)
         {
             RewardScreen.SetActive(true);
-            
-            var numberOfAttributes = 3;
-            var rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfAttributes);
-            Option1Icon.sprite = possibleRewards[0].Icon;
-            Option2Icon.sprite = possibleRewards[1].Icon;
-            Option3Icon.sprite = possibleRewards[2].Icon;
 
-            NextLevel.onClick.AddListener(() =>
+            if (possibleRewards.Count >= 3)
             {
-                InventoryManager.PlacePlayerItem(possibleRewards[selectedReward]);
-                LogPlayerInventory();
-                callback();
-                RewardScreen.SetActive(false);
-            });
+                var numberOfRewards = 3;
+                var rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfRewards);
+                Option1Icon.sprite = possibleRewards[0].Icon;
+                Option2Icon.sprite = possibleRewards[1].Icon;
+                Option3Icon.sprite = possibleRewards[2].Icon;
+
+                NextLevel.onClick.AddListener(() =>
+                {
+                    InventoryManager.PlacePlayerItem(possibleRewards[selectedReward]);
+                    LogPlayerInventory();
+                    callback();
+                    RewardScreen.SetActive(false);
+                });
+            }
         }
+
         private void LogPlayerInventory()
         {
             var logMessage = "Player inventory: ";
-            foreach (var inventoryItem in InventoryManager.GetPlayerInventory().Values)
+            foreach (var inventoryItems in InventoryManager.GetPlayerInventory().Values)
             {
-                logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+                foreach (var inventoryItem in inventoryItems)
+                {
+                    logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+                }
             }
 
             Debug.Log(logMessage);

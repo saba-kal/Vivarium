@@ -21,5 +21,6 @@ MonoBehaviour:
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 0
-  Attributes: []
+  Attributes:
+  - {fileID: 11400000, guid: 0c564aedaf30f134baa9208382b8c5a3, type: 2}
   AnimType: 0

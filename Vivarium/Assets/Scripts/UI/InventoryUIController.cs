@@ -164,18 +164,19 @@ public class InventoryUIController : MonoBehaviour
 
     private void UpdateButtons()
     {
-        if (!_isDisabled && _selectedItem != null)
+
+        if (_selectedItem != null)
         {
             switch (_selectedItem.Type)
             {
                 case ItemType.Consumable:
-                    ConsumeButton.interactable = true;
+                    ConsumeButton.interactable = !(_isDisabled && DisableActionsOnConsume);
                     EquipButton.interactable = false;
                     break;
                 case ItemType.Weapon:
                 case ItemType.Shield:
                     ConsumeButton.interactable = false;
-                    EquipButton.interactable = !ItemIsEquipped(_selectedItem);
+                    EquipButton.interactable = !ItemIsEquipped(_selectedItem) && !(_isDisabled && DisableActionsOnEquip);
                     break;
             }
         }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea837de799063348b4b26bae38e7ca9, type: 3}
+  m_Name: BasicGridProfile 1
+  m_EditorClassIdentifier: 
+  TileInfos:
+  - Type: 0
+    TilePrefab: {fileID: 36316076695038348, guid: e3d3a999ad5a56b4087730131f40f557, type: 3}
+  - Type: 1
+    TilePrefab: {fileID: 5500598784865716459, guid: 1b63a3db2f2d4804195047d78ff063ab, type: 3}
+  - Type: 2
+    TilePrefab: {fileID: 8991417628590138911, guid: 86324139f2f21ea41be460a03ca358f9, type: 3}
+  MinGridWidth: 25
+  MaxGridWidth: 25
+  MinGridHeight: 25
+  MaxGridHeight: 25
+  GridCellSize: 1
+  GridOrigin: {x: -12.5, y: 0, z: -12.5}
+  MinWallLength: 3
+  MaxWallLength: 6
+  ObjectiveSpawnVariation: 0
+  ObstacleSpawnChance: 0.046
+  WaterSpawnChance: 0.08
+  WaterGrouping: 0.482

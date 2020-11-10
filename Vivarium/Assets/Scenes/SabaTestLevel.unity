@@ -23964,7 +23964,7 @@ MonoBehaviour:
   - {fileID: 534594925}
   - {fileID: 2145449161}
   PlayerController: {fileID: 1053775514}
-  GenerateLevelOnStart: 0
+  GenerateLevelOnStart: 1
 --- !u!4 &542098716
 Transform:
   m_ObjectHideFlags: 0
@@ -23994,7 +23994,7 @@ MonoBehaviour:
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
   - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
-  - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
+  - {fileID: 11400000, guid: 7035921ba1cb4e643b0d3cb7b5324594, type: 2}
 --- !u!1 &543012172
 GameObject:
   m_ObjectHideFlags: 0
