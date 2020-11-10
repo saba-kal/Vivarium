@@ -14,31 +14,53 @@ namespace Assets.Scripts.UI
         public Button Option1;
         public Button Option2;
         public Button Option3;
-        public List<GameObject> buttonList = new List<GameObject>();
-        public Image NailMace;
-        public Image BowAndGraphiteArrows;
-        public Image FountainGauntlet;
-        public Image ExactoCleaver;
+        public Image Option1Icon;
+        public Image Option2Icon;
+        public Image Option3Icon;
+        private int selectedReward = 0;
 
+        private void Start()
+        {
+            Option1.onClick.AddListener(() =>
+            {
+                selectedReward = 0;
+            });
+            Option2.onClick.AddListener(() =>
+            {
+                selectedReward = 1;
+            });
+            Option3.onClick.AddListener(() =>
+            {
+                selectedReward = 2;
+            });
+        }
         public void ShowRewardsScreen(System.Action callback, List<Item> possibleRewards)
         {
             RewardScreen.SetActive(true);
             
             var numberOfAttributes = 3;
             var rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfAttributes);
-            foreach (var reward in possibleRewards)
-            {
-                Option1.GetComponent<Image>().sprite = reward.Icon;
-                Option2.GetComponent<Image>().sprite = reward.Icon;
-                Option3.GetComponent<Image>().sprite = reward.Icon;
-            }
-            
+            Option1Icon.sprite = possibleRewards[0].Icon;
+            Option2Icon.sprite = possibleRewards[1].Icon;
+            Option3Icon.sprite = possibleRewards[2].Icon;
 
             NextLevel.onClick.AddListener(() =>
             {
+                InventoryManager.PlacePlayerItem(possibleRewards[selectedReward]);
+                LogPlayerInventory();
                 callback();
                 RewardScreen.SetActive(false);
             });
+        }
+        private void LogPlayerInventory()
+        {
+            var logMessage = "Player inventory: ";
+            foreach (var inventoryItem in InventoryManager.GetPlayerInventory().Values)
+            {
+                logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+            }
+
+            Debug.Log(logMessage);
         }
     }
 }
