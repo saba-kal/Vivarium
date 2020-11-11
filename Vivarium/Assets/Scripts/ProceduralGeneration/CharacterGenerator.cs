@@ -78,7 +78,6 @@ public class CharacterGenerator
         Character characterData,
         bool isEnemy)
     {
-        var isPlayer = !isEnemy;
 
         foreach (var action in characterData.Weapon.Actions)
         {
@@ -89,34 +88,26 @@ public class CharacterGenerator
             {
                 case ActionControllerType.GiantLazer:
                     actionController = characterGameObject.AddComponent<GiantLazerActionController>();
-                    if (isPlayer)
-                    {
-                        //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
-                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    }
+                   
+                    //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
+                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
+
                     break;
                 case ActionControllerType.Projectile:
                     actionController = characterGameObject.AddComponent<ProjectileActionController>();
-                    if (isPlayer)
-                    {
-                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    }
+                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
+                    
                     break;
                 case ActionControllerType.Default:
                 default:
                     actionController = characterGameObject.AddComponent<ActionController>();
-                    if (isPlayer)
-                    {
-                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    }
+                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
+                    
                     break;
             }
 
             actionController.ActionReference = action;
-            if (isPlayer)
-            {
-                actionViewer.ActionReference = action;
-            }
+            actionViewer.ActionReference = action;
         }
     }
 
