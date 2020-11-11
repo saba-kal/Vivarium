@@ -23,36 +23,39 @@ public class CameraFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check if something is in the queue, and run if there is
+        if (!isCameraLock)
+        {
+            // check if something is in the queue, and run if there is
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeFocus(focusCharacters[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeFocus(focusCharacters[1]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeFocus(focusCharacters[2]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ChangeFocus(focusCharacters[3]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            ChangeFocus(focusCharacters[4]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            this.gameObject.transform.parent = null;
-            this.transform.localPosition = new Vector3(0, 0, 0);
-            Camera_Mover.transform.localPosition = new Vector3(0, 0, -12);
-            Camera.transform.localPosition = new Vector3(0, 0, 0);
-            this.transform.rotation = Quaternion.identity;
-            Camera.GetComponent<CameraController>().setZoom(resetZoom);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                ChangeFocus(focusCharacters[0]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                ChangeFocus(focusCharacters[1]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                ChangeFocus(focusCharacters[2]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                ChangeFocus(focusCharacters[3]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                ChangeFocus(focusCharacters[4]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                this.gameObject.transform.parent = null;
+                this.transform.localPosition = new Vector3(0, 0, 0);
+                Camera_Mover.transform.localPosition = new Vector3(0, 0, -12);
+                Camera.transform.localPosition = new Vector3(0, 0, 0);
+                this.transform.rotation = Quaternion.identity;
+                Camera.GetComponent<CameraController>().setZoom(resetZoom);
+            }
         }
     }
     public void ResetCamera()
@@ -76,7 +79,6 @@ public class CameraFollower : MonoBehaviour
     {
         if (Character != null) // for when character dies
         {
-            Debug.Log("SDFADSFSDFASDFSDF");
             this.gameObject.transform.SetParent(Character.transform);
             this.transform.localPosition = new Vector3(0, 0, 0);
             Camera_Mover.transform.localPosition = new Vector3(0, 0, -7);
