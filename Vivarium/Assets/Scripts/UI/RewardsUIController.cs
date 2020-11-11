@@ -19,6 +19,8 @@ namespace Assets.Scripts.UI
         public Image Option3Icon;
 
         private int _selectedReward = 0;
+        private System.Action _nextLevelCallback;
+        private List<Item> _rewards = new List<Item>();
 
         private void Start()
         {
@@ -34,27 +36,30 @@ namespace Assets.Scripts.UI
             {
                 _selectedReward = 2;
             });
+            NextLevel.onClick.AddListener(() =>
+            {
+                if (_nextLevelCallback != null)
+                {
+                    PlaceSelectedReward(_rewards);
+                    LogPlayerInventory();
+                    RewardScreen.SetActive(false);
+                    _nextLevelCallback();
+                }
+            });
         }
 
         public void ShowRewardsScreen(System.Action callback, List<Item> possibleRewards)
         {
             RewardScreen.SetActive(true);
+            _nextLevelCallback = callback;
 
             if (possibleRewards.Count >= 3)
             {
                 var numberOfRewards = 3;
-                var rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfRewards);
-                Option1Icon.sprite = possibleRewards[0].Icon;
-                Option2Icon.sprite = possibleRewards[1].Icon;
-                Option3Icon.sprite = possibleRewards[2].Icon;
-
-                NextLevel.onClick.AddListener(() =>
-                {
-                    PlaceSelectedReward(rewards.ToList());
-                    LogPlayerInventory();
-                    callback();
-                    RewardScreen.SetActive(false);
-                });
+                _rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfRewards).ToList();
+                Option1Icon.sprite = _rewards[0].Icon;
+                Option2Icon.sprite = _rewards[1].Icon;
+                Option3Icon.sprite = _rewards[2].Icon;
             }
         }
 

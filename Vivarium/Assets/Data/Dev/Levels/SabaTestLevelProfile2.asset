@@ -34,11 +34,7 @@ MonoBehaviour:
   MaxPlayerCharacters: 1
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  StartingItems:
-  - Count: 3
-    Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
-  - Count: 1
-    Item: {fileID: 11400000, guid: b5edf485eb332e74f934b6aaeaafd02f, type: 2}
+  StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: []

@@ -14,8 +14,8 @@ public class CharacterController : MonoBehaviour
     public Character Character;
     public bool IsEnemy;
 
-    private float _currentHealth;
-    private float _currentshieldHealth;
+    private float _maxHealth;
+    private float _maxShield;
     private HealthController _healthController;
     private MoveController _moveController;
     private List<ActionController> _actionControllers;
@@ -32,11 +32,10 @@ public class CharacterController : MonoBehaviour
 
     protected virtual void VirtualStart()
     {
-        var maxHealth = StatCalculator.CalculateStat(Character, StatType.Health);
-        _currentHealth = maxHealth;
-        _currentshieldHealth = Character.Shield?.Health ?? 0;
+        _maxHealth = StatCalculator.CalculateStat(Character, StatType.Health);
+        _maxShield = Character.Shield?.Health ?? 0;
         _healthController = GetComponent<HealthController>();
-        _healthController?.SetHealthStats(_currentHealth, maxHealth, _currentshieldHealth, _currentshieldHealth);
+        _healthController?.SetHealthStats(_maxHealth, _maxHealth, _maxShield, _maxShield);
         _moveController = GetComponent<MoveController>();
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
@@ -181,12 +180,11 @@ public class CharacterController : MonoBehaviour
 
     public ActionViewer GetActionViewer(Action action)
     {
-        foreach (var actionViewer in _actionViewers)
+        switch (action.ControllerType)
         {
-            if (actionViewer.ActionReference.Id == action.Id)
-            {
-                return actionViewer;
-            }
+            case ActionControllerType.Default:
+            case ActionControllerType.Projectile:
+                return _actionViewers.FirstOrDefault();
         }
 
         return null;
@@ -213,6 +211,7 @@ public class CharacterController : MonoBehaviour
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
+            _healthController?.UpdateShieldDisplay();
         }
         //TODO: switch out weapon model here.
     }

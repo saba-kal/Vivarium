@@ -100,20 +100,19 @@ public class LevelGenerator : MonoBehaviour
 
     private void GeneratePossiblePlayerSpawnTiles()
     {
-        if (_possiblePlayerSpawnTiles.Count == 0)
+        _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
+        for (int i = 0; i < _grid.GetGrid().GetLength(0); i++)
         {
-            for (int i = 0; i < _grid.GetGrid().GetLength(0); i++)
+            for (int j = 0; j < _grid.GetGrid().GetLength(1); j++)
             {
-                for (int j = 0; j < _grid.GetGrid().GetLength(1); j++)
+                if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Player)
                 {
-                    if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Player)
-                    {
-                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
-                    }
+                    _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
                 }
             }
         }
     }
+
     private void GenerateCharacters()
     {
         var enemyGenerationOutOfRange =
@@ -131,7 +130,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0 || PlayerController.PlayerCharacters.Count == 0)
+        if (PlayerCharacters.Count == 0)
         {
             GeneratePlayerCharacters();
         }
@@ -243,6 +242,7 @@ public class LevelGenerator : MonoBehaviour
 
         var InventoryInitializer = gameMaster.AddComponent<InventoryInitializer>();
         InventoryInitializer.StartingItems = LevelProfile.StartingItems;
+        InventoryInitializer.Initialize(PlayerData.CurrentLevelIndex == 0);
 
         gameMaster.AddComponent<CommandController>();
     }

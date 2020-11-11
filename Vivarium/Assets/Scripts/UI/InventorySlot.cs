@@ -5,13 +5,14 @@ using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
-    public delegate void SlotClick(Item item, InventorySlot inventorySlot);
+    public delegate void SlotClick(InventorySlot inventorySlot);
     public static event SlotClick OnSlotClick;
 
     public Image Icon;
     public Button Button;
     public TextMeshProUGUI Count;
     public GameObject EquipOverlay;
+    public int Index;
 
     private InventoryItem _inventoryItem;
     private CharacterController _selectedCharacter;
@@ -21,7 +22,7 @@ public class InventorySlot : MonoBehaviour
         Clear();
         Button.onClick.AddListener(() =>
         {
-            OnSlotClick?.Invoke(_inventoryItem?.Item, this);
+            OnSlotClick?.Invoke(this);
         });
     }
 
@@ -30,6 +31,11 @@ public class InventorySlot : MonoBehaviour
         _inventoryItem = inventoryItem;
         _selectedCharacter = selectedCharacter;
         UpdateItemDisplay();
+    }
+
+    public InventoryItem GetItem()
+    {
+        return _inventoryItem;
     }
 
     public void UpdateItemDisplay()
@@ -45,16 +51,16 @@ public class InventorySlot : MonoBehaviour
         Button.interactable = true;
         Icon.gameObject.SetActive(true);
         Count.text = _inventoryItem.Count.ToString();
+    }
 
-        if ((_inventoryItem.Item.Type == ItemType.Shield || _inventoryItem.Item.Type == ItemType.Weapon) &&
-            (_selectedCharacter.Character.Weapon.Id == _inventoryItem.Item.Id || _selectedCharacter.Character.Shield.Id == _inventoryItem.Item.Id))
-        {
-            EquipOverlay.SetActive(true);
-        }
-        else
-        {
-            EquipOverlay.SetActive(false);
-        }
+    public void DisplayEquipOverlay()
+    {
+        EquipOverlay.SetActive(true);
+    }
+
+    public void HideEquipOverlay()
+    {
+        EquipOverlay.SetActive(false);
     }
 
     public void Clear()

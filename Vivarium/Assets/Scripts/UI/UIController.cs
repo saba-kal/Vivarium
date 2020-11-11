@@ -157,14 +157,14 @@ public class UIController : MonoBehaviour
 
     public void DisplayActionStats(Action selectedAction)
     {
-        UIController.Instance.MoveRangeText.text = "R: " + selectedAction.Range.ToString("N0");
-        UIController.Instance.DamageText.text = "D: " + selectedAction.BaseDamage.ToString("N0");
+        MoveRangeText.text = "R: " + selectedAction.Range.ToString("N0");
+        DamageText.text = "D: " + selectedAction.BaseDamage.ToString("N0");
     }
 
     public void ClearActionStats()
     {
-        UIController.Instance.MoveRangeText.text = null;
-        UIController.Instance.DamageText.text = null;
+        MoveRangeText.text = null;
+        DamageText.text = null;
     }
 
     public void GameOver(string gameoverText)

@@ -22,6 +22,7 @@ public class HealthController : MonoBehaviour
         HealthBar.SetHealth(currentHealth);
         ShieldBar?.SetMaxHealth(maxShield);
         ShieldBar?.SetHealth(shieldHealth);
+        UpdateShieldDisplay();
     }
 
     public bool TakeDamage(float damage)
@@ -43,6 +44,7 @@ public class HealthController : MonoBehaviour
         _currentHealth -= damage;
         HealthBar.SetHealth(_currentHealth);
         ShieldBar?.SetHealth(_shieldHealth);
+        UpdateShieldDisplay();
         return _currentHealth <= 0;
     }
 
@@ -71,6 +73,19 @@ public class HealthController : MonoBehaviour
         {
             _shieldHealth = _maxShield;
             ShieldBar?.SetHealth(_shieldHealth);
+        }
+        UpdateShieldDisplay();
+    }
+
+    public void UpdateShieldDisplay()
+    {
+        if (_shieldHealth <= 0)
+        {
+            ShieldBar?.gameObject.SetActive(false);
+        }
+        else
+        {
+            ShieldBar?.gameObject.SetActive(true);
         }
     }
 }
