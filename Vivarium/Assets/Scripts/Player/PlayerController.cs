@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
                 //UIController.Instance
                 _selectedCharacter = character;
                 _selectedCharacter.Select();
+                if(_selectedCharacter.IsEnemy)
+                {
+                    _selectedCharacter.ShowMoveRadius();
+                }
                 return;
             }
         }
@@ -112,8 +116,7 @@ public class PlayerController : MonoBehaviour
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
         _selectedActionRange = StatCalculator.CalculateStat(action, StatType.AttackRange);
         attackViewer.DisplayAction(actionAOE, _selectedActionRange);
-        UIController.Instance.MoveRangeText.text = "R: " + _selectedAction.Range.ToString("N0");
-        UIController.Instance.DamageText.text = "D: " + _selectedAction.BaseDamage.ToString("N0");
+        UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");
     }
@@ -135,8 +138,7 @@ public class PlayerController : MonoBehaviour
         actionViewer.HideAction();
         _actionIsSelected = false;
         _selectedAction = null;
-        UIController.Instance.MoveRangeText.text = null;
-        UIController.Instance.DamageText.text = null;
+        UIController.Instance.ClearActionStats();
     }
 
     private void PerformAction(Tile targetTile)

@@ -139,6 +139,18 @@ public class UIController : MonoBehaviour
         _charactersWithDisabledMoves = new List<string>();
     }
 
+    public void DisplayActionStats(Action selectedAction)
+    {
+        UIController.Instance.MoveRangeText.text = "R: " + selectedAction.Range.ToString("N0");
+        UIController.Instance.DamageText.text = "D: " + selectedAction.BaseDamage.ToString("N0");
+    }
+
+    public void ClearActionStats()
+    {
+        UIController.Instance.MoveRangeText.text = null;
+        UIController.Instance.DamageText.text = null;
+    }
+
     public void GameOver(string gameoverText)
     {
         GameOverText.text = gameoverText;
