@@ -36,6 +36,9 @@ public class MoveCommand : ICommand
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
 
+        // put camera focus
+        //CameraFocus();
+
         while (targetTile != null)
         {
             _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
@@ -53,7 +56,15 @@ public class MoveCommand : ICommand
             }
             yield return null;
         }
+        var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        mainCamera.GetComponent<CameraFollower>().unlockCamera();
 
         _onMoveComplete?.Invoke();
     }
+
+    //private void CameraFocus()
+    //{
+    //    var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+    //    mainCamera.GetComponent<CameraFollower>().ChangeFocus(_gameObject);
+    //}
 }

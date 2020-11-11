@@ -6,6 +6,7 @@ public class CommandController : MonoBehaviour
 {
     public static CommandController Instance { get; private set; }
     private Queue<IEnumerator> _coroutineQueue = new Queue<IEnumerator>();
+    //private Queue<ICommand> _coroutineQueue = new Queue<ICommand>();
 
     private void Awake()
     {
@@ -39,6 +40,11 @@ public class CommandController : MonoBehaviour
             yield return null;
         }
     }
+
+    //public IEnumerator Wait()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //}
 
     public void ExecuteCommand(ICommand command)
     {

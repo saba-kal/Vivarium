@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEditor.UIElements;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class CharacterController : MonoBehaviour
 {
@@ -80,6 +82,7 @@ public class CharacterController : MonoBehaviour
         return !_hasAttacked;
     }
 
+    // potential
     public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null)
     {
         if (tile == null)
@@ -98,6 +101,9 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
         }
     }
+
+
+
 
     public void PerformAction(Action attack, Tile targetTile)
     {
