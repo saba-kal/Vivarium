@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
                 LevelGenerator.PlayerController.EnableCharacters();
                 LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
                 LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
-            });
+            }, LevelGenerator.LevelProfile.PossilbleRewards);
         }
     }
 

@@ -23,4 +23,6 @@ public class LevelGenerationProfile : ScriptableObject
     public List<InventoryItem> StartingItems;
     public float OnLevelStartHeal = 500;
     public float OnLevelStartShieldRegen = 500;
+
+    public List<Item> PossilbleRewards;
 }
