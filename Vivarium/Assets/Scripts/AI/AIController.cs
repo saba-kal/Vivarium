@@ -79,8 +79,9 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
-            if (Vector3.Distance(_aiCharacter.transform.position, playerCharacter.transform.position) < attack.Range)
+            if (Vector3.Distance(_aiCharacter.transform.position, playerCharacter.transform.position) <= attack.Range + attack.AreaOfAffect)
             {
+                
                 var potentialDamage = StatCalculator.CalculateStat(attack, StatType.Damage);
                 if (potentialDamage > maxPotentialDamage)
                 {

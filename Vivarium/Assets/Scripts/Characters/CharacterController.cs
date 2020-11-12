@@ -299,4 +299,9 @@ public class CharacterController : MonoBehaviour
     {
         _healthController.RegenerateShield(shieldAmount);
     }
+
+    public HealthController GetHealthController()
+    {
+        return _healthController;
+    }
 }
