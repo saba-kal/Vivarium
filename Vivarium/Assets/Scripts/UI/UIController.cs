@@ -19,8 +19,7 @@ public class UIController : MonoBehaviour
     public GameObject SelectedButtonIndicator;
     public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
-    public TextMeshProUGUI MoveRangeText;
-    public TextMeshProUGUI DamageText;
+    public TextMeshProUGUI ActionForecastText;
     public InventoryUIController InventoryUIController;
     public RewardsUIController RewardsUIController;
     public Button ActionButtonPrefab;
@@ -141,14 +140,15 @@ public class UIController : MonoBehaviour
 
     public void DisplayActionStats(Action selectedAction)
     {
-        Instance.MoveRangeText.text = "Range: " + selectedAction.Range.ToString("N0");
-        Instance.DamageText.text = "Damage: " + selectedAction.BaseDamage.ToString("N0");
+        Instance.ActionForecastText.text = "Range: " + selectedAction.Range.ToString("N0") +
+        "\nDamage: " + selectedAction.BaseDamage.ToString("N0") +
+        "\n" + selectedAction.Description;
+        ;
     }
 
     public void ClearActionStats()
     {
-        Instance.MoveRangeText.text = null;
-        Instance.DamageText.text = null;
+        Instance.ActionForecastText.text = null;
     }
 
     public void GameOver(string gameoverText)

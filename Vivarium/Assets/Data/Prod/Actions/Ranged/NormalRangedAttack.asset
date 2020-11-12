@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NormalRangedAttack32443
   Name: Normal Atttack
+  Description: A piercing bow attack that bypasses terrain and units.
   BaseDamage: 60
   CriticalChance: 0
   CriticalMultiplier: 0
