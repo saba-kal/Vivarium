@@ -88,4 +88,14 @@ public class HealthController : MonoBehaviour
             ShieldBar?.gameObject.SetActive(true);
         }
     }
+
+    public float GetCurrentHealth()
+    {
+        return _currentHealth;
+    }
+
+    public float GetCurrentShield()
+    {
+        return _shieldHealth;
+    }
 }
