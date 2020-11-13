@@ -88,7 +88,7 @@ public class CharacterGenerator
             {
                 case ActionControllerType.GiantLazer:
                     actionController = characterGameObject.AddComponent<GiantLazerActionController>();
-                   
+
                     //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
 
@@ -96,27 +96,21 @@ public class CharacterGenerator
                 case ActionControllerType.Projectile:
                     actionController = characterGameObject.AddComponent<ProjectileActionController>();
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    
+
                     break;
                 case ActionControllerType.KnockBack:
                     actionController = characterGameObject.AddComponent<KnockBackActionController>();
-                    if (isPlayer)
-                    {
-                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    }
+                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
                     break;
                 case ActionControllerType.SwitchPosition:
                     actionController = characterGameObject.AddComponent<SwitchPositionActionController>();
-                    if (isPlayer)
-                    {
-                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    }
+                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
                     break;
                 case ActionControllerType.Default:
                 default:
                     actionController = characterGameObject.AddComponent<ActionController>();
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    
+
                     break;
             }
 
