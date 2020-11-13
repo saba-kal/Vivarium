@@ -98,6 +98,20 @@ public class CharacterGenerator
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
                     
                     break;
+                case ActionControllerType.KnockBack:
+                    actionController = characterGameObject.AddComponent<KnockBackActionController>();
+                    if (isPlayer)
+                    {
+                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
+                    }
+                    break;
+                case ActionControllerType.SwitchPosition:
+                    actionController = characterGameObject.AddComponent<SwitchPositionActionController>();
+                    if (isPlayer)
+                    {
+                        actionViewer = characterGameObject.AddComponent<ActionViewer>();
+                    }
+                    break;
                 case ActionControllerType.Default:
                 default:
                     actionController = characterGameObject.AddComponent<ActionController>();

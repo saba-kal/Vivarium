@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
-  m_Name: SnipeAttack
+  m_Name: ExactoCleaver
   m_EditorClassIdentifier: 
-  Id: SnipeAttack32443
-  Name: Snipe
-  Description: A long range, high damage bow attack.
-  BaseDamage: 90
-  CriticalChance: 0
+  Id: CleaveAttack123
+  Name: Cleave
+  BaseDamage: 25
+  CriticalChance: 1
   CriticalMultiplier: 0
-  Range: 6
-  AreaOfAffect: 0
+  Range: 0
+  AreaOfAffect: 8
   ActionTargetType: 0
-  ControllerType: 2
+  ControllerType: 0
   Attributes: []
   AnimType: 0

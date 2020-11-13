@@ -36,7 +36,7 @@ public class MoveCommand : ICommand
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
 
-        while (targetTile != null)
+        while (targetTile != null && _gameObject != null)
         {
             _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
             if (targetPosition == _gameObject.transform.position)
