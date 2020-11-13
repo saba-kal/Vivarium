@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public static event AllCharactersDead OnAllCharactersDead;
 
     public List<CharacterController> PlayerCharacters;
-
     private CharacterController _selectedCharacter;
 
     private bool _actionIsSelected = false;
@@ -41,14 +41,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile))
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy)
         {
             PerformAction(selectedTile);
             UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
-            _selectedCharacter.IsAbleToMoveToTile(selectedTile))
+            _selectedCharacter.IsAbleToMoveToTile(selectedTile) && _selectedCharacter.IsEnemy == false)
         {
             _selectedCharacter.MoveToTile(selectedTile, () =>
             {
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         _selectedCharacter = null;
 
         var grid = TileGridController.Instance.GetGrid();
-        foreach (var character in PlayerCharacters)
+        foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
         {
             grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour
                 //UIController.Instance
                 _selectedCharacter = character;
                 _selectedCharacter.Select();
+                if(_selectedCharacter.IsEnemy)
+                {
+                    _selectedCharacter.ShowMoveRadius();
+                }
                 return;
             }
         }
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
         _selectedActionRange = StatCalculator.CalculateStat(action, StatType.AttackRange);
         attackViewer.DisplayAction(actionAOE, _selectedActionRange);
+        UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");
     }
@@ -133,6 +138,7 @@ public class PlayerController : MonoBehaviour
         actionViewer.HideAction();
         _actionIsSelected = false;
         _selectedAction = null;
+        UIController.Instance.ClearActionStats();
     }
 
     private void PerformAction(Tile targetTile)

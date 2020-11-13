@@ -19,6 +19,8 @@ public class UIController : MonoBehaviour
     public GameObject SelectedButtonIndicator;
     public GameObject GameOverScreen;
     public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI MoveRangeText;
+    public TextMeshProUGUI DamageText;
     public InventoryUIController InventoryUIController;
     public RewardsUIController RewardsUIController;
     public Button ActionButtonPrefab;
@@ -69,10 +71,8 @@ public class UIController : MonoBehaviour
     public void ShowCharacterInfo(CharacterController characterController)
     {
         HideCharacterInfo();
-
         CharacterInfoPanel.SetActive(true);
         MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
-
         DisplayActions(characterController);
         InventoryUIController.DisplayCharacterInventory(characterController);
     }
@@ -137,6 +137,18 @@ public class UIController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+    }
+
+    public void DisplayActionStats(Action selectedAction)
+    {
+        UIController.Instance.MoveRangeText.text = "R: " + selectedAction.Range.ToString("N0");
+        UIController.Instance.DamageText.text = "D: " + selectedAction.BaseDamage.ToString("N0");
+    }
+
+    public void ClearActionStats()
+    {
+        UIController.Instance.MoveRangeText.text = null;
+        UIController.Instance.DamageText.text = null;
     }
 
     public void GameOver(string gameoverText)
