@@ -259,6 +259,8 @@ public class CharacterController : MonoBehaviour
 
     public void DestroyCharacter()
     {
+        DetachCamera();
+
         Debug.Log($"Character {Character.Name} died.");
         var currentGridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
         if (currentGridPosition != null)
@@ -270,6 +272,17 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         Destroy(gameObject, 0.1f);
+    }
+
+    public void DetachCamera()
+    {
+        for (int x = 0; x < this.transform.childCount; x++)
+        {
+            if (this.transform.GetChild(x).tag == "MainCamera")
+            {
+                this.transform.GetChild(x).transform.GetComponent<CameraFollower>().ResetCamera();
+            }
+        }
     }
 
     public void Consume(Item item)

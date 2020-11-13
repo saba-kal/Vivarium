@@ -17,46 +17,48 @@ public class MoveCameraCommand : ICommand
 
 
     public MoveCameraCommand(
-    GameObject mainCamera,
-    GameObject focusCharacter,
-    GameObject cameraMover,
-    GameObject camera,
-    Vector3 currentLocation,
     Vector3 destination,
     float resetZoom,
+    GameObject focusCharacter = null,
     System.Action onMoveComplete = null)
     {
-        _mainCamera = mainCamera;
-        _cameraMover = cameraMover;
-        _camera = camera;
         _focusCharacter = focusCharacter;
         _destination = destination;
-        _currentLocation = currentLocation;
         _onMoveComplete = onMoveComplete;
         _resetZoom = resetZoom;
     }
 
     public IEnumerator Execute()
     {
-        //_camera.GetComponent<CameraController>().setZoom(1);
+        _mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        _currentLocation = _mainCamera.transform.position;
+        _cameraMover = _mainCamera.GetComponent<CameraFollower>().GetCameraMover();
+        _camera = _mainCamera.GetComponent<CameraFollower>().GetCamera();
+
+        _mainCamera.GetComponent<CameraFollower>().ResetZoom();
+
         _mainCamera.transform.rotation = Quaternion.identity;
         _mainCamera.GetComponent<CameraFollower>().lockCamera();
-        var centerOffset = 5f;
+        var centerOffset = 12f;
         _destination = new Vector3(_destination.x, _destination.y, _destination.z - centerOffset);
         var destinationX = _destination.x;
         var destinationZ = _destination.z;
         var destinationY = _currentLocation.y;
 
 
-        var diffX = destinationX - _currentLocation.x;
-        var diffZ = destinationZ - _currentLocation.z;
-
         var arrived = false;
 
-        var distance = calculateDistance(_destination, _currentLocation);
-        //var step = distance * Time.deltaTime;
-        var step = 0.04f;
+        var distance = 0f;
+        if (_focusCharacter != null)
+        {
+            distance = calculateDistance(_focusCharacter.transform.position, _currentLocation);
+        }
+        else
+        {
+            distance = calculateDistance(new Vector3(destinationX, destinationY, destinationZ), _currentLocation);
+        }
 
+        var step = distance / 80f;
         while (arrived == false)
         {
             _cameraMover.transform.position = Vector3.MoveTowards(_cameraMover.transform.position, new Vector3(destinationX, destinationY, destinationZ), step);
@@ -65,22 +67,41 @@ public class MoveCameraCommand : ICommand
             {
                 arrived = true;
             }
-            var decelerate = 0.0004f / remainingDistance;
-            step = step - decelerate;
-            if (step <= 0.015f)
+            var decelerate = 0.02f; // remainingDistance;
+            if (remainingDistance >= 3f && remainingDistance < 7f)
             {
-                step = 0.015f;
+                step = step - decelerate;
             }
-            Debug.Log(remainingDistance);
+
+            if (remainingDistance > 0.01f  && remainingDistance < 3f)
+            {
+                step = 0.07f;
+            }
+
+            if (step <= 0.07f)
+            {
+                step = 0.07f;
+            }
             yield return null;
         }
-        Debug.Log("SDFADSFSDFASDFSDF");
-        _mainCamera.transform.SetParent(_focusCharacter.transform);
-        _mainCamera.transform.localPosition = new Vector3(0, 0, 0);
-        _cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
-        _camera.transform.localPosition = new Vector3(0, 0, 0);
-        _mainCamera.transform.rotation = Quaternion.identity;
 
+        if (_focusCharacter != null)
+        {
+            _mainCamera.transform.SetParent(_focusCharacter.transform);
+            _mainCamera.transform.localPosition = new Vector3(0, 0, 0);
+            _cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
+            _camera.transform.localPosition = new Vector3(0, 0, 0);
+            _mainCamera.transform.rotation = Quaternion.identity;
+            _mainCamera.GetComponent<CameraFollower>().HighlightDiscOn();
+        }
+        else
+        {
+            _mainCamera.transform.SetParent(null);
+            _mainCamera.transform.localPosition = new Vector3(0, 0, 0);
+            _cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
+            _camera.transform.localPosition = new Vector3(0, 0, 0);
+            _mainCamera.transform.rotation = Quaternion.identity;
+        }
         _onMoveComplete?.Invoke();
 
     }
@@ -89,7 +110,6 @@ public class MoveCameraCommand : ICommand
     {
         var destinationX = destination.x;
         var destinationZ = destination.z;
-        var destinationY = currentLocation.y;
 
 
         var diffX = destinationX - currentLocation.x;

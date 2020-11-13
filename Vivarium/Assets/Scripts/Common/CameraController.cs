@@ -13,11 +13,8 @@ public class CameraController : MonoBehaviour
     public Vector3 MaxZoomPosition;
     public Vector3 MinZoomRotation;
     public Vector3 MaxZoomRotation;
-   // public Vector3 MinRotate;
-    //public Vector3 MaxRotate;
 
     private float _currentZoomPercent = 0;
-    //private float _currentRotatePercent = 0;
 
     private Camera _camera;
 
@@ -25,15 +22,18 @@ public class CameraController : MonoBehaviour
     {
         isCameraLock = false;
         _camera = Camera.main;
+        //setZoom(1);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(_currentZoomPercent);
         if (!isCameraLock)
         {
             ApplyScrollWheel();
         }
+        CalculateZoom(_currentZoomPercent);
     }
 
     private void ApplyScrollWheel()
@@ -41,7 +41,6 @@ public class CameraController : MonoBehaviour
         _currentZoomPercent += -Input.GetAxis("Mouse ScrollWheel");
         _currentZoomPercent = Mathf.Clamp(_currentZoomPercent, 0f, 1f);
 
-        CalculateZoom(_currentZoomPercent);
     }
 
     private void CalculateZoom(float zoomPercent)

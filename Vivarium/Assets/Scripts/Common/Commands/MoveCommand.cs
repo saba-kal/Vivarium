@@ -61,6 +61,6 @@ public class MoveCommand : ICommand
     private void unlockCamera()
     {
         var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
-        mainCamera.GetComponent<CameraFollower>().unlockCamera();
+        //mainCamera.GetComponent<CameraFollower>().unlockCamera();
     }
 }

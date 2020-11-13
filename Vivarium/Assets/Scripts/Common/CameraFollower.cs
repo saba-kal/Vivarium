@@ -8,6 +8,7 @@ public class CameraFollower : MonoBehaviour
 
     public GameObject Camera_Mover;
     public GameObject Camera;
+    public GameObject HighlightDisc;
 
     public float defaultZoom;
     public float resetZoom;
@@ -16,6 +17,7 @@ public class CameraFollower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ResetCamera();
         isCameraLock = false;
         focusCharacters = GameObject.FindGameObjectsWithTag("PlayerCharacter");
     }
@@ -23,6 +25,7 @@ public class CameraFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("isCameraLock: " + isCameraLock);
         if (!isCameraLock)
         {
             // check if something is in the queue, and run if there is
@@ -49,12 +52,7 @@ public class CameraFollower : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                this.gameObject.transform.parent = null;
-                this.transform.localPosition = new Vector3(0, 0, 0);
-                Camera_Mover.transform.localPosition = new Vector3(0, 0, -12);
-                Camera.transform.localPosition = new Vector3(0, 0, 0);
-                this.transform.rotation = Quaternion.identity;
-                Camera.GetComponent<CameraController>().setZoom(resetZoom);
+                ResetCamera();
             }
         }
     }
@@ -65,13 +63,24 @@ public class CameraFollower : MonoBehaviour
         Camera_Mover.transform.localPosition = new Vector3(0, 0, -12);
         Camera.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.rotation = Quaternion.identity;
+        ResetZoom();
+    }
+
+    public void ResetZoom()
+    {
         Camera.GetComponent<CameraController>().setZoom(resetZoom);
     }
 
     public void EnterCameraFocusCommand(GameObject Character)
     {
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(this.gameObject, Character, Camera_Mover, Camera, this.gameObject.transform.position, Character.transform.position, resetZoom)
+        new WaitCommand()
+        );
+        CommandController.Instance.ExecuteCommand(
+        new MoveCameraCommand(Character.transform.position, resetZoom, Character)
+        );
+        CommandController.Instance.ExecuteCommand(
+        new WaitCommand()
         );
     }
 
@@ -92,7 +101,7 @@ public class CameraFollower : MonoBehaviour
     {
         isCameraLock = true;
         Camera_Mover.GetComponent<Camera_Mover>().lockCameraMover();
-        //Camera.GetComponent<CameraController>().lockCameraZoom();
+        Camera.GetComponent<CameraController>().lockCameraZoom();
         this.gameObject.GetComponent<CameraRotater>().lockCameraRotater();
     }
 
@@ -100,8 +109,28 @@ public class CameraFollower : MonoBehaviour
     {
         isCameraLock = false;
         Camera_Mover.GetComponent<Camera_Mover>().unlockCameraMover();
-        //Camera.GetComponent<CameraController>().unlockCameraZoom();
+        Camera.GetComponent<CameraController>().unlockCameraZoom();
         this.gameObject.GetComponent<CameraRotater>().unlockCameraRotater();
+    }
+
+    public GameObject GetCameraMover()
+    {
+        return Camera_Mover;
+    }
+
+    public GameObject GetCamera()
+    {
+        return Camera;
+    }
+
+    public void HighlightDiscOn()
+    {
+        HighlightDisc.GetComponent<Renderer>().enabled = true;
+    }
+
+    public void HighlightDiscOff()
+    {
+        HighlightDisc.GetComponent<Renderer>().enabled = false;
     }
 
 
