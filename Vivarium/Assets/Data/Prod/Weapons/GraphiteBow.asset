@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Graphite Bow
   Description: 
   Type: 1
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 39313bc09ebec6c4ca1f06942d3b7043, type: 3}
   Model: {fileID: 0}
   Attributes: []
   Actions:

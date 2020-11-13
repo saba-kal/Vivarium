@@ -19902,7 +19902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63104b294bcdb7b408ae5c96d9fd8cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelProfile: {fileID: 11400000, guid: e8a3277f94523fb4fa053d1b7490b625, type: 2}
+  LevelProfile: {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
   PlayerCharacters:
   - {fileID: 1969988792}
   - {fileID: 224353996}
@@ -19936,7 +19936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
-  - {fileID: 11400000, guid: e8a3277f94523fb4fa053d1b7490b625, type: 2}
+  - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
   - {fileID: 11400000, guid: e8a3277f94523fb4fa053d1b7490b625, type: 2}
 --- !u!1 &543624461
 GameObject:
@@ -70016,7 +70016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3160e47e26be8fe42a1e4dc9ae4d3893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingItems: []
+  startingItems:
+  - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
 --- !u!114 &1820212640
 MonoBehaviour:
   m_ObjectHideFlags: 0

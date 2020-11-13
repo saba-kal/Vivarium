@@ -10,4 +10,5 @@ public class Item : ScriptableObject
     public ItemType Type;
     public Sprite Icon;
     public GameObject Model;
+    public bool CanBeStacked;
 }

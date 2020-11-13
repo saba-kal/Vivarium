@@ -2,182 +2,239 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class InventoryUIController : MonoBehaviour
 {
-    public Image TestItemIconHolder;
+    public delegate void EquipClick();
+    public static event EquipClick OnEquipClick;
 
-    //The properties below are for demoing the inventory API. They can be removed once actual UI is implemented.
-    #region Inventory API demo properties
-    public Item TestItem;
-    public Button PlaceCharacterItemButton;
-    public Button RemoveCharacterItemButton;
-    public Button GetCharacterItemButton;
-    public Button GetCharacterInventoryButton;
-    public Button GetAllCharacterInventoriesButton;
-    public Button PlacePlayerItemButton;
-    public Button RemovePlayerItemButton;
-    public Button GetPlayerItemButton;
-    public Button GetPlayerInventoryButton;
-    public Button GetNearbyCharactersButton;
-    public Button EquipButton;
+    public GameObject InventoryUI;
     public Button ConsumeButton;
-    #endregion
+    public Button EquipButton;
+    public GameObject SelectedInventorySlotOverlay;
+    public bool DisableActionsOnConsume = true;
+    public bool DisableActionsOnEquip = true;
 
     private CharacterController _selectedCharacterController;
+    private InventorySlot[] _inventorySlots;
+    private InventorySlot _selectedItemSlot;
+    private bool _isDisabled;
+    private int _equippedWeaponIndex = -1;
+    private int _equippedShieldIndex = -1;
+
+    void OnEnable()
+    {
+        InventorySlot.OnSlotClick += OnInventorySlotClick;
+    }
+
+    void OnDisable()
+    {
+        InventorySlot.OnSlotClick -= OnInventorySlotClick;
+    }
 
     private void Start()
     {
-        SetupDemoButtonClickEvents();
+        ConsumeButton.interactable = false;
+        ConsumeButton.onClick.AddListener(OnConsumeButtonClick);
+
+        EquipButton.interactable = false;
+        EquipButton.onClick.AddListener(OnEquipButtonClick);
+
+        if (SelectedInventorySlotOverlay == null)
+        {
+            Debug.LogError("The inventory slot selection overlay is null.");
+        }
+        SelectedInventorySlotOverlay?.SetActive(false);
+
+        _inventorySlots = InventoryUI.GetComponentsInChildren<InventorySlot>();
+        if (_inventorySlots == null || _inventorySlots.Length == 0)
+        {
+            Debug.LogError("There are no inventory slots that can display items");
+        }
+        for (var i = 0; i < _inventorySlots.Length; i++)
+        {
+            _inventorySlots[i].Index = i;
+        }
     }
 
-    public void DisplayCharacterInventory(CharacterController characterController)
+    public void DisplayCharacterInventory(CharacterController selectedCharacterController)
     {
-        _selectedCharacterController = characterController;
-        DisplayItemIcon();
-        //TODO: Implement more inventory display logic here.
+        if (selectedCharacterController == null)
+        {
+            Debug.LogError("Unable to display inventory for null character controller.");
+            return;
+        }
+
+        _equippedWeaponIndex = -1;
+        _equippedShieldIndex = -1;
+        _selectedItemSlot = null;
+        SelectedInventorySlotOverlay.SetActive(false);
+
+        foreach (var inventorySlot in _inventorySlots)
+        {
+            inventorySlot.Clear();
+        }
+
+        _selectedCharacterController = selectedCharacterController;
+        UpdateInventoryDisplay();
     }
 
-    private void DisplayItemIcon()
+    private void OnInventorySlotClick(InventorySlot inventorySlot)
     {
-        TestItemIconHolder.sprite = TestItem.Icon;
+        _selectedItemSlot = inventorySlot;
+        if (_selectedItemSlot?.GetItem()?.Item == null)
+        {
+            Debug.LogError("Unable to display info for null item.");
+            return;
+        }
+
+        UpdateButtons();
+
+        SelectedInventorySlotOverlay.transform.SetParent(inventorySlot.transform);
+        SelectedInventorySlotOverlay.transform.position = inventorySlot.transform.position;
+        SelectedInventorySlotOverlay.SetActive(true);
     }
 
-    //Note: the region below is just logic for demoing the inventory API. Please remove the code below once actual UI is implemented.
-    #region Inventory API demo logic
-
-    private void SetupDemoButtonClickEvents()
+    private void OnConsumeButtonClick()
     {
-        PlaceCharacterItemButton.onClick.AddListener(() =>
+        if (_selectedItemSlot == null)
         {
-            InventoryManager.PlaceCharacterItem(_selectedCharacterController.Id, TestItem);
-            LogCharacterInventory();
-        });
-        RemoveCharacterItemButton.onClick.AddListener(() =>
-        {
-            InventoryManager.RemoveCharacterItem(_selectedCharacterController.Id, TestItem.Id);
-            LogCharacterInventory();
-        });
-        GetCharacterItemButton.onClick.AddListener(() =>
-        {
-            var item = InventoryManager.GetCharacterItem(_selectedCharacterController.Id, TestItem.Id);
-            Debug.Log($"Retrieved the following item: {item?.Name}");
-        });
-        GetCharacterInventoryButton.onClick.AddListener(() =>
-        {
-            LogCharacterInventory();
-        });
-        GetAllCharacterInventoriesButton.onClick.AddListener(() =>
-        {
-            foreach (var inventory in InventoryManager.GetAllCharacterInventories().Values)
-            {
-                LogCharacterInventory(inventory);
-            }
-        });
-        PlacePlayerItemButton.onClick.AddListener(() =>
-        {
-            InventoryManager.PlacePlayerItem(TestItem);
-            LogPlayerInventory();
-        });
-        RemovePlayerItemButton.onClick.AddListener(() =>
-        {
-            InventoryManager.RemovePlayerItem(TestItem.Id);
-            LogPlayerInventory();
-        });
-        GetPlayerItemButton.onClick.AddListener(() =>
-        {
-            var item = InventoryManager.GetPlayerItem(TestItem.Id);
-            Debug.Log($"Retrieved the following item: {item?.Name}");
-        });
-        GetPlayerInventoryButton.onClick.AddListener(() =>
-        {
-            LogPlayerInventory();
-        });
-        GetNearbyCharactersButton.onClick.AddListener(() =>
-        {
-            LogCharacters(_selectedCharacterController.GetAdjacentCharacters(CharacterSearchType.Player));
-        });
-        EquipButton.onClick.AddListener(() =>
-        {
-            if (_selectedCharacterController != null)
-            {
-                _selectedCharacterController.Equip(TestItem);
+            Debug.LogError("Cannot consume null item.");
+            return;
+        }
 
-                //Refresh character UI to show new abilities from the weapon.
-                UIController.Instance.ShowCharacterInfo(_selectedCharacterController);
-            }
-        });
-        ConsumeButton.onClick.AddListener(() =>
+        if (_selectedItemSlot.GetItem().Item.Type != ItemType.Consumable)
         {
-            foreach (var inventoryItem in InventoryManager.GetCharacterInventory(_selectedCharacterController.Id).Items.Values)
+            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Name} because it is not a consumable type.");
+            return;
+        }
+
+        _selectedCharacterController.Consume(_selectedItemSlot.GetItem().Item);
+        if (InventoryManager.GetCharacterItem(_selectedCharacterController.Id, _selectedItemSlot.GetItem().Item.Id) == null)
+        {
+            SelectedInventorySlotOverlay.SetActive(false);
+            ConsumeButton.interactable = false;
+        }
+        UpdateInventoryDisplay();
+
+        if (DisableActionsOnConsume)
+        {
+            UIController.Instance.DisableActionsForCharacter();
+        }
+    }
+
+    private void OnEquipButtonClick()
+    {
+        if (_selectedItemSlot.GetItem().Item == null)
+        {
+            Debug.LogError("Cannot equip null item.");
+            return;
+        }
+
+        if (_selectedItemSlot.GetItem().Item.Type != ItemType.Weapon && _selectedItemSlot.GetItem().Item.Type != ItemType.Shield)
+        {
+            Debug.LogError($"Cannot equip {_selectedItemSlot.GetItem().Item.Name} because it is not a weapon or shield type.");
+            return;
+        }
+
+        _selectedCharacterController.Equip(_selectedItemSlot.GetItem().Item);
+        SelectedInventorySlotOverlay.SetActive(false);
+        EquipButton.interactable = false;
+        UpdateInventoryDisplay();
+        //Refresh character UI to show new abilities from the weapon.
+        UIController.Instance.ShowCharacterInfo(_selectedCharacterController);
+
+        if (DisableActionsOnEquip)
+        {
+            UIController.Instance.DisableActionsForCharacter();
+        }
+
+        OnEquipClick?.Invoke();
+    }
+
+    private void UpdateInventoryDisplay()
+    {
+        var characterInventory = InventoryManager.GetCharacterItems(_selectedCharacterController.Id);
+        for (var i = 0; i < _inventorySlots.Length; i++)
+        {
+            if (i < characterInventory.Count)
             {
-                if (inventoryItem.Item.Type == ItemType.Consumable)
+                _inventorySlots[i].SetItem(characterInventory[i], _selectedCharacterController);
+                if (ItemIsEquipped(characterInventory[i].Item))
                 {
-                    _selectedCharacterController.Consume(inventoryItem.Item);
-                    break;
+                    if (characterInventory[i].Item.Type == ItemType.Weapon && _equippedWeaponIndex < 0)
+                    {
+                        _equippedWeaponIndex = i;
+                        _inventorySlots[i].DisplayEquipOverlay();
+                    }
+                    else if (characterInventory[i].Item.Type == ItemType.Shield && _equippedShieldIndex < 0)
+                    {
+                        _equippedShieldIndex = i;
+                        _inventorySlots[i].DisplayEquipOverlay();
+                    }
+                }
+                else
+                {
+                    _inventorySlots[i].HideEquipOverlay();
                 }
             }
-        });
+            else
+            {
+                _inventorySlots[i].Clear();
+            }
+        }
     }
 
-    private void LogCharacterInventory()
+    public void SetActionButtonsDisabled(bool isDisabled)
     {
-        LogCharacterInventory(_selectedCharacterController);
+        _isDisabled = isDisabled;
+        UpdateButtons();
     }
 
-    private void LogCharacterInventory(CharacterController characterController)
+    private void UpdateButtons()
     {
-        if (characterController == null)
+        if (_selectedItemSlot?.GetItem()?.Item != null)
         {
-            return;
+            switch (_selectedItemSlot.GetItem().Item.Type)
+            {
+                case ItemType.Consumable:
+                    ConsumeButton.interactable = !(_isDisabled && DisableActionsOnConsume);
+                    EquipButton.interactable = false;
+                    break;
+                case ItemType.Weapon:
+                case ItemType.Shield:
+                    ConsumeButton.interactable = false;
+                    EquipButton.interactable = !ItemIsEquipped(_selectedItemSlot.GetItem().Item, _selectedItemSlot.Index) && !(_isDisabled && DisableActionsOnEquip);
+                    break;
+            }
         }
-
-        var logMessage = $"Inventory for character \"{characterController.Character.Name}\": ";
-        foreach (var inventoryItem in InventoryManager.GetCharacterInventory(characterController.Id).Items.Values)
+        else
         {
-            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+            ConsumeButton.interactable = false;
+            EquipButton.interactable = false;
         }
-
-        Debug.Log(logMessage);
     }
 
-    private void LogCharacterInventory(CharacterInventory characterInventory)
+    private bool ItemIsEquipped(Item item)
     {
-        if (characterInventory == null)
-        {
-            return;
-        }
-
-        var logMessage = $"Character Inventory: ";
-        foreach (var inventoryItem in characterInventory.Items.Values)
-        {
-            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
-        }
-
-        Debug.Log(logMessage);
+        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
+            (_selectedCharacterController.Character.Weapon?.Id == item.Id || _selectedCharacterController.Character.Shield?.Id == item.Id);
     }
 
-    private void LogPlayerInventory()
+    private bool ItemIsEquipped(Item item, int itemIndex)
     {
-        var logMessage = "Player inventory: ";
-        foreach (var inventoryItem in InventoryManager.GetPlayerInventory().Values)
+        var itemIsEquiped = ItemIsEquipped(item);
+
+        if (itemIsEquiped && item.Type == ItemType.Weapon && _equippedWeaponIndex != itemIndex)
         {
-            logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+            return false;
+        }
+        else if (itemIsEquiped && item.Type == ItemType.Shield && _equippedShieldIndex != itemIndex)
+        {
+            return false;
         }
 
-        Debug.Log(logMessage);
+        return itemIsEquiped;
     }
-
-    private void LogCharacters(List<CharacterController> characterControllers)
-    {
-        var logMessage = "Nearby characters: ";
-        foreach (var characterController in characterControllers)
-        {
-            logMessage += $"{characterController.Character.Name}, ";
-        }
-
-        Debug.Log(logMessage);
-    }
-
-    #endregion
 }

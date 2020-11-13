@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick += OnGridCellClick;
         UIController.OnActionClick += SelectAction;
         UIController.OnMoveClick += SelectMove;
+        InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
 
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick -= OnGridCellClick;
         UIController.OnActionClick -= SelectAction;
         UIController.OnMoveClick -= SelectMove;
+        InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
 
@@ -72,13 +74,18 @@ public class PlayerController : MonoBehaviour
         var grid = TileGridController.Instance.GetGrid();
         foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
         {
+            //Character was most likely deleted.
+            if (character == null)
+            {
+                continue;
+            }
+
             grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
             {
-                //UIController.Instance
                 _selectedCharacter = character;
                 _selectedCharacter.Select();
-                if(_selectedCharacter.IsEnemy)
+                if (_selectedCharacter.IsEnemy)
                 {
                     _selectedCharacter.ShowMoveRadius();
                 }
