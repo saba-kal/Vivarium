@@ -71,13 +71,18 @@ namespace Assets.Scripts.UI
                 return;
             }
 
-            var randomCharacterId = GetRandomCharacterIdWithEmptyInventory();
-            if (string.IsNullOrEmpty(randomCharacterId))
+            var randomCharacter = GetRandomCharacterWithEmptyInventory();
+            if (string.IsNullOrEmpty(randomCharacter.Id))
             {
                 return;
             }
 
-            InventoryManager.PlaceCharacterItem(randomCharacterId, reward);
+            InventoryManager.PlaceCharacterItem(randomCharacter.Id, reward);
+            //TODO: figure out a better system for shields.
+            if (reward.Type == ItemType.Shield)
+            {
+                randomCharacter.Equip(reward);
+            }
         }
 
         public Item GetSelectedReward(List<Item> possibleRewards)
@@ -92,7 +97,7 @@ namespace Assets.Scripts.UI
             }
         }
 
-        public string GetRandomCharacterIdWithEmptyInventory()
+        public CharacterController GetRandomCharacterWithEmptyInventory()
         {
             var playerCharacters = TurnSystemManager.Instance?.PlayerController?.PlayerCharacters;
             if (playerCharacters == null)
@@ -100,21 +105,21 @@ namespace Assets.Scripts.UI
                 return null;
             }
 
-            var characterIdsWithEmptyInventory = new List<string>();
+            var charactersWithEmptyInventory = new List<CharacterController>();
             foreach (var characterController in playerCharacters)
             {
                 if (InventoryManager.GetCharacterItemCount(characterController.Id) < Constants.MAX_CHARACTER_ITEMS)
                 {
-                    characterIdsWithEmptyInventory.Add(characterController.Id);
+                    charactersWithEmptyInventory.Add(characterController);
                 }
             }
 
-            if (characterIdsWithEmptyInventory.Count == 0)
+            if (charactersWithEmptyInventory.Count == 0)
             {
                 return null;
             }
 
-            return characterIdsWithEmptyInventory[Random.Range(0, characterIdsWithEmptyInventory.Count)];
+            return charactersWithEmptyInventory[Random.Range(0, charactersWithEmptyInventory.Count)];
         }
 
         private void LogPlayerInventory()

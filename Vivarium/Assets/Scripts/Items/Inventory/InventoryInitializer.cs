@@ -29,6 +29,12 @@ public class InventoryInitializer : MonoBehaviour
                         for (var i = 0; i < inventoryItem.Count; i++)
                         {
                             InventoryManager.PlaceCharacterItem(playerCharacterController.Id, inventoryItem.Item);
+
+                            //TODO: figure out a better system for shields.
+                            if (inventoryItem.Item.Type == ItemType.Shield && playerCharacterController.Character.Shield == null)
+                            {
+                                playerCharacterController.Equip(inventoryItem.Item);
+                            }
                         }
                     }
                 }

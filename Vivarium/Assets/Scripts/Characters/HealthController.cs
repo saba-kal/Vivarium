@@ -7,14 +7,14 @@ public class HealthController : MonoBehaviour
     public HealthBar ShieldBar;
 
     private float _currentHealth;
-    private float _shieldHealth;
+    private float _currentShield;
     private float _maxHealth;
     private float _maxShield;
 
     public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth, float maxShield)
     {
         _currentHealth = currentHealth;
-        _shieldHealth = shieldHealth;
+        _currentShield = shieldHealth;
         _maxHealth = maxHealth;
         _maxShield = maxShield;
 
@@ -27,23 +27,23 @@ public class HealthController : MonoBehaviour
 
     public bool TakeDamage(float damage)
     {
-        if (_shieldHealth > 0)
+        if (_currentShield > 0)
         {
-            if (_shieldHealth >= damage)
+            if (_currentShield >= damage)
             {
-                _shieldHealth -= damage;
+                _currentShield -= damage;
                 damage = 0;
             }
             else
             {
-                damage -= _shieldHealth;
-                _shieldHealth = 0;
+                damage -= _currentShield;
+                _currentShield = 0;
             }
 
         }
         _currentHealth -= damage;
         HealthBar.SetHealth(_currentHealth);
-        ShieldBar?.SetHealth(_shieldHealth);
+        ShieldBar?.SetHealth(_currentShield);
         UpdateShieldDisplay();
         return _currentHealth <= 0;
     }
@@ -64,22 +64,35 @@ public class HealthController : MonoBehaviour
 
     public void RegenerateShield(float shieldAmount)
     {
-        if (_shieldHealth + shieldAmount <= _maxShield)
+        if (_currentShield + shieldAmount <= _maxShield)
         {
-            _shieldHealth += shieldAmount;
-            ShieldBar?.SetHealth(_shieldHealth);
+            _currentShield += shieldAmount;
+            ShieldBar?.SetHealth(_currentShield);
         }
         else
         {
-            _shieldHealth = _maxShield;
-            ShieldBar?.SetHealth(_shieldHealth);
+            _currentShield = _maxShield;
+            ShieldBar?.SetHealth(_currentShield);
         }
         UpdateShieldDisplay();
     }
 
-    public void UpdateShieldDisplay()
+    public void UpgradMaxShield(float newMaxShield)
     {
-        if (_shieldHealth <= 0)
+        if (_currentShield == _maxShield || _currentShield > newMaxShield)
+        {
+            _currentShield = newMaxShield;
+        }
+        _maxShield = newMaxShield;
+        ShieldBar?.SetMaxHealth(_maxShield);
+        ShieldBar?.SetHealth(_currentShield);
+
+        UpdateShieldDisplay();
+    }
+
+    private void UpdateShieldDisplay()
+    {
+        if (_currentShield <= 0)
         {
             ShieldBar?.gameObject.SetActive(false);
         }
@@ -96,6 +109,6 @@ public class HealthController : MonoBehaviour
 
     public float GetCurrentShield()
     {
-        return _shieldHealth;
+        return _currentShield;
     }
 }

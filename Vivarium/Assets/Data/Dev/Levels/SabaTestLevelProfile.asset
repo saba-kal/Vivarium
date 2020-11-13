@@ -27,14 +27,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  StartingItems:
-  - Count: 1
-    Item: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
-  - Count: 1
-    Item: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
+  StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards:
   - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
   - {fileID: 11400000, guid: 613e046d8fe94bd4488394fefadb70d9, type: 2}
-  - {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
+  - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}

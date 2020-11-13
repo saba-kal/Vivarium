@@ -211,7 +211,7 @@ public class CharacterController : MonoBehaviour
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
-            _healthController?.UpdateShieldDisplay();
+            _healthController?.UpgradMaxShield(Character.Shield.Health);
         }
         //TODO: switch out weapon model here.
     }
