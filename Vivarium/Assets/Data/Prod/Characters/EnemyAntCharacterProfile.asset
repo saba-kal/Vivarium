@@ -17,10 +17,10 @@ MonoBehaviour:
   PossibleNames:
   - Red Ant
   - Murder Ant
-  MinMaxHealth: 50
-  MaxMaxHealth: 200
-  MinMoveRange: 3
-  MaxMoveRange: 7
+  MinMaxHealth: 72
+  MaxMaxHealth: 108
+  MinMoveRange: 7
+  MaxMoveRange: 9
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}

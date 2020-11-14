@@ -27,6 +27,7 @@ MonoBehaviour:
   GridOrigin: {x: -12.5, y: 0, z: -12.5}
   MinWallLength: 3
   MaxWallLength: 6
-  ObstacleSpawnChance: 0.046
+  ObjectiveSpawnVariation: 0
+  ObstacleSpawnChance: 0.04
   WaterSpawnChance: 0.08
-  WaterGrouping: 0.482
+  WaterGrouping: 0.5

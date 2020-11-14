@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
-  m_Name: NormalRangedAttack
+  m_Name: ExactoCleaver1
   m_EditorClassIdentifier: 
-  Id: NormalRangedAttack32443
-  Name: Normal Attack
-  Description: A piercing bow attack that bypasses terrain and units.
-  BaseDamage: 60
-  CriticalChance: 0
+  Id: CleaveAttack123
+  Name: Cleave
+  Description: 
+  BaseDamage: 10
+  CriticalChance: 1
   CriticalMultiplier: 0
-  Range: 3
-  AreaOfAffect: 0
+  Range: 0
+  AreaOfAffect: 2
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
