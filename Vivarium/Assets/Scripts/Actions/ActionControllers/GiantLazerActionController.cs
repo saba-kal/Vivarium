@@ -11,8 +11,12 @@ public class GiantLazerActionController : ActionController
     public Transform EyeBallTransform;
     public float LazerDuration = 0.5f;
 
+    private Grid<Tile> _grid;
+
     public override void Execute(Tile targetTile)
     {
+        _grid = TileGridController.Instance.GetGrid();
+
         //Get the tiles where the laser starts and ends.
         GetStartTiles(targetTile, out var startTile1, out var startTile2, out var targetTile1, out var targetTile2);
         if (startTile1 == null || startTile2 == null || targetTile1 == null || targetTile2 == null)
