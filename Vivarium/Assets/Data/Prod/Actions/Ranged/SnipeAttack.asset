@@ -24,3 +24,4 @@ MonoBehaviour:
   ControllerType: 2
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}

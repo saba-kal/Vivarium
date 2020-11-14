@@ -156,7 +156,7 @@ public class UIController : MonoBehaviour
 
     public void DisplayActionStats(Action selectedAction)
     {
-        Instance.ActionForecastText.text = "Range: " + selectedAction.Range.ToString("N0") +
+        ActionForecastText.text = "Range: " + selectedAction.Range.ToString("N0") +
         "\nDamage: " + selectedAction.BaseDamage.ToString("N0") +
         "\n" + selectedAction.Description;
         ;
@@ -164,13 +164,12 @@ public class UIController : MonoBehaviour
 
     public void ClearActionStats()
     {
-        Instance.ActionForecastText.text = null;
+        ActionForecastText.text = null;
     }
 
     public void GameOver(string gameoverText)
     {
         GameOverText.text = gameoverText;
         GameOverScreen.SetActive(true);
-        Instance = null;
     }
 }
