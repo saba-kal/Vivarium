@@ -18,4 +18,5 @@ public class Action : ScriptableObject
     public ActionControllerType ControllerType;
     public List<Attribute> Attributes;
     public AnimationType AnimType;
+    public GameObject ProjectilePrefab;
 }

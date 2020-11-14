@@ -11,12 +11,10 @@ public class ActionController : MonoBehaviour
     public float ParticleAffectLifetime = 5f;
 
     protected CharacterController _characterController;
-    protected Grid<Tile> _grid;
 
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
-        _grid = TileGridController.Instance.GetGrid();
     }
 
     public virtual void Execute(Tile targetTile)

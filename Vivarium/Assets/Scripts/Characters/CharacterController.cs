@@ -180,14 +180,9 @@ public class CharacterController : MonoBehaviour
 
     public ActionViewer GetActionViewer(Action action)
     {
-        switch (action.ControllerType)
-        {
-            case ActionControllerType.Default:
-            case ActionControllerType.Projectile:
-                return _actionViewers.FirstOrDefault();
-        }
+        //TDOD: if there are actions that require special viewers, return them here.
 
-        return null;
+        return _actionViewers.FirstOrDefault();
     }
 
     public void Equip(Item item)
