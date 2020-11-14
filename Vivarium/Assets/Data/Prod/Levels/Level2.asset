@@ -32,3 +32,7 @@ MonoBehaviour:
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
+  PossilbleRewards:
+  - {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
+  - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+  - {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}

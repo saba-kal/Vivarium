@@ -82,7 +82,7 @@ public class CharacterGenerator
         foreach (var action in characterData.Weapon.Actions)
         {
             ActionController actionController;
-            ActionViewer actionViewer = null;
+            ActionViewer actionViewer;
 
             switch (action.ControllerType)
             {
@@ -96,7 +96,6 @@ public class CharacterGenerator
                 case ActionControllerType.Projectile:
                     actionController = characterGameObject.AddComponent<ProjectileActionController>();
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
-
                     break;
                 case ActionControllerType.KnockBack:
                     actionController = characterGameObject.AddComponent<KnockBackActionController>();
@@ -110,7 +109,6 @@ public class CharacterGenerator
                 default:
                     actionController = characterGameObject.AddComponent<ActionController>();
                     actionViewer = characterGameObject.AddComponent<ActionViewer>();
-
                     break;
             }
 

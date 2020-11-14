@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Security.Policy;
 using System.Linq;
+using TMPro;
 
 namespace Assets.Scripts.UI
 {
@@ -17,6 +18,7 @@ namespace Assets.Scripts.UI
         public Image Option1Icon;
         public Image Option2Icon;
         public Image Option3Icon;
+        public TextMeshProUGUI ItemDescription;
 
         private int _selectedReward = 0;
         private System.Action _nextLevelCallback;
@@ -27,14 +29,17 @@ namespace Assets.Scripts.UI
             Option1.onClick.AddListener(() =>
             {
                 _selectedReward = 0;
+                UpdateItemDescription();
             });
             Option2.onClick.AddListener(() =>
             {
                 _selectedReward = 1;
+                UpdateItemDescription();
             });
             Option3.onClick.AddListener(() =>
             {
                 _selectedReward = 2;
+                UpdateItemDescription();
             });
             NextLevel.onClick.AddListener(() =>
             {
@@ -43,6 +48,8 @@ namespace Assets.Scripts.UI
                     PlaceSelectedReward(_rewards);
                     LogPlayerInventory();
                     RewardScreen.SetActive(false);
+                    _selectedReward = -1;
+                    UpdateItemDescription();
                     _nextLevelCallback();
                 }
             });
@@ -72,7 +79,7 @@ namespace Assets.Scripts.UI
             }
 
             var randomCharacter = GetRandomCharacterWithEmptyInventory();
-            if (string.IsNullOrEmpty(randomCharacter.Id))
+            if (string.IsNullOrEmpty(randomCharacter?.Id))
             {
                 return;
             }
@@ -87,7 +94,7 @@ namespace Assets.Scripts.UI
 
         public Item GetSelectedReward(List<Item> possibleRewards)
         {
-            if (_selectedReward < possibleRewards.Count)
+            if (_selectedReward < possibleRewards.Count && _selectedReward >= 0)
             {
                 return possibleRewards[_selectedReward];
             }
@@ -102,6 +109,7 @@ namespace Assets.Scripts.UI
             var playerCharacters = TurnSystemManager.Instance?.PlayerController?.PlayerCharacters;
             if (playerCharacters == null)
             {
+                Debug.LogError("Could not find any characters to give reward to.");
                 return null;
             }
 
@@ -116,6 +124,7 @@ namespace Assets.Scripts.UI
 
             if (charactersWithEmptyInventory.Count == 0)
             {
+                Debug.LogWarning("Could not find any characters with an empty inventory to give reward to.");
                 return null;
             }
 
@@ -134,6 +143,18 @@ namespace Assets.Scripts.UI
             }
 
             Debug.Log(logMessage);
+        }
+
+        private void UpdateItemDescription()
+        {
+            if (ItemDescription != null && _selectedReward < _rewards.Count && _selectedReward >= 0)
+            {
+                ItemDescription.text = _rewards[_selectedReward].Name;
+            }
+            else
+            {
+                ItemDescription.text = "";
+            }
         }
     }
 }
