@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: CleaveAttack123
   Name: Cleave
-  Description: 
+  Description: An Area of Effect attack centered on the attacker
   BaseDamage: 10
   CriticalChance: 1
   CriticalMultiplier: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   ControllerType: 0
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 0}

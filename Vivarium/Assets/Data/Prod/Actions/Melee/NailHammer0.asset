@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NailHammerNormal123
   Name: Swing
-  Description: 
+  Description: A simple swing that deals damage to one target
   BaseDamage: 16
   CriticalChance: 0
   CriticalMultiplier: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   ControllerType: 0
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 0}

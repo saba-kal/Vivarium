@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NailHammerAttack123
   Name: Shove
-  Description: 
+  Description: A thrusting attack that pushes an enemy backward
   BaseDamage: 8
   CriticalChance: 1
   CriticalMultiplier: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   ControllerType: 3
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 0}

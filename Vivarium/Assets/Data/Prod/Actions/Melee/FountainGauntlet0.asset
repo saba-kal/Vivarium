@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: FountainGauntletNormal123
   Name: Stab
-  Description: 
+  Description: A simple stab that deals damage to one target
   BaseDamage: 12
   CriticalChance: 0
   CriticalMultiplier: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   ControllerType: 0
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 0}
