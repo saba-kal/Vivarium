@@ -82,7 +82,7 @@ public class UIController : MonoBehaviour
 
     private void DisplayActions(CharacterController characterController)
     {
-        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
+s        MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
 
         var yOffset = 0f;
         foreach (var action in characterController?.Character?.Weapon?.Actions ?? new List<Action>())

@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: NormalRangedAttack32443
   Name: Shoot
   Description: A standard shot from a bow
-  BaseDamage: 60
+  BaseDamage: 13
   CriticalChance: 0
   CriticalMultiplier: 0
   Range: 5

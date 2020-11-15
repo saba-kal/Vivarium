@@ -17,8 +17,8 @@ MonoBehaviour:
   PossibleNames:
   - Brave Ant
   - Curious Ant
-  MinMaxHealth: 80
-  MaxMaxHealth: 120
+  MinMaxHealth: 40
+  MaxMaxHealth: 60
   MinMoveRange: 7
   MaxMoveRange: 10
   NavigableTiles: 00000000
