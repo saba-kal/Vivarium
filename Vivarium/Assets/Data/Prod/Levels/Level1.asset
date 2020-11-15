@@ -17,14 +17,15 @@ MonoBehaviour:
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  MinEnemyCharacters: 3
-  MaxEnemyCharacters: 4
+  MinEnemyCharacters: 2
+  MaxEnemyCharacters: 3
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
   - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
   - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
   - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
+  - {fileID: 11400000, guid: 940caae423f8ae64faeaead2b0fc9442, type: 2}
+  - {fileID: 11400000, guid: 282f3321d0f597d48b2961880b67acfe, type: 2}
   MinPlayerCharacters: 4
   MaxPlayerCharacters: 4
   PossiblePlayerCharacters:
