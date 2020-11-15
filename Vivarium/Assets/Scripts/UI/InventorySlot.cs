@@ -19,7 +19,6 @@ public class InventorySlot : MonoBehaviour
 
     private void Start()
     {
-        Clear();
         Button.onClick.AddListener(() =>
         {
             OnSlotClick?.Invoke(this);

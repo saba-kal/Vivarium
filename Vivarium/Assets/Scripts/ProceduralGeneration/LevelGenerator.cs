@@ -243,6 +243,7 @@ public class LevelGenerator : MonoBehaviour
         var InventoryInitializer = gameMaster.AddComponent<InventoryInitializer>();
         InventoryInitializer.StartingItems = LevelProfile.StartingItems;
         InventoryInitializer.Initialize(PlayerData.CurrentLevelIndex == 0);
+        InventoryInitializer.InitializeForEnemies();
 
         gameMaster.AddComponent<CommandController>();
     }

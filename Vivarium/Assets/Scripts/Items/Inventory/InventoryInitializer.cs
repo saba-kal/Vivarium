@@ -12,15 +12,15 @@ public class InventoryInitializer : MonoBehaviour
         var turnSystemManager = TurnSystemManager.Instance;
         if (turnSystemManager?.PlayerController?.PlayerCharacters != null)
         {
-            foreach (var playerCharacterController in turnSystemManager.PlayerController.PlayerCharacters)
+            foreach (var characterController in turnSystemManager.PlayerController.PlayerCharacters)
             {
-                if (placeEquippedItems && playerCharacterController?.Character?.Weapon != null)
+                if (placeEquippedItems && characterController?.Character?.Weapon != null)
                 {
-                    InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Weapon);
+                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Weapon);
                 }
-                if (placeEquippedItems && playerCharacterController?.Character?.Shield != null)
+                if (placeEquippedItems && characterController?.Character?.Shield != null)
                 {
-                    InventoryManager.PlaceCharacterItem(playerCharacterController.Id, playerCharacterController.Character.Shield);
+                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Shield);
                 }
                 if (StartingItems != null)
                 {
@@ -28,12 +28,12 @@ public class InventoryInitializer : MonoBehaviour
                     {
                         for (var i = 0; i < inventoryItem.Count; i++)
                         {
-                            InventoryManager.PlaceCharacterItem(playerCharacterController.Id, inventoryItem.Item);
+                            InventoryManager.PlaceCharacterItem(characterController.Id, inventoryItem.Item);
 
                             //TODO: figure out a better system for shields.
-                            if (inventoryItem.Item.Type == ItemType.Shield && playerCharacterController.Character.Shield == null)
+                            if (inventoryItem.Item.Type == ItemType.Shield && characterController.Character.Shield == null)
                             {
-                                playerCharacterController.Equip(inventoryItem.Item);
+                                characterController.Equip(inventoryItem.Item);
                             }
                         }
                     }
@@ -43,6 +43,25 @@ public class InventoryInitializer : MonoBehaviour
         else if (!Application.isEditor)
         {
             Debug.LogError("Unable to initialize inventory because either the turn system manager, player controller, or player characters are null.");
+        }
+    }
+
+    public void InitializeForEnemies()
+    {
+        var turnSystemManager = TurnSystemManager.Instance;
+        if (turnSystemManager?.AIManager?.AICharacters != null)
+        {
+            foreach (var characterController in turnSystemManager.AIManager.AICharacters)
+            {
+                if (characterController?.Character?.Weapon != null)
+                {
+                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Weapon);
+                }
+                if (characterController?.Character?.Shield != null)
+                {
+                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Shield);
+                }
+            }
         }
     }
 }
