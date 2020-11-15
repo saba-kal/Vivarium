@@ -9,5 +9,6 @@ public class LockCameraCommand : ICommand
         var _mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
         _mainCamera.GetComponent<CameraFollower>().lockCamera();
         yield return null;
+        // wow
     }
 }
