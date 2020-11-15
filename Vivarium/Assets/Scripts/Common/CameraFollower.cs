@@ -25,7 +25,6 @@ public class CameraFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("isCameraLock: " + isCameraLock);
         if (!isCameraLock)
         {
             // check if something is in the queue, and run if there is
