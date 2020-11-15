@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class InventoryUIController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class InventoryUIController : MonoBehaviour
     public Button ConsumeButton;
     public Button EquipButton;
     public GameObject SelectedInventorySlotOverlay;
+    public TextMeshProUGUI ItemDescription;
     public bool DisableActionsOnConsume = true;
     public bool DisableActionsOnEquip = true;
 
@@ -69,6 +71,7 @@ public class InventoryUIController : MonoBehaviour
         _equippedWeaponIndex = -1;
         _equippedShieldIndex = -1;
         _selectedItemSlot = null;
+        ItemDescription.text = "";
         SelectedInventorySlotOverlay.SetActive(false);
 
         foreach (var inventorySlot in _inventorySlots)
@@ -94,6 +97,7 @@ public class InventoryUIController : MonoBehaviour
         SelectedInventorySlotOverlay.transform.SetParent(inventorySlot.transform);
         SelectedInventorySlotOverlay.transform.position = inventorySlot.transform.position;
         SelectedInventorySlotOverlay.SetActive(true);
+        ItemDescription.text = _selectedItemSlot.GetItem().Item.Name;
     }
 
     private void OnConsumeButtonClick()
@@ -194,6 +198,18 @@ public class InventoryUIController : MonoBehaviour
 
     private void UpdateButtons()
     {
+        if (_selectedCharacterController.IsEnemy)
+        {
+            ConsumeButton.gameObject.SetActive(false);
+            EquipButton.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            ConsumeButton.gameObject.SetActive(true);
+            EquipButton.gameObject.SetActive(true);
+        }
+
         if (_selectedItemSlot?.GetItem()?.Item != null)
         {
             switch (_selectedItemSlot.GetItem().Item.Type)
