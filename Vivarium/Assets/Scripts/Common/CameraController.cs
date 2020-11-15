@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 public class CameraController : MonoBehaviour
 {
-    private bool isCameraLock;
+
     public float PanSpeed = 20f;
     public float ZoomPositionSpeed = 10f;
     public float ZoomRotationSpeed = 50f;
@@ -20,52 +20,45 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        isCameraLock = false;
         _camera = Camera.main;
-        //setZoom(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(_currentZoomPercent);
-        if (!isCameraLock)
+        var position = transform.position;
+
+        if (Input.GetKey(KeyCode.W))
         {
-            ApplyScrollWheel();
+            position.z += PanSpeed * Time.deltaTime;
         }
-        CalculateZoom(_currentZoomPercent);
+        if (Input.GetKey(KeyCode.S))
+        {
+            position.z -= PanSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            position.x += PanSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            position.x -= PanSpeed * Time.deltaTime;
+        }
+
+        transform.position = position;
+
+        CalculateZoom();
     }
 
-    private void ApplyScrollWheel()
+    private void CalculateZoom()
     {
         _currentZoomPercent += -Input.GetAxis("Mouse ScrollWheel");
         _currentZoomPercent = Mathf.Clamp(_currentZoomPercent, 0f, 1f);
 
-    }
-
-    private void CalculateZoom(float zoomPercent)
-    {
-        var zoomPosition = Vector3.Lerp(MinZoomPosition, MaxZoomPosition, zoomPercent);
+        var zoomPosition = Vector3.Lerp(MinZoomPosition, MaxZoomPosition, _currentZoomPercent);
         _camera.transform.localPosition = Vector3.Slerp(_camera.transform.localPosition, zoomPosition, ZoomPositionSpeed * Time.deltaTime);
 
-        var zoomRotation = Quaternion.Lerp(Quaternion.Euler(MinZoomRotation), Quaternion.Euler(MaxZoomRotation), zoomPercent);
+        var zoomRotation = Quaternion.Lerp(Quaternion.Euler(MinZoomRotation), Quaternion.Euler(MaxZoomRotation), _currentZoomPercent);
         _camera.transform.localRotation = Quaternion.Slerp(_camera.transform.localRotation, zoomRotation, ZoomRotationSpeed * Time.deltaTime);
-    }
-
-    public void setZoom(float inputZoom)
-    {
-        CalculateZoom(inputZoom);
-        _currentZoomPercent = inputZoom;
-    }
-
-
-    public void lockCameraZoom()
-    {
-        isCameraLock = true;
-    }
-
-    public void unlockCameraZoom()
-    {
-        isCameraLock = false;
     }
 }

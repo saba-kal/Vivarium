@@ -7,7 +7,6 @@ public class AIController : MonoBehaviour
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
-    //protected GameObject mainCamera;
 
     void OnEnable()
     {
@@ -24,7 +23,6 @@ public class AIController : MonoBehaviour
     {
         _grid = TileGridController.Instance.GetGrid();
         _aiCharacter = GetComponent<CharacterController>();
-        //mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
     }
 
     public virtual void Execute(List<CharacterController> playerCharacters)
@@ -36,19 +34,11 @@ public class AIController : MonoBehaviour
         }
         else if (AICanMove(out var targetTile))
         {
-            // lock on here
             if (targetTile != null)
             {
-                EnterCameraFocusCommand();
                 _aiCharacter.MoveToTile(targetTile);
             }
         }
-    }
-
-    private void EnterCameraFocusCommand()
-    {
-        var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
-        mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
     }
 
     protected virtual bool AICanAttack(out Action bestAttack, out Tile targetTile)
@@ -130,6 +120,7 @@ public class AIController : MonoBehaviour
                 minDistance = distance;
             }
         }
+
         return true;
     }
 

@@ -17,9 +17,11 @@ MonoBehaviour:
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  MinEnemyCharacters: 3
-  MaxEnemyCharacters: 3
+  MinEnemyCharacters: 4
+  MaxEnemyCharacters: 4
   PossibleEnemyCharacters:
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
+  - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
   - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
   - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
   - {fileID: 11400000, guid: c11efc5225b1fb842ba9ffcec46700fb, type: 2}
@@ -31,4 +33,3 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
-  startingItems: []

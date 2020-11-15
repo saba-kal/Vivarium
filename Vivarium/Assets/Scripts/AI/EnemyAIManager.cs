@@ -62,7 +62,6 @@ public class EnemyAIManager : MonoBehaviour
             var aiController = aiCharacter.GetComponent<AIController>();
             if (aiController != null)
             {
-
                 aiController.Execute(_playerCharacters);
             }
             else

@@ -53,9 +53,6 @@ public class TurnSystemManager : MonoBehaviour
 
     private void ExecuteAI()
     {
-        CommandController.Instance.ExecuteCommand(
-        new LockCameraCommand()
-        );
         AIManager.EnableCharacters();
         AIManager.Execute();
     }
@@ -63,20 +60,6 @@ public class TurnSystemManager : MonoBehaviour
     private void AllowPlayerToMove()
     {
         PlayerController.EnableCharacters();
-        PlayerTurnCameraReset();
-    }
-
-    private void PlayerTurnCameraReset()
-    {
-        CommandController.Instance.ExecuteCommand(
-        new WaitCommand()
-        );
-        CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, 0), 1)
-        );
-        CommandController.Instance.ExecuteCommand(
-        new UnlockCameraCommand()
-        );
     }
 
     public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)
