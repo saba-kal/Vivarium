@@ -125,12 +125,12 @@ public class CameraFollower : MonoBehaviour
 
     public void HighlightDiscOn()
     {
-        HighlightDisc.GetComponent<Renderer>().enabled = true;
+        //HighlightDisc.GetComponent<Renderer>().enabled = true;
     }
 
     public void HighlightDiscOff()
     {
-        HighlightDisc.GetComponent<Renderer>().enabled = false;
+        //HighlightDisc.GetComponent<Renderer>().enabled = false;
     }
 
 
