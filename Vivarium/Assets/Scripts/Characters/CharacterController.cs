@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEditor.UIElements;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class CharacterController : MonoBehaviour
 {
@@ -78,6 +80,7 @@ public class CharacterController : MonoBehaviour
         return !_hasAttacked;
     }
 
+    // potential
     public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null)
     {
         if (tile == null)
@@ -96,6 +99,9 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
         }
     }
+
+
+
 
     public void PerformAction(Action attack, Tile targetTile)
     {
@@ -246,6 +252,8 @@ public class CharacterController : MonoBehaviour
 
     public void DestroyCharacter()
     {
+        DetachCamera();
+
         Debug.Log($"Character {Character.Name} died.");
         var currentGridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
         if (currentGridPosition != null)
@@ -257,6 +265,17 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         Destroy(gameObject, 0.1f);
+    }
+
+    public void DetachCamera()
+    {
+        for (int x = 0; x < this.transform.childCount; x++)
+        {
+            if (this.transform.GetChild(x).tag == "MainCamera")
+            {
+                this.transform.GetChild(x).transform.GetComponent<CameraFollower>().ResetCamera();
+            }
+        }
     }
 
     public void Consume(Item item)
