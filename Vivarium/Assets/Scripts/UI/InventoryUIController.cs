@@ -198,7 +198,7 @@ public class InventoryUIController : MonoBehaviour
 
     private void UpdateButtons()
     {
-        if (_selectedCharacterController.IsEnemy)
+        if (_selectedCharacterController != null && _selectedCharacterController.IsEnemy)
         {
             ConsumeButton.gameObject.SetActive(false);
             EquipButton.gameObject.SetActive(false);
