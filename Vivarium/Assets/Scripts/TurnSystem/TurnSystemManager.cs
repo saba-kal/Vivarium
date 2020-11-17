@@ -68,7 +68,7 @@ public class TurnSystemManager : MonoBehaviour
 
     private void PlayerTurnCameraReset()
     {
-        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
         mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
 
 

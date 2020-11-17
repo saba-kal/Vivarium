@@ -7,7 +7,7 @@ public class AIController : MonoBehaviour
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
-    //protected GameObject mainCamera;
+    protected GameObject _mainCamera;
 
     void OnEnable()
     {
@@ -24,7 +24,7 @@ public class AIController : MonoBehaviour
     {
         _grid = TileGridController.Instance.GetGrid();
         _aiCharacter = GetComponent<CharacterController>();
-        //mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        _mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
     }
 
     public virtual void Execute(List<CharacterController> playerCharacters)
@@ -47,8 +47,7 @@ public class AIController : MonoBehaviour
 
     private void EnterCameraFocusCommand()
     {
-        var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
-        mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+        _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
     }
 
     protected virtual bool AICanAttack(out Action bestAttack, out Tile targetTile)
