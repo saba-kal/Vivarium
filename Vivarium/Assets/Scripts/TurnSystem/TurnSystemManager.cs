@@ -68,15 +68,20 @@ public class TurnSystemManager : MonoBehaviour
 
     private void PlayerTurnCameraReset()
     {
-        CommandController.Instance.ExecuteCommand(
-        new WaitCommand()
-        );
-        CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, 0), 1)
-        );
-        CommandController.Instance.ExecuteCommand(
-        new UnlockCameraCommand()
-        );
+        var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
+
+
+
+        //CommandController.Instance.ExecuteCommand(
+        //new WaitCommand()
+        //);
+        //CommandController.Instance.ExecuteCommand(
+        //new MoveCameraCommand(new Vector3(0, 0, 0), 1)
+        //);
+        //CommandController.Instance.ExecuteCommand(
+        //new UnlockCameraCommand()
+        //);
     }
 
     public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)
