@@ -57885,6 +57885,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2915755667911417832, guid: 851dafcb918debc4abac4065281cda82, type: 3}
+      propertyPath: rotateSpeed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915755667911417833, guid: 851dafcb918debc4abac4065281cda82, type: 3}
+      propertyPath: ExtraCameraFollowSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2915755667911417835, guid: 851dafcb918debc4abac4065281cda82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
