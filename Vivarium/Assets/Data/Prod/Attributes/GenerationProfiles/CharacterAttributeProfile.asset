@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c776396977952d142b00d0ec3f654ace, type: 3}
   m_Name: CharacterAttributeProfile
   m_EditorClassIdentifier: 
-  MinNumberOfAttributes: 1
-  MaxNumberOfAttributes: 1
-  PossibleAttributes:
-  - {fileID: 11400000, guid: 51353f82c0c5e3849a9d2fdc2d3014de, type: 2}
+  MinNumberOfAttributes: 0
+  MaxNumberOfAttributes: 0
+  PossibleAttributes: []
   GuaranteedAttributes: []
