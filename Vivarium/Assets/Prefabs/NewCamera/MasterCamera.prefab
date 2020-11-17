@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2915755667911417833}
   - component: {fileID: 2915755667911417828}
   m_Layer: 0
-  m_Name: Camera_Rotater
+  m_Name: MasterCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   HighlightDisc: {fileID: 2915755667131254230}
   defaultZoom: 0.25
   resetZoom: 1
+  ExtraCameraFollowSpeed: 0
   focusCharacters: []
 --- !u!65 &2915755667911417828
 BoxCollider:

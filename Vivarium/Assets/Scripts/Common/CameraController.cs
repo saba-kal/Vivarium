@@ -45,11 +45,13 @@ public class CameraController : MonoBehaviour
 
     private void CalculateZoom(float zoomPercent)
     {
-        var zoomPosition = Vector3.Lerp(MinZoomPosition, MaxZoomPosition, zoomPercent);
-        _camera.transform.localPosition = Vector3.Slerp(_camera.transform.localPosition, zoomPosition, ZoomPositionSpeed * Time.deltaTime);
+        var calculatedY = zoomPercent * 20;
+        transform.position = new Vector3(transform.position.x, calculatedY, transform.position.z);
+        //var zoomPosition = Vector3.Lerp(MinZoomPosition, MaxZoomPosition, zoomPercent);
+        //_camera.transform.localPosition = Vector3.Slerp(_camera.transform.localPosition, zoomPosition, ZoomPositionSpeed * Time.deltaTime);
 
-        var zoomRotation = Quaternion.Lerp(Quaternion.Euler(MinZoomRotation), Quaternion.Euler(MaxZoomRotation), zoomPercent);
-        _camera.transform.localRotation = Quaternion.Slerp(_camera.transform.localRotation, zoomRotation, ZoomRotationSpeed * Time.deltaTime);
+        //var zoomRotation = Quaternion.Lerp(Quaternion.Euler(MinZoomRotation), Quaternion.Euler(MaxZoomRotation), zoomPercent);
+        //_camera.transform.localRotation = Quaternion.Slerp(_camera.transform.localRotation, zoomRotation, ZoomRotationSpeed * Time.deltaTime);
     }
 
     public void setZoom(float inputZoom)

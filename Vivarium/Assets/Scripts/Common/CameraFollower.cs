@@ -13,6 +13,8 @@ public class CameraFollower : MonoBehaviour
     public float defaultZoom;
     public float resetZoom;
 
+    public float ExtraCameraFollowSpeed;
+
     public GameObject[] focusCharacters;
     // Start is called before the first frame update
     void Start()
@@ -60,7 +62,7 @@ public class CameraFollower : MonoBehaviour
     {
         this.gameObject.transform.parent = null;
         this.transform.localPosition = new Vector3(0, 0, 0);
-        Camera_Mover.transform.localPosition = new Vector3(0, 0, -12);
+        Camera_Mover.transform.localPosition = new Vector3(0, 0, -5);
         Camera.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.rotation = Quaternion.identity;
         ResetZoom();
@@ -77,10 +79,23 @@ public class CameraFollower : MonoBehaviour
         new WaitCommand()
         );
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(Character.transform.position, resetZoom, Character)
+        new MoveCameraCommand(Character.transform.position, ExtraCameraFollowSpeed, resetZoom, Character)
         );
         CommandController.Instance.ExecuteCommand(
         new WaitCommand()
+        );
+    }
+
+    public void CameraMoveToReset()
+    {
+        CommandController.Instance.ExecuteCommand(
+        new WaitCommand()
+        );
+        CommandController.Instance.ExecuteCommand(
+        new MoveCameraCommand(new Vector3(0, 0, 0), ExtraCameraFollowSpeed, 1)
+        );
+        CommandController.Instance.ExecuteCommand(
+        new UnlockCameraCommand()
         );
     }
 

@@ -7,6 +7,7 @@ using UnityEngine;
 public class MoveCameraCommand : ICommand
 {
     private float _resetZoom;
+    private float _extraSpeed;
     private Vector3 _currentLocation;
     private Vector3 _destination;
     private GameObject _mainCamera;
@@ -18,10 +19,12 @@ public class MoveCameraCommand : ICommand
 
     public MoveCameraCommand(
     Vector3 destination,
+    float extraSpeed,
     float resetZoom,
     GameObject focusCharacter = null,
     System.Action onMoveComplete = null)
     {
+        _extraSpeed = extraSpeed;
         _focusCharacter = focusCharacter;
         _destination = destination;
         _onMoveComplete = onMoveComplete;
@@ -39,7 +42,7 @@ public class MoveCameraCommand : ICommand
 
         _mainCamera.transform.rotation = Quaternion.identity;
         _mainCamera.GetComponent<CameraFollower>().lockCamera();
-        var centerOffset = 12f;
+        var centerOffset = 5f; // connect this to camera
         _destination = new Vector3(_destination.x, _destination.y, _destination.z - centerOffset);
         var destinationX = _destination.x;
         var destinationZ = _destination.z;
@@ -58,7 +61,8 @@ public class MoveCameraCommand : ICommand
             distance = calculateDistance(new Vector3(destinationX, destinationY, destinationZ), _currentLocation);
         }
 
-        var step = distance / 80f;
+        //var step = (_extraSpeed * distance) * Time.deltaTime;
+        var step = _extraSpeed * Time.deltaTime;
         while (arrived == false)
         {
             _cameraMover.transform.position = Vector3.MoveTowards(_cameraMover.transform.position, new Vector3(destinationX, destinationY, destinationZ), step);
@@ -88,19 +92,20 @@ public class MoveCameraCommand : ICommand
         if (_focusCharacter != null)
         {
             _mainCamera.transform.SetParent(_focusCharacter.transform);
-            _mainCamera.transform.localPosition = new Vector3(0, 0, 0);
-            _cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
-            _camera.transform.localPosition = new Vector3(0, 0, 0);
-            _mainCamera.transform.rotation = Quaternion.identity;
-            _mainCamera.GetComponent<CameraFollower>().HighlightDiscOn();
+            //_mainCamera.transform.localPosition = new Vector3(0, 0, 0);
+            //_cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
+            //_camera.transform.localPosition = new Vector3(0, 0, 0);
+            //_mainCamera.transform.rotation = Quaternion.identity;
+            //_mainCamera.GetComponent<CameraFollower>().HighlightDiscOn();
         }
         else
         {
-            _mainCamera.transform.SetParent(null);
-            _mainCamera.transform.localPosition = new Vector3(0, 0, 0);
-            _cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
-            _camera.transform.localPosition = new Vector3(0, 0, 0);
-            _mainCamera.transform.rotation = Quaternion.identity;
+            _mainCamera.GetComponent<CameraFollower>().ResetCamera();
+            //_mainCamera.transform.SetParent(null);
+            //_mainCamera.transform.localPosition = new Vector3(0, 0, 0);
+            //_cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
+            //_camera.transform.localPosition = new Vector3(0, 0, 0);
+            //_mainCamera.transform.rotation = Quaternion.identity;
         }
         _onMoveComplete?.Invoke();
 
