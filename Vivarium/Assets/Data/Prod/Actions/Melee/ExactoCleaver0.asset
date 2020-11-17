@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
-  m_Name: SnipeAttack
+  m_Name: ExactoCleaver0
   m_EditorClassIdentifier: 
-  Id: SnipeAttack32443
-  Name: Snipe
-  Description: A straight shot that cannot go through units or walls.
-  BaseDamage: 17
+  Id: CleaveNormal123
+  Name: Slash
+  Description: A simple slash that deals damage to one target
+  BaseDamage: 20
   CriticalChance: 0
   CriticalMultiplier: 0
-  Range: 6
+  Range: 1
   AreaOfAffect: 0
   ActionTargetType: 0
-  ControllerType: 2
+  ControllerType: 0
   Attributes: []
   AnimType: 0
-  ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
+  ProjectilePrefab: {fileID: 0}

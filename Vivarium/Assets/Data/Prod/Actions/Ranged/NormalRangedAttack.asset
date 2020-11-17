@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: NormalRangedAttack
   m_EditorClassIdentifier: 
   Id: NormalRangedAttack32443
-  Name: Normal Atttack
-  Description: A piercing bow attack that bypasses terrain and units.
-  BaseDamage: 60
+  Name: Shoot
+  Description: A standard shot from a bow
+  BaseDamage: 13
   CriticalChance: 0
   CriticalMultiplier: 0
-  Range: 3
+  Range: 5
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
   AnimType: 0
+  ProjectilePrefab: {fileID: 0}
