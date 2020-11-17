@@ -271,7 +271,7 @@ public class CharacterController : MonoBehaviour
     {
         for (int x = 0; x < this.transform.childCount; x++)
         {
-            if (this.transform.GetChild(x).tag == "MainCamera")
+            if (this.transform.GetChild(x).tag == "MasterCamera")
             {
                 this.transform.GetChild(x).transform.GetComponent<CameraFollower>().ResetCamera();
             }

@@ -47,10 +47,10 @@ public class CameraFollower : MonoBehaviour
             {
                 ChangeFocus(focusCharacters[3]);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                ChangeFocus(focusCharacters[4]);
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha5))
+            //{
+            //    ChangeFocus(focusCharacters[4]);
+            //}
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 ResetCamera();

@@ -53,14 +53,7 @@ public class MoveCommand : ICommand
             }
             yield return null;
         }
-        unlockCamera();
 
         _onMoveComplete?.Invoke();
-    }
-
-    private void unlockCamera()
-    {
-        var mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
-        //mainCamera.GetComponent<CameraFollower>().unlockCamera();
     }
 }

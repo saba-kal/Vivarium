@@ -6,7 +6,7 @@ public class LockCameraCommand : ICommand
 {
     public IEnumerator Execute()
     {
-        var _mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        var _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];
         _mainCamera.GetComponent<CameraFollower>().lockCamera();
         yield return null;
     }

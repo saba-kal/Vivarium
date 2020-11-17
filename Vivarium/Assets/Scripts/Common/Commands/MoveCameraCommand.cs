@@ -32,7 +32,7 @@ public class MoveCameraCommand : ICommand
 
     public IEnumerator Execute()
     {
-        _mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+        _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];
         _currentLocation = _mainCamera.transform.position;
         _cameraMover = _mainCamera.GetComponent<CameraFollower>().GetCameraMover();
         _camera = _mainCamera.GetComponent<CameraFollower>().GetCamera();
@@ -70,16 +70,16 @@ public class MoveCameraCommand : ICommand
             {
                 arrived = true;
             }
-            var decelerate = 0.02f; // remainingDistance;
-            if (remainingDistance >= 3f && remainingDistance < 7f)
-            {
-                step = step - decelerate;
-            }
+            //var decelerate = 0.02f; // remainingDistance;
+            //if (remainingDistance >= 3f && remainingDistance < 7f)
+            //{
+            //    step = step - decelerate;
+            //}
 
-            if (remainingDistance > 0.01f  && remainingDistance < 3f)
-            {
-                step = 0.07f;
-            }
+            //if (remainingDistance > 0.01f  && remainingDistance < 3f)
+            //{
+            //    step = 0.07f;
+            //}
 
             if (step <= 0.07f)
             {

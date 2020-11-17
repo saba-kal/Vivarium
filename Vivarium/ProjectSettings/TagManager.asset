@@ -9,6 +9,7 @@ TagManager:
   - PlayerCharacter
   - LevelContainer
   - PlayerController
+  - MasterCamera
   layers:
   - Default
   - TransparentFX
