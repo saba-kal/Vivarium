@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: SnipeAttack32443
   Name: Snipe
-  Description: A long range, high damage bow attack.
+  Description: A straight shot that cannot go through units or walls.
   BaseDamage: 17
   CriticalChance: 0
   CriticalMultiplier: 0
