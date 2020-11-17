@@ -105,7 +105,7 @@ public class CameraFollower : MonoBehaviour
         {
             this.gameObject.transform.SetParent(Character.transform);
             this.transform.localPosition = new Vector3(0, 0, 0);
-            Camera_Mover.transform.localPosition = new Vector3(0, 0, -7);
+            Camera_Mover.transform.localPosition = new Vector3(0, 0, -4);
             Camera.transform.localPosition = new Vector3(0, 0, 0);
             this.transform.rotation = Quaternion.identity;
             Camera.GetComponent<CameraController>().setZoom(defaultZoom);
