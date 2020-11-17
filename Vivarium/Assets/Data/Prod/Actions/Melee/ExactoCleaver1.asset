@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: CleaveAttack123
   Name: Cleave
   Description: An Area of Effect attack centered on the attacker
-  BaseDamage: 10
+  BaseDamage: 14
   CriticalChance: 1
   CriticalMultiplier: 0
   Range: 0

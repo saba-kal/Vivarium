@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Rend
   Description: A stab and pull attack that forces the target to swap places with
     the user
-  BaseDamage: 6
+  BaseDamage: 10
   CriticalChance: 1
   CriticalMultiplier: 0
   Range: 1

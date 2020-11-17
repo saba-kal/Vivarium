@@ -17,8 +17,8 @@ MonoBehaviour:
   PossibleNames:
   - Red Ant
   - Murder Ant
-  MinMaxHealth: 33
-  MaxMaxHealth: 49
+  MinMaxHealth: 30
+  MaxMaxHealth: 45
   MinMoveRange: 6
   MaxMoveRange: 8
   NavigableTiles: 00000000
