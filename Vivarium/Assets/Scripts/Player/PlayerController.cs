@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _actionIsSelected = false;
     private Action _selectedAction;
-    private float _selectedActionRange;
+    private float _selectedActionMinRange;
+    private float _selectedActionMaxRange;
 
     void OnEnable()
     {
@@ -121,8 +122,9 @@ public class PlayerController : MonoBehaviour
         _actionIsSelected = true;
         _selectedAction = action;
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
-        _selectedActionRange = StatCalculator.CalculateStat(action, StatType.AttackRange);
-        attackViewer.DisplayAction(actionAOE, _selectedActionRange);
+        _selectedActionMinRange = StatCalculator.CalculateStat(action, StatType.AttackMinRange);
+        _selectedActionMaxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
+        attackViewer.DisplayAction(actionAOE, _selectedActionMinRange, _selectedActionMaxRange);
         UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");
@@ -167,7 +169,8 @@ public class PlayerController : MonoBehaviour
     private bool ActionIsWithinRange(Tile targetTile)
     {
         var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        return Vector3.Distance(_selectedCharacter.transform.position, targetPosition) < _selectedActionRange + 0.01f;
+        return Vector3.Distance(_selectedCharacter.transform.position, targetPosition) < _selectedActionMaxRange + 0.01f &&
+            Vector3.Distance(_selectedCharacter.transform.position, targetPosition) > _selectedActionMinRange - 0.01f;
     }
 
     private void OnCharacterMoveComplete(Tile toTile)

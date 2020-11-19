@@ -18,7 +18,8 @@ MonoBehaviour:
   BaseDamage: 17
   CriticalChance: 0
   CriticalMultiplier: 0
-  Range: 6
+  MinRange: 2
+  MaxRange: 6
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 2

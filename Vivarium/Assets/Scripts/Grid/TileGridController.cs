@@ -181,15 +181,16 @@ public class TileGridController : MonoBehaviour
         }
     }
 
-    public Dictionary<(int, int), Tile> HighlightRadius(int x, int y, float radius, GridHighlightRank highlightRank)
+    public Dictionary<(int, int), Tile> HighlightRadius(int x, int y, float minRadius, float maxRadius, GridHighlightRank highlightRank)
     {
-        return HighlightRadius(x, y, radius, highlightRank, new Dictionary<(int, int), Tile>(), x, y);
+        return HighlightRadius(x, y, minRadius, maxRadius, highlightRank, new Dictionary<(int, int), Tile>(), x, y);
     }
 
     private Dictionary<(int, int), Tile> HighlightRadius(
         int x,
         int y,
-        float radius,
+        float minRadius,
+        float maxRadius,
         GridHighlightRank highlightRank,
         Dictionary<(int, int), Tile> existingHighlightedTiles,
         int initialX,
@@ -206,19 +207,32 @@ public class TileGridController : MonoBehaviour
             return existingHighlightedTiles;
         }
 
-        if (Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y)) > radius * radius)
+        if (Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y)) > maxRadius * maxRadius)
         {
             return existingHighlightedTiles;
         }
 
-        existingHighlightedTiles.Add((x, y), tile);
+        if (Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y)) >= minRadius * minRadius)
+        {
+            existingHighlightedTiles.Add((x, y), tile);
 
-        CreateHighlightObject(x, y, highlightRank);
+            CreateHighlightObject(x, y, highlightRank);
+        }
+        else if(existingHighlightedTiles.Count != 0)
+        {
+            return existingHighlightedTiles;
+        }
 
-        HighlightRadius(x, y + 1, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Up
-        HighlightRadius(x, y - 1, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Down
-        HighlightRadius(x + 1, y, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Left
-        HighlightRadius(x - 1, y, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Right
+
+
+        HighlightRadius(x, y + 1, minRadius, maxRadius, highlightRank, existingHighlightedTiles, initialX, initialY); //Up
+        HighlightRadius(x, y - 1, minRadius, maxRadius, highlightRank, existingHighlightedTiles, initialX, initialY); //Down
+        HighlightRadius(x + 1, y, minRadius, maxRadius, highlightRank, existingHighlightedTiles, initialX, initialY); //Left
+        HighlightRadius(x - 1, y, minRadius, maxRadius, highlightRank, existingHighlightedTiles, initialX, initialY); //Right
+
+
+
+
 
         return existingHighlightedTiles;
     }

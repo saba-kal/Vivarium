@@ -156,7 +156,7 @@ public class UIController : MonoBehaviour
 
     public void DisplayActionStats(Action selectedAction)
     {
-        ActionForecastText.text = "Range: " + selectedAction.Range.ToString("N0") +
+        ActionForecastText.text = "Range: " + selectedAction.MaxRange.ToString("N0") +
         "\nDamage: " + selectedAction.BaseDamage.ToString("N0") +
         "\n" + selectedAction.Description;
         ;
