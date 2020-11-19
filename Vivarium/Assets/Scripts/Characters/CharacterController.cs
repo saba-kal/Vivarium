@@ -100,21 +100,21 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-
-
-
     public void PerformAction(Action attack, Tile targetTile)
     {
         var actionController = GetActionController(attack);
-        if (actionController != null)
+
+        //Action probably came from a new weapon. Create action controller and viewer for that weapon.
+        if (actionController == null)
         {
-            actionController.Execute(targetTile);
-            _hasAttacked = true;
+            ActionFactory.Create(gameObject, attack, out actionController, out var _);
+            //Need to set action controller because the start method gets called after we execute the attack.
+            actionController.CharacterController = this;
+            Debug.LogWarning($"Character \"{gameObject.name}\": Could not find attack controller that matches the attack, so one was made for it.");
         }
-        else
-        {
-            Debug.LogWarning($"Character \"{gameObject.name}\": Could not find attack controller that matches the attack.");
-        }
+
+        actionController.Execute(targetTile);
+        _hasAttacked = true;
     }
 
     public bool TakeDamage(float damage)

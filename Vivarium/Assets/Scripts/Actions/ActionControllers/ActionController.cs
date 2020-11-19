@@ -10,11 +10,11 @@ public class ActionController : MonoBehaviour
     public ParticleSystem ParticleEffectPrefab;
     public float ParticleAffectLifetime = 5f;
 
-    protected CharacterController _characterController;
+    public CharacterController CharacterController;
 
     private void Start()
     {
-        _characterController = GetComponent<CharacterController>();
+        CharacterController = GetComponent<CharacterController>();
     }
 
     public virtual void Execute(Tile targetTile)
@@ -59,13 +59,13 @@ public class ActionController : MonoBehaviour
         {
             return CharacterSearchType.Both;
         }
-        if (!_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
-            _characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
+        if (!CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
+            CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
         {
             return CharacterSearchType.Enemy;
         }
-        if (_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
-            !_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
+        if (CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
+            !CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
         {
             return CharacterSearchType.Player;
         }
@@ -115,6 +115,6 @@ public class ActionController : MonoBehaviour
         }
         var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
-        Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
     }
 }

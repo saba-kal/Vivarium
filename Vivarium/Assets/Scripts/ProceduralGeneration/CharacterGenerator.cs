@@ -81,39 +81,7 @@ public class CharacterGenerator
 
         foreach (var action in characterData.Weapon.Actions)
         {
-            ActionController actionController;
-            ActionViewer actionViewer;
-
-            switch (action.ControllerType)
-            {
-                case ActionControllerType.GiantLazer:
-                    actionController = characterGameObject.AddComponent<GiantLazerActionController>();
-
-                    //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-
-                    break;
-                case ActionControllerType.Projectile:
-                    actionController = characterGameObject.AddComponent<ProjectileActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.KnockBack:
-                    actionController = characterGameObject.AddComponent<KnockBackActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.SwitchPosition:
-                    actionController = characterGameObject.AddComponent<SwitchPositionActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.Default:
-                default:
-                    actionController = characterGameObject.AddComponent<ActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-            }
-
-            actionController.ActionReference = action;
-            actionViewer.ActionReference = action;
+            ActionFactory.Create(characterGameObject, action, out var _, out var _);
         }
     }
 

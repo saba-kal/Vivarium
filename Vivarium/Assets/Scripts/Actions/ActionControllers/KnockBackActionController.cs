@@ -63,7 +63,7 @@ public class KnockBackActionController : ActionController
 
 
         targetCharacter.TakeDamage(damage);
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
     }
 
     private int AdjustCoordinate(int playerCoordinate, int targetCoordinate)
