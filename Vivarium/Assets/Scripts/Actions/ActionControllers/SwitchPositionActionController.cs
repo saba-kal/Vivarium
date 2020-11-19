@@ -29,7 +29,7 @@ public class SwitchPositionActionController : ActionController
         targetPath.Add(playerTile);
 
         
-        Boolean playerCanMove = _characterController.Character.NavigableTiles.Contains(targetTile.Type);
+        Boolean playerCanMove = CharacterController.Character.NavigableTiles.Contains(targetTile.Type);
         Boolean targetCanMove = targetCharacter.Character.NavigableTiles.Contains(playerTile.Type);
         if (!(playerCanMove && targetCanMove))
         {
@@ -41,7 +41,7 @@ public class SwitchPositionActionController : ActionController
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
-        MoveCharacter(_characterController, playerPath);
+        MoveCharacter(CharacterController, playerPath);
 
         //Checks if target will die before moving them
         //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
@@ -57,8 +57,8 @@ public class SwitchPositionActionController : ActionController
 
 
         targetCharacter.TakeDamage(damage);
-        targetTile.CharacterControllerId = _characterController.Id;
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        targetTile.CharacterControllerId = CharacterController.Id;
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
     }
     
     private void MoveCharacter(CharacterController characterController, List<Tile> path)

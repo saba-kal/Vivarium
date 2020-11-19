@@ -8156,6 +8156,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &203146109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8184,6 +8185,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &203146111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21922,10 +21924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelProfile: {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
-  PlayerCharacters:
-  - {fileID: 913530055}
-  - {fileID: 203146106}
-  - {fileID: 1364459773}
+  PlayerCharacters: []
   PlayerController: {fileID: 1785250953}
   GenerateLevelOnStart: 1
 --- !u!4 &542098716
@@ -36683,6 +36682,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &913530058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36711,6 +36711,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &913530060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52993,6 +52994,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &1364459776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53021,6 +53023,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &1364459778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73064,6 +73067,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &1879038980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73092,6 +73096,7 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
+  CharacterController: {fileID: 0}
 --- !u!114 &1879038982
 MonoBehaviour:
   m_ObjectHideFlags: 0

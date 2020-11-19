@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 
 public class MoveCameraCommand : ICommand
@@ -60,10 +58,9 @@ public class MoveCameraCommand : ICommand
             distance = calculateDistance(new Vector3(destinationX, destinationY, destinationZ), _currentLocation);
         }
 
-        //var step = (_extraSpeed * distance) * Time.deltaTime;
-        var step = _extraSpeed * Time.deltaTime;
         while (arrived == false)
         {
+            var step = _extraSpeed * Time.deltaTime;
             _cameraMover.transform.position = Vector3.MoveTowards(_cameraMover.transform.position, new Vector3(destinationX, destinationY, destinationZ), step);
             var remainingDistance = calculateDistance(_destination, _cameraMover.transform.position);
             if (remainingDistance <= 0.01f)
