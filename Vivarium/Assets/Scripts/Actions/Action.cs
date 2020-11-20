@@ -12,7 +12,8 @@ public class Action : ScriptableObject
     [Range(0, 1)]
     public float CriticalChance;
     public float CriticalMultiplier;
-    public float Range;
+    public float MinRange;
+    public float MaxRange;
     public float AreaOfAffect;
     public ActionTarget ActionTargetType;
     public ActionControllerType ControllerType;

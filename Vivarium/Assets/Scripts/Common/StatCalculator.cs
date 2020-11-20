@@ -49,8 +49,10 @@ public static class StatCalculator
         {
             case StatType.Damage:
                 return action.BaseDamage;
-            case StatType.AttackRange:
-                return action.Range;
+            case StatType.AttackMinRange:
+                return action.MinRange;
+            case StatType.AttackMaxRange:
+                return action.MaxRange;
             case StatType.AttackAOE:
                 return action.AreaOfAffect;
         }

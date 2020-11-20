@@ -10,7 +10,8 @@ public class ActionViewer : MonoBehaviour
 
     private bool _actionIsDisplayed = false;
     private float _areaOfAffect;
-    private float _range;
+    private float _minRange;
+    private float _maxRange;
     private const GridHighlightRank AOE_COLOR = GridHighlightRank.Secondary;
     private const GridHighlightRank RANGE_COLOR = GridHighlightRank.Tertiary;
 
@@ -27,10 +28,11 @@ public class ActionViewer : MonoBehaviour
         }
     }
 
-    public void DisplayAction(float areaOfAffect, float ActionRange)
+    public void DisplayAction(float areaOfAffect, float ActionMinRange, float ActionMaxRange)
     {
         _areaOfAffect = areaOfAffect;
-        _range = ActionRange;
+        _minRange = ActionMinRange;
+        _maxRange = ActionMaxRange;
         _actionIsDisplayed = true;
         ShowActionAoeAroundMouse();
         ShowActionRange();
@@ -64,6 +66,7 @@ public class ActionViewer : MonoBehaviour
         TileGridController.Instance.HighlightRadius(
             mouseHoverTile.GridX,
             mouseHoverTile.GridY,
+            0,
             _areaOfAffect,
             AOE_COLOR);
     }
@@ -71,12 +74,12 @@ public class ActionViewer : MonoBehaviour
     private bool ActionIsWithinRange(Tile targetTile)
     {
         var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        return Vector3.Distance(_characterController.transform.position, targetPosition) < _range + 0.01f;
+        return Vector3.Distance(_characterController.transform.position, targetPosition) < _maxRange + 0.01f;
     }
 
     private void ShowActionRange()
     {
         TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
-        TileGridController.Instance.HighlightRadius(x, y, _range, RANGE_COLOR);
+        TileGridController.Instance.HighlightRadius(x, y, _minRange, _maxRange, RANGE_COLOR);
     }
 }

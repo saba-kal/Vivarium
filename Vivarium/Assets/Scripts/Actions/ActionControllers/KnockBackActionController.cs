@@ -32,18 +32,22 @@ public class KnockBackActionController : ActionController
         List < Tile > path = new List<Tile>();
         path.Add(toTile);
 
+        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
         if (toTile == null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into null tile");
+            targetCharacter.TakeDamage(damage);
             return;
         }
-        if(!targetCharacter.Character.NavigableTiles.Contains(toTile.Type))
+        
+        if(!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
+            targetCharacter.TakeDamage(damage);
             return;
         }
 
-        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
+
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
