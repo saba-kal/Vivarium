@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick += OnGridCellClick;
         UIController.OnActionClick += SelectAction;
         UIController.OnMoveClick += SelectMove;
+        UIController.OnShowMapClick += DisableCharacters;
+        UIController.OnBackClick += EnableCharacters;
         InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick -= OnGridCellClick;
         UIController.OnActionClick -= SelectAction;
         UIController.OnMoveClick -= SelectMove;
+        UIController.OnShowMapClick -= DisableCharacters;
+        UIController.OnBackClick -= EnableCharacters;
         InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
@@ -159,8 +163,17 @@ public class PlayerController : MonoBehaviour
         UIController.Instance.EnableAllButtons();
         foreach (var character in PlayerCharacters)
         {
+            character.IsEnemy = false;
             character.SetHasAttacked(false);
             character.SetHasMoved(false);
+        }
+    }
+
+    private void DisableCharacters()
+    {
+        foreach (var character in PlayerCharacters)
+        {
+            character.IsEnemy = true;
         }
     }
 

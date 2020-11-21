@@ -51,6 +51,7 @@ namespace Assets.Scripts.UI
                     _selectedReward = -1;
                     UpdateItemDescription();
                     _nextLevelCallback();
+                    
                 }
             });
         }
