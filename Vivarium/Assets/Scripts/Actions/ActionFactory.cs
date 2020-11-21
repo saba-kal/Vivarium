@@ -20,7 +20,7 @@ public class ActionFactory
                 break;
             case ActionControllerType.Projectile:
                 actionController = gameObject.AddComponent<ProjectileActionController>();
-                actionViewer = gameObject.AddComponent<ActionViewer>();
+                actionViewer = gameObject.AddComponent<ProjectileActionViewer>();
                 break;
             case ActionControllerType.KnockBack:
                 actionController = gameObject.AddComponent<KnockBackActionController>();

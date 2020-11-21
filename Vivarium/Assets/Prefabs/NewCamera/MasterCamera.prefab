@@ -214,7 +214,7 @@ MonoBehaviour:
   HighlightDisc: {fileID: 2915755667131254230}
   defaultZoom: 0.25
   resetZoom: 1
-  ExtraCameraFollowSpeed: 0
+  ExtraCameraFollowSpeed: 120
   focusCharacters: []
 --- !u!65 &2915755667911417828
 BoxCollider:

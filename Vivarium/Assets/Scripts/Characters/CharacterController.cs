@@ -103,16 +103,6 @@ public class CharacterController : MonoBehaviour
     public void PerformAction(Action attack, Tile targetTile)
     {
         var actionController = GetActionController(attack);
-
-        //Action probably came from a new weapon. Create action controller and viewer for that weapon.
-        if (actionController == null)
-        {
-            ActionFactory.Create(gameObject, attack, out actionController, out var _);
-            //Need to set action controller because the start method gets called after we execute the attack.
-            actionController.CharacterController = this;
-            Debug.LogWarning($"Character \"{gameObject.name}\": Could not find attack controller that matches the attack, so one was made for it.");
-        }
-
         actionController.Execute(targetTile);
         _hasAttacked = true;
     }
@@ -176,7 +166,12 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        return null;
+        ActionFactory.Create(gameObject, action, out var newActionController, out var newActionViewer);
+        _actionControllers.Add(newActionController);
+        _actionViewers.Add(newActionViewer);
+        Debug.LogWarning($"Character \"{gameObject.name}\": Could not find attack controller that matches the attack, so one was made for it.");
+
+        return newActionController;
     }
 
     private Tile GetGridPosition()
@@ -186,9 +181,20 @@ public class CharacterController : MonoBehaviour
 
     public ActionViewer GetActionViewer(Action action)
     {
-        //TDOD: if there are actions that require special viewers, return them here.
+        foreach (var actionViewer in _actionViewers)
+        {
+            if (actionViewer.ActionReference.Id == action.Id)
+            {
+                return actionViewer;
+            }
+        }
 
-        return _actionViewers.FirstOrDefault();
+        ActionFactory.Create(gameObject, action, out var newActionController, out var newActionViewer);
+        _actionControllers.Add(newActionController);
+        _actionViewers.Add(newActionViewer);
+        Debug.LogWarning($"Character \"{gameObject.name}\": Could not find attack viewer that matches the attack, so one was made for it.");
+
+        return newActionViewer;
     }
 
     public void Equip(Item item)

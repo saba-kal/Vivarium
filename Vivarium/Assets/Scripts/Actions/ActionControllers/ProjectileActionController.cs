@@ -11,6 +11,11 @@ public class ProjectileActionController : ActionController
 
     public override void Execute(Tile targetTile)
     {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
         var grid = TileGridController.Instance.GetGrid();
         Tile startTile = grid.GetValue(transform.position);
         if (startTile == null || targetTile == null)
@@ -34,6 +39,11 @@ public class ProjectileActionController : ActionController
                     break;
                 }
             }
+        }
+
+        if (!affectedTiles.ContainsKey((targetTile.GridX, targetTile.GridY)))
+        {
+            return;
         }
 
         var endTile = affectedTiles.LastOrDefault();
