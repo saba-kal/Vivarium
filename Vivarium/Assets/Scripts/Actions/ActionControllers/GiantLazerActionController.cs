@@ -15,6 +15,11 @@ public class GiantLazerActionController : ActionController
 
     public override void Execute(Tile targetTile)
     {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
         _grid = TileGridController.Instance.GetGrid();
 
         //Get the tiles where the laser starts and ends.
@@ -44,6 +49,8 @@ public class GiantLazerActionController : ActionController
 
         ExecuteAction(affectedTiles);
         AnimateAttack(targetTile1);
+
+        return;
     }
 
     private void GetStartTiles(Tile targetTile, out Tile startTile1, out Tile startTile2, out Tile targetTile1, out Tile targetTile2)

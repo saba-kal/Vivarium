@@ -168,9 +168,18 @@ public class PlayerController : MonoBehaviour
 
     private bool ActionIsWithinRange(Tile targetTile)
     {
-        var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        return Vector3.Distance(_selectedCharacter.transform.position, targetPosition) < _selectedActionMaxRange + 0.01f &&
-            Vector3.Distance(_selectedCharacter.transform.position, targetPosition) > _selectedActionMinRange - 0.01f;
+        if (_selectedCharacter == null || _selectedAction == null)
+        {
+            return false;
+        }
+
+        var actionViewer = _selectedCharacter.GetActionViewer(_selectedAction);
+        if (actionViewer == null)
+        {
+            return false;
+        }
+
+        return actionViewer.ActionIsWithinRange(targetTile);
     }
 
     private void OnCharacterMoveComplete(Tile toTile)

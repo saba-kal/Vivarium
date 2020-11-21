@@ -10,17 +10,22 @@ public class ActionController : MonoBehaviour
     public ParticleSystem ParticleEffectPrefab;
     public float ParticleAffectLifetime = 5f;
 
-    public CharacterController CharacterController;
+    protected CharacterController _characterController;
 
     private void Start()
     {
-        CharacterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterController>();
     }
 
     public virtual void Execute(Tile targetTile)
     {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
         var areaOfAffect = StatCalculator.CalculateStat(ActionReference, StatType.AttackAOE);
-        var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, areaOfAffect);
+        var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
         this.ExecuteAction(affectedTiles);
     }
 
@@ -59,13 +64,13 @@ public class ActionController : MonoBehaviour
         {
             return CharacterSearchType.Both;
         }
-        if (!CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
-            CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
+        if (!_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
+            _characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
         {
             return CharacterSearchType.Enemy;
         }
-        if (CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
-            !CharacterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
+        if (_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Opponent ||
+            !_characterController.IsEnemy && ActionReference.ActionTargetType == ActionTarget.Self)
         {
             return CharacterSearchType.Player;
         }
@@ -115,6 +120,6 @@ public class ActionController : MonoBehaviour
         }
         var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
-        Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
+        Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
     }
 }

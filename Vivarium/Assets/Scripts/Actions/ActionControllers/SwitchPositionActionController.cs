@@ -17,19 +17,19 @@ public class SwitchPositionActionController : ActionController
             UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
             return;
         }
-        
+
         var targetPosition = targetCharacter.gameObject.transform.position;
         var playerPosition = transform.position;
-        
+
         Tile targetTile = TileGridController.Instance.GetGrid().GetValue(targetPosition);
         Tile playerTile = TileGridController.Instance.GetGrid().GetValue(playerPosition);
-        List <Tile> playerPath = new List<Tile>();
-        List <Tile> targetPath = new List<Tile>();
+        List<Tile> playerPath = new List<Tile>();
+        List<Tile> targetPath = new List<Tile>();
         playerPath.Add(targetTile);
         targetPath.Add(playerTile);
 
-        
-        Boolean playerCanMove = CharacterController.Character.NavigableTiles.Contains(targetTile.Type);
+
+        Boolean playerCanMove = _characterController.Character.NavigableTiles.Contains(targetTile.Type);
         Boolean targetCanMove = targetCharacter.Character.NavigableTiles.Contains(playerTile.Type);
         if (!(playerCanMove && targetCanMove))
         {
@@ -41,11 +41,11 @@ public class SwitchPositionActionController : ActionController
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
-        MoveCharacter(CharacterController, playerPath);
+        MoveCharacter(_characterController, playerPath);
 
         //Checks if target will die before moving them
         //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
-        if((health + shield) > damage)
+        if ((health + shield) > damage)
         {
             MoveCharacter(targetCharacter, targetPath);
             playerTile.CharacterControllerId = targetCharacter.Id;
@@ -57,10 +57,10 @@ public class SwitchPositionActionController : ActionController
 
 
         targetCharacter.TakeDamage(damage);
-        targetTile.CharacterControllerId = CharacterController.Id;
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
+        targetTile.CharacterControllerId = _characterController.Id;
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
     }
-    
+
     private void MoveCharacter(CharacterController characterController, List<Tile> path)
     {
         if (characterController.gameObject != null)

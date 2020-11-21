@@ -15,11 +15,11 @@ public class MoveCameraCommand : ICommand
 
 
     public MoveCameraCommand(
-    Vector3 destination,
-    float extraSpeed,
-    float resetZoom,
-    GameObject focusCharacter = null,
-    System.Action onMoveComplete = null)
+        Vector3 destination,
+        float extraSpeed,
+        float resetZoom,
+        GameObject focusCharacter = null,
+        System.Action onMoveComplete = null)
     {
         _extraSpeed = extraSpeed;
         _focusCharacter = focusCharacter;
@@ -78,10 +78,10 @@ public class MoveCameraCommand : ICommand
             //    step = 0.07f;
             //}
 
-            if (step <= 0.07f)
-            {
-                step = 0.07f;
-            }
+            //if (step <= 0.07f)
+            //{
+            //    step = 0.07f;
+            //}
             yield return null;
         }
 
