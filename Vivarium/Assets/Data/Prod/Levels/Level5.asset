@@ -26,6 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97c6133276f5ada40a1ddb1c5a60aaf9, type: 2}
   - {fileID: 11400000, guid: 97c6133276f5ada40a1ddb1c5a60aaf9, type: 2}
   - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
+  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
   PossiblePlayerCharacters: []

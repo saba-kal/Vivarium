@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
-  m_Name: TestPlayerCharacterProfile
+  m_Name: TestPlayerCharacterProfile2
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 5911856115557709994, guid: b00758b0ea6a2ea4083fafdf0425f43c, type: 3}
@@ -23,7 +23,7 @@ MonoBehaviour:
   MaxMoveRange: 7
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 886a8ebceb479844a813df0c27eca3b7, type: 2}
-  ShieldProfile: {fileID: 11400000, guid: 05e770e09ae53224ea950eeca7097d95, type: 2}
+  ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   AnimationController: {fileID: 0}

@@ -76,7 +76,7 @@ namespace Assets.Scripts.UI
                 return;
             }
 
-            var randomCharacter = GetRandomCharacterWithEmptyInventory();
+            var randomCharacter = GetRandomCharacterWithEmptyInventory(reward);
             if (string.IsNullOrEmpty(randomCharacter?.Id))
             {
                 return;
@@ -102,7 +102,7 @@ namespace Assets.Scripts.UI
             }
         }
 
-        public CharacterController GetRandomCharacterWithEmptyInventory()
+        public CharacterController GetRandomCharacterWithEmptyInventory(Item reward)
         {
             var playerCharacters = TurnSystemManager.Instance?.PlayerController?.PlayerCharacters;
             if (playerCharacters == null)
@@ -126,7 +126,24 @@ namespace Assets.Scripts.UI
                 return null;
             }
 
-            return charactersWithEmptyInventory[Random.Range(0, charactersWithEmptyInventory.Count)];
+            var eligibleCharacters = new List<CharacterController>();
+            foreach (var characterController in charactersWithEmptyInventory)
+            {
+                if (characterController.Character?.Weapon?.Id != reward.Id &&
+                    !(reward.Type == ItemType.Shield && characterController.Character?.Shield != null))
+                {
+                    eligibleCharacters.Add(characterController);
+                }
+            }
+
+            if (eligibleCharacters.Count == 0)
+            {
+                Debug.LogWarning("All characters already have this item as a weapon or shield. " +
+                    "Therefore, a random character with an empty inventory was chosen.");
+                eligibleCharacters = charactersWithEmptyInventory;
+            }
+
+            return eligibleCharacters[Random.Range(0, eligibleCharacters.Count)];
         }
 
         private void LogPlayerInventory()
