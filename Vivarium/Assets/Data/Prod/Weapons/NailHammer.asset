@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NailHammer738
   Name: Nail Hammer
-  Description: 
+  Description: A hammer made from a nail that knocks back any unit hit by 1
   Type: 1
   Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
   Model: {fileID: 0}

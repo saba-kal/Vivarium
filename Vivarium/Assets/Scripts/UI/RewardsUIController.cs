@@ -17,6 +17,8 @@ namespace Assets.Scripts.UI
         public Image Option2Icon;
         public Image Option3Icon;
         public TextMeshProUGUI ItemDescription;
+        public TextMeshProUGUI ItemName;
+        public TextMeshProUGUI ItemStats;
 
         private int _selectedReward = 0;
         private System.Action _nextLevelCallback;
@@ -164,7 +166,25 @@ namespace Assets.Scripts.UI
         {
             if (ItemDescription != null && _selectedReward < _rewards.Count && _selectedReward >= 0)
             {
-                ItemDescription.text = _rewards[_selectedReward].Name;
+                ItemDescription.text = _rewards[_selectedReward].Description;
+                ItemName.text = _rewards[_selectedReward].Name;
+                if (_rewards[_selectedReward].Type == ItemType.Shield)
+                {
+                    ItemStats.text = "Shield: " + ((Shield)_rewards[_selectedReward]).Health;
+                }
+                else if (_rewards[_selectedReward].Type == ItemType.Weapon)
+                {
+                    var weapon = ((Weapon)_rewards[_selectedReward]);
+                    ItemStats.text = "Actions: \n";
+                    foreach (var Action in weapon.Actions)
+                    {
+                        ItemStats.text += Action.Name + " " + Action.BaseDamage + " damage \n";
+                    }
+                }
+                else
+                {
+                    ItemStats.text = "Health Restored: " + ((Consumable)_rewards[_selectedReward]).value;
+                }
             }
             else
             {
