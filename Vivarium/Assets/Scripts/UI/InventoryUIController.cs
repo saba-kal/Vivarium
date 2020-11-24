@@ -15,6 +15,8 @@ public class InventoryUIController : MonoBehaviour
     public Button EquipButton;
     public GameObject SelectedInventorySlotOverlay;
     public TextMeshProUGUI ItemDescription;
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemStats;
     public bool DisableActionsOnConsume = true;
     public bool DisableActionsOnEquip = true;
 
