@@ -45,7 +45,7 @@ public class HealthController : MonoBehaviour
         HealthBar.SetHealth(_currentHealth);
         ShieldBar?.SetHealth(_currentShield);
         UpdateShieldDisplay();
-        return _currentHealth <= 0;
+        return _currentHealth < 1;
     }
 
     public void Healing(float heal)
