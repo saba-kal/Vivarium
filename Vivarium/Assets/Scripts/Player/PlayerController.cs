@@ -160,6 +160,11 @@ public class PlayerController : MonoBehaviour
 
     public void EnableCharacters()
     {
+        if (_selectedCharacter)
+        {
+            DeselectMove();
+            UIController.Instance.CharacterInfoPanel.SetActive(false);
+        }
         UIController.Instance.EnableAllButtons();
         foreach (var character in PlayerCharacters)
         {
