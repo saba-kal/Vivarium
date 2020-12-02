@@ -65,6 +65,8 @@ public class CameraFollower : MonoBehaviour
         Camera.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.rotation = Quaternion.identity;
         ResetZoom();
+
+        TurnSystemManager.Instance?.PlayerController.DeselectCharacter();
     }
 
     public void ResetZoom()
@@ -98,16 +100,22 @@ public class CameraFollower : MonoBehaviour
         );
     }
 
-    public void ChangeFocus(GameObject Character)
+    public void ChangeFocus(GameObject character)
     {
-        if (Character != null) // for when character dies
+        if (character != null) // for when character dies
         {
-            this.gameObject.transform.SetParent(Character.transform);
+            this.gameObject.transform.SetParent(character.transform);
             this.transform.localPosition = new Vector3(0, 0, 0);
             Camera_Mover.transform.localPosition = new Vector3(0, 0, -4);
             Camera.transform.localPosition = new Vector3(0, 0, 0);
             this.transform.rotation = Quaternion.identity;
             Camera.GetComponent<CameraController>().setZoom(defaultZoom);
+
+            var characterController = character.GetComponent<CharacterController>();
+            if (characterController != null)
+            {
+                TurnSystemManager.Instance?.PlayerController.SelectCharacter(characterController);
+            }
         }
     }
 

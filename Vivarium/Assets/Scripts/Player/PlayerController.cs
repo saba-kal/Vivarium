@@ -84,13 +84,7 @@ public class PlayerController : MonoBehaviour
             grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
             {
-                _selectedCharacter = character;
-                _selectedCharacter.Select();
-                if (_selectedCharacter.IsEnemy)
-                {
-                    _selectedCharacter.ShowMoveRadius();
-                }
-                return;
+                SelectCharacter(character);
             }
         }
     }
@@ -221,6 +215,25 @@ public class PlayerController : MonoBehaviour
         foreach (var characterController in PlayerCharacters)
         {
             characterController.RegenShield(regenAmount);
+        }
+    }
+
+    public void SelectCharacter(CharacterController characterController)
+    {
+        _selectedCharacter = characterController;
+        _selectedCharacter.Select();
+        if (_selectedCharacter.IsEnemy)
+        {
+            _selectedCharacter.ShowMoveRadius();
+        }
+    }
+
+    public void DeselectCharacter()
+    {
+        if (_selectedCharacter != null)
+        {
+            _selectedCharacter.Deselect();
+            _selectedCharacter = null;
         }
     }
 }
