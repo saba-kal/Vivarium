@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl3
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 919132149155446097, guid: bbd6ea20b3aaafd46b5903fcebc97554, type: 3}
+  - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Red Ant
   - Murder Ant

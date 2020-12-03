@@ -26,6 +26,12 @@ public class KnockBackActionController : ActionController
         var adjustedX = AdjustCoordinate(playerX, targetX);
         var adjustedY = AdjustCoordinate(playerY, targetY);
 
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                TileGridController.Instance.GetGrid().GetValue(targetPosition),
+                true));
+
         var newPosition = TileGridController.Instance.GetGrid().GetWorldPosition(adjustedX, adjustedY);
         Tile toTile = TileGridController.Instance.GetGrid().GetValue(newPosition);
         Tile fromTile = TileGridController.Instance.GetGrid().GetValue(targetPosition);
@@ -60,7 +66,8 @@ public class KnockBackActionController : ActionController
                     targetCharacter.gameObject,
                     path,
                     Constants.CHAR_MOVE_SPEED,
-                    null));
+                    null,
+                    false));
             fromTile.CharacterControllerId = null;
             toTile.CharacterControllerId = targetCharacter.Id;
         }

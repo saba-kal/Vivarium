@@ -20,12 +20,34 @@ MonoBehaviour:
   MinEnemyCharacters: 1
   MaxEnemyCharacters: 1
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
-  MinPlayerCharacters: 3
-  MaxPlayerCharacters: 3
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  MinPlayerCharacters: 6
+  MaxPlayerCharacters: 6
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
   - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
   StartingItems: []
   OnLevelStartHeal: 500

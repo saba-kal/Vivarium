@@ -48,7 +48,7 @@ namespace Assets.Scripts.UI
                     PlaceSelectedReward(_rewards);
                     LogPlayerInventory();
                     RewardScreen.SetActive(false);
-                    _selectedReward = -1;
+                    _selectedReward = 0;
                     UpdateItemDescription();
                     _nextLevelCallback();
                 }
@@ -57,6 +57,7 @@ namespace Assets.Scripts.UI
 
         public void ShowRewardsScreen(System.Action callback, List<Item> possibleRewards)
         {
+            UpdateButtons();
             RewardScreen.SetActive(true);
             _nextLevelCallback = callback;
 
@@ -68,6 +69,8 @@ namespace Assets.Scripts.UI
                 Option2Icon.sprite = _rewards[1].Icon;
                 Option3Icon.sprite = _rewards[2].Icon;
             }
+
+            UpdateItemDescription();
         }
 
         private void PlaceSelectedReward(List<Item> possibleRewards)
@@ -162,6 +165,26 @@ namespace Assets.Scripts.UI
             Debug.Log(logMessage);
         }
 
+        private void UpdateButtons()
+        {
+            Option1.GetComponent<Outline>().enabled = false;
+            Option2.GetComponent<Outline>().enabled = false;
+            Option3.GetComponent<Outline>().enabled = false;
+
+            switch (_selectedReward)
+            {
+                case 0:
+                    Option1.GetComponent<Outline>().enabled = true;
+                    break;
+                case 1:
+                    Option2.GetComponent<Outline>().enabled = true;
+                    break;
+                case 2:
+                    Option3.GetComponent<Outline>().enabled = true;
+                    break;
+            }
+        }
+
         private void UpdateItemDescription()
         {
             if (ItemDescription != null && _selectedReward < _rewards.Count && _selectedReward >= 0)
@@ -189,6 +212,8 @@ namespace Assets.Scripts.UI
             else
             {
                 ItemDescription.text = "";
+                ItemStats.text = "";
+                ItemName.text = "";
             }
         }
     }

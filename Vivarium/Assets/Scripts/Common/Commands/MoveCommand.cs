@@ -5,23 +5,27 @@ using System.Collections.Generic;
 public class MoveCommand : ICommand
 {
     private GameObject _gameObject;
-    private Vector3 _toPosition;
     private List<Tile> _path;
     private float _speed;
     private Grid<Tile> _grid;
     private System.Action _onMoveComplete;
 
+    private bool _rotationEnabled = true;
+    private bool _isRotating = false;
+
     public MoveCommand(
         GameObject gameObject,
         List<Tile> path,
         float speed,
-        System.Action onMoveComplete = null)
+        System.Action onMoveComplete = null,
+        bool roatationEnabled = true)
     {
         _gameObject = gameObject;
         _path = path;
         _speed = speed;
         _grid = TileGridController.Instance.GetGrid();
         _onMoveComplete = onMoveComplete;
+        _rotationEnabled = roatationEnabled;
     }
 
     public IEnumerator Execute()
@@ -35,25 +39,61 @@ public class MoveCommand : ICommand
         var pathQueue = new Queue<Tile>(_path);
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
+        _isRotating = true;
 
         while (targetTile != null && _gameObject != null)
         {
-            _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
-            if (targetPosition == _gameObject.transform.position)
+            if (_isRotating && _rotationEnabled)
             {
-                if (pathQueue.Count == 0)
+                FaceMovementDirection(_gameObject.transform.position, targetPosition);
+            }
+            else
+            {
+                _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
+
+                if (targetPosition == _gameObject.transform.position)
                 {
-                    targetTile = null;
-                }
-                else
-                {
-                    targetTile = pathQueue.Dequeue();
-                    targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
+                    if (pathQueue.Count == 0)
+                    {
+                        targetTile = null;
+                    }
+                    else
+                    {
+                        targetTile = pathQueue.Dequeue();
+                        targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
+                        _isRotating = true;
+                    }
                 }
             }
+
             yield return null;
         }
 
         _onMoveComplete?.Invoke();
+    }
+
+    private void FaceMovementDirection(Vector3 fromPosition, Vector3 toPosition)
+    {
+        var characterController = _gameObject.GetComponent<CharacterController>();
+
+        if (characterController?.Model != null && fromPosition != toPosition)
+        {
+            var targetRotation = Quaternion.LookRotation((fromPosition - toPosition).normalized);
+
+            characterController.Model.transform.rotation = Quaternion.RotateTowards(
+                characterController.Model.transform.rotation,
+                targetRotation,
+                Time.deltaTime * Constants.CHAR_ROTATION_SPEED
+            );
+
+            if (targetRotation == characterController.Model.transform.rotation)
+            {
+                _isRotating = false;
+            }
+        }
+        else
+        {
+            _isRotating = false;
+        }
     }
 }
