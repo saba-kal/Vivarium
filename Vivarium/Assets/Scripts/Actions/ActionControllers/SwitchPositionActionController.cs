@@ -28,36 +28,44 @@ public class SwitchPositionActionController : ActionController
         playerPath.Add(targetTile);
         targetPath.Add(playerTile);
 
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                targetTile,
+                true));
 
-        Boolean playerCanMove = _characterController.Character.NavigableTiles.Contains(targetTile.Type);
-        Boolean targetCanMove = targetCharacter.Character.NavigableTiles.Contains(playerTile.Type);
-        if (!(playerCanMove && targetCanMove))
+        var playerCanMove = _characterController.Character.NavigableTiles.Contains(targetTile.Type);
+        var targetCanMove = targetCharacter.Character.NavigableTiles.Contains(playerTile.Type);
+        var charactersCanMove = playerCanMove && targetCanMove;
+        if (!charactersCanMove)
         {
             UnityEngine.Debug.Log("Attempted to switch positions onto unnavigable tile ");
-            return;
         }
 
         var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
-        MoveCharacter(_characterController, playerPath);
+        if (charactersCanMove)
+        {
+            MoveCharacter(_characterController, playerPath);
+            targetTile.CharacterControllerId = _characterController.Id;
 
-        //Checks if target will die before moving them
-        //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
-        if ((health + shield) > damage)
-        {
-            MoveCharacter(targetCharacter, targetPath);
-            playerTile.CharacterControllerId = targetCharacter.Id;
-        }
-        else
-        {
-            playerTile.CharacterControllerId = null;
+            //Checks if target will die before moving them
+            //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
+            if ((health + shield) > damage)
+            {
+                MoveCharacter(targetCharacter, targetPath);
+                playerTile.CharacterControllerId = targetCharacter.Id;
+            }
+            else
+            {
+                playerTile.CharacterControllerId = null;
+            }
         }
 
 
         targetCharacter.TakeDamage(damage);
-        targetTile.CharacterControllerId = _characterController.Id;
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
     }
 
@@ -70,7 +78,8 @@ public class SwitchPositionActionController : ActionController
                     characterController.gameObject,
                     path,
                     Constants.CHAR_MOVE_SPEED,
-                    null));
+                    null,
+                    false));
         }
     }
 }

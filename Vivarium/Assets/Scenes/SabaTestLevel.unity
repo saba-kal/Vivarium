@@ -8128,6 +8128,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &203146107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8156,7 +8157,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &203146109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8185,7 +8185,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &203146111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21956,6 +21955,7 @@ MonoBehaviour:
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
   - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
+  - {fileID: 11400000, guid: 7035921ba1cb4e643b0d3cb7b5324594, type: 2}
   - {fileID: 11400000, guid: 7035921ba1cb4e643b0d3cb7b5324594, type: 2}
 --- !u!1 &543162205
 GameObject:
@@ -36654,6 +36654,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &913530056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36682,7 +36683,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &913530058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36711,7 +36711,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &913530060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52966,6 +52965,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &1364459774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52994,7 +52994,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &1364459776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53023,7 +53022,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &1364459778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73039,6 +73037,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
+  Model: {fileID: 0}
 --- !u!114 &1879038978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73067,7 +73066,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: 0f1a1fc5c544e454dba0e37af63f9512, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &1879038980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73096,7 +73094,6 @@ MonoBehaviour:
   ActionReference: {fileID: 11400000, guid: eea4356fda046ac43a4894d46c4cbb41, type: 2}
   ParticleEffectPrefab: {fileID: 0}
   ParticleAffectLifetime: 5
-  CharacterController: {fileID: 0}
 --- !u!114 &1879038982
 MonoBehaviour:
   m_ObjectHideFlags: 0

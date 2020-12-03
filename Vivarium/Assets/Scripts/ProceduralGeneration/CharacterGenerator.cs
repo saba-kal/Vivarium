@@ -33,7 +33,7 @@ public class CharacterGenerator
         }
 
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
-        GenerateCharacterModel(characterGameObject, characterProfile);
+        GenerateCharacterModel(characterController, characterProfile);
 
         return characterGameObject;
     }
@@ -86,13 +86,14 @@ public class CharacterGenerator
     }
 
     private void GenerateCharacterModel(
-        GameObject characterGameObject,
+        CharacterController characterGameObject,
         CharacterGenerationProfile characterProfile)
     {
         var characterModelPrefab = characterProfile.PossibleModels[UnityEngine.Random.Range(0, characterProfile.PossibleModels.Count)];
 
         // creates the prefab and model onto the scene
         var prefabInstance = GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
+        characterGameObject.Model = prefabInstance;
 
         // adds animator to the model of the INSTANCE of the character
         Animator animator = prefabInstance.gameObject.AddComponent<Animator>() as Animator;

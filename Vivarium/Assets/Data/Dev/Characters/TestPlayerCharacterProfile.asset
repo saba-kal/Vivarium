@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: TestPlayerCharacterProfile
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 5911856115557709994, guid: b00758b0ea6a2ea4083fafdf0425f43c, type: 3}
+  - {fileID: 5120650158906541407, guid: cee78b983cbbd0043bcf064eaace473a, type: 3}
   PossibleNames:
   - Player McPlayerFace
   - Player  Guy
   MinMaxHealth: 50
   MaxMaxHealth: 200
-  MinMoveRange: 3
-  MaxMoveRange: 7
+  MinMoveRange: 15
+  MaxMoveRange: 20
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 886a8ebceb479844a813df0c27eca3b7, type: 2}
   ShieldProfile: {fileID: 11400000, guid: 05e770e09ae53224ea950eeca7097d95, type: 2}

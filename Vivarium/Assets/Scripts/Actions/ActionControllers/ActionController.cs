@@ -26,6 +26,13 @@ public class ActionController : MonoBehaviour
 
         var areaOfAffect = StatCalculator.CalculateStat(ActionReference, StatType.AttackAOE);
         var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
+
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                targetTile,
+                true));
+
         this.ExecuteAction(affectedTiles);
     }
 

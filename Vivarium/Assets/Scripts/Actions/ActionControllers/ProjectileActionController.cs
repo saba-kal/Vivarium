@@ -23,6 +23,12 @@ public class ProjectileActionController : ActionController
             return;
         }
 
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                targetTile,
+                true));
+
         var line = grid.GetLine(
             grid.GetWorldPosition(startTile.GridX, startTile.GridY),
             grid.GetWorldPosition(targetTile.GridX, targetTile.GridY));

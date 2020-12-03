@@ -15,6 +15,7 @@ public class CharacterController : MonoBehaviour
     public string Id;
     public Character Character;
     public bool IsEnemy;
+    public GameObject Model;
 
     private float _maxHealth;
     private float _maxShield;
