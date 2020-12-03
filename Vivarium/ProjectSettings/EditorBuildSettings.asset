@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Alex_Animation_Test_Scene.unity
     guid: 890c7e8e2a156164c8748e36ee762fdf
+  - enabled: 0
+    path: Assets/Scenes/IMPORT_MODELS_TEST.unity
+    guid: 08daccdd453a2ca4989f867e87d59e1b
+  - enabled: 0
+    path: Assets/Scenes/Photo_shoot.unity
+    guid: 72fbb103de5e29a47a4bb77b9dd9f78a
   m_configObjects: {}
