@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 5911856115557709994, guid: b00758b0ea6a2ea4083fafdf0425f43c, type: 3}
+  - {fileID: 919132149155446097, guid: 20ec79bf913d1884ebc105dbc4b41295, type: 3}
   PossibleNames:
   - Brave Bee
   - Curious Bee

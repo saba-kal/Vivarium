@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
-  m_Name: EnemyAntLvl1
+  m_Name: Model_Bee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 919132149155446097, guid: bbd6ea20b3aaafd46b5903fcebc97554, type: 3}
+  - {fileID: 919132149155446097, guid: 20ec79bf913d1884ebc105dbc4b41295, type: 3}
   PossibleNames:
-  - Red Ant
-  - Murder Ant
-  MinMaxHealth: 33
-  MaxMaxHealth: 49
+  - Brave Bee
+  - Curious Bee
+  MinMaxHealth: 52
+  MaxMaxHealth: 72
   MinMoveRange: 7
-  MaxMoveRange: 9
-  NavigableTiles: 00000000
+  MaxMoveRange: 10
+  NavigableTiles: 0000000001000000
   WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
