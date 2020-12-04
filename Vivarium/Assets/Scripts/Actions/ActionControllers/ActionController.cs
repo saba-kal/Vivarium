@@ -104,12 +104,27 @@ public class ActionController : MonoBehaviour
 
     protected virtual GameObject InstantiateParticleAffect(Tile tile)
     {
-        if (ParticleEffectPrefab == null)
+        if (ActionReference.ParticleEffect == null)
+        {
+            return null;
+        }
+        Debug.Log("LOOK AT ME! : " + tile.CharacterControllerId);
+
+        var allTeamMembers = GameObject.FindGameObjectsWithTag("PlayerCharacter");
+        for (int i = 0; i < allTeamMembers.Length; i++)
+        {
+            if (tile.CharacterControllerId == allTeamMembers[i].gameObject.GetComponent<CharacterController>().Id)
+            {
+                return null;
+            }
+        }
+
+        if (tile.CharacterControllerId == null || tile.CharacterControllerId == _characterController.Id)
         {
             return null;
         }
 
-        var particleAffect = Instantiate(ParticleEffectPrefab);
+        var particleAffect = Instantiate(ActionReference.ParticleEffect);
         particleAffect.gameObject.name = $"ParticleAffect_{tile.GridX}_{tile.GridY}";
         particleAffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
         particleAffect.Play();

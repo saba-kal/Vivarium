@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
-  m_Name: TestPlayerCharacterProfile2
+  m_Name: TestPlayerCharacterProfile3
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 6229483223496328122, guid: 6cea4ba6c47274549b99a9f292e07cb8, type: 3}
