@@ -18,10 +18,12 @@ MonoBehaviour:
   BaseDamage: 14
   CriticalChance: 1
   CriticalMultiplier: 0
-  Range: 0
+  MinRange: 0
+  MaxRange: 0
   AreaOfAffect: 2
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
   AnimType: 0
   ProjectilePrefab: {fileID: 0}
+  ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}

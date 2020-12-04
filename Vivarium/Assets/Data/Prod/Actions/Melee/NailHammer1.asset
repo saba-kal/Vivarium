@@ -26,3 +26,4 @@ MonoBehaviour:
   Attributes: []
   AnimType: 0
   ProjectilePrefab: {fileID: 0}
+  ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}

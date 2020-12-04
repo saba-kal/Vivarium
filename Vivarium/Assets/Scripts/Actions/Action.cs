@@ -20,4 +20,5 @@ public class Action : ScriptableObject
     public List<Attribute> Attributes;
     public AnimationType AnimType;
     public GameObject ProjectilePrefab;
+    public ParticleSystem ParticleEffect;
 }
