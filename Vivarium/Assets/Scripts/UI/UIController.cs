@@ -84,12 +84,10 @@ public class UIController : MonoBehaviour
     {
         MoveButton.interactable = !_charactersWithDisabledMoves.Contains(characterController.Id);
 
-        var yOffset = 0f;
         foreach (var action in characterController?.Character?.Weapon?.Actions ?? new List<Action>())
         {
             var actionButton = Instantiate(ActionButtonPrefab);
             actionButton.transform.SetParent(ActionButtonsContainer.transform, false);
-            actionButton.transform.Translate(new Vector3(0, yOffset));
             _existingActionButtons.Add(actionButton);
 
             if (_charactersWithDisabledActions.Contains(characterController.Id))
@@ -106,7 +104,6 @@ public class UIController : MonoBehaviour
             }
             var buttonText = actionButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = action.Name;
-            yOffset -= SpaceBetweenButtons;
         }
     }
 
