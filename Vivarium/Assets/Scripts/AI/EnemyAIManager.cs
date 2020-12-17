@@ -7,6 +7,7 @@ public class EnemyAIManager : MonoBehaviour
     public static event FinishExecute OnFinishExecute;
 
     public List<CharacterController> AICharacters;
+    public GridPointCalculator GridPointCalculator;
 
     private bool _isPerformingActions = false;
     private float _timeSinceLastAction = 0f;
@@ -34,6 +35,9 @@ public class EnemyAIManager : MonoBehaviour
                 _playerCharacters.Add(playerCharacter);
             }
         }
+
+        GridPointCalculator.CalculateGridPoints();
+        GridPointCalculator.PreviewGridPoints();
     }
 
     private void Update()
@@ -70,6 +74,9 @@ public class EnemyAIManager : MonoBehaviour
                 Debug.LogWarning($"Character {aiCharacter.Character.Name} does not have an AI controller.");
             }
         }
+
+        GridPointCalculator.CalculateGridPoints();
+        GridPointCalculator.UpdatePreview();
     }
 
     public void EnableCharacters()

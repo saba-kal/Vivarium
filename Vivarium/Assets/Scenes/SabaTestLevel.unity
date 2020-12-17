@@ -64786,6 +64786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AICharacters:
   - {fileID: 1879038977}
+  GridPointCalculator: {fileID: 0}
 --- !u!4 &1667642772
 Transform:
   m_ObjectHideFlags: 0
