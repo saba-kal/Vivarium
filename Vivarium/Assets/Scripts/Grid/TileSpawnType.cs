@@ -3,7 +3,8 @@
 [Serializable]
 public enum TileSpawnType
 {
-    Enemy = 0,
-    Player = 1,
-    Objective = 2
+    Neutral = 0,
+    Enemy = 1,
+    Player = 2,
+    Objective = 3
 }
