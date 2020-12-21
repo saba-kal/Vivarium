@@ -57,6 +57,7 @@ public class LevelGenerator : MonoBehaviour
         {
             PlayerController = playerController.GetComponent<PlayerController>();
         }
+        _possibleEnemySpawnTiles.Clear();
     }
 
     public void SetupLevelContainer()
@@ -95,10 +96,10 @@ public class LevelGenerator : MonoBehaviour
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
         tileGridView.LevelObjectivePrefab = LevelProfile.LevelObjectivePrefab;
         tileGridView.CreateGridMesh();
-        GeneratePossiblePlayerSpawnTiles();
+        GeneratePossibleSpawnTiles();
     }
 
-    private void GeneratePossiblePlayerSpawnTiles()
+    private void GeneratePossibleSpawnTiles()
     {
         _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
         for (int i = 0; i < _grid.GetGrid().GetLength(0); i++)
@@ -108,6 +109,10 @@ public class LevelGenerator : MonoBehaviour
                 if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Player)
                 {
                     _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                }
+                else if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Enemy)
+                {
+                    _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
                 }
             }
         }
@@ -225,6 +230,13 @@ public class LevelGenerator : MonoBehaviour
 
     private bool CharacterCanSpawnOnTile(Tile tile, CharacterController characterController)
     {
+        if (characterController.IsEnemy)
+        {
+            if (tile.SpawnType != TileSpawnType.Enemy)
+            {
+                return false;
+            }
+        }
         return
             tile != null &&
             string.IsNullOrEmpty(tile.CharacterControllerId) &&
