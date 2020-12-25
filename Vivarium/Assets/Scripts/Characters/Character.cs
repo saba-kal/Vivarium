@@ -9,6 +9,7 @@ public class Character
     public string Name;
     public float MaxHealth;
     public float MoveRange;
+    public AICharacterHeuristics AICharacterHeuristics;
     public List<Attribute> Attributes;
     public Weapon Weapon;
     public Shield Shield;

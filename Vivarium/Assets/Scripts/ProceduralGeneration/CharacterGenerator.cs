@@ -46,6 +46,7 @@ public class CharacterGenerator
         character.MaxHealth = UnityEngine.Random.Range(characterProfile.MinMaxHealth, characterProfile.MaxMaxHealth);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
+        character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
 
         return character;
     }

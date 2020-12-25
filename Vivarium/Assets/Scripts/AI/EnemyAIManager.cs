@@ -36,7 +36,6 @@ public class EnemyAIManager : MonoBehaviour
             }
         }
 
-        GridPointCalculator.CalculateGridPoints();
         GridPointCalculator.PreviewGridPoints();
     }
 
@@ -66,7 +65,8 @@ public class EnemyAIManager : MonoBehaviour
             var aiController = aiCharacter.GetComponent<AIController>();
             if (aiController != null)
             {
-
+                GridPointCalculator.CalculateGridPoints(aiCharacter.GetComponent<CharacterController>());
+                GridPointCalculator.UpdatePreview();
                 aiController.Execute(_playerCharacters);
             }
             else
@@ -74,9 +74,6 @@ public class EnemyAIManager : MonoBehaviour
                 Debug.LogWarning($"Character {aiCharacter.Character.Name} does not have an AI controller.");
             }
         }
-
-        GridPointCalculator.CalculateGridPoints();
-        GridPointCalculator.UpdatePreview();
     }
 
     public void EnableCharacters()
