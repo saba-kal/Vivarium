@@ -21,5 +21,5 @@ MonoBehaviour:
     AllyAttackCoveragePoints: 0
   OpponentHeuristics:
     OpponentProximityPoints: 0
-    OpponentAdjacencyPoints: -100
+    OpponentAdjacencyPoints: 45
     OpponentAreaOfAttackPoints: 0

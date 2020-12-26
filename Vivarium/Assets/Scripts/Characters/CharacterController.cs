@@ -101,6 +101,26 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null)
+    {
+        if (path == null || path.Count == 0)
+        {
+            Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move because the path list is empty.");
+            return;
+        }
+
+        if (_moveController != null)
+        {
+            _moveController.MoveAlongPath(path, onMoveComplete);
+            _hasMoved = true;
+            Deselect();
+        }
+        else
+        {
+            Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
+        }
+    }
+
     public void PerformAction(Action attack, Tile targetTile)
     {
         var actionController = GetActionController(attack);

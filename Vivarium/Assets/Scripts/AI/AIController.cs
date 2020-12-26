@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class AIController : MonoBehaviour
 {
+    private const int MAX_MOVE_CALC_ITERATIONS = 100;
+
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
@@ -30,18 +33,18 @@ public class AIController : MonoBehaviour
     public virtual void Execute(List<CharacterController> playerCharacters)
     {
         _playerCharacters = playerCharacters;
-        if (AICanAttack(out var attack, out var targetCharacter))
-        {
-            _aiCharacter.PerformAction(attack, targetCharacter);
-        }
-        else if (AICanMove(out var targetTile))
+        if (AICanMove(out var path))
         {
             // lock on here
-            if (targetTile != null)
+            if (path != null)
             {
                 EnterCameraFocusCommand();
-                _aiCharacter.MoveToTile(targetTile);
+                _aiCharacter.MoveAlongPath(path);
             }
+        }
+        else if (AICanAttack(out var attack, out var targetCharacter))
+        {
+            _aiCharacter.PerformAction(attack, targetCharacter);
         }
     }
 
@@ -105,33 +108,63 @@ public class AIController : MonoBehaviour
         return bestAttack;
     }
 
-    protected virtual bool AICanMove(out Tile targetTile)
+    protected virtual bool AICanMove(out List<Tile> path)
     {
-        targetTile = null;
+        path = null;
         if (!_aiCharacter.IsAbleToMove())
         {
             return false;
         }
 
-        var minDistance = float.MaxValue;
-        var availableMoves = _aiCharacter.CalculateAvailableMoves();
-
-        foreach (var playerCharacter in _playerCharacters)
+        var aStar = new AStar(_aiCharacter.Character.NavigableTiles);
+        var tilesToExclude = new List<Tile>();
+        var iterations = 0;
+        List<Tile> pathToTarget = null;
+        while (pathToTarget == null)
         {
-            var closestTileToPlayer = GetClosestTileToPlayer(
-                playerCharacter.transform.position,
-                availableMoves,
-                out var distance);
-
-            if (closestTileToPlayer != null &&
-                string.IsNullOrEmpty(closestTileToPlayer.CharacterControllerId) &&
-                distance < minDistance)
+            var targetTile = GetTileWithHighestPoints(tilesToExclude);
+            pathToTarget = aStar.Execute(
+                _grid.GetValue(_aiCharacter.transform.position),
+                targetTile);
+            if (pathToTarget == null)
             {
-                targetTile = closestTileToPlayer;
-                minDistance = distance;
+                tilesToExclude.Add(targetTile);
+            }
+            iterations++;
+            if (iterations > MAX_MOVE_CALC_ITERATIONS)
+            {
+                Debug.LogError("Reached maximum move calculation iterations for AI character.");
+                return false;
             }
         }
+
+        var travelRange = StatCalculator.CalculateStat(_aiCharacter.Character, StatType.MoveRadius);
+        path = new List<Tile>();
+        for (int step = 0; step < travelRange && step < pathToTarget.Count; step++)
+        {
+            path.Add(pathToTarget[step]);
+        }
+
         return true;
+    }
+
+    private Tile GetTileWithHighestPoints(List<Tile> tilesToExclude)
+    {
+        Tile targetTile = _grid.GetValue(_aiCharacter.transform.position);
+        for (var x = 0; x < _grid.GetGrid().GetLength(0); x++)
+        {
+            for (var y = 0; y < _grid.GetGrid().GetLength(1); y++)
+            {
+                var tile = _grid.GetValue(x, y);
+                if (tile.Points > targetTile.Points &&
+                    !tilesToExclude.Contains(tile))
+                {
+                    targetTile = tile;
+                }
+            }
+        }
+
+        return targetTile;
     }
 
     protected Tile GetClosestTileToPlayer(

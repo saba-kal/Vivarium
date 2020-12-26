@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MoveController : MonoBehaviour
 {
@@ -65,5 +66,23 @@ public class MoveController : MonoBehaviour
                 Constants.CHAR_MOVE_SPEED,
                 onMoveComplete));
         toTile.CharacterControllerId = _characterController.Id;
+    }
+
+    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null)
+    {
+        if (path == null || path.Count == 0)
+        {
+            Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move because the path list is empty.");
+            return;
+        }
+
+        path[0].CharacterControllerId = null;
+        CommandController.Instance.ExecuteCommand(
+            new MoveCommand(
+                gameObject,
+                path,
+                Constants.CHAR_MOVE_SPEED,
+                onMoveComplete));
+        path.Last().CharacterControllerId = _characterController.Id;
     }
 }
