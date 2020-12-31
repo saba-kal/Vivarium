@@ -92,11 +92,12 @@ public class CameraFollower : MonoBehaviour
 
     public void CameraMoveToReset()
     {
+        this.gameObject.transform.parent = null;
         CommandController.Instance.ExecuteCommand(
         new WaitCommand()
         );
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, 0), ExtraCameraFollowSpeed, 1)
+        new MoveCameraCommand(new Vector3(0, 0, -14 + Constants.CAMERA_FOLLOW_SKEW), ExtraCameraFollowSpeed, 1)
         );
         CommandController.Instance.ExecuteCommand(
         new UnlockCameraCommand()
