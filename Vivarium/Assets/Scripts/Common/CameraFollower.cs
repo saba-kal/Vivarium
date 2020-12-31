@@ -59,7 +59,6 @@ public class CameraFollower : MonoBehaviour
     }
     public void ResetCamera()
     {
-        Debug.Log("222222222222222222222222222222222222222222222222222222222222222222222222222");
         this.gameObject.transform.parent = null;
         this.transform.localPosition = new Vector3(0, 0, 0);
         Camera_Mover.transform.localPosition = new Vector3(0, 0, -14);
@@ -94,7 +93,6 @@ public class CameraFollower : MonoBehaviour
     public void CameraMoveToReset()
     {
         this.gameObject.transform.parent = null;
-        Debug.Log("111111111111111111111111111111111111111111111111111");
         CommandController.Instance.ExecuteCommand(
         new WaitCommand()
         );

@@ -58,13 +58,6 @@ public class MoveController : MonoBehaviour
         }
 
         fromTile.CharacterControllerId = null;
-        //CommandController.Instance.ExecuteCommand(
-        //    new MoveCommand(
-        //        gameObject,
-        //        _breadthFirstSearch.GetPathToTile(toTile),
-        //        Constants.CHAR_MOVE_SPEED,
-        //        onMoveComplete));
-        //toTile.CharacterControllerId = _characterController.Id;
 
         CommandController.Instance.ExecuteCommand(
             new MoveCommand(
