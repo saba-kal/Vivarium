@@ -12,6 +12,8 @@ public class EnemyAIManager : MonoBehaviour
     private float _timeSinceLastAction = 0f;
     private List<CharacterController> _playerCharacters = new List<CharacterController>();
 
+    public bool skipEnemyPhase = false;
+
     void OnEnable()
     {
         CharacterController.OnDeath += OnCharacterDeath;
@@ -20,6 +22,24 @@ public class EnemyAIManager : MonoBehaviour
     void OnDisable()
     {
         CharacterController.OnDeath -= OnCharacterDeath;
+    }
+
+    public void turnOnSkipEnemyPhase()
+    {
+        skipEnemyPhase = true;
+        for (int i = 0; i < AICharacters.Count; i++)
+        {
+            AICharacters[i].GetComponent<AIController>().turnOnSkipEnemyPhase();
+        }
+    }
+
+    public void turnOffSkipEnemyPhase()
+    {
+        skipEnemyPhase = false;
+        for (int i = 0; i < AICharacters.Count; i++)
+        {
+            AICharacters[i].GetComponent<AIController>().turnOffSkipEnemyPhase();
+        }
     }
 
     // Use this for initialization
@@ -50,6 +70,19 @@ public class EnemyAIManager : MonoBehaviour
                 _isPerformingActions = false;
                 OnFinishExecute?.Invoke();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(skipEnemyPhase);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            turnOnSkipEnemyPhase();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            turnOffSkipEnemyPhase();
         }
     }
 

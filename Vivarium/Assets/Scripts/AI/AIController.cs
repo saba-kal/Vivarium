@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class AIController : MonoBehaviour
 {
+    public bool skipEnemyPhase = false;
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
@@ -40,14 +41,17 @@ public class AIController : MonoBehaviour
             if (targetTile != null)
             {
                 EnterCameraFocusCommand();
-                _aiCharacter.MoveToTile(targetTile);
+                _aiCharacter.MoveToTile(targetTile, null, skipEnemyPhase);
             }
         }
     }
 
     private void EnterCameraFocusCommand()
     {
-        _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+        if (skipEnemyPhase == false)
+        {
+            _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+        }
     }
 
     protected virtual bool AICanAttack(out Action bestAttack, out Tile targetTile)
@@ -165,5 +169,17 @@ public class AIController : MonoBehaviour
                 _playerCharacters.RemoveAt(i);
             }
         }
+    }
+
+    public void turnOnSkipEnemyPhase()
+    {
+        skipEnemyPhase = true;
+        Debug.Log(this.gameObject.name + " set to: " + skipEnemyPhase);
+    }
+
+    public void turnOffSkipEnemyPhase()
+    {
+        skipEnemyPhase = false;
+        Debug.Log(this.gameObject.name + " set to: " + skipEnemyPhase);
     }
 }

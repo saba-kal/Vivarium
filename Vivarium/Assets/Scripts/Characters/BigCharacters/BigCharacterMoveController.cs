@@ -21,7 +21,7 @@ public class BigCharacterMoveController : MoveController
         return base.CalculateAvailableMoves();
     }
 
-    public override void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
+    public override void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (fromTile == null || toTile == null)
         {

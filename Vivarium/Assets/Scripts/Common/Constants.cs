@@ -10,10 +10,12 @@ public static class Constants
     public const float PROJECTILE_SPEED = 25f;
     public const int MAX_CHARACTER_ITEMS = 3;
     public const int MAX_PLAYER_ITEMS = 100;
+    public const float CAMERA_FOLLOW_SKEW = 8f;
 
     public const string PLAYER_CHAR_TAG = "PlayerCharacter";
     public const string ENEMY_CHAR_TAG = "EnemyCharacter";
     public const string LEVEL_CONTAINER_TAG = "LevelContainer";
     public const string TILE_GRID_TAG = "GridTile";
     public const string PLAYER_CONTROLLER_TAG = "PlayerController";
+
 }

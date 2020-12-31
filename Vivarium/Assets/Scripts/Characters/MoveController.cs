@@ -50,7 +50,7 @@ public class MoveController : MonoBehaviour
             _availableMoves.ContainsKey((tile.GridX, tile.GridY));
     }
 
-    public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
+    public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (fromTile == null || toTile == null)
         {
@@ -58,11 +58,46 @@ public class MoveController : MonoBehaviour
         }
 
         fromTile.CharacterControllerId = null;
+        //CommandController.Instance.ExecuteCommand(
+        //    new MoveCommand(
+        //        gameObject,
+        //        _breadthFirstSearch.GetPathToTile(toTile),
+        //        Constants.CHAR_MOVE_SPEED,
+        //        onMoveComplete));
+        //toTile.CharacterControllerId = _characterController.Id;
+
         CommandController.Instance.ExecuteCommand(
             new MoveCommand(
                 gameObject,
                 _breadthFirstSearch.GetPathToTile(toTile),
                 Constants.CHAR_MOVE_SPEED,
+                onMoveComplete,
+                true,
+                skipMovement));
+        toTile.CharacterControllerId = _characterController.Id;
+    }
+
+    public virtual void MoveToTile(Tile fromTile, Tile toTile, float newSpeed = Constants.CHAR_MOVE_SPEED, System.Action onMoveComplete = null)
+    {
+        if (fromTile == null || toTile == null)
+        {
+            return;
+        }
+
+        fromTile.CharacterControllerId = null;
+        //CommandController.Instance.ExecuteCommand(
+        //    new MoveCommand(
+        //        gameObject,
+        //        _breadthFirstSearch.GetPathToTile(toTile),
+        //        Constants.CHAR_MOVE_SPEED,
+        //        onMoveComplete));
+        //toTile.CharacterControllerId = _characterController.Id;
+
+        CommandController.Instance.ExecuteCommand(
+            new MoveCommand(
+                gameObject,
+                _breadthFirstSearch.GetPathToTile(toTile),
+                newSpeed,
                 onMoveComplete));
         toTile.CharacterControllerId = _characterController.Id;
     }
