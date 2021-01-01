@@ -177,7 +177,7 @@ public class CharacterController : MonoBehaviour
         return _moveController.CalculateAvailableMoves();
     }
 
-    private ActionController GetActionController(Action action)
+    public ActionController GetActionController(Action action)
     {
         foreach (var actionController in _actionControllers)
         {

@@ -10,8 +10,6 @@ public class ActionViewer : MonoBehaviour
 
     protected bool _actionIsDisplayed = false;
     protected float _areaOfAffect;
-    protected float _minRange;
-    protected float _maxRange;
     protected const GridHighlightRank AOE_COLOR = GridHighlightRank.Secondary;
     protected const GridHighlightRank RANGE_COLOR = GridHighlightRank.Tertiary;
     protected Dictionary<(int, int), Tile> _activeActionTiles = new Dictionary<(int, int), Tile>();
@@ -29,16 +27,15 @@ public class ActionViewer : MonoBehaviour
         }
     }
 
-    public void DisplayAction(float areaOfAffect, float ActionMinRange, float ActionMaxRange)
+    public void DisplayAction(float areaOfAffect, Dictionary<(int, int), Tile> activeActionTiles)
     {
         if (_characterController == null)
         {
             _characterController = GetComponent<CharacterController>();
         }
 
+        _activeActionTiles = activeActionTiles;
         _areaOfAffect = areaOfAffect;
-        _minRange = ActionMinRange;
-        _maxRange = ActionMaxRange;
         _actionIsDisplayed = true;
         ShowActionAoeAroundMouse();
         ShowActionRange();
@@ -85,7 +82,11 @@ public class ActionViewer : MonoBehaviour
 
     protected virtual void ShowActionRange()
     {
-        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
-        _activeActionTiles = TileGridController.Instance.HighlightRadius(x, y, _minRange, _maxRange, RANGE_COLOR);
+        TileGridController.Instance.HighlightTiles(_activeActionTiles, RANGE_COLOR);
+    }
+
+    public Dictionary<(int, int), Tile> GetAffectedTiles()
+    {
+        return _activeActionTiles;
     }
 }

@@ -36,6 +36,7 @@ public class GridPointCalculator : MonoBehaviour
 
         Initialize();
         CalculateGridPointsNearPlayerCharacters();
+        CalculateGridPointsNearAllyCharacters();
     }
 
     private void Initialize()
@@ -72,18 +73,75 @@ public class GridPointCalculator : MonoBehaviour
         }
     }
 
+    #region Grid Points Nearby Player Characters
+
     private void CalculateGridPointsNearPlayerCharacters()
     {
         foreach (var playerCharacter in _playerCharacters.Values)
         {
             AddPointsForPromiximityToPlayerCharacter(playerCharacter);
+            AddPointsForTilesPlayerCharacterCanMoveTo(playerCharacter);
+            AddPointsForTilesPlayerCharacterCanAttack(playerCharacter);
         }
     }
 
     private void AddPointsForPromiximityToPlayerCharacter(CharacterController playerCharacterController)
     {
-        var tile = _grid.GetValue(playerCharacterController.transform.position);
         var adjacencyPoints = _currentAiCharacter.Character.AICharacterHeuristics.OpponentHeuristics.OpponentAdjacencyPoints;
+        AddPointsForPromiximityToCharacter(playerCharacterController, adjacencyPoints);
+    }
+
+    private void AddPointsForTilesPlayerCharacterCanMoveTo(CharacterController playerCharacterController)
+    {
+        var proximityPoints = _currentAiCharacter.Character.AICharacterHeuristics.OpponentHeuristics.OpponentProximityPoints;
+        AddPointsForTilesCharacterCanMoveTo(playerCharacterController, proximityPoints);
+    }
+
+    private void AddPointsForTilesPlayerCharacterCanAttack(CharacterController playerCharacterController)
+    {
+        var attackPoints = _currentAiCharacter.Character.AICharacterHeuristics.OpponentHeuristics.OpponentAreaOfAttackPoints;
+        AddPointsForTilesCharacterCanAttack(playerCharacterController, attackPoints);
+    }
+
+    #endregion
+
+    #region Grid Points Nearby Ally Characters
+
+    private void CalculateGridPointsNearAllyCharacters()
+    {
+        foreach (var allyCharacter in _aiCharacters.Values)
+        {
+            AddPointsForPromiximityToAllyCharacter(allyCharacter);
+            AddPointsForTilesAllyCharacterCanMoveTo(allyCharacter);
+            AddPointsForTilesAllyCharacterCanAttack(allyCharacter);
+        }
+    }
+
+    private void AddPointsForPromiximityToAllyCharacter(CharacterController allyCharacterController)
+    {
+        var adjacencyPoints = _currentAiCharacter.Character.AICharacterHeuristics.AllyHeuristics.AllyAdjacencyPoints;
+        AddPointsForPromiximityToCharacter(allyCharacterController, adjacencyPoints);
+    }
+
+    private void AddPointsForTilesAllyCharacterCanMoveTo(CharacterController allyCharacterController)
+    {
+        var proximityPoints = _currentAiCharacter.Character.AICharacterHeuristics.AllyHeuristics.AllyProximityPoints;
+        AddPointsForTilesCharacterCanMoveTo(allyCharacterController, proximityPoints);
+    }
+
+    private void AddPointsForTilesAllyCharacterCanAttack(CharacterController allyCharacterController)
+    {
+        var attackPoints = _currentAiCharacter.Character.AICharacterHeuristics.AllyHeuristics.AllyAttackCoveragePoints;
+        AddPointsForTilesCharacterCanAttack(allyCharacterController, attackPoints);
+    }
+
+    #endregion
+
+    #region Shared Heuristic Functions
+
+    private void AddPointsForPromiximityToCharacter(CharacterController playerCharacterController, int points)
+    {
+        var tile = _grid.GetValue(playerCharacterController.transform.position);
         var adjacentTiles = new[]{
             _grid.GetValue(tile.GridX + 1, tile.GridY),
             _grid.GetValue(tile.GridX - 1, tile.GridY),
@@ -93,10 +151,42 @@ public class GridPointCalculator : MonoBehaviour
         {
             if (adjacentTile != null)
             {
-                adjacentTile.Points += adjacencyPoints;
+                adjacentTile.Points += points;
             }
         }
     }
+
+    private void AddPointsForTilesCharacterCanMoveTo(CharacterController characterController, int points)
+    {
+        var tilesCharacterCanMoveTo = characterController.CalculateAvailableMoves();
+        foreach (var tile in tilesCharacterCanMoveTo.Values)
+        {
+            if (tile != null)
+            {
+                tile.Points += points;
+            }
+        }
+    }
+
+    private void AddPointsForTilesCharacterCanAttack(CharacterController characterController, int points)
+    {
+        var actions = characterController.Character.Weapon.Actions;
+        foreach (var action in actions)
+        {
+            var actionController = characterController.GetActionController(action);
+            if (actionController != null)
+            {
+                actionController.CalculateAffectedTiles();
+                var tiles = actionController.GetAffectedTiles();
+                foreach (var tile in tiles.Values)
+                {
+                    tile.Points += points;
+                }
+            }
+        }
+    }
+
+    #endregion
 
     #region Debugging Functions
 

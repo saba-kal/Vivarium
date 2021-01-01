@@ -26,6 +26,8 @@ public class AllyHeuristics
     [Range(-100, 100)]
     public int AllyProximityPoints;
     [Range(-100, 100)]
+    public int AllyAdjacencyPoints;
+    [Range(-100, 100)]
     public int AllyAttackCoveragePoints;
 }
 

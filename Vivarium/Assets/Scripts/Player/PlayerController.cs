@@ -110,15 +110,22 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var attackController = _selectedCharacter.GetActionController(action);
+        if (attackController == null)
+        {
+            Debug.LogError("Unable to display attack because an attack controller could not be found.\n" +
+                "Make sure your character has a weapon with attacks, and an attack controller that references it.");
+            return;
+        }
+
         DeselectAction();
         DeselectMove();
 
         _actionIsSelected = true;
         _selectedAction = action;
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
-        _selectedActionMinRange = StatCalculator.CalculateStat(action, StatType.AttackMinRange);
-        _selectedActionMaxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
-        attackViewer.DisplayAction(actionAOE, _selectedActionMinRange, _selectedActionMaxRange);
+        attackController.CalculateAffectedTiles();
+        attackViewer.DisplayAction(actionAOE, attackController.GetAffectedTiles());
         UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");

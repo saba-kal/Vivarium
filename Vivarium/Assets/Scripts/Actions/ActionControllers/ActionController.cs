@@ -4,13 +4,15 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-public class ActionController : MonoBehaviour
+public class ActionController : MonoBehaviour, IActionController
 {
     public Action ActionReference;
     public ParticleSystem ParticleEffectPrefab;
     public float ParticleAffectLifetime = 5f;
 
     protected CharacterController _characterController;
+
+    protected Dictionary<(int, int), Tile> _tilesActionCanAffect = new Dictionary<(int, int), Tile>();
 
     private void Start()
     {
@@ -143,5 +145,18 @@ public class ActionController : MonoBehaviour
         var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
         Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+    }
+
+    public virtual void CalculateAffectedTiles()
+    {
+        var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
+        var maxRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMaxRange);
+        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
+        _tilesActionCanAffect = TileGridController.Instance.GetTilesInRadius(x, y, minRange, maxRange);
+    }
+
+    public Dictionary<(int, int), Tile> GetAffectedTiles()
+    {
+        return _tilesActionCanAffect;
     }
 }
