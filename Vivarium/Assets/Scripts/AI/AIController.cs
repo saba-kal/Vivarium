@@ -12,6 +12,8 @@ public class AIController : MonoBehaviour
     protected List<CharacterController> _playerCharacters = new List<CharacterController>();
     protected GameObject _mainCamera;
 
+    public bool skipEnemyPhase = false;
+
     void OnEnable()
     {
         CharacterController.OnDeath += OnCharacterDeath;
@@ -39,7 +41,7 @@ public class AIController : MonoBehaviour
             if (path != null)
             {
                 EnterCameraFocusCommand();
-                _aiCharacter.MoveAlongPath(path);
+                _aiCharacter.MoveAlongPath(path, null, skipEnemyPhase);
             }
         }
         else if (AICanAttack(out var attack, out var targetCharacter))
@@ -50,7 +52,10 @@ public class AIController : MonoBehaviour
 
     private void EnterCameraFocusCommand()
     {
-        _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+        if (skipEnemyPhase == false)
+        {
+            _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+        }
     }
 
     protected virtual bool AICanAttack(out Action bestAttack, out Tile targetTile)
@@ -198,5 +203,17 @@ public class AIController : MonoBehaviour
                 _playerCharacters.RemoveAt(i);
             }
         }
+    }
+
+    public void turnOnSkipEnemyPhase()
+    {
+        skipEnemyPhase = true;
+        Debug.Log(this.gameObject.name + " set to: " + skipEnemyPhase);
+    }
+
+    public void turnOffSkipEnemyPhase()
+    {
+        skipEnemyPhase = false;
+        Debug.Log(this.gameObject.name + " set to: " + skipEnemyPhase);
     }
 }

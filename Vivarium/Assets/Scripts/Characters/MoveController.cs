@@ -70,7 +70,7 @@ public class MoveController : MonoBehaviour
         toTile.CharacterControllerId = _characterController.Id;
     }
 
-    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null)
+    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (path == null || path.Count == 0)
         {
@@ -84,7 +84,9 @@ public class MoveController : MonoBehaviour
                 gameObject,
                 path,
                 Constants.CHAR_MOVE_SPEED,
-                onMoveComplete));
+                onMoveComplete,
+                true,
+                skipMovement));
         path.Last().CharacterControllerId = _characterController.Id;
     }
 }

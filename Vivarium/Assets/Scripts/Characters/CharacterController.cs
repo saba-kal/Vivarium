@@ -101,7 +101,7 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null)
+    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (path == null || path.Count == 0)
         {
@@ -111,7 +111,7 @@ public class CharacterController : MonoBehaviour
 
         if (_moveController != null)
         {
-            _moveController.MoveAlongPath(path, onMoveComplete);
+            _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
             _hasMoved = true;
             Deselect();
         }
