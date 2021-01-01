@@ -40,7 +40,7 @@ public class BigCharacterController : CharacterController
         }
     }
 
-    public override void MoveToTile(Tile tile, System.Action onMoveComplete = null)
+    public override void MoveToTile(Tile tile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         base.MoveToTile(tile, onMoveComplete);
     }

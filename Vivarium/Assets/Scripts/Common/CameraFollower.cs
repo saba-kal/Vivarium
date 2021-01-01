@@ -12,7 +12,7 @@ public class CameraFollower : MonoBehaviour
 
     public float defaultZoom;
     public float resetZoom;
-
+    public float gameTilt;
     public float ExtraCameraFollowSpeed;
 
     public GameObject[] focusCharacters;
@@ -61,9 +61,12 @@ public class CameraFollower : MonoBehaviour
     {
         this.gameObject.transform.parent = null;
         this.transform.localPosition = new Vector3(0, 0, 0);
-        Camera_Mover.transform.localPosition = new Vector3(0, 0, -5);
+        Camera_Mover.transform.localPosition = new Vector3(0, 0, -14);
         Camera.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.rotation = Quaternion.identity;
+        float tiltAroundX = -gameTilt;
+        Quaternion target = Quaternion.Euler(tiltAroundX, 0, 0);
+        Camera.transform.rotation = target;
         ResetZoom();
 
         TurnSystemManager.Instance?.PlayerController.DeselectCharacter();
@@ -89,11 +92,12 @@ public class CameraFollower : MonoBehaviour
 
     public void CameraMoveToReset()
     {
+        this.gameObject.transform.parent = null;
         CommandController.Instance.ExecuteCommand(
         new WaitCommand()
         );
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, 0), ExtraCameraFollowSpeed, 1)
+        new MoveCameraCommand(new Vector3(0, 0, -14 + Constants.CAMERA_FOLLOW_SKEW), ExtraCameraFollowSpeed, 1)
         );
         CommandController.Instance.ExecuteCommand(
         new UnlockCameraCommand()

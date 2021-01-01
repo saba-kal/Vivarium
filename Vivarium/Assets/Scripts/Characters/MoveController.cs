@@ -51,7 +51,7 @@ public class MoveController : MonoBehaviour
             _availableMoves.ContainsKey((tile.GridX, tile.GridY));
     }
 
-    public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null)
+    public virtual void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (fromTile == null || toTile == null)
         {
@@ -64,7 +64,9 @@ public class MoveController : MonoBehaviour
                 gameObject,
                 _breadthFirstSearch.GetPathToTile(toTile),
                 Constants.CHAR_MOVE_SPEED,
-                onMoveComplete));
+                onMoveComplete,
+                true,
+                skipMovement));
         toTile.CharacterControllerId = _characterController.Id;
     }
 

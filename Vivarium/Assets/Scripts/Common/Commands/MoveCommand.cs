@@ -12,13 +12,15 @@ public class MoveCommand : ICommand
 
     private bool _rotationEnabled = true;
     private bool _isRotating = false;
+    private bool _skipMovement = false;
 
     public MoveCommand(
         GameObject gameObject,
         List<Tile> path,
         float speed,
         System.Action onMoveComplete = null,
-        bool roatationEnabled = true)
+        bool roatationEnabled = true,
+        bool skipMovement = false)
     {
         _gameObject = gameObject;
         _path = path;
@@ -26,6 +28,7 @@ public class MoveCommand : ICommand
         _grid = TileGridController.Instance.GetGrid();
         _onMoveComplete = onMoveComplete;
         _rotationEnabled = roatationEnabled;
+        _skipMovement = skipMovement;
     }
 
     public IEnumerator Execute()
@@ -39,6 +42,7 @@ public class MoveCommand : ICommand
         var pathQueue = new Queue<Tile>(_path);
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
+        Debug.Log("TARGET POSITION: " + targetPosition);
         _isRotating = true;
 
         while (targetTile != null && _gameObject != null)
@@ -49,7 +53,16 @@ public class MoveCommand : ICommand
             }
             else
             {
-                _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
+                if (_skipMovement)
+                {
+                    _gameObject.transform.position = targetPosition;
+                }
+                else
+                {
+                    _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
+                }
+
+
 
                 if (targetPosition == _gameObject.transform.position)
                 {
