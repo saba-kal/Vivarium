@@ -8,6 +8,7 @@ public class AICharacterHeuristics : ScriptableObject
     public ObjectiveHeuristics ObjectiveHeuristics;
     public AllyHeuristics AllyHeuristics;
     public OpponentHeuristics OpponentHeuristics;
+    public SelfHeuristics SelfHeuristics;
 }
 
 [Serializable]
@@ -40,4 +41,11 @@ public class OpponentHeuristics
     public int OpponentAdjacencyPoints;
     [Range(-100, 100)]
     public int OpponentAreaOfAttackPoints;
+}
+
+[Serializable]
+public class SelfHeuristics
+{
+    [Range(-100, 100)]
+    public int TilesCharacterCanAttackPoints;
 }

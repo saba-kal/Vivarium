@@ -17,10 +17,12 @@ MonoBehaviour:
     ObjectiveGuardRadius: 0
     DistanceMultiplier: 0
   AllyHeuristics:
-    AllyProximityPoints: -68
-    AllyAdjacencyPoints: -13
-    AllyAttackCoveragePoints: 49
+    AllyProximityPoints: 27
+    AllyAdjacencyPoints: 24
+    AllyAttackCoveragePoints: 27
   OpponentHeuristics:
-    OpponentProximityPoints: 56
-    OpponentAdjacencyPoints: 29
-    OpponentAreaOfAttackPoints: -57
+    OpponentProximityPoints: 18
+    OpponentAdjacencyPoints: 20
+    OpponentAreaOfAttackPoints: -40
+  SelfHeuristics:
+    TilesCharacterCanAttackPoints: 0

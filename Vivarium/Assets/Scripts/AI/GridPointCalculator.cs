@@ -37,6 +37,7 @@ public class GridPointCalculator : MonoBehaviour
         Initialize();
         CalculateGridPointsNearPlayerCharacters();
         CalculateGridPointsNearAllyCharacters();
+        CalculateGridPointsForSelf();
     }
 
     private void Initialize()
@@ -137,6 +138,36 @@ public class GridPointCalculator : MonoBehaviour
 
     #endregion
 
+    #region Grid Points for Self
+
+    private void CalculateGridPointsForSelf()
+    {
+        AddPointsToTilesYouCanAttackFrom();
+    }
+
+    private void AddPointsToTilesYouCanAttackFrom()
+    {
+        var navigableTiles = _currentAiCharacter.CalculateAvailableMoves();
+        foreach (var tile in navigableTiles.Values)
+        {
+            var attackPoints = _currentAiCharacter.Character.AICharacterHeuristics.SelfHeuristics.TilesCharacterCanAttackPoints;
+            var affectedTiles = GetTilesAffectedByAttacks(_currentAiCharacter, tile.GridX, tile.GridY);
+            foreach (var affectedTile in affectedTiles.Values)
+            {
+                if (!string.IsNullOrEmpty(affectedTile.CharacterControllerId))
+                {
+                    var characterController = TurnSystemManager.Instance.GetCharacterController(affectedTile.CharacterControllerId);
+                    if (characterController != null && !characterController.IsEnemy)
+                    {
+                        tile.Points += attackPoints;
+                    }
+                }
+            }
+        }
+    }
+
+    #endregion
+
     #region Shared Heuristic Functions
 
     private void AddPointsForPromiximityToCharacter(CharacterController playerCharacterController, int points)
@@ -170,20 +201,37 @@ public class GridPointCalculator : MonoBehaviour
 
     private void AddPointsForTilesCharacterCanAttack(CharacterController characterController, int points)
     {
+        var characterTile = _grid.GetValue(characterController.transform.position);
+        var tiles = GetTilesAffectedByAttacks(characterController, characterTile.GridX, characterTile.GridY);
+        foreach (var tile in tiles.Values)
+        {
+            tile.Points += points;
+        }
+    }
+
+    private Dictionary<(int, int), Tile> GetTilesAffectedByAttacks(
+        CharacterController characterController,
+        int x,
+        int y)
+    {
         var actions = characterController.Character.Weapon.Actions;
+        var resultTiles = new Dictionary<(int, int), Tile>();
+
         foreach (var action in actions)
         {
             var actionController = characterController.GetActionController(action);
             if (actionController != null)
             {
-                actionController.CalculateAffectedTiles();
+                actionController.CalculateAffectedTiles(x, y);
                 var tiles = actionController.GetAffectedTiles();
                 foreach (var tile in tiles.Values)
                 {
-                    tile.Points += points;
+                    resultTiles[(tile.GridX, tile.GridY)] = tile;
                 }
             }
         }
+
+        return resultTiles;
     }
 
     #endregion

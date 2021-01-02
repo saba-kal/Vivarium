@@ -149,9 +149,14 @@ public class ActionController : MonoBehaviour, IActionController
 
     public virtual void CalculateAffectedTiles()
     {
+        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
+        CalculateAffectedTiles(x, y);
+    }
+
+    public virtual void CalculateAffectedTiles(int x, int y)
+    {
         var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
         var maxRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMaxRange);
-        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
         _tilesActionCanAffect = TileGridController.Instance.GetTilesInRadius(x, y, minRange, maxRange);
     }
 

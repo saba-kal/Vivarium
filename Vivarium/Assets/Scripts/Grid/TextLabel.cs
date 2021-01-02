@@ -11,7 +11,7 @@ public class TextLabel : MonoBehaviour
         TextObject.text = text;
         if (int.TryParse(text, out var integer))
         {
-            var lerpAmount = integer / 200f;
+            var lerpAmount = integer / 400f;
             if (integer < 0)
             {
                 TextObject.color = Color.Lerp(Color.white, Color.red, -lerpAmount);

@@ -78,12 +78,12 @@ public class ProjectileActionController : ActionController
         yield return null;
     }
 
-    public override void CalculateAffectedTiles()
+    public override void CalculateAffectedTiles(int x, int y)
     {
         var gridController = TileGridController.Instance;
         var grid = gridController.GetGrid();
 
-        var startTile = grid.GetValue(transform.position);
+        var startTile = grid.GetValue(x, y);
         var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
         var maxRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMaxRange);
         var tilesInRange = gridController.GetTilesInRadius(startTile.GridX, startTile.GridY, minRange, maxRange);
