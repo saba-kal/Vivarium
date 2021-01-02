@@ -19,6 +19,8 @@ MonoBehaviour:
   - Curious Ant
   MinMaxHealth: 52
   MaxMaxHealth: 72
+  MinAttackDamage: 1
+  MaxAttackDamage: 1
   MinMoveRange: 8
   MaxMoveRange: 12
   NavigableTiles: 00000000

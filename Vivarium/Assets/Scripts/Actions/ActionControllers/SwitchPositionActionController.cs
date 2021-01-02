@@ -42,14 +42,13 @@ public class SwitchPositionActionController : ActionController
             UnityEngine.Debug.Log("Attempted to switch positions onto unnavigable tile ");
         }
 
-        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
+        var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
         if (charactersCanMove)
         {
             MoveCharacter(_characterController, playerPath);
-            targetTile.CharacterControllerId = _characterController.Id;
 
             //Checks if target will die before moving them
             //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
@@ -67,6 +66,7 @@ public class SwitchPositionActionController : ActionController
 
         targetCharacter.TakeDamage(damage);
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        targetTile.CharacterControllerId = _characterController.Id;
     }
 
     private void MoveCharacter(CharacterController characterController, List<Tile> path)

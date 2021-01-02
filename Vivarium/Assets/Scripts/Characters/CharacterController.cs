@@ -18,6 +18,7 @@ public class CharacterController : MonoBehaviour
     public GameObject Model;
 
     private float _maxHealth;
+    private float _attackDamage;
     private float _maxShield;
     private HealthController _healthController;
     private MoveController _moveController;
@@ -42,6 +43,7 @@ public class CharacterController : MonoBehaviour
         _moveController = GetComponent<MoveController>();
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
+        _attackDamage = Character.AttackDamage;
         PlaceSelfInGrid();
     }
 
@@ -322,5 +324,10 @@ public class CharacterController : MonoBehaviour
     public HealthController GetHealthController()
     {
         return _healthController;
+    }
+
+    public float GetAttackDamage()
+    {
+        return _attackDamage;
     }
 }
