@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: SnipeAttack32443
   Name: Snipe
   Description: A straight shot that cannot go through units or walls.
+  SoundName: TestAttackSound
   BaseDamage: 17
   CriticalChance: 0
   CriticalMultiplier: 0

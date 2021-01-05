@@ -35,6 +35,7 @@ public class ActionController : MonoBehaviour, IActionController
                 targetTile,
                 true));
 
+        PlaySound();
         this.ExecuteAction(affectedTiles);
     }
 
@@ -142,9 +143,14 @@ public class ActionController : MonoBehaviour, IActionController
             Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
             return;
         }
-        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
+        var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
         Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+    }
+
+    protected void PlaySound()
+    {
+        SoundManager.GetInstance()?.Play(ActionReference.SoundName);
     }
 
     public virtual void CalculateAffectedTiles()

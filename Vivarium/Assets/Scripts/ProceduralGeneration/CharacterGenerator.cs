@@ -44,6 +44,7 @@ public class CharacterGenerator
         character.Id = Guid.NewGuid().ToString();
         character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
         character.MaxHealth = UnityEngine.Random.Range(characterProfile.MinMaxHealth, characterProfile.MaxMaxHealth);
+        character.AttackDamage = UnityEngine.Random.Range(characterProfile.MinAttackDamage, characterProfile.MaxAttackDamage);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
         character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;

@@ -60,6 +60,7 @@ public class ProjectileActionController : ActionController
             StartCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, startPosition, endPosition));
         }
 
+        PlaySound();
         ExecuteAction(affectedTiles);
     }
 

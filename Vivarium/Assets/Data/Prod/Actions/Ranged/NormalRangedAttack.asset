@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: NormalRangedAttack32443
   Name: Shoot
   Description: A standard shot from a bow
+  SoundName: TestAttackSound
   BaseDamage: 13
   CriticalChance: 0
   CriticalMultiplier: 0

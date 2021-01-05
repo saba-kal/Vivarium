@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: NailHammerNormal123
   Name: Swing
   Description: A simple swing that deals damage to one target
+  SoundName: TestAttackSound
   BaseDamage: 16
   CriticalChance: 0
   CriticalMultiplier: 0
