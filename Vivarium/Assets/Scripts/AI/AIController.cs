@@ -96,7 +96,7 @@ public class AIController : MonoBehaviour
             {
                 if (Vector3.Distance(_aiCharacter.transform.position, playerCharacter.transform.position) >= attack.MinRange - attack.AreaOfAffect)
                 {
-                    var potentialDamage = StatCalculator.CalculateStat(attack, StatType.Damage);
+                    var potentialDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
                     if (potentialDamage > maxPotentialDamage)
                     {
                         maxPotentialDamage = potentialDamage;

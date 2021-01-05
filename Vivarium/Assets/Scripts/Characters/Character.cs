@@ -8,6 +8,7 @@ public class Character
     public string Id;
     public string Name;
     public float MaxHealth;
+    public float AttackDamage;
     public float MoveRange;
     public List<Attribute> Attributes;
     public Weapon Weapon;
