@@ -121,9 +121,11 @@ public class CharacterController : MonoBehaviour
         if (_healthController.TakeDamage(damage))
         {
             OnDeath(this);
+            SoundManager.GetInstance()?.Play(Constants.DEATH_SOUND);
             return true;
         }
 
+        SoundManager.GetInstance()?.Play(Constants.DAMAGE_TAKEN_SOUND);
         return false;
     }
 

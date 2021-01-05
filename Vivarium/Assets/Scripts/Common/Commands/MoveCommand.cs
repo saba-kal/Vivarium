@@ -9,6 +9,7 @@ public class MoveCommand : ICommand
     private float _speed;
     private Grid<Tile> _grid;
     private System.Action _onMoveComplete;
+    private SoundManager _soundManager;
 
     private bool _rotationEnabled = true;
     private bool _isRotating = false;
@@ -29,6 +30,7 @@ public class MoveCommand : ICommand
         _onMoveComplete = onMoveComplete;
         _rotationEnabled = roatationEnabled;
         _skipMovement = skipMovement;
+        _soundManager = SoundManager.GetInstance();
     }
 
     public IEnumerator Execute()
@@ -45,11 +47,13 @@ public class MoveCommand : ICommand
         Debug.Log("TARGET POSITION: " + targetPosition);
         _isRotating = true;
 
+        _soundManager?.Play(Constants.WALK_SOUND);
         while (targetTile != null && _gameObject != null)
         {
             if (_isRotating && _rotationEnabled)
             {
                 FaceMovementDirection(_gameObject.transform.position, targetPosition);
+                _soundManager?.Pause(Constants.WALK_SOUND);
             }
             else
             {
@@ -59,6 +63,7 @@ public class MoveCommand : ICommand
                 }
                 else
                 {
+                    _soundManager?.Resume(Constants.WALK_SOUND);
                     _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
                 }
 
@@ -82,6 +87,7 @@ public class MoveCommand : ICommand
             yield return null;
         }
 
+        _soundManager?.Stop(Constants.WALK_SOUND);
         _onMoveComplete?.Invoke();
     }
 

@@ -47,6 +47,7 @@ public class GiantLazerActionController : ActionController
             }
         }
 
+        PlaySound();
         ExecuteAction(affectedTiles);
         AnimateAttack(targetTile1);
 

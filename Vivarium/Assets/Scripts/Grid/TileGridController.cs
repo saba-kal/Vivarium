@@ -156,6 +156,7 @@ public class TileGridController : MonoBehaviour
                 return;
             }
 
+            SoundManager.GetInstance()?.Play(Constants.GRID_CELL_CLICK_SOUND);
             OnGridCellClick?.Invoke(_mouseHoverTile);
         }
     }

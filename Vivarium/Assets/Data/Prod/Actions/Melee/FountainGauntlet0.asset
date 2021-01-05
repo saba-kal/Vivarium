@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: FountainGauntletNormal123
   Name: Stab
   Description: A simple stab that deals damage to one target
+  SoundName: TestAttackSound
   BaseDamage: 12
   CriticalChance: 0
   CriticalMultiplier: 0

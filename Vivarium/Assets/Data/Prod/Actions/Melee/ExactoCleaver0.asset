@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: CleaveNormal123
   Name: Slash
   Description: A simple slash that deals damage to one target
+  SoundName: TestAttackSound
   BaseDamage: 20
   CriticalChance: 0
   CriticalMultiplier: 0

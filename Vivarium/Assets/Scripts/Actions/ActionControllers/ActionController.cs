@@ -33,6 +33,7 @@ public class ActionController : MonoBehaviour
                 targetTile,
                 true));
 
+        PlaySound();
         this.ExecuteAction(affectedTiles);
     }
 
@@ -143,5 +144,10 @@ public class ActionController : MonoBehaviour
         var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
         Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+    }
+
+    protected void PlaySound()
+    {
+        SoundManager.GetInstance()?.Play(ActionReference.SoundName);
     }
 }

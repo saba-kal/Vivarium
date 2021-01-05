@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: NailHammerAttack123
   Name: Shove
   Description: A thrusting attack that pushes an enemy backward
+  SoundName: TestAttackSound
   BaseDamage: 14
   CriticalChance: 1
   CriticalMultiplier: 0

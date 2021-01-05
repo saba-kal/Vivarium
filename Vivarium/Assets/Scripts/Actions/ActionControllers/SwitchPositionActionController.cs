@@ -63,7 +63,6 @@ public class SwitchPositionActionController : ActionController
             }
         }
 
-
         targetCharacter.TakeDamage(damage);
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
         targetTile.CharacterControllerId = _characterController.Id;
