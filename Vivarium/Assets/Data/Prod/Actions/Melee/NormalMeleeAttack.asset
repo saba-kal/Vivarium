@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: NormalMeleeAttack123
   Name: Normal Attack
   Description: shouldn't occur
+  SoundName: TestAttackSound
   BaseDamage: 100
   CriticalChance: 1
   CriticalMultiplier: 0

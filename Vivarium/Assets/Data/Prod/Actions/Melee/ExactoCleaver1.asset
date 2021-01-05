@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: CleaveAttack123
   Name: Cleave
   Description: An Area of Effect attack centered on the attacker
+  SoundName: TestAttackSound
   BaseDamage: 14
   CriticalChance: 1
   CriticalMultiplier: 0

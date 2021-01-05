@@ -16,6 +16,7 @@ MonoBehaviour:
   Name: Rend
   Description: A stab and pull attack that forces the target to swap places with
     the user
+  SoundName: TestAttackSound
   BaseDamage: 10
   CriticalChance: 1
   CriticalMultiplier: 0
