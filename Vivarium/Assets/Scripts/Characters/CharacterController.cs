@@ -123,10 +123,10 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void PerformAction(Action attack, Tile targetTile)
+    public void PerformAction(Action attack, Tile targetTile, System.Action onActionComplete = null)
     {
         var actionController = GetActionController(attack);
-        actionController.Execute(targetTile);
+        actionController.Execute(targetTile, onActionComplete);
         _hasAttacked = true;
     }
 

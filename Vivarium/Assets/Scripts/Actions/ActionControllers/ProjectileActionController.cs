@@ -9,7 +9,7 @@ public class ProjectileActionController : ActionController
     public Vector3 ProjectileStartPosition;
     public Transform ProjectileTransform;
 
-    public override void Execute(Tile targetTile)
+    public override void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
         {
@@ -20,6 +20,7 @@ public class ProjectileActionController : ActionController
         Tile startTile = grid.GetValue(transform.position);
         if (startTile == null || targetTile == null)
         {
+            onActionComplete?.Invoke();
             return;
         }
 
@@ -49,6 +50,7 @@ public class ProjectileActionController : ActionController
 
         if (!affectedTiles.ContainsKey((targetTile.GridX, targetTile.GridY)))
         {
+            onActionComplete?.Invoke();
             return;
         }
 
@@ -62,6 +64,7 @@ public class ProjectileActionController : ActionController
 
         PlaySound();
         ExecuteAction(affectedTiles);
+        onActionComplete?.Invoke();
     }
 
     private IEnumerator AnimateProjectile(GameObject projectilePrefab, Vector3 startPosition, Vector3 endPosition)

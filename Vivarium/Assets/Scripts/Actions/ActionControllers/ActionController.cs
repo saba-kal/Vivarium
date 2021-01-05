@@ -19,7 +19,7 @@ public class ActionController : MonoBehaviour, IActionController
         _characterController = GetComponent<CharacterController>();
     }
 
-    public virtual void Execute(Tile targetTile)
+    public virtual void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
         {
@@ -37,6 +37,7 @@ public class ActionController : MonoBehaviour, IActionController
 
         PlaySound();
         this.ExecuteAction(affectedTiles);
+        onActionComplete?.Invoke();
     }
 
     // Looks at the action's animation type and performs the animation accordingly 
@@ -155,6 +156,11 @@ public class ActionController : MonoBehaviour, IActionController
 
     public virtual void CalculateAffectedTiles()
     {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
         TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
         CalculateAffectedTiles(x, y);
     }

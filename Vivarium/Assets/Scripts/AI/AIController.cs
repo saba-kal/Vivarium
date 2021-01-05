@@ -5,7 +5,7 @@ using System.IO;
 
 public class AIController : MonoBehaviour
 {
-    private const int MAX_MOVE_CALC_ITERATIONS = 100;
+    private const int MAX_MOVE_CALC_ITERATIONS = 50;
 
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
@@ -30,6 +30,42 @@ public class AIController : MonoBehaviour
         _grid = TileGridController.Instance.GetGrid();
         _aiCharacter = GetComponent<CharacterController>();
         _mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+    }
+
+    public virtual void Initialize(List<CharacterController> playerCharacters)
+    {
+        _playerCharacters = playerCharacters;
+    }
+
+    public virtual void Move(
+        System.Action onComplete)
+    {
+        if (AICanMove(out var path))
+        {
+            // lock on here
+            if (path != null)
+            {
+                EnterCameraFocusCommand();
+                _aiCharacter.MoveAlongPath(path, onComplete, skipEnemyPhase);
+            }
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
+    }
+
+    public virtual void PerformAction(
+        System.Action onComplete)
+    {
+        if (AICanAttack(out var attack, out var targetCharacter))
+        {
+            _aiCharacter.PerformAction(attack, targetCharacter, onComplete);
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
     }
 
     public virtual void Execute(List<CharacterController> playerCharacters)
@@ -121,18 +157,24 @@ public class AIController : MonoBehaviour
             return false;
         }
 
+        var breadthFirstSearch = new BreadthFirstSearch(_grid);
+        breadthFirstSearch.Execute(_grid.GetValue(_aiCharacter.transform.position), 10000, _aiCharacter.Character.NavigableTiles);
+        var allNavigableTiles = breadthFirstSearch.GetVisitedTiles();
+
         var aStar = new AStar(_aiCharacter.Character.NavigableTiles);
         var tilesToExclude = new List<Tile>();
         var iterations = 0;
         List<Tile> pathToTarget = null;
+
         while (pathToTarget == null)
         {
-            var targetTile = GetTileWithHighestPoints(tilesToExclude);
+            var targetTile = GetTileWithHighestPoints(tilesToExclude, allNavigableTiles.Values);
             pathToTarget = aStar.Execute(
                 _grid.GetValue(_aiCharacter.transform.position),
                 targetTile);
             if (pathToTarget == null)
             {
+                Debug.LogWarning($"Unable to find path to tile {targetTile.GridX}, {targetTile.GridY}. Retrying.");
                 tilesToExclude.Add(targetTile);
             }
             iterations++;
@@ -153,19 +195,15 @@ public class AIController : MonoBehaviour
         return true;
     }
 
-    private Tile GetTileWithHighestPoints(List<Tile> tilesToExclude)
+    private Tile GetTileWithHighestPoints(List<Tile> tilesToExclude, IEnumerable<Tile> allNavigableTiles)
     {
         Tile targetTile = _grid.GetValue(_aiCharacter.transform.position);
-        for (var x = 0; x < _grid.GetGrid().GetLength(0); x++)
+        foreach (var tile in allNavigableTiles)
         {
-            for (var y = 0; y < _grid.GetGrid().GetLength(1); y++)
+            if (tile.Points > targetTile.Points &&
+                !tilesToExclude.Contains(tile))
             {
-                var tile = _grid.GetValue(x, y);
-                if (tile.Points > targetTile.Points &&
-                    !tilesToExclude.Contains(tile))
-                {
-                    targetTile = tile;
-                }
+                targetTile = tile;
             }
         }
 
