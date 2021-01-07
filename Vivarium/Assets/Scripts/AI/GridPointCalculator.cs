@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using System.Linq;
 
 public class GridPointCalculator : MonoBehaviour
 {
     public TextLabel TextLabelPrefab;
     public bool ShowPreview;
-
 
     private Grid<Tile> _grid;
     private Tile _objectiveTile;
@@ -38,6 +38,7 @@ public class GridPointCalculator : MonoBehaviour
         CalculateGridPointsNearPlayerCharacters();
         CalculateGridPointsNearAllyCharacters();
         CalculateGridPointsForSelf();
+        CalculateGridPointsForEnvironment();
     }
 
     private void Initialize()
@@ -165,6 +166,153 @@ public class GridPointCalculator : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Grid Points For Environment
+
+    private void CalculateGridPointsForEnvironment()
+    {
+        AddPointsNearObjective();
+        AddPointsNearChokePoints();
+    }
+
+    private void AddPointsNearObjective()
+    {
+        _objectiveTile.Points += _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ObjectivePoints;
+
+        var breadthFirstSearch = new BreadthFirstSearch(_grid);
+        breadthFirstSearch.Execute(
+            _objectiveTile,
+            _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ObjectivePointsRange,
+            _currentAiCharacter.Character.NavigableTiles);
+
+        var tiles = breadthFirstSearch.GetVisitedTiles();
+        foreach (var tile in tiles.Values)
+        {
+            tile.Points += _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ObjectiveNearbyTilesPoints;
+        }
+    }
+
+    private void AddPointsNearChokePoints()
+    {
+        var aStar = new AStar(_currentAiCharacter.Character.NavigableTiles, true);
+        var pathToObjective = aStar.Execute(_grid.GetValue(0, 0), _objectiveTile);
+
+        foreach (var tile in pathToObjective)
+        {
+            if (NeighborTilesMakeItImpossibleForTileToBeChokepoint(tile))
+            {
+                continue;
+            }
+
+            foreach (var tilePattern in GetObstacleTilePatternsThatIndicateChokePoints(tile))
+            {
+                if (TilePatternIsChokePoint(tilePattern))
+                {
+                    tile.Points += _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ChokePointPoints;
+                    break;
+                }
+            }
+        }
+    }
+
+    private List<List<Tile>> GetObstacleTilePatternsThatIndicateChokePoints(Tile tile)
+    {
+        return new List<List<Tile>>
+            {
+                new List<Tile>{ //Top and bottom.
+                    _grid.GetValue(tile.GridX, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX, tile.GridY - 1),
+                },
+                new List<Tile>{ //Left and right.
+                    _grid.GetValue(tile.GridX - 1, tile.GridY),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY),
+                },
+                new List<Tile>{ //Top-left and bottom-right
+                    _grid.GetValue(tile.GridX - 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY - 1),
+                },
+                new List<Tile>{ //Top-Right and bottom-left
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY - 1),
+                },
+            };
+    }
+
+    private bool TilePatternIsChokePoint(List<Tile> tilePattern)
+    {
+        return tilePattern.All(t => t == null || t.Type == TileType.Obstacle || t.Type == TileType.Water);
+    }
+
+    private bool NeighborTilesMakeItImpossibleForTileToBeChokepoint(Tile tile)
+    {
+        var nonChokePointEdgeCases = new List<List<Tile>>
+            {
+                new List<Tile>{ //Top, top-right, right, bottom-right
+                    _grid.GetValue(tile.GridX, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY - 1),
+                },
+                new List<Tile>{ //Top, top-right, right, top-left
+                    _grid.GetValue(tile.GridX, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY + 1),
+                },
+                new List<Tile>{ //Right, bottom-right, bottom, bottom-left
+                    _grid.GetValue(tile.GridX + 1, tile.GridY),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY - 1),
+                },
+                new List<Tile>{ //Right, bottom-right, bottom, top-right
+                    _grid.GetValue(tile.GridX + 1, tile.GridY),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                },
+                new List<Tile>{ //Bottom, bottom-left, left, top-left
+                    _grid.GetValue(tile.GridX, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY + 1),
+                },
+                new List<Tile>{ //Bottom, bottom-left, left, bottom-right
+                    _grid.GetValue(tile.GridX, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY - 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY - 1),
+                },
+                new List<Tile>{ //Left, top-left, top, top-right
+                    _grid.GetValue(tile.GridX - 1, tile.GridY),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                },
+                new List<Tile>{ //Left, top-left, top, bottom-left
+                    _grid.GetValue(tile.GridX - 1, tile.GridY),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX + 1, tile.GridY + 1),
+                    _grid.GetValue(tile.GridX - 1, tile.GridY - 1),
+                },
+            };
+
+        var patternNum = 1;
+        foreach (var nonChokePointEdgeCase in nonChokePointEdgeCases)
+        {
+            if (nonChokePointEdgeCase.All(t => t != null && t.Type == TileType.Grass))
+            {
+                return true;
+            }
+            patternNum++;
+        }
+
+        return false;
+    }
+
 
     #endregion
 

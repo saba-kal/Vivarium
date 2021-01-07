@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 public class AIController : MonoBehaviour
 {
     private const int MAX_MOVE_CALC_ITERATIONS = 50;
+    private const float POINTS_FOR_KILLING_PLAYER_CHARACTER = 1000f;
 
     protected CharacterController _aiCharacter;
     protected Grid<Tile> _grid;
@@ -96,7 +98,6 @@ public class AIController : MonoBehaviour
 
     protected virtual bool AICanAttack(out Action bestAttack, out Tile targetTile)
     {
-        var maxPotentialDamage = 0f;
         bestAttack = null;
         targetTile = null;
         if (!_aiCharacter.IsAbleToAttack())
@@ -104,24 +105,16 @@ public class AIController : MonoBehaviour
             return false;
         }
 
-        foreach (var playerCharacter in _playerCharacters)
-        {
-            var mostAffectiveAttack = GetMostEffectiveAttack(playerCharacter, out var potentialDamage);
-            if (mostAffectiveAttack != null && potentialDamage > maxPotentialDamage)
-            {
-                maxPotentialDamage = potentialDamage;
-                bestAttack = mostAffectiveAttack;
-                targetTile = _grid.GetValue(playerCharacter.transform.position);
-            }
-        }
+        bestAttack = GetMostEffectiveAttack(out targetTile);
 
-        return bestAttack != null;
+        return bestAttack != null && targetTile != null;
     }
 
-    protected virtual Action GetMostEffectiveAttack(CharacterController playerCharacter, out float maxPotentialDamage)
+    protected virtual Action GetMostEffectiveAttack(out Tile tileToAttack)
     {
         Action bestAttack = null;
-        maxPotentialDamage = 0f;
+        var maxPotentialDamage = 0f;
+        tileToAttack = null;
 
         if (_aiCharacter.Character.Weapon?.Actions == null ||
             _aiCharacter.Character.Weapon.Actions.Count == 0)
@@ -132,17 +125,50 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
-            if (Vector3.Distance(_aiCharacter.transform.position, playerCharacter.transform.position) <= attack.MaxRange + attack.AreaOfAffect)
+            var potentialAttackDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
+            var totalPotentialDamage = 0f;
+            Tile potentialTileToAttack = null;
+
+            var attackController = _aiCharacter.GetActionController(attack);
+            attackController.CalculateAffectedTiles();
+            var tilesThatCanAttacked = attackController.GetAffectedTiles();
+
+            foreach (var targetTile in tilesThatCanAttacked.Values)
             {
-                if (Vector3.Distance(_aiCharacter.transform.position, playerCharacter.transform.position) >= attack.MinRange - attack.AreaOfAffect)
+                var areaOfAffect = StatCalculator.CalculateStat(attack, StatType.AttackAOE);
+                var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
+                var damageOnAffectedTiles = 0f;
+
+                foreach (var affectedTile in affectedTiles.Values)
                 {
-                    var potentialDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
-                    if (potentialDamage > maxPotentialDamage)
+                    var playerCharacter = _playerCharacters.FirstOrDefault(p => p.Id == affectedTile.CharacterControllerId);
+                    if (!string.IsNullOrEmpty(affectedTile.CharacterControllerId) &&
+                        playerCharacter != null)
                     {
-                        maxPotentialDamage = potentialDamage;
-                        bestAttack = attack;
+                        damageOnAffectedTiles += potentialAttackDamage;
+
+                        var playerHealth = playerCharacter.GetHealthController().GetCurrentHealth() +
+                            playerCharacter.GetHealthController().GetCurrentShield();
+
+                        if (playerHealth <= potentialAttackDamage)
+                        {
+                            damageOnAffectedTiles += POINTS_FOR_KILLING_PLAYER_CHARACTER;
+                        }
                     }
                 }
+
+                if (damageOnAffectedTiles > totalPotentialDamage)
+                {
+                    totalPotentialDamage = damageOnAffectedTiles;
+                    potentialTileToAttack = targetTile;
+                }
+            }
+
+            if (totalPotentialDamage > maxPotentialDamage)
+            {
+                maxPotentialDamage = totalPotentialDamage;
+                bestAttack = attack;
+                tileToAttack = potentialTileToAttack;
             }
         }
 

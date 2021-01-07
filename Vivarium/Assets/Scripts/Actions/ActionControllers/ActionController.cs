@@ -114,15 +114,6 @@ public class ActionController : MonoBehaviour, IActionController
         }
         Debug.Log("LOOK AT ME! : " + tile.CharacterControllerId);
 
-        var allTeamMembers = GameObject.FindGameObjectsWithTag("PlayerCharacter");
-        for (int i = 0; i < allTeamMembers.Length; i++)
-        {
-            if (tile.CharacterControllerId == allTeamMembers[i].gameObject.GetComponent<CharacterController>().Id)
-            {
-                return null;
-            }
-        }
-
         if (tile.CharacterControllerId == null || tile.CharacterControllerId == _characterController.Id)
         {
             return null;

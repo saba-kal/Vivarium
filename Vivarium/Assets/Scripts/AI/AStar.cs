@@ -6,12 +6,16 @@ using System.IO;
 
 public class AStar
 {
-    private Grid<PathNode> _grid;
+    private readonly Grid<PathNode> _grid;
+    private readonly List<TileType> _navigableTiles;
+    private readonly bool _ignoreCharacters;
+
     private List<PathNode> _openNodes;
     private List<PathNode> _closedNodes;
-    private List<TileType> _navigableTiles;
 
-    public AStar(List<TileType> navigableTiles)
+    public AStar(
+        List<TileType> navigableTiles,
+        bool ignoreCharacters = false)
     {
         var tileGrid = TileGridController.Instance.GetGrid();
         _grid = new Grid<PathNode>(
@@ -29,6 +33,7 @@ public class AStar
             });
 
         _navigableTiles = navigableTiles;
+        _ignoreCharacters = ignoreCharacters;
     }
 
     public List<Tile> Execute(Tile startTile, Tile endTile)
@@ -111,7 +116,7 @@ public class AStar
         return lowestCostNode;
     }
 
-    public List<Tile> GetPath(PathNode endNode)
+    private List<Tile> GetPath(PathNode endNode)
     {
         if (endNode == null)
         {
@@ -129,7 +134,7 @@ public class AStar
         return path;
     }
 
-    public List<PathNode> GetNeighbors(PathNode node)
+    private List<PathNode> GetNeighbors(PathNode node)
     {
         var adjacentNodes = new[]{
             _grid.GetValue(node.GridTile.GridX + 1, node.GridTile.GridY),
@@ -142,7 +147,7 @@ public class AStar
         {
             if (adjacentNode != null &&
                 _navigableTiles.Contains(adjacentNode.GridTile.Type) &&
-                string.IsNullOrEmpty(adjacentNode.GridTile.CharacterControllerId))
+                (_ignoreCharacters || string.IsNullOrEmpty(adjacentNode.GridTile.CharacterControllerId)))
             {
                 neighbors.Add(adjacentNode);
             }
