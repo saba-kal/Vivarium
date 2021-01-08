@@ -70,16 +70,6 @@ public class TurnSystemManager : MonoBehaviour
     {
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
         mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
-
-        //CommandController.Instance.ExecuteCommand(
-        //new WaitCommand()
-        //);
-        //CommandController.Instance.ExecuteCommand(
-        //new MoveCameraCommand(new Vector3(0, 0, 0), 1)
-        //);
-        //CommandController.Instance.ExecuteCommand(
-        //new UnlockCameraCommand()
-        //);
     }
 
     public CharacterController GetCharacterController(string id)
