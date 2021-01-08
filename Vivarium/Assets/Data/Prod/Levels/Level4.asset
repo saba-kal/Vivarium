@@ -20,12 +20,12 @@ MonoBehaviour:
   MinEnemyCharacters: 5
   MaxEnemyCharacters: 6
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: 97c6133276f5ada40a1ddb1c5a60aaf9, type: 2}
-  - {fileID: 11400000, guid: 38e9f181e3594d148bb66281a7cc0d47, type: 2}
+  - {fileID: 11400000, guid: 9610bc16cba6bd14e80895aceb68ea9f, type: 2}
+  - {fileID: 11400000, guid: 9610bc16cba6bd14e80895aceb68ea9f, type: 2}
+  - {fileID: 11400000, guid: 34312489483a8ea4f90cab38b0d8c3a2, type: 2}
+  - {fileID: 11400000, guid: 898eeb1853850c04e9ee5b568c7b4984, type: 2}
+  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
+  - {fileID: 11400000, guid: 3d6bb27f27c3e0845b8c11ce51a8eae3, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
   PossiblePlayerCharacters: []

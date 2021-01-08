@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
-  m_Name: EnemyAntLvl6_Ranged
+  m_Name: EnemyAntLvl7_Ranged
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Bow Ant (lv 6)
-  MinMaxHealth: 48
-  MaxMaxHealth: 72
+  MinMaxHealth: 53
+  MaxMaxHealth: 79
   MinAttackDamage: 0
   MaxAttackDamage: 0
   MinMoveRange: 9
