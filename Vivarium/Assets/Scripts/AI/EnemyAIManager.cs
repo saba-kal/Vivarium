@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using System.Threading;
 
 public class EnemyAIManager : MonoBehaviour
 {
@@ -7,10 +9,7 @@ public class EnemyAIManager : MonoBehaviour
     public static event FinishExecute OnFinishExecute;
 
     public List<CharacterController> AICharacters;
-
-    private bool _isPerformingActions = false;
-    private float _timeSinceLastAction = 0f;
-    private List<CharacterController> _playerCharacters = new List<CharacterController>();
+    public GridPointCalculator GridPointCalculator;
 
     public bool skipEnemyPhase = false;
 
@@ -45,33 +44,11 @@ public class EnemyAIManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        var playerCharacterObjects = GameObject.FindGameObjectsWithTag(Constants.PLAYER_CHAR_TAG);
-        foreach (var playerCharacterObject in playerCharacterObjects)
-        {
-            var playerCharacter = playerCharacterObject.GetComponent<CharacterController>();
-            if (playerCharacter != null)
-            {
-                _playerCharacters.Add(playerCharacter);
-            }
-        }
+        GridPointCalculator.PreviewGridPoints();
     }
 
     private void Update()
     {
-        //Execute AI a second time after first set of actions are done.
-        //So, this allows AI to move+attack.
-        if (_isPerformingActions)
-        {
-            _timeSinceLastAction += Time.deltaTime;
-
-            if (_timeSinceLastAction >= Constants.AI_DELAY_BETWEEN_ACTIONS && !CommandController.Instance.CommandsAreExecuting())
-            {
-                Execute();
-                _isPerformingActions = false;
-                OnFinishExecute?.Invoke();
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log(skipEnemyPhase);
@@ -88,21 +65,50 @@ public class EnemyAIManager : MonoBehaviour
 
     public void Execute()
     {
-        _timeSinceLastAction = 0f;
-        _isPerformingActions = true;
+        StartCoroutine(ExecuteAIControllers());
+    }
+
+    private IEnumerator ExecuteAIControllers()
+    {
         foreach (var aiCharacter in AICharacters)
         {
             var aiController = aiCharacter.GetComponent<AIController>();
             if (aiController != null)
             {
+                aiController.Initialize(TurnSystemManager.Instance.PlayerController.PlayerCharacters);
+                GridPointCalculator.CalculateGridPoints(aiCharacter.GetComponent<CharacterController>());
+                GridPointCalculator.UpdatePreview();
 
-                aiController.Execute(_playerCharacters);
+                yield return new WaitForSeconds(Constants.AI_DELAY_BETWEEN_ACTIONS);
+
+                var actionIsComplete = false;
+                System.Action callback = () =>
+                {
+                    actionIsComplete = true;
+                };
+
+                aiController.Move(callback);
+                while (!actionIsComplete)
+                {
+                    yield return null;
+                }
+
+                actionIsComplete = false;
+                aiController.PerformAction(callback);
+                while (!actionIsComplete)
+                {
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(Constants.AI_DELAY_BETWEEN_ACTIONS);
             }
             else
             {
                 Debug.LogWarning($"Character {aiCharacter.Character.Name} does not have an AI controller.");
             }
         }
+
+        OnFinishExecute?.Invoke();
     }
 
     public void EnableCharacters()

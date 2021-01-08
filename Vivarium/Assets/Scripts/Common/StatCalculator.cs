@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class StatCalculator
 {
@@ -18,7 +19,7 @@ public static class StatCalculator
     public static float CalculateStat(Character character, Action action, StatType statType)
     {
         var baseValue = GetStatFromCharacter(character, statType) + GetStatFromAction(action, statType);
-        return CalculateStat(baseValue, statType, character.Attributes);
+        return CalculateStat(baseValue, statType, character.Attributes.Concat(action.Attributes).ToList());
     }
 
     public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes)

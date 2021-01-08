@@ -20,26 +20,26 @@ MonoBehaviour:
   MinEnemyCharacters: 1
   MaxEnemyCharacters: 1
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
-  - {fileID: 11400000, guid: e65b91aeb6ee7014ea80c097dc6f43ac, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   MinPlayerCharacters: 6
   MaxPlayerCharacters: 6
   PossiblePlayerCharacters:
@@ -56,3 +56,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
   - {fileID: 11400000, guid: 613e046d8fe94bd4488394fefadb70d9, type: 2}
   - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
+  AISettings:
+    ShowPreview: 1
+    PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

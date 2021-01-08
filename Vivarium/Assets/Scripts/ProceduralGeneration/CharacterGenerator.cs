@@ -47,6 +47,7 @@ public class CharacterGenerator
         character.AttackDamage = UnityEngine.Random.Range(characterProfile.MinAttackDamage, characterProfile.MaxAttackDamage);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
+        character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
 
         return character;
     }

@@ -10,6 +10,7 @@ public class Character
     public float MaxHealth;
     public float AttackDamage;
     public float MoveRange;
+    public AICharacterHeuristics AICharacterHeuristics;
     public List<Attribute> Attributes;
     public Weapon Weapon;
     public Shield Shield;

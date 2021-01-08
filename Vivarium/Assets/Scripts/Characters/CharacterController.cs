@@ -103,10 +103,30 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void PerformAction(Action attack, Tile targetTile)
+    public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null, bool skipMovement = false)
+    {
+        if (path == null || path.Count == 0)
+        {
+            Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move because the path list is empty.");
+            return;
+        }
+
+        if (_moveController != null)
+        {
+            _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
+            _hasMoved = true;
+            Deselect();
+        }
+        else
+        {
+            Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
+        }
+    }
+
+    public void PerformAction(Action attack, Tile targetTile, System.Action onActionComplete = null)
     {
         var actionController = GetActionController(attack);
-        actionController.Execute(targetTile);
+        actionController.Execute(targetTile, onActionComplete);
         _hasAttacked = true;
     }
 
@@ -161,7 +181,7 @@ public class CharacterController : MonoBehaviour
         return _moveController.CalculateAvailableMoves();
     }
 
-    private ActionController GetActionController(Action action)
+    public ActionController GetActionController(Action action)
     {
         foreach (var actionController in _actionControllers)
         {

@@ -22,6 +22,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public WeaponGenerationProfile WeaponProfile;
     public ShieldGenerationProfile ShieldProfile;
     public AttributesGenerationProfile AttributeProfile;
+    public AICharacterHeuristics AICharacterHeuristics;
 
     public GameObject HealthBarPrefab;
 

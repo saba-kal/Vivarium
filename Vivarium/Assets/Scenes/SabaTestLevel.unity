@@ -8121,7 +8121,9 @@ MonoBehaviour:
     Id: 5cadb09d-1b1b-4a77-9362-96a94dc3aa42
     Name: Player McPlayerFace
     MaxHealth: 118.41291
+    AttackDamage: 0
     MoveRange: 6.4086165
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
@@ -36646,7 +36648,9 @@ MonoBehaviour:
     Id: efae8cc3-22a2-4860-934d-29dba8b05053
     Name: Player  Guy
     MaxHealth: 55.10555
+    AttackDamage: 0
     MoveRange: 6.5646076
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
@@ -48117,6 +48121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2915755667911417833, guid: 851dafcb918debc4abac4065281cda82, type: 3}
+      propertyPath: gameTilt
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2915755667911417835, guid: 851dafcb918debc4abac4065281cda82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -52958,7 +52966,9 @@ MonoBehaviour:
     Id: 0e236662-9a65-4c86-b246-95ce16ea23e4
     Name: Player  Guy
     MaxHealth: 165.78088
+    AttackDamage: 0
     MoveRange: 4.4107494
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
@@ -64786,6 +64796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AICharacters:
   - {fileID: 1879038977}
+  GridPointCalculator: {fileID: 0}
   skipEnemyPhase: 0
 --- !u!4 &1667642772
 Transform:
@@ -73030,7 +73041,9 @@ MonoBehaviour:
     Id: 24cc96e2-b70c-44d9-9be9-295b3f8c409b
     Name: Enemy McEnemyFace
     MaxHealth: 132.24635
+    AttackDamage: 0
     MoveRange: 3.2985587
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}

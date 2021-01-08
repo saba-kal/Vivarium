@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-public class ActionController : MonoBehaviour
+public class ActionController : MonoBehaviour, IActionController
 {
     public Action ActionReference;
     public ParticleSystem ParticleEffectPrefab;
@@ -12,12 +12,14 @@ public class ActionController : MonoBehaviour
 
     protected CharacterController _characterController;
 
+    protected Dictionary<(int, int), Tile> _tilesActionCanAffect = new Dictionary<(int, int), Tile>();
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
     }
 
-    public virtual void Execute(Tile targetTile)
+    public virtual void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
         {
@@ -35,6 +37,7 @@ public class ActionController : MonoBehaviour
 
         PlaySound();
         this.ExecuteAction(affectedTiles);
+        onActionComplete?.Invoke();
     }
 
     // Looks at the action's animation type and performs the animation accordingly 
@@ -111,15 +114,6 @@ public class ActionController : MonoBehaviour
         }
         Debug.Log("LOOK AT ME! : " + tile.CharacterControllerId);
 
-        var allTeamMembers = GameObject.FindGameObjectsWithTag("PlayerCharacter");
-        for (int i = 0; i < allTeamMembers.Length; i++)
-        {
-            if (tile.CharacterControllerId == allTeamMembers[i].gameObject.GetComponent<CharacterController>().Id)
-            {
-                return null;
-            }
-        }
-
         if (tile.CharacterControllerId == null || tile.CharacterControllerId == _characterController.Id)
         {
             return null;
@@ -149,5 +143,28 @@ public class ActionController : MonoBehaviour
     protected void PlaySound()
     {
         SoundManager.GetInstance()?.Play(ActionReference.SoundName);
+    }
+
+    public virtual void CalculateAffectedTiles()
+    {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
+        CalculateAffectedTiles(x, y);
+    }
+
+    public virtual void CalculateAffectedTiles(int x, int y)
+    {
+        var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
+        var maxRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMaxRange);
+        _tilesActionCanAffect = TileGridController.Instance.GetTilesInRadius(x, y, minRange, maxRange);
+    }
+
+    public Dictionary<(int, int), Tile> GetAffectedTiles()
+    {
+        return _tilesActionCanAffect;
     }
 }

@@ -72,6 +72,11 @@ public class TurnSystemManager : MonoBehaviour
         mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
     }
 
+    public CharacterController GetCharacterController(string id)
+    {
+        return GetCharacterWithIds(new List<string> { id }, CharacterSearchType.Both).FirstOrDefault();
+    }
+
     public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)
     {
         var characters = new List<CharacterController>();

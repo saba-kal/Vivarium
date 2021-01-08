@@ -25,4 +25,6 @@ public class LevelGenerationProfile : ScriptableObject
     public float OnLevelStartShieldRegen = 500;
 
     public List<Item> PossilbleRewards;
+
+    public AISettings AISettings;
 }

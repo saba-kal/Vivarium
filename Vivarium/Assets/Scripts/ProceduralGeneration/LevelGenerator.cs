@@ -150,8 +150,13 @@ public class LevelGenerator : MonoBehaviour
         var aiManagerObj = new GameObject("AIManager");
         aiManagerObj.transform.parent = _levelContainer.transform;
 
+        var gridPointCalculator = aiManagerObj.AddComponent<GridPointCalculator>();
+        gridPointCalculator.TextLabelPrefab = LevelProfile.AISettings.PreviewLabelPrefab;
+        gridPointCalculator.ShowPreview = LevelProfile.AISettings.ShowPreview;
+
         _enemyAIManager = aiManagerObj.AddComponent<EnemyAIManager>();
         _enemyAIManager.AICharacters = new List<CharacterController>();
+        _enemyAIManager.GridPointCalculator = gridPointCalculator;
 
         var numberOfEnemyCharacters = Random.Range(LevelProfile.MinEnemyCharacters, LevelProfile.MaxEnemyCharacters + 1);
         var enemyProfiles = LevelProfile.PossibleEnemyCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfEnemyCharacters);

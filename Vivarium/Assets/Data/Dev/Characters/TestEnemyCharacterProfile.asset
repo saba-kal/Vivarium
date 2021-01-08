@@ -19,11 +19,14 @@ MonoBehaviour:
   - Enemy Guy
   MinMaxHealth: 50
   MaxMaxHealth: 200
-  MinMoveRange: 3
-  MaxMoveRange: 7
+  MinAttackDamage: 0
+  MaxAttackDamage: 0
+  MinMoveRange: 2
+  MaxMoveRange: 2
   NavigableTiles: 00000000
-  WeaponProfile: {fileID: 11400000, guid: 886a8ebceb479844a813df0c27eca3b7, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: 9374dda871d732a4d9ca14efb6fa4307, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
+  AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   AnimationController: {fileID: 0}
