@@ -15,10 +15,12 @@ MonoBehaviour:
   Id: 2
   Name: Shot
   Description: 
+  SoundName: TestAttackSound
   BaseDamage: 15
   CriticalChance: 0
   CriticalMultiplier: 0
-  Range: 9
+  MinRange: 4
+  MaxRange: 9
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 2
@@ -26,3 +28,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d0e09f2a97b2d94ea7c8d3589981244, type: 2}
   AnimType: 4
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
+  ParticleEffect: {fileID: 0}

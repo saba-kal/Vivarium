@@ -33,7 +33,7 @@ public class CharacterGenerator
         }
 
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
-        GenerateCharacterModel(characterGameObject, characterProfile);
+        GenerateCharacterModel(characterController, characterProfile);
 
         return characterGameObject;
     }
@@ -45,8 +45,10 @@ public class CharacterGenerator
         character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
         character.Portrait = characterProfile.PossiblePortraits[UnityEngine.Random.Range(0, characterProfile.PossiblePortraits.Count)];
         character.MaxHealth = UnityEngine.Random.Range(characterProfile.MinMaxHealth, characterProfile.MaxMaxHealth);
+        character.AttackDamage = UnityEngine.Random.Range(characterProfile.MinAttackDamage, characterProfile.MaxAttackDamage);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
+        character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
 
         return character;
     }
@@ -82,50 +84,19 @@ public class CharacterGenerator
 
         foreach (var action in characterData.Weapon.Actions)
         {
-            ActionController actionController;
-            ActionViewer actionViewer;
-
-            switch (action.ControllerType)
-            {
-                case ActionControllerType.GiantLazer:
-                    actionController = characterGameObject.AddComponent<GiantLazerActionController>();
-
-                    //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-
-                    break;
-                case ActionControllerType.Projectile:
-                    actionController = characterGameObject.AddComponent<ProjectileActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.KnockBack:
-                    actionController = characterGameObject.AddComponent<KnockBackActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.SwitchPosition:
-                    actionController = characterGameObject.AddComponent<SwitchPositionActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-                case ActionControllerType.Default:
-                default:
-                    actionController = characterGameObject.AddComponent<ActionController>();
-                    actionViewer = characterGameObject.AddComponent<ActionViewer>();
-                    break;
-            }
-
-            actionController.ActionReference = action;
-            actionViewer.ActionReference = action;
+            ActionFactory.Create(characterGameObject, action, out var _, out var _);
         }
     }
 
     private void GenerateCharacterModel(
-        GameObject characterGameObject,
+        CharacterController characterGameObject,
         CharacterGenerationProfile characterProfile)
     {
         var characterModelPrefab = characterProfile.PossibleModels[UnityEngine.Random.Range(0, characterProfile.PossibleModels.Count)];
 
         // creates the prefab and model onto the scene
         var prefabInstance = GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
+        characterGameObject.Model = prefabInstance;
 
         // adds animator to the model of the INSTANCE of the character
         Animator animator = prefabInstance.gameObject.AddComponent<Animator>() as Animator;

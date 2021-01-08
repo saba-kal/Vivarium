@@ -29,6 +29,7 @@ public class GridGenerator
         int objectiveVariation = gridProfile.ObjectiveSpawnVariation;
         SetPossibleObjectiveTiles(resultGrid, objectiveVariation);
         SetPossiblePlayerSpawn(resultGrid);
+        SetPossibleEnemySpawn(resultGrid);
         PlaceObjective(resultGrid);
         CreatePathsToAllGreenTiles(resultGrid);
 
@@ -153,6 +154,29 @@ public class GridGenerator
             }
         }
     }
+
+    private void SetPossibleEnemySpawn(Grid<Tile> grid)
+    {
+        var maxX = grid.GetGrid().GetLength(0);
+        var maxY = grid.GetGrid().GetLength(1);
+        for (int i = 0; i < maxX; i++)
+        {
+            for (int j = 0; j < maxY; j++)
+            {
+                //.25 is the percentage of one axis on the grid that will not allow enemies to spawn
+                //1/4 * 1/4 = 1/16 of the grid that enemies cannot spawn at the start
+                //This is to keep enemies from spawning too close to player characters
+                if (i >= maxX * .25 || j >= maxY * .25)
+                {
+                    if (grid.GetValue(i, j).SpawnType != TileSpawnType.Objective)
+                    {
+                        grid.GetValue(i, j).SpawnType = TileSpawnType.Enemy;
+                    }
+                }
+            }
+        }
+    }
+
 
     private void PlaceObjective(Grid<Tile> grid)
     {

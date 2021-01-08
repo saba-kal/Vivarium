@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _actionIsSelected = false;
     private Action _selectedAction;
-    private float _selectedActionRange;
+    private float _selectedActionMinRange;
+    private float _selectedActionMaxRange;
 
     void OnEnable()
     {
@@ -87,13 +88,7 @@ public class PlayerController : MonoBehaviour
             grid.GetGridCoordinates(character.transform.position, out var x, out var y);
             if (tile.GridX == x && tile.GridY == y)
             {
-                _selectedCharacter = character;
-                _selectedCharacter.Select();
-                if (_selectedCharacter.IsEnemy)
-                {
-                    _selectedCharacter.ShowMoveRadius();
-                }
-                return;
+                SelectCharacter(character);
             }
         }
     }
@@ -119,14 +114,22 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var attackController = _selectedCharacter.GetActionController(action);
+        if (attackController == null)
+        {
+            Debug.LogError("Unable to display attack because an attack controller could not be found.\n" +
+                "Make sure your character has a weapon with attacks, and an attack controller that references it.");
+            return;
+        }
+
         DeselectAction();
         DeselectMove();
 
         _actionIsSelected = true;
         _selectedAction = action;
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
-        _selectedActionRange = StatCalculator.CalculateStat(action, StatType.AttackRange);
-        attackViewer.DisplayAction(actionAOE, _selectedActionRange);
+        attackController.CalculateAffectedTiles();
+        attackViewer.DisplayAction(actionAOE, attackController.GetAffectedTiles());
         UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");
@@ -184,8 +187,18 @@ public class PlayerController : MonoBehaviour
 
     private bool ActionIsWithinRange(Tile targetTile)
     {
-        var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        return Vector3.Distance(_selectedCharacter.transform.position, targetPosition) < _selectedActionRange + 0.01f;
+        if (_selectedCharacter == null || _selectedAction == null)
+        {
+            return false;
+        }
+
+        var actionViewer = _selectedCharacter.GetActionViewer(_selectedAction);
+        if (actionViewer == null)
+        {
+            return false;
+        }
+
+        return actionViewer.ActionIsWithinRange(targetTile);
     }
 
     private void OnCharacterMoveComplete(Tile toTile)
@@ -227,6 +240,25 @@ public class PlayerController : MonoBehaviour
         foreach (var characterController in PlayerCharacters)
         {
             characterController.RegenShield(regenAmount);
+        }
+    }
+
+    public void SelectCharacter(CharacterController characterController)
+    {
+        _selectedCharacter = characterController;
+        _selectedCharacter.Select();
+        if (_selectedCharacter.IsEnemy)
+        {
+            _selectedCharacter.ShowMoveRadius();
+        }
+    }
+
+    public void DeselectCharacter()
+    {
+        if (_selectedCharacter != null)
+        {
+            _selectedCharacter.Deselect();
+            _selectedCharacter = null;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class StatCalculator
 {
@@ -13,6 +14,12 @@ public static class StatCalculator
     {
         var baseValue = GetStatFromCharacter(character, statType);
         return CalculateStat(baseValue, statType, character.Attributes);
+    }
+
+    public static float CalculateStat(Character character, Action action, StatType statType)
+    {
+        var baseValue = GetStatFromCharacter(character, statType) + GetStatFromAction(action, statType);
+        return CalculateStat(baseValue, statType, character.Attributes.Concat(action.Attributes).ToList());
     }
 
     public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes)
@@ -49,8 +56,10 @@ public static class StatCalculator
         {
             case StatType.Damage:
                 return action.BaseDamage;
-            case StatType.AttackRange:
-                return action.Range;
+            case StatType.AttackMinRange:
+                return action.MinRange;
+            case StatType.AttackMaxRange:
+                return action.MaxRange;
             case StatType.AttackAOE:
                 return action.AreaOfAffect;
         }
@@ -66,6 +75,8 @@ public static class StatCalculator
                 return character.MaxHealth;
             case StatType.MoveRadius:
                 return character.MoveRange;
+            case StatType.Damage:
+                return character.AttackDamage;
         }
 
         return 0f;

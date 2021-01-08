@@ -13,6 +13,9 @@ public class CharacterGenerationProfile : ScriptableObject
     public float MinMaxHealth;
     public float MaxMaxHealth;
 
+    public float MinAttackDamage;
+    public float MaxAttackDamage;
+
     public float MinMoveRange;
     public float MaxMoveRange;
 
@@ -21,6 +24,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public WeaponGenerationProfile WeaponProfile;
     public ShieldGenerationProfile ShieldProfile;
     public AttributesGenerationProfile AttributeProfile;
+    public AICharacterHeuristics AICharacterHeuristics;
 
     public GameObject HealthBarPrefab;
 

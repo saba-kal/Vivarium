@@ -18,5 +18,7 @@ MonoBehaviour:
   Type: 1
   Icon: {fileID: 21300000, guid: 192279441908a7c4791bed37f0433fef, type: 3}
   Model: {fileID: 0}
+  CanBeStacked: 0
   Attributes: []
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 8971b5537a781eb4a86e94dd58047bbe, type: 2}

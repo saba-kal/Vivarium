@@ -8121,13 +8121,16 @@ MonoBehaviour:
     Id: 5cadb09d-1b1b-4a77-9362-96a94dc3aa42
     Name: Player McPlayerFace
     MaxHealth: 118.41291
+    AttackDamage: 0
     MoveRange: 6.4086165
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &203146107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21922,10 +21925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelProfile: {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
-  PlayerCharacters:
-  - {fileID: 913530055}
-  - {fileID: 203146106}
-  - {fileID: 1364459773}
+  PlayerCharacters: []
   PlayerController: {fileID: 1785250953}
   GenerateLevelOnStart: 1
 --- !u!4 &542098716
@@ -21957,6 +21957,7 @@ MonoBehaviour:
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
   - {fileID: 11400000, guid: f8820a5293b3e114ebb61144f6ec0ef5, type: 2}
+  - {fileID: 11400000, guid: 7035921ba1cb4e643b0d3cb7b5324594, type: 2}
   - {fileID: 11400000, guid: 7035921ba1cb4e643b0d3cb7b5324594, type: 2}
 --- !u!1 &543162205
 GameObject:
@@ -36647,7 +36648,9 @@ MonoBehaviour:
     Id: efae8cc3-22a2-4860-934d-29dba8b05053
     Name: Player  Guy
     MaxHealth: 55.10555
+    AttackDamage: 0
     MoveRange: 6.5646076
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
@@ -36655,6 +36658,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &913530056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48117,6 +48121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2915755667911417833, guid: 851dafcb918debc4abac4065281cda82, type: 3}
+      propertyPath: gameTilt
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2915755667911417835, guid: 851dafcb918debc4abac4065281cda82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -52958,13 +52966,16 @@ MonoBehaviour:
     Id: 0e236662-9a65-4c86-b246-95ce16ea23e4
     Name: Player  Guy
     MaxHealth: 165.78088
+    AttackDamage: 0
     MoveRange: 4.4107494
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &1364459774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64785,6 +64796,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AICharacters:
   - {fileID: 1879038977}
+  GridPointCalculator: {fileID: 0}
+  skipEnemyPhase: 0
 --- !u!4 &1667642772
 Transform:
   m_ObjectHideFlags: 0
@@ -73028,7 +73041,9 @@ MonoBehaviour:
     Id: 24cc96e2-b70c-44d9-9be9-295b3f8c409b
     Name: Enemy McEnemyFace
     MaxHealth: 132.24635
+    AttackDamage: 0
     MoveRange: 3.2985587
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
@@ -73036,6 +73051,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
+  Model: {fileID: 0}
 --- !u!114 &1879038978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73104,6 +73120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5288ce874ca4c24d9a0cfd26f1a75d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipEnemyPhase: 0
 --- !u!114 &1879038983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83964,3 +83981,60 @@ Transform:
   m_Father: {fileID: 445258238}
   m_RootOrder: 101
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5814518999109820286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5814518999666247299, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
+      propertyPath: m_Name
+      value: GameSoundManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}

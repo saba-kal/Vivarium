@@ -156,6 +156,7 @@ public class TileGridController : MonoBehaviour
                 return;
             }
 
+            SoundManager.GetInstance()?.Play(Constants.GRID_CELL_CLICK_SOUND);
             OnGridCellClick?.Invoke(_mouseHoverTile);
         }
     }
@@ -181,21 +182,23 @@ public class TileGridController : MonoBehaviour
         }
     }
 
-    public Dictionary<(int, int), Tile> HighlightRadius(int x, int y, float radius, GridHighlightRank highlightRank)
+    public Dictionary<(int, int), Tile> HighlightRadius(int x, int y, float minRadius, float maxRadius, GridHighlightRank highlightRank)
     {
-        return HighlightRadius(x, y, radius, highlightRank, new Dictionary<(int, int), Tile>(), x, y);
+        return HighlightRadius(x, y, minRadius, maxRadius, highlightRank, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y);
     }
 
     private Dictionary<(int, int), Tile> HighlightRadius(
         int x,
         int y,
-        float radius,
+        float minRadius,
+        float maxRadius,
         GridHighlightRank highlightRank,
         Dictionary<(int, int), Tile> existingHighlightedTiles,
+        Dictionary<(int, int), Tile> visitedTiles,
         int initialX,
         int initialY)
     {
-        if (existingHighlightedTiles.ContainsKey((x, y)))
+        if (visitedTiles.ContainsKey((x, y)))
         {
             return existingHighlightedTiles;
         }
@@ -206,37 +209,43 @@ public class TileGridController : MonoBehaviour
             return existingHighlightedTiles;
         }
 
-        if (Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y)) > radius * radius)
+        var sqrDistance = Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y));
+        if (sqrDistance > maxRadius * maxRadius)
         {
             return existingHighlightedTiles;
         }
 
-        existingHighlightedTiles.Add((x, y), tile);
+        if (sqrDistance >= minRadius * minRadius)
+        {
+            existingHighlightedTiles.Add((x, y), tile);
+            CreateHighlightObject(x, y, highlightRank);
+        }
+        visitedTiles.Add((x, y), tile);
 
-        CreateHighlightObject(x, y, highlightRank);
-
-        HighlightRadius(x, y + 1, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Up
-        HighlightRadius(x, y - 1, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Down
-        HighlightRadius(x + 1, y, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Left
-        HighlightRadius(x - 1, y, radius, highlightRank, existingHighlightedTiles, initialX, initialY); //Right
+        HighlightRadius(x, y + 1, minRadius, maxRadius, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY); //Up
+        HighlightRadius(x, y - 1, minRadius, maxRadius, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY); //Down
+        HighlightRadius(x + 1, y, minRadius, maxRadius, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY); //Left
+        HighlightRadius(x - 1, y, minRadius, maxRadius, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY); //Right
 
         return existingHighlightedTiles;
     }
 
-    public Dictionary<(int, int), Tile> GetTilesInRadius(int x, int y, float radius)
+    public Dictionary<(int, int), Tile> GetTilesInRadius(int x, int y, float minRadius, float maxRadius)
     {
-        return GetTilesInRadius(x, y, radius, new Dictionary<(int, int), Tile>(), x, y);
+        return GetTilesInRadius(x, y, minRadius, maxRadius, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y);
     }
 
     private Dictionary<(int, int), Tile> GetTilesInRadius(
         int x,
         int y,
-        float radius,
+        float minRadius,
+        float maxRadius,
         Dictionary<(int, int), Tile> tilesInRadius,
+        Dictionary<(int, int), Tile> visitedTiles,
         int initialX,
         int initialY)
     {
-        if (tilesInRadius.ContainsKey((x, y)))
+        if (visitedTiles.ContainsKey((x, y)))
         {
             return tilesInRadius;
         }
@@ -247,17 +256,22 @@ public class TileGridController : MonoBehaviour
             return tilesInRadius;
         }
 
-        if (Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y)) > radius * radius)
+        var sqrDistance = Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y));
+        if (sqrDistance > maxRadius * maxRadius)
         {
             return tilesInRadius;
         }
 
-        tilesInRadius.Add((x, y), tile);
+        if (sqrDistance >= minRadius * minRadius)
+        {
+            tilesInRadius.Add((x, y), tile);
+        }
+        visitedTiles.Add((x, y), tile);
 
-        GetTilesInRadius(x, y + 1, radius, tilesInRadius, initialX, initialY); //Up
-        GetTilesInRadius(x, y - 1, radius, tilesInRadius, initialX, initialY); //Down
-        GetTilesInRadius(x + 1, y, radius, tilesInRadius, initialX, initialY); //Left
-        GetTilesInRadius(x - 1, y, radius, tilesInRadius, initialX, initialY); //Right
+        GetTilesInRadius(x, y + 1, minRadius, maxRadius, tilesInRadius, visitedTiles, initialX, initialY); //Up
+        GetTilesInRadius(x, y - 1, minRadius, maxRadius, tilesInRadius, visitedTiles, initialX, initialY); //Down
+        GetTilesInRadius(x + 1, y, minRadius, maxRadius, tilesInRadius, visitedTiles, initialX, initialY); //Left
+        GetTilesInRadius(x - 1, y, minRadius, maxRadius, tilesInRadius, visitedTiles, initialX, initialY); //Right
 
         return tilesInRadius;
     }

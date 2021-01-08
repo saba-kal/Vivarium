@@ -9,7 +9,9 @@ public class Character
     public string Name;
     public Sprite Portrait;
     public float MaxHealth;
+    public float AttackDamage;
     public float MoveRange;
+    public AICharacterHeuristics AICharacterHeuristics;
     public List<Attribute> Attributes;
     public Weapon Weapon;
     public Shield Shield;
