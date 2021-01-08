@@ -16,14 +16,14 @@ MonoBehaviour:
     ObjectivePoints: -100
     ObjectiveNearbyTilesPoints: 10
     ObjectivePointsRange: 4
-    ChokePointPoints: 100
+    ChokePointPoints: -100
   AllyHeuristics:
     AllyProximityPoints: 5
     AllyAdjacencyPoints: 5
     AllyAttackCoveragePoints: 25
   OpponentHeuristics:
-    OpponentProximityPoints: 20
-    OpponentAdjacencyPoints: 20
+    OpponentProximityPoints: 5
+    OpponentAdjacencyPoints: -100
     OpponentAreaOfAttackPoints: -20
   SelfHeuristics:
     TilesCharacterCanAttackPoints: 100

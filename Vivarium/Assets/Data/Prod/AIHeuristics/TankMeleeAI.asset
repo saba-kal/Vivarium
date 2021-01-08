@@ -22,8 +22,8 @@ MonoBehaviour:
     AllyAdjacencyPoints: 5
     AllyAttackCoveragePoints: 25
   OpponentHeuristics:
-    OpponentProximityPoints: 20
-    OpponentAdjacencyPoints: 20
-    OpponentAreaOfAttackPoints: -20
+    OpponentProximityPoints: 50
+    OpponentAdjacencyPoints: 50
+    OpponentAreaOfAttackPoints: 0
   SelfHeuristics:
     TilesCharacterCanAttackPoints: 100
