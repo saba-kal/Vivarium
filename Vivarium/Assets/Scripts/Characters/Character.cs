@@ -7,6 +7,7 @@ public class Character
 {
     public string Id;
     public string Name;
+    public Sprite Portrait;
     public float MaxHealth;
     public float MoveRange;
     public List<Attribute> Attributes;

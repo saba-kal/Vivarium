@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         UIController.OnActionClick += SelectAction;
         UIController.OnMoveClick += SelectMove;
         UIController.OnShowMapClick += DisableCharacters;
-        UIController.OnBackClick += EnableCharacters;
+        PrepMenuUIController.OnBackClick += EnableCharacters;
         InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         UIController.OnActionClick -= SelectAction;
         UIController.OnMoveClick -= SelectMove;
         UIController.OnShowMapClick -= DisableCharacters;
-        UIController.OnBackClick -= EnableCharacters;
+        PrepMenuUIController.OnBackClick -= EnableCharacters;
         InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
