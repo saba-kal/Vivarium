@@ -388,6 +388,11 @@ public class GridPointCalculator : MonoBehaviour
 
     public void PreviewGridPoints()
     {
+        if (TextLabelPrefab == null)
+        {
+            return;
+        }
+
         foreach (var textLabel in _tilePointsLabels.Values)
         {
             Destroy(textLabel.gameObject);
