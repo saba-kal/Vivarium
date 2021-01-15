@@ -28,12 +28,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_61CD2671: 0.5
+    - Vector1_61CD2671: 0.727
     - Vector1_8190D694: 0.069
     - Vector1_8737086C: 0.887
     - Vector1_9C468DC3: 5
     - Vector1_C143BAE1: 4.23
     m_Colors:
-    - Color_4EFBEF37: {r: 0.0257209, g: 0.2596216, b: 0.3207547, a: 0}
-    - Color_B8111F88: {r: 0.12971698, g: 0.41509435, b: 0.5188679, a: 0}
+    - Color_4EFBEF37: {r: 0.43120328, g: 0.9622642, b: 0.9622642, a: 0}
+    - Color_B8111F88: {r: 0.16180134, g: 0.23151028, b: 0.33962262, a: 0}
   m_BuildTextureStacks: []
