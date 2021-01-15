@@ -47,7 +47,9 @@ public class ActionController : MonoBehaviour, IActionController
         var animationTypeName = Enum.GetName(typeof(AnimationType), animationType);
         Debug.Log("DOING ANIMATION: " + animationTypeName);
 
+        //var childObject = gameObject.transform.GetChild(0).gameObject;
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+        Debug.Log("SDFASDFSDAFSD: " + myAnimator);
         myAnimator.SetTrigger(animationTypeName);
     }
 
