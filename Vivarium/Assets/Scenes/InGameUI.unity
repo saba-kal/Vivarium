@@ -1723,6 +1723,7 @@ GameObject:
   - component: {fileID: 228816595}
   - component: {fileID: 228816594}
   - component: {fileID: 228816593}
+  - component: {fileID: 228816597}
   m_Layer: 0
   m_Name: Option3
   m_TagString: Untagged
@@ -1894,6 +1895,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228816591}
   m_CullTransparentMesh: 0
+--- !u!114 &228816597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228816591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db2a8848c1e67b46b2ebaedc65e7e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewardsUIController: {fileID: 2853933}
 --- !u!1 &272656447
 GameObject:
   m_ObjectHideFlags: 0
@@ -6673,6 +6687,7 @@ GameObject:
   - component: {fileID: 1692601544}
   - component: {fileID: 1692601543}
   - component: {fileID: 1692601542}
+  - component: {fileID: 1692601547}
   m_Layer: 0
   m_Name: Option2
   m_TagString: Untagged
@@ -6844,6 +6859,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 106}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1692601547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692601541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db2a8848c1e67b46b2ebaedc65e7e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewardsUIController: {fileID: 2853933}
 --- !u!1001 &1728066617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7479,6 +7507,7 @@ GameObject:
   - component: {fileID: 1941740160}
   - component: {fileID: 1941740159}
   - component: {fileID: 1941740162}
+  - component: {fileID: 1941740163}
   m_Layer: 0
   m_Name: Option1
   m_TagString: Untagged
@@ -7650,6 +7679,19 @@ MonoBehaviour:
   m_EffectColor: {r: 1, g: 1, b: 0, a: 0.5}
   m_EffectDistance: {x: 15, y: -15}
   m_UseGraphicAlpha: 1
+--- !u!114 &1941740163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941740157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db2a8848c1e67b46b2ebaedc65e7e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RewardsUIController: {fileID: 2853933}
 --- !u!1 &1945382069
 GameObject:
   m_ObjectHideFlags: 0

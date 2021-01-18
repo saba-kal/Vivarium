@@ -62,6 +62,7 @@ public class CharacterController : MonoBehaviour
         _isSelected = false;
         UIController.Instance.HideCharacterInfo();
         HideMoveRadius();
+        TileGridController.Instance.RemoveHighlights(GridHighlightRank.Secondary);
     }
 
     public bool IsAbleToMove()

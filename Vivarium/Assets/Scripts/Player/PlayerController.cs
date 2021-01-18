@@ -106,6 +106,12 @@ public class PlayerController : MonoBehaviour
                 SelectCharacter(character);
             }
         }
+        if(_selectedCharacter != null)
+        {
+            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+            tempDict.Add((0, 0), tile);
+            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
+        }
     }
 
     private void SelectMove()
