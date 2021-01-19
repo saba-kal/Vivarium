@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class InventorySlot : MonoBehaviour
         _inventoryItem = inventoryItem;
         _selectedCharacter = selectedCharacter;
         UpdateItemDisplay();
+        SetTooltip();
     }
 
     public InventoryItem GetItem()
@@ -71,5 +73,14 @@ public class InventorySlot : MonoBehaviour
         Icon.gameObject.SetActive(false);
         Count.text = "0";
         EquipOverlay.SetActive(false);
+    }
+
+    private void SetTooltip()
+    {
+        var tooltip = GetComponent<Tooltip>();
+        if (tooltip != null)
+        {
+            tooltip.SetTooltipData(_inventoryItem.Item);
+        }
     }
 }
