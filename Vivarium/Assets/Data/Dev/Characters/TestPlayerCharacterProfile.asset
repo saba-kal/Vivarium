@@ -17,6 +17,8 @@ MonoBehaviour:
   PossibleNames:
   - Player McPlayerFace
   - Player  Guy
+  PossiblePortraits:
+  - {fileID: 21300000, guid: 16f88b77cc7309a42a9839c4b277318b, type: 3}
   MinMaxHealth: 50
   MaxMaxHealth: 200
   MinAttackDamage: 0
