@@ -16,7 +16,7 @@ public class KnockBackActionController : ActionController
             UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
             return;
         }
-        
+
         var targetPosition = targetCharacter.gameObject.transform.position;
         var playerPosition = transform.position;
         var targetX = TileGridController.Instance.GetGrid().GetValue(targetPosition).GridX;
@@ -25,25 +25,35 @@ public class KnockBackActionController : ActionController
         var playerY = TileGridController.Instance.GetGrid().GetValue(playerPosition).GridY;
         var adjustedX = AdjustCoordinate(playerX, targetX);
         var adjustedY = AdjustCoordinate(playerY, targetY);
-        
+
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                TileGridController.Instance.GetGrid().GetValue(targetPosition),
+                true));
+
         var newPosition = TileGridController.Instance.GetGrid().GetWorldPosition(adjustedX, adjustedY);
         Tile toTile = TileGridController.Instance.GetGrid().GetValue(newPosition);
         Tile fromTile = TileGridController.Instance.GetGrid().GetValue(targetPosition);
-        List < Tile > path = new List<Tile>();
+        List<Tile> path = new List<Tile>();
         path.Add(toTile);
 
+        var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         if (toTile == null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into null tile");
-            return;
-        }
-        if(!targetCharacter.Character.NavigableTiles.Contains(toTile.Type))
-        {
-            UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
+            targetCharacter.TakeDamage(damage);
             return;
         }
 
-        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
+        if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
+        {
+            UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
+            targetCharacter.TakeDamage(damage);
+            return;
+        }
+
+
         var health = targetCharacter.GetHealthController().GetCurrentHealth();
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
@@ -56,24 +66,26 @@ public class KnockBackActionController : ActionController
                     targetCharacter.gameObject,
                     path,
                     Constants.CHAR_MOVE_SPEED,
-                    null));
+                    null,
+                    false));
             fromTile.CharacterControllerId = null;
             toTile.CharacterControllerId = targetCharacter.Id;
         }
 
 
+        PlaySound();
         targetCharacter.TakeDamage(damage);
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {CharacterController.Character.Name}.");
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
     }
 
     private int AdjustCoordinate(int playerCoordinate, int targetCoordinate)
     {
         var adjustedCoordinate = targetCoordinate;
-        if(playerCoordinate > targetCoordinate)
+        if (playerCoordinate > targetCoordinate)
         {
             adjustedCoordinate--;
         }
-        else if(playerCoordinate < targetCoordinate)
+        else if (playerCoordinate < targetCoordinate)
         {
             adjustedCoordinate++;
         }

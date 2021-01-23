@@ -6,10 +6,24 @@ using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get; private set; }
+
     public LevelGenerator LevelGenerator;
     public List<LevelGenerationProfile> LevelGenerationProfiles;
 
     private List<Level> _levels;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void OnEnable()
     {
@@ -36,7 +50,7 @@ public class LevelManager : MonoBehaviour
         //TODO: implement loading here.
     }
 
-    private void CompleteLevel()
+    public void CompleteLevel()
     {
         PlayerData.CurrentLevelIndex++;
         if (PlayerData.CurrentLevelIndex >= LevelGenerationProfiles.Count)

@@ -9,12 +9,16 @@ public class InventoryUIController : MonoBehaviour
 {
     public delegate void EquipClick();
     public static event EquipClick OnEquipClick;
+    public delegate void ConsumeClick();
+    public static event ConsumeClick OnConsumeClick;
 
     public GameObject InventoryUI;
     public Button ConsumeButton;
     public Button EquipButton;
     public GameObject SelectedInventorySlotOverlay;
     public TextMeshProUGUI ItemDescription;
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemStats;
     public bool DisableActionsOnConsume = true;
     public bool DisableActionsOnEquip = true;
 
@@ -126,6 +130,8 @@ public class InventoryUIController : MonoBehaviour
         {
             UIController.Instance.DisableActionsForCharacter();
         }
+
+        OnConsumeClick?.Invoke();
     }
 
     private void OnEquipButtonClick()

@@ -20,12 +20,12 @@ MonoBehaviour:
   MinEnemyCharacters: 5
   MaxEnemyCharacters: 6
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: bacc90a229cf22444bb3ddc771a7092c, type: 2}
-  - {fileID: 11400000, guid: 97c6133276f5ada40a1ddb1c5a60aaf9, type: 2}
-  - {fileID: 11400000, guid: 38e9f181e3594d148bb66281a7cc0d47, type: 2}
+  - {fileID: 11400000, guid: 9610bc16cba6bd14e80895aceb68ea9f, type: 2}
+  - {fileID: 11400000, guid: 9610bc16cba6bd14e80895aceb68ea9f, type: 2}
+  - {fileID: 11400000, guid: 34312489483a8ea4f90cab38b0d8c3a2, type: 2}
+  - {fileID: 11400000, guid: 898eeb1853850c04e9ee5b568c7b4984, type: 2}
+  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
+  - {fileID: 11400000, guid: 3d6bb27f27c3e0845b8c11ce51a8eae3, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
   PossiblePlayerCharacters: []
@@ -39,3 +39,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
   - {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
   - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

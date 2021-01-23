@@ -21,16 +21,43 @@ MonoBehaviour:
   MaxEnemyCharacters: 1
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
-  MinPlayerCharacters: 3
-  MaxPlayerCharacters: 3
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
+  MinPlayerCharacters: 6
+  MaxPlayerCharacters: 6
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  StartingItems: []
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  StartingItems:
+  - Count: 1
+    Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards:
   - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
   - {fileID: 11400000, guid: 613e046d8fe94bd4488394fefadb70d9, type: 2}
   - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
+  AISettings:
+    ShowPreview: 1
+    PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

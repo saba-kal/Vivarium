@@ -6,13 +6,13 @@ public class ActionViewer : MonoBehaviour
 {
     public Action ActionReference;
 
-    private CharacterController _characterController;
+    protected CharacterController _characterController;
 
-    private bool _actionIsDisplayed = false;
-    private float _areaOfAffect;
-    private float _range;
-    private const GridHighlightRank AOE_COLOR = GridHighlightRank.Secondary;
-    private const GridHighlightRank RANGE_COLOR = GridHighlightRank.Tertiary;
+    protected bool _actionIsDisplayed = false;
+    protected float _areaOfAffect;
+    protected const GridHighlightRank AOE_COLOR = GridHighlightRank.Secondary;
+    protected const GridHighlightRank RANGE_COLOR = GridHighlightRank.Tertiary;
+    protected Dictionary<(int, int), Tile> _activeActionTiles = new Dictionary<(int, int), Tile>();
 
     private void Start()
     {
@@ -27,10 +27,15 @@ public class ActionViewer : MonoBehaviour
         }
     }
 
-    public void DisplayAction(float areaOfAffect, float ActionRange)
+    public void DisplayAction(float areaOfAffect, Dictionary<(int, int), Tile> activeActionTiles)
     {
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        _activeActionTiles = activeActionTiles;
         _areaOfAffect = areaOfAffect;
-        _range = ActionRange;
         _actionIsDisplayed = true;
         ShowActionAoeAroundMouse();
         ShowActionRange();
@@ -41,6 +46,7 @@ public class ActionViewer : MonoBehaviour
         _actionIsDisplayed = false;
         TileGridController.Instance.RemoveHighlights(AOE_COLOR);
         TileGridController.Instance.RemoveHighlights(RANGE_COLOR);
+        _activeActionTiles = new Dictionary<(int, int), Tile>();
     }
 
     private void MoveActionAoeOverMouse()
@@ -64,19 +70,23 @@ public class ActionViewer : MonoBehaviour
         TileGridController.Instance.HighlightRadius(
             mouseHoverTile.GridX,
             mouseHoverTile.GridY,
+            0,
             _areaOfAffect,
             AOE_COLOR);
     }
 
-    private bool ActionIsWithinRange(Tile targetTile)
+    public bool ActionIsWithinRange(Tile targetTile)
     {
-        var targetPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        return Vector3.Distance(_characterController.transform.position, targetPosition) < _range + 0.01f;
+        return _activeActionTiles.ContainsKey((targetTile.GridX, targetTile.GridY));
     }
 
-    private void ShowActionRange()
+    protected virtual void ShowActionRange()
     {
-        TileGridController.Instance.GetGrid().GetGridCoordinates(_characterController.transform.position, out var x, out var y);
-        TileGridController.Instance.HighlightRadius(x, y, _range, RANGE_COLOR);
+        TileGridController.Instance.HighlightTiles(_activeActionTiles, RANGE_COLOR);
+    }
+
+    public Dictionary<(int, int), Tile> GetAffectedTiles()
+    {
+        return _activeActionTiles;
     }
 }

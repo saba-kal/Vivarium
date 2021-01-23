@@ -43,9 +43,10 @@ public class HealthController : MonoBehaviour
         }
         _currentHealth -= damage;
         HealthBar.SetHealth(_currentHealth);
+        HealthBar.ShowChangeHealthEffect(-damage);
         ShieldBar?.SetHealth(_currentShield);
         UpdateShieldDisplay();
-        return _currentHealth <= 0;
+        return _currentHealth < 1;
     }
 
     public void Healing(float heal)
@@ -60,6 +61,7 @@ public class HealthController : MonoBehaviour
             _currentHealth = _maxHealth;
             HealthBar.SetHealth(_currentHealth);
         }
+        HealthBar.ShowChangeHealthEffect(heal);
     }
 
     public void RegenerateShield(float shieldAmount)

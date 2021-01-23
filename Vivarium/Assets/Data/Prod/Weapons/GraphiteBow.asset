@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: GraphiteBow232
   Name: Graphite Bow
-  Description: 
+  Description: A bow that allows the player to fire attacks from long range
   Type: 1
   Icon: {fileID: 21300000, guid: 39313bc09ebec6c4ca1f06942d3b7043, type: 3}
   Model: {fileID: 0}
+  CanBeStacked: 0
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: b2a703ff5de5a59418c2189bc82d4211, type: 2}

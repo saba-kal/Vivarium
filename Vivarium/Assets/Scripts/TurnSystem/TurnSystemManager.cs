@@ -53,9 +53,9 @@ public class TurnSystemManager : MonoBehaviour
 
     private void ExecuteAI()
     {
-        CommandController.Instance.ExecuteCommand(
-        new LockCameraCommand()
-        );
+        var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+        mainCamera?.GetComponent<CameraFollower>().lockCamera();
+
         AIManager.EnableCharacters();
         AIManager.Execute();
     }
@@ -70,18 +70,11 @@ public class TurnSystemManager : MonoBehaviour
     {
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
         mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
+    }
 
-
-
-        //CommandController.Instance.ExecuteCommand(
-        //new WaitCommand()
-        //);
-        //CommandController.Instance.ExecuteCommand(
-        //new MoveCameraCommand(new Vector3(0, 0, 0), 1)
-        //);
-        //CommandController.Instance.ExecuteCommand(
-        //new UnlockCameraCommand()
-        //);
+    public CharacterController GetCharacterController(string id)
+    {
+        return GetCharacterWithIds(new List<string> { id }, CharacterSearchType.Both).FirstOrDefault();
     }
 
     public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)

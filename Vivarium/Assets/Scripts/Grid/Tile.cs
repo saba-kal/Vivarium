@@ -62,6 +62,17 @@ public class Tile
         }
     }
 
+    private int _points;
+    public int Points
+    {
+        get { return _points; }
+        set
+        {
+            _points = value;
+            _grid.TriggerGridCellChange(GridX, GridY);
+        }
+    }
+
     private Grid<Tile> _grid;
 
     public Tile(int x, int y, Grid<Tile> grid)

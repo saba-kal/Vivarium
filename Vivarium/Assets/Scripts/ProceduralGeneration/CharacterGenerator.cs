@@ -33,7 +33,7 @@ public class CharacterGenerator
         }
 
         AddActionHandlingToGameObject(characterGameObject, characterData, isEnemy);
-        GenerateCharacterModel(characterGameObject, characterProfile);
+        GenerateCharacterModel(characterController, characterProfile);
 
         return characterGameObject;
     }
@@ -44,8 +44,10 @@ public class CharacterGenerator
         character.Id = Guid.NewGuid().ToString();
         character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
         character.MaxHealth = UnityEngine.Random.Range(characterProfile.MinMaxHealth, characterProfile.MaxMaxHealth);
+        character.AttackDamage = UnityEngine.Random.Range(characterProfile.MinAttackDamage, characterProfile.MaxAttackDamage);
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
+        character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
 
         return character;
     }
@@ -86,16 +88,26 @@ public class CharacterGenerator
     }
 
     private void GenerateCharacterModel(
-        GameObject characterGameObject,
+        CharacterController characterGameObject,
         CharacterGenerationProfile characterProfile)
     {
         var characterModelPrefab = characterProfile.PossibleModels[UnityEngine.Random.Range(0, characterProfile.PossibleModels.Count)];
 
         // creates the prefab and model onto the scene
         var prefabInstance = GameObject.Instantiate(characterModelPrefab, characterGameObject.transform);
+        characterGameObject.Model = prefabInstance;
 
         // adds animator to the model of the INSTANCE of the character
-        Animator animator = prefabInstance.gameObject.AddComponent<Animator>() as Animator;
-        animator.runtimeAnimatorController = characterProfile.AnimationController;
+        Debug.Log("ANIMATOR: " + prefabInstance.name);
+        Debug.Log(prefabInstance.gameObject.transform.GetChild(0).gameObject.name);
+        var modelObject = prefabInstance.gameObject.transform.GetChild(0).gameObject;
+
+        Debug.Log("STUPID: " + modelObject.GetComponent<Animator>());
+        if (modelObject.GetComponent<Animator>() == null)
+        {
+            var animator = modelObject.AddComponent<Animator>() as Animator;
+            animator.runtimeAnimatorController = characterProfile.AnimationController;
+        }
+
     }
 }

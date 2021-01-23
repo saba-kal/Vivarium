@@ -15,11 +15,11 @@ public class MoveCameraCommand : ICommand
 
 
     public MoveCameraCommand(
-    Vector3 destination,
-    float extraSpeed,
-    float resetZoom,
-    GameObject focusCharacter = null,
-    System.Action onMoveComplete = null)
+        Vector3 destination,
+        float extraSpeed,
+        float resetZoom,
+        GameObject focusCharacter = null,
+        System.Action onMoveComplete = null)
     {
         _extraSpeed = extraSpeed;
         _focusCharacter = focusCharacter;
@@ -39,7 +39,7 @@ public class MoveCameraCommand : ICommand
 
         _mainCamera.transform.rotation = Quaternion.identity;
         _mainCamera.GetComponent<CameraFollower>().lockCamera();
-        var centerOffset = 5f; // connect this to camera
+        var centerOffset = Constants.CAMERA_FOLLOW_SKEW;
         _destination = new Vector3(_destination.x, _destination.y, _destination.z - centerOffset);
         var destinationX = _destination.x;
         var destinationZ = _destination.z;
@@ -78,10 +78,10 @@ public class MoveCameraCommand : ICommand
             //    step = 0.07f;
             //}
 
-            if (step <= 0.07f)
-            {
-                step = 0.07f;
-            }
+            //if (step <= 0.07f)
+            //{
+            //    step = 0.07f;
+            //}
             yield return null;
         }
 
@@ -97,6 +97,7 @@ public class MoveCameraCommand : ICommand
         else
         {
             _mainCamera.GetComponent<CameraFollower>().ResetCamera();
+
             //_mainCamera.transform.SetParent(null);
             //_mainCamera.transform.localPosition = new Vector3(0, 0, 0);
             //_cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
