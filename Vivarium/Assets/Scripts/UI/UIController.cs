@@ -13,8 +13,6 @@ public class UIController : MonoBehaviour
     public static event MoveClick OnMoveClick;
     public delegate void EndTurnClick();
     public static event EndTurnClick OnEndTurnClick;
-    public delegate void ShowMapClick();
-    public static event ShowMapClick OnShowMapClick;
 
 
     public GameObject CharacterInfoPanel;
@@ -28,7 +26,6 @@ public class UIController : MonoBehaviour
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;
-    public Button ShowMapButton;
     public float SpaceBetweenButtons = 2f;
 
     private CharacterController _selectedCharacter;
@@ -52,7 +49,6 @@ public class UIController : MonoBehaviour
     void Start()
     {
         CharacterInfoPanel.SetActive(false);
-        ShowMapButton.onClick.AddListener(() => OnShowMapClick?.Invoke());
         MoveButton.onClick.AddListener(() =>
         {
             OnMoveClick?.Invoke();

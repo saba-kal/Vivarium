@@ -7,40 +7,82 @@ using UnityEngine.SceneManagement;
 
 public class PrepMenuUIController : MonoBehaviour
 {
-    public delegate void BackClick();
-    public static event BackClick OnBackClick;
+    public static PrepMenuUIController Instance { get; private set; }
 
-    public Button BackButton;
-    public Button InventoryButton;
-    public GameObject PortraitPrefab;
-    public GameObject CharacterPortraits;
+    public int MaxPlayerItems = 20;
+    public int MaxCharacterItems = 3;
+    public GameObject PrepMenu;
+    public CharacterDetailsProfile CharacterDetailsPrefab;
+    public GameObject CharactersContainer;
+    public GameObject PlayerInventoryContainer;
+    public InventorySlot InventorySlotPrefab;
+
+    private List<GameObject> _existingProfiles = new List<GameObject>();
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
-        BackButton.onClick.AddListener(() => OnBackClick?.Invoke());
-        InsertPortraits();
-
+        Display();
     }
 
-    public void InsertPortraits()
+    public void Display()
     {
-        int x = -740;
-        int y = 250;
-        for (int i = 0; i < TurnSystemManager.Instance.PlayerController.PlayerCharacters.Count; i++)
-        {
-            GameObject Portrait = Instantiate(PortraitPrefab, new Vector3(x, y, 0), Quaternion.identity);
-            SceneManager.MoveGameObjectToScene(Portrait, SceneManager.GetSceneByName("InGameUI"));
-            Portrait.transform.SetParent(CharacterPortraits.transform, false);
-            Portrait.GetComponent<Image>().sprite = TurnSystemManager.Instance.PlayerController.PlayerCharacters[i].Character.Portrait;
+        CleanupExistingPrepMenu();
+        PrepMenu.SetActive(true);
+        DisplayCharacters();
+        DisplayPlayerInventory();
+    }
 
-            if (i == 3 || i == 7)
+    private void CleanupExistingPrepMenu()
+    {
+        foreach (var gameObject in _existingProfiles)
+        {
+            Destroy(gameObject);
+        }
+
+        foreach (Transform child in PlayerInventoryContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    private void DisplayCharacters()
+    {
+        var characterControllers = TurnSystemManager.Instance.PlayerController.PlayerCharacters;
+        foreach (var characterController in characterControllers)
+        {
+            var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
+            profileObject.MaxItems = MaxCharacterItems;
+            profileObject.DisplayCharacter(characterController);
+
+            _existingProfiles.Add(profileObject.gameObject);
+        }
+    }
+
+    private void DisplayPlayerInventory()
+    {
+        var playerItems = InventoryManager.GetPlayerItems();
+        for (var i = 0; i < MaxPlayerItems; i++)
+        {
+            var inventorySlot = Instantiate(InventorySlotPrefab, PlayerInventoryContainer.transform);
+            if (i < playerItems.Count)
             {
-                x += 190;
-                y = 250;
+                inventorySlot.SetItem(playerItems[i]);
             }
             else
             {
-                y -= 175;
+                inventorySlot.SetItem(null);
             }
         }
     }

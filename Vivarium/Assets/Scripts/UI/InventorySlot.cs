@@ -2,8 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     public delegate void SlotClick(InventorySlot inventorySlot);
     public static event SlotClick OnSlotClick;
@@ -16,20 +18,27 @@ public class InventorySlot : MonoBehaviour
 
     private InventoryItem _inventoryItem;
     private CharacterController _selectedCharacter;
+    private SlotClick _onSlotClick;
 
     private void Start()
     {
         Button.onClick.AddListener(() =>
         {
-            OnSlotClick?.Invoke(this);
+            _onSlotClick?.Invoke(this); //Scoped to single inventory slot.
+            OnSlotClick?.Invoke(this); //Global
         });
     }
 
-    public void SetItem(InventoryItem inventoryItem, CharacterController selectedCharacter)
+    public void SetItem(InventoryItem inventoryItem, CharacterController selectedCharacter = null)
     {
         _inventoryItem = inventoryItem;
         _selectedCharacter = selectedCharacter;
         UpdateItemDisplay();
+    }
+
+    public void AddOnClickCallback(SlotClick onClick)
+    {
+        _onSlotClick = onClick;
     }
 
     public InventoryItem GetItem()
@@ -39,7 +48,14 @@ public class InventorySlot : MonoBehaviour
 
     public void UpdateItemDisplay()
     {
-        if (_inventoryItem == null || InventoryManager.GetCharacterItem(_selectedCharacter.Id, _inventoryItem.Item.Id) == null)
+        if (_inventoryItem == null)
+        {
+            Clear();
+            return;
+        }
+
+        if (_selectedCharacter != null && InventoryManager.GetCharacterItem(_selectedCharacter.Id, _inventoryItem.Item.Id) == null ||
+            _selectedCharacter == null && InventoryManager.GetPlayerItem(_inventoryItem.Item.Id) == null)
         {
             Clear();
             return;
@@ -71,5 +87,15 @@ public class InventorySlot : MonoBehaviour
         Icon.gameObject.SetActive(false);
         Count.text = "0";
         EquipOverlay.SetActive(false);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = Input.mousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        transform.localPosition = Vector3.zero;
     }
 }

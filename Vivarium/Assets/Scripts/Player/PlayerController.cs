@@ -22,8 +22,6 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick += OnGridCellClick;
         UIController.OnActionClick += SelectAction;
         UIController.OnMoveClick += SelectMove;
-        UIController.OnShowMapClick += DisableCharacters;
-        PrepMenuUIController.OnBackClick += EnableCharacters;
         InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
@@ -33,8 +31,6 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick -= OnGridCellClick;
         UIController.OnActionClick -= SelectAction;
         UIController.OnMoveClick -= SelectMove;
-        UIController.OnShowMapClick -= DisableCharacters;
-        PrepMenuUIController.OnBackClick -= EnableCharacters;
         InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
@@ -110,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 SelectCharacter(character);
             }
         }
-        if(_selectedCharacter != null)
+        if (_selectedCharacter != null)
         {
             Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
             tempDict.Add((0, 0), tile);

@@ -105,7 +105,7 @@ public class MoveCommand : ICommand
                 Time.deltaTime * Constants.CHAR_ROTATION_SPEED
             );
 
-            if (targetRotation == characterController.Model.transform.rotation)
+            if (Quaternion.Angle(characterController.Model.transform.rotation, targetRotation) <= 0.01f)
             {
                 _isRotating = false;
             }

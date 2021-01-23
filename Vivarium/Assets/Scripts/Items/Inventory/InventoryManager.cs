@@ -211,4 +211,25 @@ public static class InventoryManager
     {
         return _playerInventory;
     }
+
+    public static List<InventoryItem> GetPlayerItems()
+    {
+        var playerItems = new List<InventoryItem>();
+
+        var playerInventory = GetPlayerInventory();
+        if (playerInventory == null)
+        {
+            return playerItems;
+        }
+
+        foreach (var inventoryItems in playerInventory.Values)
+        {
+            foreach (var inventoryItem in inventoryItems)
+            {
+                playerItems.Add(inventoryItem);
+            }
+        }
+
+        return playerItems;
+    }
 }
