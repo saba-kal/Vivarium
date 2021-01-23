@@ -13,7 +13,7 @@ public class GiantLazerActionController : ActionController
 
     private Grid<Tile> _grid;
 
-    public override void Execute(Tile targetTile)
+    public override void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
         {
@@ -47,10 +47,11 @@ public class GiantLazerActionController : ActionController
             }
         }
 
+        PlaySound();
         ExecuteAction(affectedTiles);
         AnimateAttack(targetTile1);
 
-        return;
+        onActionComplete?.Invoke();
     }
 
     private void GetStartTiles(Tile targetTile, out Tile startTile1, out Tile startTile2, out Tile targetTile1, out Tile targetTile2)

@@ -309,6 +309,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1578279263457632646}
   HealthBarText: {fileID: 6981642754348924284}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 1087853429226401143, guid: 96445ec144716f440a33b853529281c8, type: 3}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1578279264111162628
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +540,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 5873448626389738796}
   HealthBarText: {fileID: 4158193984411925600}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 1087853429226401143, guid: 96445ec144716f440a33b853529281c8, type: 3}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3227372145602307691
 GameObject:
   m_ObjectHideFlags: 0

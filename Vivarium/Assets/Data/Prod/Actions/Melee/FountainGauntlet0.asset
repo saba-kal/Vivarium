@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: FountainGauntletNormal123
   Name: Stab
   Description: A simple stab that deals damage to one target
+  SoundName: TestAttackSound
   BaseDamage: 12
   CriticalChance: 0
   CriticalMultiplier: 0
@@ -24,6 +25,6 @@ MonoBehaviour:
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
-  AnimType: 0
+  AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}

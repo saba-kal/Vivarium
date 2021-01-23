@@ -7,5 +7,6 @@ public enum ActionControllerType
     GiantLazer = 1,
     Projectile = 2,
     KnockBack = 3,
-    SwitchPosition = 4
+    SwitchPosition = 4,
+    Screw = 5
 }

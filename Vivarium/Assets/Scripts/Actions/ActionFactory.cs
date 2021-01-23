@@ -20,7 +20,7 @@ public class ActionFactory
                 break;
             case ActionControllerType.Projectile:
                 actionController = gameObject.AddComponent<ProjectileActionController>();
-                actionViewer = gameObject.AddComponent<ProjectileActionViewer>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
             case ActionControllerType.KnockBack:
                 actionController = gameObject.AddComponent<KnockBackActionController>();
@@ -28,6 +28,10 @@ public class ActionFactory
                 break;
             case ActionControllerType.SwitchPosition:
                 actionController = gameObject.AddComponent<SwitchPositionActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                break;
+            case ActionControllerType.Screw:
+                actionController = gameObject.AddComponent<ScrewActionController>();
                 actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
             case ActionControllerType.Default:

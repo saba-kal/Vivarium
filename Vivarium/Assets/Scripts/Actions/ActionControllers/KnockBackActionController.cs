@@ -38,7 +38,7 @@ public class KnockBackActionController : ActionController
         List<Tile> path = new List<Tile>();
         path.Add(toTile);
 
-        var damage = StatCalculator.CalculateStat(ActionReference, StatType.Damage);
+        var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         if (toTile == null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into null tile");
@@ -73,6 +73,7 @@ public class KnockBackActionController : ActionController
         }
 
 
+        PlaySound();
         targetCharacter.TakeDamage(damage);
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
     }

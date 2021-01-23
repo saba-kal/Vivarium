@@ -415,13 +415,16 @@ MonoBehaviour:
     Id: 9e684bd4-b12f-43ab-93eb-af44194cbc89
     Name: Bob
     MaxHealth: 130.12505
+    AttackDamage: 0
     MoveRange: 4.9106197
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &2937846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5479,13 +5482,16 @@ MonoBehaviour:
     Id: 7ef68676-7417-4f66-9e3f-9d9601072eed
     Name: EVIL
     MaxHealth: 185.97644
+    AttackDamage: 0
     MoveRange: 3.7745023
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
+  Model: {fileID: 0}
 --- !u!114 &138318825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5528,6 +5534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5288ce874ca4c24d9a0cfd26f1a75d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipEnemyPhase: 0
 --- !u!114 &138318828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26173,6 +26180,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 661546255}
   HealthBarText: {fileID: 1227761913}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &661546254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27080,6 +27092,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 678891869}
   HealthBarText: {fileID: 374071572}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &680452333
 GameObject:
   m_ObjectHideFlags: 0
@@ -29432,6 +29449,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 753555936}
   HealthBarText: {fileID: 343775936}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &753555935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31612,7 +31634,9 @@ MonoBehaviour:
     Id: 73bf02b9-fb7c-4cf3-8772-73a360a8207b
     Name: EVIL
     MaxHealth: 93.787605
+    AttackDamage: 0
     MoveRange: 3.637609
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
@@ -31620,6 +31644,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
+  Model: {fileID: 0}
 --- !u!114 &808096812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31662,6 +31687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5288ce874ca4c24d9a0cfd26f1a75d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipEnemyPhase: 0
 --- !u!114 &808096815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34892,6 +34918,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 880732623}
   HealthBarText: {fileID: 1883221835}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &881427169
 GameObject:
   m_ObjectHideFlags: 0
@@ -39608,13 +39639,16 @@ MonoBehaviour:
     Id: d5bd06af-4f82-4570-92ae-36435e75dae9
     Name: Bobby
     MaxHealth: 155.10019
+    AttackDamage: 0
     MoveRange: 6.9075193
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &995031012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44596,6 +44630,8 @@ MonoBehaviour:
   - {fileID: 1797523720}
   - {fileID: 808096811}
   - {fileID: 138318824}
+  GridPointCalculator: {fileID: 0}
+  skipEnemyPhase: 0
 --- !u!4 &1126683398
 Transform:
   m_ObjectHideFlags: 0
@@ -54437,6 +54473,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1376699841}
   HealthBarText: {fileID: 337998072}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &1376699840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -58727,13 +58768,16 @@ MonoBehaviour:
     Id: 030a913e-64ea-430c-ad6f-2ddce8ada50c
     Name: Bob
     MaxHealth: 183.14746
+    AttackDamage: 0
     MoveRange: 6.352209
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &1468262132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63601,13 +63645,16 @@ MonoBehaviour:
     Id: f4ec6516-b6f4-4871-a85a-45477b682880
     Name: Bob
     MaxHealth: 160.86984
+    AttackDamage: 0
     MoveRange: 6.1254215
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &1556337779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65034,7 +65081,9 @@ MonoBehaviour:
     Id: b227351d-0c6c-48aa-9356-a492a6a7e713
     Name: Bobby
     MaxHealth: 153.34753
+    AttackDamage: 0
     MoveRange: 6.1588607
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 608e12e7eee263940b888b3d1243021f, type: 2}
     - {fileID: 11400000, guid: 502cedbd200a9cd44ab7aced87c7fc0d, type: 2}
@@ -65042,6 +65091,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 0
+  Model: {fileID: 0}
 --- !u!114 &1591780022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65554,6 +65604,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1599871844}
   HealthBarText: {fileID: 768693489}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &1599871843
 RectTransform:
   m_ObjectHideFlags: 0
@@ -71233,6 +71288,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1756783774}
   HealthBarText: {fileID: 1476177893}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &1756783773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -72957,13 +73017,16 @@ MonoBehaviour:
     Id: 9eee144a-2fb2-4147-9a34-88372b6b2d82
     Name: EVIL
     MaxHealth: 52.295986
+    AttackDamage: 0
     MoveRange: 5.9682903
+    AICharacterHeuristics: {fileID: 0}
     Attributes:
     - {fileID: 11400000, guid: 427d3123f99c81143a572c5d6608ff5e, type: 2}
     Weapon: {fileID: 11400000, guid: b6859b57fc1bffb4eb86dcc7af005938, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
   IsEnemy: 1
+  Model: {fileID: 0}
 --- !u!114 &1797523721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73006,6 +73069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5288ce874ca4c24d9a0cfd26f1a75d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipEnemyPhase: 0
 --- !u!114 &1797523724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74554,6 +74618,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1833680309}
   HealthBarText: {fileID: 1862025206}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &1833680308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78231,6 +78300,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1917338255}
   HealthBarText: {fileID: 1856709067}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1920089377
 GameObject:
   m_ObjectHideFlags: 0
@@ -85849,6 +85923,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 2100718653}
   HealthBarText: {fileID: 1051383130}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &2100718652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -87918,6 +87997,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 2146070900}
   HealthBarText: {fileID: 118747411}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &2146070899
 RectTransform:
   m_ObjectHideFlags: 0

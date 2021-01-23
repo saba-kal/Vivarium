@@ -18,4 +18,12 @@ public static class Constants
     public const string TILE_GRID_TAG = "GridTile";
     public const string PLAYER_CONTROLLER_TAG = "PlayerController";
 
+    //Common sound names.
+    public const string GRID_CELL_CLICK_SOUND = "GridCellClick";
+    public const string DEATH_SOUND = "Death";
+    public const string DAMAGE_TAKEN_SOUND = "DamageTaken";
+    public const string WALK_SOUND = "Walk";
+    public const string BUTTON_CLICK_SOUND = "ButtonClick";
+    public const string EQUIP_SOUND = "ItemEquip";
+    public const string CONSUME_SOUND = "Consume";
 }

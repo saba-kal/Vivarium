@@ -43,8 +43,27 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var grid = TileGridController.Instance.GetGrid();
+        CharacterController targetCharacter = null;
+        foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
+        {
+            //Character was most likely deleted.
+            if (character == null)
+            {
+                continue;
+            }
+
+            grid.GetGridCoordinates(character.transform.position, out var x, out var y);
+            if (selectedTile.GridX == x && selectedTile.GridY == y)
+            {
+                targetCharacter = character;
+            }
+        }
+
+        //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy)
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy &&
+             !(_selectedAction.AreaOfAffect == 0 && (selectedTile.CharacterControllerId == null || !targetCharacter.IsEnemy)))
         {
             PerformAction(selectedTile);
             UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
@@ -87,6 +106,12 @@ public class PlayerController : MonoBehaviour
                 SelectCharacter(character);
             }
         }
+        if(_selectedCharacter != null)
+        {
+            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+            tempDict.Add((0, 0), tile);
+            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
+        }
     }
 
     private void SelectMove()
@@ -110,15 +135,22 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var attackController = _selectedCharacter.GetActionController(action);
+        if (attackController == null)
+        {
+            Debug.LogError("Unable to display attack because an attack controller could not be found.\n" +
+                "Make sure your character has a weapon with attacks, and an attack controller that references it.");
+            return;
+        }
+
         DeselectAction();
         DeselectMove();
 
         _actionIsSelected = true;
         _selectedAction = action;
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
-        _selectedActionMinRange = StatCalculator.CalculateStat(action, StatType.AttackMinRange);
-        _selectedActionMaxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
-        attackViewer.DisplayAction(actionAOE, _selectedActionMinRange, _selectedActionMaxRange);
+        attackController.CalculateAffectedTiles();
+        attackViewer.DisplayAction(actionAOE, attackController.GetAffectedTiles());
         UIController.Instance.DisplayActionStats(_selectedAction);
 
         Debug.Log($"Attack '{action.Name}' has been selected.");
