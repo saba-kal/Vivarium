@@ -30,6 +30,10 @@ public class ActionFactory
                 actionController = gameObject.AddComponent<SwitchPositionActionController>();
                 actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
+            case ActionControllerType.Screw:
+                actionController = gameObject.AddComponent<ScrewActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                break;
             case ActionControllerType.Default:
             default:
                 actionController = gameObject.AddComponent<ActionController>();

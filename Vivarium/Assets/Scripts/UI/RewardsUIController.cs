@@ -217,5 +217,15 @@ namespace Assets.Scripts.UI
                 ItemName.text = "";
             }
         }
+
+        public void DoubleClicked()
+        {
+            PlaceSelectedReward(_rewards);
+            LogPlayerInventory();
+            RewardScreen.SetActive(false);
+            _selectedReward = 0;
+            UpdateItemDescription();
+            _nextLevelCallback();
+        }
     }
 }

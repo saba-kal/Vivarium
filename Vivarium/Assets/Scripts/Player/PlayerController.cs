@@ -47,8 +47,27 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        var grid = TileGridController.Instance.GetGrid();
+        CharacterController targetCharacter = null;
+        foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
+        {
+            //Character was most likely deleted.
+            if (character == null)
+            {
+                continue;
+            }
+
+            grid.GetGridCoordinates(character.transform.position, out var x, out var y);
+            if (selectedTile.GridX == x && selectedTile.GridY == y)
+            {
+                targetCharacter = character;
+            }
+        }
+
+        //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy)
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy &&
+             !(_selectedAction.AreaOfAffect == 0 && (selectedTile.CharacterControllerId == null || !targetCharacter.IsEnemy)))
         {
             PerformAction(selectedTile);
             UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
@@ -90,6 +109,12 @@ public class PlayerController : MonoBehaviour
             {
                 SelectCharacter(character);
             }
+        }
+        if(_selectedCharacter != null)
+        {
+            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+            tempDict.Add((0, 0), tile);
+            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
         }
     }
 
