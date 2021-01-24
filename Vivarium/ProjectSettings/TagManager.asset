@@ -11,6 +11,7 @@ TagManager:
   - PlayerController
   - MasterCamera
   - AIManager
+  - InGameUICanvas
   layers:
   - Default
   - TransparentFX

@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DisableCharacters()
+    public void DisableCharacters()
     {
         foreach (var character in PlayerCharacters)
         {

@@ -162,7 +162,7 @@ public class InventoryUIController : MonoBehaviour
             if (i < characterInventory.Count)
             {
                 _inventorySlots[i].SetItem(characterInventory[i], _selectedCharacterController);
-                if (ItemIsEquipped(characterInventory[i].Item))
+                if (_selectedCharacterController.ItemIsEquipped(characterInventory[i].Item))
                 {
                     if (characterInventory[i].Item.Type == ItemType.Weapon && _equippedWeaponIndex < 0)
                     {
@@ -229,15 +229,14 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    private bool ItemIsEquipped(Item item)
-    {
-        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
-            (_selectedCharacterController.Character.Weapon?.Id == item.Id || _selectedCharacterController.Character.Shield?.Id == item.Id);
-    }
-
     private bool ItemIsEquipped(Item item, int itemIndex)
     {
-        var itemIsEquiped = ItemIsEquipped(item);
+        if (_selectedCharacterController == null)
+        {
+            return false;
+        }
+
+        var itemIsEquiped = _selectedCharacterController.ItemIsEquipped(item);
 
         if (itemIsEquiped && item.Type == ItemType.Weapon && _equippedWeaponIndex != itemIndex)
         {
