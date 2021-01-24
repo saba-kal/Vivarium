@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4395566727037131641
+--- !u!114 &-8620468553805737025
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: grass
-  m_Shader: {fileID: -6465566751694194690, guid: 30faad8146e366a4caf187eddfe42d39, type: 3}
+  m_Name: movingGreen
+  m_Shader: {fileID: -6465566751694194690, guid: e5bed2c0e2abd9c46a048f49832ae40a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -93,6 +93,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_F05606CD: {r: 0.24644707, g: 0.5754717, b: 0.1764418, a: 0}
     - Vector2_2C87AD5F: {r: 5, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

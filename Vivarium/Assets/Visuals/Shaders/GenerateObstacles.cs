@@ -12,6 +12,7 @@ public class GenerateObstacles : MonoBehaviour
 
     public List<GameObject> groupedPrefabs;
     public List<GameObject> simpleEnvironmentPrefabs;
+    public List<GameObject> superSpecialObstaclePrefabs;
 
     //public GameObject logPrefab;
 
@@ -73,6 +74,7 @@ public class GenerateObstacles : MonoBehaviour
                     generateGroupObstacles(groupedObstacleCoords, "horizontal");
                     generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, false, true);
                     generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, true, false);
+                    generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
 
 
 
@@ -88,6 +90,7 @@ public class GenerateObstacles : MonoBehaviour
                     generateGroupObstacles(groupedObstacleCoords, "vertical");
                     generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, false, true);
                     generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, true, false);
+                    generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
                 }
 
 
@@ -95,16 +98,19 @@ public class GenerateObstacles : MonoBehaviour
             }
         }
 
-        var singleTileRandObjects = new List<List<int>>();
-        for (var x = 0; x < grassCoords.Count; x++)
-        {
-            var include = Random.Range(0, 4);
-            if (include == 1)
-            {
-                singleTileRandObjects.Add(grassCoords[x]);
-            }
-        }
-        generateObstacles(simpleEnvironmentPrefabs[0], singleTileRandObjects, 0, false, true, false);
+        //var singleTileRandObjects = new List<List<int>>();
+        //for (var x = 0; x < grassCoords.Count; x++)
+        //{
+        //    var include = Random.Range(0, 8);
+        //    if (include == 1)
+        //    {
+        //        singleTileRandObjects.Add(grassCoords[x]);
+        //    }
+        //}
+
+        generateMultObstacles(simpleEnvironmentPrefabs, grassCoords, 0, true, 8);
+
+
 
 
 
@@ -252,6 +258,38 @@ public class GenerateObstacles : MonoBehaviour
         }
     }
 
+    public void generateMultObstacles(List<GameObject> obstacles, List<List<int>> Coords, float additionY, bool isRandRotateByNinety = false, int spawnDifficult = 0)
+    {
+
+        // var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();
+        var obstacleCoords = Coords;
+        var grid = this.GetComponent<GetMapCoords>().GetGrid();
+        var gridObject = this.GetComponent<GetMapCoords>().GetGridObject();
+
+        for (var z = 0; z < obstacleCoords.Count; z++)
+        {
+            var randSpawn = Random.Range(0, spawnDifficult);
+
+            if (randSpawn == 1)
+            {
+                var tile = grid[obstacleCoords[z][0], obstacleCoords[z][1]];
+                var rotation = Quaternion.identity;
+
+
+                var randPrefab = obstacles[Random.Range(0, obstacles.Count)];
+                var obstacleInstance = Instantiate(randPrefab, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
+
+
+                var intervalRotation = new List<float> { 90, 180, 270 };
+
+                if (isRandRotateByNinety)
+                {
+                    var randomIntervalRotation = Random.Range(0, 3);
+                    obstacleInstance.transform.rotation *= Quaternion.Euler(0, intervalRotation[randomIntervalRotation], 0);
+                }
+            }
+        }
+    }
 }
 
 

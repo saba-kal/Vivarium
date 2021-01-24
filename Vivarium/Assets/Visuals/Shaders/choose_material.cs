@@ -14,7 +14,7 @@ public class choose_material : MonoBehaviour
         var randomMaterial = Random.Range(0, 3);
         this.gameObject.GetComponent<Renderer>().material = materials[randomMaterial];
 
-        RandomRotation();
+        //RandomRotation();
     }
 
     void RandomRotation()

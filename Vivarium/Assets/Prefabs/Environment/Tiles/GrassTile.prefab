@@ -140,6 +140,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materials:
-  - {fileID: 2100000, guid: f20110d92eb6fb34da1d8101ef9dba8b, type: 2}
-  - {fileID: 2100000, guid: 855ba018706ec0e45ae5b44f46d2f1e4, type: 2}
   - {fileID: 2100000, guid: d349efacfa2bdbd41a908334cc879efc, type: 2}
+  - {fileID: 2100000, guid: 855ba018706ec0e45ae5b44f46d2f1e4, type: 2}
+  - {fileID: 2100000, guid: f20110d92eb6fb34da1d8101ef9dba8b, type: 2}
