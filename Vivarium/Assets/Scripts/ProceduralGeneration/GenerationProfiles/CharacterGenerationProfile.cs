@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,6 +8,7 @@ public class CharacterGenerationProfile : ScriptableObject
 {
     public List<GameObject> PossibleModels;
     public List<string> PossibleNames;
+    public List<Sprite> PossiblePortraits;
 
     public float MinMaxHealth;
     public float MaxMaxHealth;

@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 SelectCharacter(character);
             }
         }
-        if(_selectedCharacter != null)
+        if (_selectedCharacter != null)
         {
             Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
             tempDict.Add((0, 0), tile);
@@ -184,11 +184,25 @@ public class PlayerController : MonoBehaviour
 
     public void EnableCharacters()
     {
+        if (_selectedCharacter)
+        {
+            DeselectMove();
+            UIController.Instance.CharacterInfoPanel.SetActive(false);
+        }
         UIController.Instance.EnableAllButtons();
         foreach (var character in PlayerCharacters)
         {
+            character.IsEnemy = false;
             character.SetHasAttacked(false);
             character.SetHasMoved(false);
+        }
+    }
+
+    public void DisableCharacters()
+    {
+        foreach (var character in PlayerCharacters)
+        {
+            character.IsEnemy = true;
         }
     }
 

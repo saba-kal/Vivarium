@@ -17,6 +17,8 @@ MonoBehaviour:
   PossibleNames:
   - Brave Bee
   - Curious Bee
+  PossiblePortraits:
+  - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
   MinMaxHealth: 52
   MaxMaxHealth: 72
   MinAttackDamage: 0

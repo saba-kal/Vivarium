@@ -17,6 +17,7 @@ public static class Constants
     public const string LEVEL_CONTAINER_TAG = "LevelContainer";
     public const string TILE_GRID_TAG = "GridTile";
     public const string PLAYER_CONTROLLER_TAG = "PlayerController";
+    public const string CANVAS_TAG = "InGameUICanvas";
 
     //Common sound names.
     public const string GRID_CELL_CLICK_SOUND = "GridCellClick";
