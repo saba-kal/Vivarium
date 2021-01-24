@@ -44,7 +44,6 @@ public class MoveCommand : ICommand
         var pathQueue = new Queue<Tile>(_path);
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        Debug.Log("TARGET POSITION: " + targetPosition);
         _isRotating = true;
 
         _soundManager?.Play(Constants.WALK_SOUND);
