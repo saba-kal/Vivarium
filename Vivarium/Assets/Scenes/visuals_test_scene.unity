@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: c288955f9833d804a9d4e1c42669049e, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 5f89b99894b047c4cbca9bd3d07fac9b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6728,6 +6728,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 163453742}
   HealthBarText: {fileID: 1544087456}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &166796707
 GameObject:
   m_ObjectHideFlags: 0
@@ -11029,7 +11034,9 @@ MonoBehaviour:
     Id: 11c691f5-2a8a-4e14-ad9b-d3ed7bca4295
     Name: Red Ant
     MaxHealth: 77.07606
+    AttackDamage: 0
     MoveRange: 7.345105
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 0}
@@ -17564,6 +17571,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 384019913}
   HealthBarText: {fileID: 220538183}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &384019912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27216,6 +27228,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 626803341}
   HealthBarText: {fileID: 177607596}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &626803341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27925,6 +27942,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 642542522}
   HealthBarText: {fileID: 270784446}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &642723593
 GameObject:
   m_ObjectHideFlags: 0
@@ -30193,7 +30215,9 @@ MonoBehaviour:
     Id: 958aadef-2a35-41c3-8154-a6a0e44dd398
     Name: Brave Ant
     MaxHealth: 115.99752
+    AttackDamage: 0
     MoveRange: 8.698366
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
@@ -33886,7 +33910,9 @@ MonoBehaviour:
     Id: 356b49e0-09e7-4b93-88f9-7706a59502a6
     Name: Murder Ant
     MaxHealth: 75.464775
+    AttackDamage: 0
     MoveRange: 8.900431
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 0}
@@ -35873,7 +35899,9 @@ MonoBehaviour:
     Id: 803efe7e-d5e5-4e09-932b-a7ba7e2a0438
     Name: Brave Ant
     MaxHealth: 107.03506
+    AttackDamage: 0
     MoveRange: 7.5019116
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
@@ -36356,6 +36384,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 844728076}
   HealthBarText: {fileID: 70812434}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &844728075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38064,7 +38097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883397996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -1.33, z: -0.13}
+  m_LocalPosition: {x: -0.01, y: -1.22, z: -0.13}
   m_LocalScale: {x: 2.5522246, y: 2.5522246, z: 2.4486554}
   m_Children: []
   m_Father: {fileID: 0}
@@ -39881,6 +39914,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 939036681}
   HealthBarText: {fileID: 358779637}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &939036680
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52645,6 +52683,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1240468143}
   HealthBarText: {fileID: 1721525092}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1240575308
 GameObject:
   m_ObjectHideFlags: 0
@@ -54294,6 +54337,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1278386412}
   HealthBarText: {fileID: 522577678}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1278386412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55038,6 +55086,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1293922220}
   HealthBarText: {fileID: 268904827}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1293922220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56525,6 +56578,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1328033562}
   HealthBarText: {fileID: 363040445}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1328033562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59851,7 +59909,9 @@ MonoBehaviour:
     Id: 2a9879e0-6710-4ab6-95b3-4a47132fb518
     Name: Brave Ant
     MaxHealth: 83.33711
+    AttackDamage: 0
     MoveRange: 8.850266
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
@@ -61548,7 +61608,8 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 919132149155446097, guid: 9fc652fc74dcb864395e1291023bb8f4, type: 3}
   underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
   pebbleFillerPreab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
-  grassFiller: {fileID: 3303212903174898359, guid: 01e0fb4f07ca2c04c97228343276afcd, type: 3}
+  logPrefab: {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+  dirtFiller: {fileID: 3303212903174898359, guid: 01e0fb4f07ca2c04c97228343276afcd, type: 3}
 --- !u!4 &1486275899
 Transform:
   m_ObjectHideFlags: 0
@@ -63481,6 +63542,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1540502880}
   HealthBarText: {fileID: 1514744557}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1540566747
 GameObject:
   m_ObjectHideFlags: 0
@@ -67799,6 +67865,7 @@ MonoBehaviour:
   - {fileID: 773295033}
   - {fileID: 246330958}
   - {fileID: 1858890980}
+  GridPointCalculator: {fileID: 0}
   skipEnemyPhase: 0
 --- !u!4 &1639406649
 Transform:
@@ -71666,6 +71733,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 1754392492}
   HealthBarText: {fileID: 591254578}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1754392492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77892,7 +77964,9 @@ MonoBehaviour:
     Id: 9d7b8e16-27a4-4ef1-b111-59ece592a0af
     Name: Murder Ant
     MaxHealth: 107.462715
+    AttackDamage: 0
     MoveRange: 8.152761
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
     Shield: {fileID: 0}
@@ -84410,6 +84484,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 2022241347}
   HealthBarText: {fileID: 383605814}
   isShieldBar: 1
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!224 &2022241346
 RectTransform:
   m_ObjectHideFlags: 0
@@ -85785,6 +85864,11 @@ MonoBehaviour:
   HealthBarSlider: {fileID: 2061208202}
   HealthBarText: {fileID: 734630914}
   isShieldBar: 0
+  HealthChangeEffectPrefab: {fileID: 0}
+  HealthChangeEffectLifeTime: 1
+  HealthChangeEffectSpeed: 1
+  PositiveHealthChangeColor: {r: 0, g: 1, b: 0, a: 1}
+  NegativeHealthChangeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2061208202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86233,7 +86317,9 @@ MonoBehaviour:
     Id: 85fe04a1-f4c7-4804-ac52-83907d7afa83
     Name: Curious Ant
     MaxHealth: 83.13543
+    AttackDamage: 0
     MoveRange: 8.637765
+    AICharacterHeuristics: {fileID: 0}
     Attributes: []
     Weapon: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}

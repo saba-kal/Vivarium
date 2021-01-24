@@ -20,7 +20,6 @@ public class ground_generator : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         waterCoords = this.GetComponent<GetMapCoords>().GetWaterCoords();
-        Debug.Log("NUMBER OF WATER: " + waterCoords.Count);
         CreateShape();
         UpdateMesh();
     }
@@ -45,11 +44,9 @@ public class ground_generator : MonoBehaviour
         {
             for (int x = 0; x <= xsize; x++)
             {
-                Debug.Log(waterCoords[0][0]);
                 float y = 0;
                 if (isWater(x, z))
                 {
-                    Debug.Log("YES YES YES");
                     //y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * -5f;
                     y = 0f;
                 }
