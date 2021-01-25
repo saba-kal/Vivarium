@@ -18,20 +18,38 @@ public class GenerateObstacles : MonoBehaviour
 
     public GameObject dirtFiller;
 
+    private List<GameObject> allEnvironmentObjects = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
+        //generateEnvironment();
+
+
+
+
+    }
+
+    public void clearObjects()
+    {
+        for (var i = 0; i < allEnvironmentObjects.Count; i++)
+        {
+            Destroy(allEnvironmentObjects[i]);
+        }
+        allEnvironmentObjects = new List<GameObject>();
+    }
+
+    public void generateEnvironment()
+    {
         var height = this.GetComponent<GetMapCoords>().GetHeight();
         var splitSections = heightSplitter(height, 5);
+
 
         var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();
         var grassCoords = this.GetComponent<GetMapCoords>().GetGrassTiles();
         var allCoords = this.GetComponent<GetMapCoords>().GetAllCoords();
         var borderCoords = this.GetComponent<GetMapCoords>().GetOuterBorderCoords();
         var costalCoords = this.GetComponent<GetMapCoords>().GetCoastalCoords();
-
-
-
 
 
         var startSection = 0;
@@ -98,30 +116,11 @@ public class GenerateObstacles : MonoBehaviour
             }
         }
 
-        //var singleTileRandObjects = new List<List<int>>();
-        //for (var x = 0; x < grassCoords.Count; x++)
-        //{
-        //    var include = Random.Range(0, 8);
-        //    if (include == 1)
-        //    {
-        //        singleTileRandObjects.Add(grassCoords[x]);
-        //    }
-        //}
+
 
         generateMultObstacles(simpleEnvironmentPrefabs, grassCoords, 0, true, 8);
-
-
-
-
-
-
-
         generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, false, false);
         generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, true, false);
-        //generateObstacles(coastalGravelPrefab, costalCoords, 0.1f, false, true, false);
-
-
-
     }
 
 
@@ -219,7 +218,7 @@ public class GenerateObstacles : MonoBehaviour
                 rotation = Random.rotation;
             }
             var obstacleInstance = Instantiate(obstacle, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
-
+            allEnvironmentObjects.Add(obstacleInstance);
             if (allowHighRise)
             {
                 // highrise
@@ -229,6 +228,7 @@ public class GenerateObstacles : MonoBehaviour
                 if (createhighRise == 1)
                 {
                     var highRiseInstance = Instantiate(highRiseRockPrefab, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0) + new Vector3(randomoffsetX, 0, randomoffsetZ), Quaternion.identity);
+                    allEnvironmentObjects.Add(highRiseInstance);
                     var randRotX = Random.Range(-20, 20);
                     var randRotY = Random.Range(0f, 180f);
                     var randRotZ = Random.Range(-20, 20);
@@ -278,7 +278,7 @@ public class GenerateObstacles : MonoBehaviour
 
                 var randPrefab = obstacles[Random.Range(0, obstacles.Count)];
                 var obstacleInstance = Instantiate(randPrefab, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
-
+                allEnvironmentObjects.Add(obstacleInstance);
 
                 var intervalRotation = new List<float> { 90, 180, 270 };
 
