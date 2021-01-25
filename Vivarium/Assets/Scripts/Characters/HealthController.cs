@@ -113,4 +113,10 @@ public class HealthController : MonoBehaviour
     {
         return _currentShield;
     }
+
+    public void RemoveShield()
+    {
+        _maxShield = 0;
+        UpdateShieldDisplay();
+    }
 }

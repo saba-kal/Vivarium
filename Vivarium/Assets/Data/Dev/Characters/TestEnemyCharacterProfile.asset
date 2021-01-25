@@ -17,6 +17,8 @@ MonoBehaviour:
   PossibleNames:
   - Enemy McEnemyFace
   - Enemy Guy
+  PossiblePortraits:
+  - {fileID: 0}
   MinMaxHealth: 50
   MaxMaxHealth: 200
   MinAttackDamage: 0

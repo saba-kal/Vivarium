@@ -16,6 +16,8 @@ MonoBehaviour:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Heavy Ant (lv 1)
+  PossiblePortraits:
+  - {fileID: 21300000, guid: 16f88b77cc7309a42a9839c4b277318b, type: 3}
   MinMaxHealth: 36
   MaxMaxHealth: 54
   MinAttackDamage: 0

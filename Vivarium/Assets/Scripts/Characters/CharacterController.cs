@@ -249,6 +249,19 @@ public class CharacterController : MonoBehaviour
         //TODO: switch out weapon model here.
     }
 
+    public void Unequip(Item item)
+    {
+        if (item.Type == ItemType.Weapon && item.Id == Character.Weapon?.Id)
+        {
+            Character.Weapon = null;
+        }
+        else if (item.Type == ItemType.Shield && item.Id == Character.Shield?.Id)
+        {
+            Character.Shield = null;
+            _healthController?.RemoveShield();
+        }
+    }
+
     public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
     {
         var grid = TileGridController.Instance.GetGrid();
@@ -352,5 +365,11 @@ public class CharacterController : MonoBehaviour
     public float GetAttackDamage()
     {
         return _attackDamage;
+    }
+
+    public bool ItemIsEquipped(Item item)
+    {
+        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
+            (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
 }

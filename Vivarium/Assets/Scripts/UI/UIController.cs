@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public delegate void EndTurnClick();
     public static event EndTurnClick OnEndTurnClick;
 
+
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
