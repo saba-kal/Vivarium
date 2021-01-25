@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
         //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy &&
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy &&
              !(_selectedAction.AreaOfAffect == 0 && (selectedTile.CharacterControllerId == null || !targetCharacter.IsEnemy)))
         {
             PerformAction(selectedTile);
@@ -278,6 +278,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_selectedCharacter != null)
         {
+            DeselectMove();
+            DeselectAction();
             _selectedCharacter.Deselect();
             _selectedCharacter = null;
         }
