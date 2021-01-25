@@ -6755,7 +6755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &122324377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24826,6 +24826,8 @@ GameObject:
   - component: {fileID: 542098716}
   - component: {fileID: 542098717}
   - component: {fileID: 542098715}
+  - component: {fileID: 542098718}
+  - component: {fileID: 542098719}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -24883,6 +24885,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 229c10a8cb1d97148ba7a8ad793eab81, type: 2}
   - {fileID: 11400000, guid: 5ec71db777c4dfb4db66a52e54a77152, type: 2}
   - {fileID: 11400000, guid: e042f45a972423a4bac41339f0009c37, type: 2}
+--- !u!114 &542098718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542098714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de607957c3230114ab2a4f9074e5e6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highRiseRockPrefab: {fileID: 1367914048844801962, guid: c9887e379a03a18478c4d886bd4adc82, type: 3}
+  obstaclePrefab: {fileID: 919132149155446097, guid: 9fc652fc74dcb864395e1291023bb8f4, type: 3}
+  underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
+  pebbleFillerPrefab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
+  coastalGravelPrefab: {fileID: 5540666915505002182, guid: 81727f927054e9d49aa1f8ea4d976fc5, type: 3}
+  groupedPrefabs:
+  - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+  - {fileID: 5902385623053669473, guid: 1a26bb23e714fe54691f11b2e318c87c, type: 3}
+  - {fileID: 5902385623053669473, guid: 5781644dca32b3a41b9d8b82801c42ed, type: 3}
+  - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+  - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+  - {fileID: 5902385623053669473, guid: e099414834959bd4abbfd793b4a36578, type: 3}
+  simpleEnvironmentPrefabs:
+  - {fileID: 145118276453066414, guid: 63fd4c6e2623bd84e8d9cae24f670fef, type: 3}
+  - {fileID: 581227103555110979, guid: 0c37c188cf6c1334b97cdecb6fe69cf6, type: 3}
+  - {fileID: 7321570470793003592, guid: 5f84994e1dcd49443b0cad5841a43dd9, type: 3}
+  superSpecialObstaclePrefabs:
+  - {fileID: 788191094971233270, guid: 6720ba750b39b7d44b4deb18633e5290, type: 3}
+  - {fileID: 8766767530960276174, guid: c53a1f6d789af9b48abfc265766630bf, type: 3}
+  dirtFiller: {fileID: 3303212903174898359, guid: 01e0fb4f07ca2c04c97228343276afcd, type: 3}
+--- !u!114 &542098719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542098714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3327b7bce984f4abf2cff4c284a715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &546746725
 GameObject:
   m_ObjectHideFlags: 0
@@ -35466,6 +35512,7 @@ MonoBehaviour:
   Character:
     Id: 11c691f5-2a8a-4e14-ad9b-d3ed7bca4295
     Name: Red Ant
+    Portrait: {fileID: 0}
     MaxHealth: 77.07606
     AttackDamage: 0
     MoveRange: 7.345105
@@ -50040,6 +50087,7 @@ MonoBehaviour:
   Character:
     Id: 85fe04a1-f4c7-4804-ac52-83907d7afa83
     Name: Curious Ant
+    Portrait: {fileID: 0}
     MaxHealth: 83.13543
     AttackDamage: 0
     MoveRange: 8.637765
@@ -51017,6 +51065,7 @@ MonoBehaviour:
   Character:
     Id: 2a9879e0-6710-4ab6-95b3-4a47132fb518
     Name: Brave Ant
+    Portrait: {fileID: 0}
     MaxHealth: 83.33711
     AttackDamage: 0
     MoveRange: 8.850266
@@ -51673,6 +51722,7 @@ MonoBehaviour:
   Character:
     Id: 958aadef-2a35-41c3-8154-a6a0e44dd398
     Name: Brave Ant
+    Portrait: {fileID: 0}
     MaxHealth: 115.99752
     AttackDamage: 0
     MoveRange: 8.698366
@@ -53184,6 +53234,7 @@ MonoBehaviour:
   Character:
     Id: 803efe7e-d5e5-4e09-932b-a7ba7e2a0438
     Name: Brave Ant
+    Portrait: {fileID: 0}
     MaxHealth: 107.03506
     AttackDamage: 0
     MoveRange: 7.5019116
@@ -59108,6 +59159,7 @@ MonoBehaviour:
   Character:
     Id: 9d7b8e16-27a4-4ef1-b111-59ece592a0af
     Name: Murder Ant
+    Portrait: {fileID: 0}
     MaxHealth: 107.462715
     AttackDamage: 0
     MoveRange: 8.152761
@@ -65941,6 +65993,7 @@ MonoBehaviour:
   Character:
     Id: 356b49e0-09e7-4b93-88f9-7706a59502a6
     Name: Murder Ant
+    Portrait: {fileID: 0}
     MaxHealth: 75.464775
     AttackDamage: 0
     MoveRange: 8.900431
