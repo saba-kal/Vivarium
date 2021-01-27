@@ -343,6 +343,12 @@ public class CharacterController : MonoBehaviour
             case (ConsumableType.Honey):
                 Heal(consumable.value);
                 break;
+            case (ConsumableType.AtkBuff):
+                AtkBuff(consumable.value);
+                break;
+            case (ConsumableType.MovBuff):
+                MovBuff(consumable.value);
+                break;
         }
         InventoryManager.RemoveCharacterItem(Id, consumable.Id);
     }
@@ -352,6 +358,15 @@ public class CharacterController : MonoBehaviour
         _healthController.Healing(healAmount);
     }
 
+    public void AtkBuff(float attackAmount)
+    {
+        Character.AttackDamage += attackAmount;
+    }
+
+    public void MovBuff(float moveAmount)
+    {
+        Character.MoveRange += moveAmount;
+    }
     public void RegenShield(float shieldAmount)
     {
         _healthController.RegenerateShield(shieldAmount);
