@@ -145,7 +145,7 @@ public class GenerateObstacles : MonoBehaviour
     private List<int> heightSplitter(int height, int sections)
     {
         var returnList = new List<int>();
-        
+
 
         var leftover = height % sections;
         var divisble = height - leftover;
@@ -218,6 +218,8 @@ public class GenerateObstacles : MonoBehaviour
                 rotation = Random.rotation;
             }
             var obstacleInstance = Instantiate(obstacle, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
+            obstacleInstance.transform.SetParent(TileGridController.Instance.transform);
+
             allEnvironmentObjects.Add(obstacleInstance);
             if (allowHighRise)
             {
@@ -228,6 +230,8 @@ public class GenerateObstacles : MonoBehaviour
                 if (createhighRise == 1)
                 {
                     var highRiseInstance = Instantiate(highRiseRockPrefab, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0) + new Vector3(randomoffsetX, 0, randomoffsetZ), Quaternion.identity);
+                    highRiseInstance.transform.SetParent(TileGridController.Instance.transform);
+
                     allEnvironmentObjects.Add(highRiseInstance);
                     var randRotX = Random.Range(-20, 20);
                     var randRotY = Random.Range(0f, 180f);
@@ -235,9 +239,9 @@ public class GenerateObstacles : MonoBehaviour
                     highRiseInstance.transform.rotation *= Quaternion.Euler(randRotX, randRotY, randRotZ);
                 }
             }
-            
-            var intervalRotation = new List<float> { 90, 180, 270};
-            
+
+            var intervalRotation = new List<float> { 90, 180, 270 };
+
             if (isRandRotateByNinety)
             {
                 var randomIntervalRotation = Random.Range(0, 3);
@@ -278,6 +282,8 @@ public class GenerateObstacles : MonoBehaviour
 
                 var randPrefab = obstacles[Random.Range(0, obstacles.Count)];
                 var obstacleInstance = Instantiate(randPrefab, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
+                obstacleInstance.transform.SetParent(TileGridController.Instance.transform);
+
                 allEnvironmentObjects.Add(obstacleInstance);
 
                 var intervalRotation = new List<float> { 90, 180, 270 };

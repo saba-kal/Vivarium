@@ -91,6 +91,8 @@ public class ActionController : MonoBehaviour, IActionController
 
     protected virtual IEnumerator ExecuteAction(List<CharacterController> targetCharacters, Dictionary<(int, int), Tile> affectedTiles)
     {
+        yield return new WaitForSeconds(ActionReference.ActionTriggerDelay);
+
         foreach (var tile in affectedTiles)
         {
             var targetCharacter = targetCharacters.FirstOrDefault(t => t.Id == tile.Value.CharacterControllerId);

@@ -26,6 +26,7 @@ MonoBehaviour:
   ControllerType: 2
   Attributes:
   - {fileID: 11400000, guid: 7d0e09f2a97b2d94ea7c8d3589981244, type: 2}
-  AnimType: 4
+  AnimType: 3
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 0}
+  ActionTriggerDelay: 0

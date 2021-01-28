@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerAntCharacterProfile
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 2520507072280550569, guid: 5b6adc60587a71148a4c3c008d510722, type: 3}
+  - {fileID: 106819821670323034, guid: 6eded9c7965df7e48b98221dda61e1d8, type: 3}
   PossibleNames:
   - Brave Ant
   - Curious Ant
