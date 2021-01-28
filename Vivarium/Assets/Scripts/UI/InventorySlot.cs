@@ -42,10 +42,10 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     {
         _inventoryItem = inventoryItem;
         _selectedCharacter = selectedCharacter;
-        //if (_duplicateIcon != null)
-        //{
-        //    Destroy(_duplicateIcon);
-        //}
+        if (_duplicateIcon != null)
+        {
+            Destroy(_duplicateIcon);
+        }
         UpdateItemDisplay();
     }
 
