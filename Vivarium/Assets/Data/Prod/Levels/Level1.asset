@@ -24,17 +24,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03085724b34e9c5448c007dad3bfb76d, type: 2}
   - {fileID: 11400000, guid: 0e1b4c16a6bff1740bc4fcbc9f15b6e1, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
-  - {fileID: 11400000, guid: 3a9277883e890254bb4441dfd2f03369, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
   MinPlayerCharacters: 4
   MaxPlayerCharacters: 4
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
-  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
