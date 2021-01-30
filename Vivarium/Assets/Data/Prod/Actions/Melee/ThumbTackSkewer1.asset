@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: SkewerSpecial
   Description: SKewerSpecial
   SoundName: TestAttackSound
-  BaseDamage: 1
+  BaseDamage: 20
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
-  MaxRange: 2
+  MaxRange: 1
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 6

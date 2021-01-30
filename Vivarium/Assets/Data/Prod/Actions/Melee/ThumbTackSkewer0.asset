@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: BasicSkewer
   Description: Basic
   SoundName: TestAttackSound
-  BaseDamage: 16
+  BaseDamage: 10
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1

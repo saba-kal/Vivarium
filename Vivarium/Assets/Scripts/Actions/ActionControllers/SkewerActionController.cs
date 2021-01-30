@@ -15,6 +15,7 @@ public class SkewerActionController : ActionController
         {
             base.ExecuteActionOnCharacter(targetCharacter);
             _characterController.SetHasMoved(true);
+            UIController.Instance.DisableMoveForCharacter(_characterController.Id);
         }
     }
 }
