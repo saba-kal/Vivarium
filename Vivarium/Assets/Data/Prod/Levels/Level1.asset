@@ -32,9 +32,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
