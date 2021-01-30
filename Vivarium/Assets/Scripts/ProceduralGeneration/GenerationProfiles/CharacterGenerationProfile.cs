@@ -25,6 +25,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public AICharacterHeuristics AICharacterHeuristics;
 
     public GameObject HealthBarPrefab;
+    public LootTable CharacterLootTable;
 
     // for animation
     public RuntimeAnimatorController AnimationController;
