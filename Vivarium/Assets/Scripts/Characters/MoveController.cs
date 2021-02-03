@@ -42,21 +42,6 @@ public class MoveController : MonoBehaviour
         var tile = _grid.GetValue(transform.position);
         _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
-
-        List<(int, int)> waterLocations = new List<(int, int)>();
-        foreach(KeyValuePair<(int, int), Tile> move in _availableMoves)
-        {
-            if(move.Value.Type == TileType.Water)
-            {
-                waterLocations.Add(move.Key);
-            }
-        }
-
-        foreach((int, int) location in waterLocations)
-        {
-            _availableMoves.Remove(location);
-        }
-        
         return _availableMoves;
     }
 

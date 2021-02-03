@@ -125,53 +125,50 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
-            if (!(attack.ControllerType == ActionControllerType.Skewer && !_aiCharacter.IsAbleToMove()))
+            var potentialAttackDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
+            var totalPotentialDamage = 0f;
+            Tile potentialTileToAttack = null;
+
+            var attackController = _aiCharacter.GetActionController(attack);
+            attackController.CalculateAffectedTiles();
+            var tilesThatCanAttacked = attackController.GetAffectedTiles();
+
+            foreach (var targetTile in tilesThatCanAttacked.Values)
             {
-                var potentialAttackDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
-                var totalPotentialDamage = 0f;
-                Tile potentialTileToAttack = null;
+                var areaOfAffect = StatCalculator.CalculateStat(attack, StatType.AttackAOE);
+                var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
+                var damageOnAffectedTiles = 0f;
 
-                var attackController = _aiCharacter.GetActionController(attack);
-                attackController.CalculateAffectedTiles();
-                var tilesThatCanAttacked = attackController.GetAffectedTiles();
-
-                foreach (var targetTile in tilesThatCanAttacked.Values)
+                foreach (var affectedTile in affectedTiles.Values)
                 {
-                    var areaOfAffect = StatCalculator.CalculateStat(attack, StatType.AttackAOE);
-                    var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
-                    var damageOnAffectedTiles = 0f;
-
-                    foreach (var affectedTile in affectedTiles.Values)
+                    var playerCharacter = _playerCharacters.FirstOrDefault(p => p.Id == affectedTile.CharacterControllerId);
+                    if (!string.IsNullOrEmpty(affectedTile.CharacterControllerId) &&
+                        playerCharacter != null)
                     {
-                        var playerCharacter = _playerCharacters.FirstOrDefault(p => p.Id == affectedTile.CharacterControllerId);
-                        if (!string.IsNullOrEmpty(affectedTile.CharacterControllerId) &&
-                            playerCharacter != null)
+                        damageOnAffectedTiles += potentialAttackDamage;
+
+                        var playerHealth = playerCharacter.GetHealthController().GetCurrentHealth() +
+                            playerCharacter.GetHealthController().GetCurrentShield();
+
+                        if (playerHealth <= potentialAttackDamage)
                         {
-                            damageOnAffectedTiles += potentialAttackDamage;
-
-                            var playerHealth = playerCharacter.GetHealthController().GetCurrentHealth() +
-                                playerCharacter.GetHealthController().GetCurrentShield();
-
-                            if (playerHealth <= potentialAttackDamage)
-                            {
-                                damageOnAffectedTiles += POINTS_FOR_KILLING_PLAYER_CHARACTER;
-                            }
+                            damageOnAffectedTiles += POINTS_FOR_KILLING_PLAYER_CHARACTER;
                         }
                     }
-
-                    if (damageOnAffectedTiles > totalPotentialDamage)
-                    {
-                        totalPotentialDamage = damageOnAffectedTiles;
-                        potentialTileToAttack = targetTile;
-                    }
                 }
 
-                if (totalPotentialDamage > maxPotentialDamage)
+                if (damageOnAffectedTiles > totalPotentialDamage)
                 {
-                    maxPotentialDamage = totalPotentialDamage;
-                    bestAttack = attack;
-                    tileToAttack = potentialTileToAttack;
+                    totalPotentialDamage = damageOnAffectedTiles;
+                    potentialTileToAttack = targetTile;
                 }
+            }
+
+            if (totalPotentialDamage > maxPotentialDamage)
+            {
+                maxPotentialDamage = totalPotentialDamage;
+                bestAttack = attack;
+                tileToAttack = potentialTileToAttack;
             }
         }
 

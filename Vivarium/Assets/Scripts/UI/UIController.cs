@@ -95,11 +95,6 @@ public class UIController : MonoBehaviour
             {
                 actionButton.interactable = false;
             }
-            else if(action.ControllerType == ActionControllerType.Skewer && !characterController.IsAbleToMove() && 
-                !characterController.IsEnemy)
-            {
-                actionButton.interactable = false;
-            }
             else
             {
                 actionButton.onClick.AddListener(() =>
