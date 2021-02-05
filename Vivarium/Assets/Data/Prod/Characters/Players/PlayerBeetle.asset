@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBeetle
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 6229483223496328122, guid: 6cea4ba6c47274549b99a9f292e07cb8, type: 3}
+  - {fileID: 2134149279704721023, guid: 1394bbedd1f8a344e88e057c1f6f8365, type: 3}
   PossibleNames:
   - Brave Beetle
   - Curious Beetle

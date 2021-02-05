@@ -34,6 +34,10 @@ public class ActionFactory
                 actionController = gameObject.AddComponent<ScrewActionController>();
                 actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
+            case ActionControllerType.Skewer:
+                actionController = gameObject.AddComponent<SkewerActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                break;
             case ActionControllerType.Default:
             default:
                 actionController = gameObject.AddComponent<ActionController>();
