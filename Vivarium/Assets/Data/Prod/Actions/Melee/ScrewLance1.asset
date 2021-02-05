@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ScrewLance1
   m_EditorClassIdentifier: 
   Id: ScrewLance123
-  Name: ScrewSpecial
-  Description: ScrewSpecial
+  Name: Screw
+  Description: Rotates the target about the user clockwise by 90 degrees
   SoundName: TestAttackSound
-  BaseDamage: 12
+  BaseDamage: 11
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1

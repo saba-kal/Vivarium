@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ScrewLance0
   m_EditorClassIdentifier: 
   Id: ScrewLanceNormal123
-  Name: BasicScrew
-  Description: Basic
+  Name: Stab
+  Description: A simple stab attack that deals damage to a single target
   SoundName: TestAttackSound
-  BaseDamage: 16
+  BaseDamage: 18
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
-  MaxRange: 1
+  MaxRange: 2
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 0
