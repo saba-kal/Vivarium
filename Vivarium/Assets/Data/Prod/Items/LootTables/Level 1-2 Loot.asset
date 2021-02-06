@@ -22,4 +22,10 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     ChanceToDrop: 0.298
   - Item: {fileID: 11400000, guid: e12be45a471164f48badd0b0d4aa810c, type: 2}
-    ChanceToDrop: 0.287
+    ChanceToDrop: 0.214
+  - Item: {fileID: 11400000, guid: e81b69021e102f943897cef369448a50, type: 2}
+    ChanceToDrop: 0.163
+  - Item: {fileID: 11400000, guid: 14fd7acf46353e143bafd1f714ee70b0, type: 2}
+    ChanceToDrop: 0.112
+  - Item: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
+    ChanceToDrop: 0.076
