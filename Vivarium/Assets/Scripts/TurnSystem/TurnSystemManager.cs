@@ -53,6 +53,8 @@ public class TurnSystemManager : MonoBehaviour
 
     private void ExecuteAI()
     {
+        PlayerController.DeselectCharacter();
+
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
         mainCamera?.GetComponent<CameraFollower>().lockCamera();
 

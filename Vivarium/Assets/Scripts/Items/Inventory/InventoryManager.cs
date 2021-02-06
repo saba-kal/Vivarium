@@ -78,7 +78,7 @@ public static class InventoryManager
                 _characterInventories[characterId].Items.Remove(itemId);
             }
         }
-        else if (_characterInventories[characterId].Items[itemId].Count >= 2)
+        else if (_characterInventories[characterId].Items[itemId].Count > 1)
         {
             _characterInventories[characterId].Items[itemId].RemoveAt(0);
         }
@@ -193,7 +193,14 @@ public static class InventoryManager
         }
         else
         {
-            _playerInventory.Remove(itemId);
+            if (_playerInventory[itemId].Count <= 1)
+            {
+                _playerInventory.Remove(itemId);
+            }
+            else
+            {
+                _playerInventory[itemId].RemoveAt(0);
+            }
         }
     }
 
@@ -210,5 +217,26 @@ public static class InventoryManager
     public static Dictionary<string, List<InventoryItem>> GetPlayerInventory()
     {
         return _playerInventory;
+    }
+
+    public static List<InventoryItem> GetPlayerItems()
+    {
+        var playerItems = new List<InventoryItem>();
+
+        var playerInventory = GetPlayerInventory();
+        if (playerInventory == null)
+        {
+            return playerItems;
+        }
+
+        foreach (var inventoryItems in playerInventory.Values)
+        {
+            foreach (var inventoryItem in inventoryItems)
+            {
+                playerItems.Add(inventoryItem);
+            }
+        }
+
+        return playerItems;
     }
 }

@@ -10,6 +10,8 @@ public class MoveCommand : ICommand
     private Grid<Tile> _grid;
     private System.Action _onMoveComplete;
     private SoundManager _soundManager;
+    private Animator _animator;
+    private string _moveAnimationId;
 
     private bool _rotationEnabled = true;
     private bool _isRotating = false;
@@ -31,6 +33,8 @@ public class MoveCommand : ICommand
         _rotationEnabled = roatationEnabled;
         _skipMovement = skipMovement;
         _soundManager = SoundManager.GetInstance();
+        _animator = _gameObject.GetComponentInChildren<Animator>();
+        _moveAnimationId = System.Enum.GetName(typeof(AnimationType), AnimationType.move);
     }
 
     public IEnumerator Execute()
@@ -41,15 +45,17 @@ public class MoveCommand : ICommand
             yield break;
         }
 
+
         var pathQueue = new Queue<Tile>(_path);
         var targetTile = pathQueue.Dequeue();
         var targetPosition = _grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        Debug.Log("TARGET POSITION: " + targetPosition);
         _isRotating = true;
 
         _soundManager?.Play(Constants.WALK_SOUND);
         while (targetTile != null && _gameObject != null)
         {
+            _animator.SetBool(_moveAnimationId, true);
+
             if (_isRotating && _rotationEnabled)
             {
                 FaceMovementDirection(_gameObject.transform.position, targetPosition);
@@ -66,8 +72,6 @@ public class MoveCommand : ICommand
                     _soundManager?.Resume(Constants.WALK_SOUND);
                     _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
                 }
-
-
 
                 if (targetPosition == _gameObject.transform.position)
                 {
@@ -89,6 +93,7 @@ public class MoveCommand : ICommand
 
         _soundManager?.Stop(Constants.WALK_SOUND);
         _onMoveComplete?.Invoke();
+        _animator.SetBool(_moveAnimationId, false);
     }
 
     private void FaceMovementDirection(Vector3 fromPosition, Vector3 toPosition)
@@ -105,7 +110,7 @@ public class MoveCommand : ICommand
                 Time.deltaTime * Constants.CHAR_ROTATION_SPEED
             );
 
-            if (targetRotation == characterController.Model.transform.rotation)
+            if (Quaternion.Angle(characterController.Model.transform.rotation, targetRotation) <= 0.01f)
             {
                 _isRotating = false;
             }

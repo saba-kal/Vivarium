@@ -115,7 +115,13 @@ public class CharacterController : MonoBehaviour
         if (_moveController != null)
         {
             _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
-            _hasMoved = true;
+            UnityEngine.Debug.Log("Moving");
+            if(path.Count != 1)
+            {
+                UnityEngine.Debug.Log("Path not 1 tile");
+                _hasMoved = true;
+            }
+            
             Deselect();
         }
         else
@@ -249,6 +255,19 @@ public class CharacterController : MonoBehaviour
         //TODO: switch out weapon model here.
     }
 
+    public void Unequip(Item item)
+    {
+        if (item.Type == ItemType.Weapon && item.Id == Character.Weapon?.Id)
+        {
+            Character.Weapon = null;
+        }
+        else if (item.Type == ItemType.Shield && item.Id == Character.Shield?.Id)
+        {
+            Character.Shield = null;
+            _healthController?.RemoveShield();
+        }
+    }
+
     public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
     {
         var grid = TileGridController.Instance.GetGrid();
@@ -330,6 +349,12 @@ public class CharacterController : MonoBehaviour
             case (ConsumableType.Honey):
                 Heal(consumable.value);
                 break;
+            case (ConsumableType.AtkBuff):
+                AtkBuff(consumable.value);
+                break;
+            case (ConsumableType.MovBuff):
+                MovBuff(consumable.value);
+                break;
         }
         InventoryManager.RemoveCharacterItem(Id, consumable.Id);
     }
@@ -339,6 +364,15 @@ public class CharacterController : MonoBehaviour
         _healthController.Healing(healAmount);
     }
 
+    public void AtkBuff(float attackAmount)
+    {
+        Character.AttackDamage += attackAmount;
+    }
+
+    public void MovBuff(float moveAmount)
+    {
+        Character.MoveRange += moveAmount;
+    }
     public void RegenShield(float shieldAmount)
     {
         _healthController.RegenerateShield(shieldAmount);
@@ -352,5 +386,11 @@ public class CharacterController : MonoBehaviour
     public float GetAttackDamage()
     {
         return _attackDamage;
+    }
+
+    public bool ItemIsEquipped(Item item)
+    {
+        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
+            (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
 }

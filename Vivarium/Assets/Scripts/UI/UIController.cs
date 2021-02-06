@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public delegate void EndTurnClick();
     public static event EndTurnClick OnEndTurnClick;
 
+
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
@@ -94,6 +95,11 @@ public class UIController : MonoBehaviour
             {
                 actionButton.interactable = false;
             }
+            else if (action.ControllerType == ActionControllerType.Skewer && !characterController.IsAbleToMove() &&
+                !characterController.IsEnemy)
+            {
+                actionButton.interactable = false;
+            }
             else
             {
                 actionButton.onClick.AddListener(() =>
@@ -104,6 +110,12 @@ public class UIController : MonoBehaviour
             }
             var buttonText = actionButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = action.Name;
+
+            var tooltip = actionButton.GetComponent<Tooltip>();
+            if (tooltip != null)
+            {
+                tooltip.SetTooltipData(action);
+            }
         }
     }
 

@@ -16,10 +16,11 @@ MonoBehaviour:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Figher Ant (lv 0)
-  MinMaxHealth: 30
-  MaxMaxHealth: 45
-  MinAttackDamage: 0
-  MaxAttackDamage: 0
+  PossiblePortraits: []
+  MinMaxHealth: 60
+  MaxMaxHealth: 89
+  MinAttackDamage: 10
+  MaxAttackDamage: 16
   MinMoveRange: 6
   MaxMoveRange: 8
   NavigableTiles: 00000000

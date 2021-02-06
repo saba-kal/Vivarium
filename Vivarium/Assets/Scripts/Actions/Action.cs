@@ -22,4 +22,5 @@ public class Action : ScriptableObject
     public AnimationType AnimType;
     public GameObject ProjectilePrefab;
     public ParticleSystem ParticleEffect;
+    public float ActionTriggerDelay = 1f;
 }

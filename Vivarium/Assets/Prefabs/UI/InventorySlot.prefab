@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7368560720565213170}
   - component: {fileID: 4845599805695546359}
   - component: {fileID: 6021040879492175171}
+  - component: {fileID: 7913818180587302016}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -100,6 +101,20 @@ MonoBehaviour:
   Button: {fileID: 4845599805695546359}
   Count: {fileID: 693575972153065011}
   EquipOverlay: {fileID: 7481188552197241721}
+  Index: 0
+--- !u!114 &7913818180587302016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077028646788442464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54875d871cc9c0438283f7ba00fabae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
 --- !u!1 &1429647588606576447
 GameObject:
   m_ObjectHideFlags: 0

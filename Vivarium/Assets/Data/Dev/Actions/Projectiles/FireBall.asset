@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: FireBall123yoyoy
   Name: Fire Ball
-  Description: 
+  Description: OP as shit
   SoundName: TestAttackSound
   BaseDamage: 15
   CriticalChance: 0
@@ -27,6 +27,7 @@ MonoBehaviour:
   Attributes:
   - {fileID: 11400000, guid: 7d0e09f2a97b2d94ea7c8d3589981244, type: 2}
   - {fileID: 11400000, guid: 8465100ec0abd934e8d3c3a5fe086536, type: 2}
-  AnimType: 4
+  AnimType: 3
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 0

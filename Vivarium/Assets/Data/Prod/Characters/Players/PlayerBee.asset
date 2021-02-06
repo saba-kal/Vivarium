@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: PlayerBee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 8985031486325489120, guid: 23cf77a74bf93634fbca15a26c1c7947, type: 3}
+  - {fileID: 6758109804856600292, guid: 7989ba31a1c6d274d8cac3a6cc638d93, type: 3}
   PossibleNames:
   - Brave Bee
   - Curious Bee
-  MinMaxHealth: 52
-  MaxMaxHealth: 72
-  MinAttackDamage: 0
-  MaxAttackDamage: 0
+  PossiblePortraits:
+  - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
+  MinMaxHealth: 50
+  MaxMaxHealth: 90
+  MinAttackDamage: 27
+  MaxAttackDamage: 37
   MinMoveRange: 7
-  MaxMoveRange: 10
+  MaxMoveRange: 9
   NavigableTiles: 0000000001000000
   WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}

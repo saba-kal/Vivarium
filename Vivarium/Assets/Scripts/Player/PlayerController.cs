@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
         //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && !_selectedCharacter.IsEnemy &&
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy &&
              !(_selectedAction.AreaOfAffect == 0 && (selectedTile.CharacterControllerId == null || !targetCharacter.IsEnemy)))
         {
             PerformAction(selectedTile);
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 SelectCharacter(character);
             }
         }
-        if(_selectedCharacter != null)
+        if (_selectedCharacter != null)
         {
             Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
             tempDict.Add((0, 0), tile);
@@ -184,11 +184,25 @@ public class PlayerController : MonoBehaviour
 
     public void EnableCharacters()
     {
+        if (_selectedCharacter)
+        {
+            DeselectMove();
+            UIController.Instance.CharacterInfoPanel.SetActive(false);
+        }
         UIController.Instance.EnableAllButtons();
         foreach (var character in PlayerCharacters)
         {
+            character.IsEnemy = false;
             character.SetHasAttacked(false);
             character.SetHasMoved(false);
+        }
+    }
+
+    public void DisableCharacters()
+    {
+        foreach (var character in PlayerCharacters)
+        {
+            character.IsEnemy = true;
         }
     }
 
@@ -264,6 +278,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_selectedCharacter != null)
         {
+            DeselectMove();
+            DeselectAction();
             _selectedCharacter.Deselect();
             _selectedCharacter = null;
         }

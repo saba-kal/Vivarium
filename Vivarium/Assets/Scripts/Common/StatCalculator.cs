@@ -4,37 +4,50 @@ using System.Linq;
 
 public static class StatCalculator
 {
-    public static float CalculateStat(Action action, StatType statType)
+    public static float CalculateStat(Action action, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromAction(action, statType);
-        return CalculateStat(baseValue, statType, action.Attributes);
+        return CalculateStat(baseValue, statType, action.Attributes, calcType);
     }
 
-    public static float CalculateStat(Character character, StatType statType)
+    public static float CalculateStat(Character character, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromCharacter(character, statType);
-        return CalculateStat(baseValue, statType, character.Attributes);
+        return CalculateStat(baseValue, statType, character.Attributes, calcType);
     }
 
-    public static float CalculateStat(Character character, Action action, StatType statType)
+    public static float CalculateStat(Character character, Action action, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromCharacter(character, statType) + GetStatFromAction(action, statType);
-        return CalculateStat(baseValue, statType, character.Attributes.Concat(action.Attributes).ToList());
+        return CalculateStat(baseValue, statType, character.Attributes.Concat(action.Attributes).ToList(), calcType);
     }
 
-    public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes)
+    public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes, StatCalculationType calcType)
     {
         var statMultiplier = 1f;
 
         foreach (var attribute in attributes)
         {
-            if (attribute.Type != statType ||
-                Random.value > attribute.ChanceToApply)
+            if (attribute.Type != statType)
+            {
+                continue;
+            }
+
+            if (calcType == StatCalculationType.Default && Random.value > attribute.ChanceToApply ||
+                calcType == StatCalculationType.Min && attribute.ChanceToApply < 1)
             {
                 continue;
             }
 
             var value = Random.Range(attribute.MinValue, attribute.MaxValue);
+            if (calcType == StatCalculationType.Max)
+            {
+                value = attribute.MaxValue;
+            }
+            else if (calcType == StatCalculationType.Min)
+            {
+                value = attribute.MinValue;
+            }
 
             if (attribute.Formula == AttributeFormula.Additive)
             {
@@ -81,4 +94,11 @@ public static class StatCalculator
 
         return 0f;
     }
+}
+
+public enum StatCalculationType
+{
+    Default = 0,
+    Min = 1,
+    Max = 2,
 }
