@@ -55,20 +55,17 @@ namespace Assets.Scripts.UI
             });
         }
 
-        public void ShowRewardsScreen(System.Action callback, List<Item> possibleRewards)
+        public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
         {
             UpdateButtons();
             RewardScreen.SetActive(true);
             _nextLevelCallback = callback;
 
-            if (possibleRewards.Count >= 3)
-            {
-                var numberOfRewards = 3;
-                _rewards = possibleRewards.OrderBy(x => Random.Range(0, 100)).Take(numberOfRewards).ToList();
-                Option1Icon.sprite = _rewards[0].Icon;
-                Option2Icon.sprite = _rewards[1].Icon;
-                Option3Icon.sprite = _rewards[2].Icon;
-            }
+            _rewards = possibleRewards.Pick(3);
+            Option1Icon.sprite = _rewards[0].Icon;
+            Option2Icon.sprite = _rewards[1].Icon;
+            Option3Icon.sprite = _rewards[2].Icon;
+            
 
             UpdateItemDescription();
         }
