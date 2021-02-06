@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
@@ -47,6 +45,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
             Destroy(_duplicateIcon);
         }
         UpdateItemDisplay();
+        SetTooltip();
     }
 
     public void AddOnClickCallback(SlotClick onClick)
@@ -141,6 +140,11 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     {
         Icon.transform.position = Input.mousePosition;
         OnSlotDrag?.Invoke(this);
+        var tooltip = GetComponent<Tooltip>();
+        if (tooltip != null)
+        {
+            tooltip.HideTooltip();
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -153,5 +157,14 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     public CharacterController GetCharacter()
     {
         return _selectedCharacter;
+    }
+
+    private void SetTooltip()
+    {
+        var tooltip = GetComponent<Tooltip>();
+        if (tooltip != null && _inventoryItem != null)
+        {
+            tooltip.SetTooltipData(_inventoryItem.Item);
+        }
     }
 }
