@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
@@ -142,6 +140,11 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     {
         Icon.transform.position = Input.mousePosition;
         OnSlotDrag?.Invoke(this);
+        var tooltip = GetComponent<Tooltip>();
+        if (tooltip != null)
+        {
+            tooltip.HideTooltip();
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -159,7 +162,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private void SetTooltip()
     {
         var tooltip = GetComponent<Tooltip>();
-        if (tooltip != null)
+        if (tooltip != null && _inventoryItem != null)
         {
             tooltip.SetTooltipData(_inventoryItem.Item);
         }

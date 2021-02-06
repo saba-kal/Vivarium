@@ -16,30 +16,25 @@ namespace Assets.Scripts.UI
         public Image Option1Icon;
         public Image Option2Icon;
         public Image Option3Icon;
-        public TextMeshProUGUI ItemDescription;
-        public TextMeshProUGUI ItemName;
-        public TextMeshProUGUI ItemStats;
 
         private int _selectedReward = 0;
         private System.Action _nextLevelCallback;
         private List<Item> _rewards = new List<Item>();
+        private List<Tooltip> _tooltips = new List<Tooltip>();
 
         private void Start()
         {
             Option1.onClick.AddListener(() =>
             {
                 _selectedReward = 0;
-                UpdateItemDescription();
             });
             Option2.onClick.AddListener(() =>
             {
                 _selectedReward = 1;
-                UpdateItemDescription();
             });
             Option3.onClick.AddListener(() =>
             {
                 _selectedReward = 2;
-                UpdateItemDescription();
             });
             NextLevel.onClick.AddListener(() =>
             {
@@ -49,7 +44,6 @@ namespace Assets.Scripts.UI
                     LogPlayerInventory();
                     RewardScreen.SetActive(false);
                     _selectedReward = 0;
-                    UpdateItemDescription();
                     _nextLevelCallback();
 
                 }
@@ -71,7 +65,7 @@ namespace Assets.Scripts.UI
                 Option3Icon.sprite = _rewards[2].Icon;
             }
 
-            UpdateItemDescription();
+            SetTooltipData();
         }
 
         private void PlaceSelectedReward(List<Item> possibleRewards)
@@ -175,35 +169,24 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void UpdateItemDescription()
+        private void SetTooltipData()
         {
-            if (ItemDescription != null && _selectedReward < _rewards.Count && _selectedReward >= 0)
+            if (_rewards.Count < 3)
             {
-                ItemDescription.text = _rewards[_selectedReward].Description;
-                ItemName.text = _rewards[_selectedReward].Name;
-                if (_rewards[_selectedReward].Type == ItemType.Shield)
-                {
-                    ItemStats.text = "Shield: " + ((Shield)_rewards[_selectedReward]).Health;
-                }
-                else if (_rewards[_selectedReward].Type == ItemType.Weapon)
-                {
-                    var weapon = ((Weapon)_rewards[_selectedReward]);
-                    ItemStats.text = "Actions: \n";
-                    foreach (var Action in weapon.Actions)
-                    {
-                        ItemStats.text += Action.Name + " " + Action.BaseDamage + " damage \n";
-                    }
-                }
-                else
-                {
-                    ItemStats.text = "Health Restored: " + ((Consumable)_rewards[_selectedReward]).value;
-                }
+                return;
             }
-            else
+
+            ClearTooltips();
+
+            var options = new List<Button> { Option1, Option2, Option3 };
+            for (int i = 0; i < options.Count; i++)
             {
-                ItemDescription.text = "";
-                ItemStats.text = "";
-                ItemName.text = "";
+                var tooltip = options[i].GetComponent<Tooltip>();
+                if (tooltip != null)
+                {
+                    tooltip.SetTooltipData(_rewards[i]);
+                }
+                _tooltips.Add(tooltip);
             }
         }
 
@@ -213,8 +196,17 @@ namespace Assets.Scripts.UI
             LogPlayerInventory();
             RewardScreen.SetActive(false);
             _selectedReward = 0;
-            UpdateItemDescription();
             _nextLevelCallback();
+            ClearTooltips();
+        }
+
+        private void ClearTooltips()
+        {
+            foreach (var tooltip in _tooltips)
+            {
+                tooltip.HideTooltip();
+            }
+            _tooltips = new List<Tooltip>();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tooltip : MonoBehaviour
+public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
 
@@ -11,6 +11,7 @@ public class Tooltip : MonoBehaviour
     private TooltipType _type;
     private Item ItemToShow;
     private Action ActionToShow;
+    private bool _mouseIsHoveringOverElement = false;
 
     // Update is called once per frame
     void Update()
@@ -20,16 +21,15 @@ public class Tooltip : MonoBehaviour
             return;
         }
 
-        var mouseIsHoveringOverElement = IsMouseHoveringOverElement();
-        if (_activeTooltip == null && mouseIsHoveringOverElement)
+        if (_activeTooltip == null && _mouseIsHoveringOverElement)
         {
             _activeTooltip = Instantiate(TooltipViewPrefab, TooltipContainer.Instance.transform);
             _activeTooltip.transform.localPosition = Vector3.zero;
             DisplayTooltipInfo();
         }
-        else if (_activeTooltip != null && !mouseIsHoveringOverElement)
+        else if (_activeTooltip != null && !_mouseIsHoveringOverElement)
         {
-            Destroy(_activeTooltip);
+            HideTooltip();
         }
 
         if (_activeTooltip != null)
@@ -38,38 +38,21 @@ public class Tooltip : MonoBehaviour
         }
     }
 
-    private bool IsMouseHoveringOverElement()
-    {
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-        pointerEventData.position = Input.mousePosition;
-
-        List<RaycastResult> raycastResultList = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointerEventData, raycastResultList);
-
-        for (int i = 0; i < raycastResultList.Count; i++)
-        {
-            if (raycastResultList[i].gameObject == gameObject)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     private void DisplayTooltipInfo()
     {
+        var tooltipView = _activeTooltip.GetComponentInChildren<TooltipView>();
+        if (tooltipView == null)
+        {
+            return;
+        }
+
         switch (_type)
         {
             case TooltipType.Action:
-                Debug.LogWarning("Action tooltips not implemented");
+                tooltipView.DisplayAction(ActionToShow);
                 break;
             case TooltipType.Item:
-                var itemTooltipView = _activeTooltip.GetComponentInChildren<TooltipItemView>();
-                if (itemTooltipView != null)
-                {
-                    itemTooltipView.DisplayItem(ItemToShow);
-                }
+                tooltipView.DisplayItem(ItemToShow);
                 break;
         }
     }
@@ -91,6 +74,12 @@ public class Tooltip : MonoBehaviour
         _activeTooltip.transform.position = new Vector3(xPosition, yPosition, 1f);
     }
 
+    public void HideTooltip()
+    {
+        Destroy(_activeTooltip);
+        _mouseIsHoveringOverElement = false;
+    }
+
     public void SetTooltipData(Item item)
     {
         _type = TooltipType.Item;
@@ -101,5 +90,15 @@ public class Tooltip : MonoBehaviour
     {
         _type = TooltipType.Action;
         ActionToShow = action;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _mouseIsHoveringOverElement = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _mouseIsHoveringOverElement = false;
     }
 }
