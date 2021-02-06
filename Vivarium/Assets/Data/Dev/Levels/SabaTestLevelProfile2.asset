@@ -37,4 +37,7 @@ MonoBehaviour:
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
-  PossilbleRewards: []
+  PossilbleRewards: {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 0}
