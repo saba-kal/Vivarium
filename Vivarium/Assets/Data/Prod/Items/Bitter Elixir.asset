@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
   m_Name: Bitter Elixir
   m_EditorClassIdentifier: 
-  Id: 
-  Name: 
-  Description: 
-  Type: 0
-  Icon: {fileID: 0}
+  Id: fsdgdfdfgbbdf
+  Name: Bitter Elixer
+  Description: Its bitter yo
+  Type: 3
+  Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}
   Model: {fileID: 0}
-  CanBeStacked: 0
-  ConsumableType: 0
-  value: 0
+  CanBeStacked: 1
+  ConsumableType: 2
+  value: 3
