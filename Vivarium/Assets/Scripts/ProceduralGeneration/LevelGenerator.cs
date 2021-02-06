@@ -29,12 +29,14 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateLevel()
     {
+        this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
         SetupLevelContainer();
         SetupPlayerController();
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
+        this.GetComponent<GenerateObstacles>().generateEnvironment();
     }
 
     public void DestroyExistingLevel()

@@ -45,11 +45,9 @@ public class ActionController : MonoBehaviour, IActionController
     {
         var animationType = ActionReference.AnimType;
         var animationTypeName = Enum.GetName(typeof(AnimationType), animationType);
-        Debug.Log("DOING ANIMATION: " + animationTypeName);
 
         //var childObject = gameObject.transform.GetChild(0).gameObject;
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
-        Debug.Log("SDFASDFSDAFSD: " + myAnimator);
         myAnimator.SetTrigger(animationTypeName);
     }
 
@@ -93,6 +91,8 @@ public class ActionController : MonoBehaviour, IActionController
 
     protected virtual IEnumerator ExecuteAction(List<CharacterController> targetCharacters, Dictionary<(int, int), Tile> affectedTiles)
     {
+        yield return new WaitForSeconds(ActionReference.ActionTriggerDelay);
+
         foreach (var tile in affectedTiles)
         {
             var targetCharacter = targetCharacters.FirstOrDefault(t => t.Id == tile.Value.CharacterControllerId);

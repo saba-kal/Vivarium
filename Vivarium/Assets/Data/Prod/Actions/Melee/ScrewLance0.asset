@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: ScrewLance0
   m_EditorClassIdentifier: 
   Id: ScrewLanceNormal123
-  Name: BasicScrew
-  Description: Basic
+  Name: Stab
+  Description: A simple stab attack that deals damage to a single target
   SoundName: TestAttackSound
-  BaseDamage: 16
+  BaseDamage: 18
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
-  MaxRange: 1
+  MaxRange: 2
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
-  AnimType: 5
+  AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 0.6

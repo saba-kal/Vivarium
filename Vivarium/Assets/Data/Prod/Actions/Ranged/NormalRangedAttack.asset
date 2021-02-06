@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Shoot
   Description: A standard shot from a bow
   SoundName: TestAttackSound
-  BaseDamage: 13
+  BaseDamage: 10
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 2
@@ -25,6 +25,7 @@ MonoBehaviour:
   ActionTargetType: 0
   ControllerType: 0
   Attributes: []
-  AnimType: 5
+  AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 1

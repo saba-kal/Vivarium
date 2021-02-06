@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Shove
   Description: A thrusting attack that pushes an enemy backward
   SoundName: TestAttackSound
-  BaseDamage: 14
+  BaseDamage: 10
   CriticalChance: 1
   CriticalMultiplier: 0
   MinRange: 1
@@ -25,6 +25,7 @@ MonoBehaviour:
   ActionTargetType: 0
   ControllerType: 3
   Attributes: []
-  AnimType: 5
+  AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 0.6

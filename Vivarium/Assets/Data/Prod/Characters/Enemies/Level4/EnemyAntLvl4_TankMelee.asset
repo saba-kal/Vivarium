@@ -16,12 +16,13 @@ MonoBehaviour:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Heavy Ant (lv 4)
-  MinMaxHealth: 48
-  MaxMaxHealth: 72
-  MinAttackDamage: 0
-  MaxAttackDamage: 0
-  MinMoveRange: 8
-  MaxMoveRange: 10
+  PossiblePortraits: []
+  MinMaxHealth: 127
+  MaxMaxHealth: 168
+  MinAttackDamage: 23
+  MaxAttackDamage: 32
+  MinMoveRange: 7
+  MaxMoveRange: 7
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}

@@ -24,8 +24,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03085724b34e9c5448c007dad3bfb76d, type: 2}
   - {fileID: 11400000, guid: 0e1b4c16a6bff1740bc4fcbc9f15b6e1, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
-  - {fileID: 11400000, guid: 3a9277883e890254bb4441dfd2f03369, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
   MinPlayerCharacters: 4
   MaxPlayerCharacters: 4
   PossiblePlayerCharacters:
@@ -44,7 +44,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
   - {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
   - {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
+  - {fileID: 11400000, guid: a3c492610485f6347b44fc07edc9e616, type: 2}
+  - {fileID: 11400000, guid: 14fd7acf46353e143bafd1f714ee70b0, type: 2}
   - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+  - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+  - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+  - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

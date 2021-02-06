@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public delegate void EndTurnClick();
     public static event EndTurnClick OnEndTurnClick;
 
+
     public GameObject CharacterInfoPanel;
     public GameObject ActionButtonsContainer;
     public GameObject SelectedButtonIndicator;
@@ -91,6 +92,11 @@ public class UIController : MonoBehaviour
             _existingActionButtons.Add(actionButton);
 
             if (_charactersWithDisabledActions.Contains(characterController.Id))
+            {
+                actionButton.interactable = false;
+            }
+            else if(action.ControllerType == ActionControllerType.Skewer && !characterController.IsAbleToMove() && 
+                !characterController.IsEnemy)
             {
                 actionButton.interactable = false;
             }

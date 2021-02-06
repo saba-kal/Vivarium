@@ -100,6 +100,7 @@ MonoBehaviour:
   Button: {fileID: 4845599805695546359}
   Count: {fileID: 693575972153065011}
   EquipOverlay: {fileID: 7481188552197241721}
+  Index: 0
 --- !u!1 &1429647588606576447
 GameObject:
   m_ObjectHideFlags: 0

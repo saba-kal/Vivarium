@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ScrewLance1
   m_EditorClassIdentifier: 
   Id: ScrewLance123
-  Name: ScrewSpecial
-  Description: ScrewSpecial
+  Name: Screw
+  Description: Rotates the target about the user clockwise by 90 degrees
   SoundName: TestAttackSound
-  BaseDamage: 12
+  BaseDamage: 11
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
@@ -25,6 +25,7 @@ MonoBehaviour:
   ActionTargetType: 0
   ControllerType: 5
   Attributes: []
-  AnimType: 5
+  AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 0.6

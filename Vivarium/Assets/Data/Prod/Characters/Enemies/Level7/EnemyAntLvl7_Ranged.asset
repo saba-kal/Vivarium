@@ -16,11 +16,12 @@ MonoBehaviour:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Bow Ant (lv 6)
-  MinMaxHealth: 53
-  MaxMaxHealth: 79
-  MinAttackDamage: 0
-  MaxAttackDamage: 0
-  MinMoveRange: 9
+  PossiblePortraits: []
+  MinMaxHealth: 73
+  MaxMaxHealth: 123
+  MinAttackDamage: 39
+  MaxAttackDamage: 50
+  MinMoveRange: 10
   MaxMoveRange: 11
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: ad378f4da4c60cc40adebb5ad5f95851, type: 2}

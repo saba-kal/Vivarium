@@ -29,16 +29,6 @@ public class InventoryUIController : MonoBehaviour
     private int _equippedWeaponIndex = -1;
     private int _equippedShieldIndex = -1;
 
-    void OnEnable()
-    {
-        InventorySlot.OnSlotClick += OnInventorySlotClick;
-    }
-
-    void OnDisable()
-    {
-        InventorySlot.OnSlotClick -= OnInventorySlotClick;
-    }
-
     private void Start()
     {
         ConsumeButton.interactable = false;
@@ -61,6 +51,7 @@ public class InventoryUIController : MonoBehaviour
         for (var i = 0; i < _inventorySlots.Length; i++)
         {
             _inventorySlots[i].Index = i;
+            _inventorySlots[i].AddOnClickCallback(OnInventorySlotClick);
         }
     }
 
@@ -171,7 +162,7 @@ public class InventoryUIController : MonoBehaviour
             if (i < characterInventory.Count)
             {
                 _inventorySlots[i].SetItem(characterInventory[i], _selectedCharacterController);
-                if (ItemIsEquipped(characterInventory[i].Item))
+                if (_selectedCharacterController.ItemIsEquipped(characterInventory[i].Item))
                 {
                     if (characterInventory[i].Item.Type == ItemType.Weapon && _equippedWeaponIndex < 0)
                     {
@@ -238,15 +229,14 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    private bool ItemIsEquipped(Item item)
-    {
-        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
-            (_selectedCharacterController.Character.Weapon?.Id == item.Id || _selectedCharacterController.Character.Shield?.Id == item.Id);
-    }
-
     private bool ItemIsEquipped(Item item, int itemIndex)
     {
-        var itemIsEquiped = ItemIsEquipped(item);
+        if (_selectedCharacterController == null)
+        {
+            return false;
+        }
+
+        var itemIsEquiped = _selectedCharacterController.ItemIsEquipped(item);
 
         if (itemIsEquiped && item.Type == ItemType.Weapon && _equippedWeaponIndex != itemIndex)
         {
