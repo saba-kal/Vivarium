@@ -92,7 +92,7 @@ public class AIController : MonoBehaviour
     {
         if (skipEnemyPhase == false)
         {
-            _mainCamera.GetComponent<CameraFollower>().EnterCameraFocusCommand(this.gameObject);
+            _mainCamera.GetComponent<MasterCameraScript>().EnterCameraFocusCommand(this.gameObject);
         }
     }
 

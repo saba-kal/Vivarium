@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class MoveCameraCommand : ICommand
 {
-    private float _resetZoom;
-    private float _extraSpeed;
+    private float _panSpeed;
     private Vector3 _currentLocation;
     private Vector3 _destination;
     private GameObject _mainCamera;
@@ -16,30 +15,29 @@ public class MoveCameraCommand : ICommand
 
     public MoveCameraCommand(
         Vector3 destination,
-        float extraSpeed,
-        float resetZoom,
+        float panSpeed,
         GameObject focusCharacter = null,
         System.Action onMoveComplete = null)
     {
-        _extraSpeed = extraSpeed;
+        _panSpeed = panSpeed;
         _focusCharacter = focusCharacter;
         _destination = destination;
         _onMoveComplete = onMoveComplete;
-        _resetZoom = resetZoom;
     }
 
     public IEnumerator Execute()
     {
         _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];
         _currentLocation = _mainCamera.transform.position;
-        _cameraMover = _mainCamera.GetComponent<CameraFollower>().GetCameraMover();
-        _camera = _mainCamera.GetComponent<CameraFollower>().GetCamera();
+        _cameraMover = _mainCamera.GetComponent<MasterCameraScript>().GetCameraMover();
+        _camera = _mainCamera.GetComponent<MasterCameraScript>().GetCameraZoomer();
 
-        _mainCamera.GetComponent<CameraFollower>().ResetZoom();
+        _mainCamera.GetComponent<MasterCameraScript>().ResetZoom();
 
         _mainCamera.transform.rotation = Quaternion.identity;
-        _mainCamera.GetComponent<CameraFollower>().lockCamera();
-        var centerOffset = Constants.CAMERA_FOLLOW_SKEW;
+        _mainCamera.GetComponent<MasterCameraScript>().lockCamera();
+        //var centerOffset = Constants.CAMERA_FOLLOW_SKEW;
+        var centerOffset = 0;
         _destination = new Vector3(_destination.x, _destination.y, _destination.z - centerOffset);
         var destinationX = _destination.x;
         var destinationZ = _destination.z;
@@ -60,49 +58,23 @@ public class MoveCameraCommand : ICommand
 
         while (arrived == false)
         {
-            var step = _extraSpeed * Time.deltaTime;
+            var step = _panSpeed * Time.deltaTime;
             _cameraMover.transform.position = Vector3.MoveTowards(_cameraMover.transform.position, new Vector3(destinationX, destinationY, destinationZ), step);
             var remainingDistance = calculateDistance(_destination, _cameraMover.transform.position);
             if (remainingDistance <= 0.01f)
             {
                 arrived = true;
             }
-            //var decelerate = 0.02f; // remainingDistance;
-            //if (remainingDistance >= 3f && remainingDistance < 7f)
-            //{
-            //    step = step - decelerate;
-            //}
-
-            //if (remainingDistance > 0.01f  && remainingDistance < 3f)
-            //{
-            //    step = 0.07f;
-            //}
-
-            //if (step <= 0.07f)
-            //{
-            //    step = 0.07f;
-            //}
             yield return null;
         }
 
         if (_focusCharacter != null)
         {
             _mainCamera.transform.SetParent(_focusCharacter.transform);
-            //_mainCamera.transform.localPosition = new Vector3(0, 0, 0);
-            //_cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
-            //_camera.transform.localPosition = new Vector3(0, 0, 0);
-            //_mainCamera.transform.rotation = Quaternion.identity;
-            //_mainCamera.GetComponent<CameraFollower>().HighlightDiscOn();
         }
         else
         {
-            _mainCamera.GetComponent<CameraFollower>().ResetCamera();
-
-            //_mainCamera.transform.SetParent(null);
-            //_mainCamera.transform.localPosition = new Vector3(0, 0, 0);
-            //_cameraMover.transform.localPosition = new Vector3(0, 0, -centerOffset);
-            //_camera.transform.localPosition = new Vector3(0, 0, 0);
-            //_mainCamera.transform.rotation = Quaternion.identity;
+            _mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         }
         _onMoveComplete?.Invoke();
 
