@@ -13,7 +13,7 @@ public class ResetCameraCommand : ICommand
     }
     public IEnumerator Execute()
     {
-        _mainCamera.GetComponent<CameraFollower>().ResetCamera();
+        _mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         yield return null;
     }
 }

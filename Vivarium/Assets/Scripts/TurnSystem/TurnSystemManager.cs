@@ -56,7 +56,7 @@ public class TurnSystemManager : MonoBehaviour
         PlayerController.DeselectCharacter();
 
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
-        mainCamera?.GetComponent<CameraFollower>().lockCamera();
+        mainCamera?.GetComponent<MasterCameraScript>().lockCamera();
 
         AIManager.EnableCharacters();
         AIManager.Execute();
@@ -71,7 +71,7 @@ public class TurnSystemManager : MonoBehaviour
     private void PlayerTurnCameraReset()
     {
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
-        mainCamera.GetComponent<CameraFollower>().CameraMoveToReset();
+        mainCamera.GetComponent<MasterCameraScript>().CameraMoveToReset();
     }
 
     public CharacterController GetCharacterController(string id)
