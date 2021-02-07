@@ -9,8 +9,8 @@ public class MasterCameraScript : MonoBehaviour
     public GameObject CameraMover;
     public GameObject CameraZoomer;
 
-    public float defaultZoom;
-    public float resetZoom;
+    public float focusZoomOut;
+    private float resetZoomOut = 100;
     public float gameTilt;
     public float PanSpeed;
 
@@ -124,7 +124,7 @@ public class MasterCameraScript : MonoBehaviour
     {
         this.gameObject.transform.parent = null;
         this.transform.localPosition = new Vector3(0, 0, 0);
-        CameraMover.transform.localPosition = new Vector3(0, 0, -14);
+        CameraMover.transform.localPosition = new Vector3(0, 0, 0);
         CameraZoomer.transform.localPosition = new Vector3(0, 0, 0);
         this.transform.rotation = Quaternion.identity;
         float tiltAroundX = gameTilt;
@@ -138,7 +138,7 @@ public class MasterCameraScript : MonoBehaviour
 
     public void ResetZoom()
     {
-        CameraZoomer.GetComponent<CameraZoomer>().setZoom(resetZoom);
+        CameraZoomer.GetComponent<CameraZoomer>().setZoom(resetZoomOut);
     }
 
 
@@ -163,7 +163,7 @@ public class MasterCameraScript : MonoBehaviour
         new WaitCommand()
         );
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, -14 + Constants.CAMERA_FOLLOW_SKEW), PanSpeed)
+        new MoveCameraCommand(new Vector3(0, 0, 0), PanSpeed)
         );
         CommandController.Instance.ExecuteCommand(
         new UnlockCameraCommand()
@@ -177,16 +177,18 @@ public class MasterCameraScript : MonoBehaviour
         {
             this.gameObject.transform.SetParent(character.transform);
             this.transform.localPosition = new Vector3(0, 0, 0);
-            CameraMover.transform.localPosition = new Vector3(0, 0, -4);
+            CameraMover.transform.localPosition = new Vector3(0, 0, 0);
             CameraZoomer.transform.localPosition = new Vector3(0, 0, 0);
             this.transform.rotation = Quaternion.identity;
-            CameraZoomer.GetComponent<CameraZoomer>().setZoom(defaultZoom);
+            CameraZoomer.GetComponent<CameraZoomer>().setZoom(focusZoomOut);
 
             var characterController = character.GetComponent<CharacterController>();
             if (characterController != null)
             {
                 TurnSystemManager.Instance?.PlayerController.SelectCharacter(characterController);
             }
+
+            this.gameObject.transform.parent = null;
         }
     }
 

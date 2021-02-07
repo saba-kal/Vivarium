@@ -36,7 +36,8 @@ public class MoveCameraCommand : ICommand
 
         _mainCamera.transform.rotation = Quaternion.identity;
         _mainCamera.GetComponent<MasterCameraScript>().lockCamera();
-        var centerOffset = Constants.CAMERA_FOLLOW_SKEW;
+        //var centerOffset = Constants.CAMERA_FOLLOW_SKEW;
+        var centerOffset = 0;
         _destination = new Vector3(_destination.x, _destination.y, _destination.z - centerOffset);
         var destinationX = _destination.x;
         var destinationZ = _destination.z;

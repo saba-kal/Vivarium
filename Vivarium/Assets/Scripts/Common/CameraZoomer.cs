@@ -5,7 +5,10 @@ using System.Runtime.CompilerServices;
 public class CameraZoomer : MonoBehaviour
 {
     private bool isCameraLock;
-    public float PanSpeed = 20f;
+    //public float PanSpeed = 20f;
+    public float cameraZoomSpeed;
+    public float maxZoom;
+    public float minZoom;
     //public float ZoomPositionSpeed = 10f;
     //public float ZoomRotationSpeed = 50f;
 
@@ -32,53 +35,39 @@ public class CameraZoomer : MonoBehaviour
     {
         if (!isCameraLock)
         {
-            //ApplyScrollWheel();
             _currentZoomPercent = Input.GetAxis("Mouse ScrollWheel");
             _currentZoomPercent = Mathf.Clamp(_currentZoomPercent, 0f, -1f);
-            if (transform.position.y < 20 && transform.position.y >= 0)
+            if (transform.position.y < maxZoom && transform.position.y >= minZoom)
             {
-                transform.Translate(Vector3.forward * Input.GetAxis("Mouse ScrollWheel") * 10);
+                //transform.Translate(Vector3.forward * Input.GetAxis("Mouse ScrollWheel") * 10);
+                transform.Translate(Vector3.forward * Input.mouseScrollDelta.y * cameraZoomSpeed);
             }
-            if (transform.position.y > 20)
-            {
-                while (transform.position.y > 20)
-                {
-                    transform.Translate(Vector3.forward);
-                }
 
-            }
-            if (transform.position.y < 0)
+
+        }
+        if (transform.position.y > maxZoom)
+        {
+            while (transform.position.y > 20)
             {
-                while (transform.position.y < 0)
-                {
-                    transform.Translate(Vector3.forward * -1);
-                }
+                transform.Translate(Vector3.forward);
             }
 
         }
-        //CalculateZoom(_currentZoomPercent);
+        if (transform.position.y < minZoom)
+        {
+            while (transform.position.y < minZoom)
+            {
+                transform.Translate(Vector3.forward * -1);
+            }
+        }
     }
 
-    //private void ApplyScrollWheel()
-    //{
-    //    _currentZoomPercent += -Input.GetAxis("Mouse ScrollWheel");
-    //    _currentZoomPercent = Mathf.Clamp(_currentZoomPercent, 0f, 1f);
-
-    //}
-
-    //private void CalculateZoom(float zoomPercent)
-    //{
-    //    var calculatedY = zoomPercent * 20;
-    //    //transform.position = new Vector3(transform.position.x, calculatedY, transform.position.z);
-    //    transform.position = new Vector3(transform.position.x, calculatedY, transform.position.z);
-
-
-    //}
 
     public void setZoom(float inputZoom)
     {
         //CalculateZoom(inputZoom);
-        _currentZoomPercent = -inputZoom;
+        //_currentZoomPercent = -inputZoom;
+        transform.Translate(Vector3.forward * -inputZoom);
     }
 
 

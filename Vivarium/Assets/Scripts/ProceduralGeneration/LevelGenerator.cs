@@ -19,6 +19,8 @@ public class LevelGenerator : MonoBehaviour
     private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
     private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
 
+    public GameObject mainCamera;
+
     private void Awake()
     {
         if (GenerateLevelOnStart)
@@ -29,6 +31,7 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateLevel()
     {
+        mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
         SetupLevelContainer();
