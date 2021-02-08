@@ -324,7 +324,7 @@ public class CharacterController : MonoBehaviour
         {
             if (this.transform.GetChild(x).tag == "MasterCamera")
             {
-                this.transform.GetChild(x).transform.GetComponent<CameraFollower>().ResetCamera();
+                this.transform.GetChild(x).transform.GetComponent<MasterCameraScript>().ResetCamera();
             }
         }
     }
