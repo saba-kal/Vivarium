@@ -16,12 +16,13 @@ MonoBehaviour:
   - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
   PossibleNames:
   - Figher Ant (lv 2)
-  MinMaxHealth: 36
-  MaxMaxHealth: 54
-  MinAttackDamage: 0
-  MaxAttackDamage: 0
+  PossiblePortraits: []
+  MinMaxHealth: 76
+  MaxMaxHealth: 111
+  MinAttackDamage: 12
+  MaxAttackDamage: 20
   MinMoveRange: 7
-  MaxMoveRange: 9
+  MaxMoveRange: 8
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}

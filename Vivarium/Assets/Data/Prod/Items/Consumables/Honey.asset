@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
-  m_Name: Bitter Elixir
+  m_Name: Honey
   m_EditorClassIdentifier: 
-  Id: 
-  Name: 
-  Description: 
-  Type: 0
-  Icon: {fileID: 0}
+  Id: 333333333333
+  Name: Honey
+  Description: A sweet, healing drop of honey that will restore 90 health
+  Type: 3
+  Icon: {fileID: 21300000, guid: 9ea2643488cdef74b95a22b50d09dff3, type: 3}
   Model: {fileID: 0}
-  CanBeStacked: 0
-  ConsumableType: 0
-  value: 0
+  CanBeStacked: 1
+  ConsumableType: 1
+  value: 90

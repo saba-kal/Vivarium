@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnvironmentHeuristics:
     ObjectivePoints: -100
-    ObjectiveNearbyTilesPoints: 10
+    ObjectiveNearbyTilesPoints: 15
     ObjectivePointsRange: 4
     ChokePointPoints: 100
   AllyHeuristics:

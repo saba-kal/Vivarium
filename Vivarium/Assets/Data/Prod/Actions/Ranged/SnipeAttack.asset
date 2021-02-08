@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Snipe
   Description: A straight shot that cannot go through units or walls.
   SoundName: TestAttackSound
-  BaseDamage: 17
+  BaseDamage: 15
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 2
@@ -28,3 +28,4 @@ MonoBehaviour:
   AnimType: 3
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 1

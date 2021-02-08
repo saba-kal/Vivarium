@@ -51,13 +51,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
   StartingItems:
   - Count: 1
-    Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+    Item: {fileID: 11400000, guid: e81b69021e102f943897cef369448a50, type: 2}
+  - Count: 1
+    Item: {fileID: 11400000, guid: e12be45a471164f48badd0b0d4aa810c, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
-  PossilbleRewards:
-  - {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
-  - {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
-  - {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
+  PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
   AISettings:
     ShowPreview: 1
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

@@ -31,4 +31,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
   - {fileID: 11400000, guid: 357c3a020d05d0b479595c12669885bf, type: 2}
-  startingItems: []
+  StartingItems: []
+  OnLevelStartHeal: 500
+  OnLevelStartShieldRegen: 500
+  PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 0}

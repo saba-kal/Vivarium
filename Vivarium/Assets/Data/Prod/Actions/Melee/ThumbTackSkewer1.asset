@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: ThumbTackSkewer1
   m_EditorClassIdentifier: 
   Id: ThumbTackSkewer123
-  Name: SkewerSpecial
-  Description: SKewerSpecial
+  Name: Skewer
+  Description: The user cannot move this turn. Cannot be used if user has already
+    moved this turn.
   SoundName: TestAttackSound
-  BaseDamage: 20
+  BaseDamage: 21
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
@@ -28,3 +29,4 @@ MonoBehaviour:
   AnimType: 3
   ProjectilePrefab: {fileID: 0}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 1

@@ -20,11 +20,11 @@ MonoBehaviour:
   MinEnemyCharacters: 3
   MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
-  - {fileID: 11400000, guid: 5e13febf3d473ec47b514e6040a4ced7, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   MinPlayerCharacters: 3
   MaxPlayerCharacters: 5
   PossiblePlayerCharacters:
@@ -38,4 +38,7 @@ MonoBehaviour:
     Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
-  PossilbleRewards: []
+  PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 0}

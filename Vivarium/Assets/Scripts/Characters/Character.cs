@@ -16,4 +16,5 @@ public class Character
     public Weapon Weapon;
     public Shield Shield;
     public List<TileType> NavigableTiles;
+    public LootTable CharacterLootTable;
 }

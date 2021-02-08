@@ -52,6 +52,7 @@ public class CharacterGenerator
         character.MoveRange = UnityEngine.Random.Range(characterProfile.MinMoveRange, characterProfile.MaxMoveRange);
         character.NavigableTiles = characterProfile.NavigableTiles;
         character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
+        character.CharacterLootTable = characterProfile.CharacterLootTable;
 
         return character;
     }

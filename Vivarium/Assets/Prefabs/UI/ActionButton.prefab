@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 1829839531836256392}
   - component: {fileID: 5582551712323795032}
   - component: {fileID: 6322638362991229208}
+  - component: {fileID: 6993942592196311218}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -254,3 +255,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6993942592196311218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426565256720326958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54875d871cc9c0438283f7ba00fabae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
