@@ -24828,6 +24828,7 @@ GameObject:
   - component: {fileID: 542098715}
   - component: {fileID: 542098718}
   - component: {fileID: 542098719}
+  - component: {fileID: 542098720}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -24926,6 +24927,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3327b7bce984f4abf2cff4c284a715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &542098720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542098714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557c300e5d47f9f48a4f576af2f39337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TileHighlightPrefab: {fileID: 1290396168030185797, guid: 34955b24177a4094da750d564375f0bd, type: 3}
+  TileHeightOffset: 0.01
+  OpacityChange: 5
 --- !u!1 &546746725
 GameObject:
   m_ObjectHideFlags: 0
@@ -35518,6 +35534,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &785344399
@@ -50093,6 +50110,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1153778089
@@ -51071,6 +51089,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!114 &1183487543
@@ -51728,6 +51747,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1195907801
@@ -53240,6 +53260,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1236518806
@@ -59165,6 +59186,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1410072574
@@ -65999,6 +66021,7 @@ MonoBehaviour:
     Weapon: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
     Shield: {fileID: 0}
     NavigableTiles: 00000000
+    CharacterLootTable: {fileID: 0}
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1588439873

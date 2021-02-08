@@ -116,12 +116,12 @@ public class CharacterController : MonoBehaviour
         {
             _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
             UnityEngine.Debug.Log("Moving");
-            if(path.Count != 1)
+            if (path.Count != 1)
             {
                 UnityEngine.Debug.Log("Path not 1 tile");
                 _hasMoved = true;
             }
-            
+
             Deselect();
         }
         else

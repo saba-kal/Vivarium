@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public static event ObjectiveCapture OnObjectiveCapture;
     public delegate void AllCharactersDead();
     public static event AllCharactersDead OnAllCharactersDead;
+    public delegate void PlayerAttack();
+    public static event PlayerAttack OnPlayerAttack;
 
     public List<CharacterController> PlayerCharacters;
     private CharacterController _selectedCharacter;
@@ -178,7 +180,10 @@ public class PlayerController : MonoBehaviour
 
     private void PerformAction(Tile targetTile)
     {
-        _selectedCharacter.PerformAction(_selectedAction, targetTile);
+        _selectedCharacter.PerformAction(_selectedAction, targetTile, () =>
+        {
+            OnPlayerAttack?.Invoke();
+        });
         DeselectAction();
     }
 
