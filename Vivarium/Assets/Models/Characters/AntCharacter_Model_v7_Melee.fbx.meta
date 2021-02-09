@@ -18,7 +18,22 @@ ModelImporter:
   - first:
       74: -9219517874618459675
     second: Ant|Run
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: b69c607a8d1b5534fbc1e6dba9639bca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: b69c607a8d1b5534fbc1e6dba9639bca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: b69c607a8d1b5534fbc1e6dba9639bca, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

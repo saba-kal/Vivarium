@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: 1928ec677cb0c0d439abbf7f74b5c1dc
+guid: e25d7570137841e45b0cb91ae440b1d7
 ModelImporter:
   serializedVersion: 20101
-  internalIDToNameTable: []
-  externalObjects:
+  internalIDToNameTable:
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: size_adjusted_lambert2
-    second: {fileID: 2100000, guid: b07c38078c2988a4880ea156ace9bea0, type: 2}
+      74: 1827226128182048838
+    second: Take 001
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
