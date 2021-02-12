@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
-  m_Name: Bitter Elixir
+  m_Name: Goliath Horn
   m_EditorClassIdentifier: 
   Id: fsdgdfdfgbbdf
-  Name: Bitter Elixer
-  Description: Its bitter yo
+  Name: Goliath Horn
+  Description: The horn of a goliath beetle. Permanently increases attack
   Type: 3
   Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}
   Model: {fileID: 0}

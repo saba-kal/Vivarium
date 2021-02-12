@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NormalShield123231
   Name: Shield
-  Description: A normal, light shield
+  Description: A shield that increases total health by 40
   Type: 2
   Icon: {fileID: 21300000, guid: b0c5caeaf8188bf41ac1efc80b6e985a, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
-  Health: 25
+  Health: 40
