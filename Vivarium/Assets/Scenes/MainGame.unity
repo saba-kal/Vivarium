@@ -24974,6 +24974,7 @@ MonoBehaviour:
   simpleEnvironmentPrefabs:
   - {fileID: 145118276453066414, guid: 63fd4c6e2623bd84e8d9cae24f670fef, type: 3}
   - {fileID: 7321570470793003592, guid: 5f84994e1dcd49443b0cad5841a43dd9, type: 3}
+  - {fileID: 581227103555110979, guid: 0c37c188cf6c1334b97cdecb6fe69cf6, type: 3}
   superSpecialObstaclePrefabs:
   - {fileID: 788191094971233270, guid: 6720ba750b39b7d44b4deb18633e5290, type: 3}
   - {fileID: 8766767530960276174, guid: c53a1f6d789af9b48abfc265766630bf, type: 3}
