@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl5_GenericMelee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
+  - {fileID: 8348097763057275453, guid: 898fabec9612d5747a64680cd4bd9d7e, type: 3}
   PossibleNames:
   - Figher Ant (lv 5)
   PossiblePortraits:
@@ -30,4 +30,5 @@ MonoBehaviour:
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

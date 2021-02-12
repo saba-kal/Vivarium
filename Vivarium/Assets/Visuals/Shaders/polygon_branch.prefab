@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667700157774946046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: polygon_branch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,6 +39,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1667700157774946046}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.09
       objectReference: {fileID: 0}
@@ -51,6 +55,10 @@ PrefabInstance:
       value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -61,14 +69,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -89,6 +89,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
       propertyPath: m_Name
       value: big_branch_polygon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8fc54bd2beaf8640bebb1989395d4f2, type: 3}
