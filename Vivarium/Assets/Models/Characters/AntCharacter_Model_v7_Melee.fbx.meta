@@ -18,7 +18,17 @@ ModelImporter:
   - first:
       74: -9219517874618459675
     second: Ant|Run
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: bd020136210bb7649a55926ce95f3868, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: bd020136210bb7649a55926ce95f3868, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

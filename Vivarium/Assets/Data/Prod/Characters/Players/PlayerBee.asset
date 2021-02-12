@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 6758109804856600292, guid: 7989ba31a1c6d274d8cac3a6cc638d93, type: 3}
+  - {fileID: 1448550247729942650, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
   PossibleNames:
   - Brave Bee
   - Curious Bee
@@ -31,4 +31,5 @@ MonoBehaviour:
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 0}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}
