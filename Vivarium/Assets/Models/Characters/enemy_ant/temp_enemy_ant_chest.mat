@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: temp_enemy_ant_material
+  m_Name: temp_enemy_ant_chest
   m_Shader: {fileID: -6465566751694194690, guid: 1428165fee670944ea552068f8203f4f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -71,7 +71,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_F5A302A3: {r: 0.75742054, g: 0.0047169924, b: 1, a: 0}
+    - Color_F5A302A3: {r: 0.23584908, g: 0.012237454, b: 0.21688218, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
