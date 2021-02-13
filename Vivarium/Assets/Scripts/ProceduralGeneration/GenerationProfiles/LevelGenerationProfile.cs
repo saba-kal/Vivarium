@@ -26,5 +26,7 @@ public class LevelGenerationProfile : ScriptableObject
 
     public LootTable PossilbleRewards;
 
+    public List<CharacterGenerationProfile> RewardCharacters;
+
     public AISettings AISettings;
 }

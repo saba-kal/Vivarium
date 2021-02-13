@@ -21,29 +21,41 @@ namespace Assets.Scripts.UI
         private System.Action _nextLevelCallback;
         private List<Item> _rewards = new List<Item>();
         private List<Tooltip> _tooltips = new List<Tooltip>();
+        private List<Character> _characters;
 
         private void Start()
         {
             Option1.onClick.AddListener(() =>
             {
                 _selectedReward = 0;
+                UpdateDescription();
             });
             Option2.onClick.AddListener(() =>
             {
                 _selectedReward = 1;
+                UpdateDescription();
             });
             Option3.onClick.AddListener(() =>
             {
                 _selectedReward = 2;
+                UpdateDescription();
             });
             NextLevel.onClick.AddListener(() =>
             {
                 if (_nextLevelCallback != null)
                 {
-                    PlaceSelectedReward(_rewards);
-                    LogPlayerInventory();
+                    if (CharacterReward.rewardLevel)
+                    {
+                        SaveSelectedCharacter();
+                    }
+                    else
+                    {
+                        PlaceSelectedReward(_rewards);
+                        LogPlayerInventory();
+                    }
                     RewardScreen.SetActive(false);
                     _selectedReward = 0;
+                    UpdateDescription();
                     _nextLevelCallback();
 
                 }
@@ -51,6 +63,59 @@ namespace Assets.Scripts.UI
         }
 
         public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
+        {
+            if(CharacterReward.rewardLevel)
+            {
+                CharacterRewardsScreen(callback);
+            }
+            else
+            {
+                ItemRewardsScreen(callback, possibleRewards);
+            }
+        }
+
+        private void CharacterRewardsScreen(System.Action callback)
+        {
+            UpdateButtons();
+            RewardScreen.SetActive(true);
+            _nextLevelCallback = callback;
+            UpdateCharacters();
+            UpdateDescription();
+
+            //TODO: add icons to characters and set them here
+            //Option1Icon.sprite = _characters[0].Icon;
+            //Option2Icon.sprite = _characters[1].Icon;
+            //Option3Icon.sprite = _characters[2].Icon;
+        }
+
+        private void UpdateCharacters()
+        {
+            _characters = new List<Character>();
+            var characterControllers = new List<CharacterController>();
+            foreach (var characterGameObject in CharacterReward.characterGameObjects)
+            {
+                characterControllers.Add(characterGameObject.GetComponent<CharacterController>());
+            }
+
+            foreach (var characterController in characterControllers)
+            {
+                _characters.Add(characterController.Character);
+            }
+        }
+
+        private void SaveSelectedCharacter()
+        {
+            if (_selectedReward < CharacterReward.characterGameObjects.Count && _selectedReward >= 0)
+            {
+                CharacterReward.selectedCharacter = CharacterReward.characterGameObjects[_selectedReward];
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("Unable to save the game object of the selected character");
+            }
+        }
+
+        private void ItemRewardsScreen(System.Action callback, List<Item> possibleRewards)
         {
             UpdateButtons();
             RewardScreen.SetActive(true);
@@ -62,7 +127,7 @@ namespace Assets.Scripts.UI
             Option3Icon.sprite = _rewards[2].Icon;
             
 
-            SetTooltipData();
+            UpdateDescription();
         }
 
         private void PlaceSelectedReward(List<Item> possibleRewards)
@@ -166,7 +231,41 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void SetTooltipData()
+        private void UpdateDescription()
+        {
+            if(CharacterReward.rewardLevel)
+            {
+                UpdateCharacterDescription();
+            }
+            else
+            {
+                UpdateItemDescription();
+            }
+        }
+
+        private void UpdateCharacterDescription()
+        {
+            var characterCount = CharacterReward.characterGameObjects.Count;
+            if (characterCount > 0 && _selectedReward < characterCount && _selectedReward >= 0)
+            {
+                var character = _characters[_selectedReward];
+                ItemDescription.text = "Recruit a new " + character.Name +" character ";
+                ItemDescription.text += "weilding a " + character.Weapon.Name;
+                ItemStats.text = "Health: " + (int) character.MaxHealth + "\n";
+                ItemStats.text += "Base attack: " + (int) character.AttackDamage + "\n";
+                ItemStats.text += "Movement: " + (int) character.MoveRange + "\n";
+                //ItemStats.text += "Weapon: " + character.Weapon.Name + "\n";
+                ItemName.text = character.Name;
+            }
+            else
+            {
+                ItemDescription.text = "";
+                ItemStats.text = "";
+                ItemName.text = "";
+            }
+
+        }
+        private void UpdateItemDescription()
         {
             if (_rewards.Count < 3)
             {
@@ -189,10 +288,18 @@ namespace Assets.Scripts.UI
 
         public void DoubleClicked()
         {
-            PlaceSelectedReward(_rewards);
-            LogPlayerInventory();
+            if(CharacterReward.rewardLevel)
+            {
+                SaveSelectedCharacter();
+            }
+            else
+            {
+                PlaceSelectedReward(_rewards);
+                LogPlayerInventory();
+            }
             RewardScreen.SetActive(false);
             _selectedReward = 0;
+            UpdateDescription();
             _nextLevelCallback();
             ClearTooltips();
         }
