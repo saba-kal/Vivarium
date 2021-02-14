@@ -44,19 +44,19 @@ public class MoveController : MonoBehaviour
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 
         List<(int, int)> waterLocations = new List<(int, int)>();
-        foreach(KeyValuePair<(int, int), Tile> move in _availableMoves)
+        foreach (KeyValuePair<(int, int), Tile> move in _availableMoves)
         {
-            if(move.Value.Type == TileType.Water)
+            if (move.Value.Type == TileType.Water)
             {
                 waterLocations.Add(move.Key);
             }
         }
 
-        foreach((int, int) location in waterLocations)
+        foreach ((int, int) location in waterLocations)
         {
             _availableMoves.Remove(location);
         }
-        
+
         return _availableMoves;
     }
 
