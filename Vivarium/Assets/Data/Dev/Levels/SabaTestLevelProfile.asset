@@ -17,8 +17,8 @@ MonoBehaviour:
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  MinEnemyCharacters: 10
-  MaxEnemyCharacters: 10
+  MinEnemyCharacters: 1
+  MaxEnemyCharacters: 1
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
@@ -35,10 +35,8 @@ MonoBehaviour:
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
-  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
-  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
-  - {fileID: 11400000, guid: 184f36572878092438bdcc4396555412, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   StartingItems:
   - Count: 1
     Item: {fileID: 11400000, guid: e81b69021e102f943897cef369448a50, type: 2}
