@@ -28,17 +28,14 @@ namespace Assets.Scripts.UI
             Option1.onClick.AddListener(() =>
             {
                 _selectedReward = 0;
-                UpdateDescription();
             });
             Option2.onClick.AddListener(() =>
             {
                 _selectedReward = 1;
-                UpdateDescription();
             });
             Option3.onClick.AddListener(() =>
             {
                 _selectedReward = 2;
-                UpdateDescription();
             });
             NextLevel.onClick.AddListener(() =>
             {
@@ -55,16 +52,14 @@ namespace Assets.Scripts.UI
                     }
                     RewardScreen.SetActive(false);
                     _selectedReward = 0;
-                    UpdateDescription();
                     _nextLevelCallback();
-
                 }
             });
         }
 
         public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
         {
-            if(CharacterReward.rewardLevel)
+            if (CharacterReward.rewardLevel)
             {
                 CharacterRewardsScreen(callback);
             }
@@ -73,19 +68,19 @@ namespace Assets.Scripts.UI
                 ItemRewardsScreen(callback, possibleRewards);
             }
         }
-
         private void CharacterRewardsScreen(System.Action callback)
         {
             UpdateButtons();
             RewardScreen.SetActive(true);
             _nextLevelCallback = callback;
             UpdateCharacters();
-            UpdateDescription();
 
-            //TODO: add icons to characters and set them here
-            //Option1Icon.sprite = _characters[0].Icon;
-            //Option2Icon.sprite = _characters[1].Icon;
-            //Option3Icon.sprite = _characters[2].Icon;
+            Option1Icon.sprite = _characters[0].Portrait;
+            Option2Icon.sprite = _characters[1].Portrait;
+            Option3Icon.sprite = _characters[2].Portrait;
+
+
+            SetTooltipData();
         }
 
         private void UpdateCharacters()
@@ -115,7 +110,7 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void ItemRewardsScreen(System.Action callback, List<Item> possibleRewards)
+        private void ItemRewardsScreen(System.Action callback, LootTable possibleRewards)
         {
             UpdateButtons();
             RewardScreen.SetActive(true);
@@ -125,9 +120,9 @@ namespace Assets.Scripts.UI
             Option1Icon.sprite = _rewards[0].Icon;
             Option2Icon.sprite = _rewards[1].Icon;
             Option3Icon.sprite = _rewards[2].Icon;
-            
 
-            UpdateDescription();
+
+            SetTooltipData();
         }
 
         private void PlaceSelectedReward(List<Item> possibleRewards)
@@ -231,41 +226,39 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void UpdateDescription()
+        private void SetTooltipData()
         {
             if(CharacterReward.rewardLevel)
             {
-                UpdateCharacterDescription();
+                SetCharacterTooltipData();
             }
             else
             {
-                UpdateItemDescription();
+                SetItemTooltipData();
             }
         }
 
-        private void UpdateCharacterDescription()
+        private void SetCharacterTooltipData()
         {
-            var characterCount = CharacterReward.characterGameObjects.Count;
-            if (characterCount > 0 && _selectedReward < characterCount && _selectedReward >= 0)
+            if (_characters.Count < 3)
             {
-                var character = _characters[_selectedReward];
-                ItemDescription.text = "Recruit a new " + character.Name +" character ";
-                ItemDescription.text += "weilding a " + character.Weapon.Name;
-                ItemStats.text = "Health: " + (int) character.MaxHealth + "\n";
-                ItemStats.text += "Base attack: " + (int) character.AttackDamage + "\n";
-                ItemStats.text += "Movement: " + (int) character.MoveRange + "\n";
-                //ItemStats.text += "Weapon: " + character.Weapon.Name + "\n";
-                ItemName.text = character.Name;
-            }
-            else
-            {
-                ItemDescription.text = "";
-                ItemStats.text = "";
-                ItemName.text = "";
+                return;
             }
 
+            ClearTooltips();
+
+            var options = new List<Button> { Option1, Option2, Option3 };
+            for (int i = 0; i < options.Count; i++)
+            {
+                var tooltip = options[i].GetComponent<Tooltip>();
+                if (tooltip != null)
+                {
+                    tooltip.SetTooltipData(_characters[i]);
+                }
+                _tooltips.Add(tooltip);
+            }
         }
-        private void UpdateItemDescription()
+        private void SetItemTooltipData()
         {
             if (_rewards.Count < 3)
             {
@@ -288,7 +281,7 @@ namespace Assets.Scripts.UI
 
         public void DoubleClicked()
         {
-            if(CharacterReward.rewardLevel)
+            if (CharacterReward.rewardLevel)
             {
                 SaveSelectedCharacter();
             }
@@ -299,7 +292,6 @@ namespace Assets.Scripts.UI
             }
             RewardScreen.SetActive(false);
             _selectedReward = 0;
-            UpdateDescription();
             _nextLevelCallback();
             ClearTooltips();
         }

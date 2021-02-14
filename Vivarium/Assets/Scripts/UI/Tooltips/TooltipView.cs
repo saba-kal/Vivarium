@@ -46,6 +46,17 @@ public class TooltipView : MonoBehaviour
         CalculateTooltipHeight();
     }
 
+    public void DisplayCharacter(Character character)
+    {
+        TooltipTitle.text = character.Name;
+        TooltipDescription.text = "Weapon: " + character.Weapon.Name + "\n";
+        TooltipDescription.text += "Health: " + (int)character.MaxHealth + "\n";
+        TooltipDescription.text += "Base attack: " + (int)character.AttackDamage + "\n";
+        TooltipDescription.text += "Movement: " + (int)character.MoveRange + "\n";
+
+        CalculateTooltipHeight();
+    }
+
     private void DisplayWeaponStats(Weapon weapon)
     {
         var weaponStats = "\n\n<size=120%>Actions:</size>";
