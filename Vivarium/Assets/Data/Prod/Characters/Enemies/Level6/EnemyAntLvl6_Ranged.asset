@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl6_Ranged
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 8348097763057275453, guid: 898fabec9612d5747a64680cd4bd9d7e, type: 3}
+  - {fileID: 106819821670323034, guid: b3e7c5a27689dd84fabc3ea47d9fcc0c, type: 3}
   PossibleNames:
   - Bow Ant (lv 6)
   PossiblePortraits: []
