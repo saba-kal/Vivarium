@@ -120,10 +120,8 @@ public class CharacterController : MonoBehaviour
         if (_moveController != null)
         {
             _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
-            UnityEngine.Debug.Log("Moving");
-            if (path.Count != 1)
+            if(path.Count != 1)
             {
-                UnityEngine.Debug.Log("Path not 1 tile");
                 _hasMoved = true;
             }
 
@@ -386,7 +384,10 @@ public class CharacterController : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        _healthController.Healing(healAmount);
+        if (_healthController != null)
+        {
+            _healthController.Healing(healAmount);
+        }
     }
 
     public void AtkBuff(float attackAmount)
@@ -400,7 +401,10 @@ public class CharacterController : MonoBehaviour
     }
     public void RegenShield(float shieldAmount)
     {
-        _healthController.RegenerateShield(shieldAmount);
+        if (_healthController != null)
+        {
+            _healthController.RegenerateShield(shieldAmount);
+        }
     }
 
     public HealthController GetHealthController()
