@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public delegate void LevelGenerationComplete();
+    public static event LevelGenerationComplete OnLevelGenerationComplete;
+
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
@@ -40,6 +43,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateCharacters();
         GenerateGameMaster();
         this.GetComponent<GenerateObstacles>().generateEnvironment();
+        OnLevelGenerationComplete?.Invoke();
     }
 
     public void DestroyExistingLevel()

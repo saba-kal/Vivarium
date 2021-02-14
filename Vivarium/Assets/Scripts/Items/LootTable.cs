@@ -24,16 +24,19 @@ public class LootTable : ScriptableObject
 
         for (int i = 0; i < numberOfItems; i++)
         {
-            var randValue = UnityEngine.Random.Range(0f, 1f);
+            var totalChance = DroppableItems.Sum(x => x.ChanceToDrop);
+            var randValue = UnityEngine.Random.Range(0f, totalChance);
 
             var orderedItems = droppableItems.OrderBy(x => x.ChanceToDrop).ToList();
             var itemWasDropped = false;
+            float currentChance = 0;
 
             for (int j = 0; j < orderedItems.Count; j++)
             {
                 var droppableItem = orderedItems[j];
+                currentChance += droppableItem.ChanceToDrop;
 
-                if (randValue < droppableItem.ChanceToDrop)
+                if (randValue <= currentChance)
                 {
                     droppedItems.Add(droppableItem.Item);
                     droppableItems.Remove(droppableItem); //Remove item so we don't pick the item again.

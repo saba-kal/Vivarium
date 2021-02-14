@@ -27,6 +27,8 @@ public class CharacterController : MonoBehaviour
     private bool _isSelected = false;
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
+    private GameObject _meleeWeapon;
+    private GameObject _rangedWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,9 @@ public class CharacterController : MonoBehaviour
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
         _attackDamage = Character.AttackDamage;
+        _meleeWeapon = Utils.FindObjectWithTag(gameObject, Constants.MELEE_WEAPON_TAG);
+        _rangedWeapon = Utils.FindObjectWithTag(gameObject, Constants.RANGED_WEAPON_TAG);
+        SwitchWeaponModel();
         PlaceSelfInGrid();
     }
 
@@ -119,7 +124,7 @@ public class CharacterController : MonoBehaviour
             {
                 _hasMoved = true;
             }
-            
+
             Deselect();
         }
         else
@@ -244,13 +249,32 @@ public class CharacterController : MonoBehaviour
         if (item.Type == ItemType.Weapon)
         {
             Character.Weapon = (Weapon)item;
+            SwitchWeaponModel();
         }
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
             _healthController?.UpgradMaxShield(Character.Shield.Health);
         }
-        //TODO: switch out weapon model here.
+    }
+
+    public void SwitchWeaponModel()
+    {
+        var weapon = Character.Weapon;
+        if (weapon?.Actions == null || weapon.Actions.Count == 0)
+        {
+            return;
+        }
+
+        if (_meleeWeapon == null || _rangedWeapon == null)
+        {
+            Debug.LogWarning("Unable to change weapon model because one was not found with the right tag.");
+            return;
+        }
+
+        var rangedWeaponIsEquipped = weapon.Actions.Any(a => a.AnimType == AnimationType.ranged_attack);
+        _meleeWeapon.SetActive(!rangedWeaponIsEquipped);
+        _rangedWeapon.SetActive(rangedWeaponIsEquipped);
     }
 
     public void Unequip(Item item)
@@ -313,7 +337,8 @@ public class CharacterController : MonoBehaviour
         {
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
-        Destroy(gameObject, 0.1f);
+        PerformDeathAnimation();
+        Destroy(gameObject, 4f);
     }
 
     public void DetachCamera()
@@ -396,5 +421,12 @@ public class CharacterController : MonoBehaviour
     {
         return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
+    }
+
+    private void PerformDeathAnimation()
+    {
+        var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
+        Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+        myAnimator.SetTrigger(animationTypeName);
     }
 }
