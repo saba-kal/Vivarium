@@ -27,6 +27,7 @@ public class CharacterController : MonoBehaviour
     private bool _isSelected = false;
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
+    private float _savedMoveRange;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class CharacterController : MonoBehaviour
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
         _attackDamage = Character.AttackDamage;
+        _savedMoveRange = Character.MoveRange;
         PlaceSelfInGrid();
     }
 
@@ -392,5 +394,17 @@ public class CharacterController : MonoBehaviour
     {
         return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
+    }
+
+    //Handles Staple action effect.
+    public void IsStunned()
+    {
+        _savedMoveRange = Character.MoveRange;
+        Character.MoveRange = 0;
+    }
+    //Removes Staple effect.
+    public void Destun()
+    {
+        Character.MoveRange = _savedMoveRange;
     }
 }
