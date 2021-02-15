@@ -154,9 +154,36 @@ public class LevelGenerator : MonoBehaviour
         {
             GeneratePlayerCharacters();
         }
+
+        if(CharacterReward.rewardLevel)
+        {
+            CharacterReward.selectedCharacter.SetActive(true);
+           
+            foreach(var characterGameObject in CharacterReward.characterGameObjects)
+            {
+                if (!characterGameObject.activeSelf)
+                {
+                    PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
+                    Destroy(characterGameObject, 0.1f);
+                }
+            }
+            CharacterReward.rewardLevel = false;
+            CharacterReward.characterGameObjects = new List<GameObject>();
+            CharacterReward.selectedCharacter = null;
+        }
+
+        if (LevelProfile.RewardCharacters.Count != 0)
+        {
+            GenerateRewardCharacter();
+            CharacterReward.rewardLevel = true;
+        }
+
         foreach (var characterController in PlayerCharacters)
         {
-            PlacePlayerOnGrid(characterController);
+            if(characterController.gameObject.activeSelf)
+            {
+                PlacePlayerOnGrid(characterController);
+            }
         }
     }
 
@@ -198,6 +225,19 @@ public class LevelGenerator : MonoBehaviour
         }
 
         PlayerCharacters = PlayerController.PlayerCharacters;
+    }
+
+    private void GenerateRewardCharacter()
+    {
+        var playerProfiles = LevelProfile.RewardCharacters;
+        foreach (var playerProfile in playerProfiles)
+        {
+            var characterGameObject = GenerateCharacter(playerProfile, false);
+            characterGameObject.transform.parent = PlayerController.transform;
+            CharacterReward.characterGameObjects.Add(characterGameObject);
+            characterGameObject.SetActive(false);
+            PlayerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
+        }
     }
 
     private GameObject GenerateCharacter(

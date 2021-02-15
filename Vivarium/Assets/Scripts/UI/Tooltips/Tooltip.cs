@@ -11,6 +11,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private TooltipType _type;
     private Item ItemToShow;
     private Action ActionToShow;
+    private Character CharacterToShow;
     private bool _mouseIsHoveringOverElement = false;
 
     // Update is called once per frame
@@ -54,6 +55,9 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case TooltipType.Item:
                 tooltipView.DisplayItem(ItemToShow);
                 break;
+            case TooltipType.Character:
+                tooltipView.DisplayCharacter(CharacterToShow);
+                break;
         }
     }
 
@@ -90,6 +94,12 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         _type = TooltipType.Action;
         ActionToShow = action;
+    }
+
+    public void SetTooltipData(Character character)
+    {
+        _type = TooltipType.Character;
+        CharacterToShow = character;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

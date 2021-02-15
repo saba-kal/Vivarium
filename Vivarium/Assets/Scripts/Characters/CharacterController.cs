@@ -389,7 +389,10 @@ public class CharacterController : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        _healthController.Healing(healAmount);
+        if (_healthController != null)
+        {
+            _healthController.Healing(healAmount);
+        }
     }
 
     public void AtkBuff(float attackAmount)
@@ -403,7 +406,10 @@ public class CharacterController : MonoBehaviour
     }
     public void RegenShield(float shieldAmount)
     {
-        _healthController.RegenerateShield(shieldAmount);
+        if (_healthController != null)
+        {
+            _healthController.RegenerateShield(shieldAmount);
+        }
     }
 
     public HealthController GetHealthController()
