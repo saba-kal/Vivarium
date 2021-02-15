@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.Rendering.Universal.ShaderGUI;
 using System.Linq;
+using System.Collections;
 
 public class EnemyThreatRangeViewer : MonoBehaviour
 {
@@ -14,21 +15,27 @@ public class EnemyThreatRangeViewer : MonoBehaviour
     private Dictionary<(int, int), ThreatRangeTile> _tileHighlights =
         new Dictionary<(int, int), ThreatRangeTile>();
     private bool _isEnabled = false;
+    private bool _isInitialCalculation = true;
 
     private void OnEnable()
     {
         ThreatRangeToggle.OnToggleChange += ToggleThreatRange;
-        //LevelGenerator.OnLevelGenerationComplete += CalculateThreatRange;
-        PlayerController.OnPlayerAttack += CalculateThreatRange;
-        TurnSystemManager.OnTurnStart += CalculateThreatRange;
+        LevelGenerator.OnLevelGenerationComplete += CalculateThreatRange;
+        PlayerController.OnPlayerAttack += RecalculateThreatRange;
+        TurnSystemManager.OnTurnStart += RecalculateThreatRange;
+        CharacterController.OnDeath += RecalculateThreatRange;
+        CharacterController.OnMove += TestMethod;
     }
 
     private void OnDisable()
     {
         ThreatRangeToggle.OnToggleChange -= ToggleThreatRange;
-        //LevelGenerator.OnLevelGenerationComplete -= CalculateThreatRange;
-        PlayerController.OnPlayerAttack -= CalculateThreatRange;
-        TurnSystemManager.OnTurnStart -= CalculateThreatRange;
+        LevelGenerator.OnLevelGenerationComplete -= CalculateThreatRange;
+        PlayerController.OnPlayerAttack -= RecalculateThreatRange;
+        TurnSystemManager.OnTurnStart -= RecalculateThreatRange;
+        TurnSystemManager.OnTurnStart -= RecalculateThreatRange;
+        CharacterController.OnDeath -= RecalculateThreatRange;
+        CharacterController.OnMove -= TestMethod;
     }
 
     private void ToggleThreatRange(bool showThreatRange)
@@ -37,15 +44,68 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         _isEnabled = showThreatRange;
         foreach (var tileHighlight in _tileHighlights.Values)
         {
+            if (tileHighlight.TileObject == null)
+            {
+                continue; //Tile object was destroyed.
+            }
+
             tileHighlight.TileObject.SetActive(_isEnabled);
         }
     }
 
-    private void CalculateThreatRange()
+    public void CalculateThreatRange()
+    {
+        _isInitialCalculation = true;
+        RecalculateThreatRange();
+    }
+
+    private void RecalculateThreatRange(CharacterController characterController)
+    {
+        RecalculateThreatRange();
+    }
+
+    private void TestMethod(CharacterController characterController)
     {
         Initialize();
         ClearHighlights();
-        Debug.Log("recalculating");
+        RecalculateThreatRange();
+    }
+
+    private void RecalculateThreatRange()
+    {
+        StartCoroutine(StartCalculationProcess());
+        //if (_isInitialCalculation)
+        //{
+        //    _isInitialCalculation = false;
+        //    return;
+        //}
+
+        //Initialize();
+        //ClearHighlights();
+
+        //foreach (var characterController in _enemyCharacters)
+        //{
+        //    if (characterController?.Character?.Weapon?.Actions == null)
+        //    {
+        //        continue;
+        //    }
+
+        //    CalculateCharacterThreatRange(characterController);
+        //}
+    }
+
+    private IEnumerator StartCalculationProcess()
+    {
+        if (_isInitialCalculation)
+        {
+            yield return new WaitForSeconds(2f);
+            _isInitialCalculation = false;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        Initialize();
+        ClearHighlights();
 
         foreach (var characterController in _enemyCharacters)
         {
@@ -60,9 +120,11 @@ public class EnemyThreatRangeViewer : MonoBehaviour
 
     private void CalculateCharacterThreatRange(CharacterController characterController)
     {
+
         var visitedCharacterTiles = new HashSet<(int, int)>();
 
         var availableMoves = characterController.CalculateAvailableMoves();
+        Debug.Log("Threat range moves:" + availableMoves.Count);
         foreach (var navigableTile in availableMoves.Values)
         {
             foreach (var action in characterController.Character.Weapon.Actions)
@@ -70,7 +132,8 @@ public class EnemyThreatRangeViewer : MonoBehaviour
                 var affectedTiles = CalculateActionThreatRange(characterController, action, navigableTile);
                 foreach (var tile in affectedTiles)
                 {
-                    if (visitedCharacterTiles.Contains((tile.GridX, tile.GridY)))
+                    if (tile.Type == TileType.Water ||
+                        visitedCharacterTiles.Contains((tile.GridX, tile.GridY)))
                     {
                         continue;
                     }

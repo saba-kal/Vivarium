@@ -11,6 +11,8 @@ public class CharacterController : MonoBehaviour
 {
     public delegate void Death(CharacterController characterController);
     public static event Death OnDeath;
+    public delegate void Move(CharacterController characterController);
+    public static event Move OnMove;
 
     public string Id;
     public Character Character;
@@ -97,11 +99,13 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move to a null tile.");
             return;
         }
+
         if (_moveController != null)
         {
             _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
             _hasMoved = true;
             Deselect();
+            OnMove?.Invoke(this);
         }
         else
         {
@@ -120,14 +124,13 @@ public class CharacterController : MonoBehaviour
         if (_moveController != null)
         {
             _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
-            UnityEngine.Debug.Log("Moving");
             if (path.Count != 1)
             {
-                UnityEngine.Debug.Log("Path not 1 tile");
                 _hasMoved = true;
             }
 
             Deselect();
+            OnMove?.Invoke(this);
         }
         else
         {

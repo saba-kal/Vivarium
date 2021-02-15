@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5212071204372667660}
   - component: {fileID: 7557959252435935750}
   m_Layer: 0
-  m_Name: pasted__pCube1
+  m_Name: WeaponMelee
   m_TagString: WeaponMelee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -602,8 +602,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.1698765, y: -0.2448413, z: 0.042619556}
-    m_Extent: {x: 0.09008624, y: 0.24484137, z: 0.2005038}
+    m_Center: {x: -0.17338967, y: -0.24911438, z: 0.0336515}
+    m_Extent: {x: 0.085903496, y: 0.24911444, z: 0.19153571}
   m_DirtyAABB: 0
 --- !u!183 &6254351299669495983
 Cloth:
@@ -1198,7 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7930349446136990939}
   m_Layer: 0
-  m_Name: Bone.002
+  m_Name: WeaponRanged
   m_TagString: WeaponRanged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

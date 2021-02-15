@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
     private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
+    private bool _isInitialGeneration = true;
 
     public GameObject mainCamera;
 
@@ -43,6 +44,11 @@ public class LevelGenerator : MonoBehaviour
         GenerateCharacters();
         GenerateGameMaster();
         this.GetComponent<GenerateObstacles>().generateEnvironment();
+        if (_isInitialGeneration)
+        {
+            this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
+            _isInitialGeneration = false;
+        }
         OnLevelGenerationComplete?.Invoke();
     }
 
