@@ -21,6 +21,7 @@ namespace Assets.Scripts.UI
         private System.Action _nextLevelCallback;
         private List<Item> _rewards = new List<Item>();
         private List<Tooltip> _tooltips = new List<Tooltip>();
+        private List<Character> _characters;
 
         private void Start()
         {
@@ -40,17 +41,76 @@ namespace Assets.Scripts.UI
             {
                 if (_nextLevelCallback != null)
                 {
-                    PlaceSelectedReward(_rewards);
-                    LogPlayerInventory();
+                    if (CharacterReward.rewardLevel)
+                    {
+                        SaveSelectedCharacter();
+                    }
+                    else
+                    {
+                        PlaceSelectedReward(_rewards);
+                        LogPlayerInventory();
+                    }
                     RewardScreen.SetActive(false);
                     _selectedReward = 0;
                     _nextLevelCallback();
-
                 }
             });
         }
 
         public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
+        {
+            if (CharacterReward.rewardLevel)
+            {
+                CharacterRewardsScreen(callback);
+            }
+            else
+            {
+                ItemRewardsScreen(callback, possibleRewards);
+            }
+        }
+        private void CharacterRewardsScreen(System.Action callback)
+        {
+            UpdateButtons();
+            RewardScreen.SetActive(true);
+            _nextLevelCallback = callback;
+            UpdateCharacters();
+
+            Option1Icon.sprite = _characters[0].Portrait;
+            Option2Icon.sprite = _characters[1].Portrait;
+            Option3Icon.sprite = _characters[2].Portrait;
+
+
+            SetTooltipData();
+        }
+
+        private void UpdateCharacters()
+        {
+            _characters = new List<Character>();
+            var characterControllers = new List<CharacterController>();
+            foreach (var characterGameObject in CharacterReward.characterGameObjects)
+            {
+                characterControllers.Add(characterGameObject.GetComponent<CharacterController>());
+            }
+
+            foreach (var characterController in characterControllers)
+            {
+                _characters.Add(characterController.Character);
+            }
+        }
+
+        private void SaveSelectedCharacter()
+        {
+            if (_selectedReward < CharacterReward.characterGameObjects.Count && _selectedReward >= 0)
+            {
+                CharacterReward.selectedCharacter = CharacterReward.characterGameObjects[_selectedReward];
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("Unable to save the game object of the selected character");
+            }
+        }
+
+        private void ItemRewardsScreen(System.Action callback, LootTable possibleRewards)
         {
             UpdateButtons();
             RewardScreen.SetActive(true);
@@ -60,7 +120,7 @@ namespace Assets.Scripts.UI
             Option1Icon.sprite = _rewards[0].Icon;
             Option2Icon.sprite = _rewards[1].Icon;
             Option3Icon.sprite = _rewards[2].Icon;
-            
+
 
             SetTooltipData();
         }
@@ -168,6 +228,38 @@ namespace Assets.Scripts.UI
 
         private void SetTooltipData()
         {
+            if(CharacterReward.rewardLevel)
+            {
+                SetCharacterTooltipData();
+            }
+            else
+            {
+                SetItemTooltipData();
+            }
+        }
+
+        private void SetCharacterTooltipData()
+        {
+            if (_characters.Count < 3)
+            {
+                return;
+            }
+
+            ClearTooltips();
+
+            var options = new List<Button> { Option1, Option2, Option3 };
+            for (int i = 0; i < options.Count; i++)
+            {
+                var tooltip = options[i].GetComponent<Tooltip>();
+                if (tooltip != null)
+                {
+                    tooltip.SetTooltipData(_characters[i]);
+                }
+                _tooltips.Add(tooltip);
+            }
+        }
+        private void SetItemTooltipData()
+        {
             if (_rewards.Count < 3)
             {
                 return;
@@ -189,8 +281,15 @@ namespace Assets.Scripts.UI
 
         public void DoubleClicked()
         {
-            PlaceSelectedReward(_rewards);
-            LogPlayerInventory();
+            if (CharacterReward.rewardLevel)
+            {
+                SaveSelectedCharacter();
+            }
+            else
+            {
+                PlaceSelectedReward(_rewards);
+                LogPlayerInventory();
+            }
             RewardScreen.SetActive(false);
             _selectedReward = 0;
             _nextLevelCallback();

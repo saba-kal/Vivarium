@@ -11,6 +11,8 @@ public class CharacterController : MonoBehaviour
 {
     public delegate void Death(CharacterController characterController);
     public static event Death OnDeath;
+    public delegate void Move(CharacterController characterController);
+    public static event Move OnMove;
 
     public string Id;
     public Character Character;
@@ -28,6 +30,8 @@ public class CharacterController : MonoBehaviour
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
     private float _savedMoveRange;
+    private GameObject _meleeWeapon;
+    private GameObject _rangedWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +50,9 @@ public class CharacterController : MonoBehaviour
         _actionViewers = GetComponents<ActionViewer>().ToList();
         _attackDamage = Character.AttackDamage;
         _savedMoveRange = Character.MoveRange;
+        _meleeWeapon = Utils.FindObjectWithTag(gameObject, Constants.MELEE_WEAPON_TAG);
+        _rangedWeapon = Utils.FindObjectWithTag(gameObject, Constants.RANGED_WEAPON_TAG);
+        SwitchWeaponModel();
         PlaceSelfInGrid();
     }
 
@@ -94,11 +101,13 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move to a null tile.");
             return;
         }
+
         if (_moveController != null)
         {
             _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
             _hasMoved = true;
             Deselect();
+            OnMove?.Invoke(this);
         }
         else
         {
@@ -117,14 +126,13 @@ public class CharacterController : MonoBehaviour
         if (_moveController != null)
         {
             _moveController.MoveAlongPath(path, onMoveComplete, skipMovement);
-            UnityEngine.Debug.Log("Moving");
-            if(path.Count != 1)
+            if (path.Count != 1)
             {
-                UnityEngine.Debug.Log("Path not 1 tile");
                 _hasMoved = true;
             }
-            
+
             Deselect();
+            OnMove?.Invoke(this);
         }
         else
         {
@@ -248,13 +256,32 @@ public class CharacterController : MonoBehaviour
         if (item.Type == ItemType.Weapon)
         {
             Character.Weapon = (Weapon)item;
+            SwitchWeaponModel();
         }
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
             _healthController?.UpgradMaxShield(Character.Shield.Health);
         }
-        //TODO: switch out weapon model here.
+    }
+
+    public void SwitchWeaponModel()
+    {
+        var weapon = Character.Weapon;
+        if (weapon?.Actions == null || weapon.Actions.Count == 0)
+        {
+            return;
+        }
+
+        if (_meleeWeapon == null || _rangedWeapon == null)
+        {
+            Debug.LogWarning("Unable to change weapon model because one was not found with the right tag.");
+            return;
+        }
+
+        var rangedWeaponIsEquipped = weapon.Actions.Any(a => a.AnimType == AnimationType.ranged_attack);
+        _meleeWeapon.SetActive(!rangedWeaponIsEquipped);
+        _rangedWeapon.SetActive(rangedWeaponIsEquipped);
     }
 
     public void Unequip(Item item)
@@ -317,7 +344,8 @@ public class CharacterController : MonoBehaviour
         {
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
-        Destroy(gameObject, 0.1f);
+        PerformDeathAnimation();
+        Destroy(gameObject, 4f);
     }
 
     public void DetachCamera()
@@ -363,7 +391,10 @@ public class CharacterController : MonoBehaviour
 
     public void Heal(float healAmount)
     {
-        _healthController.Healing(healAmount);
+        if (_healthController != null)
+        {
+            _healthController.Healing(healAmount);
+        }
     }
 
     public void AtkBuff(float attackAmount)
@@ -377,7 +408,10 @@ public class CharacterController : MonoBehaviour
     }
     public void RegenShield(float shieldAmount)
     {
-        _healthController.RegenerateShield(shieldAmount);
+        if (_healthController != null)
+        {
+            _healthController.RegenerateShield(shieldAmount);
+        }
     }
 
     public HealthController GetHealthController()
@@ -396,6 +430,7 @@ public class CharacterController : MonoBehaviour
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
 
+
     //Handles Staple action effect.
     public void IsStunned()
     {
@@ -406,5 +441,11 @@ public class CharacterController : MonoBehaviour
     public void Destun()
     {
         Character.MoveRange = _savedMoveRange;
+    }
+    private void PerformDeathAnimation()
+    {
+        var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
+        Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+        myAnimator.SetTrigger(animationTypeName);
     }
 }

@@ -13,20 +13,21 @@ MonoBehaviour:
   m_Name: EnemyAntLvl5_Ranged
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 3653770541718519309, guid: 37792f7e50015564fa22ff07a6b79119, type: 3}
+  - {fileID: 106819821670323034, guid: b3e7c5a27689dd84fabc3ea47d9fcc0c, type: 3}
   PossibleNames:
   - Bow Ant (lv 5)
   PossiblePortraits: []
-  MinMaxHealth: 63
-  MaxMaxHealth: 107
-  MinAttackDamage: 34
-  MaxAttackDamage: 43
-  MinMoveRange: 9
-  MaxMoveRange: 9
+  MinMaxHealth: 65
+  MaxMaxHealth: 109
+  MinAttackDamage: 32
+  MaxAttackDamage: 41
+  MinMoveRange: 8
+  MaxMoveRange: 8
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: ad378f4da4c60cc40adebb5ad5f95851, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: 4fc505e385c75b44c83579b002c2e085, type: 2}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

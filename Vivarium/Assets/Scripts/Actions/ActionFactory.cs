@@ -40,6 +40,10 @@ public class ActionFactory
                 break;
             case ActionControllerType.Staple:
                 actionController = gameObject.AddComponent<StapleActionController>();
+                actionViewer = gameObject.AddComponent<actionViewer>();
+                break;
+            case ActionControllerType.ArcProjectile:
+                actionController = gameObject.AddComponent<ArcProjectileActionController>();
                 actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
             case ActionControllerType.Default:

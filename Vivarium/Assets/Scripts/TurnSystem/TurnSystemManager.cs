@@ -8,6 +8,9 @@ public class TurnSystemManager : MonoBehaviour
 {
     public static TurnSystemManager Instance { get; private set; }
 
+    public delegate void TurnStart();
+    public static event TurnStart OnTurnStart;
+
     public EnemyAIManager AIManager;
     public PlayerController PlayerController;
 
@@ -53,6 +56,7 @@ public class TurnSystemManager : MonoBehaviour
 
     private void ExecuteAI()
     {
+        OnTurnStart?.Invoke();
         PlayerController.DeselectCharacter();
 
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
@@ -71,6 +75,7 @@ public class TurnSystemManager : MonoBehaviour
                 character.Destun();
             }
         }
+        OnTurnStart?.Invoke();
         PlayerController.EnableCharacters();
         PlayerTurnCameraReset();
         

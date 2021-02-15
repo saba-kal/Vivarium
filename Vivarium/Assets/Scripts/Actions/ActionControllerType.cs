@@ -10,5 +10,6 @@ public enum ActionControllerType
     SwitchPosition = 4,
     Screw = 5,
     Skewer = 6,
-    Staple = 7
+    Staple = 7,
+    ArcProjectile = 10
 }
