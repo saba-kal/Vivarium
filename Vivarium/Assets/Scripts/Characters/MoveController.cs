@@ -60,7 +60,6 @@ public class MoveController : MonoBehaviour
             _availableMoves.Remove(location);
         }
 
-        Debug.Log("Move controller moves:" + _availableMoves.Count);
         return _availableMoves;
     }
 

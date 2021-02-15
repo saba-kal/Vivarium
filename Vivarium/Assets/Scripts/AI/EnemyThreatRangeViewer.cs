@@ -124,7 +124,6 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         var visitedCharacterTiles = new HashSet<(int, int)>();
 
         var availableMoves = characterController.CalculateAvailableMoves();
-        Debug.Log("Threat range moves:" + availableMoves.Count);
         foreach (var navigableTile in availableMoves.Values)
         {
             foreach (var action in characterController.Character.Weapon.Actions)
