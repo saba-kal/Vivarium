@@ -17,8 +17,8 @@ MonoBehaviour:
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  MinEnemyCharacters: 1
-  MaxEnemyCharacters: 1
+  MinEnemyCharacters: 5
+  MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
@@ -45,6 +45,7 @@ MonoBehaviour:
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  RewardCharacters: []
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

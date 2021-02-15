@@ -186,7 +186,7 @@ public class AIController : MonoBehaviour
             return false;
         }
 
-        var breadthFirstSearch = new BreadthFirstSearch(_grid);
+        var breadthFirstSearch = new BreadthFirstSearch(_grid, true);
         breadthFirstSearch.Execute(_grid.GetValue(_aiCharacter.transform.position), 10000, _aiCharacter.Character.NavigableTiles);
         var allNavigableTiles = breadthFirstSearch.GetVisitedTiles();
 
