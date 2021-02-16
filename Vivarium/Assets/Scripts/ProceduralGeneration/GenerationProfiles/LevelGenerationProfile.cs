@@ -25,6 +25,7 @@ public class LevelGenerationProfile : ScriptableObject
     public float OnLevelStartShieldRegen = 500;
 
     public LootTable PossilbleRewards;
+    public List<LootTable> TreasureChests;
 
     public List<CharacterGenerationProfile> RewardCharacters;
 

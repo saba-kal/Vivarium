@@ -73,6 +73,17 @@ public class Tile
         }
     }
 
+    private bool _containsChest;
+    public bool ConstainsChest
+    {
+        get { return _containsChest; }
+        set
+        {
+            _containsChest = value;
+            _grid.TriggerGridCellChange(GridX, GridY);
+        }
+    }
+
     private Grid<Tile> _grid;
 
     public Tile(int x, int y, Grid<Tile> grid)

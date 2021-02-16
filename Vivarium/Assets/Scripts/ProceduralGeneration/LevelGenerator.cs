@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     public delegate void LevelGenerationComplete();
     public static event LevelGenerationComplete OnLevelGenerationComplete;
 
+    public GameObject TreasureChestPrefab;
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
@@ -155,11 +156,11 @@ public class LevelGenerator : MonoBehaviour
             GeneratePlayerCharacters();
         }
 
-        if(CharacterReward.rewardLevel)
+        if (CharacterReward.rewardLevel)
         {
             CharacterReward.selectedCharacter.SetActive(true);
-           
-            foreach(var characterGameObject in CharacterReward.characterGameObjects)
+
+            foreach (var characterGameObject in CharacterReward.characterGameObjects)
             {
                 if (!characterGameObject.activeSelf)
                 {
@@ -180,7 +181,7 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (var characterController in PlayerCharacters)
         {
-            if(characterController.gameObject.activeSelf)
+            if (characterController.gameObject.activeSelf)
             {
                 PlacePlayerOnGrid(characterController);
             }
