@@ -31,6 +31,7 @@ public class GridGenerator
         SetPossiblePlayerSpawn(resultGrid);
         SetPossibleEnemySpawn(resultGrid);
         PlaceObjective(resultGrid);
+        SetTreasureChestSpawns(resultGrid);
         CreatePathsToAllGreenTiles(resultGrid);
 
         return resultGrid;
@@ -177,19 +178,50 @@ public class GridGenerator
         }
     }
 
+    private void SetTreasureChestSpawns(Grid<Tile> grid)
+    {
+        var maxX = grid.GetGrid().GetLength(0);
+        var maxY = grid.GetGrid().GetLength(1);
+
+        var xSpawn = Random.Range(0, maxX / 2);
+        var ySpawn = Random.Range(maxY / 2, maxY);
+
+        grid.GetValue(xSpawn, ySpawn).SpawnType = TileSpawnType.TreasureChest;
+        grid.GetValue(xSpawn, ySpawn).Type = TileType.Obstacle;
+
+        var neighboringTiles = new List<Tile>
+        {
+            grid.GetValue(xSpawn, ySpawn + 1), //North
+            grid.GetValue(xSpawn + 1, ySpawn + 1), //Northeast
+            grid.GetValue(xSpawn + 1, ySpawn), //East
+            grid.GetValue(xSpawn + 1, ySpawn - 1), //Southeast
+            grid.GetValue(xSpawn, ySpawn - 1), //South
+            grid.GetValue(xSpawn - 1, ySpawn - 1), //Southwest
+            grid.GetValue(xSpawn - 1, ySpawn), //West
+            grid.GetValue(xSpawn - 1, ySpawn + 1), //Northwest
+        };
+
+        foreach (var neighboringTile in neighboringTiles)
+        {
+            if (neighboringTile != null)
+            {
+                neighboringTile.Type = TileType.Grass;
+            }
+        }
+    }
 
     private void PlaceObjective(Grid<Tile> grid)
     {
         var possibleTiles = new Dictionary<(int, int), Tile>();
-        for(int i = 0; i < grid.GetGrid().GetLength(0); i++)
+        for (int i = 0; i < grid.GetGrid().GetLength(0); i++)
         {
-            for(int j = 0; j < grid.GetGrid().GetLength(1); j++)
+            for (int j = 0; j < grid.GetGrid().GetLength(1); j++)
             {
-                if(grid.GetValue(i,j).SpawnType == TileSpawnType.Objective)
+                if (grid.GetValue(i, j).SpawnType == TileSpawnType.Objective)
                 {
                     possibleTiles.Add((i, j), grid.GetValue(i, j));
                 }
-                    
+
             }
         }
         var objectiveTile = possibleTiles.ElementAt(Random.Range(0, possibleTiles.Count)).Value;

@@ -319,5 +319,32 @@ public class LevelGenerator : MonoBehaviour
         InventoryInitializer.InitializeForEnemies();
 
         gameMaster.AddComponent<CommandController>();
+
+        GenerateTreasureChests(gameMaster);
+    }
+
+    private void GenerateTreasureChests(GameObject gameMaster)
+    {
+        var rewardsChestController = gameMaster.AddComponent<RewardsChestController>();
+        rewardsChestController.RewardsChestPrefab = TreasureChestPrefab;
+        rewardsChestController.SetGrid(_grid);
+
+        var treasureChestSpawns = new List<Tile>();
+
+        for (int x = 0; x < _grid.GetGrid().GetLength(0); x++)
+        {
+            for (int y = 0; y < _grid.GetGrid().GetLength(1); y++)
+            {
+                if (_grid.GetValue(x, y).SpawnType == TileSpawnType.TreasureChest)
+                {
+                    treasureChestSpawns.Add(_grid.GetValue(x, y));
+                }
+            }
+        }
+
+        for (var i = 0; i < treasureChestSpawns.Count && i < LevelProfile.TreasureChests.Count; i++)
+        {
+            rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
+        }
     }
 }
