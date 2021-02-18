@@ -104,8 +104,8 @@ public class CharacterController : MonoBehaviour
         {
             _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
             _hasMoved = true;
-            Deselect();
             OnMove?.Invoke(this);
+            HideMoveRadius();
         }
         else
         {

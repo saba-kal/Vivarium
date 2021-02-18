@@ -34,11 +34,42 @@ public class RewardsChestController : MonoBehaviour
             return;
         }
 
+        ToggleChestGlow();
+    }
+
+    private void ToggleChestGlow()
+    {
         var mouseHoverTile = _gridController.GetMouseHoverTile();
-        if (mouseHoverTile.SpawnType == TileSpawnType.TreasureChest)
+        if (mouseHoverTile == null)
         {
-            Debug.Log("Hovering over mouse hover tile");
+            return;
         }
+
+        RewardsChest rewardsChest = null;
+
+        if (GetNearbyRewardsChest(mouseHoverTile, out rewardsChest) &&
+            PlayerController.Instance.CharacterMoveIsSelected(out var characterController) &&
+            characterController.IsAbleToMoveToTile(mouseHoverTile))
+        {
+            rewardsChest.ShowGlow();
+        }
+
+        foreach (var chest in _rewardsChests.Values)
+        {
+            if (chest != rewardsChest)
+            {
+                chest.HideGlow();
+            }
+        }
+    }
+
+    private bool GetNearbyRewardsChest(Tile tile, out RewardsChest rewardsChest)
+    {
+        return _rewardsChests.TryGetValue((tile.GridX, tile.GridY), out rewardsChest) ||
+            _rewardsChests.TryGetValue((tile.GridX, tile.GridY + 1), out rewardsChest) ||
+            _rewardsChests.TryGetValue((tile.GridX + 1, tile.GridY), out rewardsChest) ||
+            _rewardsChests.TryGetValue((tile.GridX, tile.GridY - 1), out rewardsChest) ||
+            _rewardsChests.TryGetValue((tile.GridX - 1, tile.GridY), out rewardsChest);
     }
 
     public void AddChest(Tile tile, LootTable loot)
@@ -66,5 +97,19 @@ public class RewardsChestController : MonoBehaviour
     public void SetGrid(Grid<Tile> grid)
     {
         _grid = grid;
+    }
+
+    public void OpenChest(Tile tile, CharacterController characterController)
+    {
+        if (tile == null ||
+            characterController == null ||
+            !GetNearbyRewardsChest(tile, out var rewardsChest))
+        {
+            return;
+        }
+
+        var item = rewardsChest.Open();
+        InventoryManager.PlaceCharacterItem(characterController.Id, item);
+        UIController.Instance.ShowCharacterInfo(characterController);
     }
 }
