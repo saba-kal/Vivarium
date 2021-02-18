@@ -7,7 +7,7 @@ public class PrepMenuUIController : MonoBehaviour
     public static PrepMenuUIController Instance { get; private set; }
 
     public int MaxPlayerItems = 20;
-    public int MaxCharacterItems = 3;
+    public int MaxCharacterItems = 5;
     public GameObject PrepMenu;
     public CharacterDetailsProfile CharacterDetailsPrefab;
     public GameObject CharactersContainer;
