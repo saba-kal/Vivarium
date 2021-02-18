@@ -25,6 +25,7 @@ public class MoveController : MonoBehaviour
     public void HideMoveRadius()
     {
         TileGridController.Instance.RemoveHighlights(GridHighlightRank.Primary);
+        TileGridController.Instance.RemoveHighlights(GridHighlightRank.Quaternary);
         _availableMoves = new Dictionary<(int, int), Tile>();
         _breadthFirstSearch.Reset();
     }
@@ -46,18 +47,20 @@ public class MoveController : MonoBehaviour
         _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 
-        List<(int, int)> waterLocations = new List<(int, int)>();
+        var waterLocations = new Dictionary<(int, int), Tile>();
         foreach (KeyValuePair<(int, int), Tile> move in _availableMoves)
         {
             if (move.Value.Type == TileType.Water)
             {
-                waterLocations.Add(move.Key);
+                waterLocations.Add(move.Key, move.Value);
             }
         }
 
-        foreach ((int, int) location in waterLocations)
+        TileGridController.Instance.HighlightTiles(waterLocations, GridHighlightRank.Quaternary);
+
+        foreach (KeyValuePair<(int, int), Tile> location in waterLocations)
         {
-            _availableMoves.Remove(location);
+            _availableMoves.Remove(location.Key);
         }
 
         return _availableMoves;
