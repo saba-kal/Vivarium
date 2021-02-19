@@ -25,7 +25,7 @@ MonoBehaviour:
   MaxAttackDamage: 0
   MinMoveRange: 15
   MaxMoveRange: 20
-  MaxItems: 3
+  MaxItems: 5
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 9374dda871d732a4d9ca14efb6fa4307, type: 2}
   ShieldProfile: {fileID: 0}

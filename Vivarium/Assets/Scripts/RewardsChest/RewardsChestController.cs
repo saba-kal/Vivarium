@@ -59,7 +59,8 @@ public class RewardsChestController : MonoBehaviour
             foreach (var tile in navigableTiles.Values)
             {
                 if (GetNearbyRewardsChest(tile, out var rewardsChest) &&
-                    characterController.IsAbleToMoveToTile(tile))
+                    characterController.IsAbleToMoveToTile(tile) &&
+                    InventoryManager.GetCharacterItemCount(characterController.Id) < characterController.Character.MaxItems)
                 {
                     rewardsChest.ShowGlow();
                 }
@@ -120,13 +121,30 @@ public class RewardsChestController : MonoBehaviour
     public void OpenChest(Tile tile, CharacterController characterController)
     {
         if (tile == null || characterController == null ||
-            !GetNearbyRewardsChest(tile, out var rewardsChest))
+            !GetNearbyRewardsChest(tile, out var rewardsChest) ||
+            InventoryManager.GetCharacterItemCount(characterController.Id) >= characterController.Character.MaxItems)
         {
             return;
         }
 
         var item = rewardsChest.Open();
+        RemoveChest(rewardsChest);
+
         InventoryManager.PlaceCharacterItem(characterController.Id, item);
         UIController.Instance.ShowCharacterInfo(characterController);
     }
+
+    private void RemoveChest(RewardsChest rewardsChest)
+    {
+        var newRewardsChests = new Dictionary<(int, int), RewardsChest>();
+        foreach (var chest in _rewardsChests)
+        {
+            if (chest.Value != rewardsChest)
+            {
+                newRewardsChests.Add(chest.Key, chest.Value);
+            }
+        }
+        _rewardsChests = newRewardsChests;
+    }
+
 }

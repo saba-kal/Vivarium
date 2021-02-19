@@ -99,6 +99,8 @@ public class LevelGenerator : MonoBehaviour
         var grid = new GameObject("Grid");
         grid.transform.parent = _levelContainer.transform;
 
+        LevelProfile.GridProfile.TreasureChests = LevelProfile.TreasureChests;
+        LevelProfile.GridProfile.ChestGenerationSubdivisions = LevelProfile.ChestGenerationSubdivisions;
         _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
 
         _gridController = grid.AddComponent<TileGridController>();

@@ -26,6 +26,7 @@ public class LevelGenerationProfile : ScriptableObject
 
     public LootTable PossilbleRewards;
     public List<LootTable> TreasureChests;
+    public int ChestGenerationSubdivisions = 3;
 
     public List<CharacterGenerationProfile> RewardCharacters;
 

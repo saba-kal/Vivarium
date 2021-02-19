@@ -5,6 +5,7 @@ using System.Linq;
 public class RewardsChest : MonoBehaviour
 {
     public GameObject GlowEffect;
+    public GameObject SparkleEffect;
 
     public LootTable Loot;
 
@@ -15,6 +16,8 @@ public class RewardsChest : MonoBehaviour
 
     public Item Open()
     {
+        HideGlow();
+        SparkleEffect.SetActive(false);
         return Loot.Pick(1).FirstOrDefault();
     }
 

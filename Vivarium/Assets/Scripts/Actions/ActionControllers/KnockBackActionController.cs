@@ -47,7 +47,7 @@ public class KnockBackActionController : ActionController
         }
 
         bool drowned = false;
-        if(toTile.Type == TileType.Water)
+        if (toTile.Type == TileType.Water)
         {
             drowned = true;
         }
@@ -81,10 +81,10 @@ public class KnockBackActionController : ActionController
         PlaySound();
         targetCharacter.TakeDamage(damage);
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
-        if(drowned)
+        if (drowned)
         {
             //TODO: modify character controller to have a separate drowning animation
-            targetCharacter.DestroyCharacter();
+            targetCharacter.TakeDamage(0, true);
             UnityEngine.Debug.Log("Target was knocked into the water and drowned");
         }
     }

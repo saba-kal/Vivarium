@@ -67,6 +67,10 @@ public class CharacterController : MonoBehaviour
         }
         UIController.Instance.ShowCharacterInfo(this);
         OnSelect?.Invoke(this);
+
+        Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+        tempDict.Add((0, 0), GetGridPosition());
+        TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
     }
 
     public void Deselect()
@@ -108,8 +112,14 @@ public class CharacterController : MonoBehaviour
 
         if (_moveController != null)
         {
-            _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
+            _moveController.MoveToTile(GetGridPosition(), tile, () =>
+            {
+                onMoveComplete();
+                Select();
+            }, skipMovement);
             _hasMoved = true;
+
+            Deselect();
             OnMove?.Invoke(this);
             HideMoveRadius();
         }
@@ -151,7 +161,7 @@ public class CharacterController : MonoBehaviour
         _hasAttacked = true;
     }
 
-    public bool TakeDamage(float damage)
+    public bool TakeDamage(float damage, bool instantKill = false)
     {
         if (_healthController == null)
         {
@@ -159,7 +169,7 @@ public class CharacterController : MonoBehaviour
             return false;
         }
 
-        if (_healthController.TakeDamage(damage))
+        if (instantKill || _healthController.TakeDamage(damage))
         {
             OnDeath(this);
             SoundManager.GetInstance()?.Play(Constants.DEATH_SOUND);

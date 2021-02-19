@@ -33,6 +33,8 @@ MonoBehaviour:
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
   RewardCharacters:
   - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
   - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
