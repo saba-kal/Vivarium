@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     public delegate void ObjectiveCapture();
     public static event ObjectiveCapture OnObjectiveCapture;
     public delegate void AllCharactersDead();
@@ -18,6 +20,11 @@ public class PlayerController : MonoBehaviour
     private Action _selectedAction;
     private float _selectedActionMinRange;
     private float _selectedActionMaxRange;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void OnEnable()
     {
@@ -107,12 +114,6 @@ public class PlayerController : MonoBehaviour
             {
                 SelectCharacter(character);
             }
-        }
-        if (_selectedCharacter != null)
-        {
-            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
-            tempDict.Add((0, 0), tile);
-            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
         }
     }
 
@@ -233,6 +234,8 @@ public class PlayerController : MonoBehaviour
         {
             OnObjectiveCapture?.Invoke();
         }
+
+        RewardsChestController.Instance.OpenChest(toTile, _selectedCharacter);
     }
 
     private void OnCharacterDeath(CharacterController deadCharacterController)
@@ -288,5 +291,17 @@ public class PlayerController : MonoBehaviour
             _selectedCharacter.Deselect();
             _selectedCharacter = null;
         }
+    }
+
+    public bool CharacterMoveIsSelected(out CharacterController characterController)
+    {
+        if (_selectedCharacter != null && !_actionIsSelected)
+        {
+            characterController = _selectedCharacter;
+            return true;
+        }
+
+        characterController = null;
+        return false;
     }
 }

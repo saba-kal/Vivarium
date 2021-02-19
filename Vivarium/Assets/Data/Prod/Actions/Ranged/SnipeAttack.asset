@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: SnipeAttack32443
   Name: Snipe
-  Description: A straight shot that cannot go through units or walls.
+  Description: A high range attack that sacrifices some damage.
   SoundName: TestAttackSound
-  BaseDamage: 15
+  BaseDamage: 9
   CriticalChance: 0
   CriticalMultiplier: 0
-  MinRange: 4
-  MaxRange: 5
+  MinRange: 5
+  MaxRange: 6
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 2

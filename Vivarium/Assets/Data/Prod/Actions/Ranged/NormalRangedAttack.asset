@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: NormalRangedAttack32443
   Name: Shoot
-  Description: A standard shot from a bow
+  Description: A standard shot from a bow. Does not go through walls
   SoundName: TestAttackSound
-  BaseDamage: 10
+  BaseDamage: 14
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 3
-  MaxRange: 4
+  MaxRange: 5
   AreaOfAffect: 0
   ActionTargetType: 0
-  ControllerType: 10
+  ControllerType: 2
   Attributes: []
   AnimType: 4
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
