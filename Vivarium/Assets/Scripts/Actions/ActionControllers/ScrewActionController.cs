@@ -23,7 +23,13 @@ public class ScrewActionController : ActionController
         Tile newTile = NewLocation(targetCharacter);
 
         bool targetCanMove = false;
-        if(newTile != null  && newTile.CharacterControllerId == null)
+        bool drowned = false;
+        if (newTile.Type == TileType.Water)
+        {
+            drowned = true;
+            targetCanMove = true;
+        }
+        else if (newTile != null  && newTile.CharacterControllerId == null)
         {
             targetCanMove = targetCharacter.Character.NavigableTiles.Contains(newTile.Type);
         }
@@ -55,6 +61,12 @@ public class ScrewActionController : ActionController
             targetCharacter.gameObject.transform.position = _grid.GetWorldPositionCentered(newTile.GridX, newTile.GridY);
             newTile.CharacterControllerId = targetCharacter.Id;
             targetTile.CharacterControllerId = null;
+        }
+        if (drowned)
+        {
+            //TODO: modify character controller to have a separate drowning animation
+            targetCharacter.DestroyCharacter();
+            UnityEngine.Debug.Log("Target was knocked into the water and drowned");
         }
     }
 
