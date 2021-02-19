@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Goliath Horn
   m_EditorClassIdentifier: 
   Id: fsdgdfdfgbbdf
-  Name: Goliath Horn
+  Name: Yelow Mushroom
   Description: The horn of a goliath beetle. Permanently increases attack
   Type: 3
   Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: SnipeAttack32443
   Name: Snipe
-  Description: A straight shot that cannot go through units or walls.
+  Description: A high range attack that sacrifices some damage.
   SoundName: TestAttackSound
-  BaseDamage: 15
+  BaseDamage: 9
   CriticalChance: 0
   CriticalMultiplier: 0
-  MinRange: 4
-  MaxRange: 5
+  MinRange: 5
+  MaxRange: 6
   AreaOfAffect: 0
   ActionTargetType: 0
   ControllerType: 2
   Attributes: []
-  AnimType: 3
+  AnimType: 4
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
-  ActionTriggerDelay: 1
+  ActionTriggerDelay: 0.8

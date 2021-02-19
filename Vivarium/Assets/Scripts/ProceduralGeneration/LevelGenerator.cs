@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public delegate void LevelGenerationComplete();
+    public static event LevelGenerationComplete OnLevelGenerationComplete;
+
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
@@ -18,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
     private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
+    private bool _isInitialGeneration = true;
 
     public GameObject mainCamera;
 
@@ -40,6 +44,12 @@ public class LevelGenerator : MonoBehaviour
         GenerateCharacters();
         GenerateGameMaster();
         this.GetComponent<GenerateObstacles>().generateEnvironment();
+        if (_isInitialGeneration)
+        {
+            this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
+            _isInitialGeneration = false;
+        }
+        OnLevelGenerationComplete?.Invoke();
     }
 
     public void DestroyExistingLevel()
@@ -144,9 +154,39 @@ public class LevelGenerator : MonoBehaviour
         {
             GeneratePlayerCharacters();
         }
+
+        if(CharacterReward.rewardLevel)
+        {
+            if (PlayerData.CurrentLevelIndex != 0)
+            {
+                CharacterReward.selectedCharacter.SetActive(true);
+
+                foreach (var characterGameObject in CharacterReward.characterGameObjects)
+                {
+                    if (!characterGameObject.activeSelf)
+                    {
+                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
+                        Destroy(characterGameObject, 0.1f);
+                    }
+                }
+            }
+            CharacterReward.rewardLevel = false;
+            CharacterReward.characterGameObjects = new List<GameObject>();
+            CharacterReward.selectedCharacter = null;
+        }
+
+        if (LevelProfile.RewardCharacters.Count != 0)
+        {
+            GenerateRewardCharacter();
+            CharacterReward.rewardLevel = true;
+        }
+
         foreach (var characterController in PlayerCharacters)
         {
-            PlacePlayerOnGrid(characterController);
+            if(characterController.gameObject.activeSelf)
+            {
+                PlacePlayerOnGrid(characterController);
+            }
         }
     }
 
@@ -188,6 +228,19 @@ public class LevelGenerator : MonoBehaviour
         }
 
         PlayerCharacters = PlayerController.PlayerCharacters;
+    }
+
+    private void GenerateRewardCharacter()
+    {
+        var playerProfiles = LevelProfile.RewardCharacters;
+        foreach (var playerProfile in playerProfiles)
+        {
+            var characterGameObject = GenerateCharacter(playerProfile, false);
+            characterGameObject.transform.parent = PlayerController.transform;
+            CharacterReward.characterGameObjects.Add(characterGameObject);
+            characterGameObject.SetActive(false);
+            PlayerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
+        }
     }
 
     private GameObject GenerateCharacter(

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adrenaline Shroom
   m_EditorClassIdentifier: 
   Id: srfjnsdfkjn
-  Name: Adrenaline Shroom
+  Name: Red Mushroom
   Description: A special mushroom that increases move distance permanently
   Type: 3
   Icon: {fileID: 21300000, guid: 5b6a2989c6bbe394f8c5bad8cea74279, type: 3}

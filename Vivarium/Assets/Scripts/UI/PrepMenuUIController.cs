@@ -96,13 +96,16 @@ public class PrepMenuUIController : MonoBehaviour
         var characterControllers = TurnSystemManager.Instance.PlayerController.PlayerCharacters;
         foreach (var characterController in characterControllers)
         {
-            var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
-            profileObject.MaxItems = MaxCharacterItems;
-            profileObject.DisplayCharacter(characterController);
-            profileObject.AddOnDragBeginCallback(OnItemDragStart);
-            profileObject.AddOnDragEndCallback(OnItemDragEnd);
+            if (characterController.gameObject.activeSelf)
+            {
+                var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
+                profileObject.MaxItems = MaxCharacterItems;
+                profileObject.DisplayCharacter(characterController);
+                profileObject.AddOnDragBeginCallback(OnItemDragStart);
+                profileObject.AddOnDragEndCallback(OnItemDragEnd);
 
-            _existingProfiles.Add(profileObject);
+                _existingProfiles.Add(profileObject);
+            }
         }
     }
 
