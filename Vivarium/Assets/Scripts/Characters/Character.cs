@@ -17,4 +17,5 @@ public class Character
     public Shield Shield;
     public List<TileType> NavigableTiles;
     public LootTable CharacterLootTable;
+    public int MaxItems = 3;
 }
