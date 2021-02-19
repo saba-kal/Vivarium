@@ -7,7 +7,7 @@ public class PrepMenuUIController : MonoBehaviour
     public static PrepMenuUIController Instance { get; private set; }
 
     public int MaxPlayerItems = 20;
-    public int MaxCharacterItems = 3;
+    public int MaxCharacterItems = 5;
     public GameObject PrepMenu;
     public CharacterDetailsProfile CharacterDetailsPrefab;
     public GameObject CharactersContainer;
@@ -99,7 +99,6 @@ public class PrepMenuUIController : MonoBehaviour
             if (characterController.gameObject.activeSelf)
             {
                 var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
-                profileObject.MaxItems = MaxCharacterItems;
                 profileObject.DisplayCharacter(characterController);
                 profileObject.AddOnDragBeginCallback(OnItemDragStart);
                 profileObject.AddOnDragEndCallback(OnItemDragEnd);
