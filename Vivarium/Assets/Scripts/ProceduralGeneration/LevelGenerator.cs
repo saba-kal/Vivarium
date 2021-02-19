@@ -157,14 +157,17 @@ public class LevelGenerator : MonoBehaviour
 
         if(CharacterReward.rewardLevel)
         {
-            CharacterReward.selectedCharacter.SetActive(true);
-           
-            foreach(var characterGameObject in CharacterReward.characterGameObjects)
+            if (PlayerData.CurrentLevelIndex != 0)
             {
-                if (!characterGameObject.activeSelf)
+                CharacterReward.selectedCharacter.SetActive(true);
+
+                foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {
-                    PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
-                    Destroy(characterGameObject, 0.1f);
+                    if (!characterGameObject.activeSelf)
+                    {
+                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
+                        Destroy(characterGameObject, 0.1f);
+                    }
                 }
             }
             CharacterReward.rewardLevel = false;
