@@ -19,7 +19,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public float MinMoveRange;
     public float MaxMoveRange;
 
-    public int MaxItems = 5;
+    public int MaxItems = 3;
 
     public List<TileType> NavigableTiles;
 

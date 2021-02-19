@@ -99,7 +99,6 @@ public class PrepMenuUIController : MonoBehaviour
             if (characterController.gameObject.activeSelf)
             {
                 var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
-                profileObject.MaxItems = MaxCharacterItems;
                 profileObject.DisplayCharacter(characterController);
                 profileObject.AddOnDragBeginCallback(OnItemDragStart);
                 profileObject.AddOnDragEndCallback(OnItemDragEnd);

@@ -6,7 +6,6 @@ using static InventorySlot;
 
 public class CharacterDetailsProfile : MonoBehaviour
 {
-    public int MaxItems = 5;
     public Image Icon;
     public TextMeshProUGUI StatsText;
     public GameObject InventoryContainer;
