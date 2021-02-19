@@ -13,6 +13,10 @@ public class CharacterController : MonoBehaviour
     public static event Death OnDeath;
     public delegate void Move(CharacterController characterController);
     public static event Move OnMove;
+    public delegate void SelectEvent(CharacterController characterController);
+    public static event SelectEvent OnSelect;
+    public delegate void DeselectEvent(CharacterController characterController);
+    public static event DeselectEvent OnDeselect;
 
     public string Id;
     public Character Character;
@@ -62,6 +66,11 @@ public class CharacterController : MonoBehaviour
             ShowMoveRadius();
         }
         UIController.Instance.ShowCharacterInfo(this);
+        OnSelect?.Invoke(this);
+
+        Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+        tempDict.Add((0, 0), GetGridPosition());
+        TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
     }
 
     public void Deselect()
@@ -70,6 +79,7 @@ public class CharacterController : MonoBehaviour
         UIController.Instance.HideCharacterInfo();
         HideMoveRadius();
         TileGridController.Instance.RemoveHighlights(GridHighlightRank.Secondary);
+        OnDeselect?.Invoke(this);
     }
 
     public bool IsAbleToMove()
@@ -102,10 +112,16 @@ public class CharacterController : MonoBehaviour
 
         if (_moveController != null)
         {
-            _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
+            _moveController.MoveToTile(GetGridPosition(), tile, () =>
+            {
+                onMoveComplete();
+                Select();
+            }, skipMovement);
             _hasMoved = true;
+
             Deselect();
             OnMove?.Invoke(this);
+            HideMoveRadius();
         }
         else
         {
@@ -145,7 +161,7 @@ public class CharacterController : MonoBehaviour
         _hasAttacked = true;
     }
 
-    public bool TakeDamage(float damage)
+    public bool TakeDamage(float damage, bool instantKill = false)
     {
         if (_healthController == null)
         {
@@ -153,7 +169,7 @@ public class CharacterController : MonoBehaviour
             return false;
         }
 
-        if (_healthController.TakeDamage(damage))
+        if (instantKill || _healthController.TakeDamage(damage))
         {
             OnDeath(this);
             SoundManager.GetInstance()?.Play(Constants.DEATH_SOUND);
@@ -194,6 +210,10 @@ public class CharacterController : MonoBehaviour
     public Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
         return _moveController.CalculateAvailableMoves();
+    }
+    public Dictionary<(int, int), Tile> GetAvailableMoves()
+    {
+        return _moveController.GetAvailableMoves();
     }
 
     public ActionController GetActionController(Action action)

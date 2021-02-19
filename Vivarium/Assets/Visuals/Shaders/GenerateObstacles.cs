@@ -34,7 +34,7 @@ public class GenerateObstacles : MonoBehaviour
     {
         for (var i = 0; i < allEnvironmentObjects.Count; i++)
         {
-            Destroy(allEnvironmentObjects[i]);
+            DestroyImmediate(allEnvironmentObjects[i]);
         }
         allEnvironmentObjects = new List<GameObject>();
     }

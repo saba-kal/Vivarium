@@ -7,7 +7,7 @@ using System;
 
 public class ScrewActionController : ActionController
 {
-    private Grid<Tile> _grid ;
+    private Grid<Tile> _grid;
     protected override void ExecuteActionOnCharacter(CharacterController targetCharacter)
     {
         UnityEngine.Debug.Log("Screw action called");
@@ -29,7 +29,7 @@ public class ScrewActionController : ActionController
             drowned = true;
             targetCanMove = true;
         }
-        else if (newTile != null  && newTile.CharacterControllerId == null)
+        else if (newTile != null && newTile.CharacterControllerId == null)
         {
             targetCanMove = targetCharacter.Character.NavigableTiles.Contains(newTile.Type);
         }
@@ -65,7 +65,7 @@ public class ScrewActionController : ActionController
         if (drowned)
         {
             //TODO: modify character controller to have a separate drowning animation
-            targetCharacter.DestroyCharacter();
+            targetCharacter.TakeDamage(0, true);
             UnityEngine.Debug.Log("Target was knocked into the water and drowned");
         }
     }
@@ -109,7 +109,7 @@ public class ScrewActionController : ActionController
         int finalY = playerY + newRelativeY;
 
         UnityEngine.Debug.Log(startingX + "," + startingY);
-        UnityEngine.Debug.Log(finalX+","+finalY);
+        UnityEngine.Debug.Log(finalX + "," + finalY);
 
         return _grid.GetValue(finalX, finalY);
     }
