@@ -63,6 +63,11 @@ public class MoveController : MonoBehaviour
         return _availableMoves;
     }
 
+    public Dictionary<(int, int), Tile> GetAvailableMoves()
+    {
+        return _availableMoves;
+    }
+
     public virtual bool IsAbleToMoveToTile(Tile tile)
     {
         return tile != null &&

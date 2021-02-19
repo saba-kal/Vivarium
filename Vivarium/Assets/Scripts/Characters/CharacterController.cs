@@ -13,6 +13,10 @@ public class CharacterController : MonoBehaviour
     public static event Death OnDeath;
     public delegate void Move(CharacterController characterController);
     public static event Move OnMove;
+    public delegate void SelectEvent(CharacterController characterController);
+    public static event SelectEvent OnSelect;
+    public delegate void DeselectEvent(CharacterController characterController);
+    public static event DeselectEvent OnDeselect;
 
     public string Id;
     public Character Character;
@@ -62,6 +66,7 @@ public class CharacterController : MonoBehaviour
             ShowMoveRadius();
         }
         UIController.Instance.ShowCharacterInfo(this);
+        OnSelect?.Invoke(this);
     }
 
     public void Deselect()
@@ -70,6 +75,7 @@ public class CharacterController : MonoBehaviour
         UIController.Instance.HideCharacterInfo();
         HideMoveRadius();
         TileGridController.Instance.RemoveHighlights(GridHighlightRank.Secondary);
+        OnDeselect?.Invoke(this);
     }
 
     public bool IsAbleToMove()
@@ -194,6 +200,10 @@ public class CharacterController : MonoBehaviour
     public Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
         return _moveController.CalculateAvailableMoves();
+    }
+    public Dictionary<(int, int), Tile> GetAvailableMoves()
+    {
+        return _moveController.GetAvailableMoves();
     }
 
     public ActionController GetActionController(Action action)

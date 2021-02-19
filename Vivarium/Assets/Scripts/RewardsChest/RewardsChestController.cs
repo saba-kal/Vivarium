@@ -18,6 +18,18 @@ public class RewardsChestController : MonoBehaviour
         Instance = this;
     }
 
+    private void OnEnable()
+    {
+        CharacterController.OnSelect += ShowGlow;
+        CharacterController.OnDeselect += HideGlow;
+    }
+
+    private void OnDisable()
+    {
+        CharacterController.OnSelect -= ShowGlow;
+        CharacterController.OnDeselect -= HideGlow;
+    }
+
     private void Start()
     {
         _gridController = TileGridController.Instance;
@@ -27,39 +39,45 @@ public class RewardsChestController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void ShowGlow(CharacterController characterController)
     {
         if (_gridController == null)
         {
             return;
         }
 
-        ToggleChestGlow();
-    }
+        HideGlow();
 
-    private void ToggleChestGlow()
-    {
-        var mouseHoverTile = _gridController.GetMouseHoverTile();
-        if (mouseHoverTile == null)
+        if (characterController == null || characterController.IsEnemy)
         {
             return;
         }
 
-        RewardsChest rewardsChest = null;
-
-        if (GetNearbyRewardsChest(mouseHoverTile, out rewardsChest) &&
-            PlayerController.Instance.CharacterMoveIsSelected(out var characterController) &&
-            characterController.IsAbleToMoveToTile(mouseHoverTile))
+        if (MoveIsSelected(characterController))
         {
-            rewardsChest.ShowGlow();
+            var navigableTiles = characterController.GetAvailableMoves();
+            foreach (var tile in navigableTiles.Values)
+            {
+                if (GetNearbyRewardsChest(tile, out var rewardsChest) &&
+                    characterController.IsAbleToMoveToTile(tile))
+                {
+                    rewardsChest.ShowGlow();
+                }
+            }
         }
+    }
 
+    private bool MoveIsSelected(CharacterController characterController)
+    {
+        return PlayerController.Instance.CharacterMoveIsSelected(out var selectedCharacter) &&
+            characterController.Id == selectedCharacter.Id;
+    }
+
+    private void HideGlow(CharacterController unused = null)
+    {
         foreach (var chest in _rewardsChests.Values)
         {
-            if (chest != rewardsChest)
-            {
-                chest.HideGlow();
-            }
+            chest.HideGlow();
         }
     }
 
@@ -101,8 +119,7 @@ public class RewardsChestController : MonoBehaviour
 
     public void OpenChest(Tile tile, CharacterController characterController)
     {
-        if (tile == null ||
-            characterController == null ||
+        if (tile == null || characterController == null ||
             !GetNearbyRewardsChest(tile, out var rewardsChest))
         {
             return;
