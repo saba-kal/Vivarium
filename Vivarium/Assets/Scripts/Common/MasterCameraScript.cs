@@ -10,7 +10,7 @@ public class MasterCameraScript : MonoBehaviour
     public GameObject CameraZoomer;
 
     public float focusZoomOut;
-    private float resetZoomOut = 100;
+    private float resetZoomOut = 20;
     public float gameTilt;
     public float PanSpeed;
 

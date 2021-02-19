@@ -47,7 +47,7 @@ public class CameraZoomer : MonoBehaviour
         }
         if (transform.position.y > maxZoom)
         {
-            while (transform.position.y > 20)
+            while (transform.position.y > maxZoom)
             {
                 transform.Translate(Vector3.forward);
             }
