@@ -6,13 +6,27 @@ using System.Diagnostics;
 
 public class PierceActionController : ActionController
 {
-    public override void CalculateAffectedTiles(int x, int y)
+    public override void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
-        var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
-        var maxRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMaxRange);
+        if (_characterController == null)
+        {
+            _characterController = GetComponent<CharacterController>();
+        }
+
+        _delay = ActionReference.ActionTriggerDelay;
+        var areaOfAffect = StatCalculator.CalculateStat(ActionReference, StatType.AttackAOE);
+        var characterGridTile = _characterController.GetGridPosition();
+        var affectedTiles = TileGridController.Instance.GetTilesInColumn(targetTile.GridX, targetTile.GridY, 0, areaOfAffect, characterGridTile.GridX, characterGridTile.GridY);
+
+        CommandController.Instance.ExecuteCommand(
+            new MakeCharacterFaceTileCommand(
+                _characterController,
+                targetTile,
+                true));
+
+        PlaySound();
+        this.ExecuteAction(affectedTiles);
+        onActionComplete?.Invoke();
     }
-
-
-
 
 }

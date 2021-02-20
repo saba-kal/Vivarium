@@ -11,5 +11,5 @@ public enum ActionControllerType
     Screw = 5,
     Skewer = 6,
     Staple = 7,
-    ArcProjectile = 10
+    Pierce = 8
 }

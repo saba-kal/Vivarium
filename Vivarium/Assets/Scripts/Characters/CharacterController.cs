@@ -236,7 +236,7 @@ public class CharacterController : MonoBehaviour
         return newActionController;
     }
 
-    private Tile GetGridPosition()
+    public Tile GetGridPosition()
     {
         return TileGridController.Instance.GetGrid().GetValue(transform.position);
     }

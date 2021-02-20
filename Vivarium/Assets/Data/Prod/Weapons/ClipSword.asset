@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cbcf0ea4b09be4ba5f1c1c8e85b63a, type: 3}
   m_Name: New Weapon
   m_EditorClassIdentifier: 
-  Id: 
-  Name: 
-  Description: 
-  Type: 0
-  Icon: {fileID: 0}
+  Id: ClipSword777777
+  Name: Clip Sword
+  Description: A paper clip sword fashioned into an agile saber weapon.
+  Type: 1
+  Icon: {fileID: 21300000, guid: 49dbe9fbbfd19d34fa5f3ca74d0842d4, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: a38a703ec30a9384bba0a1874480a457, type: 2}
+  - {fileID: 11400000, guid: b147c06b7582533458bb2d6409e9b9a2, type: 2}
