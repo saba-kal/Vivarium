@@ -49,10 +49,6 @@ MonoBehaviour:
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
   TreasureChests:
   - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
-  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
-  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
-  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
-  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
   ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:
