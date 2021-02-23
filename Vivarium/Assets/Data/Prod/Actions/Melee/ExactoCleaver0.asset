@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Slash
   Description: A simple slash that deals damage to one target
   SoundName: TestAttackSound
-  BaseDamage: 20
+  BaseDamage: 23
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1

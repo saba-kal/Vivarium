@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99cbcf0ea4b09be4ba5f1c1c8e85b63a, type: 3}
-  m_Name: ThumbTackSkewer
+  m_Name: StrongNailHammer
   m_EditorClassIdentifier: 
-  Id: Skewer738
-  Name: Thumb Tack
-  Description: Skewer enemies to deal great damage at the cost of being able to move.
+  Id: StrongNailHammer
+  Name: Strong Nail Hammer
+  Description: A hammer made from a nail that can knock enemies back.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: 363154fd0beb5d64eaa4d80dbde07946, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
   Actions:
-  - {fileID: 11400000, guid: c56a4c3b9f315e14d98a0814838c3212, type: 2}
-  - {fileID: 11400000, guid: 0ce89f95868fc4d4c974741c1f7dabbe, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
