@@ -68,9 +68,17 @@ public class TurnSystemManager : MonoBehaviour
 
     private void AllowPlayerToMove()
     {
+        foreach (var character in AIManager.AICharacters)
+        {
+            if(character.Character.MoveRange < 1)
+            {
+                character.Destun();
+            }
+        }
         OnTurnStart?.Invoke();
         PlayerController.EnableCharacters();
         PlayerTurnCameraReset();
+        
     }
 
     private void PlayerTurnCameraReset()
