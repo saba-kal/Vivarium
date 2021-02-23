@@ -46,6 +46,10 @@ public class ActionFactory
                 actionController = gameObject.AddComponent<PierceActionController>();
                 actionViewer = gameObject.AddComponent<PierceActionViewer>();
                 break;
+            case ActionControllerType.ArcProjectile:
+                actionController = gameObject.AddComponent<ArcProjectileActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                break;
             case ActionControllerType.Default:
             default:
                 actionController = gameObject.AddComponent<ActionController>();
