@@ -214,7 +214,7 @@ public class CharacterController : MonoBehaviour
         return newActionController;
     }
 
-    private Tile GetGridPosition()
+    public Tile GetGridPosition()
     {
         return TileGridController.Instance.GetGrid().GetValue(transform.position);
     }
@@ -433,5 +433,10 @@ public class CharacterController : MonoBehaviour
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
         myAnimator.SetTrigger(animationTypeName);
+    }
+
+    public MoveController GetMoveController()
+    {
+        return _moveController;
     }
 }
