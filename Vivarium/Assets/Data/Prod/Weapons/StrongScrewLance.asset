@@ -21,5 +21,5 @@ MonoBehaviour:
   CanBeStacked: 0
   Attributes: []
   Actions:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 1697305f8c5e01741a3f1af7f33bcad7, type: 2}
+  - {fileID: 11400000, guid: 2f6a03b6fd8c6a149b562abb5f3b5017, type: 2}

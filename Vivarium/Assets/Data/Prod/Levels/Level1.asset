@@ -21,7 +21,7 @@ MonoBehaviour:
   MaxEnemyCharacters: 3
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 03085724b34e9c5448c007dad3bfb76d, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
   - {fileID: 11400000, guid: 0e1b4c16a6bff1740bc4fcbc9f15b6e1, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
   - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
@@ -40,7 +40,8 @@ MonoBehaviour:
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
   TreasureChests:
-  - {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
+  ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:
     ShowPreview: 0

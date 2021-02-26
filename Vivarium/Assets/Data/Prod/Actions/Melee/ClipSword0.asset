@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
   m_Name: ClipSword0
   m_EditorClassIdentifier: 
-  Id: ClipSword1212323
+  Id: ClipSwordNormal123
   Name: Slash
   Description: A simple slash that deals damage to one target
   SoundName: TestAttackSound
-  BaseDamage: 14
+  BaseDamage: 21
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
@@ -27,5 +27,5 @@ MonoBehaviour:
   Attributes: []
   AnimType: 3
   ProjectilePrefab: {fileID: 0}
-  ParticleEffect: {fileID: 0}
+  ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
   ActionTriggerDelay: 0.6
