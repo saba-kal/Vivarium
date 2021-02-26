@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UISoundManager : MonoBehaviour
 {
     private SoundManager _soundManager;
-
+    public Slider volumeSlider;
     void OnEnable()
     {
         InventorySlot.OnSlotClick += OnInventorySlotClick;
@@ -25,6 +26,15 @@ public class UISoundManager : MonoBehaviour
     void Start()
     {
         _soundManager = SoundManager.GetInstance();
+        volumeSlider.value = SoundManager.volume;
+        _soundManager.setVolume(volumeSlider.value);
+        volumeSlider.onValueChanged.AddListener(changeVolume);
+    }
+
+    private void changeVolume(float vol)
+    {
+        _soundManager.setVolume(volumeSlider.value);
+        SoundManager.volume = volumeSlider.value;
     }
 
     private void OnInventorySlotClick(InventorySlot inventorySlot)
