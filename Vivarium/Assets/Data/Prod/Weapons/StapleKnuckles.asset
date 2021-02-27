@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 77777777
   Name: Staple Knuckles
-  Description: Deadly gauntlets with stunning staple blows.
+  Description: A staple which can pin enemies in place.
   Type: 1
-  Icon: {fileID: 21300000, guid: c324122f8c571594a8886aeeeb9f06c2, type: 3}
+  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
   Actions:
-  - {fileID: 11400000, guid: 55cee4b64bc44d24aba20c5002125d75, type: 2}
   - {fileID: 11400000, guid: 1b24a0e2cce6c054bbcbd1385bb2ab7d, type: 2}
+  - {fileID: 11400000, guid: 55cee4b64bc44d24aba20c5002125d75, type: 2}
