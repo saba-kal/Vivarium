@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     public delegate void LevelGenerationComplete();
     public static event LevelGenerationComplete OnLevelGenerationComplete;
 
+    public GameObject TreasureChestPrefab;
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
@@ -98,6 +99,8 @@ public class LevelGenerator : MonoBehaviour
         var grid = new GameObject("Grid");
         grid.transform.parent = _levelContainer.transform;
 
+        LevelProfile.GridProfile.TreasureChests = LevelProfile.TreasureChests;
+        LevelProfile.GridProfile.ChestGenerationSubdivisions = LevelProfile.ChestGenerationSubdivisions;
         _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
 
         _gridController = grid.AddComponent<TileGridController>();
@@ -156,16 +159,19 @@ public class LevelGenerator : MonoBehaviour
             GeneratePlayerCharacters();
         }
 
-        if(CharacterReward.rewardLevel)
+        if (CharacterReward.rewardLevel)
         {
-            CharacterReward.selectedCharacter.SetActive(true);
-           
-            foreach(var characterGameObject in CharacterReward.characterGameObjects)
+            if (PlayerData.CurrentLevelIndex != 0)
             {
-                if (!characterGameObject.activeSelf)
+                CharacterReward.selectedCharacter.SetActive(true);
+
+                foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {
-                    PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
-                    Destroy(characterGameObject, 0.1f);
+                    if (!characterGameObject.activeSelf)
+                    {
+                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
+                        Destroy(characterGameObject, 0.1f);
+                    }
                 }
             }
             CharacterReward.rewardLevel = false;
@@ -181,7 +187,7 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (var characterController in PlayerCharacters)
         {
-            if(characterController.gameObject.activeSelf)
+            if (characterController.gameObject.activeSelf)
             {
                 PlacePlayerOnGrid(characterController);
             }
@@ -319,5 +325,32 @@ public class LevelGenerator : MonoBehaviour
         InventoryInitializer.InitializeForEnemies();
 
         gameMaster.AddComponent<CommandController>();
+
+        GenerateTreasureChests(gameMaster);
+    }
+
+    private void GenerateTreasureChests(GameObject gameMaster)
+    {
+        var rewardsChestController = gameMaster.AddComponent<RewardsChestController>();
+        rewardsChestController.RewardsChestPrefab = TreasureChestPrefab;
+        rewardsChestController.SetGrid(_grid);
+
+        var treasureChestSpawns = new List<Tile>();
+
+        for (int x = 0; x < _grid.GetGrid().GetLength(0); x++)
+        {
+            for (int y = 0; y < _grid.GetGrid().GetLength(1); y++)
+            {
+                if (_grid.GetValue(x, y).SpawnType == TileSpawnType.TreasureChest)
+                {
+                    treasureChestSpawns.Add(_grid.GetValue(x, y));
+                }
+            }
+        }
+
+        for (var i = 0; i < treasureChestSpawns.Count && i < LevelProfile.TreasureChests.Count; i++)
+        {
+            rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
+        }
     }
 }

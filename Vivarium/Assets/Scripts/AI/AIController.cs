@@ -62,6 +62,7 @@ public class AIController : MonoBehaviour
     {
         if (AICanAttack(out var attack, out var targetCharacter))
         {
+            EnterCameraFocusCommand();
             _aiCharacter.PerformAction(attack, targetCharacter, onComplete);
         }
         else
@@ -181,7 +182,7 @@ public class AIController : MonoBehaviour
     protected virtual bool AICanMove(out List<Tile> path)
     {
         path = null;
-        if (!_aiCharacter.IsAbleToMove())
+        if (!_aiCharacter.IsAbleToMove() || _aiCharacter.Character.MoveRange == 0)
         {
             return false;
         }

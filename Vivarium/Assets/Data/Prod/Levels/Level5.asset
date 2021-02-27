@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
   - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
   - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
-  - {fileID: 11400000, guid: 2b7eb41e249045b4f8e9930b48920431, type: 2}
+  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
   - {fileID: 11400000, guid: f73e33b6e4b701f46878f7212eac3182, type: 2}
   - {fileID: 11400000, guid: 9610bc16cba6bd14e80895aceb68ea9f, type: 2}
   - {fileID: 11400000, guid: 898eeb1853850c04e9ee5b568c7b4984, type: 2}
@@ -35,6 +35,9 @@ MonoBehaviour:
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
+  ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:
     ShowPreview: 0

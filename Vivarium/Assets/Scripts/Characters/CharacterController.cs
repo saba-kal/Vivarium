@@ -13,6 +13,10 @@ public class CharacterController : MonoBehaviour
     public static event Death OnDeath;
     public delegate void Move(CharacterController characterController);
     public static event Move OnMove;
+    public delegate void SelectEvent(CharacterController characterController);
+    public static event SelectEvent OnSelect;
+    public delegate void DeselectEvent(CharacterController characterController);
+    public static event DeselectEvent OnDeselect;
 
     public string Id;
     public Character Character;
@@ -29,6 +33,7 @@ public class CharacterController : MonoBehaviour
     private bool _isSelected = false;
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
+    private float _savedMoveRange;
     private GameObject _meleeWeapon;
     private GameObject _rangedWeapon;
 
@@ -48,6 +53,7 @@ public class CharacterController : MonoBehaviour
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
         _attackDamage = Character.AttackDamage;
+        _savedMoveRange = Character.MoveRange;
         _meleeWeapon = Utils.FindObjectWithTag(gameObject, Constants.MELEE_WEAPON_TAG);
         _rangedWeapon = Utils.FindObjectWithTag(gameObject, Constants.RANGED_WEAPON_TAG);
         SwitchWeaponModel();
@@ -62,6 +68,11 @@ public class CharacterController : MonoBehaviour
             ShowMoveRadius();
         }
         UIController.Instance.ShowCharacterInfo(this);
+        OnSelect?.Invoke(this);
+
+        Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+        tempDict.Add((0, 0), GetGridPosition());
+        TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
     }
 
     public void Deselect()
@@ -70,6 +81,7 @@ public class CharacterController : MonoBehaviour
         UIController.Instance.HideCharacterInfo();
         HideMoveRadius();
         TileGridController.Instance.RemoveHighlights(GridHighlightRank.Secondary);
+        OnDeselect?.Invoke(this);
     }
 
     public bool IsAbleToMove()
@@ -102,10 +114,16 @@ public class CharacterController : MonoBehaviour
 
         if (_moveController != null)
         {
-            _moveController.MoveToTile(GetGridPosition(), tile, onMoveComplete, skipMovement);
+            _moveController.MoveToTile(GetGridPosition(), tile, () =>
+            {
+                onMoveComplete();
+                Select();
+            }, skipMovement);
             _hasMoved = true;
+
             Deselect();
             OnMove?.Invoke(this);
+            HideMoveRadius();
         }
         else
         {
@@ -145,7 +163,7 @@ public class CharacterController : MonoBehaviour
         _hasAttacked = true;
     }
 
-    public bool TakeDamage(float damage)
+    public bool TakeDamage(float damage, bool instantKill = false)
     {
         if (_healthController == null)
         {
@@ -153,7 +171,7 @@ public class CharacterController : MonoBehaviour
             return false;
         }
 
-        if (_healthController.TakeDamage(damage))
+        if (instantKill || _healthController.TakeDamage(damage))
         {
             OnDeath(this);
             SoundManager.GetInstance()?.Play(Constants.DEATH_SOUND);
@@ -194,6 +212,10 @@ public class CharacterController : MonoBehaviour
     public Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
         return _moveController.CalculateAvailableMoves();
+    }
+    public Dictionary<(int, int), Tile> GetAvailableMoves()
+    {
+        return _moveController.GetAvailableMoves();
     }
 
     public ActionController GetActionController(Action action)
@@ -428,6 +450,18 @@ public class CharacterController : MonoBehaviour
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
 
+
+    //Handles Staple action effect.
+    public void IsStunned()
+    {
+        _savedMoveRange = Character.MoveRange;
+        Character.MoveRange = 0;
+    }
+    //Removes Staple effect.
+    public void Destun()
+    {
+        Character.MoveRange = _savedMoveRange;
+    }
     private void PerformDeathAnimation()
     {
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);

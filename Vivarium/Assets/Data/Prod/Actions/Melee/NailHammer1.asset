@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Shove
   Description: A thrusting attack that pushes an enemy backward
   SoundName: TestAttackSound
-  BaseDamage: 10
+  BaseDamage: 14
   CriticalChance: 1
   CriticalMultiplier: 0
   MinRange: 1

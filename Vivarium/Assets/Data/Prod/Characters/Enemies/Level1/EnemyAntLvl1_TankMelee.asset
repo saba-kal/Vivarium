@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl1_TankMelee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 106819821670323034, guid: b3e7c5a27689dd84fabc3ea47d9fcc0c, type: 3}
+  - {fileID: 106819821670323034, guid: 62b5f05c0b434534a907397e6ea76758, type: 3}
   PossibleNames:
   - Heavy Ant (lv 1)
   PossiblePortraits:
@@ -24,8 +24,9 @@ MonoBehaviour:
   MaxAttackDamage: 25
   MinMoveRange: 5
   MaxMoveRange: 6
+  MaxItems: 3
   NavigableTiles: 00000000
-  WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: 076ad81d0c5d1e542bbab827f8c64a07, type: 2}

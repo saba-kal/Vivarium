@@ -32,6 +32,11 @@ public class GridGenerator
         SetPossibleEnemySpawn(resultGrid);
         PlaceObjective(resultGrid);
         CreatePathsToAllGreenTiles(resultGrid);
+        for (int i = 0; i < gridProfile.TreasureChests.Count; i++)
+        {
+            SetTreasureChestSpawns(resultGrid, gridProfile.ChestGenerationSubdivisions);
+        }
+        CreatePathsToAllGreenTiles(resultGrid);
 
         return resultGrid;
     }
@@ -177,19 +182,116 @@ public class GridGenerator
         }
     }
 
+    private void SetTreasureChestSpawns(Grid<Tile> grid, int subdivisions)
+    {
+        //Calculate the path to the objective.
+        var pathToObjective = GetPathToObjective(grid);
+        if (pathToObjective == null)
+        {
+            return;
+        }
+
+        //Count how many tiles from the path pass through each subdivision of the grid.
+        var subdivisionPathCount = new int[subdivisions, subdivisions];
+        int xDivisor = grid.GetGrid().GetLength(0) / subdivisions;
+        int yDivisor = grid.GetGrid().GetLength(1) / subdivisions;
+        foreach (var tile in pathToObjective)
+        {
+            var subdivisionX = Mathf.Clamp(tile.GridX / xDivisor, 0, subdivisions - 1);
+            var subdivisionY = Mathf.Clamp(tile.GridY / yDivisor, 0, subdivisions - 1);
+            subdivisionPathCount[subdivisionX, subdivisionY]++;
+        }
+
+        //Get only subdivisions that have 0 path count.
+        //Also store the subdivision with the least path tiles in case all subdivisions contain a path.
+        var possibleSpawnAreas = new List<(int, int)>();
+        var leastCountSubdivision = (1, 1);
+        var leastCount = subdivisionPathCount[1, 1];
+        for (int x = 0; x < subdivisionPathCount.GetLength(0); x++)
+        {
+            for (int y = 0; y < subdivisionPathCount.GetLength(1); y++)
+            {
+                //Skip starting subdivision
+                if (x == 0 && y == 0)
+                {
+                    continue;
+                }
+
+                if (subdivisionPathCount[x, y] == 0)
+                {
+                    possibleSpawnAreas.Add((x, y));
+                }
+                if (subdivisionPathCount[x, y] < leastCount)
+                {
+                    leastCountSubdivision = (x, y);
+                    leastCount = subdivisionPathCount[x, y];
+                }
+            }
+        }
+
+        //Get a random x and y in a random subdivision.
+        int xSpawn;
+        int ySpawn;
+        int xBase;
+        int yBase;
+        if (possibleSpawnAreas.Count == 0)
+        {
+            xBase = leastCountSubdivision.Item1 * xDivisor;
+            yBase = leastCountSubdivision.Item2 * yDivisor;
+        }
+        else
+        {
+            var spawnAreaIndex = Random.Range(0, possibleSpawnAreas.Count);
+            xBase = possibleSpawnAreas[spawnAreaIndex].Item1 * xDivisor;
+            yBase = possibleSpawnAreas[spawnAreaIndex].Item2 * yDivisor;
+        }
+        xSpawn = Random.Range(xBase, xBase + xDivisor);
+        ySpawn = Random.Range(yBase, yBase + yDivisor);
+
+        //Place the spawn point.
+        grid.GetValue(xSpawn, ySpawn).SpawnType = TileSpawnType.TreasureChest;
+        grid.GetValue(xSpawn, ySpawn).Type = TileType.Obstacle;
+
+        //Make surrounding tiles grass type so that the chest does not black any paths.
+        var neighboringTiles = new List<Tile>
+        {
+            grid.GetValue(xSpawn, ySpawn + 1), //North
+            grid.GetValue(xSpawn + 1, ySpawn + 1), //Northeast
+            grid.GetValue(xSpawn + 1, ySpawn), //East
+            grid.GetValue(xSpawn + 1, ySpawn - 1), //Southeast
+            grid.GetValue(xSpawn, ySpawn - 1), //South
+            grid.GetValue(xSpawn - 1, ySpawn - 1), //Southwest
+            grid.GetValue(xSpawn - 1, ySpawn), //West
+            grid.GetValue(xSpawn - 1, ySpawn + 1), //Northwest
+        };
+        foreach (var neighboringTile in neighboringTiles)
+        {
+            if (neighboringTile != null)
+            {
+                neighboringTile.Type = TileType.Grass;
+            }
+        }
+    }
+
+    private List<Tile> GetPathToObjective(Grid<Tile> grid)
+    {
+        var aStar = new AStar(new List<TileType> { TileType.Grass }, true, grid);
+        var path = aStar.Execute(grid.GetValue(0, 0), grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1));
+        return path;
+    }
 
     private void PlaceObjective(Grid<Tile> grid)
     {
         var possibleTiles = new Dictionary<(int, int), Tile>();
-        for(int i = 0; i < grid.GetGrid().GetLength(0); i++)
+        for (int i = 0; i < grid.GetGrid().GetLength(0); i++)
         {
-            for(int j = 0; j < grid.GetGrid().GetLength(1); j++)
+            for (int j = 0; j < grid.GetGrid().GetLength(1); j++)
             {
-                if(grid.GetValue(i,j).SpawnType == TileSpawnType.Objective)
+                if (grid.GetValue(i, j).SpawnType == TileSpawnType.Objective)
                 {
                     possibleTiles.Add((i, j), grid.GetValue(i, j));
                 }
-                    
+
             }
         }
         var objectiveTile = possibleTiles.ElementAt(Random.Range(0, possibleTiles.Count)).Value;

@@ -24909,6 +24909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63104b294bcdb7b408ae5c96d9fd8cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TreasureChestPrefab: {fileID: 7846288545998904556, guid: 22fea9e1de97343439d78f9068486c68, type: 3}
   LevelProfile: {fileID: 11400000, guid: fba05a5e1b671434f9ebe87fe0e591b2, type: 2}
   PlayerCharacters: []
   PlayerController: {fileID: 457365067}
@@ -35600,6 +35601,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &785344399
@@ -50176,6 +50178,7 @@ MonoBehaviour:
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1153778089
@@ -51155,6 +51158,7 @@ MonoBehaviour:
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!114 &1183487543
@@ -51813,6 +51817,7 @@ MonoBehaviour:
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1195907801
@@ -53326,6 +53331,7 @@ MonoBehaviour:
     Shield: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1236518806
@@ -59176,6 +59182,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1410072574
@@ -66011,6 +66018,7 @@ MonoBehaviour:
     Shield: {fileID: 0}
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
+    MaxItems: 3
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1588439873

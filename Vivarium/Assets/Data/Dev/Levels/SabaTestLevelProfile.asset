@@ -36,15 +36,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
   StartingItems:
   - Count: 1
-    Item: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
+    Item: {fileID: 11400000, guid: b5edf485eb332e74f934b6aaeaafd02f, type: 2}
   - Count: 1
-    Item: {fileID: 11400000, guid: a3c492610485f6347b44fc07edc9e616, type: 2}
+    Item: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
+  - Count: 1
+    Item: {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
+  ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:
     ShowPreview: 0
