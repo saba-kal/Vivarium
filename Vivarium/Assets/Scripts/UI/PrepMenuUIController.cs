@@ -7,7 +7,6 @@ public class PrepMenuUIController : MonoBehaviour
     public static PrepMenuUIController Instance { get; private set; }
 
     public int MaxPlayerItems = 20;
-    public int MaxCharacterItems = 5;
     public GameObject PrepMenu;
     public CharacterDetailsProfile CharacterDetailsPrefab;
     public GameObject CharactersContainer;
@@ -263,7 +262,7 @@ public class PrepMenuUIController : MonoBehaviour
     private bool CharacterHasRoomForItem(InventoryItem inventoryItem, CharacterController characterController)
     {
         var itemCount = InventoryManager.GetCharacterItemCount(characterController.Id);
-        if (itemCount < MaxCharacterItems)
+        if (itemCount < characterController.Character.MaxItems)
         {
             return true;
         }
