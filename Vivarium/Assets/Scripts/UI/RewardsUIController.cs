@@ -55,12 +55,12 @@ namespace Assets.Scripts.UI
                     }
                     RewardScreen.SetActive(false);
                     _selectedRewards.Clear(); //clears the selected rewards list for the next level's rewards screen
-                    NextLevel.interactable = false; 
+                    NextLevel.interactable = false;
                     _nextLevelCallback();
                 }
             });
         }
-        
+
         private void ButtonHandler(int selectedReward, Button Option)
         {
             switch (Option.GetComponent<UnityEngine.UI.Outline>().enabled)
@@ -68,7 +68,7 @@ namespace Assets.Scripts.UI
                 case true:
                     Option.GetComponent<UnityEngine.UI.Outline>().enabled = false;
                     _selectedRewards.Remove(selectedReward);
-                    
+
                     break;
                 case false:
                     Option.GetComponent<UnityEngine.UI.Outline>().enabled = true;
@@ -76,6 +76,7 @@ namespace Assets.Scripts.UI
                     break;
             }
         }
+
         //Disables the next level button if the reward screen requirements aren't met.
         public void CheckNextLevel()
         {
@@ -84,7 +85,9 @@ namespace Assets.Scripts.UI
                 NextLevel.interactable = true;
             }
             else
+            {
                 NextLevel.interactable = false;
+            }
         }
 
         public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
@@ -182,7 +185,7 @@ namespace Assets.Scripts.UI
             }
             else
             {
-                
+
                 return null;
             }
         }
@@ -254,7 +257,7 @@ namespace Assets.Scripts.UI
 
         private void SetTooltipData()
         {
-            if(CharacterReward.rewardLevel)
+            if (CharacterReward.rewardLevel)
             {
                 SetCharacterTooltipData();
             }
@@ -308,7 +311,7 @@ namespace Assets.Scripts.UI
         public void DoubleClicked()
         {
             //Handles double clicking when the reward selection requirements aren't met.
-            if(NextLevel.interactable == false)
+            if (NextLevel.interactable == false)
             {
                 return;
             }
