@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
   m_Name: StapleKnuckles1
   m_EditorClassIdentifier: 
-  Id: StapleKnuckles8888888
-  Name: Stab
-  Description: A simple stab that deals damage to one target
-  SoundName: Test Attack Sound
-  BaseDamage: 11
+  Id: StapleKnucklesAttack123
+  Name: Staple
+  Description: The user thrusts into the enemy and staples them into place. Reduces
+    enemy movement to 0 for a turn.
+  SoundName: TestAttackSound
+  BaseDamage: 14
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1
   MaxRange: 1
   AreaOfAffect: 0
   ActionTargetType: 0
-  ControllerType: 0
+  ControllerType: 7
   Attributes: []
   AnimType: 3
   ProjectilePrefab: {fileID: 0}
-  ParticleEffect: {fileID: 0}
+  ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
   ActionTriggerDelay: 0.6

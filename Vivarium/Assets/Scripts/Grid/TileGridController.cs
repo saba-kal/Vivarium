@@ -19,6 +19,7 @@ public class TileGridController : MonoBehaviour
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
+    public GameObject QuaternaryHighlightPrefab;
 
     //Private properties.
     private Grid<Tile> _grid;
@@ -439,6 +440,8 @@ public class TileGridController : MonoBehaviour
                 return SecondaryHighlightPrefab;
             case GridHighlightRank.Tertiary:
                 return TertiaryHighlightPrefab;
+            case GridHighlightRank.Quaternary:
+                return QuaternaryHighlightPrefab;
             default:
                 return PrimaryHighlightPrefab;
         }
@@ -500,4 +503,5 @@ public enum GridHighlightRank
     Primary = 1,
     Secondary = 2,
     Tertiary = 3,
+    Quaternary = 4
 }
