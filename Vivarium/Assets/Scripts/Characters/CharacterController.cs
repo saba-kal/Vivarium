@@ -468,4 +468,9 @@ public class CharacterController : MonoBehaviour
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
         myAnimator.SetTrigger(animationTypeName);
     }
+
+    public MoveController GetMoveController()
+    {
+        return _moveController;
+    }
 }
