@@ -10,6 +10,7 @@ public class LevelGenerationProfile : ScriptableObject
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
+    public GameObject QuaternaryHighlightPrefab;
     public GameObject LevelObjectivePrefab;
 
     public int MinEnemyCharacters;
@@ -18,6 +19,7 @@ public class LevelGenerationProfile : ScriptableObject
 
     public int MinPlayerCharacters;
     public int MaxPlayerCharacters;
+    public List<CharacterGenerationProfile> GuaranteedPlayerCharacters;
     public List<CharacterGenerationProfile> PossiblePlayerCharacters;
 
     public List<InventoryItem> StartingItems;

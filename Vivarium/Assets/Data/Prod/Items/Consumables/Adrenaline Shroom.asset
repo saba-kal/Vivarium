@@ -20,4 +20,4 @@ MonoBehaviour:
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 3
-  value: 1
+  value: 2

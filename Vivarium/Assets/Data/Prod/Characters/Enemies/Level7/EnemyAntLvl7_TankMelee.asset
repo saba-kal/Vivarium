@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl7_TankMelee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 106819821670323034, guid: b3e7c5a27689dd84fabc3ea47d9fcc0c, type: 3}
+  - {fileID: 106819821670323034, guid: 62b5f05c0b434534a907397e6ea76758, type: 3}
   PossibleNames:
   - Heavy Ant (lv 6)
   PossiblePortraits: []

@@ -33,6 +33,7 @@ public class CharacterController : MonoBehaviour
     private bool _isSelected = false;
     private bool _hasMoved = false;
     private bool _hasAttacked = false;
+    private float _savedMoveRange;
     private GameObject _meleeWeapon;
     private GameObject _rangedWeapon;
 
@@ -52,6 +53,7 @@ public class CharacterController : MonoBehaviour
         _actionControllers = GetComponents<ActionController>().ToList();
         _actionViewers = GetComponents<ActionViewer>().ToList();
         _attackDamage = Character.AttackDamage;
+        _savedMoveRange = Character.MoveRange;
         _meleeWeapon = Utils.FindObjectWithTag(gameObject, Constants.MELEE_WEAPON_TAG);
         _rangedWeapon = Utils.FindObjectWithTag(gameObject, Constants.RANGED_WEAPON_TAG);
         SwitchWeaponModel();
@@ -234,7 +236,7 @@ public class CharacterController : MonoBehaviour
         return newActionController;
     }
 
-    private Tile GetGridPosition()
+    public Tile GetGridPosition()
     {
         return TileGridController.Instance.GetGrid().GetValue(transform.position);
     }
@@ -448,10 +450,27 @@ public class CharacterController : MonoBehaviour
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
 
+
+    //Handles Staple action effect.
+    public void IsStunned()
+    {
+        _savedMoveRange = Character.MoveRange;
+        Character.MoveRange = 0;
+    }
+    //Removes Staple effect.
+    public void Destun()
+    {
+        Character.MoveRange = _savedMoveRange;
+    }
     private void PerformDeathAnimation()
     {
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
         myAnimator.SetTrigger(animationTypeName);
+    }
+
+    public MoveController GetMoveController()
+    {
+        return _moveController;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using System;
 
 public class TileGridController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class TileGridController : MonoBehaviour
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
+    public GameObject QuaternaryHighlightPrefab;
 
     //Private properties.
     private Grid<Tile> _grid;
@@ -230,6 +232,70 @@ public class TileGridController : MonoBehaviour
         return existingHighlightedTiles;
     }
 
+    public Dictionary<(int, int), Tile> HighlightColumn(int x, int y, float minColumn, float maxColumn, GridHighlightRank highlightRank, int characterPositionX, int characterPositionY)
+    {
+        return HighlightColumn(x, y, minColumn, maxColumn, highlightRank, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y, characterPositionX, characterPositionY);
+    }
+
+    private Dictionary<(int, int), Tile> HighlightColumn(
+        int x,
+        int y,
+        float minColumn,
+        float maxColumn,
+        GridHighlightRank highlightRank,
+        Dictionary<(int, int), Tile> existingHighlightedTiles,
+        Dictionary<(int, int), Tile> visitedTiles,
+        int initialX,
+        int initialY,
+        int characterPositionX,
+        int characterPositionY)
+    {
+        if (visitedTiles.ContainsKey((x, y)))
+        {
+            return existingHighlightedTiles;
+        }
+
+        var tile = _grid.GetValue(x, y);
+        if (tile == null)
+        {
+            return existingHighlightedTiles;
+        }
+
+        var sqrDistance = Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y));
+        if (sqrDistance > maxColumn * maxColumn)
+        {
+            return existingHighlightedTiles;
+        }
+
+        if (sqrDistance >= minColumn * minColumn)
+        {
+            existingHighlightedTiles.Add((x, y), tile);
+            CreateHighlightObject(x, y, highlightRank);
+        }
+        visitedTiles.Add((x, y), tile);
+
+        if (x == characterPositionX && y >= characterPositionY)
+        {
+            HighlightColumn(x, y + 1, minColumn, maxColumn, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Up
+        }
+        if (x == characterPositionX && y <= characterPositionY)
+        {
+            HighlightColumn(x, y - 1, minColumn, maxColumn, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Down
+        }
+
+        if (x >= characterPositionX && y == characterPositionY)
+        {
+            HighlightColumn(x + 1, y, minColumn, maxColumn, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Left
+        }
+
+        if (x <= characterPositionX && y == characterPositionY)
+        {
+            HighlightColumn(x - 1, y, minColumn, maxColumn, highlightRank, existingHighlightedTiles, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Right
+        }
+
+        return existingHighlightedTiles;
+    }
+
     public Dictionary<(int, int), Tile> GetTilesInRadius(int x, int y, float minRadius, float maxRadius)
     {
         return GetTilesInRadius(x, y, minRadius, maxRadius, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y);
@@ -276,6 +342,69 @@ public class TileGridController : MonoBehaviour
         return tilesInRadius;
     }
 
+    public Dictionary<(int, int), Tile> GetTilesInColumn(int x, int y, float minColumn, float maxColumn, int characterPositionX, int characterPositionY)
+    {
+        return GetTilesInColumn(x, y, minColumn, maxColumn, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y, characterPositionX, characterPositionY);
+    }
+
+    private Dictionary<(int, int), Tile> GetTilesInColumn(
+        int x,
+        int y,
+        float minColumn,
+        float maxColumn,
+        Dictionary<(int, int), Tile> tilesInColumn,
+        Dictionary<(int, int), Tile> visitedTiles,
+        int initialX,
+        int initialY,
+        int characterPositionX,
+        int characterPositionY)
+    {
+        Debug.Log(x + " is x and " + y + " is y.");
+        if (visitedTiles.ContainsKey((x, y)))
+        {
+            return tilesInColumn;
+        }
+
+        var tile = _grid.GetValue(x, y);
+        if (tile == null)
+        {
+            return tilesInColumn;
+        }
+
+        var sqrDistance = Vector2.SqrMagnitude(new Vector2(initialX - x, initialY - y));
+        if (sqrDistance > maxColumn * maxColumn)
+        {
+            return tilesInColumn;
+        }
+
+        if (sqrDistance >= minColumn * minColumn)
+        {
+            tilesInColumn.Add((x, y), tile);
+        }
+        visitedTiles.Add((x, y), tile);
+
+        if (x == characterPositionX && y >= characterPositionY)
+        {
+            GetTilesInColumn(x, y + 1, minColumn, maxColumn, tilesInColumn, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Up
+        }
+        if (x == characterPositionX && y <= characterPositionY)
+        {
+            GetTilesInColumn(x, y - 1, minColumn, maxColumn, tilesInColumn, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Down
+        }
+
+        if (x >= characterPositionX && y == characterPositionY)
+        {
+            GetTilesInColumn(x + 1, y, minColumn, maxColumn, tilesInColumn, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Left
+        }
+
+        if (x <= characterPositionX && y == characterPositionY)
+        {
+            GetTilesInColumn(x - 1, y, minColumn, maxColumn, tilesInColumn, visitedTiles, initialX, initialY, characterPositionX, characterPositionY); //Right
+        }
+
+        return tilesInColumn;
+    }
+
     public void HighlightTiles(Dictionary<(int, int), Tile> tiles, GridHighlightRank highlightRank)
     {
         foreach (var tileKeyValue in tiles)
@@ -311,6 +440,8 @@ public class TileGridController : MonoBehaviour
                 return SecondaryHighlightPrefab;
             case GridHighlightRank.Tertiary:
                 return TertiaryHighlightPrefab;
+            case GridHighlightRank.Quaternary:
+                return QuaternaryHighlightPrefab;
             default:
                 return PrimaryHighlightPrefab;
         }
@@ -372,4 +503,5 @@ public enum GridHighlightRank
     Primary = 1,
     Secondary = 2,
     Tertiary = 3,
+    Quaternary = 4
 }

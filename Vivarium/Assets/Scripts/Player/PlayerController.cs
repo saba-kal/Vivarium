@@ -90,7 +90,19 @@ public class PlayerController : MonoBehaviour
         //Grid cell click was probably on a character.
         else
         {
-            GetSelectedCharacter(selectedTile);
+            //Do not want to deselect character in this special case
+            var invalidWaterTile = false;
+            if(_selectedCharacter != null)
+            {
+                var moveController = _selectedCharacter.GetMoveController();
+                var surroundingWaterTiles = moveController.GetWaterTilesInRadius();
+                invalidWaterTile = selectedTile.Type == TileType.Water && surroundingWaterTiles.ContainsValue(selectedTile);
+            }
+
+            if (!(invalidWaterTile))
+            {
+                GetSelectedCharacter(selectedTile);
+            }
         }
     }
 
