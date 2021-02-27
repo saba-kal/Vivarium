@@ -1108,6 +1108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103546297}
   - component: {fileID: 103546296}
+  - component: {fileID: 103546298}
   m_Layer: 0
   m_Name: UISoundManager
   m_TagString: Untagged
@@ -1127,7 +1128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec77c8c663c4bdc468123524767f964f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 680054310}
 --- !u!4 &103546297
 Transform:
   m_ObjectHideFlags: 0
@@ -1142,6 +1142,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &103546298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103546295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4199143872e3f64c9da3e5afbe15c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VolumeSliderElem: {fileID: 680054310}
 --- !u!1 &106266673
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
     public List<SoundClip> Sounds;
     private Dictionary<string, AudioSource> _soundBank;
-    public static float volume = 0.6f;
-    public Slider mainMenuVolume;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,10 +28,6 @@ public class SoundManager : MonoBehaviour
 
             _soundBank[sound.Name] = audioSource;
         }
-
-        mainMenuVolume.value = SoundManager.volume;
-        SoundManager.GetInstance().setVolume(mainMenuVolume.value);
-        mainMenuVolume.onValueChanged.AddListener(ChangeMainMenuVolume);
     }
 
     public void Play(string soundName)
@@ -91,18 +83,11 @@ public class SoundManager : MonoBehaviour
         return FindObjectOfType<SoundManager>();
     }
 
-    public void setVolume(float volumeFloat)
+    public void SetVolume(float volumeFloat)
     {
-    
         foreach (var source in _soundBank.Values)
         {
             source.volume = volumeFloat;
         }
     }
-    private void ChangeMainMenuVolume(float mainMenuVol)
-    {
-        SoundManager.GetInstance().setVolume(mainMenuVolume.value);
-        SoundManager.volume = mainMenuVolume.value;
-    }
-
 }
