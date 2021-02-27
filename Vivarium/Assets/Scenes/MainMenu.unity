@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 211488659}
   - component: {fileID: 211488658}
   - component: {fileID: 211488660}
+  - component: {fileID: 211488661}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -729,7 +730,6 @@ MonoBehaviour:
     Pitch: 1
     PlayOnAwake: 1
     Loop: 1
-  mainMenuVolume: {fileID: 1773615276}
 --- !u!4 &211488659
 Transform:
   m_ObjectHideFlags: 0
@@ -756,6 +756,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b378e0984e76a4380e210c84b07316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &211488661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211488657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4199143872e3f64c9da3e5afbe15c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VolumeSliderElem: {fileID: 1773615276}
 --- !u!1 &333646902
 GameObject:
   m_ObjectHideFlags: 0
