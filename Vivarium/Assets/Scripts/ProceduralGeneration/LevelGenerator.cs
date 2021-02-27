@@ -222,9 +222,16 @@ public class LevelGenerator : MonoBehaviour
     private void GeneratePlayerCharacters()
     {
         var numberOfPlayerCharacters = Random.Range(LevelProfile.MinPlayerCharacters, LevelProfile.MaxPlayerCharacters + 1);
+        numberOfPlayerCharacters -= LevelProfile.GuaranteedPlayerCharacters.Count;
         var playerProfiles = LevelProfile.PossiblePlayerCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfPlayerCharacters);
+        var playerProfileList = playerProfiles.ToList();
+        
+        foreach (var playerProfile in LevelProfile.GuaranteedPlayerCharacters)
+        {
+            playerProfileList.Add(playerProfile);
+        }
 
-        foreach (var playerProfile in playerProfiles)
+        foreach (var playerProfile in playerProfileList)
         {
             var characterGameObject = GenerateCharacter(playerProfile, false);
             characterGameObject.transform.parent = PlayerController.transform;
