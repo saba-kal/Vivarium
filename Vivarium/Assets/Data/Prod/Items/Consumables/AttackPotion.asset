@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
-  m_Name: Honey
+  m_Name: AttackPotion
   m_EditorClassIdentifier: 
-  Id: HealNormal
-  Name: Honey
-  Description: A sweet, healing drop of honey that will restore 70 health
+  Id: AttackNormal
+  Name: Attack Potion
+  Description: A strange blue liquid in a vial. Permanently increases attack by 7.
   Type: 3
-  Icon: {fileID: 21300000, guid: 9ea2643488cdef74b95a22b50d09dff3, type: 3}
+  Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
-  ConsumableType: 1
-  value: 70
+  ConsumableType: 2
+  value: 7
