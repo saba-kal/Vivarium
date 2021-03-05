@@ -13,15 +13,27 @@ MonoBehaviour:
   m_Name: Chest
   m_EditorClassIdentifier: 
   DroppableItems:
-  - Item: {fileID: 11400000, guid: e12be45a471164f48badd0b0d4aa810c, type: 2}
-    ChanceToDrop: 0.3
-  - Item: {fileID: 11400000, guid: e81b69021e102f943897cef369448a50, type: 2}
-    ChanceToDrop: 0.3
+  - Item: {fileID: 11400000, guid: b0dccc152449da34198bd307dccf6426, type: 2}
+    ChanceToDrop: 0.8
   - Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
-    ChanceToDrop: 1
+    ChanceToDrop: 0.8
+  - Item: {fileID: 11400000, guid: 1fd089bb6e75b7e42a16b11475b117a4, type: 2}
+    ChanceToDrop: 0.4
   - Item: {fileID: 11400000, guid: 3eba279e8acdf304d846c53ff8098365, type: 2}
-    ChanceToDrop: 0.2
+    ChanceToDrop: 0.5
   - Item: {fileID: 11400000, guid: 4249cc22213c2054590d5d400003b84c, type: 2}
-    ChanceToDrop: 0.2
+    ChanceToDrop: 0.5
   - Item: {fileID: 11400000, guid: 62b9bca3ffe0adf49a92aa510793cec1, type: 2}
-    ChanceToDrop: 0.1
+    ChanceToDrop: 0.25
+  - Item: {fileID: 11400000, guid: dc45c718e328b774581ae6ddbaac5ec5, type: 2}
+    ChanceToDrop: 0.5
+  - Item: {fileID: 11400000, guid: a6cf50a9c7cc2ab468be8018a4c6271e, type: 2}
+    ChanceToDrop: 0.5
+  - Item: {fileID: 11400000, guid: e81b69021e102f943897cef369448a50, type: 2}
+    ChanceToDrop: 0.25
+  - Item: {fileID: 11400000, guid: 75b41650aca32a041be6612b4bfe4c8e, type: 2}
+    ChanceToDrop: 0.5
+  - Item: {fileID: 11400000, guid: 9aa9fe750ab87624bb2bcae34c0322d4, type: 2}
+    ChanceToDrop: 0.5
+  - Item: {fileID: 11400000, guid: e12be45a471164f48badd0b0d4aa810c, type: 2}
+    ChanceToDrop: 0.25

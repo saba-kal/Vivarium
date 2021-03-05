@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SabaTestLevel.unity
     guid: 226032aa0a0c3a84d91412f955b62956
   - enabled: 1
-    path: Assets/Scenes/MainGame.unity
+    path: Assets/Scenes/big_visual_change.unity
     guid: 85a2372e24b84de4b80459fee7ec0a4c
   - enabled: 0
     path: Assets/Scenes/Alex_Animation_Test_Scene.unity

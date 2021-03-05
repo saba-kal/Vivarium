@@ -26,10 +26,10 @@ MonoBehaviour:
   MaxMoveRange: 9
   MaxItems: 3
   NavigableTiles: 00000000
-  WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: 0d7292f115f23924bb158958ba30c74f, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: 076ad81d0c5d1e542bbab827f8c64a07, type: 2}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

@@ -47,7 +47,7 @@ public class CameraZoomer : MonoBehaviour
         }
         if (transform.position.y > maxZoom)
         {
-            while (transform.position.y > 20)
+            while (transform.position.y > maxZoom)
             {
                 transform.Translate(Vector3.forward);
             }
@@ -65,11 +65,13 @@ public class CameraZoomer : MonoBehaviour
 
     public void setZoom(float inputZoom)
     {
-        //CalculateZoom(inputZoom);
-        //_currentZoomPercent = -inputZoom;
         transform.Translate(Vector3.forward * -inputZoom);
     }
 
+    public float getCurrentZoomPercent()
+    {
+        return transform.position.y / maxZoom;
+    }
 
     public void lockCameraZoom()
     {

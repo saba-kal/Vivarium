@@ -29,6 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71ebad57ed50c0a4fbb56ba7fbea4543, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
+  GuaranteedPlayerCharacters: []
   PossiblePlayerCharacters: []
   StartingItems: []
   OnLevelStartHeal: 500
@@ -38,9 +39,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
   ChestGenerationSubdivisions: 3
   RewardCharacters:
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: dcb3f91ab106a3b4bad4f3e85eae3f32, type: 2}
+  - {fileID: 11400000, guid: 19cc8791ad961de4882b188a18e4537c, type: 2}
+  - {fileID: 11400000, guid: ea4f55097962146498aa23deb566d8f7, type: 2}
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}
