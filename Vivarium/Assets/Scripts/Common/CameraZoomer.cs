@@ -65,11 +65,13 @@ public class CameraZoomer : MonoBehaviour
 
     public void setZoom(float inputZoom)
     {
-        //CalculateZoom(inputZoom);
-        //_currentZoomPercent = -inputZoom;
         transform.Translate(Vector3.forward * -inputZoom);
     }
 
+    public float getCurrentZoomPercent()
+    {
+        return transform.position.y / maxZoom;
+    }
 
     public void lockCameraZoom()
     {

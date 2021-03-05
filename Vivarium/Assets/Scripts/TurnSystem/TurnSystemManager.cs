@@ -56,6 +56,7 @@ public class TurnSystemManager : MonoBehaviour
         PlayerController.DeselectCharacter();
 
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+        mainCamera?.GetComponent<MasterCameraScript>().saveCameraPosition();
         mainCamera?.GetComponent<MasterCameraScript>().lockCamera();
 
         AIManager.EnableCharacters();

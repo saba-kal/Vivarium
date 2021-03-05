@@ -18,6 +18,11 @@ public class MasterCameraScript : MonoBehaviour
 
     public GameObject[] focusCharacters;
 
+    public Vector3 previousZoomPosition;
+    public Quaternion previousZoomRotation;
+    public Vector3 previousMasterCameraPosition;
+    public Quaternion previousMasterCameraRotation;
+    public Transform testTransform;
 
     void Start()
     {
@@ -67,30 +72,34 @@ public class MasterCameraScript : MonoBehaviour
 
     public void checkMoveCamera()
     {
+        var zoomPercent = CameraZoomer.GetComponent<CameraZoomer>().getCurrentZoomPercent();
+        var panSpeed = moveSpeed * zoomPercent;
+        Debug.Log("Zoom Percent: " + zoomPercent);
+        Debug.Log("PAN SPEED: " + panSpeed);
         //CameraMover.GetComponent<Camera_Mover>().CheckMoveCamera();
         if (!isCameraLock)
         {
             if (Input.GetKey(KeyCode.W))
             {
-                this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime;
+                this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime * zoomPercent;
                 //rayCastPivot();
 
             }
             if (Input.GetKey(KeyCode.S))
             {
-                this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime;
+                this.transform.position -= this.transform.forward * moveSpeed * Time.deltaTime * zoomPercent;
                 //rayCastPivot();
 
             }
             if (Input.GetKey(KeyCode.A))
             {
-                this.transform.position -= this.transform.right * moveSpeed * Time.deltaTime;
+                this.transform.position -= this.transform.right * moveSpeed * Time.deltaTime * zoomPercent;
                 //rayCastPivot(); 
 
             }
             if (Input.GetKey(KeyCode.D))
             {
-                this.transform.position += this.transform.right * moveSpeed * Time.deltaTime;
+                this.transform.position += this.transform.right * moveSpeed * Time.deltaTime * zoomPercent;
                 //rayCastPivot();
 
             }
@@ -142,6 +151,26 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
+    public void saveCameraPosition()
+    {
+        //var newTransform = new Transform();
+        previousMasterCameraPosition = this.transform.position;
+        previousMasterCameraRotation = this.transform.rotation;
+        previousZoomPosition = CameraZoomer.transform.position;
+        previousZoomRotation = CameraZoomer.transform.rotation;
+        Debug.Log("CAMERA POSITIOON SAVED");
+    }
+    
+    public void loadCameraPosition()
+    {
+        this.transform.position = previousMasterCameraPosition;
+        //this.transform.rotation = previousMasterCameraPosition;
+
+        CameraZoomer.transform.position = previousZoomPosition;
+        //CameraZoomer.transform.rotation = previousZoomPosition;
+    }
+
+
     public void EnterCameraFocusCommand(GameObject Character)
     {
         CommandController.Instance.ExecuteCommand(
@@ -162,8 +191,16 @@ public class MasterCameraScript : MonoBehaviour
         CommandController.Instance.ExecuteCommand(
         new WaitCommand()
         );
+        //loadCameraPosition();
+        //CommandController.Instance.ExecuteCommand(
+        //new MoveCameraCommand(new Vector3(0, 0, 0), PanSpeed)
+        //);
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(new Vector3(0, 0, 0), PanSpeed)
+        new MoveCameraCommand(previousMasterCameraPosition, PanSpeed)
+        );
+
+        CommandController.Instance.ExecuteCommand(
+            new RotateCameraCommand(previousMasterCameraRotation, previousZoomRotation)
         );
         CommandController.Instance.ExecuteCommand(
         new UnlockCameraCommand()
