@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
   m_Name: ScrewLance1
   m_EditorClassIdentifier: 
-  Id: ScrewLance123
+  Id: ScrewLanceAttack123
   Name: Screw
   Description: Rotates the target about the user clockwise by 90 degrees
   SoundName: TestAttackSound
-  BaseDamage: 11
+  BaseDamage: 14
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1

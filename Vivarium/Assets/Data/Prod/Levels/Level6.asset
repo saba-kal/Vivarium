@@ -16,17 +16,18 @@ MonoBehaviour:
   PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
+  QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
   MinEnemyCharacters: 7
   MaxEnemyCharacters: 8
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
   - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
-  - {fileID: 11400000, guid: f8a087a4488f6aa4da97a949c57bbb66, type: 2}
+  - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
   - {fileID: 11400000, guid: d050dd04153b2874797280cec0989dd6, type: 2}
-  - {fileID: 11400000, guid: f6bba6b0b5c5da64a8076f0a0ccb7cdb, type: 2}
+  - {fileID: 11400000, guid: 6f0830d88ba39a94b85e112774511f96, type: 2}
   - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
-  - {fileID: 11400000, guid: 2b7eb41e249045b4f8e9930b48920431, type: 2}
+  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
   - {fileID: 11400000, guid: f73e33b6e4b701f46878f7212eac3182, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
@@ -34,7 +35,11 @@ MonoBehaviour:
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
-  PossilbleRewards: {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
+  PossilbleRewards: {fileID: 11400000, guid: ed9edc8817e307e489fedeb557a6a8b8, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
+  ChestGenerationSubdivisions: 3
+  RewardCharacters: []
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

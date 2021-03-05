@@ -14,11 +14,13 @@ public class InventoryInitializer : MonoBehaviour
         {
             foreach (var characterController in turnSystemManager.PlayerController.PlayerCharacters)
             {
-                if (placeEquippedItems && characterController?.Character?.Weapon != null)
+                if ((placeEquippedItems || !characterController.gameObject.activeSelf)
+                    && characterController?.Character?.Weapon != null)
                 {
                     InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Weapon);
                 }
-                if (placeEquippedItems && characterController?.Character?.Shield != null)
+                if ((placeEquippedItems || !characterController.gameObject.activeSelf)
+                    && characterController?.Character?.Shield != null)
                 {
                     InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Shield);
                 }

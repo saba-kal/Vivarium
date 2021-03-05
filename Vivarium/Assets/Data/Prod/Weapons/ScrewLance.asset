@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: ScrewLance738
   Name: Screw Lance
-  Description: A lance made from a screw
+  Description: A lance made from a screw. Can pull enemies around you.
   Type: 1
   Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
   Actions:
-  - {fileID: 11400000, guid: 13e371da307c3ac49b9aac92d6e00097, type: 2}
-  - {fileID: 11400000, guid: 2f6a03b6fd8c6a149b562abb5f3b5017, type: 2}
+  - {fileID: 11400000, guid: a5f3e27e23c40674e86d9dba8b0662d1, type: 2}
+  - {fileID: 11400000, guid: b05f744f97e9c8f4e946db545a28138d, type: 2}

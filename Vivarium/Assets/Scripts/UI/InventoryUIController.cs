@@ -63,6 +63,17 @@ public class InventoryUIController : MonoBehaviour
             return;
         }
 
+        if (selectedCharacterController.Character.MaxItems <= 3)
+        {
+            _inventorySlots[3].gameObject.SetActive(false);
+            _inventorySlots[4].gameObject.SetActive(false);
+        }
+        else
+        {
+            _inventorySlots[3].gameObject.SetActive(true);
+            _inventorySlots[4].gameObject.SetActive(true);
+        }
+
         _equippedWeaponIndex = -1;
         _equippedShieldIndex = -1;
         _selectedItemSlot = null;
