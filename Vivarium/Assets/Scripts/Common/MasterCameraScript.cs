@@ -74,8 +74,6 @@ public class MasterCameraScript : MonoBehaviour
     {
         var zoomPercent = CameraZoomer.GetComponent<CameraZoomer>().getCurrentZoomPercent();
         var panSpeed = moveSpeed * zoomPercent;
-        Debug.Log("Zoom Percent: " + zoomPercent);
-        Debug.Log("PAN SPEED: " + panSpeed);
         //CameraMover.GetComponent<Camera_Mover>().CheckMoveCamera();
         if (!isCameraLock)
         {
@@ -120,8 +118,6 @@ public class MasterCameraScript : MonoBehaviour
 
             if (!(GameObject.ReferenceEquals(pivotTile, hit.transform.gameObject)))
             {
-                Debug.Log(hit.transform.name + "FOUND FOUND FOUND");
-                Debug.Log(hit.transform.position + " OFUND FDOAFDS");
                 this.transform.position = new Vector3(hit.transform.position.x, this.transform.position.y, hit.transform.position.z);
                 pivotTile = hit.transform.gameObject;
             }
@@ -158,7 +154,6 @@ public class MasterCameraScript : MonoBehaviour
         previousMasterCameraRotation = this.transform.rotation;
         previousZoomPosition = CameraZoomer.transform.position;
         previousZoomRotation = CameraZoomer.transform.rotation;
-        Debug.Log("CAMERA POSITIOON SAVED");
     }
     
     public void loadCameraPosition()
