@@ -53,7 +53,6 @@ public class CharacterGenerator
         character.NavigableTiles = characterProfile.NavigableTiles;
         character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
         character.CharacterLootTable = characterProfile.CharacterLootTable;
-        character.MaxItems = characterProfile.MaxItems;
 
         return character;
     }

@@ -10,7 +10,6 @@ public class LevelGenerationProfile : ScriptableObject
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
-    public GameObject QuaternaryHighlightPrefab;
     public GameObject LevelObjectivePrefab;
 
     public int MinEnemyCharacters;
@@ -19,7 +18,6 @@ public class LevelGenerationProfile : ScriptableObject
 
     public int MinPlayerCharacters;
     public int MaxPlayerCharacters;
-    public List<CharacterGenerationProfile> GuaranteedPlayerCharacters;
     public List<CharacterGenerationProfile> PossiblePlayerCharacters;
 
     public List<InventoryItem> StartingItems;
@@ -27,10 +25,6 @@ public class LevelGenerationProfile : ScriptableObject
     public float OnLevelStartShieldRegen = 500;
 
     public LootTable PossilbleRewards;
-    public List<LootTable> TreasureChests;
-    public int ChestGenerationSubdivisions = 3;
-
-    public List<CharacterGenerationProfile> RewardCharacters;
 
     public AISettings AISettings;
 }

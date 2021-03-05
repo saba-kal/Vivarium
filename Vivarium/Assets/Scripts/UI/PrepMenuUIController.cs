@@ -7,6 +7,7 @@ public class PrepMenuUIController : MonoBehaviour
     public static PrepMenuUIController Instance { get; private set; }
 
     public int MaxPlayerItems = 20;
+    public int MaxCharacterItems = 3;
     public GameObject PrepMenu;
     public CharacterDetailsProfile CharacterDetailsPrefab;
     public GameObject CharactersContainer;
@@ -95,15 +96,13 @@ public class PrepMenuUIController : MonoBehaviour
         var characterControllers = TurnSystemManager.Instance.PlayerController.PlayerCharacters;
         foreach (var characterController in characterControllers)
         {
-            if (characterController.gameObject.activeSelf)
-            {
-                var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
-                profileObject.DisplayCharacter(characterController);
-                profileObject.AddOnDragBeginCallback(OnItemDragStart);
-                profileObject.AddOnDragEndCallback(OnItemDragEnd);
+            var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
+            profileObject.MaxItems = MaxCharacterItems;
+            profileObject.DisplayCharacter(characterController);
+            profileObject.AddOnDragBeginCallback(OnItemDragStart);
+            profileObject.AddOnDragEndCallback(OnItemDragEnd);
 
-                _existingProfiles.Add(profileObject);
-            }
+            _existingProfiles.Add(profileObject);
         }
     }
 
@@ -262,7 +261,7 @@ public class PrepMenuUIController : MonoBehaviour
     private bool CharacterHasRoomForItem(InventoryItem inventoryItem, CharacterController characterController)
     {
         var itemCount = InventoryManager.GetCharacterItemCount(characterController.Id);
-        if (itemCount < characterController.Character.MaxItems)
+        if (itemCount < MaxCharacterItems)
         {
             return true;
         }

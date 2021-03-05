@@ -41,8 +41,8 @@ public static class InventoryManager
             _characterInventories.Add(characterId, characterInventory);
         }
 
-        var maxItems = TurnSystemManager.Instance.GetCharacterController(characterId)?.Character.MaxItems ?? Constants.MAX_CHARACTER_ITEMS;
-        if (GetCharacterItemCount(characterId) > maxItems)
+
+        if (GetCharacterItemCount(characterId) > Constants.MAX_CHARACTER_ITEMS)
         {
             Debug.LogWarning("Character has reached maximum items. Cannot place more in inventory.");
             RemoveCharacterItem(characterId, item.Id);

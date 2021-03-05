@@ -62,7 +62,6 @@ public class AIController : MonoBehaviour
     {
         if (AICanAttack(out var attack, out var targetCharacter))
         {
-            EnterCameraFocusCommand();
             _aiCharacter.PerformAction(attack, targetCharacter, onComplete);
         }
         else
@@ -182,12 +181,12 @@ public class AIController : MonoBehaviour
     protected virtual bool AICanMove(out List<Tile> path)
     {
         path = null;
-        if (!_aiCharacter.IsAbleToMove() || _aiCharacter.Character.MoveRange == 0)
+        if (!_aiCharacter.IsAbleToMove())
         {
             return false;
         }
 
-        var breadthFirstSearch = new BreadthFirstSearch(_grid, true);
+        var breadthFirstSearch = new BreadthFirstSearch(_grid);
         breadthFirstSearch.Execute(_grid.GetValue(_aiCharacter.transform.position), 10000, _aiCharacter.Character.NavigableTiles);
         var allNavigableTiles = breadthFirstSearch.GetVisitedTiles();
 

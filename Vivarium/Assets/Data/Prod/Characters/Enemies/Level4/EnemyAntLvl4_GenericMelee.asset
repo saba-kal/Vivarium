@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyAntLvl4_GenericMelee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 106819821670323034, guid: 62b5f05c0b434534a907397e6ea76758, type: 3}
+  - {fileID: 8348097763057275453, guid: 898fabec9612d5747a64680cd4bd9d7e, type: 3}
   PossibleNames:
   - Figher Ant (lv 4)
   PossiblePortraits: []
@@ -23,12 +23,11 @@ MonoBehaviour:
   MaxAttackDamage: 23
   MinMoveRange: 9
   MaxMoveRange: 10
-  MaxItems: 3
   NavigableTiles: 00000000
-  WeaponProfile: {fileID: 11400000, guid: ad8cd0d2d4fce6a49983940ea47596c6, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

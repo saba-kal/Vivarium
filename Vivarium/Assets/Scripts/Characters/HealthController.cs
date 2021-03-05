@@ -46,8 +46,6 @@ public class HealthController : MonoBehaviour
         HealthBar.ShowChangeHealthEffect(-damage);
         ShieldBar?.SetHealth(_currentShield);
         UpdateShieldDisplay();
-        PerformFlinchAnimation();
-
         return _currentHealth < 1;
     }
 
@@ -120,12 +118,5 @@ public class HealthController : MonoBehaviour
     {
         _maxShield = 0;
         UpdateShieldDisplay();
-    }
-
-    private void PerformFlinchAnimation()
-    {
-        var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.flinch);
-        Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
-        myAnimator.SetTrigger(animationTypeName);
     }
 }

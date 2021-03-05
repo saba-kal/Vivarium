@@ -15,16 +15,15 @@ public class AStar
 
     public AStar(
         List<TileType> navigableTiles,
-        bool ignoreCharacters = false,
-        Grid<Tile> grid = null)
+        bool ignoreCharacters = false)
     {
-        var tileGrid = grid ?? TileGridController.Instance.GetGrid();
+        var tileGrid = TileGridController.Instance.GetGrid();
         _grid = new Grid<PathNode>(
             tileGrid.GetGrid().GetLength(0),
             tileGrid.GetGrid().GetLength(1),
             1,
             Vector3.zero,
-            (int x, int y, Grid<PathNode> unused) =>
+            (int x, int y, Grid<PathNode> grid) =>
             {
                 return new PathNode
                 {

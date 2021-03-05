@@ -4,6 +4,5 @@ using System.Collections;
 public enum TooltipType
 {
     Action = 0,
-    Item = 1,
-    Character = 2
+    Item = 1
 }

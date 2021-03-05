@@ -27,10 +27,4 @@ public class GridGenerationProfile : ScriptableObject
     public float WaterSpawnChance = 0.05f;
     [Range(0f, 1f)]
     public float WaterGrouping = 0.05f;
-
-    [HideInInspector]
-    public List<LootTable> TreasureChests { get; set; }
-
-    [HideInInspector]
-    public int ChestGenerationSubdivisions { get; set; }
 }

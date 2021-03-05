@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Stab
   Description: A simple stab attack that deals damage to a single target
   SoundName: TestAttackSound
-  BaseDamage: 21
+  BaseDamage: 18
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 1

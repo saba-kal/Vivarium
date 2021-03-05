@@ -38,10 +38,6 @@ MonoBehaviour:
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
-  RewardCharacters:
-  - {fileID: 11400000, guid: ae214808d37b27b4eb4dc21179cb443d, type: 2}
-  - {fileID: 11400000, guid: 898eeb1853850c04e9ee5b568c7b4984, type: 2}
-  - {fileID: 11400000, guid: 9f36798b67e12ac4da4eab746dd8d92d, type: 2}
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 0}

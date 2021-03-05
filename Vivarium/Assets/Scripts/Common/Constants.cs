@@ -11,7 +11,6 @@ public static class Constants
     public const int MAX_CHARACTER_ITEMS = 3;
     public const int MAX_PLAYER_ITEMS = 100;
     public const float CAMERA_FOLLOW_SKEW = 8f;
-    public const float PROJECTILE_HEIGHT = 0.5f;
 
     public const string PLAYER_CHAR_TAG = "PlayerCharacter";
     public const string ENEMY_CHAR_TAG = "EnemyCharacter";
@@ -19,8 +18,6 @@ public static class Constants
     public const string TILE_GRID_TAG = "GridTile";
     public const string PLAYER_CONTROLLER_TAG = "PlayerController";
     public const string CANVAS_TAG = "InGameUICanvas";
-    public const string MELEE_WEAPON_TAG = "WeaponMelee";
-    public const string RANGED_WEAPON_TAG = "WeaponRanged";
 
     //Common sound names.
     public const string GRID_CELL_CLICK_SOUND = "GridCellClick";

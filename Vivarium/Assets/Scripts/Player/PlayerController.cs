@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController Instance;
-
     public delegate void ObjectiveCapture();
     public static event ObjectiveCapture OnObjectiveCapture;
     public delegate void AllCharactersDead();
     public static event AllCharactersDead OnAllCharactersDead;
-    public delegate void PlayerAttack();
-    public static event PlayerAttack OnPlayerAttack;
 
     public List<CharacterController> PlayerCharacters;
     private CharacterController _selectedCharacter;
@@ -20,11 +16,6 @@ public class PlayerController : MonoBehaviour
     private Action _selectedAction;
     private float _selectedActionMinRange;
     private float _selectedActionMaxRange;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     void OnEnable()
     {
@@ -90,19 +81,7 @@ public class PlayerController : MonoBehaviour
         //Grid cell click was probably on a character.
         else
         {
-            //Do not want to deselect character in this special case
-            var invalidWaterTile = false;
-            if(_selectedCharacter != null)
-            {
-                var moveController = _selectedCharacter.GetMoveController();
-                var surroundingWaterTiles = moveController.GetWaterTilesInRadius();
-                invalidWaterTile = selectedTile.Type == TileType.Water && surroundingWaterTiles.ContainsValue(selectedTile);
-            }
-
-            if (!(invalidWaterTile))
-            {
-                GetSelectedCharacter(selectedTile);
-            }
+            GetSelectedCharacter(selectedTile);
         }
     }
 
@@ -126,6 +105,12 @@ public class PlayerController : MonoBehaviour
             {
                 SelectCharacter(character);
             }
+        }
+        if (_selectedCharacter != null)
+        {
+            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+            tempDict.Add((0, 0), tile);
+            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
         }
     }
 
@@ -193,10 +178,7 @@ public class PlayerController : MonoBehaviour
 
     private void PerformAction(Tile targetTile)
     {
-        _selectedCharacter.PerformAction(_selectedAction, targetTile, () =>
-        {
-            OnPlayerAttack?.Invoke();
-        });
+        _selectedCharacter.PerformAction(_selectedAction, targetTile);
         DeselectAction();
     }
 
@@ -246,8 +228,6 @@ public class PlayerController : MonoBehaviour
         {
             OnObjectiveCapture?.Invoke();
         }
-
-        RewardsChestController.Instance.OpenChest(toTile, _selectedCharacter);
     }
 
     private void OnCharacterDeath(CharacterController deadCharacterController)
@@ -303,17 +283,5 @@ public class PlayerController : MonoBehaviour
             _selectedCharacter.Deselect();
             _selectedCharacter = null;
         }
-    }
-
-    public bool CharacterMoveIsSelected(out CharacterController characterController)
-    {
-        if (_selectedCharacter != null && !_actionIsSelected)
-        {
-            characterController = _selectedCharacter;
-            return true;
-        }
-
-        characterController = null;
-        return false;
     }
 }
