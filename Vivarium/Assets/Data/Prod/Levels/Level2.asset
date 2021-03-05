@@ -16,32 +16,23 @@ MonoBehaviour:
   PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
   SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
-  QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
   MinEnemyCharacters: 3
   MaxEnemyCharacters: 4
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
   - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
-  - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
+  - {fileID: 11400000, guid: ae214808d37b27b4eb4dc21179cb443d, type: 2}
   - {fileID: 11400000, guid: 4b9ccb1bd26aefb488b022c75458ba57, type: 2}
-  - {fileID: 11400000, guid: f350390e8a165b944aa22d5044581b66, type: 2}
+  - {fileID: 11400000, guid: ae214808d37b27b4eb4dc21179cb443d, type: 2}
   - {fileID: 11400000, guid: 71ebad57ed50c0a4fbb56ba7fbea4543, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
-  GuaranteedPlayerCharacters: []
   PossiblePlayerCharacters: []
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
-  TreasureChests:
-  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
-  ChestGenerationSubdivisions: 3
-  RewardCharacters:
-  - {fileID: 11400000, guid: dcb3f91ab106a3b4bad4f3e85eae3f32, type: 2}
-  - {fileID: 11400000, guid: 19cc8791ad961de4882b188a18e4537c, type: 2}
-  - {fileID: 11400000, guid: ea4f55097962146498aa23deb566d8f7, type: 2}
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

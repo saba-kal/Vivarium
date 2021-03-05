@@ -19,18 +19,16 @@ MonoBehaviour:
   - Curious Beetle
   PossiblePortraits:
   - {fileID: 21300000, guid: 96bfcdf4824f88f449d81977fdc297f4, type: 3}
-  MinMaxHealth: 131
-  MaxMaxHealth: 155
-  MinAttackDamage: 27
-  MaxAttackDamage: 33
-  MinMoveRange: 7
+  MinMaxHealth: 110
+  MaxMaxHealth: 150
+  MinAttackDamage: 20
+  MaxAttackDamage: 30
+  MinMoveRange: 6
   MaxMoveRange: 8
-  MaxItems: 3
   NavigableTiles: 00000000
-  WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 0}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
-  CharacterLootTable: {fileID: 11400000, guid: 97b902ee64b77ed4688225bacdfbaca6, type: 2}
   AnimationController: {fileID: 0}

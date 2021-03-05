@@ -12,8 +12,6 @@ TagManager:
   - MasterCamera
   - AIManager
   - InGameUICanvas
-  - WeaponRanged
-  - WeaponMelee
   layers:
   - Default
   - TransparentFX

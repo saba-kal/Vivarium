@@ -6,7 +6,7 @@ using System;
 public class GetMapCoords : MonoBehaviour
 {
     private Grid<Tile> _grid;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -143,7 +143,7 @@ public class GetMapCoords : MonoBehaviour
         {
             for (int z = 0; z < tiles.GetLength(1); z += 1)
             {
-                if (TileIsObstacle(tiles[x, z]))
+                if (tiles[x, z].Type == TileType.Obstacle)
                 {
                     returnList.Add(new List<int> { x, z });
                 }
@@ -170,20 +170,20 @@ public class GetMapCoords : MonoBehaviour
             for (int z = startSection; z < stopSection; z += 1)
             {
 
-                if (TileIsObstacle(tiles[x, z]))
-                {
-                    groupedObstacle.Add(new List<int> { x, z });
-
-                }
-                else
-                {
-                    if (groupedObstacle.Count > 0)
+                    if (tiles[x, z].Type == TileType.Obstacle)
                     {
-                        var addGroup = new List<List<int>>(groupedObstacle);
-                        returnList.Add(addGroup);
-                        groupedObstacle = new List<List<int>>();
+                        groupedObstacle.Add(new List<int> { x, z });
+
                     }
-                }
+                    else
+                    {
+                        if (groupedObstacle.Count > 0)
+                        {
+                            var addGroup = new List<List<int>>(groupedObstacle);
+                            returnList.Add(addGroup);
+                            groupedObstacle = new List<List<int>>();
+                        }
+                    }
             }
             if (groupedObstacle.Count > 0)
             {
@@ -220,7 +220,7 @@ public class GetMapCoords : MonoBehaviour
         {
             for (int x = verticalStart; x < verticalStop; x += 1)
             {
-                if (TileIsObstacle(tiles[x, z]))
+                if (tiles[x, z].Type == TileType.Obstacle)
                 {
                     groupedObstacle.Add(new List<int> { x, z });
 
@@ -268,8 +268,5 @@ public class GetMapCoords : MonoBehaviour
 
     }
 
-    private bool TileIsObstacle(Tile tile)
-    {
-        return tile.Type == TileType.Obstacle && tile.SpawnType != TileSpawnType.TreasureChest;
-    }
+
 }

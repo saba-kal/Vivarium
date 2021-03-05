@@ -46,12 +46,7 @@ public class KnockBackActionController : ActionController
             return;
         }
 
-        bool drowned = false;
-        if (toTile.Type == TileType.Water)
-        {
-            drowned = true;
-        }
-        else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
+        if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
             targetCharacter.TakeDamage(damage);
@@ -81,12 +76,6 @@ public class KnockBackActionController : ActionController
         PlaySound();
         targetCharacter.TakeDamage(damage);
         UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
-        if (drowned)
-        {
-            //TODO: modify character controller to have a separate drowning animation
-            targetCharacter.TakeDamage(0, true);
-            UnityEngine.Debug.Log("Target was knocked into the water and drowned");
-        }
     }
 
     private int AdjustCoordinate(int playerCoordinate, int targetCoordinate)

@@ -18,7 +18,7 @@ MonoBehaviour:
   - Type: 1
     TilePrefab: {fileID: 5500598784865716459, guid: 1b63a3db2f2d4804195047d78ff063ab, type: 3}
   - Type: 0
-    TilePrefab: {fileID: 36316076695038348, guid: e3d3a999ad5a56b4087730131f40f557, type: 3}
+    TilePrefab: {fileID: 8991417628590138911, guid: 86324139f2f21ea41be460a03ca358f9, type: 3}
   MinGridWidth: 25
   MaxGridWidth: 25
   MinGridHeight: 25
@@ -27,7 +27,6 @@ MonoBehaviour:
   GridOrigin: {x: -12.5, y: 0, z: -12.5}
   MinWallLength: 2
   MaxWallLength: 4
-  ObjectiveSpawnVariation: 0
   ObstacleSpawnChance: 0
   WaterSpawnChance: 0
   WaterGrouping: 0

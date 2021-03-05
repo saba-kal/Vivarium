@@ -23,14 +23,12 @@ MonoBehaviour:
   MaxMaxHealth: 200
   MinAttackDamage: 0
   MaxAttackDamage: 0
-  MinMoveRange: 8
-  MaxMoveRange: 8
-  MaxItems: 3
+  MinMoveRange: 2
+  MaxMoveRange: 2
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: 85ffc7df4015aa84c865f560bc084f33, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
-  CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}
