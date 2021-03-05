@@ -22,9 +22,9 @@ TagManager:
   - 
   - 
   - NoLight
-  - 
-  - 
-  - 
+  - BadGlass
+  - NoDirectionalLight
+  - outside_objects
   - 
   - 
   - 
