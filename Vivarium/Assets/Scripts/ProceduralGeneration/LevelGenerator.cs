@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public delegate void LevelGenerationComplete();
+    public static event LevelGenerationComplete OnLevelGenerationComplete;
+
+    public GameObject TreasureChestPrefab;
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
@@ -18,6 +22,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
     private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
+    private bool _isInitialGeneration = true;
 
     public GameObject mainCamera;
 
@@ -40,6 +45,12 @@ public class LevelGenerator : MonoBehaviour
         GenerateCharacters();
         GenerateGameMaster();
         this.GetComponent<GenerateObstacles>().generateEnvironment();
+        if (_isInitialGeneration)
+        {
+            this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
+            _isInitialGeneration = false;
+        }
+        OnLevelGenerationComplete?.Invoke();
     }
 
     public void DestroyExistingLevel()
@@ -88,13 +99,16 @@ public class LevelGenerator : MonoBehaviour
         var grid = new GameObject("Grid");
         grid.transform.parent = _levelContainer.transform;
 
+        LevelProfile.GridProfile.TreasureChests = LevelProfile.TreasureChests;
+        LevelProfile.GridProfile.ChestGenerationSubdivisions = LevelProfile.ChestGenerationSubdivisions;
         _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
 
         _gridController = grid.AddComponent<TileGridController>();
         _gridController.Initialize(_grid);
         _gridController.PrimaryHighlightPrefab = LevelProfile.PrimaryHighlightPrefab;
         _gridController.SecondaryHighlightPrefab = LevelProfile.SecondaryHighlightPrefab;
-        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab; ;
+        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab;
+        _gridController.QuaternaryHighlightPrefab = LevelProfile.QuaternaryHighlightPrefab;
 
         var tileGridView = grid.AddComponent<TileGridView>();
         tileGridView.GridController = _gridController;
@@ -144,9 +158,39 @@ public class LevelGenerator : MonoBehaviour
         {
             GeneratePlayerCharacters();
         }
+
+        if (CharacterReward.rewardLevel)
+        {
+            if (PlayerData.CurrentLevelIndex != 0)
+            {
+                CharacterReward.selectedCharacter.SetActive(true);
+
+                foreach (var characterGameObject in CharacterReward.characterGameObjects)
+                {
+                    if (!characterGameObject.activeSelf)
+                    {
+                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
+                        Destroy(characterGameObject, 0.1f);
+                    }
+                }
+            }
+            CharacterReward.rewardLevel = false;
+            CharacterReward.characterGameObjects = new List<GameObject>();
+            CharacterReward.selectedCharacter = null;
+        }
+
+        if (LevelProfile.RewardCharacters.Count != 0)
+        {
+            GenerateRewardCharacter();
+            CharacterReward.rewardLevel = true;
+        }
+
         foreach (var characterController in PlayerCharacters)
         {
-            PlacePlayerOnGrid(characterController);
+            if (characterController.gameObject.activeSelf)
+            {
+                PlacePlayerOnGrid(characterController);
+            }
         }
     }
 
@@ -178,9 +222,16 @@ public class LevelGenerator : MonoBehaviour
     private void GeneratePlayerCharacters()
     {
         var numberOfPlayerCharacters = Random.Range(LevelProfile.MinPlayerCharacters, LevelProfile.MaxPlayerCharacters + 1);
+        numberOfPlayerCharacters -= LevelProfile.GuaranteedPlayerCharacters.Count;
         var playerProfiles = LevelProfile.PossiblePlayerCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfPlayerCharacters);
+        var playerProfileList = playerProfiles.ToList();
+        
+        foreach (var playerProfile in LevelProfile.GuaranteedPlayerCharacters)
+        {
+            playerProfileList.Add(playerProfile);
+        }
 
-        foreach (var playerProfile in playerProfiles)
+        foreach (var playerProfile in playerProfileList)
         {
             var characterGameObject = GenerateCharacter(playerProfile, false);
             characterGameObject.transform.parent = PlayerController.transform;
@@ -188,6 +239,19 @@ public class LevelGenerator : MonoBehaviour
         }
 
         PlayerCharacters = PlayerController.PlayerCharacters;
+    }
+
+    private void GenerateRewardCharacter()
+    {
+        var playerProfiles = LevelProfile.RewardCharacters;
+        foreach (var playerProfile in playerProfiles)
+        {
+            var characterGameObject = GenerateCharacter(playerProfile, false);
+            characterGameObject.transform.parent = PlayerController.transform;
+            CharacterReward.characterGameObjects.Add(characterGameObject);
+            characterGameObject.SetActive(false);
+            PlayerController.PlayerCharacters.Add(characterGameObject.GetComponent<CharacterController>());
+        }
     }
 
     private GameObject GenerateCharacter(
@@ -268,5 +332,32 @@ public class LevelGenerator : MonoBehaviour
         InventoryInitializer.InitializeForEnemies();
 
         gameMaster.AddComponent<CommandController>();
+
+        GenerateTreasureChests(gameMaster);
+    }
+
+    private void GenerateTreasureChests(GameObject gameMaster)
+    {
+        var rewardsChestController = gameMaster.AddComponent<RewardsChestController>();
+        rewardsChestController.RewardsChestPrefab = TreasureChestPrefab;
+        rewardsChestController.SetGrid(_grid);
+
+        var treasureChestSpawns = new List<Tile>();
+
+        for (int x = 0; x < _grid.GetGrid().GetLength(0); x++)
+        {
+            for (int y = 0; y < _grid.GetGrid().GetLength(1); y++)
+            {
+                if (_grid.GetValue(x, y).SpawnType == TileSpawnType.TreasureChest)
+                {
+                    treasureChestSpawns.Add(_grid.GetValue(x, y));
+                }
+            }
+        }
+
+        for (var i = 0; i < treasureChestSpawns.Count && i < LevelProfile.TreasureChests.Count; i++)
+        {
+            rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
+        }
     }
 }

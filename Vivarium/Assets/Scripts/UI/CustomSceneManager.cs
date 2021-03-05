@@ -13,8 +13,6 @@ public class CustomSceneManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake:" + SceneManager.GetActiveScene().name);
-
         // Ensure the script is not deleted while loading.
         if (!_created)
         {

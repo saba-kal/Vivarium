@@ -8,6 +8,7 @@ public class MoveController : MonoBehaviour
     protected Grid<Tile> _grid;
     protected CharacterController _characterController;
     protected Dictionary<(int, int), Tile> _availableMoves = new Dictionary<(int, int), Tile>();
+    protected Dictionary<(int, int), Tile> _waterInRadius = new Dictionary<(int, int), Tile>();
     protected BreadthFirstSearch _breadthFirstSearch;
 
     void Start()
@@ -25,6 +26,7 @@ public class MoveController : MonoBehaviour
     public void HideMoveRadius()
     {
         TileGridController.Instance.RemoveHighlights(GridHighlightRank.Primary);
+        TileGridController.Instance.RemoveHighlights(GridHighlightRank.Quaternary);
         _availableMoves = new Dictionary<(int, int), Tile>();
         _breadthFirstSearch.Reset();
     }
@@ -34,29 +36,38 @@ public class MoveController : MonoBehaviour
         HideMoveRadius();
         CalculateAvailableMoves();
         TileGridController.Instance.HighlightTiles(_availableMoves, GridHighlightRank.Primary);
+        TileGridController.Instance.HighlightTiles(_waterInRadius, GridHighlightRank.Quaternary);
     }
 
     public virtual Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
+        _grid = TileGridController.Instance.GetGrid();
+        _breadthFirstSearch = new BreadthFirstSearch(_grid);
+
         var moveRadius = StatCalculator.CalculateStat(_characterController.Character, StatType.MoveRadius);
         var tile = _grid.GetValue(transform.position);
         _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 
-        List<(int, int)> waterLocations = new List<(int, int)>();
-        foreach(KeyValuePair<(int, int), Tile> move in _availableMoves)
+        _waterInRadius = new Dictionary<(int, int), Tile>();
+        foreach (KeyValuePair<(int, int), Tile> move in _availableMoves)
         {
-            if(move.Value.Type == TileType.Water)
+            if (move.Value.Type == TileType.Water)
             {
-                waterLocations.Add(move.Key);
+                _waterInRadius.Add(move.Key, move.Value);
             }
         }
 
-        foreach((int, int) location in waterLocations)
+        foreach (KeyValuePair<(int, int), Tile> location in _waterInRadius)
         {
-            _availableMoves.Remove(location);
+            _availableMoves.Remove(location.Key);
         }
-        
+
+        return _availableMoves;
+    }
+
+    public Dictionary<(int, int), Tile> GetAvailableMoves()
+    {
         return _availableMoves;
     }
 
@@ -103,5 +114,10 @@ public class MoveController : MonoBehaviour
                 true,
                 skipMovement));
         path.Last().CharacterControllerId = _characterController.Id;
+    }
+
+    public Dictionary<(int, int), Tile> GetWaterTilesInRadius()
+    {
+        return _waterInRadius;
     }
 }

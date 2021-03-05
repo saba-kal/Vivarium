@@ -6,7 +6,6 @@ using static InventorySlot;
 
 public class CharacterDetailsProfile : MonoBehaviour
 {
-    public int MaxItems = 3;
     public Image Icon;
     public TextMeshProUGUI StatsText;
     public GameObject InventoryContainer;
@@ -35,7 +34,7 @@ public class CharacterDetailsProfile : MonoBehaviour
     private void DisplayInventory()
     {
         var inventoryItems = InventoryManager.GetCharacterItems(_characterController.Id);
-        for (var i = 0; i < MaxItems; i++)
+        for (var i = 0; i < _characterController.Character.MaxItems; i++)
         {
             var inventorySlot = Instantiate(InventorySlotPrefab, InventoryContainer.transform);
             if (i < inventoryItems.Count)

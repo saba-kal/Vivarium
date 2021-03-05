@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: A stab and pull attack that forces the target to swap places with
     the user
   SoundName: TestAttackSound
-  BaseDamage: 8
+  BaseDamage: 12
   CriticalChance: 1
   CriticalMultiplier: 0
   MinRange: 1
