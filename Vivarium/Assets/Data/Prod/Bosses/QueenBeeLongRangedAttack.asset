@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ac4bbcbef076640ad0043bfd673250, type: 3}
+  m_Name: QueenBeeLongRangedAttack
+  m_EditorClassIdentifier: 
+  Id: QueenBeeAttack121232332
+  Name: Long Ranged Attack
+  Description: Shoots a long ranged projectile
+  SoundName: TestAttackSound
+  BaseDamage: 15
+  CriticalChance: 0
+  CriticalMultiplier: 0
+  MinRange: 0
+  MaxRange: 25
+  AreaOfAffect: 0
+  ActionTargetType: 0
+  ControllerType: 10
+  Attributes:
+  - {fileID: 11400000, guid: 84f2830fef28c6549b9835a674f30930, type: 2}
+  AnimType: 4
+  ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
+  ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  ActionTriggerDelay: 0

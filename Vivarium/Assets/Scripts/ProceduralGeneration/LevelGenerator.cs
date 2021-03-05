@@ -208,7 +208,12 @@ public class LevelGenerator : MonoBehaviour
         _enemyAIManager.GridPointCalculator = gridPointCalculator;
 
         var numberOfEnemyCharacters = Random.Range(LevelProfile.MinEnemyCharacters, LevelProfile.MaxEnemyCharacters + 1);
-        var enemyProfiles = LevelProfile.PossibleEnemyCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfEnemyCharacters);
+        var enemyProfiles = LevelProfile.PossibleEnemyCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfEnemyCharacters).ToList();
+
+        if (LevelProfile.BossCharacter != null)
+        {
+            enemyProfiles.Add(LevelProfile.BossCharacter);
+        }
 
         foreach (var enemyProfile in enemyProfiles)
         {
@@ -225,7 +230,7 @@ public class LevelGenerator : MonoBehaviour
         numberOfPlayerCharacters -= LevelProfile.GuaranteedPlayerCharacters.Count;
         var playerProfiles = LevelProfile.PossiblePlayerCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfPlayerCharacters);
         var playerProfileList = playerProfiles.ToList();
-        
+
         foreach (var playerProfile in LevelProfile.GuaranteedPlayerCharacters)
         {
             playerProfileList.Add(playerProfile);
