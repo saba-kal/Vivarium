@@ -9,5 +9,8 @@ public enum ActionControllerType
     KnockBack = 3,
     SwitchPosition = 4,
     Screw = 5,
-    Skewer = 6
+    Skewer = 6,
+    Staple = 7,
+    Pierce = 8,
+    ArcProjectile = 10
 }

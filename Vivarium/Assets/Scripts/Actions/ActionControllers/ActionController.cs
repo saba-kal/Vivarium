@@ -13,6 +13,7 @@ public class ActionController : MonoBehaviour, IActionController
     protected CharacterController _characterController;
 
     protected Dictionary<(int, int), Tile> _tilesActionCanAffect = new Dictionary<(int, int), Tile>();
+    protected float _delay = 0f;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class ActionController : MonoBehaviour, IActionController
             _characterController = GetComponent<CharacterController>();
         }
 
+        _delay = ActionReference.ActionTriggerDelay;
         var areaOfAffect = StatCalculator.CalculateStat(ActionReference, StatType.AttackAOE);
         var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
 
@@ -91,7 +93,7 @@ public class ActionController : MonoBehaviour, IActionController
 
     protected virtual IEnumerator ExecuteAction(List<CharacterController> targetCharacters, Dictionary<(int, int), Tile> affectedTiles)
     {
-        yield return new WaitForSeconds(ActionReference.ActionTriggerDelay);
+        yield return new WaitForSeconds(_delay);
 
         foreach (var tile in affectedTiles)
         {

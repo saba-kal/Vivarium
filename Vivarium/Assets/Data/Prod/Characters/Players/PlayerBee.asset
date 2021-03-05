@@ -19,17 +19,18 @@ MonoBehaviour:
   - Curious Bee
   PossiblePortraits:
   - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
-  MinMaxHealth: 50
-  MaxMaxHealth: 90
-  MinAttackDamage: 27
-  MaxAttackDamage: 37
-  MinMoveRange: 7
+  MinMaxHealth: 60
+  MaxMaxHealth: 80
+  MinAttackDamage: 30
+  MaxAttackDamage: 34
+  MinMoveRange: 8
   MaxMoveRange: 9
+  MaxItems: 3
   NavigableTiles: 0000000001000000
-  WeaponProfile: {fileID: 11400000, guid: 2828375c9e82317429d2d4038ac4bd81, type: 2}
+  WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 0}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
-  CharacterLootTable: {fileID: 0}
+  CharacterLootTable: {fileID: 11400000, guid: 97b902ee64b77ed4688225bacdfbaca6, type: 2}
   AnimationController: {fileID: 0}
