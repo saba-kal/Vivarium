@@ -7,6 +7,7 @@ public class Character
 {
     public string Id;
     public string Name;
+    public CharacterType Type = CharacterType.Normal;
     public Sprite Portrait;
     public float MaxHealth;
     public float AttackDamage;

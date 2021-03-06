@@ -23,10 +23,10 @@ MonoBehaviour:
   MaxRange: 25
   AreaOfAffect: 0
   ActionTargetType: 0
-  ControllerType: 10
-  Attributes:
-  - {fileID: 11400000, guid: 84f2830fef28c6549b9835a674f30930, type: 2}
+  ControllerType: 2
+  Attributes: []
   AnimType: 4
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
   ActionTriggerDelay: 0
+  SummonProfile: {fileID: 0}

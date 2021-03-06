@@ -56,6 +56,12 @@ public class ArcProjectileActionController : ActionController
         var projectile = Instantiate(projectilePrefab);
         projectile.transform.position = startPosition;
 
+        if (startPosition == endPosition)
+        {
+            endPosition.x += 0.1f;
+            endPosition.z += 0.1f;
+        }
+
         var distance = Vector3.Distance(startPosition, endPosition);
         var height = Constants.PROJECTILE_HEIGHT * distance;
         var time = 0f;

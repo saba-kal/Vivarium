@@ -172,4 +172,27 @@ public class Grid<T>
     {
         return _originPosition;
     }
+
+    public List<T> GetAdjacentTiles(int x, int y)
+    {
+        var adjacentTiles = new List<T>();
+
+        var preCheckedTiles = new List<T>()
+        {
+            GetValue(x, y + 1), //Top
+            GetValue(x + 1, y), //Right
+            GetValue(x, y - 1), //Bottom
+            GetValue(x - 1, y) //Left
+        };
+
+        foreach (var possibleAdjacentTile in preCheckedTiles)
+        {
+            if (possibleAdjacentTile != null)
+            {
+                adjacentTiles.Add(possibleAdjacentTile);
+            }
+        }
+
+        return adjacentTiles;
+    }
 }

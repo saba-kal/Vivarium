@@ -52,10 +52,10 @@ public class MoveCommand : ICommand
         _isRotating = true;
 
         _soundManager?.Play(Constants.WALK_SOUND);
+        SetWalkAnimationTrigger(true);
+
         while (targetTile != null && _gameObject != null)
         {
-            _animator.SetBool(_moveAnimationId, true);
-
             if (_isRotating && _rotationEnabled)
             {
                 FaceMovementDirection(_gameObject.transform.position, targetPosition);
@@ -93,7 +93,7 @@ public class MoveCommand : ICommand
 
         _soundManager?.Stop(Constants.WALK_SOUND);
         _onMoveComplete?.Invoke();
-        _animator.SetBool(_moveAnimationId, false);
+        SetWalkAnimationTrigger(false);
     }
 
     private void FaceMovementDirection(Vector3 fromPosition, Vector3 toPosition)
@@ -118,6 +118,14 @@ public class MoveCommand : ICommand
         else
         {
             _isRotating = false;
+        }
+    }
+
+    private void SetWalkAnimationTrigger(bool isWalking)
+    {
+        if (Utils.HasParameter(_moveAnimationId, _animator))
+        {
+            _animator.SetBool(_moveAnimationId, isWalking);
         }
     }
 }

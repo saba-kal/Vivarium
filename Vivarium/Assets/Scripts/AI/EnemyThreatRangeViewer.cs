@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using Unity.Jobs;
 
 public class EnemyThreatRangeViewer : MonoBehaviour
 {
@@ -73,24 +74,6 @@ public class EnemyThreatRangeViewer : MonoBehaviour
     private void RecalculateThreatRange()
     {
         StartCoroutine(StartCalculationProcess());
-        //if (_isInitialCalculation)
-        //{
-        //    _isInitialCalculation = false;
-        //    return;
-        //}
-
-        //Initialize();
-        //ClearHighlights();
-
-        //foreach (var characterController in _enemyCharacters)
-        //{
-        //    if (characterController?.Character?.Weapon?.Actions == null)
-        //    {
-        //        continue;
-        //    }
-
-        //    CalculateCharacterThreatRange(characterController);
-        //}
     }
 
     private IEnumerator StartCalculationProcess()

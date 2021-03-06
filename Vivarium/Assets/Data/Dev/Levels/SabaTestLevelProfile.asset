@@ -22,16 +22,11 @@ MonoBehaviour:
   MinEnemyCharacters: 5
   MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 4b9ccb1bd26aefb488b022c75458ba57, type: 2}
-  - {fileID: 11400000, guid: 4b9ccb1bd26aefb488b022c75458ba57, type: 2}
-  - {fileID: 11400000, guid: 3a9277883e890254bb4441dfd2f03369, type: 2}
-  - {fileID: 11400000, guid: 9f36798b67e12ac4da4eab746dd8d92d, type: 2}
-  - {fileID: 11400000, guid: f6bba6b0b5c5da64a8076f0a0ccb7cdb, type: 2}
-  - {fileID: 11400000, guid: 34312489483a8ea4f90cab38b0d8c3a2, type: 2}
-  - {fileID: 11400000, guid: 898eeb1853850c04e9ee5b568c7b4984, type: 2}
-  - {fileID: 11400000, guid: 03085724b34e9c5448c007dad3bfb76d, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
   MinPlayerCharacters: 4
   MaxPlayerCharacters: 4
   GuaranteedPlayerCharacters: []
@@ -51,7 +46,7 @@ MonoBehaviour:
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
   TreasureChests:
-  - {fileID: 11400000, guid: b8cfe5468f96b1848834905070406a5a, type: 2}
+  - {fileID: 0}
   ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:

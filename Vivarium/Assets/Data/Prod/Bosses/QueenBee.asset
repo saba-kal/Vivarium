@@ -18,6 +18,10 @@ MonoBehaviour:
   - Queen Bee
   PossiblePortraits:
   - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: aaa3bf713c635914abcd01089d0cf425, type: 3}
+  Type: 1
+  CharacterSummon: {fileID: 11400000, guid: 35ee0d4338c00d64e86b1ffc7a91a9ad, type: 2}
+  MaxSummons: 6
   MinMaxHealth: 500
   MaxMaxHealth: 500
   MinAttackDamage: 0
@@ -30,6 +34,5 @@ MonoBehaviour:
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 0}
   AICharacterHeuristics: {fileID: 11400000, guid: 4fc505e385c75b44c83579b002c2e085, type: 2}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: aaa3bf713c635914abcd01089d0cf425, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

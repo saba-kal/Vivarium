@@ -23,4 +23,5 @@ public class Action : ScriptableObject
     public GameObject ProjectilePrefab;
     public ParticleSystem ParticleEffect;
     public float ActionTriggerDelay = 1f;
+    public CharacterGenerationProfile SummonProfile;
 }

@@ -22,3 +22,5 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: cc252180bb3add640acf4202030267b0, type: 2}
+  - {fileID: 11400000, guid: da798e683bd961449996ccb10265b72b, type: 2}
+  - {fileID: 11400000, guid: ec818ad93f8dcc0408aca44db7936c82, type: 2}

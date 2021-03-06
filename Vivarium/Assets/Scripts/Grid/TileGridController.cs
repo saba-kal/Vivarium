@@ -490,6 +490,22 @@ public class TileGridController : MonoBehaviour
         return _mouseHoverTile;
     }
 
+    public List<Tile> GetAdjacentTiles(Tile tile, TileType type)
+    {
+        var adjacentTiles = _grid.GetAdjacentTiles(tile.GridX, tile.GridY);
+        var filteredAdjacentTiles = new List<Tile>();
+
+        foreach (var adjacentTile in adjacentTiles)
+        {
+            if (adjacentTile.Type == type && string.IsNullOrEmpty(adjacentTile.CharacterControllerId))
+            {
+                filteredAdjacentTiles.Add(adjacentTile);
+            }
+        }
+
+        return filteredAdjacentTiles;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;

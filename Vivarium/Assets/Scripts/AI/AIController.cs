@@ -29,12 +29,26 @@ public class AIController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        VirtualStart();
+    }
+
+    protected virtual void VirtualStart()
+    {
         _grid = TileGridController.Instance.GetGrid();
         _aiCharacter = GetComponent<CharacterController>();
         _mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
     }
 
-    public virtual void Initialize(List<CharacterController> playerCharacters)
+    public virtual void Initialize()
+    {
+        return; //Meant to be overridden.
+    }
+
+    /// <summary>
+    /// Initializes AI per turn.
+    /// </summary>
+    /// <param name="playerCharacters"></param>
+    public virtual void InitializeTurn(List<CharacterController> playerCharacters)
     {
         _playerCharacters = playerCharacters;
     }
@@ -60,32 +74,14 @@ public class AIController : MonoBehaviour
     public virtual void PerformAction(
         System.Action onComplete)
     {
-        if (AICanAttack(out var attack, out var targetCharacter))
+        if (AICanAttack(out var attack, out var targetTile))
         {
             EnterCameraFocusCommand();
-            _aiCharacter.PerformAction(attack, targetCharacter, onComplete);
+            _aiCharacter.PerformAction(attack, targetTile, onComplete);
         }
         else
         {
             onComplete?.Invoke();
-        }
-    }
-
-    public virtual void Execute(List<CharacterController> playerCharacters)
-    {
-        _playerCharacters = playerCharacters;
-        if (AICanMove(out var path))
-        {
-            // lock on here
-            if (path != null)
-            {
-                EnterCameraFocusCommand();
-                _aiCharacter.MoveAlongPath(path, null, skipEnemyPhase);
-            }
-        }
-        else if (AICanAttack(out var attack, out var targetCharacter))
-        {
-            _aiCharacter.PerformAction(attack, targetCharacter);
         }
     }
 
@@ -106,15 +102,17 @@ public class AIController : MonoBehaviour
             return false;
         }
 
-        bestAttack = GetMostEffectiveAttack(out targetTile);
+        bestAttack = GetMostEffectiveAttack(out targetTile, out var _);
 
         return bestAttack != null && targetTile != null;
     }
 
-    protected virtual Action GetMostEffectiveAttack(out Tile tileToAttack)
+    protected virtual Action GetMostEffectiveAttack(
+        out Tile tileToAttack,
+        out float maxPotentialDamage)
     {
         Action bestAttack = null;
-        var maxPotentialDamage = 0f;
+        maxPotentialDamage = 0f;
         tileToAttack = null;
 
         if (_aiCharacter.Character.Weapon?.Actions == null ||
@@ -126,6 +124,11 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
+            if (attack.ControllerType == ActionControllerType.Heal)
+            {
+                continue;
+            }
+
             if (!(attack.ControllerType == ActionControllerType.Skewer && !_aiCharacter.IsAbleToMove()))
             {
                 var potentialAttackDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
@@ -262,7 +265,7 @@ public class AIController : MonoBehaviour
         return closestTile;
     }
 
-    private void OnCharacterDeath(CharacterController deadCharacterController)
+    protected virtual void OnCharacterDeath(CharacterController deadCharacterController)
     {
         for (var i = 0; i < _playerCharacters.Count; i++)
         {

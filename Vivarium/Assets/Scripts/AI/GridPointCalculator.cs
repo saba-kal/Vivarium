@@ -29,6 +29,17 @@ public class GridPointCalculator : MonoBehaviour
 
     public void CalculateGridPoints(CharacterController aiCharacter)
     {
+        if (aiCharacter.Character.Type == CharacterType.BeeHive)
+        {
+            return; //Bee hives don't have brains.
+        }
+
+        if (aiCharacter.Character.AICharacterHeuristics == null)
+        {
+            Debug.LogError($"AI character \"{aiCharacter.Character.Name}\" does not have AI heuristics. Unable to calculate grid points.");
+            return;
+        }
+
         _currentAiCharacter = aiCharacter;
         _grid = TileGridController.Instance.GetGrid();
         _playerCharacters = new Dictionary<(int, int), CharacterController>();
