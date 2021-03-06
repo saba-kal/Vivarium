@@ -96,7 +96,7 @@ public class HealthController : MonoBehaviour
 
     private void UpdateShieldDisplay()
     {
-        if (_currentShield <= 0)
+        if (_currentShield <= 0 || _maxShield <= 0)
         {
             ShieldBar?.gameObject.SetActive(false);
         }
@@ -119,6 +119,7 @@ public class HealthController : MonoBehaviour
     public void RemoveShield()
     {
         _maxShield = 0;
+        _currentShield = 0;
         UpdateShieldDisplay();
     }
 
