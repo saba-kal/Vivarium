@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Fire Ball
   Description: OP as shit
   SoundName: TestAttackSound
-  BaseDamage: 15
+  BaseDamage: 5
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 0
@@ -30,4 +30,6 @@ MonoBehaviour:
   AnimType: 4
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
+  TileParticleEffect: {fileID: 3145640170506330117, guid: a09cc167dffd3a54085101eae163fc5e, type: 3}
   ActionTriggerDelay: 0.8
+  SummonProfile: {fileID: 0}

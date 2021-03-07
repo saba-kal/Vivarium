@@ -127,7 +127,7 @@ public class MasterCameraScript : MonoBehaviour
 
     public void ResetCamera()
     {
-        this.gameObject.transform.parent = null;
+        RemoveFocus();
         this.transform.localPosition = new Vector3(0, 0, 0);
         CameraMover.transform.localPosition = new Vector3(0, 0, 0);
         CameraZoomer.transform.localPosition = new Vector3(0, 0, 0);
@@ -140,6 +140,10 @@ public class MasterCameraScript : MonoBehaviour
         TurnSystemManager.Instance?.PlayerController.DeselectCharacter();
     }
 
+    public void RemoveFocus()
+    {
+        this.gameObject.transform.parent = null;
+    }
 
     public void ResetZoom()
     {
@@ -155,7 +159,7 @@ public class MasterCameraScript : MonoBehaviour
         previousZoomPosition = CameraZoomer.transform.position;
         previousZoomRotation = CameraZoomer.transform.rotation;
     }
-    
+
     public void loadCameraPosition()
     {
         this.transform.position = previousMasterCameraPosition;

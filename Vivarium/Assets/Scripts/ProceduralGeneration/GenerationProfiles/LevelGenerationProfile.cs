@@ -13,6 +13,7 @@ public class LevelGenerationProfile : ScriptableObject
     public GameObject QuaternaryHighlightPrefab;
     public GameObject LevelObjectivePrefab;
 
+    public CharacterGenerationProfile BossCharacter;
     public int MinEnemyCharacters;
     public int MaxEnemyCharacters;
     public List<CharacterGenerationProfile> PossibleEnemyCharacters;

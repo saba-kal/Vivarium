@@ -6,14 +6,18 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class GridGenerator
 {
 
     private const int MAX_PATH_CREATION_ITERATIONS = 100;
+    private bool _includeBossSpawn;
 
-    public Grid<Tile> Generate(GridGenerationProfile gridProfile)
+    public Grid<Tile> Generate(GridGenerationProfile gridProfile, bool includeBossSpawn)
     {
+        _includeBossSpawn = includeBossSpawn;
+
         var width = UE.Random.Range(gridProfile.MinGridWidth, gridProfile.MaxGridWidth);
         var height = UE.Random.Range(gridProfile.MinGridHeight, gridProfile.MaxGridHeight);
         var cellSize = gridProfile.GridCellSize;
@@ -27,9 +31,16 @@ public class GridGenerator
             (int x, int y, Grid<Tile> grid) => InitializeTile(x, y, grid, gridProfile));
 
         int objectiveVariation = gridProfile.ObjectiveSpawnVariation;
-        SetPossibleObjectiveTiles(resultGrid, objectiveVariation);
+        if (!_includeBossSpawn)
+        {
+            SetPossibleObjectiveTiles(resultGrid, objectiveVariation);
+        }
         SetPossiblePlayerSpawn(resultGrid);
         SetPossibleEnemySpawn(resultGrid);
+        if (_includeBossSpawn)
+        {
+            SetPossibleBossSpawn(resultGrid);
+        }
         PlaceObjective(resultGrid);
         CreatePathsToAllGreenTiles(resultGrid);
         for (int i = 0; i < gridProfile.TreasureChests.Count; i++)
@@ -182,6 +193,21 @@ public class GridGenerator
         }
     }
 
+    private void SetPossibleBossSpawn(Grid<Tile> grid)
+    {
+        var width = grid.GetGrid().GetLength(0);
+        var height = grid.GetGrid().GetLength(1);
+        var topMiddleTile = grid.GetValue(width / 2, height - 1);
+        topMiddleTile.Type = TileType.Grass;
+        topMiddleTile.SpawnType = TileSpawnType.Boss;
+
+        var adjacentTiles = grid.GetAdjacentTiles(topMiddleTile.GridX, topMiddleTile.GridY, true);
+        foreach (var adjacentTile in adjacentTiles)
+        {
+            adjacentTile.Type = TileType.Grass;
+        }
+    }
+
     private void SetTreasureChestSpawns(Grid<Tile> grid, int subdivisions)
     {
         //Calculate the path to the objective.
@@ -275,8 +301,24 @@ public class GridGenerator
 
     private List<Tile> GetPathToObjective(Grid<Tile> grid)
     {
+        var objectiveTile = grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1);
+
+        if (_includeBossSpawn)
+        {
+            for (int i = 0; i < grid.GetGrid().GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetGrid().GetLength(1); j++)
+                {
+                    if (grid.GetValue(i, j).SpawnType == TileSpawnType.Boss)
+                    {
+                        objectiveTile = grid.GetValue(i, j);
+                    }
+                }
+            }
+        }
+
         var aStar = new AStar(new List<TileType> { TileType.Grass }, true, grid);
-        var path = aStar.Execute(grid.GetValue(0, 0), grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1));
+        var path = aStar.Execute(grid.GetValue(0, 0), objectiveTile);
         return path;
     }
 
@@ -294,6 +336,12 @@ public class GridGenerator
 
             }
         }
+
+        if (possibleTiles.Count == 0)
+        {
+            return;
+        }
+
         var objectiveTile = possibleTiles.ElementAt(Random.Range(0, possibleTiles.Count)).Value;
         objectiveTile.IsObjective = true;
         objectiveTile.Type = TileType.Grass;

@@ -29,6 +29,17 @@ public class GridPointCalculator : MonoBehaviour
 
     public void CalculateGridPoints(CharacterController aiCharacter)
     {
+        if (aiCharacter.Character.Type == CharacterType.BeeHive)
+        {
+            return; //Bee hives don't have brains.
+        }
+
+        if (aiCharacter.Character.AICharacterHeuristics == null)
+        {
+            Debug.LogError($"AI character \"{aiCharacter.Character.Name}\" does not have AI heuristics. Unable to calculate grid points.");
+            return;
+        }
+
         _currentAiCharacter = aiCharacter;
         _grid = TileGridController.Instance.GetGrid();
         _playerCharacters = new Dictionary<(int, int), CharacterController>();
@@ -51,6 +62,10 @@ public class GridPointCalculator : MonoBehaviour
                 tile.Points = 0;
 
                 if (tile.IsObjective)
+                {
+                    _objectiveTile = tile;
+                }
+                else if (tile.SpawnType == TileSpawnType.Boss)
                 {
                     _objectiveTile = tile;
                 }
@@ -179,6 +194,11 @@ public class GridPointCalculator : MonoBehaviour
 
     private void AddPointsNearObjective()
     {
+        if (_objectiveTile == null)
+        {
+            return;
+        }
+
         _objectiveTile.Points += _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ObjectivePoints;
 
         var breadthFirstSearch = new BreadthFirstSearch(_grid);
@@ -196,6 +216,11 @@ public class GridPointCalculator : MonoBehaviour
 
     private void AddPointsNearChokePoints()
     {
+        if (_objectiveTile == null)
+        {
+            return;
+        }
+
         var aStar = new AStar(_currentAiCharacter.Character.NavigableTiles, true);
         var pathToObjective = aStar.Execute(_grid.GetValue(0, 0), _objectiveTile);
 
@@ -367,6 +392,11 @@ public class GridPointCalculator : MonoBehaviour
 
         foreach (var action in actions)
         {
+            if (action.ControllerType == ActionControllerType.MinionSummon)
+            {
+                continue;
+            }
+
             var actionController = characterController.GetActionController(action);
             if (actionController != null)
             {

@@ -12,5 +12,7 @@ public enum ActionControllerType
     Skewer = 6,
     Staple = 7,
     Pierce = 8,
-    ArcProjectile = 10
+    MinionSummon = 9,
+    ArcProjectile = 10,
+    Heal = 11
 }

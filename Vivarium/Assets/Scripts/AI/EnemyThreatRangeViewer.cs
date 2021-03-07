@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using Unity.Jobs;
 
 public class EnemyThreatRangeViewer : MonoBehaviour
 {
@@ -73,24 +74,6 @@ public class EnemyThreatRangeViewer : MonoBehaviour
     private void RecalculateThreatRange()
     {
         StartCoroutine(StartCalculationProcess());
-        //if (_isInitialCalculation)
-        //{
-        //    _isInitialCalculation = false;
-        //    return;
-        //}
-
-        //Initialize();
-        //ClearHighlights();
-
-        //foreach (var characterController in _enemyCharacters)
-        //{
-        //    if (characterController?.Character?.Weapon?.Actions == null)
-        //    {
-        //        continue;
-        //    }
-
-        //    CalculateCharacterThreatRange(characterController);
-        //}
     }
 
     private IEnumerator StartCalculationProcess()
@@ -127,6 +110,12 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         {
             foreach (var action in characterController.Character.Weapon.Actions)
             {
+                if (action.ControllerType == ActionControllerType.MinionSummon ||
+                    action.ControllerType == ActionControllerType.Heal)
+                {
+                    continue; //Skip actions that don't do direct damage.
+                }
+
                 var affectedTiles = CalculateActionThreatRange(characterController, action, navigableTile);
                 foreach (var tile in affectedTiles)
                 {

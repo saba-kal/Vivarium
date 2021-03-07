@@ -13,10 +13,7 @@ public class ActionFactory
         {
             case ActionControllerType.GiantLazer:
                 actionController = gameObject.AddComponent<GiantLazerActionController>();
-
-                //TODO: create an action viewer for the giant laser so that maybe a player character can use it.
                 actionViewer = gameObject.AddComponent<ActionViewer>();
-
                 break;
             case ActionControllerType.Projectile:
                 actionController = gameObject.AddComponent<ProjectileActionController>();
@@ -48,6 +45,15 @@ public class ActionFactory
                 break;
             case ActionControllerType.ArcProjectile:
                 actionController = gameObject.AddComponent<ArcProjectileActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                break;
+            case ActionControllerType.MinionSummon:
+                var minionSummonActionController = gameObject.AddComponent<MinionSummonActionController>();
+                actionViewer = gameObject.AddComponent<ActionViewer>();
+                actionController = minionSummonActionController;
+                break;
+            case ActionControllerType.Heal:
+                actionController = gameObject.AddComponent<HealActionController>();
                 actionViewer = gameObject.AddComponent<ActionViewer>();
                 break;
             case ActionControllerType.Default:

@@ -19,22 +19,38 @@ public class AIController : MonoBehaviour
     void OnEnable()
     {
         CharacterController.OnDeath += OnCharacterDeath;
+        CharacterController.OnDamageTaken += OnCharacterDamage;
     }
 
     void OnDisable()
     {
         CharacterController.OnDeath -= OnCharacterDeath;
+        CharacterController.OnDamageTaken -= OnCharacterDamage;
     }
 
     // Use this for initialization
     void Start()
+    {
+        VirtualStart();
+    }
+
+    protected virtual void VirtualStart()
     {
         _grid = TileGridController.Instance.GetGrid();
         _aiCharacter = GetComponent<CharacterController>();
         _mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
     }
 
-    public virtual void Initialize(List<CharacterController> playerCharacters)
+    public virtual void Initialize()
+    {
+        return; //Meant to be overridden.
+    }
+
+    /// <summary>
+    /// Initializes AI per turn.
+    /// </summary>
+    /// <param name="playerCharacters"></param>
+    public virtual void InitializeTurn(List<CharacterController> playerCharacters)
     {
         _playerCharacters = playerCharacters;
     }
@@ -60,10 +76,10 @@ public class AIController : MonoBehaviour
     public virtual void PerformAction(
         System.Action onComplete)
     {
-        if (AICanAttack(out var attack, out var targetCharacter))
+        if (AICanAttack(out var attack, out var targetTile))
         {
             EnterCameraFocusCommand();
-            _aiCharacter.PerformAction(attack, targetCharacter, onComplete);
+            _aiCharacter.PerformAction(attack, targetTile, onComplete);
         }
         else
         {
@@ -71,25 +87,7 @@ public class AIController : MonoBehaviour
         }
     }
 
-    public virtual void Execute(List<CharacterController> playerCharacters)
-    {
-        _playerCharacters = playerCharacters;
-        if (AICanMove(out var path))
-        {
-            // lock on here
-            if (path != null)
-            {
-                EnterCameraFocusCommand();
-                _aiCharacter.MoveAlongPath(path, null, skipEnemyPhase);
-            }
-        }
-        else if (AICanAttack(out var attack, out var targetCharacter))
-        {
-            _aiCharacter.PerformAction(attack, targetCharacter);
-        }
-    }
-
-    private void EnterCameraFocusCommand()
+    protected void EnterCameraFocusCommand()
     {
         if (skipEnemyPhase == false)
         {
@@ -106,15 +104,17 @@ public class AIController : MonoBehaviour
             return false;
         }
 
-        bestAttack = GetMostEffectiveAttack(out targetTile);
+        bestAttack = GetMostEffectiveAttack(out targetTile, out var _);
 
         return bestAttack != null && targetTile != null;
     }
 
-    protected virtual Action GetMostEffectiveAttack(out Tile tileToAttack)
+    protected virtual Action GetMostEffectiveAttack(
+        out Tile tileToAttack,
+        out float maxPotentialDamage)
     {
         Action bestAttack = null;
-        var maxPotentialDamage = 0f;
+        maxPotentialDamage = 0f;
         tileToAttack = null;
 
         if (_aiCharacter.Character.Weapon?.Actions == null ||
@@ -126,6 +126,11 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
+            if (attack.ControllerType == ActionControllerType.Heal)
+            {
+                continue;
+            }
+
             if (!(attack.ControllerType == ActionControllerType.Skewer && !_aiCharacter.IsAbleToMove()))
             {
                 var potentialAttackDamage = StatCalculator.CalculateStat(_aiCharacter.Character, attack, StatType.Damage);
@@ -191,8 +196,8 @@ public class AIController : MonoBehaviour
         breadthFirstSearch.Execute(_grid.GetValue(_aiCharacter.transform.position), 10000, _aiCharacter.Character.NavigableTiles);
         var allNavigableTiles = breadthFirstSearch.GetVisitedTiles();
 
-        var aStar = new AStar(_aiCharacter.Character.NavigableTiles);
-        var tilesToExclude = new List<Tile>();
+        var aStar = new AStar(_aiCharacter.Character.NavigableTiles, _aiCharacter.Character.CanMoveThroughCharacters);
+        var tilesToExclude = new Dictionary<(int, int), Tile>();
         var iterations = 0;
         List<Tile> pathToTarget = null;
 
@@ -202,11 +207,28 @@ public class AIController : MonoBehaviour
             pathToTarget = aStar.Execute(
                 _grid.GetValue(_aiCharacter.transform.position),
                 targetTile);
+
             if (pathToTarget == null)
             {
                 Debug.LogWarning($"Unable to find path to tile {targetTile.GridX}, {targetTile.GridY}. Retrying.");
-                tilesToExclude.Add(targetTile);
+                tilesToExclude.Add((targetTile.GridX, targetTile.GridY), targetTile);
             }
+            else
+            {
+                path = GetTravelPath(pathToTarget);
+
+                // Don't want to land on a tile that can be passed over (e.g. water or character)
+                if (TileCanBePassedOver(path.Last()))
+                {
+                    aStar.SetNavigableTiles(new List<TileType> { TileType.Grass });
+                    aStar.SetIgnoreCharacters(false);
+
+                    pathToTarget = aStar.Execute(
+                        _grid.GetValue(_aiCharacter.transform.position),
+                        targetTile);
+                }
+            }
+
             iterations++;
             if (iterations > MAX_MOVE_CALC_ITERATIONS)
             {
@@ -215,23 +237,36 @@ public class AIController : MonoBehaviour
             }
         }
 
+        return true;
+    }
+
+    private List<Tile> GetTravelPath(List<Tile> pathToTarget)
+    {
         var travelRange = StatCalculator.CalculateStat(_aiCharacter.Character, StatType.MoveRadius);
-        path = new List<Tile>();
+        var path = new List<Tile>();
         for (int step = 0; step < travelRange && step < pathToTarget.Count; step++)
         {
             path.Add(pathToTarget[step]);
         }
 
-        return true;
+        return path;
     }
 
-    private Tile GetTileWithHighestPoints(List<Tile> tilesToExclude, IEnumerable<Tile> allNavigableTiles)
+    private bool TileCanBePassedOver(Tile tile)
+    {
+        return (_aiCharacter.Character.NavigableTiles.Contains(TileType.Water) && tile.Type == TileType.Water) ||
+            (_aiCharacter.Character.CanMoveThroughCharacters && !string.IsNullOrEmpty(tile.CharacterControllerId));
+    }
+
+    private Tile GetTileWithHighestPoints(Dictionary<(int, int), Tile> tilesToExclude, IEnumerable<Tile> allNavigableTiles)
     {
         Tile targetTile = _grid.GetValue(_aiCharacter.transform.position);
         foreach (var tile in allNavigableTiles)
         {
             if (tile.Points > targetTile.Points &&
-                !tilesToExclude.Contains(tile))
+                string.IsNullOrEmpty(tile.CharacterControllerId) &&
+                !tilesToExclude.ContainsKey((tile.GridX, tile.GridY)) &&
+                tile.Type == TileType.Grass)
             {
                 targetTile = tile;
             }
@@ -262,7 +297,7 @@ public class AIController : MonoBehaviour
         return closestTile;
     }
 
-    private void OnCharacterDeath(CharacterController deadCharacterController)
+    protected virtual void OnCharacterDeath(CharacterController deadCharacterController)
     {
         for (var i = 0; i < _playerCharacters.Count; i++)
         {
@@ -271,6 +306,11 @@ public class AIController : MonoBehaviour
                 _playerCharacters.RemoveAt(i);
             }
         }
+    }
+
+    protected virtual void OnCharacterDamage(CharacterController characterController)
+    {
+        return; //Meant to be overridden.
     }
 
     public void turnOnSkipEnemyPhase()

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
+  m_Name: QueenBee
+  m_EditorClassIdentifier: 
+  PossibleModels:
+  - {fileID: 9039665788863857542, guid: 451117991e4b1e04195feec6cee24e36, type: 3}
+  PossibleNames:
+  - Queen Bee
+  PossiblePortraits:
+  - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: aaa3bf713c635914abcd01089d0cf425, type: 3}
+  Type: 1
+  MaxSummons: 6
+  StartingSummons: 3
+  MinMaxHealth: 500
+  MaxMaxHealth: 500
+  MinAttackDamage: 0
+  MaxAttackDamage: 0
+  MinMoveRange: 10
+  MaxMoveRange: 10
+  MaxItems: 3
+  NavigableTiles: 0000000001000000
+  CanMoveThroughCharacters: 1
+  WeaponProfile: {fileID: 11400000, guid: f1ef78b4f40f5df419cba0f21371485d, type: 2}
+  ShieldProfile: {fileID: 0}
+  AttributeProfile: {fileID: 0}
+  AICharacterHeuristics: {fileID: 11400000, guid: 4fc505e385c75b44c83579b002c2e085, type: 2}
+  CharacterLootTable: {fileID: 0}
+  AnimationController: {fileID: 0}

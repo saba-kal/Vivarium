@@ -22,6 +22,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Dictionary<(int, int), Tile> _possiblePlayerSpawnTiles = new Dictionary<(int, int), Tile>();
     private Dictionary<(int, int), Tile> _possibleEnemySpawnTiles = new Dictionary<(int, int), Tile>();
+    private Dictionary<(int, int), Tile> _possibleBossSpawnTiles = new Dictionary<(int, int), Tile>();
     private bool _isInitialGeneration = true;
 
     public GameObject mainCamera;
@@ -101,7 +102,7 @@ public class LevelGenerator : MonoBehaviour
 
         LevelProfile.GridProfile.TreasureChests = LevelProfile.TreasureChests;
         LevelProfile.GridProfile.ChestGenerationSubdivisions = LevelProfile.ChestGenerationSubdivisions;
-        _grid = new GridGenerator().Generate(LevelProfile.GridProfile);
+        _grid = new GridGenerator().Generate(LevelProfile.GridProfile, LevelProfile.BossCharacter != null);
 
         _gridController = grid.AddComponent<TileGridController>();
         _gridController.Initialize(_grid);
@@ -125,13 +126,17 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < _grid.GetGrid().GetLength(1); j++)
             {
-                if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Player)
+                switch (_grid.GetValue(i, j).SpawnType)
                 {
-                    _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
-                }
-                else if (_grid.GetValue(i, j).SpawnType == TileSpawnType.Enemy)
-                {
-                    _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                    case TileSpawnType.Player:
+                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        break;
+                    case TileSpawnType.Enemy:
+                        _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        break;
+                    case TileSpawnType.Boss:
+                        _possibleBossSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        break;
                 }
             }
         }
@@ -208,14 +213,29 @@ public class LevelGenerator : MonoBehaviour
         _enemyAIManager.GridPointCalculator = gridPointCalculator;
 
         var numberOfEnemyCharacters = Random.Range(LevelProfile.MinEnemyCharacters, LevelProfile.MaxEnemyCharacters + 1);
-        var enemyProfiles = LevelProfile.PossibleEnemyCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfEnemyCharacters);
+        var enemyProfiles = LevelProfile.PossibleEnemyCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfEnemyCharacters).ToList();
+
+        if (LevelProfile.BossCharacter != null)
+        {
+            enemyProfiles.Add(LevelProfile.BossCharacter);
+        }
 
         foreach (var enemyProfile in enemyProfiles)
         {
             var characterGameObject = GenerateCharacter(enemyProfile, true);
             characterGameObject.transform.parent = aiManagerObj.transform;
-            _enemyAIManager.AICharacters.Add(characterGameObject.GetComponent<CharacterController>());
-            PlaceCharacterOnGrid(characterGameObject.GetComponent<CharacterController>());
+
+            var characterController = characterGameObject.GetComponent<CharacterController>();
+            _enemyAIManager.AICharacters.Add(characterController);
+
+            if (enemyProfile == LevelProfile.BossCharacter)
+            {
+                PlaceBossOnGrid(characterController);
+            }
+            else
+            {
+                PlaceCharacterOnGrid(characterController);
+            }
         }
     }
 
@@ -225,7 +245,7 @@ public class LevelGenerator : MonoBehaviour
         numberOfPlayerCharacters -= LevelProfile.GuaranteedPlayerCharacters.Count;
         var playerProfiles = LevelProfile.PossiblePlayerCharacters.OrderBy(x => Random.Range(0, 100)).Take(numberOfPlayerCharacters);
         var playerProfileList = playerProfiles.ToList();
-        
+
         foreach (var playerProfile in LevelProfile.GuaranteedPlayerCharacters)
         {
             playerProfileList.Add(playerProfile);
@@ -300,6 +320,19 @@ public class LevelGenerator : MonoBehaviour
 
         characterController.gameObject.transform.position = _grid.GetWorldPositionCentered(tile.GridX, tile.GridY);
         tile.CharacterControllerId = characterController.Id;
+    }
+
+    private void PlaceBossOnGrid(CharacterController characterController)
+    {
+        var spawnTile = _possibleBossSpawnTiles.Values.FirstOrDefault();
+        if (spawnTile == null)
+        {
+            Debug.LogError("Unable to set boss spawn location.");
+            return;
+        }
+
+        characterController.gameObject.transform.position = _grid.GetWorldPositionCentered(spawnTile.GridX, spawnTile.GridY);
+        spawnTile.CharacterControllerId = characterController.Id;
     }
 
     private bool CharacterCanSpawnOnTile(Tile tile, CharacterController characterController)

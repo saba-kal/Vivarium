@@ -59,7 +59,8 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (CommandController.Instance?.CommandsAreExecuting() == true)
+        if (CommandController.Instance?.CommandsAreExecuting() == true ||
+            TurnSystemManager.Instance?.IsPlayersTurn() == false)
         {
             EndTurnButton.interactable = false;
         }
