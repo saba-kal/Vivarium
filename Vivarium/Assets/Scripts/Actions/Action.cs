@@ -22,6 +22,7 @@ public class Action : ScriptableObject
     public AnimationType AnimType;
     public GameObject ProjectilePrefab;
     public ParticleSystem ParticleEffect;
+    public GameObject TileParticleEffect;
     public float ActionTriggerDelay = 1f;
     public CharacterGenerationProfile SummonProfile;
 }

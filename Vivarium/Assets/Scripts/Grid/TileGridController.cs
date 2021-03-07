@@ -490,14 +490,19 @@ public class TileGridController : MonoBehaviour
         return _mouseHoverTile;
     }
 
-    public List<Tile> GetAdjacentTiles(Tile tile, TileType type)
+    public List<Tile> GetAdjacentTiles(
+        Tile tile,
+        TileType type,
+        bool includeDiagonals = false,
+        Dictionary<(int, int), Tile> excludedTiles = null)
     {
-        var adjacentTiles = _grid.GetAdjacentTiles(tile.GridX, tile.GridY);
+        var adjacentTiles = _grid.GetAdjacentTiles(tile.GridX, tile.GridY, includeDiagonals);
         var filteredAdjacentTiles = new List<Tile>();
 
         foreach (var adjacentTile in adjacentTiles)
         {
-            if (adjacentTile.Type == type && string.IsNullOrEmpty(adjacentTile.CharacterControllerId))
+            if (adjacentTile.Type == type && string.IsNullOrEmpty(adjacentTile.CharacterControllerId) &&
+                (excludedTiles == null || !excludedTiles.ContainsKey((adjacentTile.GridX, adjacentTile.GridY))))
             {
                 filteredAdjacentTiles.Add(adjacentTile);
             }

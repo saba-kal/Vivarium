@@ -19,8 +19,8 @@ MonoBehaviour:
   QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
   BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
-  MinEnemyCharacters: 5
-  MaxEnemyCharacters: 5
+  MinEnemyCharacters: 1
+  MaxEnemyCharacters: 1
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
   - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
@@ -34,21 +34,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
-  StartingItems:
-  - Count: 1
-    Item: {fileID: 11400000, guid: b5edf485eb332e74f934b6aaeaafd02f, type: 2}
-  - Count: 1
-    Item: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
-  - Count: 1
-    Item: {fileID: 11400000, guid: 682043c562fcddc4d81bf5d6088341e0, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
   TreasureChests:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ed9edc8817e307e489fedeb557a6a8b8, type: 2}
   ChestGenerationSubdivisions: 3
   RewardCharacters: []
   AISettings:
-    ShowPreview: 0
+    ShowPreview: 1
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

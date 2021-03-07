@@ -65,6 +65,10 @@ public class GridPointCalculator : MonoBehaviour
                 {
                     _objectiveTile = tile;
                 }
+                else if (tile.SpawnType == TileSpawnType.Boss)
+                {
+                    _objectiveTile = tile;
+                }
 
                 if (!string.IsNullOrEmpty(tile.CharacterControllerId) &&
                     _currentAiCharacter.Id != tile.CharacterControllerId)
@@ -190,6 +194,11 @@ public class GridPointCalculator : MonoBehaviour
 
     private void AddPointsNearObjective()
     {
+        if (_objectiveTile == null)
+        {
+            return;
+        }
+
         _objectiveTile.Points += _currentAiCharacter.Character.AICharacterHeuristics.EnvironmentHeuristics.ObjectivePoints;
 
         var breadthFirstSearch = new BreadthFirstSearch(_grid);
@@ -207,6 +216,11 @@ public class GridPointCalculator : MonoBehaviour
 
     private void AddPointsNearChokePoints()
     {
+        if (_objectiveTile == null)
+        {
+            return;
+        }
+
         var aStar = new AStar(_currentAiCharacter.Character.NavigableTiles, true);
         var pathToObjective = aStar.Execute(_grid.GetValue(0, 0), _objectiveTile);
 
@@ -378,6 +392,11 @@ public class GridPointCalculator : MonoBehaviour
 
         foreach (var action in actions)
         {
+            if (action.ControllerType == ActionControllerType.MinionSummon)
+            {
+                continue;
+            }
+
             var actionController = characterController.GetActionController(action);
             if (actionController != null)
             {

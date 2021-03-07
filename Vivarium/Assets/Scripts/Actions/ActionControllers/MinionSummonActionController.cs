@@ -1,60 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
-public class MinionSummonActionController : ActionController
+public class MinionSummonActionController : ArcProjectileActionController
 {
     private CharacterController _summonedCharacter;
+    private System.Action<CharacterController> _onCharactorSummon;
 
-    public override void Execute(Tile targetTile, System.Action onActionComplete = null)
+    protected override void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
     {
-        if (_characterController == null)
-        {
-            _characterController = GetComponent<CharacterController>();
-        }
-
-        _delay = ActionReference.ActionTriggerDelay;
-
-        CommandController.Instance.ExecuteCommand(
-            new MakeCharacterFaceTileCommand(
-                _characterController,
-                targetTile,
-                true));
-
-        PlaySound();
-        PerformAnimation();
-
-        SummonCharacter(targetTile);
-
-        onActionComplete?.Invoke();
+        GenerateParticlesOnTiles(affectedTiles);
+        SummonCharacter(affectedTiles.Values.ToList()[Random.Range(0, affectedTiles.Values.Count)]);
     }
 
     private void SummonCharacter(Tile targetTile)
     {
-        var newCharacterController = new CharacterGenerator()
-            .GenerateCharacter(ActionReference.SummonProfile, true)
-            .GetComponent<CharacterController>();
-
-        _summonedCharacter = newCharacterController;
+        _onCharactorSummon?.Invoke(_summonedCharacter);
 
         var grid = TileGridController.Instance;
-        newCharacterController.transform.position = grid.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
-        targetTile.CharacterControllerId = newCharacterController.Id;
+
+        _summonedCharacter = new CharacterGenerator()
+            .GenerateCharacter(ActionReference.SummonProfile, true)
+            .GetComponent<CharacterController>();
+        _summonedCharacter.transform.position = grid.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
+        targetTile.CharacterControllerId = _summonedCharacter.Id;
 
         if (_characterController.IsEnemy)
         {
             var aiManager = TurnSystemManager.Instance.AIManager;
-            newCharacterController.transform.parent = aiManager.transform;
-            aiManager.AICharacters.Add(newCharacterController);
+            _summonedCharacter.transform.parent = aiManager.transform;
+            aiManager.AICharacters.Add(_summonedCharacter);
         }
         else
         {
             var playerController = TurnSystemManager.Instance.PlayerController;
-            newCharacterController.transform.parent = playerController.transform;
-            playerController.PlayerCharacters.Add(newCharacterController);
+            _summonedCharacter.transform.parent = playerController.transform;
+            playerController.PlayerCharacters.Add(_summonedCharacter);
         }
     }
 
-    public CharacterController GetSummonedCharacter()
+    public void SetOnCharacterSummon(System.Action<CharacterController> onCharactorSummon)
+    {
+        _onCharactorSummon = onCharactorSummon;
+    }
+
+    public CharacterController GetSumonedCharacter()
     {
         return _summonedCharacter;
     }

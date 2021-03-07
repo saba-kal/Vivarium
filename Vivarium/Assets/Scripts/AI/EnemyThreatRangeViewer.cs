@@ -110,6 +110,12 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         {
             foreach (var action in characterController.Character.Weapon.Actions)
             {
+                if (action.ControllerType == ActionControllerType.MinionSummon ||
+                    action.ControllerType == ActionControllerType.Heal)
+                {
+                    continue; //Skip actions that don't do direct damage.
+                }
+
                 var affectedTiles = CalculateActionThreatRange(characterController, action, navigableTile);
                 foreach (var tile in affectedTiles)
                 {

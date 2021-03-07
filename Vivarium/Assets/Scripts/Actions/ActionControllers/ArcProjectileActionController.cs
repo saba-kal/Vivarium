@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class ArcProjectileActionController : ActionController
 {
+    public bool SkipCommandQueue = false;
     public override void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
@@ -26,10 +27,22 @@ public class ArcProjectileActionController : ActionController
         var endPosition = TileGridController.Instance.GetGrid().GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
 
         this.PerformAnimation();
-        StartCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, transform.position, endPosition, () =>
+
+        if (SkipCommandQueue)
         {
-            this.ExecuteAction(affectedTiles);
-        }));
+            StartCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, transform.position, endPosition, () =>
+            {
+                this.ExecuteAction(affectedTiles);
+            }));
+        }
+        else
+        {
+            CommandController.Instance.ExecuteCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, transform.position, endPosition, () =>
+            {
+                this.ExecuteAction(affectedTiles);
+            }));
+        }
+
         onActionComplete?.Invoke();
     }
 
@@ -45,8 +58,10 @@ public class ArcProjectileActionController : ActionController
             }
         }
 
+        GenerateParticlesOnTiles(affectedTiles);
+
         var targetCharacters = TurnSystemManager.Instance.GetCharacterWithIds(targetCharacterIds, GetTargetType());
-        CommandController.Instance.ExecuteCoroutine(ExecuteAction(targetCharacters, affectedTiles));
+        StartCoroutine(ExecuteAction(targetCharacters, affectedTiles));
     }
 
     private IEnumerator AnimateProjectile(GameObject projectilePrefab, Vector3 startPosition, Vector3 endPosition, System.Action onComplete)

@@ -21,12 +21,13 @@ MonoBehaviour:
   CriticalMultiplier: 0
   MinRange: 1
   MaxRange: 10
-  AreaOfAffect: 6
+  AreaOfAffect: 3
   ActionTargetType: 1
   ControllerType: 11
   Attributes: []
   AnimType: 3
-  ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
+  ProjectilePrefab: {fileID: 1480971491631075010, guid: 1058f818de54b2e458879a65db404040, type: 3}
   ParticleEffect: {fileID: 0}
+  TileParticleEffect: {fileID: 3145640170506330117, guid: 2e0f3f4dacd086c4b9136561a47dd94b, type: 3}
   ActionTriggerDelay: 0
   SummonProfile: {fileID: 0}

@@ -15,6 +15,7 @@ public class CharacterGenerationProfile : ScriptableObject
     [Header("Boss Data (optional)")]
     public CharacterType Type = CharacterType.Normal;
     public int MaxSummons = 6;
+    public int StartingSummons = 3;
 
     [Header("Stats")]
     public float MinMaxHealth;
@@ -25,6 +26,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public float MaxMoveRange;
     public int MaxItems = 3;
     public List<TileType> NavigableTiles;
+    public bool CanMoveThroughCharacters = false;
 
     [Header("Additional Data")]
     public WeaponGenerationProfile WeaponProfile;

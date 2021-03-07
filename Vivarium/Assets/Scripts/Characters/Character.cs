@@ -19,4 +19,5 @@ public class Character
     public List<TileType> NavigableTiles;
     public LootTable CharacterLootTable;
     public int MaxItems = 3;
+    public bool CanMoveThroughCharacters = false;
 }

@@ -6,11 +6,14 @@ using System.Linq;
 public class QueenBeeAIController : AIController
 {
     public int MaxSummons;
+    public int StartingSummons;
 
+    private QueenBeePhase _phase = QueenBeePhase.Defend;
     private List<BeeHiveAIController> _beeHives = null;
     private List<CharacterController> _summonedBees = new List<CharacterController>();
     private HealActionController _healActionController;
     private MinionSummonActionController _minionSummonActionController;
+    private Dictionary<(int, int), Tile> _excludedTileSpawns = new Dictionary<(int, int), Tile>();
 
     protected override void VirtualStart()
     {
@@ -28,10 +31,16 @@ public class QueenBeeAIController : AIController
         _minionSummonActionController = (MinionSummonActionController)_aiCharacter.GetActionController(summonAction);
 
         GetBeehives();
-        for (int i = 0; i < MaxSummons; i++)
+
+        _minionSummonActionController.DisableSound();
+        _minionSummonActionController.SkipCommandQueue = true;
+        for (int i = 0; i < StartingSummons; i++)
         {
             SummonBee(null);
         }
+        _excludedTileSpawns = new Dictionary<(int, int), Tile>();
+        _minionSummonActionController.EnableSound();
+        _minionSummonActionController.SkipCommandQueue = false;
     }
 
     public override void InitializeTurn(List<CharacterController> playerCharacters)
@@ -42,7 +51,14 @@ public class QueenBeeAIController : AIController
     public override void Move(
         System.Action onComplete)
     {
-        base.Move(onComplete);
+        if (_phase == QueenBeePhase.Attack)
+        {
+            base.Move(onComplete);
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
     }
 
     public override void PerformAction(
@@ -53,11 +69,13 @@ public class QueenBeeAIController : AIController
         if (_summonedBees.Count < MaxSummons &&
             _beeHives.Count > 0)
         {
+            EnterCameraFocusCommand();
             var isSuccessfull = SummonBee(onComplete);
             if (!isSuccessfull)
             {
                 onComplete?.Invoke();
             }
+            _excludedTileSpawns = new Dictionary<(int, int), Tile>();
         }
         else
         {
@@ -108,10 +126,14 @@ public class QueenBeeAIController : AIController
             return false;
         }
 
+        _minionSummonActionController.SetOnCharacterSummon(newCharacterController =>
+        {
+            _summonedBees.Add(newCharacterController);
+        });
         _minionSummonActionController.Execute(spawnTile, onComplete);
+        _excludedTileSpawns.Add((spawnTile.GridX, spawnTile.GridY), spawnTile);
 
         //Store character in array.
-        _summonedBees.Add(_minionSummonActionController.GetSummonedCharacter());
 
         return true;
     }
@@ -128,7 +150,7 @@ public class QueenBeeAIController : AIController
             summonAttempts++;
 
             var beeHiveGridPosition = grid.GetGrid().GetValue(randomBeeHive.transform.position);
-            var adjacentTiles = grid.GetAdjacentTiles(beeHiveGridPosition, TileType.Grass);
+            var adjacentTiles = grid.GetAdjacentTiles(beeHiveGridPosition, TileType.Grass, false, _excludedTileSpawns);
             if (adjacentTiles.Count == 0)
             {
                 randomBeeHiveIndex = (randomBeeHiveIndex + 1) % _beeHives.Count;
@@ -220,10 +242,27 @@ public class QueenBeeAIController : AIController
         base.OnCharacterDeath(deadCharacterController);
         for (var i = 0; i < _summonedBees.Count; i++)
         {
-            if (_summonedBees[i].Id == deadCharacterController.Id)
+            if (_summonedBees[i] == null || _summonedBees[i]?.Id == deadCharacterController?.Id)
             {
                 _summonedBees.RemoveAt(i);
             }
         }
     }
+
+    protected override void OnCharacterDamage(CharacterController characterController)
+    {
+        base.OnCharacterDamage(characterController);
+
+        if (characterController.Id == _aiCharacter.Id)
+        {
+            Debug.Log("Queen bee is now in attack mode.");
+            _phase = QueenBeePhase.Attack;
+        }
+    }
+}
+
+public enum QueenBeePhase
+{
+    Defend = 0,
+    Attack = 1
 }

@@ -38,7 +38,7 @@ public class ProjectileActionController : ActionController
         foreach (var tile in line)
         {
             //UnityEngine.Debug.Log(tile.CharacterControllerId);
-            if (!tile.Equals(startTile))
+            if (!tile.Equals(startTile) && !affectedTiles.ContainsKey((tile.GridX, tile.GridY)))
             {
                 affectedTiles.Add((tile.GridX, tile.GridY), tile);
                 if (tile.Type == TileType.Obstacle || !string.IsNullOrEmpty(tile.CharacterControllerId))

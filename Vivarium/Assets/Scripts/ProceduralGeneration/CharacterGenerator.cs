@@ -33,6 +33,7 @@ public class CharacterGenerator
                 case CharacterType.QueenBee:
                     var queenBeeAi = characterGameObject.AddComponent<QueenBeeAIController>();
                     queenBeeAi.MaxSummons = characterProfile.MaxSummons;
+                    queenBeeAi.StartingSummons = characterProfile.StartingSummons;
                     break;
                 case CharacterType.Normal:
                 default:
@@ -68,6 +69,7 @@ public class CharacterGenerator
         character.CharacterLootTable = characterProfile.CharacterLootTable;
         character.MaxItems = characterProfile.MaxItems;
         character.Type = characterProfile.Type;
+        character.CanMoveThroughCharacters = characterProfile.CanMoveThroughCharacters;
 
         return character;
     }

@@ -28,6 +28,6 @@ MonoBehaviour:
   MinWallLength: 3
   MaxWallLength: 6
   ObjectiveSpawnVariation: 0
-  ObstacleSpawnChance: 0.024
-  WaterSpawnChance: 0.031
+  ObstacleSpawnChance: 0
+  WaterSpawnChance: 0
   WaterGrouping: 0.698
