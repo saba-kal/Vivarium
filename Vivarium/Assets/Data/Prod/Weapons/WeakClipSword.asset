@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: WeakClipSword
   Name: Weak Clip Sword
-  Description: A paper clip fashioned into a sword that can pierce two enemies at
-    once.
+  Description: A paper clip fashioned into a sword.
   Type: 1
   Icon: {fileID: 21300000, guid: 49dbe9fbbfd19d34fa5f3ca74d0842d4, type: 3}
   Model: {fileID: 0}

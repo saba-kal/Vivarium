@@ -7,8 +7,8 @@ using System.IO;
 public class AStar
 {
     private readonly Grid<PathNode> _grid;
-    private readonly List<TileType> _navigableTiles;
-    private readonly bool _ignoreCharacters;
+    private List<TileType> _navigableTiles;
+    private bool _ignoreCharacters;
 
     private List<PathNode> _openNodes;
     private List<PathNode> _closedNodes;
@@ -155,6 +155,16 @@ public class AStar
         }
 
         return neighbors;
+    }
+
+    public void SetNavigableTiles(List<TileType> navigableTiles)
+    {
+        _navigableTiles = navigableTiles;
+    }
+
+    public void SetIgnoreCharacters(bool ignoreCharacters)
+    {
+        _ignoreCharacters = ignoreCharacters;
     }
 }
 

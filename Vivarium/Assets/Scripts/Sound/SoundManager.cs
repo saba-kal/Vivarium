@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public List<SoundClip> Sounds;
-
     private Dictionary<string, AudioSource> _soundBank;
 
     // Start is called before the first frame update
@@ -83,5 +81,13 @@ public class SoundManager : MonoBehaviour
     public static SoundManager GetInstance()
     {
         return FindObjectOfType<SoundManager>();
+    }
+
+    public void SetVolume(float volumeFloat)
+    {
+        foreach (var source in _soundBank.Values)
+        {
+            source.volume = volumeFloat;
+        }
     }
 }

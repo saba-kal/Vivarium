@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
+  m_Name: StrongAttackPotion
+  m_EditorClassIdentifier: 
+  Id: AttackStrong
+  Name: Large Attack Potion
+  Description: A strange blue liquid in a vial. Permanently increases attack by 10.
+  Type: 3
+  Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}
+  Model: {fileID: 0}
+  CanBeStacked: 1
+  ConsumableType: 2
+  value: 10

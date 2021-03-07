@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Grid<T>
@@ -171,5 +172,41 @@ public class Grid<T>
     public Vector3 GetOrigin()
     {
         return _originPosition;
+    }
+
+    public List<T> GetAdjacentTiles(int x, int y, bool includeDiagonals = false)
+    {
+        var adjacentTiles = new List<T>();
+
+        var preCheckedTiles = new List<T>()
+        {
+            GetValue(x, y + 1), //Top
+            GetValue(x + 1, y), //Right
+            GetValue(x, y - 1), //Bottom
+            GetValue(x - 1, y) //Left
+        };
+
+        if (includeDiagonals)
+        {
+            var diagonalTiles = new List<T>()
+            {
+                GetValue(x + 1, y + 1), //Top-right
+                GetValue(x + 1, y - 1), //Bottom-right
+                GetValue(x - 1, y - 1), //Bottom-left
+                GetValue(x - 1, y + 1) //Top-left
+            };
+
+            preCheckedTiles = preCheckedTiles.Concat(diagonalTiles).ToList();
+        }
+
+        foreach (var possibleAdjacentTile in preCheckedTiles)
+        {
+            if (possibleAdjacentTile != null)
+            {
+                adjacentTiles.Add(possibleAdjacentTile);
+            }
+        }
+
+        return adjacentTiles;
     }
 }

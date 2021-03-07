@@ -8,6 +8,11 @@ public class AttributesGenerator
 
     public List<Attribute> GenerateAttributes(AttributesGenerationProfile attributeProfile)
     {
+        if (attributeProfile == null)
+        {
+            return new List<Attribute>();
+        }
+
         if (attributeProfile.MinNumberOfAttributes < 0 ||
             attributeProfile.MaxNumberOfAttributes > attributeProfile.PossibleAttributes.Count)
         {

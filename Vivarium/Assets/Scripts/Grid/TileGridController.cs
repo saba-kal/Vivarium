@@ -19,6 +19,7 @@ public class TileGridController : MonoBehaviour
     public GameObject PrimaryHighlightPrefab;
     public GameObject SecondaryHighlightPrefab;
     public GameObject TertiaryHighlightPrefab;
+    public GameObject QuaternaryHighlightPrefab;
 
     //Private properties.
     private Grid<Tile> _grid;
@@ -439,6 +440,8 @@ public class TileGridController : MonoBehaviour
                 return SecondaryHighlightPrefab;
             case GridHighlightRank.Tertiary:
                 return TertiaryHighlightPrefab;
+            case GridHighlightRank.Quaternary:
+                return QuaternaryHighlightPrefab;
             default:
                 return PrimaryHighlightPrefab;
         }
@@ -487,6 +490,27 @@ public class TileGridController : MonoBehaviour
         return _mouseHoverTile;
     }
 
+    public List<Tile> GetAdjacentTiles(
+        Tile tile,
+        TileType type,
+        bool includeDiagonals = false,
+        Dictionary<(int, int), Tile> excludedTiles = null)
+    {
+        var adjacentTiles = _grid.GetAdjacentTiles(tile.GridX, tile.GridY, includeDiagonals);
+        var filteredAdjacentTiles = new List<Tile>();
+
+        foreach (var adjacentTile in adjacentTiles)
+        {
+            if (adjacentTile.Type == type && string.IsNullOrEmpty(adjacentTile.CharacterControllerId) &&
+                (excludedTiles == null || !excludedTiles.ContainsKey((adjacentTile.GridX, adjacentTile.GridY))))
+            {
+                filteredAdjacentTiles.Add(adjacentTile);
+            }
+        }
+
+        return filteredAdjacentTiles;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
@@ -500,4 +524,5 @@ public enum GridHighlightRank
     Primary = 1,
     Secondary = 2,
     Tertiary = 3,
+    Quaternary = 4
 }

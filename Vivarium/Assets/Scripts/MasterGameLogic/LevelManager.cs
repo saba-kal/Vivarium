@@ -58,7 +58,6 @@ public class LevelManager : MonoBehaviour
         {
             Debug.Log("You beat the game.");
             UIController.Instance.GameOver("YOU WIN");
-            PlayerData.CurrentLevelIndex = 0;
         }
         else
         {

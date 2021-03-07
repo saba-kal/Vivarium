@@ -7,5 +7,6 @@ public enum TileSpawnType
     Enemy = 1,
     Player = 2,
     Objective = 3,
-    TreasureChest = 4
+    TreasureChest = 4,
+    Boss = 5
 }
