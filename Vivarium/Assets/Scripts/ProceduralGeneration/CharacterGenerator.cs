@@ -54,6 +54,7 @@ public class CharacterGenerator
         character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
         character.CharacterLootTable = characterProfile.CharacterLootTable;
         character.MaxItems = characterProfile.MaxItems;
+        character.Aggro = characterProfile.Aggro;
 
         return character;
     }

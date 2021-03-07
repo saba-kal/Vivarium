@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
     {
         PlayerData.CurrentLevelIndex = 0;
         _levels = new List<Level>();
+        InventoryManager.ClearInventory();
         //TODO: implement loading here.
     }
 

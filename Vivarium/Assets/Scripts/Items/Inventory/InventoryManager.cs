@@ -239,4 +239,10 @@ public static class InventoryManager
 
         return playerItems;
     }
+
+    public static void ClearInventory()
+    {
+        _playerInventory = new Dictionary<string, List<InventoryItem>>();
+        _characterInventories = new Dictionary<string, CharacterInventory>();
+    }
 }

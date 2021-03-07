@@ -153,6 +153,7 @@ public class AIController : MonoBehaviour
                             var playerHealth = playerCharacter.GetHealthController().GetCurrentHealth() +
                                 playerCharacter.GetHealthController().GetCurrentShield();
 
+                            damageOnAffectedTiles += playerCharacter.Character.Aggro;
                             if (playerHealth <= potentialAttackDamage)
                             {
                                 damageOnAffectedTiles += POINTS_FOR_KILLING_PLAYER_CHARACTER;
