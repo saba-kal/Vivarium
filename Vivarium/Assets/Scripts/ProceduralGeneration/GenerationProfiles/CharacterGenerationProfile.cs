@@ -25,6 +25,8 @@ public class CharacterGenerationProfile : ScriptableObject
     public float MinMoveRange;
     public float MaxMoveRange;
     public int MaxItems = 3;
+    public int Aggro;
+
     public List<TileType> NavigableTiles;
     public bool CanMoveThroughCharacters = false;
 

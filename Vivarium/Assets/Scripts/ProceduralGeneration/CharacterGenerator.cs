@@ -70,6 +70,7 @@ public class CharacterGenerator
         character.MaxItems = characterProfile.MaxItems;
         character.Type = characterProfile.Type;
         character.CanMoveThroughCharacters = characterProfile.CanMoveThroughCharacters;
+        character.Aggro = characterProfile.Aggro;
 
         return character;
     }

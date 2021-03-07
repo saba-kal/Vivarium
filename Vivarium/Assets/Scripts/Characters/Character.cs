@@ -20,4 +20,5 @@ public class Character
     public LootTable CharacterLootTable;
     public int MaxItems = 3;
     public bool CanMoveThroughCharacters = false;
+    public int Aggro;
 }
