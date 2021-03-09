@@ -29,6 +29,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void Awake()
     {
+        InventoryManager.ClearInventory();
         if (GenerateLevelOnStart)
         {
             GenerateLevel();
