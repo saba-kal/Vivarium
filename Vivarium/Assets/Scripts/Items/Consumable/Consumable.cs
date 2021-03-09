@@ -8,4 +8,5 @@ public class Consumable : Item
 {
     public ConsumableType ConsumableType;
     public float value;
+    public GameObject ParticleEffect;
 }

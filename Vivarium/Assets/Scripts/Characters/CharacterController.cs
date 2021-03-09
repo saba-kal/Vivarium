@@ -419,6 +419,12 @@ public class CharacterController : MonoBehaviour
                 break;
         }
         InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+        if (consumable.ParticleEffect != null)
+        {
+            var particleEffect = Instantiate(consumable.ParticleEffect, transform.transform);
+            particleEffect.transform.position = transform.position;
+            Destroy(particleEffect, 5f);
+        }
     }
 
     public void Heal(float healAmount)
