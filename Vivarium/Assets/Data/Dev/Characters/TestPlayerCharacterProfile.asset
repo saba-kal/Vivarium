@@ -19,18 +19,22 @@ MonoBehaviour:
   - Player  Guy
   PossiblePortraits:
   - {fileID: 21300000, guid: 16f88b77cc7309a42a9839c4b277318b, type: 3}
-  MinMaxHealth: 50
-  MaxMaxHealth: 200
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  Type: 0
+  MaxSummons: 6
+  StartingSummons: 3
+  MinMaxHealth: 1
+  MaxMaxHealth: 1
   MinAttackDamage: 0
   MaxAttackDamage: 0
   MinMoveRange: 15
   MaxMoveRange: 20
   MaxItems: 5
   NavigableTiles: 00000000
+  CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: 9374dda871d732a4d9ca14efb6fa4307, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
   AICharacterHeuristics: {fileID: 0}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 9100000, guid: 2313515880bd4b149b8457dcec65b14e, type: 2}

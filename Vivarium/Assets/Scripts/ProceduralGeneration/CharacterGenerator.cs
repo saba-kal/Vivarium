@@ -25,7 +25,21 @@ public class CharacterGenerator
         if (isEnemy)
         {
             characterGameObject.tag = Constants.ENEMY_CHAR_TAG;
-            characterGameObject.AddComponent<AIController>();
+            switch (characterData.Type)
+            {
+                case CharacterType.BeeHive:
+                    characterGameObject.AddComponent<BeeHiveAIController>();
+                    break;
+                case CharacterType.QueenBee:
+                    var queenBeeAi = characterGameObject.AddComponent<QueenBeeAIController>();
+                    queenBeeAi.MaxSummons = characterProfile.MaxSummons;
+                    queenBeeAi.StartingSummons = characterProfile.StartingSummons;
+                    break;
+                case CharacterType.Normal:
+                default:
+                    characterGameObject.AddComponent<AIController>();
+                    break;
+            }
         }
         else
         {
@@ -54,6 +68,9 @@ public class CharacterGenerator
         character.AICharacterHeuristics = characterProfile.AICharacterHeuristics;
         character.CharacterLootTable = characterProfile.CharacterLootTable;
         character.MaxItems = characterProfile.MaxItems;
+        character.Type = characterProfile.Type;
+        character.CanMoveThroughCharacters = characterProfile.CanMoveThroughCharacters;
+        character.Aggro = characterProfile.Aggro;
 
         return character;
     }

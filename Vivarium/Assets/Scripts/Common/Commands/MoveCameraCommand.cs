@@ -17,7 +17,8 @@ public class MoveCameraCommand : ICommand
         Vector3 destination,
         float panSpeed,
         GameObject focusCharacter = null,
-        System.Action onMoveComplete = null)
+        System.Action onMoveComplete = null
+        )
     {
         _panSpeed = panSpeed;
         _focusCharacter = focusCharacter;
@@ -30,9 +31,9 @@ public class MoveCameraCommand : ICommand
         _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];
         _currentLocation = _mainCamera.transform.position;
         _cameraMover = _mainCamera.GetComponent<MasterCameraScript>().GetCameraMover();
-        _camera = _mainCamera.GetComponent<MasterCameraScript>().GetCameraZoomer();
+        //_camera = _mainCamera.GetComponent<MasterCameraScript>().GetCameraZoomer();
 
-        _mainCamera.GetComponent<MasterCameraScript>().ResetZoom();
+        //_mainCamera.GetComponent<MasterCameraScript>().ResetZoom();
 
         _mainCamera.transform.rotation = Quaternion.identity;
         _mainCamera.GetComponent<MasterCameraScript>().lockCamera();
@@ -74,7 +75,7 @@ public class MoveCameraCommand : ICommand
         }
         else
         {
-            _mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
+            //_mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         }
         _onMoveComplete?.Invoke();
 

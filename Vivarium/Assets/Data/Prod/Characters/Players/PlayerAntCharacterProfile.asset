@@ -28,7 +28,7 @@ MonoBehaviour:
   MaxItems: 5
   NavigableTiles: 00000000
   WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
-  ShieldProfile: {fileID: 0}
+  ShieldProfile: {fileID: 11400000, guid: 05e770e09ae53224ea950eeca7097d95, type: 2}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 0}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}

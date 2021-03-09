@@ -278,7 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxPlayerItems: 20
-  MaxCharacterItems: 3
   PrepMenu: {fileID: 673711730}
   CharacterDetailsPrefab: {fileID: 2347623035681701597, guid: 10586b59c791f3f4380e6a72fe1b3ad3, type: 3}
   CharactersContainer: {fileID: 373014669}

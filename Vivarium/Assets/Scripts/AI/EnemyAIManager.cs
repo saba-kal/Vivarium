@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Threading;
+using System.Linq;
 
 public class EnemyAIManager : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class EnemyAIManager : MonoBehaviour
     void OnEnable()
     {
         CharacterController.OnDeath += OnCharacterDeath;
+        LevelGenerator.OnLevelGenerationComplete += Initialize;
     }
 
     void OnDisable()
     {
         CharacterController.OnDeath -= OnCharacterDeath;
+        LevelGenerator.OnLevelGenerationComplete -= Initialize;
     }
 
     public void turnOnSkipEnemyPhase()
@@ -63,6 +66,20 @@ public class EnemyAIManager : MonoBehaviour
         }
     }
 
+    public void Initialize()
+    {
+        foreach (var aiCharacter in AICharacters.ToList())
+        {
+            if (aiCharacter.Character.Type == CharacterType.BeeHive)
+            {
+                continue; //Bee hives don't have brains.
+            }
+
+            var aiController = aiCharacter.GetComponent<AIController>();
+            aiController?.Initialize();
+        }
+    }
+
     public void Execute()
     {
         StartCoroutine(ExecuteAIControllers());
@@ -70,12 +87,17 @@ public class EnemyAIManager : MonoBehaviour
 
     private IEnumerator ExecuteAIControllers()
     {
-        foreach (var aiCharacter in AICharacters)
+        foreach (var aiCharacter in AICharacters.ToList())
         {
+            if (aiCharacter.Character.Type == CharacterType.BeeHive)
+            {
+                continue; //Bee hives don't have brains.
+            }
+
             var aiController = aiCharacter.GetComponent<AIController>();
             if (aiController != null)
             {
-                aiController.Initialize(TurnSystemManager.Instance.PlayerController.PlayerCharacters);
+                aiController.InitializeTurn(TurnSystemManager.Instance.PlayerController.PlayerCharacters);
                 GridPointCalculator.CalculateGridPoints(aiCharacter.GetComponent<CharacterController>());
                 GridPointCalculator.UpdatePreview();
 

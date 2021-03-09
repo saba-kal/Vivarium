@@ -14,6 +14,7 @@ public class ActionController : MonoBehaviour, IActionController
 
     protected Dictionary<(int, int), Tile> _tilesActionCanAffect = new Dictionary<(int, int), Tile>();
     protected float _delay = 0f;
+    private bool _soundDisabled = false;
 
     private void Start()
     {
@@ -66,6 +67,8 @@ public class ActionController : MonoBehaviour, IActionController
                 targetCharacterIds.Add(tile.Value.CharacterControllerId);
             }
         }
+
+        GenerateParticlesOnTiles(affectedTiles);
 
         var targetCharacters = TurnSystemManager.Instance.GetCharacterWithIds(targetCharacterIds, GetTargetType());
         CommandController.Instance.ExecuteCoroutine(ExecuteAction(targetCharacters, affectedTiles));
@@ -145,7 +148,25 @@ public class ActionController : MonoBehaviour, IActionController
 
     protected void PlaySound()
     {
+        if (_soundDisabled)
+        {
+            return;
+        }
+
         SoundManager.GetInstance()?.Play(ActionReference.SoundName);
+    }
+
+    protected void GenerateParticlesOnTiles(Dictionary<(int, int), Tile> affectedTiles)
+    {
+        if (ActionReference.TileParticleEffect != null)
+        {
+            foreach (var tile in affectedTiles.Values)
+            {
+                var particleEffect = Instantiate(ActionReference.TileParticleEffect);
+                particleEffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
+                Destroy(particleEffect, 5f);
+            }
+        }
     }
 
     public virtual void CalculateAffectedTiles()
@@ -169,5 +190,15 @@ public class ActionController : MonoBehaviour, IActionController
     public Dictionary<(int, int), Tile> GetAffectedTiles()
     {
         return _tilesActionCanAffect;
+    }
+
+    public void DisableSound()
+    {
+        _soundDisabled = true;
+    }
+
+    public void EnableSound()
+    {
+        _soundDisabled = false;
     }
 }

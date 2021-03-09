@@ -18,19 +18,18 @@ MonoBehaviour:
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  MinEnemyCharacters: 7
-  MaxEnemyCharacters: 8
+  BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
+  MinEnemyCharacters: 5
+  MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
-  - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
-  - {fileID: 11400000, guid: d40acf7981df1984a9e076e73d1c514b, type: 2}
-  - {fileID: 11400000, guid: d050dd04153b2874797280cec0989dd6, type: 2}
-  - {fileID: 11400000, guid: 6f0830d88ba39a94b85e112774511f96, type: 2}
-  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
-  - {fileID: 11400000, guid: c36386db152ad73429e84f2584b94350, type: 2}
-  - {fileID: 11400000, guid: f73e33b6e4b701f46878f7212eac3182, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
   MinPlayerCharacters: 0
   MaxPlayerCharacters: 0
+  GuaranteedPlayerCharacters: []
   PossiblePlayerCharacters: []
   StartingItems: []
   OnLevelStartHeal: 500

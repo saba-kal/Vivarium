@@ -14,6 +14,8 @@ public class TurnSystemManager : MonoBehaviour
     public EnemyAIManager AIManager;
     public PlayerController PlayerController;
 
+    private bool _isPlayersTurn = true;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -56,10 +58,13 @@ public class TurnSystemManager : MonoBehaviour
 
     private void ExecuteAI()
     {
+        _isPlayersTurn = false;
+
         OnTurnStart?.Invoke();
         PlayerController.DeselectCharacter();
 
         var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+        mainCamera?.GetComponent<MasterCameraScript>().saveCameraPosition();
         mainCamera?.GetComponent<MasterCameraScript>().lockCamera();
 
         AIManager.EnableCharacters();
@@ -68,9 +73,11 @@ public class TurnSystemManager : MonoBehaviour
 
     private void AllowPlayerToMove()
     {
+        _isPlayersTurn = true;
+
         foreach (var character in AIManager.AICharacters)
         {
-            if(character.Character.MoveRange < 1)
+            if (character.Character.MoveRange < 1)
             {
                 character.Destun();
             }
@@ -78,7 +85,7 @@ public class TurnSystemManager : MonoBehaviour
         OnTurnStart?.Invoke();
         PlayerController.EnableCharacters();
         PlayerTurnCameraReset();
-        
+
     }
 
     private void PlayerTurnCameraReset()
@@ -106,6 +113,11 @@ public class TurnSystemManager : MonoBehaviour
         }
 
         return characters.Where(character => ids.Contains(character.Id)).ToList();
+    }
+
+    public bool IsPlayersTurn()
+    {
+        return _isPlayersTurn;
     }
 }
 
