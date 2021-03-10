@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2a7ce71c3593774e902fff5340b27d4, type: 3}
-  m_Name: Crumb
+  m_Name: SugarCube
   m_EditorClassIdentifier: 
   Id: HealWeak
-  Name: Crumb
-  Description: A small crumb of food. Heals 40 health
+  Name: SugarCube
+  Description: A small cube of sugar. Heals 40 health
   Type: 3
-  Icon: {fileID: 21300000, guid: 9ea2643488cdef74b95a22b50d09dff3, type: 3}
+  Icon: {fileID: 21300000, guid: 36c2f72e4e5e4bb47a5728b7d6733ac1, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 1

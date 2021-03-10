@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Screw Lance
   Description: A lance made from a screw. Can pull enemies around you.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: f0cf8c99eef2565468a5c6701fd6a235, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

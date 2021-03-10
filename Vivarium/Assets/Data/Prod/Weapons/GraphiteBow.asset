@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Graphite Bow
   Description: A bow that allows the player to fire attacks from long range
   Type: 1
-  Icon: {fileID: 21300000, guid: ad396c58f6e0fcb418635d60225d0cae, type: 3}
+  Icon: {fileID: 21300000, guid: 7e70059627f0abb42bc0784940823894, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

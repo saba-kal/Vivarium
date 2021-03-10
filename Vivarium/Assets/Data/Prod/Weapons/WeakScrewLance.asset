@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Weak Screw Lance
   Description: A lance made from a screw.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: d0642cd163dbdaf4ba58e00121938563, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

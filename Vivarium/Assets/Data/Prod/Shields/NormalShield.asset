@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Shield
   Description: A shield that increases total health by 45
   Type: 2
-  Icon: {fileID: 21300000, guid: b0c5caeaf8188bf41ac1efc80b6e985a, type: 3}
+  Icon: {fileID: 21300000, guid: 418558cfb3de3af4ead8e1d8dbdbdc99, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Health: 45

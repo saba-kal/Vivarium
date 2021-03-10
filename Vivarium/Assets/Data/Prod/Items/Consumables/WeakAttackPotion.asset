@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Small Attack Potion
   Description: A strange blue liquid in a vial. Permanently increases attack by 4.
   Type: 3
-  Icon: {fileID: 21300000, guid: fc5ea06ec236f2444b9db7116f78fdeb, type: 3}
+  Icon: {fileID: 21300000, guid: 96738784d5dd47a42a00e8201ae16c9d, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 2
