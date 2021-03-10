@@ -7,6 +7,7 @@ public class Character
 {
     public string Id;
     public string Name;
+    public CharacterType Type = CharacterType.Normal;
     public Sprite Portrait;
     public float MaxHealth;
     public float AttackDamage;
@@ -18,4 +19,6 @@ public class Character
     public List<TileType> NavigableTiles;
     public LootTable CharacterLootTable;
     public int MaxItems = 3;
+    public bool CanMoveThroughCharacters = false;
+    public int Aggro;
 }

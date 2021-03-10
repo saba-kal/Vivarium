@@ -22,3 +22,4 @@ MonoBehaviour:
   CanBeStacked: 1
   ConsumableType: 3
   value: 3
+  ParticleEffect: {fileID: 3145640170506330117, guid: e597d36fcf247474abbd666532268940, type: 3}

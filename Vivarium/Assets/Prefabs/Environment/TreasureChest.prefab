@@ -5030,6 +5030,24 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &7100855959791744376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6927367517654317960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.9398398, b: 0.042452812, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7778500934281879210
 GameObject:
   m_ObjectHideFlags: 0
@@ -9870,7 +9888,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7846288545998904547}
   - component: {fileID: 8397389080493019275}
-  - component: {fileID: 937682081720683980}
   m_Layer: 0
   m_Name: TreasureChest
   m_TagString: Untagged
@@ -9910,24 +9927,6 @@ MonoBehaviour:
   GlowEffect: {fileID: 2349132660619951900}
   SparkleEffect: {fileID: 7778500934281879210}
   Loot: {fileID: 0}
---- !u!114 &937682081720683980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7846288545998904556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0.9398398, b: 0.042452812, a: 1}
-  outlineWidth: 1
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &8282066007809384299
 GameObject:
   m_ObjectHideFlags: 0
@@ -10137,6 +10136,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 034c97edd4b3cdb43adb1efe62abb37e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e16096c461d657744a757f246c47b165, type: 3}
+--- !u!1 &6927367517654317960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e16096c461d657744a757f246c47b165, type: 3}
+  m_PrefabInstance: {fileID: 7846288544335152857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7739757710348722482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e16096c461d657744a757f246c47b165, type: 3}

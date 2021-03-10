@@ -17,6 +17,8 @@ public class CharacterController : MonoBehaviour
     public static event SelectEvent OnSelect;
     public delegate void DeselectEvent(CharacterController characterController);
     public static event DeselectEvent OnDeselect;
+    public delegate void DamageTaken(CharacterController characterController);
+    public static event DamageTaken OnDamageTaken;
 
     public string Id;
     public Character Character;
@@ -170,6 +172,8 @@ public class CharacterController : MonoBehaviour
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot take damage because character is missing a health controller.");
             return false;
         }
+
+        OnDamageTaken?.Invoke(this);
 
         if (instantKill || _healthController.TakeDamage(damage))
         {
@@ -374,7 +378,15 @@ public class CharacterController : MonoBehaviour
         {
             if (this.transform.GetChild(x).tag == "MasterCamera")
             {
-                this.transform.GetChild(x).transform.GetComponent<MasterCameraScript>().ResetCamera();
+                var cameraScript = transform.GetChild(x).transform.GetComponent<MasterCameraScript>();
+                if (IsEnemy)
+                {
+                    cameraScript.RemoveFocus();
+                }
+                else
+                {
+                    cameraScript.ResetCamera();
+                }
             }
         }
     }
@@ -407,6 +419,12 @@ public class CharacterController : MonoBehaviour
                 break;
         }
         InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+        if (consumable.ParticleEffect != null)
+        {
+            var particleEffect = Instantiate(consumable.ParticleEffect, transform.transform);
+            particleEffect.transform.position = transform.position;
+            Destroy(particleEffect, 5f);
+        }
     }
 
     public void Heal(float healAmount)

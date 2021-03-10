@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             //Do not want to deselect character in this special case
             var invalidWaterTile = false;
-            if(_selectedCharacter != null)
+            if (_selectedCharacter != null)
             {
                 var moveController = _selectedCharacter.GetMoveController();
                 var surroundingWaterTiles = moveController.GetWaterTilesInRadius();
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
             UIController.Instance.CharacterInfoPanel.SetActive(false);
         }
         UIController.Instance.EnableAllButtons();
-        foreach (var character in PlayerCharacters)
+        foreach (var character in PlayerCharacters.ToList())
         {
             character.IsEnemy = false;
             character.SetHasAttacked(false);
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
 
     public void DisableCharacters()
     {
-        foreach (var character in PlayerCharacters)
+        foreach (var character in PlayerCharacters.ToList())
         {
             character.IsEnemy = true;
         }
@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
     public void HealCharacters(float healAmount)
     {
-        foreach (var characterController in PlayerCharacters)
+        foreach (var characterController in PlayerCharacters.ToList())
         {
             characterController.Heal(healAmount);
         }
@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
 
     public void RegenCharacterShields(float regenAmount)
     {
-        foreach (var characterController in PlayerCharacters)
+        foreach (var characterController in PlayerCharacters.ToList())
         {
             characterController.RegenShield(regenAmount);
         }

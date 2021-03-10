@@ -12,6 +12,7 @@ public static class Constants
     public const int MAX_PLAYER_ITEMS = 100;
     public const float CAMERA_FOLLOW_SKEW = 8f;
     public const float PROJECTILE_HEIGHT = 0.5f;
+    public const float AOE_CALCULATION_OFFSET = 0.01f;
 
     public const string PLAYER_CHAR_TAG = "PlayerCharacter";
     public const string ENEMY_CHAR_TAG = "EnemyCharacter";
