@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Nail Hammer
   Description: A hammer made from a nail that can knock enemies back.
   Type: 1
-  Icon: {fileID: 21300000, guid: 363154fd0beb5d64eaa4d80dbde07946, type: 3}
+  Icon: {fileID: 21300000, guid: 1fb83e22c99463042a795239c3032437, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

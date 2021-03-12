@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Can Rend to pull an enemy to the attackers spot and move the user
     to where they were.
   Type: 0
-  Icon: {fileID: 21300000, guid: 46b4ce840fceab14d88bdc8b6d3065f4, type: 3}
+  Icon: {fileID: 21300000, guid: 5b14f5bc27f512b4aacf135ee1740ae1, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

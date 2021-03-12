@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Weak Shield
   Description: A shield that increases total health by 25
   Type: 2
-  Icon: {fileID: 21300000, guid: b0c5caeaf8188bf41ac1efc80b6e985a, type: 3}
+  Icon: {fileID: 21300000, guid: 48bae75f51825bc45a4518432cd3cd9d, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Health: 25

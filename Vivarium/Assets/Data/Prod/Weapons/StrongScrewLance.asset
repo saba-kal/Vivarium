@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Strong Screw Lance
   Description: A lance made from a screw. Can pull enemies around you.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: 72f81a081c8d3cb42b20ab9a386248d2, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

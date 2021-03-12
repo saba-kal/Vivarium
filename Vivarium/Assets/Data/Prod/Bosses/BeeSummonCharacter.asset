@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BeeSummonCharacter
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 1448550247729942650, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
+  - {fileID: 1448550247729942650, guid: bdb20c4c6fdceb34792e5b2c21be982a, type: 3}
   PossibleNames:
   - Angry Bee
   PossiblePortraits:
@@ -29,6 +29,7 @@ MonoBehaviour:
   MinMoveRange: 9
   MaxMoveRange: 9
   MaxItems: 3
+  Aggro: 0
   NavigableTiles: 0000000001000000
   CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
