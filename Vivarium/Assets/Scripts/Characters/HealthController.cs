@@ -10,6 +10,7 @@ public class HealthController : MonoBehaviour
     private float _currentShield;
     private float _maxHealth;
     private float _maxShield;
+    private bool _hasTakenDamage = false;
 
     public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth, float maxShield)
     {
@@ -25,6 +26,11 @@ public class HealthController : MonoBehaviour
         UpdateShieldDisplay();
     }
 
+    /// <summary>
+    /// Removes points from health and shield bar based on damage taken.
+    /// </summary>
+    /// <param name="damage">The amount of damage that was dealt to this character.</param>
+    /// <returns>Whether or not the character lost all health.</returns>
     public bool TakeDamage(float damage)
     {
         if (_currentShield > 0)
@@ -47,6 +53,7 @@ public class HealthController : MonoBehaviour
         ShieldBar?.SetHealth(_currentShield);
         UpdateShieldDisplay();
         PerformFlinchAnimation();
+        _hasTakenDamage = true;
 
         return _currentHealth < 1;
     }
@@ -128,5 +135,14 @@ public class HealthController : MonoBehaviour
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.flinch);
         Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
         myAnimator.SetTrigger(animationTypeName);
+    }
+
+    /// <summary>
+    /// Determines whether or not the character with this health controller has taken damage.
+    /// </summary>
+    /// <returns>Boolean indicating whether or not the character has taken damage.</returns>
+    public bool HasTakenDamage()
+    {
+        return _hasTakenDamage;
     }
 }

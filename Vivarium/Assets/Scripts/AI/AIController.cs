@@ -49,7 +49,7 @@ public class AIController : MonoBehaviour
     /// <summary>
     /// Initializes AI per turn.
     /// </summary>
-    /// <param name="playerCharacters"></param>
+    /// <param name="playerCharacters">List of player characters that are alive this turn.</param>
     public virtual void InitializeTurn(List<CharacterController> playerCharacters)
     {
         _playerCharacters = playerCharacters;
@@ -201,6 +201,7 @@ public class AIController : MonoBehaviour
         var tilesToExclude = new Dictionary<(int, int), Tile>();
         var iterations = 0;
         List<Tile> pathToTarget = null;
+        var waterTileCost = 0;
 
         while (pathToTarget == null)
         {
@@ -221,12 +222,10 @@ public class AIController : MonoBehaviour
                 // Don't want to land on a tile that can be passed over (e.g. water or character)
                 if (TileCanBePassedOver(path.Last()))
                 {
-                    aStar.SetNavigableTiles(new List<TileType> { TileType.Grass });
                     aStar.SetIgnoreCharacters(false);
-
-                    pathToTarget = aStar.Execute(
-                        _grid.GetValue(_aiCharacter.transform.position),
-                        targetTile);
+                    waterTileCost++; //Iteratively increase the cost of water tile until AI does not land on one.
+                    aStar.SetWaterTileCost(waterTileCost);
+                    pathToTarget = null;
                 }
             }
 

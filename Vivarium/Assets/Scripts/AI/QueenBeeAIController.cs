@@ -73,7 +73,7 @@ public class QueenBeeAIController : AIController
             var isSuccessfull = SummonBee(onComplete);
             if (!isSuccessfull)
             {
-                onComplete?.Invoke();
+                base.PerformAction(onComplete);
             }
             _excludedTileSpawns = new Dictionary<(int, int), Tile>();
         }
@@ -219,9 +219,13 @@ public class QueenBeeAIController : AIController
 
             foreach (var affectedTile in affectedTiles.Values)
             {
-                var summonedBee = _summonedBees.FirstOrDefault(p => p.Id == affectedTile.CharacterControllerId);
-                if (!string.IsNullOrEmpty(affectedTile.CharacterControllerId) &&
-                    summonedBee != null)
+                if (string.IsNullOrEmpty(affectedTile.CharacterControllerId))
+                {
+                    continue;
+                }
+
+                var summonedBee = _summonedBees.FirstOrDefault(p => p?.Id == affectedTile.CharacterControllerId);
+                if (summonedBee != null)
                 {
                     var missingHealth = summonedBee.Character.MaxHealth - summonedBee.GetHealthController().GetCurrentHealth();
                     var healAmount = Mathf.Clamp(missingHealth, 0, potentialHeal);

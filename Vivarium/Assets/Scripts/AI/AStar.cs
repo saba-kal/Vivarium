@@ -9,6 +9,7 @@ public class AStar
     private readonly Grid<PathNode> _grid;
     private List<TileType> _navigableTiles;
     private bool _ignoreCharacters;
+    private int _waterTileCost = 0;
 
     private List<PathNode> _openNodes;
     private List<PathNode> _closedNodes;
@@ -81,6 +82,11 @@ public class AStar
                 {
                     neighborNode.PreviousNode = currentNode;
                     neighborNode.GCost = tentativeGCost;
+                    if (neighborNode.GridTile.Type == TileType.Water)
+                    {
+                        neighborNode.GCost += _waterTileCost;
+                    }
+
                     neighborNode.HCost = GetDistance(neighborNode.GridTile, endTile);
                     neighborNode.FCost = neighborNode.HCost + neighborNode.GCost;
 
@@ -165,6 +171,11 @@ public class AStar
     public void SetIgnoreCharacters(bool ignoreCharacters)
     {
         _ignoreCharacters = ignoreCharacters;
+    }
+
+    public void SetWaterTileCost(int cost)
+    {
+        _waterTileCost = cost;
     }
 }
 
