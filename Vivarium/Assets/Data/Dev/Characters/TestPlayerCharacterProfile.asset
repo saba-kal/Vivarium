@@ -23,13 +23,14 @@ MonoBehaviour:
   Type: 0
   MaxSummons: 6
   StartingSummons: 3
-  MinMaxHealth: 1
-  MaxMaxHealth: 1
+  MinMaxHealth: 500
+  MaxMaxHealth: 600
   MinAttackDamage: 0
   MaxAttackDamage: 0
   MinMoveRange: 15
   MaxMoveRange: 20
   MaxItems: 5
+  Aggro: 0
   NavigableTiles: 00000000
   CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: 9374dda871d732a4d9ca14efb6fa4307, type: 2}
