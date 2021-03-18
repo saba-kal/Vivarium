@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Strong Thumb Tack
   Description: Skewer enemies to deal great damage at the cost of being able to move.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: f82d5330431a79647b248d186cda5ae1, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

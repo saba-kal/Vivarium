@@ -39,13 +39,26 @@ public class MoveController : MonoBehaviour
         TileGridController.Instance.HighlightTiles(_waterInRadius, GridHighlightRank.Quaternary);
     }
 
+    /// <summary>
+    /// Calculates all tiles that this character can move to.
+    /// </summary>
+    /// <returns>Position-to-tile dictionary containing all the tiles the character can move to.</returns>
     public virtual Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
+        var tile = _grid.GetValue(transform.position);
+        if (_characterController.Character.Type == CharacterType.QueenBee)
+        {
+            var healthController = GetComponent<HealthController>();
+            if (healthController != null && !healthController.HasTakenDamage())
+            {
+                return new Dictionary<(int, int), Tile> { { (tile.GridX, tile.GridY), tile } };
+            }
+        }
+
         _grid = TileGridController.Instance.GetGrid();
         _breadthFirstSearch = new BreadthFirstSearch(_grid);
 
         var moveRadius = StatCalculator.CalculateStat(_characterController.Character, StatType.MoveRadius);
-        var tile = _grid.GetValue(transform.position);
         _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 

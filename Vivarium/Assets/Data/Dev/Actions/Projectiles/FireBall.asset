@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Fire Ball
   Description: OP as shit
   SoundName: TestAttackSound
-  BaseDamage: 5
+  BaseDamage: 100
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 0

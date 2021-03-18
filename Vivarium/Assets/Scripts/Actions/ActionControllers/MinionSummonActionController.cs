@@ -3,11 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Controller for handling the minion summon action.
+/// </summary>
 public class MinionSummonActionController : ArcProjectileActionController
 {
     private CharacterController _summonedCharacter;
     private System.Action<CharacterController> _onCharactorSummon;
+    private const string PLACE_HOLDER_CHARACTER_ID = "XXX";
 
+    /// <inheritdoc cref="ArcProjectileActionController.Execute(Tile, System.Action)"/>
+    public override void Execute(Tile targetTile, System.Action onActionComplete = null)
+    {
+        //Set a placeholder for the character controller ID on the tile so that the AI does not accidentally move to this tile. 
+        targetTile.CharacterControllerId = PLACE_HOLDER_CHARACTER_ID;
+
+        base.Execute(targetTile, onActionComplete);
+    }
+
+    /// <inheritdoc cref="ArcProjectileActionController.ExecuteAction(Dictionary{(int, int), Tile})"/>
     protected override void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
     {
         GenerateParticlesOnTiles(affectedTiles);
@@ -40,11 +54,19 @@ public class MinionSummonActionController : ArcProjectileActionController
         }
     }
 
+    /// <summary>
+    /// Sets a callback for when a character is summoned.
+    /// </summary>
+    /// <param name="onCharactorSummon">The callback to set.</param>
     public void SetOnCharacterSummon(System.Action<CharacterController> onCharactorSummon)
     {
         _onCharactorSummon = onCharactorSummon;
     }
 
+    /// <summary>
+    /// Gets the most recent summoned character.
+    /// </summary>
+    /// <returns>The summoned <see cref="CharacterController"/>.</returns>
     public CharacterController GetSumonedCharacter()
     {
         return _summonedCharacter;

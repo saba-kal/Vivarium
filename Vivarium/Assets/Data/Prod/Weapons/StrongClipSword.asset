@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: A paper clip fashioned into a sword that can pierce two enemies at
     once.
   Type: 1
-  Icon: {fileID: 21300000, guid: 49dbe9fbbfd19d34fa5f3ca74d0842d4, type: 3}
+  Icon: {fileID: 21300000, guid: d3197b4502cd1164a97cb555a599c997, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

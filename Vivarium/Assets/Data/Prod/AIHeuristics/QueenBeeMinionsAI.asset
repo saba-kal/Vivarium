@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: QueenBeeMinionsAI
   m_EditorClassIdentifier: 
   EnvironmentHeuristics:
-    ObjectivePoints: 33
-    ObjectiveNearbyTilesPoints: 30
-    ObjectivePointsRange: 4
-    ChokePointPoints: 16
+    ObjectivePoints: 0
+    ObjectiveNearbyTilesPoints: 0
+    ObjectivePointsRange: 0
+    ChokePointPoints: 0
   AllyHeuristics:
-    AllyProximityPoints: 5
-    AllyAdjacencyPoints: 5
-    AllyAttackCoveragePoints: 25
+    AllyProximityPoints: 0
+    AllyAdjacencyPoints: 0
+    AllyAttackCoveragePoints: 0
   OpponentHeuristics:
-    OpponentProximityPoints: 20
-    OpponentAdjacencyPoints: 20
-    OpponentAreaOfAttackPoints: -20
+    OpponentProximityPoints: 0
+    OpponentAdjacencyPoints: 60
+    OpponentAreaOfAttackPoints: -10
   SelfHeuristics:
     TilesCharacterCanAttackPoints: 100

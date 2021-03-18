@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: EnemyAntLvl2_TankMelee
   m_EditorClassIdentifier: 
   PossibleModels:
-  - {fileID: 106819821670323034, guid: 62b5f05c0b434534a907397e6ea76758, type: 3}
+  - {fileID: 2134149279704721023, guid: 0d7ecc0dcb3b82742924a0cbe972d17e, type: 3}
   PossibleNames:
   - Heavy Ant (lv 2)
   PossiblePortraits: []
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  Type: 0
+  MaxSummons: 6
+  StartingSummons: 3
   MinMaxHealth: 105
   MaxMaxHealth: 140
   MinAttackDamage: 19
@@ -24,11 +28,12 @@ MonoBehaviour:
   MinMoveRange: 6
   MaxMoveRange: 7
   MaxItems: 3
+  Aggro: 0
   NavigableTiles: 00000000
+  CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 08deb9fab44d7cb418c7e8767bb178c4, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: 076ad81d0c5d1e542bbab827f8c64a07, type: 2}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

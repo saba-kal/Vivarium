@@ -29,12 +29,14 @@ public class LevelManager : MonoBehaviour
     {
         PlayerController.OnObjectiveCapture += CompleteLevel;
         PlayerController.OnAllCharactersDead += GameOver;
+        CharacterController.OnDeath += OnCharacterDeath;
     }
 
     void OnDisable()
     {
         PlayerController.OnObjectiveCapture -= CompleteLevel;
         PlayerController.OnAllCharactersDead -= GameOver;
+        CharacterController.OnDeath -= OnCharacterDeath;
     }
 
     // Start is called before the first frame update
@@ -52,14 +54,14 @@ public class LevelManager : MonoBehaviour
 
     public void CompleteLevel()
     {
-        PlayerData.CurrentLevelIndex++;
-        if (PlayerData.CurrentLevelIndex >= LevelGenerationProfiles.Count)
+        if (PlayerData.CurrentLevelIndex + 1 >= LevelGenerationProfiles.Count)
         {
             Debug.Log("You beat the game.");
             UIController.Instance.GameOver("YOU WIN");
         }
         else
         {
+            PlayerData.CurrentLevelIndex++;
             UIController.Instance.RewardsUIController.ShowRewardsScreen(() =>
             {
                 Debug.Log("Level complete. Generating next level...");
@@ -78,5 +80,14 @@ public class LevelManager : MonoBehaviour
         Debug.Log("GAME OVER");
         UIController.Instance.GameOver("GAME OVER");
         PlayerData.CurrentLevelIndex = 0;
+    }
+
+    private void OnCharacterDeath(CharacterController characterController)
+    {
+        //TODO: Create a more generic attribute that tells us whether an enemy has the level key.
+        if (characterController.Character.Type == CharacterType.QueenBee)
+        {
+            CompleteLevel();
+        }
     }
 }

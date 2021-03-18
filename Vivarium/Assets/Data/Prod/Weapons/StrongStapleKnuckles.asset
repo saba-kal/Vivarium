@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Strong Staple Knuckles
   Description: A staple which can pin enemies in place.
   Type: 1
-  Icon: {fileID: 21300000, guid: ee4dd5451a9dce34c824cbecbf58fa13, type: 3}
+  Icon: {fileID: 21300000, guid: a5c217ba104083747bde3c8b77b1783a, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

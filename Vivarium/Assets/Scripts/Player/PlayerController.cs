@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
 
     private bool _actionIsSelected = false;
     private Action _selectedAction;
-    private float _selectedActionMinRange;
-    private float _selectedActionMaxRange;
 
     private void Awake()
     {
