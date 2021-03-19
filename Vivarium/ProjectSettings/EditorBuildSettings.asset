@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InGameUI.unity
     guid: f44e03e79975a4a48bdc006b31ecb202
+  - enabled: 1
+    path: Assets/Scenes/MainGame_Boss.unity
+    guid: d33f8b057749dfa468a5db5b0f2ff1f9
+  - enabled: 1
+    path: Assets/Scenes/MainGame_InstantWin.unity
+    guid: 8e7b445bae3c55145935eda469271b2d
   m_configObjects: {}
