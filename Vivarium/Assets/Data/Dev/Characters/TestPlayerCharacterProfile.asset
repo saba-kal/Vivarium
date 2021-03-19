@@ -27,8 +27,8 @@ MonoBehaviour:
   MaxMaxHealth: 600
   MinAttackDamage: 0
   MaxAttackDamage: 0
-  MinMoveRange: 15
-  MaxMoveRange: 20
+  MinMoveRange: 60
+  MaxMoveRange: 70
   MaxItems: 5
   Aggro: 0
   NavigableTiles: 00000000

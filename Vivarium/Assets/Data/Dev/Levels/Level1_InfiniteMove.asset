@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
+  m_Name: Level1_InfiniteMove
+  m_EditorClassIdentifier: 
+  GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
+  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
+  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
+  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
+  QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
+  LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
+  BossCharacter: {fileID: 0}
+  MinEnemyCharacters: 2
+  MaxEnemyCharacters: 3
+  PossibleEnemyCharacters:
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 0e1b4c16a6bff1740bc4fcbc9f15b6e1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
+  MinPlayerCharacters: 4
+  MaxPlayerCharacters: 4
+  GuaranteedPlayerCharacters:
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
+  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  PossiblePlayerCharacters:
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
+  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
+  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
+  StartingItems: []
+  OnLevelStartHeal: 500
+  OnLevelStartShieldRegen: 500
+  PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
+  ChestGenerationSubdivisions: 3
+  RewardCharacters: []
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}
