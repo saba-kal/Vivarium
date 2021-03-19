@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: WeakShield
   m_EditorClassIdentifier: 
   Id: WeakShield123
-  Name: Weak Shield
-  Description: A shield that increases total health by 25
+  Name: Acorn Shield
+  Description: A shield made from an acorn that increases total health by 25
   Type: 2
-  Icon: {fileID: 21300000, guid: 48bae75f51825bc45a4518432cd3cd9d, type: 3}
+  Icon: {fileID: 21300000, guid: 63ad32e46ff663c40889aba446d4572e, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Health: 25

@@ -37441,6 +37441,7 @@ MonoBehaviour:
   Character:
     Id: 11c691f5-2a8a-4e14-ad9b-d3ed7bca4295
     Name: Red Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 77.07606
     AttackDamage: 0
@@ -37452,6 +37453,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &785344399
@@ -52775,6 +52778,7 @@ MonoBehaviour:
   Character:
     Id: 85fe04a1-f4c7-4804-ac52-83907d7afa83
     Name: Curious Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 83.13543
     AttackDamage: 0
@@ -52786,6 +52790,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1152942994
@@ -53945,6 +53951,7 @@ MonoBehaviour:
   Character:
     Id: 2a9879e0-6710-4ab6-95b3-4a47132fb518
     Name: Brave Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 83.33711
     AttackDamage: 0
@@ -53956,6 +53963,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!114 &1183487543
@@ -54604,6 +54613,7 @@ MonoBehaviour:
   Character:
     Id: 958aadef-2a35-41c3-8154-a6a0e44dd398
     Name: Brave Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 115.99752
     AttackDamage: 0
@@ -54615,6 +54625,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1195907801
@@ -56284,6 +56296,7 @@ MonoBehaviour:
   Character:
     Id: 803efe7e-d5e5-4e09-932b-a7ba7e2a0438
     Name: Brave Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 107.03506
     AttackDamage: 0
@@ -56295,6 +56308,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 0
   Model: {fileID: 0}
 --- !u!1 &1236518806
@@ -62617,6 +62632,7 @@ MonoBehaviour:
   Character:
     Id: 9d7b8e16-27a4-4ef1-b111-59ece592a0af
     Name: Murder Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 107.462715
     AttackDamage: 0
@@ -62628,6 +62644,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1410072574
@@ -69837,6 +69855,7 @@ MonoBehaviour:
   Character:
     Id: 356b49e0-09e7-4b93-88f9-7706a59502a6
     Name: Murder Ant
+    Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 75.464775
     AttackDamage: 0
@@ -69848,6 +69867,8 @@ MonoBehaviour:
     NavigableTiles: 00000000
     CharacterLootTable: {fileID: 0}
     MaxItems: 3
+    CanMoveThroughCharacters: 0
+    Aggro: 0
   IsEnemy: 1
   Model: {fileID: 0}
 --- !u!114 &1588439873
