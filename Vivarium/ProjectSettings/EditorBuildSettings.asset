@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainGame_InstantWin.unity
     guid: 8e7b445bae3c55145935eda469271b2d
+  - enabled: 1
+    path: Assets/Scenes/MainGame_BossWin.unity
+    guid: 11ea39022fcc1c64095980447e48bba1
   m_configObjects: {}

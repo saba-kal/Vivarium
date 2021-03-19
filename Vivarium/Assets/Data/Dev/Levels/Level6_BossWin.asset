@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
-  m_Name: Level1_InfiniteMove
+  m_Name: Level6_BossWin
   m_EditorClassIdentifier: 
   GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
   PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
@@ -18,34 +18,28 @@ MonoBehaviour:
   TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
   QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
-  BossCharacter: {fileID: 0}
-  MinEnemyCharacters: 2
-  MaxEnemyCharacters: 3
+  BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
+  MinEnemyCharacters: 5
+  MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 0e1b4c16a6bff1740bc4fcbc9f15b6e1, type: 2}
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  - {fileID: 11400000, guid: 760edcb75755ba5488b977e0b9326ec1, type: 2}
-  MinPlayerCharacters: 4
-  MaxPlayerCharacters: 4
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  MinPlayerCharacters: 0
+  MaxPlayerCharacters: 0
   GuaranteedPlayerCharacters:
+  - {fileID: 11400000, guid: dcb3f91ab106a3b4bad4f3e85eae3f32, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
-  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  PossiblePlayerCharacters:
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: cd85339bc9bcf8d4594214a937268f1b, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
-  - {fileID: 11400000, guid: 54e0385d2161f684b8d915a16ddd4d73, type: 2}
-  - {fileID: 11400000, guid: 2a38d0492a69979469f09137a13ee8ae, type: 2}
+  - {fileID: 11400000, guid: ea4f55097962146498aa23deb566d8f7, type: 2}
+  - {fileID: 11400000, guid: daed7eb291ac1734389d0fc6f20679ef, type: 2}
+  - {fileID: 11400000, guid: 7116a7dbe36857b4ab1982e9a4a0c447, type: 2}
+  PossiblePlayerCharacters: []
   StartingItems: []
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
-  PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  PossilbleRewards: {fileID: 11400000, guid: ed9edc8817e307e489fedeb557a6a8b8, type: 2}
   TreasureChests:
   - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
   ChestGenerationSubdivisions: 3
