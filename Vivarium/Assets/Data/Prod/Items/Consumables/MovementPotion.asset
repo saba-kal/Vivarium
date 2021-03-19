@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: A strange red liquid in a vial. Permanently increases movement by
     2.
   Type: 3
-  Icon: {fileID: 21300000, guid: 5b6a2989c6bbe394f8c5bad8cea74279, type: 3}
+  Icon: {fileID: 21300000, guid: 7b7f4d41767af4a46b05ac6ab678a0ee, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 3
