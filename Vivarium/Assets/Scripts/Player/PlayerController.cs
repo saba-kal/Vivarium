@@ -50,27 +50,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        var grid = TileGridController.Instance.GetGrid();
-        CharacterController targetCharacter = null;
-        foreach (var character in PlayerCharacters.Concat(TurnSystemManager.Instance.AIManager.AICharacters))
-        {
-            //Character was most likely deleted.
-            if (character == null)
-            {
-                continue;
-            }
-
-            grid.GetGridCoordinates(character.transform.position, out var x, out var y);
-            if (selectedTile.GridX == x && selectedTile.GridY == y)
-            {
-                targetCharacter = character;
-            }
-        }
-
         //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy &&
-             !(_selectedAction.AreaOfAffect == 0 && (selectedTile.CharacterControllerId == null || !targetCharacter.IsEnemy)))
+        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy && AoeEnemyDetection(selectedTile))
         {
             PerformAction(selectedTile);
             UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
@@ -102,6 +84,32 @@ public class PlayerController : MonoBehaviour
                 GetSelectedCharacter(selectedTile);
             }
         }
+    }
+
+    private bool AoeEnemyDetection(Tile selectedTile)
+    {
+        if (!_actionIsSelected)
+        {
+            return false;
+        }
+
+        var gridController = TileGridController.Instance;
+        var aoe = StatCalculator.CalculateStat(_selectedAction, StatType.AttackAOE);
+        var affectedTiles = gridController.GetTilesInRadius(selectedTile.GridX, selectedTile.GridY, 0, aoe);
+
+        foreach (var tile in affectedTiles.Values)
+        {
+            if (!string.IsNullOrEmpty(tile.CharacterControllerId))
+            {
+                var characterController = TurnSystemManager.Instance.GetCharacterController(tile.CharacterControllerId);
+                if (characterController.IsEnemy)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private void GetSelectedCharacter(Tile tile)
