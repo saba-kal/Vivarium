@@ -28,12 +28,14 @@ public class AIController : MonoBehaviour
         CharacterController.OnDamageTaken -= OnCharacterDamage;
     }
 
-    // Use this for initialization
     void Start()
     {
         VirtualStart();
     }
 
+    /// <summary>
+    /// Container for MonoBehaviour Start. Allows it to be overridden.
+    /// </summary>
     protected virtual void VirtualStart()
     {
         _grid = TileGridController.Instance.GetGrid();
@@ -41,6 +43,12 @@ public class AIController : MonoBehaviour
         _mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
     }
 
+    /// <summary>
+    /// Initializes AI at the start of a level.
+    /// </summary>
+    /// <remarks>
+    /// Fires before the built-in MonoBehaviour Start method.
+    /// </remarks>
     public virtual void Initialize()
     {
         return; //Meant to be overridden.
@@ -73,6 +81,10 @@ public class AIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Computes the best possible action at the current position and executes it.
+    /// </summary>
+    /// <param name="onComplete">Callback for when the action is complete.</param>
     public virtual void PerformAction(
         System.Action onComplete)
     {

@@ -14,11 +14,18 @@ public class QueenBeeAIController : AIController
     private HealActionController _healActionController;
     private MinionSummonActionController _minionSummonActionController;
     private Dictionary<(int, int), Tile> _excludedTileSpawns = new Dictionary<(int, int), Tile>();
+    private List<QueenBeeAIAction> _availableActions;
 
     protected override void VirtualStart()
     {
         base.VirtualStart();
+        GetQueenBeeActions();
+        GetBeehives();
+        PerformStartOfLevelSummon();
+    }
 
+    private void GetQueenBeeActions()
+    {
         var healAction = _aiCharacter.Character.Weapon.Actions.FirstOrDefault(a => a.ControllerType == ActionControllerType.Heal);
         var summonAction = _aiCharacter.Character.Weapon.Actions.FirstOrDefault(a => a.ControllerType == ActionControllerType.MinionSummon);
         if (healAction == null || summonAction == null)
@@ -29,23 +36,25 @@ public class QueenBeeAIController : AIController
 
         _healActionController = (HealActionController)_aiCharacter.GetActionController(healAction);
         _minionSummonActionController = (MinionSummonActionController)_aiCharacter.GetActionController(summonAction);
+    }
 
-        GetBeehives();
-
+    private void PerformStartOfLevelSummon()
+    {
         _minionSummonActionController.DisableSound();
         _minionSummonActionController.SkipCommandQueue = true;
         for (int i = 0; i < StartingSummons; i++)
         {
-            SummonBee(null);
+            var spawnTile = GetBeeSpawnTile();
+            if (spawnTile == null)
+            {
+                Debug.LogWarning("Unable to find a free spot next to a bee hive in order to summon a bee.");
+                continue;
+            }
+            SummonBee(spawnTile, null);
         }
         _excludedTileSpawns = new Dictionary<(int, int), Tile>();
         _minionSummonActionController.EnableSound();
         _minionSummonActionController.SkipCommandQueue = false;
-    }
-
-    public override void InitializeTurn(List<CharacterController> playerCharacters)
-    {
-        base.InitializeTurn(playerCharacters);
     }
 
     public override void Move(
@@ -61,25 +70,63 @@ public class QueenBeeAIController : AIController
         }
     }
 
+    /// <summary>
+    /// Computes a queue of best possible actions at the current position and executes them one-by-one.
+    /// </summary>
+    /// <param name="onComplete">Callback for when all actions have been executed.</param>
     public override void PerformAction(
         System.Action onComplete)
     {
         GetBeehives();
 
-        if (_summonedBees.Count < MaxSummons &&
-            _beeHives.Count > 0)
+        var maxActionsPerTurn = 2;
+        var currentActionNumber = 0;
+        var actionCallbacks = new Queue<QueenBeeAIAction>();
+        var excludedActions = new List<Action>();
+        var nextActionExists = GetNextAction(excludedActions, out var bestAction, out var targetTile);
+
+        while (nextActionExists && currentActionNumber < maxActionsPerTurn)
         {
-            EnterCameraFocusCommand();
-            var isSuccessfull = SummonBee(onComplete);
-            if (!isSuccessfull)
-            {
-                base.PerformAction(onComplete);
-            }
-            _excludedTileSpawns = new Dictionary<(int, int), Tile>();
+            actionCallbacks.Enqueue(
+                new QueenBeeAIAction
+                {
+                    ActionReference = bestAction,
+                    TargetTile = targetTile,
+                    ExecuteAction = (action, target, onActionComplete) =>
+                    {
+                        EnterCameraFocusCommand();
+                        if (action.ControllerType == ActionControllerType.MinionSummon)
+                        {
+                            SummonBee(target, onActionComplete);
+                        }
+                        else
+                        {
+                            _aiCharacter.PerformAction(action, target, onActionComplete);
+                        }
+                    }
+                });
+
+            excludedActions.Add(bestAction);
+            nextActionExists = GetNextAction(excludedActions, out bestAction, out targetTile);
+            currentActionNumber++;
+        }
+
+        ExecuteActions(actionCallbacks, onComplete);
+    }
+
+    private void ExecuteActions(Queue<QueenBeeAIAction> actions, System.Action onComplete)
+    {
+        if (actions.Count == 0)
+        {
+            onComplete();
         }
         else
         {
-            base.PerformAction(onComplete);
+            var action = actions.Dequeue();
+            action.ExecuteAction(action.ActionReference, action.TargetTile, () =>
+            {
+                ExecuteActions(actions, onComplete);
+            });
         }
     }
 
@@ -110,7 +157,7 @@ public class QueenBeeAIController : AIController
         }
     }
 
-    private bool SummonBee(System.Action onComplete)
+    private bool SummonBee(Tile targetTile, System.Action onComplete)
     {
         if (_beeHives == null || _beeHives.Count == 0)
         {
@@ -118,20 +165,12 @@ public class QueenBeeAIController : AIController
             return false;
         }
 
-        //Get spawn point.
-        var spawnTile = GetBeeSpawnTile();
-        if (spawnTile == null)
-        {
-            Debug.LogWarning("Unable to find a free spot next to a bee hive in order to summon a bee.");
-            return false;
-        }
-
         _minionSummonActionController.SetOnCharacterSummon(newCharacterController =>
         {
             _summonedBees.Add(newCharacterController);
         });
-        _minionSummonActionController.Execute(spawnTile, onComplete);
-        _excludedTileSpawns.Add((spawnTile.GridX, spawnTile.GridY), spawnTile);
+        _minionSummonActionController.Execute(targetTile, onComplete);
+        _excludedTileSpawns.Add((targetTile.GridX, targetTile.GridY), targetTile);
 
         //Store character in array.
 
@@ -163,6 +202,67 @@ public class QueenBeeAIController : AIController
         }
 
         return null;
+    }
+
+    private bool GetNextAction(List<Action> excludedActions, out Action bestAction, out Tile targetTile)
+    {
+        bestAction = null;
+        targetTile = null;
+        if (!_aiCharacter.IsAbleToAttack())
+        {
+            return false;
+        }
+
+        var canSummon = _summonedBees.Count < MaxSummons && _beeHives.Count > 0;
+        if (canSummon && !excludedActions.Contains(_minionSummonActionController.ActionReference))
+        {
+            if (_beeHives == null || _beeHives.Count == 0)
+            {
+                Debug.LogWarning("Unable to summon bee because there are no bee hives.");
+                return false;
+            }
+
+            var spawnTile = GetBeeSpawnTile();
+            if (spawnTile != null)
+            {
+                targetTile = spawnTile;
+                bestAction = _minionSummonActionController.ActionReference;
+                return true;
+            }
+        }
+
+        var bestDamageAction = GetMostEffectiveAttack(out var targetAttackTile, out var potentialDamage);
+        var bestHealAction = GetMostEffectiveHeal(out var targetHealTile, out var potentialHeal);
+        if (excludedActions.Contains(bestDamageAction))
+        {
+            bestDamageAction = null;
+        }
+        if (excludedActions.Contains(bestHealAction))
+        {
+            bestHealAction = null;
+        }
+
+        var damageActionExists = bestDamageAction != null && targetAttackTile != null;
+        var healActionExists = bestHealAction != null && targetHealTile != null;
+
+        if ((damageActionExists && healActionExists && potentialDamage > potentialHeal) ||
+            (damageActionExists && !healActionExists))
+        {
+            targetTile = targetAttackTile;
+            bestAction = bestDamageAction;
+        }
+        else if ((damageActionExists && healActionExists && potentialDamage <= potentialHeal) ||
+            (!damageActionExists && healActionExists))
+        {
+            targetTile = targetHealTile;
+            bestAction = bestHealAction;
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
     }
 
     protected override bool AICanAttack(out Action bestAttack, out Tile targetTile)
@@ -200,7 +300,7 @@ public class QueenBeeAIController : AIController
         return true;
     }
 
-    private void GetMostEffectiveHeal(
+    private Action GetMostEffectiveHeal(
         out Tile targetTile,
         out float maxPotentialHeal)
     {
@@ -239,6 +339,13 @@ public class QueenBeeAIController : AIController
                 targetTile = potentialTargetTile;
             }
         }
+
+        if (targetTile == null)
+        {
+            return null;
+        }
+
+        return _healActionController.ActionReference;
     }
 
     protected override void OnCharacterDeath(CharacterController deadCharacterController)
