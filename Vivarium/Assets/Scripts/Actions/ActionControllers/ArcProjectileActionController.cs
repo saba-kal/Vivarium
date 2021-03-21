@@ -61,7 +61,7 @@ public class ArcProjectileActionController : ActionController
         GenerateParticlesOnTiles(affectedTiles);
 
         var targetCharacters = TurnSystemManager.Instance.GetCharacterWithIds(targetCharacterIds, GetTargetType());
-        StartCoroutine(ExecuteAction(targetCharacters, affectedTiles));
+        CommandController.Instance.ExecuteCoroutine(ExecuteAction(targetCharacters, affectedTiles));
     }
 
     private IEnumerator AnimateProjectile(GameObject projectilePrefab, Vector3 startPosition, Vector3 endPosition, System.Action onComplete)

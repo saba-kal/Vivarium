@@ -34,6 +34,10 @@ public class ScrewActionController : ActionController
             targetCanMove = targetCharacter.Character.NavigableTiles.Contains(newTile.Type);
         }
 
+        if (targetCharacter.Character.Type == CharacterType.QueenBee)
+        {
+            targetCanMove = false;
+        }
 
         if (!targetCanMove)
         {

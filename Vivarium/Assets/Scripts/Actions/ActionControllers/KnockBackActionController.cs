@@ -51,7 +51,9 @@ public class KnockBackActionController : ActionController
         {
             drowned = true;
         }
-        else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
+        else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) ||
+            toTile.CharacterControllerId != null ||
+            targetCharacter.Character.Type == CharacterType.QueenBee)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
             targetCharacter.TakeDamage(damage);

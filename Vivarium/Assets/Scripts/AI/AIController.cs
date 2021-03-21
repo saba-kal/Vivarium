@@ -138,7 +138,8 @@ public class AIController : MonoBehaviour
 
         foreach (var attack in _aiCharacter.Character.Weapon.Actions)
         {
-            if (attack.ControllerType == ActionControllerType.Heal)
+            if (attack.ControllerType == ActionControllerType.Heal ||
+                attack.ControllerType == ActionControllerType.MinionSummon)
             {
                 continue;
             }

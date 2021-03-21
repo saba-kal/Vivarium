@@ -7,6 +7,7 @@ public class QueenBeeAIController : AIController
 {
     public int MaxSummons;
     public int StartingSummons;
+    public int ActionsPerTurn;
 
     private QueenBeePhase _phase = QueenBeePhase.Defend;
     private List<BeeHiveAIController> _beeHives = null;
@@ -42,17 +43,18 @@ public class QueenBeeAIController : AIController
     {
         _minionSummonActionController.DisableSound();
         _minionSummonActionController.SkipCommandQueue = true;
+        var excludedTileSpawns = new Dictionary<(int, int), Tile>();
         for (int i = 0; i < StartingSummons; i++)
         {
-            var spawnTile = GetBeeSpawnTile();
+            var spawnTile = GetBeeSpawnTile(excludedTileSpawns);
             if (spawnTile == null)
             {
                 Debug.LogWarning("Unable to find a free spot next to a bee hive in order to summon a bee.");
                 continue;
             }
             SummonBee(spawnTile, null);
+            excludedTileSpawns.Add((spawnTile.GridX, spawnTile.GridY), spawnTile);
         }
-        _excludedTileSpawns = new Dictionary<(int, int), Tile>();
         _minionSummonActionController.EnableSound();
         _minionSummonActionController.SkipCommandQueue = false;
     }
@@ -79,13 +81,12 @@ public class QueenBeeAIController : AIController
     {
         GetBeehives();
 
-        var maxActionsPerTurn = 2;
         var currentActionNumber = 0;
         var actionCallbacks = new Queue<QueenBeeAIAction>();
         var excludedActions = new List<Action>();
         var nextActionExists = GetNextAction(excludedActions, out var bestAction, out var targetTile);
 
-        while (nextActionExists && currentActionNumber < maxActionsPerTurn)
+        while (nextActionExists && currentActionNumber < ActionsPerTurn)
         {
             actionCallbacks.Enqueue(
                 new QueenBeeAIAction
@@ -170,14 +171,13 @@ public class QueenBeeAIController : AIController
             _summonedBees.Add(newCharacterController);
         });
         _minionSummonActionController.Execute(targetTile, onComplete);
-        _excludedTileSpawns.Add((targetTile.GridX, targetTile.GridY), targetTile);
 
         //Store character in array.
 
         return true;
     }
 
-    private Tile GetBeeSpawnTile()
+    private Tile GetBeeSpawnTile(Dictionary<(int, int), Tile> excludedTiles = null)
     {
         var grid = TileGridController.Instance;
         var randomBeeHiveIndex = Random.Range(0, _beeHives.Count);
@@ -189,7 +189,7 @@ public class QueenBeeAIController : AIController
             summonAttempts++;
 
             var beeHiveGridPosition = grid.GetGrid().GetValue(randomBeeHive.transform.position);
-            var adjacentTiles = grid.GetAdjacentTiles(beeHiveGridPosition, TileType.Grass, false, _excludedTileSpawns);
+            var adjacentTiles = grid.GetAdjacentTiles(beeHiveGridPosition, TileType.Grass, false, excludedTiles);
             if (adjacentTiles.Count == 0)
             {
                 randomBeeHiveIndex = (randomBeeHiveIndex + 1) % _beeHives.Count;
@@ -219,15 +219,16 @@ public class QueenBeeAIController : AIController
             if (_beeHives == null || _beeHives.Count == 0)
             {
                 Debug.LogWarning("Unable to summon bee because there are no bee hives.");
-                return false;
             }
-
-            var spawnTile = GetBeeSpawnTile();
-            if (spawnTile != null)
+            else
             {
-                targetTile = spawnTile;
-                bestAction = _minionSummonActionController.ActionReference;
-                return true;
+                var spawnTile = GetBeeSpawnTile();
+                if (spawnTile != null)
+                {
+                    targetTile = spawnTile;
+                    bestAction = _minionSummonActionController.ActionReference;
+                    return true;
+                }
             }
         }
 
@@ -353,7 +354,7 @@ public class QueenBeeAIController : AIController
         base.OnCharacterDeath(deadCharacterController);
         for (var i = 0; i < _summonedBees.Count; i++)
         {
-            if (_summonedBees[i] == null || _summonedBees[i]?.Id == deadCharacterController?.Id)
+            if (_summonedBees[i].Id == deadCharacterController.Id)
             {
                 _summonedBees.RemoveAt(i);
             }

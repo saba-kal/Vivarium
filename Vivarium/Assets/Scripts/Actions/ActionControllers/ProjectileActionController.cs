@@ -9,6 +9,8 @@ public class ProjectileActionController : ActionController
     public Vector3 ProjectileStartPosition;
     public Transform ProjectileTransform;
 
+    private bool _skipAnimation = false;
+
     public override void Execute(Tile targetTile, System.Action onActionComplete = null)
     {
         if (_characterController == null)
@@ -57,18 +59,27 @@ public class ProjectileActionController : ActionController
         var endTile = affectedTiles.LastOrDefault();
         if (ActionReference.ProjectilePrefab != null && !endTile.Equals(default(KeyValuePair<(int, int), Tile>)))
         {
+            PerformAnimation();
+            _skipAnimation = true;
+
             var startPosition = grid.GetWorldPositionCentered(startTile.GridX, startTile.GridY);
             var endPosition = grid.GetWorldPositionCentered(endTile.Value.GridX, endTile.Value.GridY);
-            StartCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, startPosition, endPosition));
+            CommandController.Instance.ExecuteCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, startPosition, endPosition, () =>
+            {
+                ExecuteAction(affectedTiles);
+                _skipAnimation = false;
+
+                onActionComplete?.Invoke();
+            }));
         }
 
         PlaySound();
-        ExecuteAction(affectedTiles);
-        onActionComplete?.Invoke();
     }
 
-    private IEnumerator AnimateProjectile(GameObject projectilePrefab, Vector3 startPosition, Vector3 endPosition)
+    private IEnumerator AnimateProjectile(GameObject projectilePrefab, Vector3 startPosition, Vector3 endPosition, System.Action onActionComplete = null)
     {
+        yield return new WaitForSeconds(ActionReference.ActionTriggerDelay);
+
         var projectile = Instantiate(projectilePrefab);
         projectile.transform.position = startPosition;
 
@@ -79,6 +90,7 @@ public class ProjectileActionController : ActionController
         }
 
         Destroy(projectile);
+        onActionComplete?.Invoke();
         yield return null;
     }
 
@@ -128,5 +140,15 @@ public class ProjectileActionController : ActionController
         }
 
         _tilesActionCanAffect = tilesProjectileCanHit;
+    }
+
+    protected override void PerformAnimation()
+    {
+        if (_skipAnimation)
+        {
+            return;
+        }
+
+        base.PerformAnimation();
     }
 }

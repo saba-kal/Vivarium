@@ -36,7 +36,7 @@ public class SwitchPositionActionController : ActionController
 
         var playerCanMove = _characterController.Character.NavigableTiles.Contains(targetTile.Type);
         var targetCanMove = targetCharacter.Character.NavigableTiles.Contains(playerTile.Type);
-        var charactersCanMove = playerCanMove && targetCanMove;
+        var charactersCanMove = playerCanMove && targetCanMove && targetCharacter.Character.Type != CharacterType.QueenBee;
         if (!charactersCanMove)
         {
             UnityEngine.Debug.Log("Attempted to switch positions onto unnavigable tile ");
