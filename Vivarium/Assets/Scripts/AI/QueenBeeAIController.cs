@@ -325,10 +325,12 @@ public class QueenBeeAIController : AIController
                     continue;
                 }
 
-                var summonedBee = _summonedBees.FirstOrDefault(p => p?.Id == affectedTile.CharacterControllerId);
-                if (summonedBee != null)
+                var allyCharacter = TurnSystemManager.Instance.AIManager.AICharacters
+                    .FirstOrDefault(p => p?.Id == affectedTile.CharacterControllerId);
+
+                if (allyCharacter != null)
                 {
-                    var missingHealth = summonedBee.Character.MaxHealth - summonedBee.GetHealthController().GetCurrentHealth();
+                    var missingHealth = allyCharacter.Character.MaxHealth - allyCharacter.GetHealthController().GetCurrentHealth();
                     var healAmount = Mathf.Clamp(missingHealth, 0, potentialHeal);
                     healOnAffectedTiles += healAmount;
                 }

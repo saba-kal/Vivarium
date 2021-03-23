@@ -4,6 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+/// <summary>
+/// Action controller for knocking back units when they are attacked.
+/// </summary>
 public class KnockBackActionController : ActionController
 {
     //public Vector3 ProjectileStartPosition;
@@ -47,13 +50,12 @@ public class KnockBackActionController : ActionController
         }
 
         bool drowned = false;
-        if (toTile.Type == TileType.Water)
+        if (toTile.Type == TileType.Water && targetCharacter.Character.Type != CharacterType.QueenBee)
         {
             drowned = true;
         }
         else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) ||
-            toTile.CharacterControllerId != null ||
-            targetCharacter.Character.Type == CharacterType.QueenBee)
+            toTile.CharacterControllerId != null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
             targetCharacter.TakeDamage(damage);
@@ -65,8 +67,10 @@ public class KnockBackActionController : ActionController
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
         //Checks if target will die before moving them
-        //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
-        if ((health + shield) > damage)
+        //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread.
+        //Also, check if move will drown a boss. If so, do not move the character.
+        if ((health + shield) > damage &&
+            (toTile.Type != TileType.Water || targetCharacter.Character.Type != CharacterType.QueenBee))
         {
             CommandController.Instance.ExecuteCommand(
                 new MoveCommand(

@@ -12,7 +12,6 @@ public class HealActionController : ArcProjectileActionController
             return;
         }
 
-        Debug.Log("Heal Activated");
         var healAmount = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         targetCharacter.Heal(healAmount);
         Debug.Log($"{_characterController.Character.Name} healed {targetCharacter.Character.Name} by {healAmount} points.");
