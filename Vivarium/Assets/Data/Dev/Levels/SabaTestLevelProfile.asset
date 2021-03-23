@@ -43,7 +43,7 @@ MonoBehaviour:
   - Count: 1
     Item: {fileID: 11400000, guid: d96cf790f5d3bc64181bbc1a3cfb18ce, type: 2}
   - Count: 1
-    Item: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
+    Item: {fileID: 11400000, guid: 35711071a24c85b41b28b5a40b315754, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
