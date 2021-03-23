@@ -469,17 +469,24 @@ public class CharacterController : MonoBehaviour
     }
 
 
-    //Handles Staple action effect.
-    public void IsStunned()
+    /// <summary>
+    /// Stuns a character by reducing move range to 0.
+    /// </summary>
+    /// <param name="newMoveRange">Optional parameter to set the movement range to something else.</param>
+    public void IsStunned(float newMoveRange = 0)
     {
         _savedMoveRange = Character.MoveRange;
-        Character.MoveRange = 0;
+        Character.MoveRange = newMoveRange;
     }
-    //Removes Staple effect.
+
+    /// <summary>
+    /// Removes stun effect on character by restoring movement range.
+    /// </summary>
     public void Destun()
     {
         Character.MoveRange = _savedMoveRange;
     }
+
     private void PerformDeathAnimation()
     {
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
@@ -487,6 +494,10 @@ public class CharacterController : MonoBehaviour
         myAnimator.SetTrigger(animationTypeName);
     }
 
+    /// <summary>
+    /// Gets the movement controller component.
+    /// </summary>
+    /// <returns><see cref="MoveController"></returns>
     public MoveController GetMoveController()
     {
         return _moveController;

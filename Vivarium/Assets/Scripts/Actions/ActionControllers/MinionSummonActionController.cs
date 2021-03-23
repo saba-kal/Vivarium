@@ -30,8 +30,6 @@ public class MinionSummonActionController : ArcProjectileActionController
 
     private void SummonCharacter(Tile targetTile)
     {
-        _onCharactorSummon?.Invoke(_summonedCharacter);
-
         var grid = TileGridController.Instance;
 
         _summonedCharacter = new CharacterGenerator()
@@ -52,6 +50,14 @@ public class MinionSummonActionController : ArcProjectileActionController
             _summonedCharacter.transform.parent = playerController.transform;
             playerController.PlayerCharacters.Add(_summonedCharacter);
         }
+
+        InventoryManager.PlaceCharacterItem(_summonedCharacter.Id, _summonedCharacter.Character.Weapon);
+        if (_summonedCharacter.Character.Shield != null)
+        {
+            InventoryManager.PlaceCharacterItem(_summonedCharacter.Id, _summonedCharacter.Character.Shield);
+        }
+
+        _onCharactorSummon?.Invoke(_summonedCharacter);
     }
 
     /// <summary>

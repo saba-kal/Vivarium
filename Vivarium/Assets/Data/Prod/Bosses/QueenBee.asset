@@ -20,8 +20,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: aaa3bf713c635914abcd01089d0cf425, type: 3}
   Type: 1
-  MaxSummons: 6
+  MaxSummons: 10000
   StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 500
   MaxMaxHealth: 500
   MinAttackDamage: 0
@@ -29,6 +30,7 @@ MonoBehaviour:
   MinMoveRange: 10
   MaxMoveRange: 10
   MaxItems: 3
+  Aggro: 0
   NavigableTiles: 0000000001000000
   CanMoveThroughCharacters: 1
   WeaponProfile: {fileID: 11400000, guid: f1ef78b4f40f5df419cba0f21371485d, type: 2}

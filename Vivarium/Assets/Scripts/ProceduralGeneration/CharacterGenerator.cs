@@ -34,6 +34,7 @@ public class CharacterGenerator
                     var queenBeeAi = characterGameObject.AddComponent<QueenBeeAIController>();
                     queenBeeAi.MaxSummons = characterProfile.MaxSummons;
                     queenBeeAi.StartingSummons = characterProfile.StartingSummons;
+                    queenBeeAi.ActionsPerTurn = characterProfile.ActionsPerTurn;
                     break;
                 case CharacterType.Normal:
                 default:

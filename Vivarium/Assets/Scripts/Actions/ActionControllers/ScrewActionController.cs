@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System;
 
+/// <summary>
+/// Action controller for moving a character 90 degrees clockwise when attacked.
+/// </summary>
 public class ScrewActionController : ActionController
 {
     private Grid<Tile> _grid;
@@ -24,7 +27,7 @@ public class ScrewActionController : ActionController
 
         bool targetCanMove = false;
         bool drowned = false;
-        if (newTile.Type == TileType.Water)
+        if (newTile.Type == TileType.Water && targetCharacter.Character.Type != CharacterType.QueenBee)
         {
             drowned = true;
             targetCanMove = true;
@@ -34,6 +37,10 @@ public class ScrewActionController : ActionController
             targetCanMove = targetCharacter.Character.NavigableTiles.Contains(newTile.Type);
         }
 
+        if (newTile.Type == TileType.Water && targetCharacter.Character.Type == CharacterType.QueenBee)
+        {
+            targetCanMove = false;
+        }
 
         if (!targetCanMove)
         {

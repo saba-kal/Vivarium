@@ -16,6 +16,7 @@ public class CharacterGenerationProfile : ScriptableObject
     public CharacterType Type = CharacterType.Normal;
     public int MaxSummons = 6;
     public int StartingSummons = 3;
+    public int ActionsPerTurn = 2;
 
     [Header("Stats")]
     public float MinMaxHealth;
