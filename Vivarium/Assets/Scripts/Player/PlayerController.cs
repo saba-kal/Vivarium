@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public static event AllCharactersDead OnAllCharactersDead;
     public delegate void PlayerAttack();
     public static event PlayerAttack OnPlayerAttack;
+    public delegate void CharacterSelect(CharacterController character);
+    public static event CharacterSelect OnCharacterSelect;
 
     public List<CharacterController> PlayerCharacters;
     private CharacterController _selectedCharacter;
@@ -27,8 +29,8 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         TileGridController.OnGridCellClick += OnGridCellClick;
-        UIController.OnActionClick += SelectAction;
-        UIController.OnMoveClick += SelectMove;
+        UnitInspectionController.OnActionClick += SelectAction;
+        UnitInspectionController.OnMoveClick += SelectMove;
         InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
@@ -36,8 +38,8 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         TileGridController.OnGridCellClick -= OnGridCellClick;
-        UIController.OnActionClick -= SelectAction;
-        UIController.OnMoveClick -= SelectMove;
+        UnitInspectionController.OnActionClick -= SelectAction;
+        UnitInspectionController.OnMoveClick -= SelectMove;
         InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
         if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy && AoeEnemyDetection(selectedTile))
         {
             PerformAction(selectedTile);
-            UIController.Instance.DisableActionsForCharacter(_selectedCharacter.Id);
+            UnitInspectionController.Instance.DisableWeaponActionsForCharacter(_selectedCharacter.Id);
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
             {
                 OnCharacterMoveComplete(selectedTile);
             });
-            UIController.Instance.DisableMoveForCharacter(_selectedCharacter.Id);
+            UnitInspectionController.Instance.DisableMoveForCharacter(_selectedCharacter.Id);
         }
         //Grid cell click was probably on a character.
         else
@@ -131,6 +133,8 @@ public class PlayerController : MonoBehaviour
             if (tile.GridX == x && tile.GridY == y)
             {
                 SelectCharacter(character);
+                OnCharacterSelect?.Invoke(character);
+                return;
             }
         }
     }
@@ -172,9 +176,6 @@ public class PlayerController : MonoBehaviour
         var actionAOE = StatCalculator.CalculateStat(action, StatType.AttackAOE);
         attackController.CalculateAffectedTiles();
         attackViewer.DisplayAction(actionAOE, attackController.GetAffectedTiles());
-        UIController.Instance.DisplayActionStats(_selectedAction);
-
-        Debug.Log($"Attack '{action.Name}' has been selected.");
     }
 
     private void DeselectAction()
@@ -194,7 +195,6 @@ public class PlayerController : MonoBehaviour
         actionViewer.HideAction();
         _actionIsSelected = false;
         _selectedAction = null;
-        UIController.Instance.ClearActionStats();
     }
 
     private void PerformAction(Tile targetTile)

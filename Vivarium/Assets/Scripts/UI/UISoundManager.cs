@@ -11,7 +11,8 @@ public class UISoundManager : MonoBehaviour
         InventorySlot.OnSlotClick += OnInventorySlotClick;
         InventoryUIController.OnEquipClick += PlayEquip;
         InventoryUIController.OnConsumeClick += PlayConsume;
-        UIController.OnActionClick += OnActionClick;
+        UnitInspectionController.OnActionClick += OnActionClick;
+        UnitInspectionController.OnMoveClick += OnMoveClick;
     }
 
     void OnDisable()
@@ -19,7 +20,8 @@ public class UISoundManager : MonoBehaviour
         InventorySlot.OnSlotClick -= OnInventorySlotClick;
         InventoryUIController.OnEquipClick -= PlayEquip;
         InventoryUIController.OnConsumeClick -= PlayConsume;
-        UIController.OnActionClick -= OnActionClick;
+        UnitInspectionController.OnActionClick -= OnActionClick;
+        UnitInspectionController.OnMoveClick -= OnMoveClick;
     }
 
     // Use this for initialization
@@ -29,6 +31,11 @@ public class UISoundManager : MonoBehaviour
     }
 
     private void OnInventorySlotClick(InventorySlot inventorySlot)
+    {
+        _soundManager.Play(Constants.BUTTON_CLICK_SOUND);
+    }
+
+    private void OnMoveClick()
     {
         _soundManager.Play(Constants.BUTTON_CLICK_SOUND);
     }
