@@ -132,7 +132,7 @@ public class AIController : MonoBehaviour
         if (_aiCharacter.Character.Weapon?.Actions == null ||
             _aiCharacter.Character.Weapon.Actions.Count == 0)
         {
-            Debug.LogWarning($"Character {_aiCharacter.Character.Name} does not have a weapon with attacks.");
+            Debug.LogWarning($"Character {_aiCharacter.Character.Flavor.Name} does not have a weapon with attacks.");
             return bestAttack;
         }
 

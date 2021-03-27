@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
+    public float TooltipCleanupInterval = 0.3f;
 
     private GameObject _activeTooltip;
     private TooltipType _type;
@@ -15,6 +16,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Character CharacterToShow;
     private bool _mouseIsHoveringOverElement = false;
     private Canvas _canvas;
+    private float _timeSinceLastCleanup = 0f;
 
     void Start()
     {
@@ -43,6 +45,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (_activeTooltip != null)
         {
             PositionTooltip();
+        }
+
+        _timeSinceLastCleanup += Time.deltaTime;
+        if (_timeSinceLastCleanup > TooltipCleanupInterval)
+        {
+            CleanupOrphanTooltips();
+            _timeSinceLastCleanup = 0;
         }
     }
 
@@ -87,6 +96,30 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
 
         tooltipRectTransform.transform.position = new Vector2(xPosition, yPosition);
+    }
+
+    private void CleanupOrphanTooltips()
+    {
+        //TODO: figure out how to detect orphan tooltips. This does not work currently.
+        return;
+
+        Debug.Log(_activeTooltip?.GetInstanceID());
+
+        var tooltipView = _activeTooltip?.GetComponentInChildren<TooltipView>();
+
+        foreach (Transform child in TooltipContainer.Instance.transform)
+        {
+            if (tooltipView != null)
+            {
+                var childTooltipView = child.GetComponentInChildren<TooltipView>();
+                if (childTooltipView != null && tooltipView.Id != childTooltipView.Id)
+                {
+                    Destroy(child.gameObject);
+                }
+                //Debug.Log(child.name);
+                //Destroy(child.gameObject);
+            }
+        }
     }
 
     public void HideTooltip()

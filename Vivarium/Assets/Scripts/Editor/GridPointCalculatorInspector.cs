@@ -22,7 +22,7 @@ public class GridPointCalculatorInspector : Editor
         {
             foreach (var aiCharacter in aiCharacters)
             {
-                characterDropdownOptions.Add($"{aiCharacter.Character.Name} - {aiCharacter.Id}");
+                characterDropdownOptions.Add($"{aiCharacter.Character.Flavor.Name} - {aiCharacter.Id}");
             }
         }
         _selectedCharacter = EditorGUILayout.Popup("Character to Calculate", _selectedCharacter, characterDropdownOptions.ToArray());

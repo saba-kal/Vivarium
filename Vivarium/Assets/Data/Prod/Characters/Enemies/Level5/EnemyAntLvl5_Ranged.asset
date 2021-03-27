@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 1448550247729942650, guid: bdb20c4c6fdceb34792e5b2c21be982a, type: 3}
-  PossibleNames:
-  - Bow Ant (lv 5)
   PossiblePortraits: []
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 9ebf725b74e436947819e844ed1dbea0, type: 2}
   Type: 0
   MaxSummons: 6
   StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 65
   MaxMaxHealth: 109
   MinAttackDamage: 32

@@ -25,10 +25,6 @@ public static class StatCalculator
     public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes, StatCalculationType calcType)
     {
         var statMultiplier = 1f;
-        if (statType == StatType.AttackAOE)
-        {
-            baseValue += Constants.AOE_CALCULATION_OFFSET;
-        }
 
         foreach (var attribute in attributes)
         {

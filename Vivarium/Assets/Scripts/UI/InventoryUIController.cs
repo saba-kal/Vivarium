@@ -112,7 +112,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (_selectedItemSlot.GetItem().Item.Type != ItemType.Consumable)
         {
-            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Name} because it is not a consumable type.");
+            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Flavor.Name} because it is not a consumable type.");
             return;
         }
 
@@ -142,7 +142,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (_selectedItemSlot.GetItem().Item.Type != ItemType.Weapon && _selectedItemSlot.GetItem().Item.Type != ItemType.Shield)
         {
-            Debug.LogError($"Cannot equip {_selectedItemSlot.GetItem().Item.Name} because it is not a weapon or shield type.");
+            Debug.LogError($"Cannot equip {_selectedItemSlot.GetItem().Item.Flavor.Name} because it is not a weapon or shield type.");
             return;
         }
 

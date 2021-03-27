@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class UICameraController : MonoBehaviour
 {
+    private void Start()
+    {
+        transform.position = Vector3.zero;
+    }
+
     void OnEnable()
     {
         PlayerController.OnCharacterSelect += OnCharacterSelect;
@@ -16,6 +21,7 @@ public class UICameraController : MonoBehaviour
 
     private void OnCharacterSelect(CharacterController selectedCharacter)
     {
-        transform.position = selectedCharacter.transform.position;
+        //transform.position = selectedCharacter.transform.position;
+        transform.SetParent(selectedCharacter.Model.transform, false);
     }
 }

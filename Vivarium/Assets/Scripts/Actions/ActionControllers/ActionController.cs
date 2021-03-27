@@ -138,12 +138,12 @@ public class ActionController : MonoBehaviour, IActionController
     {
         if (targetCharacter == null)
         {
-            Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
+            Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Flavor.Name} because it is null. Most likely, the character is dead");
             return;
         }
         var damage = StatCalculator.CalculateStat(_characterController.Character, ActionReference, StatType.Damage);
         targetCharacter.TakeDamage(damage);
-        Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        Debug.Log($"{targetCharacter.Character.Flavor.Name} took {damage} damage from {_characterController.Character.Flavor.Name}.");
     }
 
     protected void PlaySound()

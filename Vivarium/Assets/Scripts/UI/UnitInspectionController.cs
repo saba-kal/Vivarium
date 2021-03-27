@@ -16,10 +16,13 @@ public class UnitInspectionController : MonoBehaviour
     public static event MoveClick OnMoveClick;
 
     public string MoveButtonText = "Move";
+
     public GameObject ActionButtonsContainer;
     public Button ActionButtonPrefab;
     public GameObject SelectedButtonIndicatorPrefab;
+    public TextMeshProUGUI UnitNameText;
     public TextMeshProUGUI UnitStatsText;
+    public TextMeshProUGUI UnitAbilityText;
 
     private Button _moveButton;
     private CharacterController _characterController;
@@ -118,7 +121,7 @@ public class UnitInspectionController : MonoBehaviour
                 });
             }
             var buttonText = actionButton.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = action.Name;
+            buttonText.text = action.Flavor.Name;
 
             var tooltip = actionButton.GetComponent<Tooltip>();
             if (tooltip != null)
@@ -192,11 +195,14 @@ public class UnitInspectionController : MonoBehaviour
 
     private void DisplayUnitStats()
     {
-        UnitStatsText.text = "";
-        UnitStatsText.text += $"{BuildStatRangeText(StatType.Damage)}\n";
+        UnitNameText.text = _characterController.Character.Flavor.Name;
+
+        UnitStatsText.text = $"{BuildStatRangeText(StatType.Damage)}\n";
         UnitStatsText.text += $"{BuildStatRangeText(StatType.MoveRadius)}\n";
         UnitStatsText.text += $"{BuildHealthText()}\n";
         UnitStatsText.text += $"{BuildShieldText()}";
+
+        UnitAbilityText.text = $"Ability: {_characterController.Character.Flavor.Description}";
     }
 
     private string BuildStatRangeText(StatType statType)
@@ -233,7 +239,7 @@ public class UnitInspectionController : MonoBehaviour
         var currentHealth = _characterController.GetHealthController().GetCurrentHealth();
         var maxHealth = StatCalculator.CalculateStat(_characterController.Character, StatType.Health);
 
-        var healthText = $"Health: {currentHealth:n0}/{maxHealth:n0}\n";
+        var healthText = $"Health: {currentHealth:n0}/{maxHealth:n0}";
 
         return healthText;
     }
@@ -248,7 +254,7 @@ public class UnitInspectionController : MonoBehaviour
         var currentShield = _characterController.GetHealthController().GetCurrentShield();
         var maxShield = _characterController.Character.Shield.Health;
 
-        var healthText = $"Health: {currentShield:n0}/{maxShield:n0}\n";
+        var healthText = $"Health: {currentShield:n0}/{maxShield:n0}";
 
         return healthText;
     }
