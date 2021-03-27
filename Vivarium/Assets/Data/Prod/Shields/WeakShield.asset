@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: WeakShield
   m_EditorClassIdentifier: 
   Id: WeakShield123
-  Name: Acorn Shield
-  Description: A shield made from an acorn that increases total health by 25
+  ItemFlavorText: {fileID: 11400000, guid: fb2cea3c43601df43a3272f137c1ea87, type: 2}
   Type: 2
   Icon: {fileID: 21300000, guid: 63ad32e46ff663c40889aba446d4572e, type: 3}
   Model: {fileID: 0}

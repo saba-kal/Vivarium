@@ -267,13 +267,13 @@ public class CharacterController : MonoBehaviour
     {
         if ((item.Type != ItemType.Weapon) && (item.Type != ItemType.Shield))
         {
-            Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot equip non-weapon items.");
             return;
         }
 
         if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
         {
-            Debug.LogError($"Character {Character.Name}: cannot equip item that does not exist in character's inventory.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot equip item that does not exist in character's inventory.");
             return;
         }
 
@@ -358,7 +358,7 @@ public class CharacterController : MonoBehaviour
     {
         DetachCamera();
 
-        Debug.Log($"Character {Character.Name} died.");
+        Debug.Log($"Character {Character.Flavor.Name} died.");
         var currentGridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
         if (currentGridPosition != null)
         {
@@ -395,13 +395,13 @@ public class CharacterController : MonoBehaviour
     {
         if (item.Type != ItemType.Consumable)
         {
-            Debug.LogError($"Character {Character.Name}: cannot eat non-consumable items.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot eat non-consumable items.");
             return;
         }
 
         if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
         {
-            Debug.LogError($"Character {Character.Name}: cannot eat item that does not exist.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot eat item that does not exist.");
             return;
         }
 

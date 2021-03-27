@@ -241,7 +241,7 @@ namespace Assets.Scripts.UI
             {
                 foreach (var inventoryItem in inventoryItems)
                 {
-                    logMessage += $"[Name={inventoryItem.Item.Name},Count={inventoryItem.Count}] ";
+                    logMessage += $"[Name={inventoryItem.Item.Flavor.Name},Count={inventoryItem.Count}] ";
                 }
             }
 

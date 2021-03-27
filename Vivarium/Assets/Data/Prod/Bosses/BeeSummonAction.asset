@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: Bee summon action 123
   Name: Summon Bee
   Description: Summon's a bee next to a bee hive.
+  ActionFlavorText: {fileID: 11400000, guid: 225ea87d6b7c00a4e9178c8259070318, type: 2}
   SoundName: TestAttackSound
   BaseDamage: 0
   CriticalChance: 0

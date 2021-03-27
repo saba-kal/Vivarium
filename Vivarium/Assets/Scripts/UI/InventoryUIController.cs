@@ -16,9 +16,6 @@ public class InventoryUIController : MonoBehaviour
     public Button ConsumeButton;
     public Button EquipButton;
     public GameObject SelectedInventorySlotOverlay;
-    public TextMeshProUGUI ItemDescription;
-    public TextMeshProUGUI ItemName;
-    public TextMeshProUGUI ItemStats;
     public bool DisableActionsOnConsume = true;
     public bool DisableActionsOnEquip = true;
 
@@ -77,7 +74,6 @@ public class InventoryUIController : MonoBehaviour
         _equippedWeaponIndex = -1;
         _equippedShieldIndex = -1;
         _selectedItemSlot = null;
-        ItemDescription.text = "";
         SelectedInventorySlotOverlay.SetActive(false);
 
         foreach (var inventorySlot in _inventorySlots)
@@ -87,6 +83,7 @@ public class InventoryUIController : MonoBehaviour
 
         _selectedCharacterController = selectedCharacterController;
         UpdateInventoryDisplay();
+        UpdateButtons();
     }
 
     private void OnInventorySlotClick(InventorySlot inventorySlot)
@@ -103,7 +100,6 @@ public class InventoryUIController : MonoBehaviour
         SelectedInventorySlotOverlay.transform.SetParent(inventorySlot.transform);
         SelectedInventorySlotOverlay.transform.position = inventorySlot.transform.position;
         SelectedInventorySlotOverlay.SetActive(true);
-        ItemDescription.text = _selectedItemSlot.GetItem().Item.Name;
     }
 
     private void OnConsumeButtonClick()
@@ -116,7 +112,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (_selectedItemSlot.GetItem().Item.Type != ItemType.Consumable)
         {
-            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Name} because it is not a consumable type.");
+            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Flavor.Name} because it is not a consumable type.");
             return;
         }
 
@@ -130,7 +126,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (DisableActionsOnConsume)
         {
-            UIController.Instance.DisableActionsForCharacter();
+            UnitInspectionController.Instance.DisableWeaponActionsForCharacter();
         }
 
         OnConsumeClick?.Invoke();
@@ -146,7 +142,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (_selectedItemSlot.GetItem().Item.Type != ItemType.Weapon && _selectedItemSlot.GetItem().Item.Type != ItemType.Shield)
         {
-            Debug.LogError($"Cannot equip {_selectedItemSlot.GetItem().Item.Name} because it is not a weapon or shield type.");
+            Debug.LogError($"Cannot equip {_selectedItemSlot.GetItem().Item.Flavor.Name} because it is not a weapon or shield type.");
             return;
         }
 
@@ -159,7 +155,7 @@ public class InventoryUIController : MonoBehaviour
 
         if (DisableActionsOnEquip)
         {
-            UIController.Instance.DisableActionsForCharacter();
+            UnitInspectionController.Instance.DisableWeaponActionsForCharacter();
         }
 
         OnEquipClick?.Invoke();

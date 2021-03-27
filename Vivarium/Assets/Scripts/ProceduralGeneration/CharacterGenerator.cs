@@ -11,7 +11,7 @@ public class CharacterGenerator
         characterData.Weapon = new WeaponGenerator().GenerateWeapon(characterProfile.WeaponProfile);
         characterData.Shield = new ShieldGenerator().GenerateShield(characterProfile.ShieldProfile);
 
-        var characterGameObject = new GameObject(characterData.Name);
+        var characterGameObject = new GameObject(characterData.Flavor.Name);
 
         var characterController = characterGameObject.AddComponent<CharacterController>();
         characterController.Id = characterData.Id;
@@ -57,7 +57,7 @@ public class CharacterGenerator
     {
         var character = new Character();
         character.Id = Guid.NewGuid().ToString();
-        character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
+        character.Flavor = FlavorText.FromFlavorTextData(characterProfile.CharacterFlavorText);
         if (characterProfile.PossiblePortraits.Count > 0)
         {
             character.Portrait = characterProfile.PossiblePortraits[UnityEngine.Random.Range(0, characterProfile.PossiblePortraits.Count)];

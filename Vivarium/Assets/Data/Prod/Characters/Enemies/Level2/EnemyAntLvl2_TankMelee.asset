@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 2134149279704721023, guid: 0d7ecc0dcb3b82742924a0cbe972d17e, type: 3}
-  PossibleNames:
-  - Heavy Ant (lv 2)
   PossiblePortraits: []
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: bd8a5062bd92d2c47992829339f6d82f, type: 2}
   Type: 0
   MaxSummons: 6
   StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 105
   MaxMaxHealth: 140
   MinAttackDamage: 19

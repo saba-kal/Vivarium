@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cbcf0ea4b09be4ba5f1c1c8e85b63a, type: 3}
+  m_Name: FountainGauntlet
+  m_EditorClassIdentifier: 
+  Id: FountainGauntlet738
+  Name: Fountain Gauntlet
+  Description: Can Rend to pull an enemy to the attackers spot and move the user
+    to where they were.
+  ItemFlavorText: {fileID: 11400000, guid: 9e8a672d3d7b1844c9090c86d13766e3, type: 2}
+  Type: 1
+  Icon: {fileID: 21300000, guid: 084586fa54f37764d82e9a730eade34b, type: 3}
+  Model: {fileID: 0}
+  CanBeStacked: 0
+  Attributes: []
+  Actions:
+  - {fileID: 11400000, guid: 738f26baa177aec4ca69ef0db83f12ab, type: 2}
+  - {fileID: 11400000, guid: e9ab954b9b719e7408c067823e3e4038, type: 2}

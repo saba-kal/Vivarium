@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
+    public float TooltipCleanupInterval = 0.3f;
 
     private GameObject _activeTooltip;
     private TooltipType _type;
@@ -13,6 +15,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Action ActionToShow;
     private Character CharacterToShow;
     private bool _mouseIsHoveringOverElement = false;
+    private Canvas _canvas;
+    private float _timeSinceLastCleanup = 0f;
+
+    void Start()
+    {
+        _canvas = GetComponentInParent<Canvas>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,6 +45,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (_activeTooltip != null)
         {
             PositionTooltip();
+        }
+
+        _timeSinceLastCleanup += Time.deltaTime;
+        if (_timeSinceLastCleanup > TooltipCleanupInterval)
+        {
+            CleanupOrphanTooltips();
+            _timeSinceLastCleanup = 0;
         }
     }
 
@@ -64,18 +80,46 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void PositionTooltip()
     {
         var mousePosition = Input.mousePosition;
-        var tooltipRectTransform = _activeTooltip.GetComponent<RectTransform>().rect;
-        var xPosition = mousePosition.x + tooltipRectTransform.width / 2f;
-        if (xPosition > Screen.width - tooltipRectTransform.width / 2f)
+        var tooltipRectTransform = _activeTooltip.GetComponent<RectTransform>();
+        var width = tooltipRectTransform.rect.width * _canvas.scaleFactor;
+        var height = tooltipRectTransform.rect.height * _canvas.scaleFactor;
+
+        var xPosition = mousePosition.x + width / 2f;
+        if (xPosition > Screen.width - width / 2f)
         {
-            xPosition = mousePosition.x - tooltipRectTransform.width / 2f;
+            xPosition = mousePosition.x - width / 2f;
         }
-        var yPosition = mousePosition.y - tooltipRectTransform.height / 2f;
-        if (yPosition < tooltipRectTransform.height / 2f)
+        var yPosition = mousePosition.y - height / 2f;
+        if (yPosition < height / 2f)
         {
-            yPosition = mousePosition.y + tooltipRectTransform.height / 2f;
+            yPosition = mousePosition.y + height / 2f;
         }
-        _activeTooltip.transform.position = new Vector3(xPosition, yPosition, 1f);
+
+        tooltipRectTransform.transform.position = new Vector2(xPosition, yPosition);
+    }
+
+    private void CleanupOrphanTooltips()
+    {
+        //TODO: figure out how to detect orphan tooltips. This does not work currently.
+        return;
+
+        Debug.Log(_activeTooltip?.GetInstanceID());
+
+        var tooltipView = _activeTooltip?.GetComponentInChildren<TooltipView>();
+
+        foreach (Transform child in TooltipContainer.Instance.transform)
+        {
+            if (tooltipView != null)
+            {
+                var childTooltipView = child.GetComponentInChildren<TooltipView>();
+                if (childTooltipView != null && tooltipView.Id != childTooltipView.Id)
+                {
+                    Destroy(child.gameObject);
+                }
+                //Debug.Log(child.name);
+                //Destroy(child.gameObject);
+            }
+        }
     }
 
     public void HideTooltip()
