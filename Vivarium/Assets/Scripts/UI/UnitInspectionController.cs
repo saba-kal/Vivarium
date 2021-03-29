@@ -14,17 +14,22 @@ public class UnitInspectionController : MonoBehaviour
     public static event ActionClick OnActionClick;
     public delegate void MoveClick();
     public static event MoveClick OnMoveClick;
+    public delegate void TradeClick();
+    public static event TradeClick OnTradeClick;
 
     public string MoveButtonText = "Move";
+    public string TradeButtonText = "Trade";
 
     public GameObject ActionButtonsContainer;
     public Button ActionButtonPrefab;
     public GameObject SelectedButtonIndicatorPrefab;
+
     public TextMeshProUGUI UnitNameText;
     public TextMeshProUGUI UnitStatsText;
     public TextMeshProUGUI UnitAbilityText;
 
     private Button _moveButton;
+    private Button _tradeButton;
     private CharacterController _characterController;
     private List<string> _charactersWithDisabledActions = new List<string>();
     private List<string> _charactersWithDisabledMoves = new List<string>();
@@ -61,6 +66,10 @@ public class UnitInspectionController : MonoBehaviour
         ClearCharacterActions();
         AddWeaponActionButtons();
         AddMoveActionButton();
+        if (!_characterController.IsEnemy)
+        {
+            AddTradeActionButton();
+        }
     }
 
     private void ClearCharacterActions()
@@ -131,6 +140,21 @@ public class UnitInspectionController : MonoBehaviour
 
             _weaponActionButtons.Add(actionButton);
         }
+    }
+
+    private void AddTradeActionButton()
+    {
+        _tradeButton = Instantiate(ActionButtonPrefab);
+        _tradeButton.transform.SetParent(ActionButtonsContainer.transform, false);
+        _tradeButton.interactable = !_charactersWithDisabledActions.Contains(_characterController.Id);
+        _tradeButton.onClick.AddListener(() =>
+        {
+            OnTradeClick?.Invoke();
+            UpdateSelectedActionIndicator(_tradeButton);
+        });
+
+        var buttonText = _tradeButton.GetComponentInChildren<TextMeshProUGUI>();
+        buttonText.text = TradeButtonText;
     }
 
     private void UpdateSelectedActionIndicator(Button selectedAction)

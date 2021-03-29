@@ -107,15 +107,12 @@ public class LevelGenerator : MonoBehaviour
 
         _gridController = grid.AddComponent<TileGridController>();
         _gridController.Initialize(_grid);
-        _gridController.PrimaryHighlightPrefab = LevelProfile.PrimaryHighlightPrefab;
-        _gridController.SecondaryHighlightPrefab = LevelProfile.SecondaryHighlightPrefab;
-        _gridController.TertiaryHighlightPrefab = LevelProfile.TertiaryHighlightPrefab;
-        _gridController.QuaternaryHighlightPrefab = LevelProfile.QuaternaryHighlightPrefab;
+        _gridController.VisualSettings = LevelProfile.VisualSettings;
 
         var tileGridView = grid.AddComponent<TileGridView>();
         tileGridView.GridController = _gridController;
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
-        tileGridView.LevelObjectivePrefab = LevelProfile.LevelObjectivePrefab;
+        tileGridView.LevelObjectivePrefab = LevelProfile.VisualSettings.LevelObjectivePrefab;
         tileGridView.CreateGridMesh();
         GeneratePossibleSpawnTiles();
     }

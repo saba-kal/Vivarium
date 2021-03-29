@@ -6,7 +6,7 @@ using System.Linq;
 /// <summary>
 /// Scriptable object version of <see cref="FlavorText"/>.
 /// </summary>
-[CreateAssetMenu(fileName = "New Flavor Text", menuName = "Flavor Text", order = 20)]
+[CreateAssetMenu(fileName = "New Flavor Text", menuName = "Flavor Text", order = 11)]
 public class FlavorTextData : ScriptableObject
 {
     /// <summary>

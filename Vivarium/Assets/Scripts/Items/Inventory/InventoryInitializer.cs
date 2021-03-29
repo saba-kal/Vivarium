@@ -14,30 +14,51 @@ public class InventoryInitializer : MonoBehaviour
         {
             foreach (var characterController in turnSystemManager.PlayerController.PlayerCharacters)
             {
+                var itemPosition = 0;
+
                 if ((placeEquippedItems || !characterController.gameObject.activeSelf)
                     && characterController?.Character?.Weapon != null)
                 {
-                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Weapon);
+                    InventoryManager.PlaceCharacterItem(characterController.Id,
+                        new InventoryItem
+                        {
+                            Item = characterController.Character.Weapon,
+                            InventoryPosition = itemPosition,
+                            Count = 1
+                        });
+                    itemPosition++;
                 }
+
                 if ((placeEquippedItems || !characterController.gameObject.activeSelf)
                     && characterController?.Character?.Shield != null)
                 {
-                    InventoryManager.PlaceCharacterItem(characterController.Id, characterController.Character.Shield);
+                    InventoryManager.PlaceCharacterItem(characterController.Id,
+                        new InventoryItem
+                        {
+                            Item = characterController.Character.Shield,
+                            InventoryPosition = itemPosition,
+                            Count = 1
+                        });
+                    itemPosition++;
                 }
+
                 if (StartingItems != null)
                 {
                     foreach (var inventoryItem in StartingItems)
                     {
                         for (var i = 0; i < inventoryItem.Count; i++)
                         {
+                            inventoryItem.InventoryPosition = itemPosition;
                             InventoryManager.PlaceCharacterItem(characterController.Id, inventoryItem.Item);
 
                             //TODO: figure out a better system for shields.
                             if (inventoryItem.Item.Type == ItemType.Shield && characterController.Character.Shield == null)
                             {
-                                characterController.Equip(inventoryItem.Item);
+                                characterController.Equip(inventoryItem);
                             }
                         }
+
+                        itemPosition++;
                     }
                 }
             }

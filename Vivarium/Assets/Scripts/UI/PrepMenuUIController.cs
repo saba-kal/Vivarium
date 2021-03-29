@@ -6,12 +6,10 @@ public class PrepMenuUIController : MonoBehaviour
 {
     public static PrepMenuUIController Instance { get; private set; }
 
-    public int MaxPlayerItems = 20;
     public GameObject PrepMenu;
     public CharacterDetailsProfile CharacterDetailsPrefab;
+    public InventoryItemsView PlayerInventoryView;
     public GameObject CharactersContainer;
-    public GameObject PlayerInventoryContainer;
-    public InventorySlot InventorySlotPrefab;
     public Button PlayButton;
     public Button PreviewMapButton;
     public Button PreviewBackButton;
@@ -83,11 +81,6 @@ public class PrepMenuUIController : MonoBehaviour
             Destroy(profile.gameObject);
         }
         _existingProfiles = new List<CharacterDetailsProfile>();
-
-        foreach (Transform child in PlayerInventoryContainer.transform)
-        {
-            Destroy(child.gameObject);
-        }
     }
 
     private void DisplayCharacters()
@@ -99,8 +92,8 @@ public class PrepMenuUIController : MonoBehaviour
             {
                 var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
                 profileObject.DisplayCharacter(characterController);
-                profileObject.AddOnDragBeginCallback(OnItemDragStart);
-                profileObject.AddOnDragEndCallback(OnItemDragEnd);
+                profileObject.SetOnDragBeginCallback(OnItemDragStart);
+                profileObject.SetOnDropCallback(OnItemDrop);
 
                 _existingProfiles.Add(profileObject);
             }
@@ -109,75 +102,27 @@ public class PrepMenuUIController : MonoBehaviour
 
     private void DisplayPlayerInventory()
     {
-        var playerItems = InventoryManager.GetPlayerItems();
-        for (var i = 0; i < MaxPlayerItems; i++)
-        {
-            var inventorySlot = Instantiate(InventorySlotPrefab, PlayerInventoryContainer.transform);
-            if (i < playerItems.Count)
-            {
-                inventorySlot.SetItem(playerItems[i]);
-                inventorySlot.AddOnDragBeginCallback(OnItemDragStart);
-                inventorySlot.AddOnDragEndCallback(OnItemDragEnd);
-                inventorySlot.HideEquipOverlay();
-            }
-            else
-            {
-                inventorySlot.SetItem(null);
-            }
-        }
+        PlayerInventoryView.Display();
+        PlayerInventoryView.SetOnDragBeginCallback(OnItemDragStart);
+        PlayerInventoryView.SetOnDropCallback(OnItemDrop);
     }
 
     private void OnItemDragStart(InventorySlot inventorySlot)
     {
-        var character = inventorySlot.GetCharacter();
-        if (string.IsNullOrEmpty(character?.Id))
-        {
-            InventoryManager.RemovePlayerItem(inventorySlot.GetItem().Item.Id);
-        }
-        else
-        {
-            InventoryManager.RemoveCharacterItem(character.Id, inventorySlot.GetItem().Item.Id);
-            EquipDefaultItem(character);
-        }
+        //var character = inventorySlot.GetCharacter();
+        //if (string.IsNullOrEmpty(character?.Id))
+        //{
+        //    InventoryManager.RemovePlayerItem(inventorySlot.GetItem().Item.Id);
+        //}
+        //else
+        //{
+        //    InventoryManager.RemoveCharacterItem(character.Id, inventorySlot.GetItem().Item.Id);
+        //    EquipDefaultItem(character);
+        //}
     }
 
-    private void OnItemDragEnd(InventorySlot inventorySlot)
+    private void OnItemDrop(InventorySlot dropSlot, InventorySlot droppedSlot)
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(PlayerInventoryContainer.transform as RectTransform, Input.mousePosition))
-        {
-            InventoryManager.PlacePlayerItem(inventorySlot.GetItem().Item);
-            var character = inventorySlot.GetCharacter();
-            if (character != null)
-            {
-                character.Unequip(inventorySlot.GetItem().Item);
-                EquipDefaultItem(character);
-            }
-            Display();
-            return;
-        }
-
-        foreach (var profile in _existingProfiles)
-        {
-            if (CharacterHasRoomForItem(inventorySlot.GetItem(), profile.GetCharacter()) &&
-                RectTransformUtility.RectangleContainsScreenPoint(profile.transform as RectTransform, Input.mousePosition))
-            {
-                InventoryManager.PlaceCharacterItem(profile.GetCharacter().Id, inventorySlot.GetItem().Item);
-                profile.GetCharacter().Unequip(inventorySlot.GetItem().Item);
-
-                var character = inventorySlot.GetCharacter();
-                if (inventorySlot.GetCharacter() != null)
-                {
-                    character.Unequip(inventorySlot.GetItem().Item);
-                    EquipDefaultItem(character);
-                }
-
-                EquipDefaultItem(inventorySlot, profile.GetCharacter());
-                Display();
-                return;
-            }
-        }
-
-        RevertItemDrag(inventorySlot);
         Display();
     }
 
@@ -191,31 +136,6 @@ public class PrepMenuUIController : MonoBehaviour
         else
         {
             InventoryManager.PlaceCharacterItem(character.Id, inventorySlot.GetItem().Item);
-        }
-    }
-
-    private void EquipDefaultItem(CharacterController characterController)
-    {
-        var inventoryItems = InventoryManager.GetCharacterItems(characterController.Id);
-        foreach (var inventoryItem in inventoryItems)
-        {
-            var item = inventoryItem.Item;
-            if ((characterController.Character.Weapon == null && item.Type == ItemType.Weapon) ||
-                (characterController.Character.Shield == null && item.Type == ItemType.Shield))
-            {
-                characterController.Equip(item);
-            }
-        }
-    }
-
-    private void EquipDefaultItem(InventorySlot inventorySlot, CharacterController characterController)
-    {
-        var item = inventorySlot.GetItem().Item;
-
-        if ((characterController.Character.Weapon == null && item.Type == ItemType.Weapon) ||
-            (characterController.Character.Shield == null && item.Type == ItemType.Shield))
-        {
-            characterController.Equip(item);
         }
     }
 
@@ -236,7 +156,7 @@ public class PrepMenuUIController : MonoBehaviour
 
     private void OnInvetorySlotDrag(InventorySlot inventorySlot)
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(PlayerInventoryContainer.transform as RectTransform, Input.mousePosition))
+        if (RectTransformUtility.RectangleContainsScreenPoint(PlayerInventoryView.transform as RectTransform, Input.mousePosition))
         {
             PlayerInventoryOutline.SetActive(true);
         }

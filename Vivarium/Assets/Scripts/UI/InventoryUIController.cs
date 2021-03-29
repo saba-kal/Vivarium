@@ -12,15 +12,14 @@ public class InventoryUIController : MonoBehaviour
     public delegate void ConsumeClick();
     public static event ConsumeClick OnConsumeClick;
 
-    public GameObject InventoryUI;
+    public InventoryItemsView InventoryView;
+
     public Button ConsumeButton;
     public Button EquipButton;
-    public GameObject SelectedInventorySlotOverlay;
     public bool DisableActionsOnConsume = true;
     public bool DisableActionsOnEquip = true;
 
     private CharacterController _selectedCharacterController;
-    private InventorySlot[] _inventorySlots;
     private InventorySlot _selectedItemSlot;
     private bool _isDisabled;
     private int _equippedWeaponIndex = -1;
@@ -34,22 +33,8 @@ public class InventoryUIController : MonoBehaviour
         EquipButton.interactable = false;
         EquipButton.onClick.AddListener(OnEquipButtonClick);
 
-        if (SelectedInventorySlotOverlay == null)
-        {
-            Debug.LogError("The inventory slot selection overlay is null.");
-        }
-        SelectedInventorySlotOverlay?.SetActive(false);
-
-        _inventorySlots = InventoryUI.GetComponentsInChildren<InventorySlot>();
-        if (_inventorySlots == null || _inventorySlots.Length == 0)
-        {
-            Debug.LogError("There are no inventory slots that can display items");
-        }
-        for (var i = 0; i < _inventorySlots.Length; i++)
-        {
-            _inventorySlots[i].Index = i;
-            _inventorySlots[i].AddOnClickCallback(OnInventorySlotClick);
-        }
+        InventoryView.EnableSelection();
+        InventoryView.SetOnClickCallback(OnInventorySlotClick);
     }
 
     public void DisplayCharacterInventory(CharacterController selectedCharacterController)
@@ -60,29 +45,13 @@ public class InventoryUIController : MonoBehaviour
             return;
         }
 
-        if (selectedCharacterController.Character.MaxItems <= 3)
-        {
-            _inventorySlots[3].gameObject.SetActive(false);
-            _inventorySlots[4].gameObject.SetActive(false);
-        }
-        else
-        {
-            _inventorySlots[3].gameObject.SetActive(true);
-            _inventorySlots[4].gameObject.SetActive(true);
-        }
+        InventoryView.Display(selectedCharacterController);
 
         _equippedWeaponIndex = -1;
         _equippedShieldIndex = -1;
         _selectedItemSlot = null;
-        SelectedInventorySlotOverlay.SetActive(false);
-
-        foreach (var inventorySlot in _inventorySlots)
-        {
-            inventorySlot.Clear();
-        }
 
         _selectedCharacterController = selectedCharacterController;
-        UpdateInventoryDisplay();
         UpdateButtons();
     }
 
@@ -96,10 +65,6 @@ public class InventoryUIController : MonoBehaviour
         }
 
         UpdateButtons();
-
-        SelectedInventorySlotOverlay.transform.SetParent(inventorySlot.transform);
-        SelectedInventorySlotOverlay.transform.position = inventorySlot.transform.position;
-        SelectedInventorySlotOverlay.SetActive(true);
     }
 
     private void OnConsumeButtonClick()
@@ -116,13 +81,15 @@ public class InventoryUIController : MonoBehaviour
             return;
         }
 
-        _selectedCharacterController.Consume(_selectedItemSlot.GetItem().Item);
-        if (InventoryManager.GetCharacterItem(_selectedCharacterController.Id, _selectedItemSlot.GetItem().Item.Id) == null)
+        _selectedCharacterController.Consume(_selectedItemSlot.GetItem());
+        if (InventoryManager.GetCharacterItem(
+            _selectedCharacterController.Id,
+            _selectedItemSlot.GetItem().Item.Id,
+            _selectedItemSlot.GetItem().InventoryPosition) == null)
         {
-            SelectedInventorySlotOverlay.SetActive(false);
             ConsumeButton.interactable = false;
         }
-        UpdateInventoryDisplay();
+        InventoryView.Display(_selectedCharacterController);
 
         if (DisableActionsOnConsume)
         {
@@ -146,10 +113,11 @@ public class InventoryUIController : MonoBehaviour
             return;
         }
 
-        _selectedCharacterController.Equip(_selectedItemSlot.GetItem().Item);
-        SelectedInventorySlotOverlay.SetActive(false);
+        _selectedCharacterController.Equip(_selectedItemSlot.GetItem());
         EquipButton.interactable = false;
-        UpdateInventoryDisplay();
+
+        InventoryView.Display(_selectedCharacterController);
+
         //Refresh character UI to show new abilities from the weapon.
         UIController.Instance.ShowCharacterInfo(_selectedCharacterController);
 
@@ -159,39 +127,6 @@ public class InventoryUIController : MonoBehaviour
         }
 
         OnEquipClick?.Invoke();
-    }
-
-    private void UpdateInventoryDisplay()
-    {
-        var characterInventory = InventoryManager.GetCharacterItems(_selectedCharacterController.Id);
-        for (var i = 0; i < _inventorySlots.Length; i++)
-        {
-            if (i < characterInventory.Count)
-            {
-                _inventorySlots[i].SetItem(characterInventory[i], _selectedCharacterController);
-                if (_selectedCharacterController.ItemIsEquipped(characterInventory[i].Item))
-                {
-                    if (characterInventory[i].Item.Type == ItemType.Weapon && _equippedWeaponIndex < 0)
-                    {
-                        _equippedWeaponIndex = i;
-                        _inventorySlots[i].DisplayEquipOverlay();
-                    }
-                    else if (characterInventory[i].Item.Type == ItemType.Shield && _equippedShieldIndex < 0)
-                    {
-                        _equippedShieldIndex = i;
-                        _inventorySlots[i].DisplayEquipOverlay();
-                    }
-                }
-                else
-                {
-                    _inventorySlots[i].HideEquipOverlay();
-                }
-            }
-            else
-            {
-                _inventorySlots[i].Clear();
-            }
-        }
     }
 
     public void SetActionButtonsDisabled(bool isDisabled)
@@ -225,7 +160,7 @@ public class InventoryUIController : MonoBehaviour
                 case ItemType.Weapon:
                 case ItemType.Shield:
                     ConsumeButton.interactable = false;
-                    EquipButton.interactable = !ItemIsEquipped(_selectedItemSlot.GetItem().Item, _selectedItemSlot.Index) && !(_isDisabled && DisableActionsOnEquip);
+                    EquipButton.interactable = !_selectedCharacterController.ItemIsEquipped(_selectedItemSlot.GetItem()) && !(_isDisabled && DisableActionsOnEquip);
                     break;
             }
         }
@@ -234,26 +169,5 @@ public class InventoryUIController : MonoBehaviour
             ConsumeButton.interactable = false;
             EquipButton.interactable = false;
         }
-    }
-
-    private bool ItemIsEquipped(Item item, int itemIndex)
-    {
-        if (_selectedCharacterController == null)
-        {
-            return false;
-        }
-
-        var itemIsEquiped = _selectedCharacterController.ItemIsEquipped(item);
-
-        if (itemIsEquiped && item.Type == ItemType.Weapon && _equippedWeaponIndex != itemIndex)
-        {
-            return false;
-        }
-        else if (itemIsEquiped && item.Type == ItemType.Shield && _equippedShieldIndex != itemIndex)
-        {
-            return false;
-        }
-
-        return itemIsEquiped;
     }
 }

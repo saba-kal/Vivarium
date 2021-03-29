@@ -8,8 +8,7 @@ public class CharacterDetailsProfile : MonoBehaviour
 {
     public Image Icon;
     public TextMeshProUGUI StatsText;
-    public GameObject InventoryContainer;
-    public InventorySlot InventorySlotPrefab;
+    public InventoryItemsView InventoryView;
     public Image Outline;
     public TextMeshProUGUI ErrorsText;
     public Color HighlightColor = Color.green;
@@ -17,6 +16,8 @@ public class CharacterDetailsProfile : MonoBehaviour
 
     private SlotDragBegin _onSlotDragBegin;
     private SlotDragEnd _onSlotDragEnd;
+    private SlotDrop _onSlotDrop;
+
     private CharacterController _characterController;
     private int _equippedWeaponIndex = -1;
     private int _equippedShieldIndex = -1;
@@ -33,49 +34,19 @@ public class CharacterDetailsProfile : MonoBehaviour
 
     private void DisplayInventory()
     {
-        var inventoryItems = InventoryManager.GetCharacterItems(_characterController.Id);
-        for (var i = 0; i < _characterController.Character.MaxItems; i++)
+        InventoryView.Display(_characterController);
+        InventoryView.SetOnDragBeginCallback((slot) =>
         {
-            var inventorySlot = Instantiate(InventorySlotPrefab, InventoryContainer.transform);
-            if (i < inventoryItems.Count)
-            {
-                inventorySlot.SetItem(inventoryItems[i], _characterController);
-                inventorySlot.AddOnDragBeginCallback((slot) =>
-                {
-                    _onSlotDragBegin?.Invoke(slot);
-                });
-                inventorySlot.AddOnDragEndCallback((slot) =>
-                {
-                    _onSlotDragEnd?.Invoke(slot);
-                });
-
-                if (_characterController.ItemIsEquipped(inventoryItems[i].Item))
-                {
-                    if (inventoryItems[i].Item.Type == ItemType.Weapon && _equippedWeaponIndex < 0)
-                    {
-                        _equippedWeaponIndex = i;
-                        inventorySlot.DisplayEquipOverlay();
-                    }
-                    else if (inventoryItems[i].Item.Type == ItemType.Shield && _equippedShieldIndex < 0)
-                    {
-                        _equippedShieldIndex = i;
-                        inventorySlot.DisplayEquipOverlay();
-                    }
-                    else
-                    {
-                        inventorySlot.HideEquipOverlay();
-                    }
-                }
-                else
-                {
-                    inventorySlot.HideEquipOverlay();
-                }
-            }
-            else
-            {
-                inventorySlot.SetItem(null);
-            }
-        }
+            _onSlotDragBegin?.Invoke(slot);
+        });
+        InventoryView.SetOnDragEndCallback((slot) =>
+        {
+            _onSlotDragEnd?.Invoke(slot);
+        });
+        InventoryView.SetOnDropCallback((dropSlot, droppedSlot) =>
+        {
+            _onSlotDrop?.Invoke(dropSlot, droppedSlot);
+        });
     }
 
     private void DisplayStats()
@@ -85,40 +56,24 @@ public class CharacterDetailsProfile : MonoBehaviour
             $"MV: {_characterController.Character.MoveRange:n0}";
     }
 
-    public void AddOnDragBeginCallback(SlotDragBegin dragBegin)
+    public void SetOnDragBeginCallback(SlotDragBegin dragBegin)
     {
         _onSlotDragBegin = dragBegin;
     }
 
-    public void AddOnDragEndCallback(SlotDragEnd dragEnd)
+    public void SetOnDragEndCallback(SlotDragEnd dragEnd)
     {
         _onSlotDragEnd = dragEnd;
+    }
+
+    public void SetOnDropCallback(SlotDrop slotDrop)
+    {
+        _onSlotDrop = slotDrop;
     }
 
     public CharacterController GetCharacter()
     {
         return _characterController;
-    }
-
-    public bool ItemIsEquipped(Item item, int itemIndex)
-    {
-        if (_characterController == null)
-        {
-            return false;
-        }
-
-        var itemIsEquiped = _characterController.ItemIsEquipped(item);
-
-        if (itemIsEquiped && item.Type == ItemType.Weapon && _equippedWeaponIndex != itemIndex)
-        {
-            return false;
-        }
-        else if (itemIsEquiped && item.Type == ItemType.Shield && _equippedShieldIndex != itemIndex)
-        {
-            return false;
-        }
-
-        return itemIsEquiped;
     }
 
     public void ShowHighlight()

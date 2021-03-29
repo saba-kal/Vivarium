@@ -3,12 +3,13 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IDropHandler
 {
     public delegate void SlotClick(InventorySlot inventorySlot);
     public delegate void SlotDragBegin(InventorySlot inventorySlot);
     public delegate void SlotDragEnd(InventorySlot inventorySlot);
     public delegate void SlotDrag(InventorySlot inventorySlot);
+    public delegate void SlotDrop(InventorySlot dropSlot, InventorySlot droppedSlot);
     public static event SlotClick OnSlotClick;
     public static event SlotDrag OnSlotDrag;
 
@@ -23,6 +24,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private SlotClick _onSlotClick;
     private SlotDragBegin _onSlotDragBegin;
     private SlotDragEnd _onSlotDragEnd;
+    private SlotDrop _onSlotDrop;
     private Canvas _canvas;
     private GameObject _duplicateIcon;
 
@@ -48,26 +50,54 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         SetTooltip();
     }
 
-    public void AddOnClickCallback(SlotClick onClick)
+    /// <summary>
+    /// Sets callback for when an inventory slot is clicked.
+    /// </summary>
+    /// <param name="onClick">The callback to set.</param>
+    public void SetOnClickCallback(SlotClick onClick)
     {
         _onSlotClick = onClick;
     }
 
-    public void AddOnDragBeginCallback(SlotDragBegin dragBegin)
+    /// <summary>
+    /// Sets callback for when dragging of an inventory slot begins.
+    /// </summary>
+    /// <param name="dragBegin">The callback to set.</param>
+    public void SetOnDragBeginCallback(SlotDragBegin dragBegin)
     {
         _onSlotDragBegin = dragBegin;
     }
 
-    public void AddOnDragEndCallback(SlotDragEnd dragEnd)
+    /// <summary>
+    /// Sets callback for when dragging of an inventory slot ends.
+    /// </summary>
+    /// <param name="dragEnd">The callback to set.</param>
+    public void SetOnDragEndCallback(SlotDragEnd dragEnd)
     {
         _onSlotDragEnd = dragEnd;
     }
 
+    /// <summary>
+    /// Sets callback for when an inventory slot drops on another inventory slot.
+    /// </summary>
+    /// <param name="slotDrop">The callback to set.</param>
+    public void SetOnDropCallback(SlotDrop slotDrop)
+    {
+        _onSlotDrop = slotDrop;
+    }
+
+    /// <summary>
+    /// Gets the inventory item associated with this slot.
+    /// </summary>
+    /// <returns>The <see cref="InventoryItem"/> associated with this slot.</returns>
     public InventoryItem GetItem()
     {
         return _inventoryItem;
     }
 
+    /// <summary>
+    /// Updates the display of this slot.
+    /// </summary>
     public void UpdateItemDisplay()
     {
         if (_inventoryItem == null)
@@ -76,8 +106,8 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
             return;
         }
 
-        if (_selectedCharacter != null && InventoryManager.GetCharacterItem(_selectedCharacter.Id, _inventoryItem.Item.Id) == null ||
-            _selectedCharacter == null && InventoryManager.GetPlayerItem(_inventoryItem.Item.Id) == null)
+        if (_selectedCharacter != null && InventoryManager.GetCharacterItem(_selectedCharacter.Id, _inventoryItem.Item.Id, _inventoryItem.InventoryPosition) == null ||
+            _selectedCharacter == null && InventoryManager.GetPlayerItem(_inventoryItem.Item.Id, _inventoryItem.InventoryPosition) == null)
         {
             Clear();
             return;
@@ -120,11 +150,22 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (_inventoryItem == null)
+        {
+            return;
+        }
+
         _onSlotDragBegin?.Invoke(this);
+        eventData.selectedObject = gameObject;
+
         if (_canvas != null)
         {
             Icon.transform.SetParent(_canvas.transform);
-            if (!_inventoryItem.Item.CanBeStacked || _inventoryItem.Count < 1)
+
+            var canvasGroup = Icon.gameObject.AddComponent<CanvasGroup>();
+            canvasGroup.blocksRaycasts = false;
+
+            if (!_inventoryItem.Item.CanBeStacked || _inventoryItem.Count < 2)
             {
                 _duplicateIcon.SetActive(false);
             }
@@ -138,6 +179,11 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (_inventoryItem == null)
+        {
+            return;
+        }
+
         Icon.transform.position = Input.mousePosition;
         OnSlotDrag?.Invoke(this);
         var tooltip = GetComponent<Tooltip>();
@@ -149,9 +195,31 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Icon.transform.SetParent(transform);
-        Icon.transform.localPosition = Vector3.zero;
+        ResetIcon(Icon, transform);
         _onSlotDragEnd?.Invoke(this);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (eventData.selectedObject != null)
+        {
+            var droppedSlot = eventData.selectedObject.GetComponent<InventorySlot>();
+
+            ResetIcon(droppedSlot.Icon, droppedSlot.transform);
+            _onSlotDrop?.Invoke(this, droppedSlot);
+        }
+    }
+
+    private void ResetIcon(Image icon, Transform parent)
+    {
+        icon.transform.SetParent(parent);
+        icon.transform.localPosition = Vector3.zero;
+
+        var canvasGroup = icon.gameObject.GetComponent<CanvasGroup>();
+        if (canvasGroup != null)
+        {
+            Destroy(canvasGroup);
+        }
     }
 
     public CharacterController GetCharacter()

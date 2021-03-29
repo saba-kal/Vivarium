@@ -263,15 +263,17 @@ public class CharacterController : MonoBehaviour
         return newActionViewer;
     }
 
-    public void Equip(Item item)
+    public void Equip(InventoryItem inventoryItem)
     {
+        var item = inventoryItem.Item;
+
         if ((item.Type != ItemType.Weapon) && (item.Type != ItemType.Shield))
         {
             Debug.LogError($"Character {Character.Flavor.Name}: cannot equip non-weapon items.");
             return;
         }
 
-        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        if (InventoryManager.GetCharacterItem(Id, item.Id, inventoryItem.InventoryPosition) == null)
         {
             Debug.LogError($"Character {Character.Flavor.Name}: cannot equip item that does not exist in character's inventory.");
             return;
@@ -391,15 +393,17 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Consume(Item item)
+    public void Consume(InventoryItem inventoryItem)
     {
+        var item = inventoryItem.Item;
+
         if (item.Type != ItemType.Consumable)
         {
             Debug.LogError($"Character {Character.Flavor.Name}: cannot eat non-consumable items.");
             return;
         }
 
-        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        if (InventoryManager.GetCharacterItem(Id, item.Id, inventoryItem.InventoryPosition) == null)
         {
             Debug.LogError($"Character {Character.Flavor.Name}: cannot eat item that does not exist.");
             return;
@@ -418,7 +422,7 @@ public class CharacterController : MonoBehaviour
                 MovBuff(consumable.value);
                 break;
         }
-        InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+        InventoryManager.RemoveCharacterItem(Id, consumable.Id, inventoryItem.InventoryPosition);
         if (consumable.ParticleEffect != null)
         {
             var particleEffect = Instantiate(consumable.ParticleEffect, transform.transform);
@@ -462,8 +466,9 @@ public class CharacterController : MonoBehaviour
         return _attackDamage;
     }
 
-    public bool ItemIsEquipped(Item item)
+    public bool ItemIsEquipped(InventoryItem inventoryItem)
     {
+        var item = inventoryItem.Item;
         return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
             (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
     }
@@ -501,5 +506,33 @@ public class CharacterController : MonoBehaviour
     public MoveController GetMoveController()
     {
         return _moveController;
+    }
+
+    /// <summary>
+    /// Determines whether or not this character can trade with another character.
+    /// </summary>
+    /// <param name="targetTile">The tile on which the character wants to trade.</param>
+    /// <param name="targetCharacter">The other character this character can trade with.</param>
+    /// <returns>Whether or not this character is able to trade.</returns>
+    public bool CanTrade(Tile targetTile, out CharacterController targetCharacter)
+    {
+        targetCharacter = null;
+        if (string.IsNullOrWhiteSpace(targetTile.CharacterControllerId))
+        {
+            return false;
+        }
+
+        var currentTile = GetGridPosition();
+        var adjacentTiles = TileGridController.Instance.GetGrid().GetAdjacentTiles(currentTile.GridX, currentTile.GridY);
+
+        foreach (var tile in adjacentTiles)
+        {
+            if (tile.GridX == targetTile.GridX && tile.GridY == targetTile.GridY)
+            {
+                targetCharacter = TurnSystemManager.Instance.GetCharacterController(targetTile.CharacterControllerId);
+                return targetCharacter.IsEnemy == IsEnemy;
+            }
+        }
+        return false;
     }
 }

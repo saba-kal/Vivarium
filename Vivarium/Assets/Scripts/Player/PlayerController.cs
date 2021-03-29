@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _selectedCharacter;
 
     private bool _actionIsSelected = false;
+    private bool _tradeIsSelected = false;
     private Action _selectedAction;
 
     private void Awake()
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick += OnGridCellClick;
         UnitInspectionController.OnActionClick += SelectAction;
         UnitInspectionController.OnMoveClick += SelectMove;
+        UnitInspectionController.OnTradeClick += SelectTrade;
         InventoryUIController.OnEquipClick += DeselectAction;
         CharacterController.OnDeath += OnCharacterDeath;
     }
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         TileGridController.OnGridCellClick -= OnGridCellClick;
         UnitInspectionController.OnActionClick -= SelectAction;
         UnitInspectionController.OnMoveClick -= SelectMove;
+        UnitInspectionController.OnTradeClick -= SelectTrade;
         InventoryUIController.OnEquipClick -= DeselectAction;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
@@ -68,6 +71,10 @@ public class PlayerController : MonoBehaviour
                 OnCharacterMoveComplete(selectedTile);
             });
             UnitInspectionController.Instance.DisableMoveForCharacter(_selectedCharacter.Id);
+        }
+        else if (_tradeIsSelected && _selectedCharacter != null && _selectedCharacter.CanTrade(selectedTile, out var targetCharacter))
+        {
+            TradeUIController.Instance.Display(_selectedCharacter, targetCharacter);
         }
         //Grid cell click was probably on a character.
         else
@@ -117,6 +124,8 @@ public class PlayerController : MonoBehaviour
     private void GetSelectedCharacter(Tile tile)
     {
         DeselectAction();
+        DeselectTrade();
+
         _selectedCharacter?.Deselect();
         _selectedCharacter = null;
 
@@ -142,6 +151,7 @@ public class PlayerController : MonoBehaviour
     private void SelectMove()
     {
         DeselectAction();
+        DeselectTrade();
         _selectedCharacter?.ShowMoveRadius();
     }
 
@@ -170,6 +180,7 @@ public class PlayerController : MonoBehaviour
 
         DeselectAction();
         DeselectMove();
+        DeselectTrade();
 
         _actionIsSelected = true;
         _selectedAction = action;
@@ -195,6 +206,35 @@ public class PlayerController : MonoBehaviour
         actionViewer.HideAction();
         _actionIsSelected = false;
         _selectedAction = null;
+    }
+
+    private void SelectTrade()
+    {
+        if (_selectedCharacter == null)
+        {
+            Debug.LogError("Unable to select trade because selected character is null.");
+            return;
+        }
+
+        DeselectAction();
+        DeselectMove();
+        DeselectTrade();
+
+        var gridController = TileGridController.Instance;
+        var grid = gridController.GetGrid();
+
+        var currentTile = grid.GetValue(_selectedCharacter.transform.position);
+        var adjescentTiles = grid.GetAdjacentTiles(currentTile.GridX, currentTile.GridY);
+
+        gridController.HighlightTiles(adjescentTiles, GridHighlightRank.Quinary);
+
+        _tradeIsSelected = true;
+    }
+
+    private void DeselectTrade()
+    {
+        TileGridController.Instance.RemoveHighlights(GridHighlightRank.Quinary);
+        _tradeIsSelected = false;
     }
 
     private void PerformAction(Tile targetTile)
