@@ -43,6 +43,8 @@ public class PrepMenuUIController : MonoBehaviour
 
     private void Start()
     {
+        PlayerInventoryView.SetOnDropCallback(OnItemDrop);
+
         PreviewMapButton.onClick.AddListener(() =>
         {
             PrepMenu.SetActive(false);
@@ -70,7 +72,7 @@ public class PrepMenuUIController : MonoBehaviour
         CleanupExistingPrepMenu();
         PrepMenu.SetActive(true);
         DisplayCharacters();
-        DisplayPlayerInventory();
+        PlayerInventoryView.Display();
         ValidateInventories();
     }
 
@@ -92,7 +94,6 @@ public class PrepMenuUIController : MonoBehaviour
             {
                 var profileObject = Instantiate(CharacterDetailsPrefab, CharactersContainer.transform);
                 profileObject.DisplayCharacter(characterController);
-                profileObject.SetOnDragBeginCallback(OnItemDragStart);
                 profileObject.SetOnDropCallback(OnItemDrop);
 
                 _existingProfiles.Add(profileObject);
@@ -100,43 +101,9 @@ public class PrepMenuUIController : MonoBehaviour
         }
     }
 
-    private void DisplayPlayerInventory()
-    {
-        PlayerInventoryView.Display();
-        PlayerInventoryView.SetOnDragBeginCallback(OnItemDragStart);
-        PlayerInventoryView.SetOnDropCallback(OnItemDrop);
-    }
-
-    private void OnItemDragStart(InventorySlot inventorySlot)
-    {
-        //var character = inventorySlot.GetCharacter();
-        //if (string.IsNullOrEmpty(character?.Id))
-        //{
-        //    InventoryManager.RemovePlayerItem(inventorySlot.GetItem().Item.Id);
-        //}
-        //else
-        //{
-        //    InventoryManager.RemoveCharacterItem(character.Id, inventorySlot.GetItem().Item.Id);
-        //    EquipDefaultItem(character);
-        //}
-    }
-
     private void OnItemDrop(InventorySlot dropSlot, InventorySlot droppedSlot)
     {
         Display();
-    }
-
-    private void RevertItemDrag(InventorySlot inventorySlot)
-    {
-        var character = inventorySlot.GetCharacter();
-        if (string.IsNullOrEmpty(character?.Id))
-        {
-            InventoryManager.PlacePlayerItem(inventorySlot.GetItem().Item);
-        }
-        else
-        {
-            InventoryManager.PlaceCharacterItem(character.Id, inventorySlot.GetItem().Item);
-        }
     }
 
     private void ValidateInventories()

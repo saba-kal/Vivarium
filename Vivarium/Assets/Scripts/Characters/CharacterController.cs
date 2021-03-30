@@ -23,6 +23,7 @@ public class CharacterController : MonoBehaviour
     public string Id;
     public Character Character;
     public bool IsEnemy;
+    public bool IsDisabled = false;
     public GameObject Model;
 
     private float _maxHealth;
@@ -38,6 +39,8 @@ public class CharacterController : MonoBehaviour
     private float _savedMoveRange;
     private GameObject _meleeWeapon;
     private GameObject _rangedWeapon;
+    private int _equippedWeaponPosition = -1;
+    private int _equippedShieldPosition = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -283,11 +286,13 @@ public class CharacterController : MonoBehaviour
         {
             Character.Weapon = (Weapon)item;
             SwitchWeaponModel();
+            _equippedWeaponPosition = inventoryItem.InventoryPosition;
         }
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
             _healthController?.UpgradMaxShield(Character.Shield.Health);
+            _equippedShieldPosition = inventoryItem.InventoryPosition;
         }
     }
 
@@ -310,16 +315,35 @@ public class CharacterController : MonoBehaviour
         _rangedWeapon.SetActive(rangedWeaponIsEquipped);
     }
 
+    /// <summary>
+    /// Unequips all items that the character may have equipped.
+    /// </summary>
+    public void UnequipAllItems()
+    {
+        Character.Weapon = null;
+        _equippedWeaponPosition = -1;
+
+        Character.Shield = null;
+        _healthController?.RemoveShield();
+        _equippedShieldPosition = -1;
+    }
+
+    /// <summary>
+    /// Uniquips a specific item.
+    /// </summary>
+    /// <param name="item">The item to unequip.</param>
     public void Unequip(Item item)
     {
         if (item.Type == ItemType.Weapon && item.Id == Character.Weapon?.Id)
         {
             Character.Weapon = null;
+            _equippedWeaponPosition = -1;
         }
         else if (item.Type == ItemType.Shield && item.Id == Character.Shield?.Id)
         {
             Character.Shield = null;
             _healthController?.RemoveShield();
+            _equippedShieldPosition = -1;
         }
     }
 
@@ -469,8 +493,17 @@ public class CharacterController : MonoBehaviour
     public bool ItemIsEquipped(InventoryItem inventoryItem)
     {
         var item = inventoryItem.Item;
-        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
-            (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
+
+        if (inventoryItem.Item.Type == ItemType.Weapon)
+        {
+            return Character.Weapon?.Id == item.Id && inventoryItem.InventoryPosition == _equippedWeaponPosition;
+        }
+        else if (inventoryItem.Item.Type == ItemType.Shield)
+        {
+            return Character.Shield?.Id == item.Id && inventoryItem.InventoryPosition == _equippedShieldPosition;
+        }
+
+        return false;
     }
 
 
@@ -534,5 +567,23 @@ public class CharacterController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    /// <summary>
+    /// Sets the inventory position of an equipped weapon.
+    /// </summary>
+    /// <param name="itemPosition">The position in the character's inventory.</param>
+    public void SetEquippedWeaponPosition(int itemPosition)
+    {
+        _equippedWeaponPosition = itemPosition;
+    }
+
+    /// <summary>
+    /// Sets the inventory position of an equipped shield.
+    /// </summary>
+    /// <param name="itemPosition">The position in the character's inventory.</param>
+    public void SetEquippedShieldPosition(int itemPosition)
+    {
+        _equippedShieldPosition = itemPosition;
     }
 }

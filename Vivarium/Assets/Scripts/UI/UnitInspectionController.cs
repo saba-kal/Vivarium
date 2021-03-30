@@ -33,6 +33,7 @@ public class UnitInspectionController : MonoBehaviour
     private CharacterController _characterController;
     private List<string> _charactersWithDisabledActions = new List<string>();
     private List<string> _charactersWithDisabledMoves = new List<string>();
+    private List<string> _charactersWithDisabledTrade = new List<string>();
     private List<Button> _weaponActionButtons = new List<Button>();
     private GameObject _selectedButtonIndicator;
 
@@ -146,7 +147,7 @@ public class UnitInspectionController : MonoBehaviour
     {
         _tradeButton = Instantiate(ActionButtonPrefab);
         _tradeButton.transform.SetParent(ActionButtonsContainer.transform, false);
-        _tradeButton.interactable = !_charactersWithDisabledActions.Contains(_characterController.Id);
+        _tradeButton.interactable = !_charactersWithDisabledTrade.Contains(_characterController.Id);
         _tradeButton.onClick.AddListener(() =>
         {
             OnTradeClick?.Invoke();
@@ -187,6 +188,7 @@ public class UnitInspectionController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+        _charactersWithDisabledTrade = new List<string>();
     }
 
     /// <summary>
@@ -211,6 +213,16 @@ public class UnitInspectionController : MonoBehaviour
         {
             button.interactable = false;
         }
+    }
+
+    /// <summary>
+    /// Disables the trade action for a given character ID.
+    /// </summary>
+    /// <param name="characterId">The unique ID of the character.</param>
+    public void DisableTradeActionForCharacter(string characterId)
+    {
+        _charactersWithDisabledTrade.Add(characterId);
+        _tradeButton.interactable = false;
     }
 
     #endregion

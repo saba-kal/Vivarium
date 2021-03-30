@@ -19,22 +19,9 @@ public class CharacterDetailsProfile : MonoBehaviour
     private SlotDrop _onSlotDrop;
 
     private CharacterController _characterController;
-    private int _equippedWeaponIndex = -1;
-    private int _equippedShieldIndex = -1;
 
-    public void DisplayCharacter(CharacterController characterController)
+    private void Start()
     {
-        Outline.gameObject.SetActive(false);
-        ErrorsText.gameObject.SetActive(false);
-        _characterController = characterController;
-        Icon.sprite = _characterController.Character.Portrait;
-        DisplayInventory();
-        DisplayStats();
-    }
-
-    private void DisplayInventory()
-    {
-        InventoryView.Display(_characterController);
         InventoryView.SetOnDragBeginCallback((slot) =>
         {
             _onSlotDragBegin?.Invoke(slot);
@@ -47,6 +34,25 @@ public class CharacterDetailsProfile : MonoBehaviour
         {
             _onSlotDrop?.Invoke(dropSlot, droppedSlot);
         });
+    }
+
+    public void UpdateDisplay()
+    {
+        if (_characterController != null)
+        {
+            DisplayCharacter(_characterController);
+        }
+    }
+
+    public void DisplayCharacter(CharacterController characterController)
+    {
+        Outline.gameObject.SetActive(false);
+        ErrorsText.gameObject.SetActive(false);
+        _characterController = characterController;
+        Icon.sprite = _characterController.Character.Portrait;
+
+        InventoryView.Display(_characterController);
+        DisplayStats();
     }
 
     private void DisplayStats()

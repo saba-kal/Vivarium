@@ -50,12 +50,12 @@ public class UISoundManager : MonoBehaviour
         _soundManager.Play(Constants.BUTTON_CLICK_SOUND);
     }
 
-    public void PlayEquip()
+    public void PlayEquip(CharacterController characterController)
     {
         _soundManager.Play(Constants.EQUIP_SOUND);
     }
 
-    public void PlayConsume()
+    public void PlayConsume(CharacterController characterController)
     {
         _soundManager.Play(Constants.CONSUME_SOUND);
     }

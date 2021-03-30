@@ -67,8 +67,8 @@ public class UIController : MonoBehaviour
 
     public void EnableAllButtons()
     {
-        InventoryUIController.SetActionButtonsDisabled(false);
         UnitInspectionController.EnableAllActions();
+        InventoryUIController.EnableAllActions();
     }
 
     public void GameOver(string gameoverText)

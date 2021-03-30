@@ -9,15 +9,12 @@ using static InventorySlot;
 /// </summary>
 public class InventoryItemsView : MonoBehaviour
 {
-    public int MaxPlayerItems = 20;
     public GameObject InventoryContainer;
     public InventorySlot InventorySlotPrefab;
     public GameObject SelectedInventorySlotOverlayPrefab;
 
-    private int _equippedWeaponPosition = -1;
-    private int _equippedShieldPosition = -1;
     private bool _selectionEnabled = false;
-    private InventorySlot _selectedItemSlot;
+
     private GameObject _selectedItemOverlay;
 
     private SlotClick _onSlotClick;
@@ -57,14 +54,11 @@ public class InventoryItemsView : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
-        _equippedWeaponPosition = -1;
-        _equippedShieldPosition = -1;
     }
 
     private void DisplayItems(List<InventoryItem> inventoryItems)
     {
-        var maxItems = _characterController?.Character.MaxItems ?? MaxPlayerItems;
+        var maxItems = _characterController?.Character.MaxItems ?? Constants.MAX_PLAYER_ITEMS;
 
         var inventorySlots = new List<InventorySlot>();
 
@@ -72,6 +66,9 @@ public class InventoryItemsView : MonoBehaviour
         {
             var inventorySlot = Instantiate(InventorySlotPrefab, InventoryContainer.transform);
             inventorySlot.Index = i;
+
+            var isEnemy = _characterController?.IsEnemy ?? false;
+            inventorySlot.SetHighlightEnabled(!isEnemy);
 
             inventorySlots.Add(inventorySlot);
 
@@ -93,11 +90,6 @@ public class InventoryItemsView : MonoBehaviour
                 continue;
             }
 
-            if (ItemIsEquipped(inventoryItems[i]))
-            {
-                UpdateEquippedItemPositions(inventoryItems[i]);
-            }
-
             var inventorySlot = inventorySlots[inventoryItems[i].InventoryPosition];
             inventorySlot.SetItem(inventoryItems[i], _characterController);
 
@@ -114,7 +106,7 @@ public class InventoryItemsView : MonoBehaviour
             {
                 return;
             }
-            _selectedItemSlot = inventorySlot;
+
             if (_selectedItemOverlay == null)
             {
                 _selectedItemOverlay = Instantiate(SelectedInventorySlotOverlayPrefab, inventorySlot.transform);
@@ -143,95 +135,17 @@ public class InventoryItemsView : MonoBehaviour
         });
     }
 
-    private void TrasferItem(InventorySlot trasferToSlot, InventorySlot transferFromSlot)
+    private void TrasferItem(InventorySlot transferToSlot, InventorySlot transferFromSlot)
     {
-        var itemToStackOn = trasferToSlot.GetItem()?.Item;
-        var inventoryItem = transferFromSlot.GetItem();
-
-        if (itemToStackOn != null &&
-            !itemToStackOn.CanBeStacked &&
-            itemToStackOn.Id != inventoryItem?.Item.Id)
-        {
-            //Don't place item on top of another item if it can't be stacked.
-            return;
-        }
-
-        if (inventoryItem?.Item == null)
-        {
-            //If the item is null, this event should not have been called in the first place. Something went wrong.
-            Debug.LogError("Cannot transfer null item.");
-            return;
-        }
-
-        if (inventoryItem.Item.CanBeStacked)
-        {
-            //Only move one item at a time instead of the entire stack.
-            inventoryItem = new InventoryItem
-            {
-                Item = inventoryItem.Item,
-                Count = 1,
-                InventoryPosition = trasferToSlot.Index
-            };
-        }
-
-        var fromCharacter = transferFromSlot.GetCharacter();
-        if (string.IsNullOrEmpty(fromCharacter?.Id)) //Transferring from player inventory
-        {
-            InventoryManager.RemovePlayerItem(inventoryItem.Item.Id, transferFromSlot.Index);
-        }
-        else //Transferring from character inventory
-        {
-            InventoryManager.RemoveCharacterItem(fromCharacter.Id, inventoryItem.Item.Id, transferFromSlot.Index);
-            fromCharacter.Unequip(inventoryItem.Item);
-            EquipDefaultItem(fromCharacter);
-        }
-
-        var toCharacter = trasferToSlot.GetCharacter();
-        if (string.IsNullOrEmpty(toCharacter?.Id)) //Transferring to player inventory
-        {
-            InventoryManager.PlacePlayerItem(inventoryItem);
-        }
-        else //Transferring to Character inventory
-        {
-            InventoryManager.PlaceCharacterItem(toCharacter.Id, inventoryItem);
-            EquipDefaultItem(toCharacter);
-        }
-
-        inventoryItem.InventoryPosition = trasferToSlot.Index;
-    }
-
-    private void EquipDefaultItem(CharacterController characterController)
-    {
-        var inventoryItems = InventoryManager.GetCharacterItems(characterController.Id);
-        foreach (var inventoryItem in inventoryItems)
-        {
-            var item = inventoryItem.Item;
-            if ((characterController.Character.Weapon == null && item.Type == ItemType.Weapon) ||
-                (characterController.Character.Shield == null && item.Type == ItemType.Shield))
-            {
-                characterController.Equip(inventoryItem);
-                UpdateEquippedItemPositions(inventoryItem);
-            }
-        }
-    }
-
-    private void UpdateEquippedItemPositions(InventoryItem inventoryItem)
-    {
-        if (inventoryItem.Item.Type == ItemType.Weapon)
-        {
-            _equippedWeaponPosition = inventoryItem.InventoryPosition;
-        }
-        else if (inventoryItem.Item.Type == ItemType.Shield)
-        {
-            _equippedShieldPosition = inventoryItem.InventoryPosition;
-        }
+        var itemTransferHandler = new ItemTransferHandler(transferToSlot, transferFromSlot);
+        itemTransferHandler.ExecuteTransfer();
     }
 
     private void UpdateInventorySlotOverlays(
         InventoryItem inventoryItem,
         InventorySlot inventorySlot)
     {
-        if (ItemIsEquipped(inventoryItem))
+        if (_characterController?.ItemIsEquipped(inventoryItem) ?? false)
         {
             inventorySlot.DisplayEquipOverlay();
         }
@@ -239,26 +153,6 @@ public class InventoryItemsView : MonoBehaviour
         {
             inventorySlot.HideEquipOverlay();
         }
-    }
-
-    private bool ItemIsEquipped(InventoryItem inventoryItem)
-    {
-        var itemIsEquipped = _characterController?.ItemIsEquipped(inventoryItem) ?? false;
-        if (!itemIsEquipped)
-        {
-            return false;
-        }
-
-        if (inventoryItem.Item.Type == ItemType.Weapon)
-        {
-            return inventoryItem.InventoryPosition == _equippedWeaponPosition;
-        }
-        else if (inventoryItem.Item.Type == ItemType.Shield)
-        {
-            return inventoryItem.InventoryPosition == _equippedShieldPosition;
-        }
-
-        return false;
     }
 
 

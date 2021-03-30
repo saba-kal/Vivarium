@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IDropHandler
+public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public delegate void SlotClick(InventorySlot inventorySlot);
     public delegate void SlotDragBegin(InventorySlot inventorySlot);
@@ -17,6 +17,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     public Button Button;
     public TextMeshProUGUI Count;
     public GameObject EquipOverlay;
+    public GameObject SlotHighlight;
     public int Index;
 
     private InventoryItem _inventoryItem;
@@ -27,6 +28,8 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private SlotDrop _onSlotDrop;
     private Canvas _canvas;
     private GameObject _duplicateIcon;
+    private bool _highlightOccupiedSlots = false;
+    private bool _highlightEnabled = true;
 
     private void Start()
     {
@@ -36,6 +39,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
             OnSlotClick?.Invoke(this); //Global
         });
         _canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG)?.GetComponent<Canvas>();
+        SlotHighlight.SetActive(false);
     }
 
     public void SetItem(InventoryItem inventoryItem, CharacterController selectedCharacter = null)
@@ -148,6 +152,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         }
     }
 
+    /// <inheritdoc cref="IBeginDragHandler.OnBeginDrag(PointerEventData)"/>
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (_inventoryItem == null)
@@ -177,6 +182,7 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         }
     }
 
+    /// <inheritdoc cref="IDragHandler.OnDrag(PointerEventData)"/>
     public void OnDrag(PointerEventData eventData)
     {
         if (_inventoryItem == null)
@@ -193,12 +199,14 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         }
     }
 
+    /// <inheritdoc cref="IEndDragHandler.OnEndDrag(PointerEventData)"/>
     public void OnEndDrag(PointerEventData eventData)
     {
         ResetIcon(Icon, transform);
         _onSlotDragEnd?.Invoke(this);
     }
 
+    /// <inheritdoc cref="IDropHandler.OnDrop(PointerEventData)"/>
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.selectedObject != null)
@@ -222,6 +230,10 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         }
     }
 
+    /// <summary>
+    /// Gets the character controller this inventory slot belongs to.
+    /// </summary>
+    /// <returns><see cref="CharacterController">.</returns>
     public CharacterController GetCharacter()
     {
         return _selectedCharacter;
@@ -234,5 +246,50 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         {
             tooltip.SetTooltipData(_inventoryItem.Item);
         }
+    }
+
+    /// <inheritdoc cref="IPointerEnterHandler.OnPointerExit(PointerEventData)"/>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SlotHighlight.SetActive(false);
+    }
+
+    /// <inheritdoc cref="IPointerEnterHandler.OnPointerEnter(PointerEventData)"/>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!_highlightEnabled)
+        {
+            return;
+        }
+
+        if (eventData.selectedObject != null)
+        {
+            if (_highlightOccupiedSlots)
+            {
+                SlotHighlight.SetActive(true);
+            }
+            else if (_inventoryItem == null)
+            {
+                SlotHighlight.SetActive(true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Enables/disables whether or not to show highlight when dragging items on top of inventory slot.
+    /// </summary>
+    /// <param name="highlightEnabled">Boolean flag that determines whether or not to show the highlights.</param>
+    public void SetHighlightEnabled(bool highlightEnabled)
+    {
+        _highlightEnabled = highlightEnabled;
+    }
+
+    /// <summary>
+    /// Enables/disables whether or not to show highlight when dragging items on top other items.
+    /// </summary>
+    /// <param name="higlightOccupiedSlots">Boolean flag that determines whether or not to show the highlights.</param>
+    public void SetHighlightOccupiedSlots(bool higlightOccupiedSlots)
+    {
+        _highlightOccupiedSlots = higlightOccupiedSlots;
     }
 }

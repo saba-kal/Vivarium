@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0036325455, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.0036325455, g: 1, b: 0, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -416,12 +416,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 2347623034536884367}
   StatsText: {fileID: 2347623035060846077}
-  InventoryContainer: {fileID: 2347623035853407501}
-  InventorySlotPrefab: {fileID: 6021040879492175171, guid: 448405658ceda22429bd015e49d22a8f, type: 3}
   InventoryView: {fileID: 2772185813304250345}
   Outline: {fileID: 3071751591064759375}
   ErrorsText: {fileID: 40436599522445954}
-  HighlightColor: {r: 0, g: 1, b: 0.065570354, a: 1}
+  HighlightColor: {r: 0, g: 1, b: 0.065570354, a: 0.19607843}
   ErrorColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2772185813304250345
 MonoBehaviour:

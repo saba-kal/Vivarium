@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     public delegate void CharacterSelect(CharacterController character);
     public static event CharacterSelect OnCharacterSelect;
 
+    public bool DisableActionsOnEquip = false;
+    public bool DisableActionsOnConsume = true;
+    public bool DisableActionsOnTrade = true;
     public List<CharacterController> PlayerCharacters;
-    private CharacterController _selectedCharacter;
 
+    private CharacterController _selectedCharacter;
     private bool _actionIsSelected = false;
     private bool _tradeIsSelected = false;
     private Action _selectedAction;
@@ -33,7 +36,9 @@ public class PlayerController : MonoBehaviour
         UnitInspectionController.OnActionClick += SelectAction;
         UnitInspectionController.OnMoveClick += SelectMove;
         UnitInspectionController.OnTradeClick += SelectTrade;
-        InventoryUIController.OnEquipClick += DeselectAction;
+        InventoryUIController.OnEquipClick += OnEquip;
+        InventoryUIController.OnConsumeClick += OnConsume;
+        TradeUIController.OnTradeComplete += OnTrade;
         CharacterController.OnDeath += OnCharacterDeath;
     }
 
@@ -43,7 +48,9 @@ public class PlayerController : MonoBehaviour
         UnitInspectionController.OnActionClick -= SelectAction;
         UnitInspectionController.OnMoveClick -= SelectMove;
         UnitInspectionController.OnTradeClick -= SelectTrade;
-        InventoryUIController.OnEquipClick -= DeselectAction;
+        InventoryUIController.OnEquipClick -= OnEquip;
+        InventoryUIController.OnConsumeClick -= OnConsume;
+        TradeUIController.OnTradeComplete -= OnTrade;
         CharacterController.OnDeath -= OnCharacterDeath;
     }
 
@@ -57,14 +64,21 @@ public class PlayerController : MonoBehaviour
 
         //CharacterController targetCharacter = TurnSystemManager.Instance.GetCharacterWithIds(selectedTile.CharacterControllerId, CharacterSearchType.Enemy);
         //Action is selected. So this grid cell click is for executing the action.
-        if (_actionIsSelected && ActionIsWithinRange(selectedTile) && _selectedCharacter != null && !_selectedCharacter.IsEnemy && AoeEnemyDetection(selectedTile))
+        if (_actionIsSelected &&
+            ActionIsWithinRange(selectedTile) &&
+            _selectedCharacter != null &&
+            !_selectedCharacter.IsEnemy &&
+            !_selectedCharacter.IsDisabled &&
+            AoeEnemyDetection(selectedTile))
         {
             PerformAction(selectedTile);
             UnitInspectionController.Instance.DisableWeaponActionsForCharacter(_selectedCharacter.Id);
         }
         //A character is selected. The tile that was clicked is within the character's move range.
         else if (_selectedCharacter != null &&
-            _selectedCharacter.IsAbleToMoveToTile(selectedTile) && _selectedCharacter.IsEnemy == false)
+            _selectedCharacter.IsAbleToMoveToTile(selectedTile) &&
+            !_selectedCharacter.IsEnemy &&
+            !_selectedCharacter.IsDisabled)
         {
             _selectedCharacter.MoveToTile(selectedTile, () =>
             {
@@ -244,6 +258,7 @@ public class PlayerController : MonoBehaviour
             OnPlayerAttack?.Invoke();
         });
         DeselectAction();
+        DisableActions(_selectedCharacter.Id, true);
     }
 
     public void EnableCharacters()
@@ -256,7 +271,7 @@ public class PlayerController : MonoBehaviour
         UIController.Instance.EnableAllButtons();
         foreach (var character in PlayerCharacters.ToList())
         {
-            character.IsEnemy = false;
+            character.IsDisabled = false;
             character.SetHasAttacked(false);
             character.SetHasMoved(false);
         }
@@ -266,7 +281,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var character in PlayerCharacters.ToList())
         {
-            character.IsEnemy = true;
+            character.IsDisabled = true;
         }
     }
 
@@ -362,4 +377,53 @@ public class PlayerController : MonoBehaviour
         characterController = null;
         return false;
     }
+
+    #region UI events
+
+    private void OnTrade(CharacterController characterController)
+    {
+        DeselectTrade();
+        DisableActions(characterController.Id, DisableActionsOnTrade);
+    }
+
+    private void OnConsume(CharacterController characterController)
+    {
+        DisableActions(characterController.Id, DisableActionsOnConsume);
+    }
+
+    private void OnEquip(CharacterController characterController)
+    {
+        DeselectAction();
+        DisableActions(characterController.Id, DisableActionsOnEquip);
+    }
+
+    private void DisableActions(string characterId, bool disableActions)
+    {
+        if (!disableActions)
+        {
+            return;
+        }
+
+        if (DisableActionsOnTrade || DisableActionsOnConsume || DisableActionsOnEquip)
+        {
+            UnitInspectionController.Instance.DisableWeaponActionsForCharacter(characterId);
+        }
+
+        if (DisableActionsOnTrade)
+        {
+            UnitInspectionController.Instance.DisableTradeActionForCharacter(characterId);
+        }
+
+        if (DisableActionsOnConsume)
+        {
+            InventoryUIController.Instance.DisableConsumeForCharacter(characterId);
+        }
+
+        if (DisableActionsOnEquip)
+        {
+            InventoryUIController.Instance.DisableEquipForCharacter(characterId);
+        }
+    }
+
+    #endregion
 }

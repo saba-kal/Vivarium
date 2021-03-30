@@ -22,4 +22,24 @@ public class InventoryItem
     /// The item data that this inventory item references.
     /// </summary>
     public Item Item;
+
+    /// <summary>
+    /// Copies another inventory item object.
+    /// </summary>
+    /// <param name="inventoryItem">The inventory item to copy.</param>
+    /// <returns>A new <see cref="InventoryItem"/> object.</returns>
+    public static InventoryItem Copy(InventoryItem inventoryItem)
+    {
+        if (inventoryItem == null)
+        {
+            return null;
+        }
+
+        return new InventoryItem
+        {
+            Count = inventoryItem.Count,
+            InventoryPosition = inventoryItem.InventoryPosition,
+            Item = inventoryItem.Item
+        };
+    }
 }
