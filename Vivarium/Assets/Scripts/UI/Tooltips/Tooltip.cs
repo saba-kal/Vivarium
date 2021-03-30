@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
-    public float TooltipCleanupInterval = 0.3f;
 
     private GameObject _activeTooltip;
     private TooltipType _type;
@@ -16,43 +15,29 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Character CharacterToShow;
     private bool _mouseIsHoveringOverElement = false;
     private Canvas _canvas;
-    private float _timeSinceLastCleanup = 0f;
 
     void Start()
     {
         _canvas = GetComponentInParent<Canvas>();
+        TooltipManager.Instance.Register(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ItemToShow == null && ActionToShow == null)
+        if (!CanDisplayData() || _activeTooltip == null)
         {
+            HideTooltip();
             return;
         }
 
-        if (_activeTooltip == null && _mouseIsHoveringOverElement)
-        {
-            _activeTooltip = Instantiate(TooltipViewPrefab, TooltipContainer.Instance.transform);
-            _activeTooltip.transform.localPosition = Vector3.zero;
-            DisplayTooltipInfo();
-        }
-        else if (_activeTooltip != null && !_mouseIsHoveringOverElement)
-        {
-            HideTooltip();
-        }
+        DisplayTooltipInfo();
+        PositionTooltip();
+    }
 
-        if (_activeTooltip != null)
-        {
-            PositionTooltip();
-        }
-
-        _timeSinceLastCleanup += Time.deltaTime;
-        if (_timeSinceLastCleanup > TooltipCleanupInterval)
-        {
-            CleanupOrphanTooltips();
-            _timeSinceLastCleanup = 0;
-        }
+    void OnDestroy()
+    {
+        TooltipManager.Instance.Deregister(this);
     }
 
     private void DisplayTooltipInfo()
@@ -98,33 +83,9 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         tooltipRectTransform.transform.position = new Vector2(xPosition, yPosition);
     }
 
-    private void CleanupOrphanTooltips()
-    {
-        //TODO: figure out how to detect orphan tooltips. This does not work currently.
-        return;
-
-        Debug.Log(_activeTooltip?.GetInstanceID());
-
-        var tooltipView = _activeTooltip?.GetComponentInChildren<TooltipView>();
-
-        foreach (Transform child in TooltipContainer.Instance.transform)
-        {
-            if (tooltipView != null)
-            {
-                var childTooltipView = child.GetComponentInChildren<TooltipView>();
-                if (childTooltipView != null && tooltipView.Id != childTooltipView.Id)
-                {
-                    Destroy(child.gameObject);
-                }
-                //Debug.Log(child.name);
-                //Destroy(child.gameObject);
-            }
-        }
-    }
-
     public void HideTooltip()
     {
-        Destroy(_activeTooltip);
+        _activeTooltip = null;
         _mouseIsHoveringOverElement = false;
     }
 
@@ -154,5 +115,16 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         _mouseIsHoveringOverElement = false;
+    }
+
+    public bool CanDisplayData()
+    {
+        return (ItemToShow != null || ActionToShow != null) &&
+            _mouseIsHoveringOverElement;
+    }
+
+    public void SetActive(GameObject activeTooltip)
+    {
+        _activeTooltip = activeTooltip;
     }
 }

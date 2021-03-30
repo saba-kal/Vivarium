@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e23275de241acf44867009438fda06a, type: 3}
+  m_Name: CommonGridVIsualSettings
+  m_EditorClassIdentifier: 
+  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
+  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
+  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
+  QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
+  QuinaryHighlightPrefab: {fileID: 1290396168030185797, guid: 61659e4a5bd2ee64d9327e3674d52503, type: 3}
+  LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}

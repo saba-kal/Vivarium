@@ -14,20 +14,26 @@ public class UnitInspectionController : MonoBehaviour
     public static event ActionClick OnActionClick;
     public delegate void MoveClick();
     public static event MoveClick OnMoveClick;
+    public delegate void TradeClick();
+    public static event TradeClick OnTradeClick;
 
     public string MoveButtonText = "Move";
+    public string TradeButtonText = "Trade";
 
     public GameObject ActionButtonsContainer;
     public Button ActionButtonPrefab;
     public GameObject SelectedButtonIndicatorPrefab;
+
     public TextMeshProUGUI UnitNameText;
     public TextMeshProUGUI UnitStatsText;
     public TextMeshProUGUI UnitAbilityText;
 
     private Button _moveButton;
+    private Button _tradeButton;
     private CharacterController _characterController;
     private List<string> _charactersWithDisabledActions = new List<string>();
     private List<string> _charactersWithDisabledMoves = new List<string>();
+    private List<string> _charactersWithDisabledTrade = new List<string>();
     private List<Button> _weaponActionButtons = new List<Button>();
     private GameObject _selectedButtonIndicator;
 
@@ -61,6 +67,10 @@ public class UnitInspectionController : MonoBehaviour
         ClearCharacterActions();
         AddWeaponActionButtons();
         AddMoveActionButton();
+        if (!_characterController.IsEnemy)
+        {
+            AddTradeActionButton();
+        }
     }
 
     private void ClearCharacterActions()
@@ -133,6 +143,21 @@ public class UnitInspectionController : MonoBehaviour
         }
     }
 
+    private void AddTradeActionButton()
+    {
+        _tradeButton = Instantiate(ActionButtonPrefab);
+        _tradeButton.transform.SetParent(ActionButtonsContainer.transform, false);
+        _tradeButton.interactable = !_charactersWithDisabledTrade.Contains(_characterController.Id);
+        _tradeButton.onClick.AddListener(() =>
+        {
+            OnTradeClick?.Invoke();
+            UpdateSelectedActionIndicator(_tradeButton);
+        });
+
+        var buttonText = _tradeButton.GetComponentInChildren<TextMeshProUGUI>();
+        buttonText.text = TradeButtonText;
+    }
+
     private void UpdateSelectedActionIndicator(Button selectedAction)
     {
         if (_selectedButtonIndicator == null)
@@ -163,6 +188,7 @@ public class UnitInspectionController : MonoBehaviour
     {
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
+        _charactersWithDisabledTrade = new List<string>();
     }
 
     /// <summary>
@@ -187,6 +213,16 @@ public class UnitInspectionController : MonoBehaviour
         {
             button.interactable = false;
         }
+    }
+
+    /// <summary>
+    /// Disables the trade action for a given character ID.
+    /// </summary>
+    /// <param name="characterId">The unique ID of the character.</param>
+    public void DisableTradeActionForCharacter(string characterId)
+    {
+        _charactersWithDisabledTrade.Add(characterId);
+        _tradeButton.interactable = false;
     }
 
     #endregion

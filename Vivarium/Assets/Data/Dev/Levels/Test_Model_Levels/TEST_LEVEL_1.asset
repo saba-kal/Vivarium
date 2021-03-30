@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: TEST_LEVEL_1
   m_EditorClassIdentifier: 
   GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
-  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
-  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
-  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
-  LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
+  VisualSettings: {fileID: 11400000, guid: 47b38dfe92b45e24d9f0bc6e4ac46afa, type: 2}
+  BossCharacter: {fileID: 0}
   MinEnemyCharacters: 2
   MaxEnemyCharacters: 3
   PossibleEnemyCharacters:
@@ -28,6 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e27f2c6a6fb0a7e4f9cd41b5d7a7a377, type: 2}
   MinPlayerCharacters: 4
   MaxPlayerCharacters: 4
+  GuaranteedPlayerCharacters: []
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: 7704e7af7e304f841a65aa751e6d425d, type: 2}
   - {fileID: 11400000, guid: 7704e7af7e304f841a65aa751e6d425d, type: 2}
@@ -39,6 +38,9 @@ MonoBehaviour:
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 6eebd1537089d3245b35164e62f1c708, type: 2}
+  TreasureChests: []
+  ChestGenerationSubdivisions: 3
+  RewardCharacters: []
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 0}

@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0036325455, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.0036325455, g: 1, b: 0, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -369,6 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2347623035681701596}
   - component: {fileID: 2347623035681701597}
+  - component: {fileID: 2772185813304250345}
   m_Layer: 5
   m_Name: CharacterProfile
   m_TagString: Untagged
@@ -396,10 +397,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -54.8, y: 0}
-  m_SizeDelta: {x: 336.05963, y: 386.35693}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 336.05957, y: 386.35693}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2347623035681701597
 MonoBehaviour:
@@ -413,15 +414,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077ccf38af11ee3438940eabe00dafbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxItems: 3
   Icon: {fileID: 2347623034536884367}
   StatsText: {fileID: 2347623035060846077}
-  InventoryContainer: {fileID: 2347623035853407501}
-  InventorySlotPrefab: {fileID: 6021040879492175171, guid: 448405658ceda22429bd015e49d22a8f, type: 3}
+  InventoryView: {fileID: 2772185813304250345}
   Outline: {fileID: 3071751591064759375}
   ErrorsText: {fileID: 40436599522445954}
-  HighlightColor: {r: 0, g: 1, b: 0.065570354, a: 1}
+  HighlightColor: {r: 0, g: 1, b: 0.065570354, a: 0.19607843}
   ErrorColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2772185813304250345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347623035681701599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5636c892911228f40ad9770a0a1a81fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPlayerItems: 20
+  InventoryContainer: {fileID: 2347623035853407501}
+  InventorySlotPrefab: {fileID: 6021040879492175171, guid: 448405658ceda22429bd015e49d22a8f, type: 3}
+  SelectedInventorySlotOverlayPrefab: {fileID: 5632275100726783992, guid: 961dfa7bf479c90408c6a78e711b8c23, type: 3}
 --- !u!1 &2347623035853407501
 GameObject:
   m_ObjectHideFlags: 0
