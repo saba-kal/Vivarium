@@ -59,6 +59,15 @@ public class LevelManager : MonoBehaviour
             Debug.Log("You beat the game.");
             UIController.Instance.GameOver("YOU WIN");
         }
+        else if (PlayerData.CurrentLevelIndex == 0)
+        {
+            PlayerData.CurrentLevelIndex++;
+            LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
+            LevelGenerator.GenerateLevel();
+            LevelGenerator.PlayerController.EnableCharacters();
+            LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
+            LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
+        }
         else
         {
             PlayerData.CurrentLevelIndex++;

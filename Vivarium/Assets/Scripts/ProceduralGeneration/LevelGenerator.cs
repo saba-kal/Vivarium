@@ -76,6 +76,26 @@ public class LevelGenerator : MonoBehaviour
             PlayerController = playerController.GetComponent<PlayerController>();
         }
         _possibleEnemySpawnTiles.Clear();
+
+        //Clears player characters only after tutorial
+        if (PlayerData.CurrentLevelIndex == 1)
+        {
+            var characterControllers = new List<CharacterController>();
+            foreach (var characterController in PlayerCharacters)
+            {
+                if (characterController.gameObject.activeSelf)
+                {
+                    UnityEngine.Debug.Log("Test");
+                    Destroy(characterController.gameObject, 0.1f);
+                }
+                characterControllers.Add(characterController);
+            }
+
+            foreach (var characterController in characterControllers)
+            {
+                PlayerCharacters.Remove(characterController);
+            }
+        }
     }
 
     public void SetupLevelContainer()
@@ -157,7 +177,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0)
+        if (PlayerCharacters.Count == 0 || PlayerData.CurrentLevelIndex == 1)
         {
             GeneratePlayerCharacters();
         }

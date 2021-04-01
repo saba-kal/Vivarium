@@ -149,7 +149,6 @@ public class GridGenerator
 
     private void SetPossibleObjectiveTiles(Grid<Tile> grid, int objectiveVariation)
     {
-
         for (int i = 0; i <= objectiveVariation; i++)
         {
             for (int j = 0; j <= objectiveVariation; j++)
@@ -161,32 +160,53 @@ public class GridGenerator
 
     private void SetPossiblePlayerSpawn(Grid<Tile> grid)
     {
-        for (int i = 0; i <= 3; i++)
+        if (PlayerData.CurrentLevelIndex == 0)
         {
-            for (int j = 0; j <= 3; j++)
+            grid.GetValue(2, 2).SpawnType = TileSpawnType.Player;
+            for (int i = 0; i <= 5; i++)
             {
-                grid.GetValue(i, j).SpawnType = TileSpawnType.Player;
-                grid.GetValue(i, j).Type = TileType.Grass;
+                for (int j = 0; j <= 5; j++)
+                {
+                    grid.GetValue(i, j).Type = TileType.Grass;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                for (int j = 0; j <= 3; j++)
+                {
+                    grid.GetValue(i, j).SpawnType = TileSpawnType.Player;
+                    grid.GetValue(i, j).Type = TileType.Grass;
+                }
             }
         }
     }
 
     private void SetPossibleEnemySpawn(Grid<Tile> grid)
     {
-        var maxX = grid.GetGrid().GetLength(0);
-        var maxY = grid.GetGrid().GetLength(1);
-        for (int i = 0; i < maxX; i++)
+        if (PlayerData.CurrentLevelIndex == 0)
         {
-            for (int j = 0; j < maxY; j++)
+            grid.GetValue(4, 4).SpawnType = TileSpawnType.Enemy;
+        }
+        else
+        {
+            var maxX = grid.GetGrid().GetLength(0);
+            var maxY = grid.GetGrid().GetLength(1);
+            for (int i = 0; i < maxX; i++)
             {
-                //.25 is the percentage of one axis on the grid that will not allow enemies to spawn
-                //1/4 * 1/4 = 1/16 of the grid that enemies cannot spawn at the start
-                //This is to keep enemies from spawning too close to player characters
-                if (i >= maxX * .25 || j >= maxY * .25)
+                for (int j = 0; j < maxY; j++)
                 {
-                    if (grid.GetValue(i, j).SpawnType != TileSpawnType.Objective)
+                    //.25 is the percentage of one axis on the grid that will not allow enemies to spawn
+                    //1/4 * 1/4 = 1/16 of the grid that enemies cannot spawn at the start
+                    //This is to keep enemies from spawning too close to player characters
+                    if (i >= maxX * .25 || j >= maxY * .25)
                     {
-                        grid.GetValue(i, j).SpawnType = TileSpawnType.Enemy;
+                        if (grid.GetValue(i, j).SpawnType != TileSpawnType.Objective)
+                        {
+                            grid.GetValue(i, j).SpawnType = TileSpawnType.Enemy;
+                        }
                     }
                 }
             }
