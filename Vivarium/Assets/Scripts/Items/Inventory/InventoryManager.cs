@@ -22,7 +22,20 @@ public static class InventoryManager
 
     public static void PlaceCharacterItem(string characterId, InventoryItem inventoryItem, bool ignorePosition = false)
     {
-        var maxItems = TurnSystemManager.Instance.GetCharacterController(characterId)?.Character.MaxItems ?? Constants.MAX_CHARACTER_ITEMS;
+        var characterController = TurnSystemManager.Instance.GetCharacterController(characterId);
+        if (characterController == null)
+        {
+            Debug.LogError("Unable to find character controller to place item.");
+            return;
+        }
+
+        PlaceCharacterItem(characterController, inventoryItem, ignorePosition);
+    }
+
+    public static void PlaceCharacterItem(CharacterController characterController, InventoryItem inventoryItem, bool ignorePosition = false)
+    {
+        var characterId = characterController.Id;
+        var maxItems = characterController?.Character.MaxItems ?? Constants.MAX_CHARACTER_ITEMS;
         var characterItems = GetCharacterItems(characterId);
 
         if (inventoryItem.InventoryPosition < 0)

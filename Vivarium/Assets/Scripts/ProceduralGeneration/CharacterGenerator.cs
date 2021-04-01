@@ -20,12 +20,12 @@ public class CharacterGenerator
 
 
         var weaponItem = new InventoryItem { Item = characterData.Weapon, Count = 1, InventoryPosition = 0 };
-        InventoryManager.PlaceCharacterItem(characterData.Id, weaponItem);
+        InventoryManager.PlaceCharacterItem(characterController, weaponItem);
         characterController.Equip(weaponItem);
         if (characterData.Shield != null)
         {
             var shieldItem = new InventoryItem { Item = characterData.Shield, Count = 1, InventoryPosition = 1 };
-            InventoryManager.PlaceCharacterItem(characterData.Id, shieldItem);
+            InventoryManager.PlaceCharacterItem(characterController, shieldItem);
             characterController.Equip(shieldItem);
         }
 
