@@ -7,11 +7,7 @@ public class LevelGenerationProfile : ScriptableObject
 {
     public GridGenerationProfile GridProfile;
 
-    public GameObject PrimaryHighlightPrefab;
-    public GameObject SecondaryHighlightPrefab;
-    public GameObject TertiaryHighlightPrefab;
-    public GameObject QuaternaryHighlightPrefab;
-    public GameObject LevelObjectivePrefab;
+    public GridVisualSettings VisualSettings;
 
     public CharacterGenerationProfile BossCharacter;
     public int MinEnemyCharacters;

@@ -11,41 +11,85 @@ public static class InventoryManager
 
     public static void PlaceCharacterItem(string characterId, Item item)
     {
+        PlaceCharacterItem(
+            characterId,
+            new InventoryItem
+            {
+                Count = 1,
+                Item = item
+            });
+    }
+
+    public static void PlaceCharacterItem(string characterId, InventoryItem inventoryItem, bool ignorePosition = false)
+    {
+        var characterController = TurnSystemManager.Instance.GetCharacterController(characterId);
+        if (characterController == null)
+        {
+            Debug.LogError("Unable to find character controller to place item.");
+            return;
+        }
+
+        PlaceCharacterItem(characterController, inventoryItem, ignorePosition);
+    }
+
+    public static void PlaceCharacterItem(CharacterController characterController, InventoryItem inventoryItem, bool ignorePosition = false)
+    {
+        var characterId = characterController.Id;
+        var maxItems = characterController?.Character.MaxItems ?? Constants.MAX_CHARACTER_ITEMS;
+        var characterItems = GetCharacterItems(characterId);
+
+        if (inventoryItem.InventoryPosition < 0)
+        {
+            inventoryItem.InventoryPosition = GetFreeInventoryPosition(characterItems, maxItems);
+        }
+
         if (_characterInventories.ContainsKey(characterId))
         {
-            if (_characterInventories[characterId].Items.ContainsKey(item.Id))
+            if (!ignorePosition && !InventoryPositionIsAvailable(inventoryItem, characterItems, maxItems))
             {
-                if (_characterInventories[characterId].Items[item.Id] == null ||
-                    _characterInventories[characterId].Items[item.Id].Count == 0)
+                Debug.LogWarning("This inventory position is unavailable.");
+                return;
+            }
+
+            if (_characterInventories[characterId].Items.TryGetValue(inventoryItem.Item.Id, out var existingInventoryItems))
+            {
+                if (existingInventoryItems == null || existingInventoryItems.Count == 0)
                 {
-                    _characterInventories[characterId].Items[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
+                    _characterInventories[characterId].Items[inventoryItem.Item.Id] = new List<InventoryItem> { inventoryItem };
                 }
-                else if (item.CanBeStacked)
+                else if (inventoryItem.Item.CanBeStacked)
                 {
-                    _characterInventories[characterId].Items[item.Id][0].Count++;
+                    var existingInventoryItem = existingInventoryItems.FirstOrDefault(itm => inventoryItem.InventoryPosition == itm.InventoryPosition);
+                    if (existingInventoryItem != null)
+                    {
+                        existingInventoryItem.Count++;
+                    }
+                    else
+                    {
+                        existingInventoryItems.Add(inventoryItem);
+                    }
                 }
                 else
                 {
-                    _characterInventories[characterId].Items[item.Id].Add(new InventoryItem { Count = 1, Item = item });
+                    existingInventoryItems.Add(inventoryItem);
                 }
             }
             else
             {
-                _characterInventories[characterId].Items[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
+                _characterInventories[characterId].Items[inventoryItem.Item.Id] = new List<InventoryItem> { inventoryItem };
             }
         }
         else
         {
             var characterInventory = new CharacterInventory();
-            characterInventory.Items.Add(item.Id, new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } });
+            characterInventory.Items.Add(inventoryItem.Item.Id, new List<InventoryItem> { inventoryItem });
             _characterInventories.Add(characterId, characterInventory);
         }
 
-        var maxItems = TurnSystemManager.Instance.GetCharacterController(characterId)?.Character.MaxItems ?? Constants.MAX_CHARACTER_ITEMS;
         if (GetCharacterItemCount(characterId) > maxItems)
         {
             Debug.LogWarning("Character has reached maximum items. Cannot place more in inventory.");
-            RemoveCharacterItem(characterId, item.Id);
+            RemoveCharacterItem(characterId, inventoryItem.Item.Id, inventoryItem.InventoryPosition);
             return;
         }
     }
@@ -61,39 +105,40 @@ public static class InventoryManager
         return GetCharacterItems(characterId).Count;
     }
 
-    public static void RemoveCharacterItem(string characterId, string itemId)
+    public static void RemoveCharacterItem(string characterId, string itemId, int inventoryPosition, int count = 1)
     {
-        var inventoryItem = GetCharacterItem(characterId, itemId);
+        var inventoryItem = GetCharacterItem(characterId, itemId, inventoryPosition);
         if (inventoryItem == null)
         {
             return;
         }
 
         if (inventoryItem.Item.CanBeStacked &&
-            _characterInventories[characterId].Items[itemId].Count >= 1)
+            _characterInventories[characterId].Items[itemId].Count > 0)
         {
-            _characterInventories[characterId].Items[itemId][0].Count--;
-            if (_characterInventories[characterId].Items[itemId][0].Count == 0)
+            inventoryItem.Count -= count;
+            if (inventoryItem.Count <= 0)
             {
-                _characterInventories[characterId].Items.Remove(itemId);
+                _characterInventories[characterId].Items[itemId].Remove(inventoryItem);
             }
         }
-        else if (_characterInventories[characterId].Items[itemId].Count > 1)
+        else if (_characterInventories[characterId].Items[itemId].Count > 0)
         {
-            _characterInventories[characterId].Items[itemId].RemoveAt(0);
+            var removed = _characterInventories[characterId].Items[itemId].Remove(inventoryItem);
         }
-        else
+
+        if (_characterInventories[characterId].Items[itemId].Count == 0)
         {
             _characterInventories[characterId].Items.Remove(itemId);
         }
     }
 
-    public static InventoryItem GetCharacterItem(string characterId, string itemId)
+    public static InventoryItem GetCharacterItem(string characterId, string itemId, int inventoryPosition)
     {
         if (_characterInventories.ContainsKey(characterId) &&
             _characterInventories[characterId].Items.ContainsKey(itemId))
         {
-            return _characterInventories[characterId].Items[itemId].FirstOrDefault();
+            return _characterInventories[characterId].Items[itemId].FirstOrDefault(itm => itm.InventoryPosition == inventoryPosition);
         }
 
         return null;
@@ -107,6 +152,11 @@ public static class InventoryManager
         }
 
         return null;
+    }
+
+    public static void SetCharacterInventory(string characterId, CharacterInventory characterInventory)
+    {
+        _characterInventories[characterId] = characterInventory;
     }
 
     public static List<InventoryItem> GetCharacterItems(string characterId)
@@ -137,25 +187,53 @@ public static class InventoryManager
 
     public static void PlacePlayerItem(Item item)
     {
-        var inventoryItem = GetPlayerItem(item.Id);
-        if (inventoryItem == null)
+        PlacePlayerItem(new InventoryItem
         {
-            _playerInventory[item.Id] = new List<InventoryItem> { new InventoryItem { Count = 1, Item = item } };
+            Count = 1,
+            Item = item
+        });
+    }
+
+    public static void PlacePlayerItem(InventoryItem inventoryItem, bool ignorePosition = false)
+    {
+        if (inventoryItem.InventoryPosition < 0)
+        {
+            inventoryItem.InventoryPosition = GetFreeInventoryPosition(GetPlayerItems(), Constants.MAX_PLAYER_ITEMS);
+        }
+
+        if (!ignorePosition && !InventoryPositionIsAvailable(inventoryItem, GetPlayerItems(), Constants.MAX_PLAYER_ITEMS))
+        {
+            Debug.LogWarning("This inventory position is unavailable.");
             return;
         }
 
-        if (inventoryItem.Item.CanBeStacked)
+        var existingInventoryItem = GetPlayerItem(inventoryItem.Item.Id, inventoryItem.InventoryPosition);
+        if (existingInventoryItem == null)
         {
-            inventoryItem.Count++;
+            if (_playerInventory.ContainsKey(inventoryItem.Item.Id))
+            {
+                _playerInventory[inventoryItem.Item.Id].Add(inventoryItem);
+            }
+            else
+            {
+                _playerInventory[inventoryItem.Item.Id] = new List<InventoryItem> { inventoryItem };
+            }
+
+            return;
+        }
+
+        if (inventoryItem.Item.CanBeStacked && existingInventoryItem.InventoryPosition == inventoryItem.InventoryPosition)
+        {
+            existingInventoryItem.Count++;
         }
         else
         {
-            _playerInventory[item.Id].Add(new InventoryItem { Count = 1, Item = item });
+            _playerInventory[inventoryItem.Item.Id].Add(inventoryItem);
         }
 
         if (GetPlayerItemCount() > Constants.MAX_PLAYER_ITEMS)
         {
-            RemovePlayerItem(item.Id);
+            RemovePlayerItem(inventoryItem.Item.Id, inventoryItem.InventoryPosition);
             Debug.LogWarning("The player has reached maximum items. Cannot place more in inventory.");
             return;
         }
@@ -175,9 +253,9 @@ public static class InventoryManager
         return count;
     }
 
-    public static void RemovePlayerItem(string itemId)
+    public static void RemovePlayerItem(string itemId, int inventoryPosition, int count = 1)
     {
-        var inventoryItem = GetPlayerItem(itemId);
+        var inventoryItem = GetPlayerItem(itemId, inventoryPosition);
         if (inventoryItem == null)
         {
             return;
@@ -185,30 +263,28 @@ public static class InventoryManager
 
         if (inventoryItem.Item.CanBeStacked)
         {
-            inventoryItem.Count--;
+            inventoryItem.Count -= count;
             if (inventoryItem.Count <= 0)
             {
-                _playerInventory.Remove(itemId);
+                _playerInventory[itemId].Remove(inventoryItem);
             }
         }
         else
         {
-            if (_playerInventory[itemId].Count <= 1)
-            {
-                _playerInventory.Remove(itemId);
-            }
-            else
-            {
-                _playerInventory[itemId].RemoveAt(0);
-            }
+            _playerInventory[itemId].Remove(inventoryItem);
+        }
+
+        if (_playerInventory[itemId].Count < 1)
+        {
+            _playerInventory.Remove(itemId);
         }
     }
 
-    public static InventoryItem GetPlayerItem(string itemId)
+    public static InventoryItem GetPlayerItem(string itemId, int inventoryPosition)
     {
         if (_playerInventory.ContainsKey(itemId))
         {
-            return _playerInventory[itemId].FirstOrDefault();
+            return _playerInventory[itemId].FirstOrDefault(itm => itm.InventoryPosition == inventoryPosition);
         }
 
         return null;
@@ -244,5 +320,53 @@ public static class InventoryManager
     {
         _playerInventory = new Dictionary<string, List<InventoryItem>>();
         _characterInventories = new Dictionary<string, CharacterInventory>();
+    }
+
+    private static bool InventoryPositionIsAvailable(InventoryItem item, List<InventoryItem> inventoryItems, int maxItems)
+    {
+        foreach (var existingItem in inventoryItems)
+        {
+            if (existingItem.InventoryPosition == item.InventoryPosition &&
+                (!existingItem.Item.CanBeStacked || existingItem.Item.Id != item.Item.Id))
+            {
+                var inventoryPosition = GetFreeInventoryPosition(inventoryItems, maxItems);
+                if (inventoryPosition > 0)
+                {
+                    item.InventoryPosition = inventoryPosition;
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        return inventoryItems.Count <= maxItems && item.InventoryPosition >= 0 && item.InventoryPosition < maxItems;
+    }
+
+    private static int GetFreeInventoryPosition(List<InventoryItem> inventoryItems, int maxItems)
+    {
+        if (inventoryItems.Count >= maxItems)
+        {
+            return -1;
+        }
+
+        var occupiedPositions = new bool[maxItems];
+        foreach (var item in inventoryItems)
+        {
+            if (item.InventoryPosition >= 0 && item.InventoryPosition < maxItems)
+            {
+                occupiedPositions[item.InventoryPosition] = true;
+            }
+        }
+
+        for (var i = 0; i < maxItems; i++)
+        {
+            if (!occupiedPositions[i])
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }

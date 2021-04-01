@@ -126,7 +126,7 @@ public class EnemyAIManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Character {aiCharacter.Character.Name} does not have an AI controller.");
+                Debug.LogWarning($"Character {aiCharacter.Character.Flavor.Name} does not have an AI controller.");
             }
         }
 

@@ -7,10 +7,11 @@ using System.Linq;
 public class Item : ScriptableObject
 {
     public string Id;
-    public string Name;
-    public string Description;
+    public FlavorTextData ItemFlavorText;
     public ItemType Type;
     public Sprite Icon;
     public GameObject Model;
     public bool CanBeStacked;
+
+    public FlavorText Flavor { get => FlavorText.FromFlavorTextData(ItemFlavorText); }
 }

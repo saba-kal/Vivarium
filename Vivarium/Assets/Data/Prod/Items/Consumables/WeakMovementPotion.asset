@@ -16,6 +16,7 @@ MonoBehaviour:
   Name: Small Movement Potion
   Description: A strange red liquid in a vial. Permanently increases movement by
     1.
+  ItemFlavorText: {fileID: 11400000, guid: 77c45fad22efda744a93a07746bc7d06, type: 2}
   Type: 3
   Icon: {fileID: 21300000, guid: 380acac122681104a9a94e1bb4a33fa3, type: 3}
   Model: {fileID: 0}

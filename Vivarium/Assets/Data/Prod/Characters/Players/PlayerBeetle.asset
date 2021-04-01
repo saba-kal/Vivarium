@@ -20,9 +20,11 @@ MonoBehaviour:
   PossiblePortraits:
   - {fileID: 21300000, guid: 96bfcdf4824f88f449d81977fdc297f4, type: 3}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 9a0fcaf2c2818a341a793b0036281f19, type: 2}
   Type: 0
   MaxSummons: 6
   StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 131
   MaxMaxHealth: 155
   MinAttackDamage: 27

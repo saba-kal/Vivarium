@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cbcf0ea4b09be4ba5f1c1c8e85b63a, type: 3}
+  m_Name: ExactoCleaver
+  m_EditorClassIdentifier: 
+  Id: ExactoCleaver4434
+  Name: Exacto Cleaver
+  Description: Can Cleave to do a small AOE attack centered on the attacker.
+  ItemFlavorText: {fileID: 11400000, guid: 5edf47890a6fafb49bd31834efd8baab, type: 2}
+  Type: 1
+  Icon: {fileID: 21300000, guid: 7e8b63259a4ed424d90b679ed6a932ec, type: 3}
+  Model: {fileID: 0}
+  CanBeStacked: 0
+  Attributes: []
+  Actions:
+  - {fileID: 11400000, guid: 2b1be9035921ba1468da5253c2093d4e, type: 2}
+  - {fileID: 11400000, guid: dd50938d307c5a946a3e7f4aea47ff94, type: 2}

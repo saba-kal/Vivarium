@@ -6,7 +6,7 @@ using System;
 public class Character
 {
     public string Id;
-    public string Name;
+    public FlavorText Flavor;
     public CharacterType Type = CharacterType.Normal;
     public Sprite Portrait;
     public float MaxHealth;

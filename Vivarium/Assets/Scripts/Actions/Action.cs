@@ -6,8 +6,7 @@ using System;
 public class Action : ScriptableObject
 {
     public string Id;
-    public string Name;
-    public string Description;
+    public FlavorTextData ActionFlavorText;
     public string SoundName;
     public float BaseDamage;
     [Range(0, 1)]
@@ -25,4 +24,6 @@ public class Action : ScriptableObject
     public GameObject TileParticleEffect;
     public float ActionTriggerDelay = 1f;
     public CharacterGenerationProfile SummonProfile;
+
+    public FlavorText Flavor { get => FlavorText.FromFlavorTextData(ActionFlavorText); }
 }

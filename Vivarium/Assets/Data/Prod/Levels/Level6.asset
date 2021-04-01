@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Level6
   m_EditorClassIdentifier: 
   GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
-  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
-  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
-  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
-  QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
-  LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
+  VisualSettings: {fileID: 11400000, guid: 47b38dfe92b45e24d9f0bc6e4ac46afa, type: 2}
   BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
   MinEnemyCharacters: 5
   MaxEnemyCharacters: 5

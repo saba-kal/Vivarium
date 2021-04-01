@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   Id: FireBall123yoyoy
-  Name: Fire Ball
-  Description: OP as shit
+  ActionFlavorText: {fileID: 0}
   SoundName: TestAttackSound
   BaseDamage: 100
   CriticalChance: 0

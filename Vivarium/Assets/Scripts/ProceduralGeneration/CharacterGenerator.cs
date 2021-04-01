@@ -11,12 +11,23 @@ public class CharacterGenerator
         characterData.Weapon = new WeaponGenerator().GenerateWeapon(characterProfile.WeaponProfile);
         characterData.Shield = new ShieldGenerator().GenerateShield(characterProfile.ShieldProfile);
 
-        var characterGameObject = new GameObject(characterData.Name);
+        var characterGameObject = new GameObject(characterData.Flavor.Name);
 
         var characterController = characterGameObject.AddComponent<CharacterController>();
         characterController.Id = characterData.Id;
         characterController.Character = characterData;
         characterController.IsEnemy = isEnemy;
+
+
+        var weaponItem = new InventoryItem { Item = characterData.Weapon, Count = 1, InventoryPosition = 0 };
+        InventoryManager.PlaceCharacterItem(characterController, weaponItem);
+        characterController.Equip(weaponItem);
+        if (characterData.Shield != null)
+        {
+            var shieldItem = new InventoryItem { Item = characterData.Shield, Count = 1, InventoryPosition = 1 };
+            InventoryManager.PlaceCharacterItem(characterController, shieldItem);
+            characterController.Equip(shieldItem);
+        }
 
         characterGameObject.AddComponent<MoveController>();
 
@@ -57,7 +68,7 @@ public class CharacterGenerator
     {
         var character = new Character();
         character.Id = Guid.NewGuid().ToString();
-        character.Name = characterProfile.PossibleNames[UnityEngine.Random.Range(0, characterProfile.PossibleNames.Count)];
+        character.Flavor = FlavorText.FromFlavorTextData(characterProfile.CharacterFlavorText);
         if (characterProfile.PossiblePortraits.Count > 0)
         {
             character.Portrait = characterProfile.PossiblePortraits[UnityEngine.Random.Range(0, characterProfile.PossiblePortraits.Count)];

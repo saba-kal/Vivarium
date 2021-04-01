@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: HealNormal
   Name: Honey
   Description: A sweet, healing drop of honey that will restore 70 health
+  ItemFlavorText: {fileID: 11400000, guid: 42b355e9fb5a0a94b8ffbfe91a707865, type: 2}
   Type: 3
   Icon: {fileID: 21300000, guid: cc5c0ba63b7c267479db89658cacb099, type: 3}
   Model: {fileID: 0}

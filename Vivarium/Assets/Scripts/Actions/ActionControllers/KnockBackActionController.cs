@@ -16,7 +16,7 @@ public class KnockBackActionController : ActionController
     {
         if (targetCharacter == null)
         {
-            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
+            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Flavor.Name} because it is null. Most likely, the character is dead");
             return;
         }
 
@@ -86,7 +86,7 @@ public class KnockBackActionController : ActionController
 
         PlaySound();
         targetCharacter.TakeDamage(damage);
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Flavor.Name} took {damage} damage from {_characterController.Character.Flavor.Name}.");
         if (drowned)
         {
             //TODO: modify character controller to have a separate drowning animation

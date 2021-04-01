@@ -51,12 +51,6 @@ public class MinionSummonActionController : ArcProjectileActionController
             playerController.PlayerCharacters.Add(_summonedCharacter);
         }
 
-        InventoryManager.PlaceCharacterItem(_summonedCharacter.Id, _summonedCharacter.Character.Weapon);
-        if (_summonedCharacter.Character.Shield != null)
-        {
-            InventoryManager.PlaceCharacterItem(_summonedCharacter.Id, _summonedCharacter.Character.Shield);
-        }
-
         _onCharactorSummon?.Invoke(_summonedCharacter);
     }
 

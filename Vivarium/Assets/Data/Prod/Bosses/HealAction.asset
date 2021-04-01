@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: HealAction324324
   Name: Heal
   Description: Heal's ally characters in an area.
+  ActionFlavorText: {fileID: 11400000, guid: 943a6db894e9a1e44a25fad96bd72584, type: 2}
   SoundName: TestAttackSound
   BaseDamage: 45
   CriticalChance: 0
