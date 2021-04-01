@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     public Button ActionButtonPrefab;
     public Button MoveButton;
     public Button EndTurnButton;
+    public Button UndoButton;
     public float SpaceBetweenButtons = 2f;
 
     private CharacterController _selectedCharacter;
