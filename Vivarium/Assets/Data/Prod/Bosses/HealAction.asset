@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: HealAction
   m_EditorClassIdentifier: 
   Id: HealAction324324
-  Name: Heal
-  Description: Heal's ally characters in an area.
   ActionFlavorText: {fileID: 11400000, guid: 943a6db894e9a1e44a25fad96bd72584, type: 2}
   SoundName: TestAttackSound
   BaseDamage: 45
@@ -26,7 +24,7 @@ MonoBehaviour:
   ActionTargetType: 1
   ControllerType: 11
   Attributes: []
-  AnimType: 3
+  AnimType: 7
   ProjectilePrefab: {fileID: 1480971491631075010, guid: 1058f818de54b2e458879a65db404040, type: 3}
   ParticleEffect: {fileID: 0}
   TileParticleEffect: {fileID: 3145640170506330117, guid: 2e0f3f4dacd086c4b9136561a47dd94b, type: 3}
