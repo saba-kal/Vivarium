@@ -28,5 +28,5 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1480971491631075010, guid: bd8e5ae02953148428405d6b73e15e94, type: 3}
   ParticleEffect: {fileID: 0}
   TileParticleEffect: {fileID: 3145640170506330117, guid: e597d36fcf247474abbd666532268940, type: 3}
-  ActionTriggerDelay: 0.4
+  ActionTriggerDelay: 0.6
   SummonProfile: {fileID: 11400000, guid: 35ee0d4338c00d64e86b1ffc7a91a9ad, type: 2}
