@@ -44,6 +44,41 @@ public class GetMapCoords : MonoBehaviour
 
     }
 
+    public List<List<int>> TilesToCoords(List<Tile> tiles)
+    {
+        var returnList = new List<List<int>>();
+        for (int i = 0; i < tiles.Count; i +=1)
+        {
+            var newEntry = new List<int>() { tiles[i].GridX, tiles[i].GridY };
+            returnList.Add(newEntry);
+        }
+
+        return returnList;
+    }
+
+    public List<List<int>> FilterCoords(List<List<int>> mainCoords, List<List<int>> filterCoords)
+    {
+        var returnList = new List<List<int>>();
+        foreach (var coord in mainCoords)
+        {
+            var isFilterCoord = false;
+            foreach(var filterCoord in filterCoords)
+            {
+                if (coord[0] == filterCoord[0] && coord[1] == filterCoord[1])
+                {
+                    isFilterCoord = true;
+                    break;
+                }
+            }
+            if (isFilterCoord == false)
+            {
+                returnList.Add(coord);
+            }
+
+        }
+
+        return returnList;
+    }
     public List<List<int>> GetAllCoords()
     {
         var returnList = new List<List<int>>();
@@ -60,12 +95,12 @@ public class GetMapCoords : MonoBehaviour
         return returnList;
     }
 
-    public List<List<int>> GetOuterBorderCoords()
-    {
-        var returnList = new List<List<int>>();
+    //public List<List<int>> GetOuterBorderCoords()
+    //{
+    //    var returnList = new List<List<int>>();
 
-        return returnList;
-    }
+    //    return returnList;
+    //}
 
     public List<List<int>> GetCoastalCoords()
     {

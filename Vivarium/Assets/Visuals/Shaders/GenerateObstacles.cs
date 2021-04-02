@@ -9,10 +9,13 @@ public class GenerateObstacles : MonoBehaviour
     public GameObject underObstaclePrefab;
     public GameObject pebbleFillerPrefab;
     public GameObject coastalGravelPrefab;
+    public GameObject pathPrefab;
+    public GameObject grassBlockPrefab;
 
     public List<GameObject> groupedPrefabs;
     public List<GameObject> simpleEnvironmentPrefabs;
     public List<GameObject> superSpecialObstaclePrefabs;
+
 
     //public GameObject logPrefab;
 
@@ -20,15 +23,6 @@ public class GenerateObstacles : MonoBehaviour
 
     private List<GameObject> allEnvironmentObjects = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //generateEnvironment();
-
-
-
-
-    }
 
     public void clearObjects()
     {
@@ -48,7 +42,7 @@ public class GenerateObstacles : MonoBehaviour
         var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();
         var grassCoords = this.GetComponent<GetMapCoords>().GetGrassTiles();
         var allCoords = this.GetComponent<GetMapCoords>().GetAllCoords();
-        var borderCoords = this.GetComponent<GetMapCoords>().GetOuterBorderCoords();
+        //var borderCoords = this.GetComponent<GetMapCoords>().GetOuterBorderCoords();
         var costalCoords = this.GetComponent<GetMapCoords>().GetCoastalCoords();
 
 
@@ -121,6 +115,14 @@ public class GenerateObstacles : MonoBehaviour
         generateMultObstacles(simpleEnvironmentPrefabs, grassCoords, 0, true, 8);
         generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, false, false);
         generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, true, false);
+
+        var gridGenerator = new GridGenerator();
+        var pathTiles = gridGenerator.GetPathToObjective(this.GetComponent<GetMapCoords>().GetGridObject());
+        var pathCoords = this.GetComponent<GetMapCoords>().TilesToCoords(pathTiles);
+        generateObstacles(pathPrefab, pathCoords, -0.6f, false, true);
+
+        var filteredGrassCoords = this.GetComponent<GetMapCoords>().FilterCoords(grassCoords, pathCoords);
+        generateObstacles(grassBlockPrefab, filteredGrassCoords, 0, false, false);
     }
 
 
@@ -218,6 +220,11 @@ public class GenerateObstacles : MonoBehaviour
                 rotation = Random.rotation;
             }
             var obstacleInstance = Instantiate(obstacle, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
+            //var myColor = obstacleInstance.GetComponent<MeshRenderer>().material.color;
+            //myColor.a = 0.1f;
+            //obstacleInstance.GetComponent<MeshRenderer>().material.color = myColor;
+
+
             obstacleInstance.transform.SetParent(TileGridController.Instance.transform);
 
             allEnvironmentObjects.Add(obstacleInstance);
