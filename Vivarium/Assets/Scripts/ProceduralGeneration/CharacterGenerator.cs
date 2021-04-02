@@ -133,11 +133,8 @@ public class CharacterGenerator
         characterGameObject.Model = prefabInstance;
 
         // adds animator to the model of the INSTANCE of the character
-        Debug.Log("ANIMATOR: " + prefabInstance.name);
-        Debug.Log(prefabInstance.gameObject.transform.GetChild(0).gameObject.name);
         var modelObject = prefabInstance.gameObject.transform.GetChild(0).gameObject;
 
-        Debug.Log("STUPID: " + modelObject.GetComponent<Animator>());
         if (modelObject.GetComponent<Animator>() == null)
         {
             var animator = modelObject.AddComponent<Animator>() as Animator;

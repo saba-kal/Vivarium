@@ -33,6 +33,7 @@ public class ArcProjectileActionController : ActionController
             StartCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, transform.position, endPosition, () =>
             {
                 this.ExecuteAction(affectedTiles);
+                onActionComplete?.Invoke();
             }));
         }
         else
@@ -40,10 +41,9 @@ public class ArcProjectileActionController : ActionController
             CommandController.Instance.ExecuteCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, transform.position, endPosition, () =>
             {
                 this.ExecuteAction(affectedTiles);
+                onActionComplete?.Invoke();
             }));
         }
-
-        onActionComplete?.Invoke();
     }
 
     protected override void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
