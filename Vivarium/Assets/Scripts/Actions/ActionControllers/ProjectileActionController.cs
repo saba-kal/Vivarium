@@ -39,7 +39,6 @@ public class ProjectileActionController : ActionController
         var affectedTiles = new Dictionary<(int, int), Tile>();
         foreach (var tile in line)
         {
-            //UnityEngine.Debug.Log(tile.CharacterControllerId);
             if (!tile.Equals(startTile) && !affectedTiles.ContainsKey((tile.GridX, tile.GridY)))
             {
                 affectedTiles.Add((tile.GridX, tile.GridY), tile);

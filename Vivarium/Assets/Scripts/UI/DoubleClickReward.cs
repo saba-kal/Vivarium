@@ -14,10 +14,12 @@ public class DoubleClickReward : MonoBehaviour, IPointerClickHandler
         if (clickCount == 1)
         {
             OnSingleClick();
-        }else if (clickCount == 2)
+        }
+        else if (clickCount == 2)
         {
             OnDoubleClick();
-        }else if (clickCount > 2)
+        }
+        else if (clickCount > 2)
         {
             OnMultiClick();
         }
