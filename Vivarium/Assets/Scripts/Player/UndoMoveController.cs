@@ -31,7 +31,7 @@ public class UndoMoveController : MonoBehaviour
 
     public void RecordMove(CharacterController characterController, Vector3 oldPosition)
     {
-        if(characterController.IsEnemy)
+        if (characterController.IsEnemy)
         {
             return;
         }
@@ -49,6 +49,7 @@ public class UndoMoveController : MonoBehaviour
         recordedCharacter.Deselect();
         recordedCharacter.HideMoveRadius();
         recordedCharacter.SetHasMoved(false);
+        UnitInspectionController.Instance.EnableMoveForCharacter(recordedCharacter.Id);
         DisableUndo();
     }
 

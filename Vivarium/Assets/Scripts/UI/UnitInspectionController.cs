@@ -192,6 +192,19 @@ public class UnitInspectionController : MonoBehaviour
     }
 
     /// <summary>
+    /// Enables the move action for a character.
+    /// </summary>
+    /// <param name="characterId">The ID of the character to enable move for.</param>
+    public void EnableMoveForCharacter(string characterId)
+    {
+        var isSuccessful = _charactersWithDisabledMoves.Remove(characterId);
+        if (isSuccessful && _characterController != null)
+        {
+            Display(_characterController);
+        }
+    }
+
+    /// <summary>
     /// Disables weapon actions for the selected character.
     /// </summary>
     public void DisableWeaponActionsForCharacter()
