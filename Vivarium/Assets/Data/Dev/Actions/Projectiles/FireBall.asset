@@ -15,7 +15,7 @@ MonoBehaviour:
   Id: FireBall123yoyoy
   ActionFlavorText: {fileID: 11400000, guid: 2b841adb1e14080478bcf9dd858c5448, type: 2}
   SoundName: TestAttackSound
-  BaseDamage: 1
+  BaseDamage: 100
   CriticalChance: 0
   CriticalMultiplier: 0
   MinRange: 0
