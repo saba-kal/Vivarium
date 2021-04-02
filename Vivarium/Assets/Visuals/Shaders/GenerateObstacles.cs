@@ -2,6 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class orderedPrefab
+{
+    public List<GameObject> list;
+    public int Count()
+    {
+        return list.Count;
+    }
+    public GameObject GetIndex(int index)
+    {
+        return list[index];
+    }
+}
+
+[System.Serializable]
+public class orderedPrefabList
+{
+    public List<orderedPrefab> list;
+    public int Count()
+    {
+        return list.Count;
+    }
+    public orderedPrefab GetIndex(int index)
+    {
+        return list[index];
+    }
+}
+
 public class GenerateObstacles : MonoBehaviour
 {
     public GameObject highRiseRockPrefab;
@@ -16,12 +44,16 @@ public class GenerateObstacles : MonoBehaviour
     public List<GameObject> simpleEnvironmentPrefabs;
     public List<GameObject> superSpecialObstaclePrefabs;
 
+    public orderedPrefabList orderedPrefabs;
+
 
     //public GameObject logPrefab;
 
     public GameObject dirtFiller;
 
     private List<GameObject> allEnvironmentObjects = new List<GameObject>();
+
+
 
 
     public void clearObjects()
@@ -84,8 +116,8 @@ public class GenerateObstacles : MonoBehaviour
                     var singleObstacleCoords = GetSinglesFromGroupCoords(HorizontalGroupedObstacles);
 
                     generateGroupObstacles(groupedObstacleCoords, "horizontal");
-                    generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, false, true);
-                    generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, true, false);
+                    generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
+                    generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
                     generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
 
 
@@ -100,8 +132,8 @@ public class GenerateObstacles : MonoBehaviour
                     var singleObstacleCoords = GetSinglesFromGroupCoords(VerticalGroupedObstacles);
 
                     generateGroupObstacles(groupedObstacleCoords, "vertical");
-                    generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, false, true);
-                    generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, true, false);
+                    generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
+                    generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
                     generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
                 }
 
@@ -112,17 +144,18 @@ public class GenerateObstacles : MonoBehaviour
 
 
 
-        generateMultObstacles(simpleEnvironmentPrefabs, grassCoords, 0, true, 8);
-        generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, false, false);
-        generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, true, false);
+
+        generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, 0, false, false);
+        generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, 0, true, false);
 
         var gridGenerator = new GridGenerator();
         var pathTiles = gridGenerator.GetPathToObjective(this.GetComponent<GetMapCoords>().GetGridObject());
         var pathCoords = this.GetComponent<GetMapCoords>().TilesToCoords(pathTiles);
-        generateObstacles(pathPrefab, pathCoords, -0.6f, false, true);
+        generateObstacles(pathPrefab, pathCoords, -0.6f, false, 0, true);
 
         var filteredGrassCoords = this.GetComponent<GetMapCoords>().FilterCoords(grassCoords, pathCoords);
-        generateObstacles(grassBlockPrefab, filteredGrassCoords, 0, false, false);
+        generateObstacles(grassBlockPrefab, filteredGrassCoords, 0, false, 0, false);
+        generateMultObstacles(simpleEnvironmentPrefabs, filteredGrassCoords, 0, true, 8);
     }
 
 
@@ -130,16 +163,47 @@ public class GenerateObstacles : MonoBehaviour
     {
         for (var i = 0; i < groupedObstacleCoords.Count; i++)
         {
-            var RandomGameObject = groupedPrefabs[Random.Range(0, groupedPrefabs.Count)]; //change to random
+            
             var separatedGroupedObstacleCoords = groupedObstacleCoords[i];
+
 
             var rotate = false;
             if (direction == "horizontal")
             {
                 rotate = true;
             }
-            generateObstacles(RandomGameObject, separatedGroupedObstacleCoords, 0.4f, false, false, false, false, rotate);
-            generateObstacles(dirtFiller, separatedGroupedObstacleCoords, 0f, false, true, false);
+
+            var firstCoord = new List<List<int>>() { separatedGroupedObstacleCoords[0] };
+            var lastCoord = new List<List<int>>() { separatedGroupedObstacleCoords[separatedGroupedObstacleCoords.Count - 1] };
+            var middleCoords = separatedGroupedObstacleCoords.GetRange(1, separatedGroupedObstacleCoords.Count - 2);
+
+            if (separatedGroupedObstacleCoords.Count > 2)
+            {
+                var RandomGameObject = orderedPrefabs.GetIndex(Random.Range(0, orderedPrefabs.Count())); //change to random
+                generateObstacles(RandomGameObject.GetIndex(1), middleCoords, 0.4f, false, 0, false, false, false, rotate);
+                var firstObject = RandomGameObject.GetIndex(0);
+                var lastObject = RandomGameObject.GetIndex(2);
+                var randOrder = Random.Range(0, 2);
+
+                if (randOrder == 1)
+                {
+                    generateObstacles(firstObject, firstCoord, 0.4f, false,  0, false, false, false, rotate);
+                    generateObstacles(lastObject, lastCoord, 0.4f, false, 0,  false, false, false, rotate);
+                }
+                else
+                {
+                    firstObject.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                    lastObject.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                    generateObstacles(lastObject, firstCoord, 0.4f, false, 180, false, false, false, rotate);
+                    generateObstacles(firstObject, lastCoord, 0.4f, false, 180, false, false, false, rotate);
+                }
+            }
+            else
+            {
+                var RandomGameObject = groupedPrefabs[Random.Range(0, groupedPrefabs.Count)]; //change to random
+                generateObstacles(RandomGameObject, separatedGroupedObstacleCoords, 0.4f, false, 0, false, false, false, rotate);
+                generateObstacles(dirtFiller, separatedGroupedObstacleCoords, 0f, false, 0, true, false);
+            }
 
         }
     }
@@ -204,7 +268,7 @@ public class GenerateObstacles : MonoBehaviour
 
 
 
-    public void generateObstacles(GameObject obstacle, List<List<int>> Coords, float additionY, bool randomRot = false, bool isRandRotateByNinety = false, bool allowHighRise = false, bool adjustScale = false, bool rotateNinety = false)
+    public void generateObstacles(GameObject obstacle, List<List<int>> Coords, float additionY, bool randomRot = false, int yRotation = 0, bool isRandRotateByNinety = false, bool allowHighRise = false, bool adjustScale = false, bool rotateNinety = false)
     {
         // var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();
         var obstacleCoords = Coords;
@@ -220,6 +284,7 @@ public class GenerateObstacles : MonoBehaviour
                 rotation = Random.rotation;
             }
             var obstacleInstance = Instantiate(obstacle, gridObject.GetWorldPositionCentered(obstacleCoords[z][0], obstacleCoords[z][1]) + new Vector3(0, additionY, 0), rotation);
+            obstacleInstance.transform.rotation *= Quaternion.Euler(0, yRotation, 0);
             //var myColor = obstacleInstance.GetComponent<MeshRenderer>().material.color;
             //myColor.a = 0.1f;
             //obstacleInstance.GetComponent<MeshRenderer>().material.color = myColor;

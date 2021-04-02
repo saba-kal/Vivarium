@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
   m_Name: Level6_BossWin
   m_EditorClassIdentifier: 
-  GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
+  GridProfile: {fileID: 11400000, guid: e2eda8e938d1d724787c3ab78d8640b6, type: 2}
   VisualSettings: {fileID: 11400000, guid: 47b38dfe92b45e24d9f0bc6e4ac46afa, type: 2}
   BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
   MinEnemyCharacters: 5
