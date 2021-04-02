@@ -299,7 +299,7 @@ public class GridGenerator
         }
     }
 
-    private List<Tile> GetPathToObjective(Grid<Tile> grid)
+    public List<Tile> GetPathToObjective(Grid<Tile> grid)
     {
         var objectiveTile = grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1);
 

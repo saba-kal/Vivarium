@@ -39,12 +39,6 @@ MonoBehaviour:
   - Count: 3
     InventoryPosition: 2
     Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
-  - Count: 3
-    InventoryPosition: 3
-    Item: {fileID: 11400000, guid: 9aa9fe750ab87624bb2bcae34c0322d4, type: 2}
-  - Count: 1
-    InventoryPosition: 3
-    Item: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
