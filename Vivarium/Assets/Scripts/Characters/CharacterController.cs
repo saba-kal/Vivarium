@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour
 {
     public delegate void Death(CharacterController characterController);
     public static event Death OnDeath;
-    public delegate void Move(CharacterController characterController);
+    public delegate void Move(CharacterController characterController, Vector3 oldPosition);
     public static event Move OnMove;
     public delegate void SelectEvent(CharacterController characterController);
     public static event SelectEvent OnSelect;
@@ -111,6 +111,7 @@ public class CharacterController : MonoBehaviour
     // potential
     public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
+        var oldPosition = transform.position;
         if (tile == null)
         {
             Debug.LogWarning($"Character \"{gameObject.name}\": Unable to move to a null tile.");
@@ -127,7 +128,7 @@ public class CharacterController : MonoBehaviour
             _hasMoved = true;
 
             Deselect();
-            OnMove?.Invoke(this);
+            OnMove?.Invoke(this, oldPosition);
             HideMoveRadius();
         }
         else
@@ -153,7 +154,7 @@ public class CharacterController : MonoBehaviour
             }
 
             Deselect();
-            OnMove?.Invoke(this);
+            OnMove?.Invoke(this, Vector3.zero);
         }
         else
         {

@@ -1858,8 +1858,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31912314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.61, z: 13}
-  m_LocalScale: {x: 27, y: 2, z: 1}
+  m_LocalPosition: {x: -1, y: 0.61, z: 13}
+  m_LocalScale: {x: 25, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 989542401}
   m_RootOrder: 5
@@ -3346,7 +3346,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &57721567
 GameObject:
@@ -7125,6 +7125,8 @@ MonoBehaviour:
   underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
   pebbleFillerPrefab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
   coastalGravelPrefab: {fileID: 5540666915505002182, guid: 81727f927054e9d49aa1f8ea4d976fc5, type: 3}
+  pathPrefab: {fileID: 0}
+  grassBlockPrefab: {fileID: 0}
   groupedPrefabs:
   - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
   - {fileID: 5902385623053669473, guid: 1a26bb23e714fe54691f11b2e318c87c, type: 3}
@@ -7139,6 +7141,8 @@ MonoBehaviour:
   superSpecialObstaclePrefabs:
   - {fileID: 788191094971233270, guid: 6720ba750b39b7d44b4deb18633e5290, type: 3}
   - {fileID: 8766767530960276174, guid: c53a1f6d789af9b48abfc265766630bf, type: 3}
+  orderedPrefabs:
+    list: []
   dirtFiller: {fileID: 3303212903174898359, guid: 01e0fb4f07ca2c04c97228343276afcd, type: 3}
 --- !u!4 &122324379
 Transform:
@@ -7152,7 +7156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126534305
 GameObject:
@@ -15545,7 +15549,7 @@ Transform:
   - {fileID: 697330768}
   - {fileID: 604388101}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317926327
 GameObject:
@@ -22765,6 +22769,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852680cffc02b6f45abf229e7f2ecca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisableActionsOnEquip: 0
+  DisableActionsOnConsume: 1
+  DisableActionsOnTrade: 1
   PlayerCharacters:
   - {fileID: 1195882191}
   - {fileID: 1152406416}
@@ -22786,7 +22793,7 @@ Transform:
   - {fileID: 1235156911}
   - {fileID: 1183487549}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457371221
 GameObject:
@@ -25983,9 +25990,10 @@ GameObject:
   - component: {fileID: 542098716}
   - component: {fileID: 542098717}
   - component: {fileID: 542098715}
-  - component: {fileID: 542098718}
   - component: {fileID: 542098719}
   - component: {fileID: 542098720}
+  - component: {fileID: 542098718}
+  - component: {fileID: 542098721}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -26023,7 +26031,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &542098717
 MonoBehaviour:
@@ -26060,8 +26068,10 @@ MonoBehaviour:
   highRiseRockPrefab: {fileID: 1367914048844801962, guid: c9887e379a03a18478c4d886bd4adc82, type: 3}
   obstaclePrefab: {fileID: 919132149155446097, guid: 9fc652fc74dcb864395e1291023bb8f4, type: 3}
   underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
-  pebbleFillerPrefab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
+  pebbleFillerPrefab: {fileID: 36316076695038348, guid: 8f6679b6b9a4fb14592707c327118100, type: 3}
   coastalGravelPrefab: {fileID: 5540666915505002182, guid: 81727f927054e9d49aa1f8ea4d976fc5, type: 3}
+  pathPrefab: {fileID: 3251866311489980277, guid: 0b02021a1568d594fb24ad7faa928f95, type: 3}
+  grassBlockPrefab: {fileID: 36316076695038348, guid: 8f6679b6b9a4fb14592707c327118100, type: 3}
   groupedPrefabs:
   - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
   - {fileID: 5902385623053669473, guid: 1a26bb23e714fe54691f11b2e318c87c, type: 3}
@@ -26076,6 +26086,20 @@ MonoBehaviour:
   superSpecialObstaclePrefabs:
   - {fileID: 2576628445255214579, guid: d685ab67f999f834b9a21022c8f60431, type: 3}
   - {fileID: 8766767530960276174, guid: c53a1f6d789af9b48abfc265766630bf, type: 3}
+  orderedPrefabs:
+    list:
+    - list:
+      - {fileID: 336888236719934332, guid: 2cca07c12132e4b4eaac15b824c6d862, type: 3}
+      - {fileID: 6296185012919743855, guid: f5a6378fe52610044a41b59ddee2ebf2, type: 3}
+      - {fileID: 8327679029957881462, guid: ad59d1364ce662c4ea946fde10ce6ecc, type: 3}
+    - list:
+      - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+      - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+      - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
+    - list:
+      - {fileID: 9035284331987112459, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      - {fileID: 1012024693057843965, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      - {fileID: 1790910135746046888, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
   dirtFiller: {fileID: 3303212903174898359, guid: 01e0fb4f07ca2c04c97228343276afcd, type: 3}
 --- !u!114 &542098719
 MonoBehaviour:
@@ -26104,6 +26128,21 @@ MonoBehaviour:
   TileHighlightPrefab: {fileID: 1290396168030185797, guid: 34955b24177a4094da750d564375f0bd, type: 3}
   TileHeightOffset: 0.01
   OpacityChange: 0.3
+--- !u!114 &542098721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542098714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2871f4638aa144f936723ce94367e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordedPosition: {x: 0, y: 0, z: 0}
+  recordedCharacter: {fileID: 0}
+  IsUndoTrue: 0
 --- !u!1 &544515839
 GameObject:
   m_ObjectHideFlags: 0
@@ -27280,7 +27319,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 38.732, y: 183.319, z: 94.494}
 --- !u!1 &569882331
 GameObject:
@@ -28908,6 +28947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingItems:
   - Count: 3
+    InventoryPosition: -1
     Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
 --- !u!114 &604388104
 MonoBehaviour:
@@ -37440,7 +37480,6 @@ MonoBehaviour:
   Id: 11c691f5-2a8a-4e14-ad9b-d3ed7bca4295
   Character:
     Id: 11c691f5-2a8a-4e14-ad9b-d3ed7bca4295
-    Name: Red Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 77.07606
@@ -37456,6 +37495,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 1
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!114 &785344399
 MonoBehaviour:
@@ -37789,7 +37829,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794946032
 GameObject:
@@ -45434,7 +45474,7 @@ Transform:
   - {fileID: 669424194}
   - {fileID: 918261804}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &992490486
 GameObject:
@@ -50988,10 +51028,7 @@ MonoBehaviour:
   GridCellSize: 1
   GridData: '{"Width":25,"Height":25,"TileSize":1.0,"OriginX":-12.5,"OriginY":0.0,"OriginZ":-12.5,"Rows":[{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":0,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":0,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":0,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":0,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":1,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":1,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":1,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":1,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":1,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":2,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":2,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":2,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":3,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":3,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":3,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":3,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":4,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":4,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":4,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":4,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":4,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":4,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":4,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":4,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":4,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":5,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":5,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":5,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":5,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":5,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":5,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":6,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":6,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":6,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":6,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":6,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":7,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":7,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":7,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":7,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":8,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":8,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":8,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":8,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":8,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":8,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":8,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":9,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":9,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":9,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":9,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":9,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":9,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":9,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":10,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":10,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":10,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":10,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":10,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":10,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":10,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":10,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":11,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":11,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":11,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":2,"GridX":12,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":12,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":12,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":12,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":12,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":12,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":13,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":13,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":13,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":13,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":13,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":13,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":14,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":14,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":14,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":15,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":15,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":15,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":15,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":15,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":15,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":15,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":16,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":16,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":16,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":16,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":16,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":17,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":17,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":17,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":18,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":18,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":18,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":18,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":19,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":19,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":19,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":19,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":19,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":20,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":20,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":20,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":21,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":21,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":21,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":22,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":22,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":22,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":23,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":23,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":23,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":23,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":23,"GridY":24,"IsObjective":false}]},{"Tiles":[{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":0,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":1,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":2,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":3,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":4,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":5,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":6,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":7,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":8,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":9,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":24,"GridY":10,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":24,"GridY":11,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":24,"GridY":12,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":24,"GridY":13,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":1,"GridX":24,"GridY":14,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":15,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":2,"GridX":24,"GridY":16,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":17,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":18,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":19,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":20,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":21,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":22,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":23,"IsObjective":false},{"CharacterControllerId":"","Name":"","Type":0,"GridX":24,"GridY":24,"IsObjective":true}]}]}'
   GridOrigin: {x: -12.5, y: 0, z: -12.5}
-  PrimaryHighlightPrefab: {fileID: 190500178055921799, guid: fceb9262f661bb643bd43e192c67e321, type: 3}
-  SecondaryHighlightPrefab: {fileID: 2123069177681682684, guid: 162d9082f5d8cad468bb28f7bb7b8fe4, type: 3}
-  TertiaryHighlightPrefab: {fileID: 1290396168030185797, guid: 1e593eb427966654fbe162896a6b1248, type: 3}
-  QuaternaryHighlightPrefab: {fileID: 0}
+  VisualSettings: {fileID: 0}
 --- !u!1 &1119903902
 GameObject:
   m_ObjectHideFlags: 0
@@ -52777,7 +52814,6 @@ MonoBehaviour:
   Id: 85fe04a1-f4c7-4804-ac52-83907d7afa83
   Character:
     Id: 85fe04a1-f4c7-4804-ac52-83907d7afa83
-    Name: Curious Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 83.13543
@@ -52793,6 +52829,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 0
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!1 &1152942994
 GameObject:
@@ -53950,7 +53987,6 @@ MonoBehaviour:
   Id: 2a9879e0-6710-4ab6-95b3-4a47132fb518
   Character:
     Id: 2a9879e0-6710-4ab6-95b3-4a47132fb518
-    Name: Brave Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 83.33711
@@ -53966,6 +54002,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 0
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!114 &1183487543
 MonoBehaviour:
@@ -54612,7 +54649,6 @@ MonoBehaviour:
   Id: 958aadef-2a35-41c3-8154-a6a0e44dd398
   Character:
     Id: 958aadef-2a35-41c3-8154-a6a0e44dd398
-    Name: Brave Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 115.99752
@@ -54628,6 +54664,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 0
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!1 &1195907801
 GameObject:
@@ -56295,7 +56332,6 @@ MonoBehaviour:
   Id: 803efe7e-d5e5-4e09-932b-a7ba7e2a0438
   Character:
     Id: 803efe7e-d5e5-4e09-932b-a7ba7e2a0438
-    Name: Brave Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 107.03506
@@ -56311,6 +56347,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 0
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!1 &1236518806
 GameObject:
@@ -61620,7 +61657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1377438565
 GameObject:
@@ -62631,7 +62668,6 @@ MonoBehaviour:
   Id: 9d7b8e16-27a4-4ef1-b111-59ece592a0af
   Character:
     Id: 9d7b8e16-27a4-4ef1-b111-59ece592a0af
-    Name: Murder Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 107.462715
@@ -62647,6 +62683,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 1
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!114 &1410072574
 MonoBehaviour:
@@ -65692,7 +65729,7 @@ Transform:
   - {fileID: 1229556334}
   - {fileID: 1874107255}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467577679
 GameObject:
@@ -69854,7 +69891,6 @@ MonoBehaviour:
   Id: 356b49e0-09e7-4b93-88f9-7706a59502a6
   Character:
     Id: 356b49e0-09e7-4b93-88f9-7706a59502a6
-    Name: Murder Ant
     Type: 0
     Portrait: {fileID: 0}
     MaxHealth: 75.464775
@@ -69870,6 +69906,7 @@ MonoBehaviour:
     CanMoveThroughCharacters: 0
     Aggro: 0
   IsEnemy: 1
+  IsDisabled: 0
   Model: {fileID: 0}
 --- !u!114 &1588439873
 MonoBehaviour:
@@ -83008,7 +83045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1895469035
 GameObject:
@@ -85608,6 +85645,75 @@ Transform:
   m_Father: {fileID: 1118429122}
   m_RootOrder: 297
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1950850536
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4874
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4874
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.4874
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.93
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
+      propertyPath: m_Name
+      value: tunnelsmall
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48ec45bda9a8b6b42b26855d7a883203, type: 3}
 --- !u!1 &1952511314
 GameObject:
   m_ObjectHideFlags: 0
@@ -88698,7 +88804,7 @@ Transform:
   m_LocalScale: {x: 2.5522246, y: 2.5522246, z: 2.4486554}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2015979070
 GameObject:
@@ -95001,3 +95107,174 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147128404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &3125080362627424774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.3676713
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.438698
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3132828
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410485830243182814, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035284331987112459, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+      propertyPath: m_Name
+      value: bone_tip_one
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f33d52a9811ceee4493e49484f17ad35, type: 3}
+--- !u!1001 &3192581812287489621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1790910135746046888, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_Name
+      value: bone_tip_two
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.3676713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.438698
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3132828
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350350906109389571, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8a8de690a318fb4bb1f34ba019a1e35, type: 3}
+--- !u!1001 &8598221674652886672
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1012024693057843965, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_Name
+      value: bone_middle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0117954
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10.719909
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.33619705
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2261476000494653703, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77eeb07874847d64181e3e75b22eda29, type: 3}

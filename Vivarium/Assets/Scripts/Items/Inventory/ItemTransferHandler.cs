@@ -101,6 +101,7 @@ public class ItemTransferHandler
         {
             //Since there is only 1 stack, we can treat this as an unstackable item.
             MoveUnstackableItemToEmptySlot();
+            return;
         }
 
         var itemCopy = InventoryItem.Copy(itemToTransfer);

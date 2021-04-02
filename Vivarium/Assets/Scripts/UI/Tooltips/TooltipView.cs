@@ -11,6 +11,8 @@ public class TooltipView : MonoBehaviour
 
     public void DisplayAction(Action action)
     {
+        var maxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
+
         TooltipTitle.text = action.Flavor.Name;
         TooltipDescription.text = action.Flavor.Description;
 
@@ -25,6 +27,7 @@ public class TooltipView : MonoBehaviour
         {
             TooltipDescription.text += $"\n - DMG: {minDamage:n0}-{maxDamage:n0}";
         }
+        TooltipDescription.text += $"\n - RANGE: {maxRange:n0}";
 
         CalculateTooltipHeight();
         Id = $"Action - {action.Id}";
@@ -66,16 +69,17 @@ public class TooltipView : MonoBehaviour
         var weaponStats = "\n\n<size=120%>Actions:</size>";
         foreach (var action in weapon.Actions)
         {
+            var maxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
             var minDamage = StatCalculator.CalculateStat(action, StatType.Damage, StatCalculationType.Min);
             var maxDamage = StatCalculator.CalculateStat(action, StatType.Damage, StatCalculationType.Max);
 
             if (Mathf.Approximately(minDamage, maxDamage))
             {
-                weaponStats += $"\n - {action.Flavor.Name}: {minDamage:n0} DMG";
+                weaponStats += $"\n - {action.Flavor.Name}: {minDamage:n0} DMG, {maxRange:n0} RANGE";
             }
             else
             {
-                weaponStats += $"\n - {action.Flavor.Name}: {minDamage:n0}-{maxDamage:n0} DMG";
+                weaponStats += $"\n - {action.Flavor.Name}: {minDamage:n0}-{maxDamage:n0} DMG, {maxRange:n0} RANGE";
             }
         }
 

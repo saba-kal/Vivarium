@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SkewerFlavorText
   m_EditorClassIdentifier: 
   PossibleNames:
-  - Skewer.
+  - Skewer
   Description: The user cannot move this turn. Cannot be used if user has already
     moved this turn.
