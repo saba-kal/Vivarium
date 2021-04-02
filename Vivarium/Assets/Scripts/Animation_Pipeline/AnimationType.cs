@@ -9,5 +9,6 @@ public enum AnimationType
     attack = 3,
     ranged_attack = 4,
     death = 5,
-    flinch = 6
+    flinch = 6,
+    heal = 7
 }

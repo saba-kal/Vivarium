@@ -357,7 +357,6 @@ public class TileGridController : MonoBehaviour
         int characterPositionX,
         int characterPositionY)
     {
-        Debug.Log(x + " is x and " + y + " is y.");
         if (visitedTiles.ContainsKey((x, y)))
         {
             return tilesInColumn;
