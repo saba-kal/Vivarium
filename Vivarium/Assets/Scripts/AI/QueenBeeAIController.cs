@@ -5,6 +5,8 @@ using System.Linq;
 
 public class QueenBeeAIController : AIController
 {
+    private const string PHASE1_ANIM_KEY = "phase1";
+
     public int MaxSummons;
     public int StartingSummons;
     public int ActionsPerTurn;
@@ -14,8 +16,7 @@ public class QueenBeeAIController : AIController
     private List<CharacterController> _summonedBees = new List<CharacterController>();
     private HealActionController _healActionController;
     private MinionSummonActionController _minionSummonActionController;
-    private Dictionary<(int, int), Tile> _excludedTileSpawns = new Dictionary<(int, int), Tile>();
-    private List<QueenBeeAIAction> _availableActions;
+    private Animator _animator;
 
     protected override void VirtualStart()
     {
@@ -23,6 +24,8 @@ public class QueenBeeAIController : AIController
         GetQueenBeeActions();
         GetBeehives();
         PerformStartOfLevelSummon();
+        _animator = GetComponentInChildren<Animator>();
+        _animator?.SetBool(PHASE1_ANIM_KEY, true);
     }
 
     private void GetQueenBeeActions()
@@ -369,8 +372,8 @@ public class QueenBeeAIController : AIController
 
         if (characterController.Id == _aiCharacter.Id)
         {
-            Debug.Log("Queen bee is now in attack mode.");
             _phase = QueenBeePhase.Attack;
+            _animator?.SetBool(PHASE1_ANIM_KEY, false);
         }
     }
 }
