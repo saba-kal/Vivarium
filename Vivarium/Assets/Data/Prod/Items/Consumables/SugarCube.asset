@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: HealWeak
   Name: SugarCube
   Description: A small cube of sugar. Heals 40 health
+  ItemFlavorText: {fileID: 11400000, guid: 683e1ada7f1f8224e9f43bdfef2f3296, type: 2}
   Type: 3
   Icon: {fileID: 21300000, guid: 36c2f72e4e5e4bb47a5728b7d6733ac1, type: 3}
   Model: {fileID: 0}

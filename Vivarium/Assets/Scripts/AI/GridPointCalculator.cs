@@ -36,7 +36,7 @@ public class GridPointCalculator : MonoBehaviour
 
         if (aiCharacter.Character.AICharacterHeuristics == null)
         {
-            Debug.LogError($"AI character \"{aiCharacter.Character.Name}\" does not have AI heuristics. Unable to calculate grid points.");
+            Debug.LogError($"AI character \"{aiCharacter.Character.Flavor.Name}\" does not have AI heuristics. Unable to calculate grid points.");
             return;
         }
 

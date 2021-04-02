@@ -4,6 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+/// <summary>
+/// Action controller for knocking back units when they are attacked.
+/// </summary>
 public class KnockBackActionController : ActionController
 {
     //public Vector3 ProjectileStartPosition;
@@ -13,7 +16,7 @@ public class KnockBackActionController : ActionController
     {
         if (targetCharacter == null)
         {
-            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
+            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Flavor.Name} because it is null. Most likely, the character is dead");
             return;
         }
 
@@ -47,11 +50,12 @@ public class KnockBackActionController : ActionController
         }
 
         bool drowned = false;
-        if (toTile.Type == TileType.Water)
+        if (toTile.Type == TileType.Water && targetCharacter.Character.Type != CharacterType.QueenBee)
         {
             drowned = true;
         }
-        else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) || toTile.CharacterControllerId != null)
+        else if (!targetCharacter.Character.NavigableTiles.Contains(toTile.Type) ||
+            toTile.CharacterControllerId != null)
         {
             UnityEngine.Debug.Log("Attempted to knock enemy into a tile it cannot travel on");
             targetCharacter.TakeDamage(damage);
@@ -63,8 +67,10 @@ public class KnockBackActionController : ActionController
         var shield = targetCharacter.GetHealthController().GetCurrentShield();
 
         //Checks if target will die before moving them
-        //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread
-        if ((health + shield) > damage)
+        //Otherwise another thread may try to move an object after it is destroyed, or overwrite the CharacterControllerId set in this thread.
+        //Also, check if move will drown a boss. If so, do not move the character.
+        if ((health + shield) > damage &&
+            (toTile.Type != TileType.Water || targetCharacter.Character.Type != CharacterType.QueenBee))
         {
             CommandController.Instance.ExecuteCommand(
                 new MoveCommand(
@@ -80,7 +86,7 @@ public class KnockBackActionController : ActionController
 
         PlaySound();
         targetCharacter.TakeDamage(damage);
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Flavor.Name} took {damage} damage from {_characterController.Character.Flavor.Name}.");
         if (drowned)
         {
             //TODO: modify character controller to have a separate drowning animation

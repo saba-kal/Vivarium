@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: QueenBeeLongRangedAttack
   m_EditorClassIdentifier: 
   Id: QueenBeeAttack121232332
-  Name: Long Ranged Attack
-  Description: Shoots a long ranged projectile
+  ActionFlavorText: {fileID: 11400000, guid: 9940d43bc412c8542986d1532f6a303f, type: 2}
   SoundName: TestAttackSound
   BaseDamage: 15
   CriticalChance: 0
@@ -25,8 +24,9 @@ MonoBehaviour:
   ActionTargetType: 0
   ControllerType: 2
   Attributes: []
-  AnimType: 4
+  AnimType: 3
   ProjectilePrefab: {fileID: 1480971491631075010, guid: d825392dbc4c8904092810a37ae520fd, type: 3}
   ParticleEffect: {fileID: 3324611701389449023, guid: 4df8530952739984ab5f9ad0a3e66d7b, type: 3}
-  ActionTriggerDelay: 0
+  TileParticleEffect: {fileID: 0}
+  ActionTriggerDelay: 0.6
   SummonProfile: {fileID: 0}

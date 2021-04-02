@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: QueenBeeWeapon
   m_EditorClassIdentifier: 
   Id: QueenBeeWeapon123
-  Name: Queen Bee Weapon
-  Description: Does stuff and things.
+  ItemFlavorText: {fileID: 11400000, guid: 6e9d1b275ec3b6548a4141aed8f1bdcf, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 192279441908a7c4791bed37f0433fef, type: 3}
   Model: {fileID: 0}

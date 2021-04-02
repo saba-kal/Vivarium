@@ -15,6 +15,7 @@ MonoBehaviour:
   Id: AttackStrong
   Name: Large Attack Potion
   Description: A strange blue liquid in a vial. Permanently increases attack by 10.
+  ItemFlavorText: {fileID: 11400000, guid: e5e8ae62f36d7e84d9f7e2659fe16d40, type: 2}
   Type: 3
   Icon: {fileID: 21300000, guid: 96738784d5dd47a42a00e8201ae16c9d, type: 3}
   Model: {fileID: 0}

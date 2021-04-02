@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: StrongShield
   m_EditorClassIdentifier: 
   Id: StrongShield123
-  Name: Strong Shield
-  Description: A shield that increases total health by 65
+  ItemFlavorText: {fileID: 11400000, guid: 1e90ac665a5b7c5479ed481504741012, type: 2}
   Type: 2
   Icon: {fileID: 21300000, guid: 85e0df617db9ddb4a9c44b5691fad4f9, type: 3}
   Model: {fileID: 0}

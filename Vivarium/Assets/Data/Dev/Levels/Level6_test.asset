@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f76b2bd99c9524f99d4a7cd1f40d6d, type: 3}
+  m_Name: Level6_test
+  m_EditorClassIdentifier: 
+  GridProfile: {fileID: 11400000, guid: aa23b786cf0bc034c9a2ca5a5623b9b1, type: 2}
+  VisualSettings: {fileID: 11400000, guid: 47b38dfe92b45e24d9f0bc6e4ac46afa, type: 2}
+  BossCharacter: {fileID: 11400000, guid: 5ffe2948e90d45546a236429ed49c32d, type: 2}
+  MinEnemyCharacters: 5
+  MaxEnemyCharacters: 5
+  PossibleEnemyCharacters:
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  - {fileID: 11400000, guid: da6144bf718647f4389eb72a8b534e25, type: 2}
+  MinPlayerCharacters: 0
+  MaxPlayerCharacters: 0
+  GuaranteedPlayerCharacters:
+  - {fileID: 11400000, guid: dcb3f91ab106a3b4bad4f3e85eae3f32, type: 2}
+  - {fileID: 11400000, guid: 5146f16a1fb172f4b9a9deaea0db19ba, type: 2}
+  - {fileID: 11400000, guid: ea4f55097962146498aa23deb566d8f7, type: 2}
+  - {fileID: 11400000, guid: daed7eb291ac1734389d0fc6f20679ef, type: 2}
+  - {fileID: 11400000, guid: 7116a7dbe36857b4ab1982e9a4a0c447, type: 2}
+  PossiblePlayerCharacters: []
+  StartingItems: []
+  OnLevelStartHeal: 500
+  OnLevelStartShieldRegen: 500
+  PossilbleRewards: {fileID: 11400000, guid: ed9edc8817e307e489fedeb557a6a8b8, type: 2}
+  TreasureChests:
+  - {fileID: 11400000, guid: 55f495502da592b4483b7421f8c894be, type: 2}
+  ChestGenerationSubdivisions: 3
+  RewardCharacters: []
+  AISettings:
+    ShowPreview: 0
+    PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}

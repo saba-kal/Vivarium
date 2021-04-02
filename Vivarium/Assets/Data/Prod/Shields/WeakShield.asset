@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: WeakShield
   m_EditorClassIdentifier: 
   Id: WeakShield123
-  Name: Weak Shield
-  Description: A shield that increases total health by 25
+  ItemFlavorText: {fileID: 11400000, guid: fb2cea3c43601df43a3272f137c1ea87, type: 2}
   Type: 2
-  Icon: {fileID: 21300000, guid: 48bae75f51825bc45a4518432cd3cd9d, type: 3}
+  Icon: {fileID: 21300000, guid: 63ad32e46ff663c40889aba446d4572e, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Health: 25

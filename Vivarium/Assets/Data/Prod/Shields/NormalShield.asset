@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: NormalShield
   m_EditorClassIdentifier: 
   Id: NormalShield123231
-  Name: Shield
-  Description: A shield that increases total health by 45
+  ItemFlavorText: {fileID: 11400000, guid: 0c7be62ce322ea04c98da699d18e0b79, type: 2}
   Type: 2
-  Icon: {fileID: 21300000, guid: 418558cfb3de3af4ead8e1d8dbdbdc99, type: 3}
+  Icon: {fileID: 21300000, guid: aedc3d30cecb586418b97cc27dd3e96c, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Health: 45

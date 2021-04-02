@@ -23,6 +23,7 @@ public class CharacterController : MonoBehaviour
     public string Id;
     public Character Character;
     public bool IsEnemy;
+    public bool IsDisabled = false;
     public GameObject Model;
 
     private float _maxHealth;
@@ -38,6 +39,8 @@ public class CharacterController : MonoBehaviour
     private float _savedMoveRange;
     private GameObject _meleeWeapon;
     private GameObject _rangedWeapon;
+    private int _equippedWeaponPosition = -1;
+    private int _equippedShieldPosition = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -263,17 +266,19 @@ public class CharacterController : MonoBehaviour
         return newActionViewer;
     }
 
-    public void Equip(Item item)
+    public void Equip(InventoryItem inventoryItem)
     {
+        var item = inventoryItem.Item;
+
         if ((item.Type != ItemType.Weapon) && (item.Type != ItemType.Shield))
         {
-            Debug.LogError($"Character {Character.Name}: cannot equip non-weapon items.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot equip non-weapon items.");
             return;
         }
 
-        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        if (InventoryManager.GetCharacterItem(Id, item.Id, inventoryItem.InventoryPosition) == null)
         {
-            Debug.LogError($"Character {Character.Name}: cannot equip item that does not exist in character's inventory.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot equip item that does not exist in character's inventory.");
             return;
         }
 
@@ -281,11 +286,13 @@ public class CharacterController : MonoBehaviour
         {
             Character.Weapon = (Weapon)item;
             SwitchWeaponModel();
+            _equippedWeaponPosition = inventoryItem.InventoryPosition;
         }
         else if (item.Type == ItemType.Shield)
         {
             Character.Shield = (Shield)item;
             _healthController?.UpgradMaxShield(Character.Shield.Health);
+            _equippedShieldPosition = inventoryItem.InventoryPosition;
         }
     }
 
@@ -308,16 +315,35 @@ public class CharacterController : MonoBehaviour
         _rangedWeapon.SetActive(rangedWeaponIsEquipped);
     }
 
+    /// <summary>
+    /// Unequips all items that the character may have equipped.
+    /// </summary>
+    public void UnequipAllItems()
+    {
+        Character.Weapon = null;
+        _equippedWeaponPosition = -1;
+
+        Character.Shield = null;
+        _healthController?.RemoveShield();
+        _equippedShieldPosition = -1;
+    }
+
+    /// <summary>
+    /// Uniquips a specific item.
+    /// </summary>
+    /// <param name="item">The item to unequip.</param>
     public void Unequip(Item item)
     {
         if (item.Type == ItemType.Weapon && item.Id == Character.Weapon?.Id)
         {
             Character.Weapon = null;
+            _equippedWeaponPosition = -1;
         }
         else if (item.Type == ItemType.Shield && item.Id == Character.Shield?.Id)
         {
             Character.Shield = null;
             _healthController?.RemoveShield();
+            _equippedShieldPosition = -1;
         }
     }
 
@@ -358,7 +384,7 @@ public class CharacterController : MonoBehaviour
     {
         DetachCamera();
 
-        Debug.Log($"Character {Character.Name} died.");
+        Debug.Log($"Character {Character.Flavor.Name} died.");
         var currentGridPosition = TileGridController.Instance.GetGrid().GetValue(transform.position);
         if (currentGridPosition != null)
         {
@@ -391,17 +417,19 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    public void Consume(Item item)
+    public void Consume(InventoryItem inventoryItem)
     {
+        var item = inventoryItem.Item;
+
         if (item.Type != ItemType.Consumable)
         {
-            Debug.LogError($"Character {Character.Name}: cannot eat non-consumable items.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot eat non-consumable items.");
             return;
         }
 
-        if (InventoryManager.GetCharacterItem(Id, item.Id) == null)
+        if (InventoryManager.GetCharacterItem(Id, item.Id, inventoryItem.InventoryPosition) == null)
         {
-            Debug.LogError($"Character {Character.Name}: cannot eat item that does not exist.");
+            Debug.LogError($"Character {Character.Flavor.Name}: cannot eat item that does not exist.");
             return;
         }
 
@@ -418,7 +446,7 @@ public class CharacterController : MonoBehaviour
                 MovBuff(consumable.value);
                 break;
         }
-        InventoryManager.RemoveCharacterItem(Id, consumable.Id);
+        InventoryManager.RemoveCharacterItem(Id, consumable.Id, inventoryItem.InventoryPosition);
         if (consumable.ParticleEffect != null)
         {
             var particleEffect = Instantiate(consumable.ParticleEffect, transform.transform);
@@ -462,24 +490,41 @@ public class CharacterController : MonoBehaviour
         return _attackDamage;
     }
 
-    public bool ItemIsEquipped(Item item)
+    public bool ItemIsEquipped(InventoryItem inventoryItem)
     {
-        return (item.Type == ItemType.Shield || item.Type == ItemType.Weapon) &&
-            (Character.Weapon?.Id == item.Id || Character.Shield?.Id == item.Id);
+        var item = inventoryItem.Item;
+
+        if (inventoryItem.Item.Type == ItemType.Weapon)
+        {
+            return Character.Weapon?.Id == item.Id && inventoryItem.InventoryPosition == _equippedWeaponPosition;
+        }
+        else if (inventoryItem.Item.Type == ItemType.Shield)
+        {
+            return Character.Shield?.Id == item.Id && inventoryItem.InventoryPosition == _equippedShieldPosition;
+        }
+
+        return false;
     }
 
 
-    //Handles Staple action effect.
-    public void IsStunned()
+    /// <summary>
+    /// Stuns a character by reducing move range to 0.
+    /// </summary>
+    /// <param name="newMoveRange">Optional parameter to set the movement range to something else.</param>
+    public void IsStunned(float newMoveRange = 0)
     {
         _savedMoveRange = Character.MoveRange;
-        Character.MoveRange = 0;
+        Character.MoveRange = newMoveRange;
     }
-    //Removes Staple effect.
+
+    /// <summary>
+    /// Removes stun effect on character by restoring movement range.
+    /// </summary>
     public void Destun()
     {
         Character.MoveRange = _savedMoveRange;
     }
+
     private void PerformDeathAnimation()
     {
         var animationTypeName = System.Enum.GetName(typeof(AnimationType), AnimationType.death);
@@ -487,8 +532,58 @@ public class CharacterController : MonoBehaviour
         myAnimator.SetTrigger(animationTypeName);
     }
 
+    /// <summary>
+    /// Gets the movement controller component.
+    /// </summary>
+    /// <returns><see cref="MoveController"></returns>
     public MoveController GetMoveController()
     {
         return _moveController;
+    }
+
+    /// <summary>
+    /// Determines whether or not this character can trade with another character.
+    /// </summary>
+    /// <param name="targetTile">The tile on which the character wants to trade.</param>
+    /// <param name="targetCharacter">The other character this character can trade with.</param>
+    /// <returns>Whether or not this character is able to trade.</returns>
+    public bool CanTrade(Tile targetTile, out CharacterController targetCharacter)
+    {
+        targetCharacter = null;
+        if (string.IsNullOrWhiteSpace(targetTile.CharacterControllerId))
+        {
+            return false;
+        }
+
+        var currentTile = GetGridPosition();
+        var adjacentTiles = TileGridController.Instance.GetGrid().GetAdjacentTiles(currentTile.GridX, currentTile.GridY);
+
+        foreach (var tile in adjacentTiles)
+        {
+            if (tile.GridX == targetTile.GridX && tile.GridY == targetTile.GridY)
+            {
+                targetCharacter = TurnSystemManager.Instance.GetCharacterController(targetTile.CharacterControllerId);
+                return targetCharacter.IsEnemy == IsEnemy;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Sets the inventory position of an equipped weapon.
+    /// </summary>
+    /// <param name="itemPosition">The position in the character's inventory.</param>
+    public void SetEquippedWeaponPosition(int itemPosition)
+    {
+        _equippedWeaponPosition = itemPosition;
+    }
+
+    /// <summary>
+    /// Sets the inventory position of an equipped shield.
+    /// </summary>
+    /// <param name="itemPosition">The position in the character's inventory.</param>
+    public void SetEquippedShieldPosition(int itemPosition)
+    {
+        _equippedShieldPosition = itemPosition;
     }
 }

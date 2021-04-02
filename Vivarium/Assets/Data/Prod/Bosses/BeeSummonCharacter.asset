@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 1448550247729942650, guid: bdb20c4c6fdceb34792e5b2c21be982a, type: 3}
-  PossibleNames:
-  - Angry Bee
   PossiblePortraits:
   - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 1a024e2d1e291964e92de834f83ecc95, type: 2}
   Type: 0
   MaxSummons: 6
   StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 60
   MaxMaxHealth: 60
   MinAttackDamage: 0

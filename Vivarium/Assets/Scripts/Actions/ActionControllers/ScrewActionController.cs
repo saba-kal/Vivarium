@@ -5,16 +5,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System;
 
+/// <summary>
+/// Action controller for moving a character 90 degrees clockwise when attacked.
+/// </summary>
 public class ScrewActionController : ActionController
 {
     private Grid<Tile> _grid;
     protected override void ExecuteActionOnCharacter(CharacterController targetCharacter)
     {
-        UnityEngine.Debug.Log("Screw action called");
         _grid = TileGridController.Instance.GetGrid();
         if (targetCharacter == null)
         {
-            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Name} because it is null. Most likely, the character is dead");
+            UnityEngine.Debug.LogWarning($"Cannot execute action on target character {targetCharacter.Character.Flavor.Name} because it is null. Most likely, the character is dead");
             return;
         }
 
@@ -24,7 +26,7 @@ public class ScrewActionController : ActionController
 
         bool targetCanMove = false;
         bool drowned = false;
-        if (newTile.Type == TileType.Water)
+        if (newTile.Type == TileType.Water && targetCharacter.Character.Type != CharacterType.QueenBee)
         {
             drowned = true;
             targetCanMove = true;
@@ -34,6 +36,10 @@ public class ScrewActionController : ActionController
             targetCanMove = targetCharacter.Character.NavigableTiles.Contains(newTile.Type);
         }
 
+        if (newTile.Type == TileType.Water && targetCharacter.Character.Type == CharacterType.QueenBee)
+        {
+            targetCanMove = false;
+        }
 
         if (!targetCanMove)
         {
@@ -54,7 +60,7 @@ public class ScrewActionController : ActionController
             surviveAttack = false;
         }
         targetCharacter.TakeDamage(damage);
-        UnityEngine.Debug.Log($"{targetCharacter.Character.Name} took {damage} damage from {_characterController.Character.Name}.");
+        UnityEngine.Debug.Log($"{targetCharacter.Character.Flavor.Name} took {damage} damage from {_characterController.Character.Flavor.Name}.");
 
         if (targetCanMove && surviveAttack)
         {
@@ -107,9 +113,6 @@ public class ScrewActionController : ActionController
 
         int finalX = playerX + newRelativeX;
         int finalY = playerY + newRelativeY;
-
-        UnityEngine.Debug.Log(startingX + "," + startingY);
-        UnityEngine.Debug.Log(finalX + "," + finalY);
 
         return _grid.GetValue(finalX, finalY);
     }

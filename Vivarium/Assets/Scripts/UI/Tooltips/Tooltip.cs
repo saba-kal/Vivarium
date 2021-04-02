@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -13,30 +14,30 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private Action ActionToShow;
     private Character CharacterToShow;
     private bool _mouseIsHoveringOverElement = false;
+    private Canvas _canvas;
+
+    void Start()
+    {
+        _canvas = GetComponentInParent<Canvas>();
+        TooltipManager.Instance.Register(this);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (ItemToShow == null && ActionToShow == null)
+        if (!CanDisplayData() || _activeTooltip == null)
         {
+            HideTooltip();
             return;
         }
 
-        if (_activeTooltip == null && _mouseIsHoveringOverElement)
-        {
-            _activeTooltip = Instantiate(TooltipViewPrefab, TooltipContainer.Instance.transform);
-            _activeTooltip.transform.localPosition = Vector3.zero;
-            DisplayTooltipInfo();
-        }
-        else if (_activeTooltip != null && !_mouseIsHoveringOverElement)
-        {
-            HideTooltip();
-        }
+        DisplayTooltipInfo();
+        PositionTooltip();
+    }
 
-        if (_activeTooltip != null)
-        {
-            PositionTooltip();
-        }
+    void OnDestroy()
+    {
+        TooltipManager.Instance.Deregister(this);
     }
 
     private void DisplayTooltipInfo()
@@ -64,23 +65,27 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private void PositionTooltip()
     {
         var mousePosition = Input.mousePosition;
-        var tooltipRectTransform = _activeTooltip.GetComponent<RectTransform>().rect;
-        var xPosition = mousePosition.x + tooltipRectTransform.width / 2f;
-        if (xPosition > Screen.width - tooltipRectTransform.width / 2f)
+        var tooltipRectTransform = _activeTooltip.GetComponent<RectTransform>();
+        var width = tooltipRectTransform.rect.width * _canvas.scaleFactor;
+        var height = tooltipRectTransform.rect.height * _canvas.scaleFactor;
+
+        var xPosition = mousePosition.x + width / 2f;
+        if (xPosition > Screen.width - width / 2f)
         {
-            xPosition = mousePosition.x - tooltipRectTransform.width / 2f;
+            xPosition = mousePosition.x - width / 2f;
         }
-        var yPosition = mousePosition.y - tooltipRectTransform.height / 2f;
-        if (yPosition < tooltipRectTransform.height / 2f)
+        var yPosition = mousePosition.y - height / 2f;
+        if (yPosition < height / 2f)
         {
-            yPosition = mousePosition.y + tooltipRectTransform.height / 2f;
+            yPosition = mousePosition.y + height / 2f;
         }
-        _activeTooltip.transform.position = new Vector3(xPosition, yPosition, 1f);
+
+        tooltipRectTransform.transform.position = new Vector2(xPosition, yPosition);
     }
 
     public void HideTooltip()
     {
-        Destroy(_activeTooltip);
+        _activeTooltip = null;
         _mouseIsHoveringOverElement = false;
     }
 
@@ -110,5 +115,16 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         _mouseIsHoveringOverElement = false;
+    }
+
+    public bool CanDisplayData()
+    {
+        return (ItemToShow != null || ActionToShow != null) &&
+            _mouseIsHoveringOverElement;
+    }
+
+    public void SetActive(GameObject activeTooltip)
+    {
+        _activeTooltip = activeTooltip;
     }
 }

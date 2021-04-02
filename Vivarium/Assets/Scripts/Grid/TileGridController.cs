@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class TileGridController : MonoBehaviour
 {
@@ -16,10 +17,7 @@ public class TileGridController : MonoBehaviour
     public float GridCellSize;
     public string GridData;
     public Vector3 GridOrigin;
-    public GameObject PrimaryHighlightPrefab;
-    public GameObject SecondaryHighlightPrefab;
-    public GameObject TertiaryHighlightPrefab;
-    public GameObject QuaternaryHighlightPrefab;
+    public GridVisualSettings VisualSettings;
 
     //Private properties.
     private Grid<Tile> _grid;
@@ -37,7 +35,7 @@ public class TileGridController : MonoBehaviour
 
     private void Start()
     {
-        _mouseHoverHighlightObject = Instantiate(PrimaryHighlightPrefab, transform);
+        _mouseHoverHighlightObject = Instantiate(VisualSettings.PrimaryHighlightPrefab, transform);
         _mouseHoverHighlightObject.SetActive(false);
         StoreCharacterControllers(Constants.ENEMY_CHAR_TAG);
         StoreCharacterControllers(Constants.PLAYER_CHAR_TAG);
@@ -359,7 +357,6 @@ public class TileGridController : MonoBehaviour
         int characterPositionX,
         int characterPositionY)
     {
-        Debug.Log(x + " is x and " + y + " is y.");
         if (visitedTiles.ContainsKey((x, y)))
         {
             return tilesInColumn;
@@ -407,9 +404,14 @@ public class TileGridController : MonoBehaviour
 
     public void HighlightTiles(Dictionary<(int, int), Tile> tiles, GridHighlightRank highlightRank)
     {
-        foreach (var tileKeyValue in tiles)
+        HighlightTiles(tiles.Values.ToList(), highlightRank);
+    }
+
+    public void HighlightTiles(List<Tile> tiles, GridHighlightRank highlightRank)
+    {
+        foreach (var tile in tiles)
         {
-            CreateHighlightObject(tileKeyValue.Value.GridX, tileKeyValue.Value.GridY, highlightRank);
+            CreateHighlightObject(tile.GridX, tile.GridY, highlightRank);
         }
     }
 
@@ -435,15 +437,17 @@ public class TileGridController : MonoBehaviour
         switch (highlightRank)
         {
             case GridHighlightRank.Primary:
-                return PrimaryHighlightPrefab;
+                return VisualSettings.PrimaryHighlightPrefab;
             case GridHighlightRank.Secondary:
-                return SecondaryHighlightPrefab;
+                return VisualSettings.SecondaryHighlightPrefab;
             case GridHighlightRank.Tertiary:
-                return TertiaryHighlightPrefab;
+                return VisualSettings.TertiaryHighlightPrefab;
             case GridHighlightRank.Quaternary:
-                return QuaternaryHighlightPrefab;
+                return VisualSettings.QuaternaryHighlightPrefab;
+            case GridHighlightRank.Quinary:
+                return VisualSettings.QuinaryHighlightPrefab;
             default:
-                return PrimaryHighlightPrefab;
+                return VisualSettings.PrimaryHighlightPrefab;
         }
     }
 
@@ -524,5 +528,6 @@ public enum GridHighlightRank
     Primary = 1,
     Secondary = 2,
     Tertiary = 3,
-    Quaternary = 4
+    Quaternary = 4,
+    Quinary = 5
 }

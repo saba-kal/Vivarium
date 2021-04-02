@@ -8,14 +8,15 @@ public class CharacterGenerationProfile : ScriptableObject
 {
     [Header("Visuals")]
     public List<GameObject> PossibleModels;
-    public List<string> PossibleNames;
     public List<Sprite> PossiblePortraits;
     public GameObject HealthBarPrefab;
+    public FlavorTextData CharacterFlavorText;
 
     [Header("Boss Data (optional)")]
     public CharacterType Type = CharacterType.Normal;
     public int MaxSummons = 6;
     public int StartingSummons = 3;
+    public int ActionsPerTurn = 2;
 
     [Header("Stats")]
     public float MinMaxHealth;
