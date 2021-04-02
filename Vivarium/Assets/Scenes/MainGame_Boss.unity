@@ -7125,6 +7125,8 @@ MonoBehaviour:
   underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
   pebbleFillerPrefab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
   coastalGravelPrefab: {fileID: 5540666915505002182, guid: 81727f927054e9d49aa1f8ea4d976fc5, type: 3}
+  pathPrefab: {fileID: 0}
+  grassBlockPrefab: {fileID: 0}
   groupedPrefabs:
   - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
   - {fileID: 5902385623053669473, guid: 1a26bb23e714fe54691f11b2e318c87c, type: 3}
@@ -26060,6 +26062,8 @@ MonoBehaviour:
   underObstaclePrefab: {fileID: 597582210153926134, guid: 83dee8f3b10202340b21ea5353be954f, type: 3}
   pebbleFillerPrefab: {fileID: 3303212903174898359, guid: 27fe06f23bd715e47be261d5e511a61e, type: 3}
   coastalGravelPrefab: {fileID: 5540666915505002182, guid: 81727f927054e9d49aa1f8ea4d976fc5, type: 3}
+  pathPrefab: {fileID: 36316076695038348, guid: 8f6679b6b9a4fb14592707c327118100, type: 3}
+  grassBlockPrefab: {fileID: 36316076695038348, guid: 8f6679b6b9a4fb14592707c327118100, type: 3}
   groupedPrefabs:
   - {fileID: 4269087875755255206, guid: 450e1908ea792ab468256e027bacf726, type: 3}
   - {fileID: 5902385623053669473, guid: 1a26bb23e714fe54691f11b2e318c87c, type: 3}
