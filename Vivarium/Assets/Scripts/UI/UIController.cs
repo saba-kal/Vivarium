@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get; private set; }
     public delegate void EndTurnClick();
     public static event EndTurnClick OnEndTurnClick;
+    public delegate void UndoClick();
+    public static event UndoClick OnUndoClick;
 
     public GameObject CharacterInfoPanel;
     public GameObject GameOverScreen;
@@ -43,6 +45,7 @@ public class UIController : MonoBehaviour
     {
         CharacterInfoPanel.SetActive(false);
         EndTurnButton.onClick.AddListener(() => OnEndTurnClick?.Invoke());
+        UndoButton.onClick.AddListener(() => OnUndoClick?.Invoke());
     }
 
     private void Update()
@@ -51,10 +54,12 @@ public class UIController : MonoBehaviour
             TurnSystemManager.Instance?.IsPlayersTurn() == false)
         {
             EndTurnButton.interactable = false;
+            UndoButton.interactable = false;
         }
         else
         {
             EndTurnButton.interactable = true;
+            UndoButton.interactable = UndoMoveController.Instance.IsUndoTrue;
         }
     }
 

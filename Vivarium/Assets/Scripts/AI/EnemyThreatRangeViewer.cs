@@ -64,7 +64,7 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         RecalculateThreatRange();
     }
 
-    private void TestMethod(CharacterController characterController)
+    private void TestMethod(CharacterController characterController, Vector3 unusedPosition)
     {
         Initialize();
         ClearHighlights();
