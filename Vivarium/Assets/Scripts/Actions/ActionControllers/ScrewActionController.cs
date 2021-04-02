@@ -13,7 +13,6 @@ public class ScrewActionController : ActionController
     private Grid<Tile> _grid;
     protected override void ExecuteActionOnCharacter(CharacterController targetCharacter)
     {
-        UnityEngine.Debug.Log("Screw action called");
         _grid = TileGridController.Instance.GetGrid();
         if (targetCharacter == null)
         {
@@ -114,9 +113,6 @@ public class ScrewActionController : ActionController
 
         int finalX = playerX + newRelativeX;
         int finalY = playerY + newRelativeY;
-
-        UnityEngine.Debug.Log(startingX + "," + startingY);
-        UnityEngine.Debug.Log(finalX + "," + finalY);
 
         return _grid.GetValue(finalX, finalY);
     }
