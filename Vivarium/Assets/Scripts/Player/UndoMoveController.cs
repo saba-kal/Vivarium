@@ -19,6 +19,7 @@ public class UndoMoveController : MonoBehaviour
         UIController.OnUndoClick += UndoMove;
         UIController.OnEndTurnClick += DisableUndo;
         PlayerController.OnPlayerAttack += DisableUndo;
+        TradeUIController.OnTradeComplete += DisableUndo;
     }
 
     void OnDisable()
@@ -27,6 +28,7 @@ public class UndoMoveController : MonoBehaviour
         UIController.OnUndoClick -= UndoMove;
         UIController.OnEndTurnClick -= DisableUndo;
         PlayerController.OnPlayerAttack -= DisableUndo;
+        TradeUIController.OnTradeComplete -= DisableUndo;
     }
 
     public void RecordMove(CharacterController characterController, Vector3 oldPosition)
@@ -54,6 +56,14 @@ public class UndoMoveController : MonoBehaviour
     }
 
     private void DisableUndo()
+    {
+        recordedCharacter = null;
+        recordedPosition = Vector3.zero;
+        UIController.Instance.UndoButton.interactable = false;
+        IsUndoTrue = false;
+    }
+
+    private void DisableUndo(CharacterController unused)
     {
         recordedCharacter = null;
         recordedPosition = Vector3.zero;
