@@ -211,6 +211,10 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         if (eventData.selectedObject != null)
         {
             var droppedSlot = eventData.selectedObject.GetComponent<InventorySlot>();
+            if (droppedSlot == null)
+            {
+                return;
+            }
 
             ResetIcon(droppedSlot.Icon, droppedSlot.transform);
             _onSlotDrop?.Invoke(this, droppedSlot);
@@ -263,7 +267,11 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
         if (eventData.selectedObject != null)
         {
-            SlotHighlight.SetActive(true);
+            var draggingInventorySlot = eventData.selectedObject.GetComponent<InventorySlot>();
+            if (draggingInventorySlot != null)
+            {
+                SlotHighlight.SetActive(true);
+            }
         }
     }
 

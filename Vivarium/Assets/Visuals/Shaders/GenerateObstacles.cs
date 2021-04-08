@@ -54,7 +54,7 @@ public class GenerateObstacles : MonoBehaviour
     private List<GameObject> allEnvironmentObjects = new List<GameObject>();
 
 
-
+    private LevelGenerationProfile _levelProfile;
 
     public void clearObjects()
     {
@@ -65,8 +65,10 @@ public class GenerateObstacles : MonoBehaviour
         allEnvironmentObjects = new List<GameObject>();
     }
 
-    public void generateEnvironment()
+    public void generateEnvironment(LevelGenerationProfile levelProfile)
     {
+        _levelProfile = levelProfile;
+
         var height = this.GetComponent<GetMapCoords>().GetHeight();
         var splitSections = heightSplitter(height, 5);
 
@@ -148,22 +150,46 @@ public class GenerateObstacles : MonoBehaviour
         generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, 0, false, false);
         generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, 0, true, false);
 
-        var gridGenerator = new GridGenerator();
-        var pathTiles = gridGenerator.GetPathToObjective(this.GetComponent<GetMapCoords>().GetGridObject());
-        var pathCoords = this.GetComponent<GetMapCoords>().TilesToCoords(pathTiles);
-        generateObstacles(pathPrefab, pathCoords, -0.6f, false, 0, true);
+        generateGroundWithPathToObjective();
+    }
 
+    private void generateGroundWithPathToObjective()
+    {
+        var aStar = new AStar(
+            new List<TileType> { TileType.Grass } /*Tiles types that AStart should navigate*/,
+            true /*Ignore character positions*/);
+
+        var grid = TileGridController.Instance.GetGrid();
+        var startTile = grid.GetValue(0, 0);
+        var endTile = grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1);
+
+        var pathToObjective = aStar.Execute(startTile, endTile);
+        List<List<int>> pathCoords;
+        if (pathToObjective == null || _levelProfile?.BossCharacter != null)
+        {
+            //Don't generate path if we were unable to calculate it (something is blocking the way), or
+            //we are on the boss level.
+            pathCoords = new List<List<int>>();
+        }
+        else
+        {
+            //Generate path tiles.
+            pathCoords = this.GetComponent<GetMapCoords>().TilesToCoords(pathToObjective);
+            generateObstacles(pathPrefab, pathCoords, -0.6f, false, 0, true);
+        }
+
+        //Generate grass tiles
+        var grassCoords = this.GetComponent<GetMapCoords>().GetGrassTiles();
         var filteredGrassCoords = this.GetComponent<GetMapCoords>().FilterCoords(grassCoords, pathCoords);
         generateObstacles(grassBlockPrefab, filteredGrassCoords, 0, false, 0, false);
         generateMultObstacles(simpleEnvironmentPrefabs, filteredGrassCoords, 0, true, 8);
     }
 
-
     private void generateGroupObstacles(List<List<List<int>>> groupedObstacleCoords, string direction)
     {
         for (var i = 0; i < groupedObstacleCoords.Count; i++)
         {
-            
+
             var separatedGroupedObstacleCoords = groupedObstacleCoords[i];
 
 
@@ -187,8 +213,8 @@ public class GenerateObstacles : MonoBehaviour
 
                 if (randOrder == 1)
                 {
-                    generateObstacles(firstObject, firstCoord, 0.4f, false,  0, false, false, false, rotate);
-                    generateObstacles(lastObject, lastCoord, 0.4f, false, 0,  false, false, false, rotate);
+                    generateObstacles(firstObject, firstCoord, 0.4f, false, 0, false, false, false, rotate);
+                    generateObstacles(lastObject, lastCoord, 0.4f, false, 0, false, false, false, rotate);
                 }
                 else
                 {

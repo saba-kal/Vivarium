@@ -25994,6 +25994,7 @@ GameObject:
   - component: {fileID: 542098720}
   - component: {fileID: 542098718}
   - component: {fileID: 542098721}
+  - component: {fileID: 542098722}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -26143,6 +26144,20 @@ MonoBehaviour:
   recordedPosition: {x: 0, y: 0, z: 0}
   recordedCharacter: {fileID: 0}
   IsUndoTrue: 0
+--- !u!114 &542098722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542098714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08690daf836738c479ea14a1c5bdf749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConsoleInputHeight: 50
+  FontSize: 32
 --- !u!1 &544515839
 GameObject:
   m_ObjectHideFlags: 0
