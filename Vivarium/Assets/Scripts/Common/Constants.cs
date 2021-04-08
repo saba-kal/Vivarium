@@ -22,6 +22,7 @@ public static class Constants
     public const string CANVAS_TAG = "InGameUICanvas";
     public const string MELEE_WEAPON_TAG = "WeaponMelee";
     public const string RANGED_WEAPON_TAG = "WeaponRanged";
+    public const string BUTTON_INDICATOR_TAG = "ButtonIndicator";
 
     //Common sound names.
     public const string GRID_CELL_CLICK_SOUND = "GridCellClick";
