@@ -118,9 +118,30 @@ public class GenerateObstacles : MonoBehaviour
                     var singleObstacleCoords = GetSinglesFromGroupCoords(HorizontalGroupedObstacles);
 
                     generateGroupObstacles(groupedObstacleCoords, "horizontal");
-                    generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
-                    generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
-                    generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
+
+                    var spawnLargeObject = Random.Range(0, 2);
+                    if (spawnLargeObject == 1)
+                    {
+                        if (singleObstacleCoords.Count > 0)
+                        {
+                            //generate a large obstacle in every sector
+                            var randSingleObstacleCoordIndex = Random.Range(0, singleObstacleCoords.Count - 1);
+                            var randSingleObstacleCoord = new List<List<int>> { singleObstacleCoords[randSingleObstacleCoordIndex] };
+                            var randSpecialObstaclePrefab = superSpecialObstaclePrefabs[Random.Range(0, superSpecialObstaclePrefabs.Count)];
+                            singleObstacleCoords.RemoveAt(randSingleObstacleCoordIndex);
+                            generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
+                            generateObstacles(randSpecialObstaclePrefab, randSingleObstacleCoord, 0f, false, 0, true, false);
+                            generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
+                        }
+                    }
+                    else
+                    {
+                        if (singleObstacleCoords.Count > 0)
+                        {
+                            generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
+                            generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
+                        }
+                    }
 
 
 
@@ -136,7 +157,6 @@ public class GenerateObstacles : MonoBehaviour
                     generateGroupObstacles(groupedObstacleCoords, "vertical");
                     generateObstacles(obstaclePrefab, singleObstacleCoords, 0.4f, true, 0, false, true);
                     generateObstacles(dirtFiller, singleObstacleCoords, 0f, false, 0, true, false);
-                    generateMultObstacles(superSpecialObstaclePrefabs, singleObstacleCoords, 0, true, 30);
                 }
 
 
