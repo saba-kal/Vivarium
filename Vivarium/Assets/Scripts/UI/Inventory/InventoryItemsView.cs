@@ -9,9 +9,12 @@ using static InventorySlot;
 /// </summary>
 public class InventoryItemsView : MonoBehaviour
 {
-    public GameObject InventoryContainer;
+    public float SpaceBetweenSlots = 50f;
+    public int PreviewSlotCount = 5;
     public InventorySlot InventorySlotPrefab;
+    public GameObject InventoryContainer;
     public GameObject SelectedInventorySlotOverlayPrefab;
+    public List<InventorySlot> InventorySlots;
 
     private bool _selectionEnabled = false;
 
@@ -48,18 +51,46 @@ public class InventoryItemsView : MonoBehaviour
         DisplayItems(inventoryItems);
     }
 
+    /// <summary>
+    /// Displays a preview inventory without items.
+    /// </summary>
+    public void PreviewInventory()
+    {
+        ClearInventory();
+
+        for (int i = 0; i < PreviewSlotCount; i++)
+        {
+            var inventorySlot = Instantiate(InventorySlotPrefab, InventoryContainer.transform);
+            PositionInventorySlot(inventorySlot, i, PreviewSlotCount);
+        }
+    }
+
     private void ClearInventory()
     {
+        GameObject[] allChildren = new GameObject[InventoryContainer.transform.childCount];
+        var i = 0;
         foreach (Transform child in InventoryContainer.transform)
         {
-            Destroy(child.gameObject);
+            allChildren[i] = child.gameObject;
+            i++;
+        }
+
+        foreach (var child in allChildren)
+        {
+            if (Application.isPlaying)
+            {
+                Destroy(child.gameObject);
+            }
+            else
+            {
+                DestroyImmediate(child.gameObject);
+            }
         }
     }
 
     private void DisplayItems(List<InventoryItem> inventoryItems)
     {
         var maxItems = _characterController?.Character.MaxItems ?? Constants.MAX_PLAYER_ITEMS;
-
         var inventorySlots = new List<InventorySlot>();
 
         for (var i = 0; i < maxItems; i++)
@@ -70,21 +101,21 @@ public class InventoryItemsView : MonoBehaviour
             var isEnemy = _characterController?.IsEnemy ?? false;
             inventorySlot.SetHighlightEnabled(!isEnemy);
 
-            inventorySlots.Add(inventorySlot);
-
-            if (i < inventoryItems.Count &&
-                inventoryItems[i].InventoryPosition < 0)
+            if (i < InventorySlots.Count && inventoryItems[i].InventoryPosition < 0)
             {
                 inventoryItems[i].InventoryPosition = i;
             }
 
             inventorySlot.SetItem(null, _characterController);
+            PositionInventorySlot(inventorySlot, i, maxItems);
             SetInventorySlotCallbacks(inventorySlot);
+
+            inventorySlots.Add(inventorySlot);
         }
 
         for (var i = 0; i < inventoryItems.Count; i++)
         {
-            if (inventoryItems[i].InventoryPosition >= maxItems || inventoryItems[i].InventoryPosition < 0)
+            if (inventoryItems[i].InventoryPosition >= inventorySlots.Count || inventoryItems[i].InventoryPosition < 0)
             {
                 Debug.LogError($"Invalid position of {inventoryItems[i].InventoryPosition} detected for inventory item \"{inventoryItems[i].Item.Flavor.Name}\".");
                 continue;
@@ -95,6 +126,20 @@ public class InventoryItemsView : MonoBehaviour
 
             UpdateInventorySlotOverlays(inventoryItems[i], inventorySlot);
         }
+    }
+
+    private void PositionInventorySlot(InventorySlot inventorySlot, int index, int itemCount)
+    {
+        var xPosition = index * SpaceBetweenSlots / 2f;
+        var yPosition = index % 2 == 0 ? 0 : Mathf.Sqrt(0.75f * SpaceBetweenSlots * SpaceBetweenSlots);
+
+        var estimatedWidth = (itemCount - 1) * SpaceBetweenSlots / 4;
+        xPosition -= estimatedWidth;
+
+        var estimatedHeight = SpaceBetweenSlots / 2;
+        yPosition -= estimatedHeight;
+
+        inventorySlot.transform.localPosition = new Vector3(xPosition, yPosition, 1);
     }
 
     private void SetInventorySlotCallbacks(InventorySlot inventorySlot)

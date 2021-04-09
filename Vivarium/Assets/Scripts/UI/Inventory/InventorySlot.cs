@@ -28,7 +28,6 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     private SlotDrop _onSlotDrop;
     private Canvas _canvas;
     private GameObject _duplicateIcon;
-    private bool _highlightOccupiedSlots = false;
     private bool _highlightEnabled = true;
 
     private void Start()
@@ -212,6 +211,10 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         if (eventData.selectedObject != null)
         {
             var droppedSlot = eventData.selectedObject.GetComponent<InventorySlot>();
+            if (droppedSlot == null)
+            {
+                return;
+            }
 
             ResetIcon(droppedSlot.Icon, droppedSlot.transform);
             _onSlotDrop?.Invoke(this, droppedSlot);
@@ -264,11 +267,8 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
 
         if (eventData.selectedObject != null)
         {
-            if (_highlightOccupiedSlots)
-            {
-                SlotHighlight.SetActive(true);
-            }
-            else if (_inventoryItem == null)
+            var draggingInventorySlot = eventData.selectedObject.GetComponent<InventorySlot>();
+            if (draggingInventorySlot != null)
             {
                 SlotHighlight.SetActive(true);
             }
@@ -282,14 +282,5 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
     public void SetHighlightEnabled(bool highlightEnabled)
     {
         _highlightEnabled = highlightEnabled;
-    }
-
-    /// <summary>
-    /// Enables/disables whether or not to show highlight when dragging items on top other items.
-    /// </summary>
-    /// <param name="higlightOccupiedSlots">Boolean flag that determines whether or not to show the highlights.</param>
-    public void SetHighlightOccupiedSlots(bool higlightOccupiedSlots)
-    {
-        _highlightOccupiedSlots = higlightOccupiedSlots;
     }
 }

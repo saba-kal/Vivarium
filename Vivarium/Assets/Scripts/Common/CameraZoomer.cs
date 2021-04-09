@@ -12,7 +12,7 @@ public class CameraZoomer : MonoBehaviour
     //public float ZoomPositionSpeed = 10f;
     //public float ZoomRotationSpeed = 50f;
 
-   //public Vector3 MinZoomPosition;
+    //public Vector3 MinZoomPosition;
     //public Vector3 MaxZoomPosition;
     //public Vector3 MinZoomRotation;
     //public Vector3 MaxZoomRotation;
