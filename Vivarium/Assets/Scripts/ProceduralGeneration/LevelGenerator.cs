@@ -39,6 +39,7 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateLevel()
     {
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
+        mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
         SetupLevelContainer();

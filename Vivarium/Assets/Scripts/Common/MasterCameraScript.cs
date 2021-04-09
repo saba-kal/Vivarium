@@ -56,6 +56,10 @@ public class MasterCameraScript : MonoBehaviour
         }
     }
 
+    public void refreshFocusCharacters()
+    {
+        focusCharacters = GameObject.FindGameObjectsWithTag("PlayerCharacter");
+    }
 
     public void checkFocusOnExistingCharacter(KeyCode keycode, int characterIndex)
     {
