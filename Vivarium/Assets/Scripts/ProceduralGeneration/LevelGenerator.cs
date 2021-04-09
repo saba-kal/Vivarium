@@ -127,13 +127,13 @@ public class LevelGenerator : MonoBehaviour
                 switch (_grid.GetValue(i, j).SpawnType)
                 {
                     case TileSpawnType.Player:
-                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possiblePlayerSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Enemy:
-                        _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleEnemySpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Boss:
-                        _possibleBossSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleBossSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                 }
             }
