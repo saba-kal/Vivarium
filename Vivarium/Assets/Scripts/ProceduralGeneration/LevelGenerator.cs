@@ -166,7 +166,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (PlayerData.CurrentLevelIndex != 0)
             {
-                CharacterReward.selectedCharacter.SetActive(true);
+                CharacterReward.selectedCharacter?.SetActive(true);
 
                 foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {

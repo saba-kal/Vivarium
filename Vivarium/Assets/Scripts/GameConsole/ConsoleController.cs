@@ -134,7 +134,10 @@ public class ConsoleController : MonoBehaviour
         Debug.Log("Infinite move activated.");
         foreach (var character in PlayerController.Instance.PlayerCharacters)
         {
-            character.MovBuff(STAT_BUFF_AMOUNT);
+            if (character.Character.MoveRange < STAT_BUFF_AMOUNT)
+            {
+                character.MovBuff(STAT_BUFF_AMOUNT);
+            }
         }
     }
 
@@ -143,7 +146,10 @@ public class ConsoleController : MonoBehaviour
         Debug.Log("Infinite damage activated.");
         foreach (var character in PlayerController.Instance.PlayerCharacters)
         {
-            character.AtkBuff(STAT_BUFF_AMOUNT);
+            if (character.Character.AttackDamage < STAT_BUFF_AMOUNT)
+            {
+                character.AtkBuff(STAT_BUFF_AMOUNT);
+            }
         }
     }
 
