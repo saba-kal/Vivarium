@@ -9,7 +9,7 @@ public class DisplayCurrentLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerData.CurrentLevelIndex == 0)
+        if (TutorialManager.GetIsTutorial())
         {
             LevelDisplayText.text = $"Level: Tutorial";
         }

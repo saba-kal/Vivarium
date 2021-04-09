@@ -41,6 +41,7 @@ public class LevelGenerator : MonoBehaviour
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
+        CheckIsTutorial();
         SetupLevelContainer();
         SetupPlayerController();
         GenerateGrid();
@@ -78,14 +79,13 @@ public class LevelGenerator : MonoBehaviour
         _possibleEnemySpawnTiles.Clear();
 
         //Clears player characters only after tutorial
-        if (PlayerData.CurrentLevelIndex == 1)
+        if (TutorialManager.GetIsTutorial())
         {
             var characterControllers = new List<CharacterController>();
             foreach (var characterController in PlayerCharacters)
             {
                 if (characterController.gameObject.activeSelf)
                 {
-                    UnityEngine.Debug.Log("Test");
                     Destroy(characterController.gameObject, 0.1f);
                 }
                 characterControllers.Add(characterController);
@@ -96,6 +96,11 @@ public class LevelGenerator : MonoBehaviour
                 PlayerCharacters.Remove(characterController);
             }
         }
+    }
+
+    public void CheckIsTutorial()
+    {
+        TutorialManager.SetIsTutorial(LevelProfile.IsTutorial);
     }
 
     public void SetupLevelContainer()
@@ -177,14 +182,14 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0 || PlayerData.CurrentLevelIndex == 1)
+        if (PlayerCharacters.Count == 0 || !TutorialManager.GetIsTutorial())
         {
             GeneratePlayerCharacters();
         }
 
         if (CharacterReward.rewardLevel)
         {
-            if (PlayerData.CurrentLevelIndex != 0)
+            if (!TutorialManager.GetIsTutorial())
             {
                 CharacterReward.selectedCharacter.SetActive(true);
 
@@ -321,10 +326,24 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
-        var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
-        var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
+        Tile tile;
+        int tileXPosition;
+        int tileYPosition;
+        if(TutorialManager.GetIsTutorial() && characterController.IsEnemy)
+        {
+            tile = _possibleEnemySpawnTiles.Values.ToList()[0];
+            tileXPosition = tile.GridX;
+            tileYPosition = tile.GridY;
+            UnityEngine.Debug.Log(tileXPosition + " " + tileYPosition);
+        }
+        else
+        {
+            tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
+            tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
-        var tile = _grid.GetValue(tileXPosition, tileYPosition);
+            tile = _grid.GetValue(tileXPosition, tileYPosition);
+        }
+
         var iterations = 0;
 
         while (!CharacterCanSpawnOnTile(tile, characterController) &&

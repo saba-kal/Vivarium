@@ -160,7 +160,7 @@ public class GridGenerator
 
     private void SetPossiblePlayerSpawn(Grid<Tile> grid)
     {
-        if (PlayerData.CurrentLevelIndex == 0)
+        if (TutorialManager.GetIsTutorial())
         {
             grid.GetValue(2, 2).SpawnType = TileSpawnType.Player;
             for (int i = 0; i <= 5; i++)
@@ -186,7 +186,7 @@ public class GridGenerator
 
     private void SetPossibleEnemySpawn(Grid<Tile> grid)
     {
-        if (PlayerData.CurrentLevelIndex == 0)
+        if (TutorialManager.GetIsTutorial())
         {
             grid.GetValue(4, 4).SpawnType = TileSpawnType.Enemy;
         }

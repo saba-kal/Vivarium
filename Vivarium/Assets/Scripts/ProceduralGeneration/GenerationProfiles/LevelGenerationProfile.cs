@@ -30,4 +30,6 @@ public class LevelGenerationProfile : ScriptableObject
     public List<CharacterGenerationProfile> RewardCharacters;
 
     public AISettings AISettings;
+
+    public bool IsTutorial;
 }
