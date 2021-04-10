@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: ExactoCleaver
   m_EditorClassIdentifier: 
   Id: ExactoCleaver4434
-  Name: Exacto Cleaver
-  Description: Can Cleave to do a small AOE attack centered on the attacker.
   ItemFlavorText: {fileID: 11400000, guid: 5edf47890a6fafb49bd31834efd8baab, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: 7e8b63259a4ed424d90b679ed6a932ec, type: 3}
+  Icon: {fileID: 21300000, guid: bcb569bf9f541f24ca85b3e62584fc69, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

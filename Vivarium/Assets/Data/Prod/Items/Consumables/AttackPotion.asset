@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: AttackPotion
   m_EditorClassIdentifier: 
   Id: AttackNormal
-  Name: Attack Potion
-  Description: A strange blue liquid in a vial. Permanently increases attack by 7.
   ItemFlavorText: {fileID: 11400000, guid: 9e66b4d70279dd64fa10fec4d2b378a6, type: 2}
   Type: 3
-  Icon: {fileID: 21300000, guid: 96738784d5dd47a42a00e8201ae16c9d, type: 3}
+  Icon: {fileID: 21300000, guid: 23cbbe2d5a722464896094178e7c8d7d, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 2

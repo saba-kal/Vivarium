@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bee_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1578254722623050743, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1271738912141171446, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
@@ -422,6 +426,10 @@ PrefabInstance:
       value: ant_prefab
       objectReference: {fileID: 0}
     - target: {fileID: 3630463428502252399, guid: 6eded9c7965df7e48b98221dda61e1d8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4968810583771428102, guid: 6eded9c7965df7e48b98221dda61e1d8, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4956,6 +4964,10 @@ PrefabInstance:
     - target: {fileID: 2134149279704721023, guid: 1394bbedd1f8a344e88e057c1f6f8365, type: 3}
       propertyPath: m_Name
       value: beetle_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807816276125113211, guid: 1394bbedd1f8a344e88e057c1f6f8365, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7972641523497627906, guid: 1394bbedd1f8a344e88e057c1f6f8365, type: 3}
       propertyPath: m_RootOrder

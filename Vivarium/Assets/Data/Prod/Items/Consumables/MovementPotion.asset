@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: MovementPotion
   m_EditorClassIdentifier: 
   Id: MoveNormal
-  Name: Movement Potion
-  Description: A strange red liquid in a vial. Permanently increases movement by
-    2.
   ItemFlavorText: {fileID: 11400000, guid: 6b19bdb17868d094fa8da5b0598802dd, type: 2}
   Type: 3
-  Icon: {fileID: 21300000, guid: 380acac122681104a9a94e1bb4a33fa3, type: 3}
+  Icon: {fileID: 21300000, guid: 0fee314aefde66f469bcd937ef1a43c2, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 3

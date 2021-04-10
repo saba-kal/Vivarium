@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: ClipSword
   m_EditorClassIdentifier: 
   Id: ClipSword777777
-  Name: Clip Sword
-  Description: A paper clip fashioned into a sword that can pierce two enemies at
-    once.
   ItemFlavorText: {fileID: 11400000, guid: 1e6c10a7910220147a202e730981c770, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: 37cf6e9092ded67419e83348aa22b987, type: 3}
+  Icon: {fileID: 21300000, guid: d62cbef5c4bf4dc48826a684a6fcf6cd, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
