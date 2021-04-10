@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: StrongClipSword
   m_EditorClassIdentifier: 
   Id: StrongClipSword
-  Name: Strong Clip Sword
-  Description: A paper clip fashioned into a sword that can pierce two enemies at
-    once.
   ItemFlavorText: {fileID: 11400000, guid: dbd37e3d7d91ab049b57f8e733f58d17, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: d3197b4502cd1164a97cb555a599c997, type: 3}
+  Icon: {fileID: 21300000, guid: 65cfc0feacd19fe40a5e0d549b861551, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

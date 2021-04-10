@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: StrongMovementPotion
   m_EditorClassIdentifier: 
   Id: MoveStrong
-  Name: Large Movement Potion
-  Description: A strange red liquid in a vial. Permanently increases movement by
-    3.
   ItemFlavorText: {fileID: 11400000, guid: 7500690e086a28345bf35b63b98bb9b3, type: 2}
   Type: 3
-  Icon: {fileID: 21300000, guid: 380acac122681104a9a94e1bb4a33fa3, type: 3}
+  Icon: {fileID: 21300000, guid: fb397290ef5c7cc42b0e771f9e82674b, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 1
   ConsumableType: 3

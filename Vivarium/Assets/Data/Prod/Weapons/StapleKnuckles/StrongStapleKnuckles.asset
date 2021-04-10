@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: StrongStapleKnuckles
   m_EditorClassIdentifier: 
   Id: StrongStapleKnuckles
-  Name: Strong Staple Knuckles
-  Description: A staple which can pin enemies in place.
   ItemFlavorText: {fileID: 11400000, guid: f9c26ff45d7692140a11e3e27acbd502, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: a5c217ba104083747bde3c8b77b1783a, type: 3}
+  Icon: {fileID: 21300000, guid: a6cc847cc709d11498c1ac0a4827a382, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

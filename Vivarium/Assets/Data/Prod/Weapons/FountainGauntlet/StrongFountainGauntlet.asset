@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: StrongFountainGauntlet
   m_EditorClassIdentifier: 
   Id: StrongFountainGauntlet
-  Name: Strong Fountain Gauntlet
-  Description: Can Rend to pull an enemy to the attackers spot and move the user
-    to where they were.
   ItemFlavorText: {fileID: 11400000, guid: 66b90851f5fd08f4ba328e4d28fbf953, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: a591a347c644b4940bea83dc7907151d, type: 3}
+  Icon: {fileID: 21300000, guid: 419d6f1581590764583ff724e4d0e977, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []
