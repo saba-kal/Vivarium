@@ -39,6 +39,7 @@ public class LevelGenerator : MonoBehaviour
     public void GenerateLevel()
     {
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
+        mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
         SetupLevelContainer();
@@ -46,7 +47,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
-        this.GetComponent<GenerateObstacles>().generateEnvironment();
+        this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
             this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
@@ -127,13 +128,13 @@ public class LevelGenerator : MonoBehaviour
                 switch (_grid.GetValue(i, j).SpawnType)
                 {
                     case TileSpawnType.Player:
-                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possiblePlayerSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Enemy:
-                        _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleEnemySpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Boss:
-                        _possibleBossSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleBossSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                 }
             }
@@ -166,7 +167,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (PlayerData.CurrentLevelIndex != 0)
             {
-                CharacterReward.selectedCharacter.SetActive(true);
+                CharacterReward.selectedCharacter?.SetActive(true);
 
                 foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {
