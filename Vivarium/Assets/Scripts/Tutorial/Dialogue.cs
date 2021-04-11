@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Dialogue : MonoBehaviour
     public TextMeshProUGUI buttonText;
     public GameObject skipButton;
     public GameObject dialogBox;
+    public Button nextButton;
     private List<string> prompts;
     private int index;
     public float BaseHeight = 100f;
@@ -41,11 +43,13 @@ public class Dialogue : MonoBehaviour
         if (index < prompts.Count - 1)
         {
             index++;
+            TutorialManager.Instance.UpdateIndex(1);
             textDisplay.text = prompts[index];
             if (index == prompts.Count - 1)
             {
                 UpdateButtons();
             }
+            nextButton.interactable = false;
         }
         else if (index == prompts.Count - 1)
         {

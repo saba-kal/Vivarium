@@ -117,6 +117,12 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
+        if(!FollowsTutorialRestrictions(tile))
+        {
+            Debug.Log("Attempted to move to a tile other than the one instructed");
+            return;
+        }
+
         if (_moveController != null)
         {
             _moveController.MoveToTile(GetGridPosition(), tile, () =>
@@ -134,6 +140,32 @@ public class CharacterController : MonoBehaviour
         {
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
         }
+    }
+
+    private bool FollowsTutorialRestrictions(Tile tile)
+    {
+        if(TutorialManager.GetIsTutorial())
+        {
+            var grid = TileGridController.Instance.GetGrid();
+            Tile enemyTile = LevelManager.Instance.LevelGenerator.GetPossibleEnemySpawnTiles().Values.ToList()[0];
+            Tile requiredTile = grid.GetValue(enemyTile.GridX, enemyTile.GridY - 1);
+            if(TutorialManager.Instance.GetCurrentIndex() == 6)
+            {
+                if (requiredTile == tile)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if(TutorialManager.Instance.GetCurrentIndex() < 6)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null, bool skipMovement = false)
@@ -585,5 +617,10 @@ public class CharacterController : MonoBehaviour
     public void SetEquippedShieldPosition(int itemPosition)
     {
         _equippedShieldPosition = itemPosition;
+    }
+
+    public bool getIsSelected()
+    {
+        return _isSelected;
     }
 }

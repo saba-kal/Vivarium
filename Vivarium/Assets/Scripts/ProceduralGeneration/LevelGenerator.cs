@@ -332,9 +332,6 @@ public class LevelGenerator : MonoBehaviour
         if(TutorialManager.GetIsTutorial() && characterController.IsEnemy)
         {
             tile = _possibleEnemySpawnTiles.Values.ToList()[0];
-            tileXPosition = tile.GridX;
-            tileYPosition = tile.GridY;
-            UnityEngine.Debug.Log(tileXPosition + " " + tileYPosition);
         }
         else
         {
@@ -428,5 +425,15 @@ public class LevelGenerator : MonoBehaviour
         {
             rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
         }
+    }
+
+    public EnemyAIManager GetEnemyAIManager()
+    {
+        return _enemyAIManager;
+    }
+
+    public Dictionary<(int, int), Tile> GetPossibleEnemySpawnTiles()
+    {
+        return _possibleEnemySpawnTiles;
     }
 }
