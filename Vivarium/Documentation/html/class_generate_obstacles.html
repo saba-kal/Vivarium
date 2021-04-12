@@ -69,6 +69,9 @@ $(function() {
 <div class="title">GenerateObstacles Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Script to generate environment models for a level  
+ <a href="class_generate_obstacles.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GenerateObstacles:</div>
 <div class="dyncontent">
@@ -78,18 +81,12 @@ Inheritance diagram for GenerateObstacles:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aefc01066e404e0102326d01680611e3c"><td class="memItemLeft" align="right" valign="top"><a id="aefc01066e404e0102326d01680611e3c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clearObjects</b> ()</td></tr>
+<tr class="memitem:aefc01066e404e0102326d01680611e3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generate_obstacles.html#aefc01066e404e0102326d01680611e3c">clearObjects</a> ()</td></tr>
+<tr class="memdesc:aefc01066e404e0102326d01680611e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all environment models from the scene  <a href="class_generate_obstacles.html#aefc01066e404e0102326d01680611e3c">More...</a><br /></td></tr>
 <tr class="separator:aefc01066e404e0102326d01680611e3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2549e58603548224a67eb0171d799251"><td class="memItemLeft" align="right" valign="top"><a id="a2549e58603548224a67eb0171d799251"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generateEnvironment</b> (<a class="el" href="class_level_generation_profile.html">LevelGenerationProfile</a> levelProfile)</td></tr>
+<tr class="memitem:a2549e58603548224a67eb0171d799251"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_generate_obstacles.html#a2549e58603548224a67eb0171d799251">generateEnvironment</a> (<a class="el" href="class_level_generation_profile.html">LevelGenerationProfile</a> levelProfile)</td></tr>
+<tr class="memdesc:a2549e58603548224a67eb0171d799251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates all the environment models for the scene  <a href="class_generate_obstacles.html#a2549e58603548224a67eb0171d799251">More...</a><br /></td></tr>
 <tr class="separator:a2549e58603548224a67eb0171d799251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4a2e012a9cabf7ee24acbfec540e293"><td class="memItemLeft" align="right" valign="top"><a id="ab4a2e012a9cabf7ee24acbfec540e293"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generateObstacles</b> (GameObject obstacle, List&lt; List&lt; int &gt;&gt; Coords, float additionY, bool randomRot=false, int yRotation=0, bool isRandRotateByNinety=false, bool allowHighRise=false, bool adjustScale=false, bool rotateNinety=false)</td></tr>
-<tr class="separator:ab4a2e012a9cabf7ee24acbfec540e293"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a177a63cf19c762f42f08cb62645d1b11"><td class="memItemLeft" align="right" valign="top"><a id="a177a63cf19c762f42f08cb62645d1b11"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generateMultObstacles</b> (List&lt; GameObject &gt; obstacles, List&lt; List&lt; int &gt;&gt; Coords, float additionY, bool isRandRotateByNinety=false, int spawnDifficult=0)</td></tr>
-<tr class="separator:a177a63cf19c762f42f08cb62645d1b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -130,8 +127,72 @@ List&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>s
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>dirtFiller</b></td></tr>
 <tr class="separator:a8e09622caaea481365638e982d03c19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Script to generate environment models for a level </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aefc01066e404e0102326d01680611e3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefc01066e404e0102326d01680611e3c">&#9670;&nbsp;</a></span>clearObjects()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerateObstacles.clearObjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes all environment models from the scene </p>
+
+</div>
+</div>
+<a id="a2549e58603548224a67eb0171d799251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2549e58603548224a67eb0171d799251">&#9670;&nbsp;</a></span>generateEnvironment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenerateObstacles.generateEnvironment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_level_generation_profile.html">LevelGenerationProfile</a>&#160;</td>
+          <td class="paramname"><em>levelProfile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates all the environment models for the scene </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">levelProfile</td><td>The level generation profile that dictates the position of the environment models</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Assets/Visuals/Shaders/GenerateObstacles.cs</li>
+<li>Assets/Scripts/ProceduralGeneration/GenerateObstacles.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

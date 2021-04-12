@@ -69,6 +69,9 @@ $(function() {
 <div class="title">LootTable Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents the loot table object that can be populated with items and used for different things like rewards or chests.  
+ <a href="class_loot_table.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LootTable:</div>
 <div class="dyncontent">
@@ -78,16 +81,71 @@ Inheritance diagram for LootTable:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9824080590dac513704838a87ce579e7"><td class="memItemLeft" align="right" valign="top"><a id="a9824080590dac513704838a87ce579e7"></a>
-List&lt; <a class="el" href="class_item.html">Item</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Pick</b> (int numberOfItems)</td></tr>
+<tr class="memitem:a9824080590dac513704838a87ce579e7"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_item.html">Item</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loot_table.html#a9824080590dac513704838a87ce579e7">Pick</a> (int numberOfItems)</td></tr>
+<tr class="memdesc:a9824080590dac513704838a87ce579e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the ordered list of items against a random value to determine which item should be dropped  <a href="class_loot_table.html#a9824080590dac513704838a87ce579e7">More...</a><br /></td></tr>
 <tr class="separator:a9824080590dac513704838a87ce579e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a97bafc401b770a94cfc4a5ed144e1281"><td class="memItemLeft" align="right" valign="top"><a id="a97bafc401b770a94cfc4a5ed144e1281"></a>
-List&lt; <a class="el" href="class_droppable_item.html">DroppableItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DroppableItems</b></td></tr>
+<tr class="memitem:a97bafc401b770a94cfc4a5ed144e1281"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_droppable_item.html">DroppableItem</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_loot_table.html#a97bafc401b770a94cfc4a5ed144e1281">DroppableItems</a></td></tr>
+<tr class="memdesc:a97bafc401b770a94cfc4a5ed144e1281"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of potential items that can be dropped.  <a href="class_loot_table.html#a97bafc401b770a94cfc4a5ed144e1281">More...</a><br /></td></tr>
 <tr class="separator:a97bafc401b770a94cfc4a5ed144e1281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the loot table object that can be populated with items and used for different things like rewards or chests. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9824080590dac513704838a87ce579e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9824080590dac513704838a87ce579e7">&#9670;&nbsp;</a></span>Pick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_item.html">Item</a>&gt; LootTable.Pick </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numberOfItems</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compares the ordered list of items against a random value to determine which item should be dropped </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numberOfItems</td><td>A count of the number of items in the list</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An item picked to be given to the player</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a97bafc401b770a94cfc4a5ed144e1281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97bafc401b770a94cfc4a5ed144e1281">&#9670;&nbsp;</a></span>DroppableItems</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_droppable_item.html">DroppableItem</a>&gt; LootTable.DroppableItems</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The list of potential items that can be dropped. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Items/LootTable.cs</li>
 </ul>
