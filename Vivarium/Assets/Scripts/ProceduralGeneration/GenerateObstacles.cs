@@ -30,6 +30,9 @@ public class orderedPrefabList
     }
 }
 
+/// <summary>
+/// Script to generate environment models for a level
+/// </summary>
 public class GenerateObstacles : MonoBehaviour
 {
     public GameObject highRiseRockPrefab;
@@ -46,9 +49,6 @@ public class GenerateObstacles : MonoBehaviour
 
     public orderedPrefabList orderedPrefabs;
 
-
-    //public GameObject logPrefab;
-
     public GameObject dirtFiller;
 
     private List<GameObject> allEnvironmentObjects = new List<GameObject>();
@@ -56,6 +56,9 @@ public class GenerateObstacles : MonoBehaviour
 
     private LevelGenerationProfile _levelProfile;
 
+    /// <summary>
+    /// Removes all environment models from the scene
+    /// </summary>
     public void clearObjects()
     {
         for (var i = 0; i < allEnvironmentObjects.Count; i++)
@@ -65,6 +68,10 @@ public class GenerateObstacles : MonoBehaviour
         allEnvironmentObjects = new List<GameObject>();
     }
 
+    /// <summary>
+    /// Generates all the environment models for the scene
+    /// </summary>
+    /// <param name="levelProfile">The level generation profile that dictates the position of the environment models</param>
     public void generateEnvironment(LevelGenerationProfile levelProfile)
     {
         _levelProfile = levelProfile;
@@ -313,8 +320,7 @@ public class GenerateObstacles : MonoBehaviour
 
 
 
-
-    public void generateObstacles(GameObject obstacle, List<List<int>> Coords, float additionY, bool randomRot = false, int yRotation = 0, bool isRandRotateByNinety = false, bool allowHighRise = false, bool adjustScale = false, bool rotateNinety = false)
+    private void generateObstacles(GameObject obstacle, List<List<int>> Coords, float additionY, bool randomRot = false, int yRotation = 0, bool isRandRotateByNinety = false, bool allowHighRise = false, bool adjustScale = false, bool rotateNinety = false)
     {
         // var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();
         var obstacleCoords = Coords;
@@ -380,7 +386,7 @@ public class GenerateObstacles : MonoBehaviour
         }
     }
 
-    public void generateMultObstacles(List<GameObject> obstacles, List<List<int>> Coords, float additionY, bool isRandRotateByNinety = false, int spawnDifficult = 0)
+    private void generateMultObstacles(List<GameObject> obstacles, List<List<int>> Coords, float additionY, bool isRandRotateByNinety = false, int spawnDifficult = 0)
     {
 
         // var obstacleCoords = this.GetComponent<GetMapCoords>().GetObstacleCoords();

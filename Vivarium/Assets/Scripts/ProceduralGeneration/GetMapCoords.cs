@@ -3,26 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Utility to get the coordinates of tiles from a level
+/// </summary>
 public class GetMapCoords : MonoBehaviour
 {
     private Grid<Tile> _grid;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    /// <summary>
+    /// Gets a Tile array from the TileGridController
+    /// </summary>
+    /// <returns>Tile Array</returns>
     public Tile[,] GetGrid()
     {
         return TileGridController.Instance.GetGrid().GetGrid();
     }
 
+    /// <summary>
+    /// Gets the grid object from the Tile Grid Controller
+    /// </summary>
+    /// <returns>Grid object</returns>
     public Grid<Tile> GetGridObject()
     {
         return TileGridController.Instance.GetGrid();
     }
 
+    /// <summary>
+    /// Gets the coordinates for all the water coords.
+    /// </summary>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> GetWaterCoords()
     {
         var returnList = new List<List<int>>();
@@ -44,6 +53,11 @@ public class GetMapCoords : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Converts a list of tiles to a list of coordinates
+    /// </summary>
+    /// <param name="tiles">A list of tiles</param>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> TilesToCoords(List<Tile> tiles)
     {
         var returnList = new List<List<int>>();
@@ -56,6 +70,12 @@ public class GetMapCoords : MonoBehaviour
         return returnList;
     }
 
+    /// <summary>
+    /// Takes two lists of coordinates and returns the a new list of coordinates with the second list of coordinates removed from the first.
+    /// </summary>
+    /// <param name="mainCoords">The list of coordinates to filter from</param>
+    /// <param name="filterCoords">The list of coordinates to filter</param>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> FilterCoords(List<List<int>> mainCoords, List<List<int>> filterCoords)
     {
         var returnList = new List<List<int>>();
@@ -79,6 +99,11 @@ public class GetMapCoords : MonoBehaviour
 
         return returnList;
     }
+
+    /// <summary>
+    /// Gets the coordinates for all the tiles in the level.
+    /// </summary>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> GetAllCoords()
     {
         var returnList = new List<List<int>>();
@@ -95,13 +120,12 @@ public class GetMapCoords : MonoBehaviour
         return returnList;
     }
 
-    //public List<List<int>> GetOuterBorderCoords()
-    //{
-    //    var returnList = new List<List<int>>();
 
-    //    return returnList;
-    //}
 
+    /// <summary>
+    /// Gets the coordinates for all the grass tiles next to a water tile.
+    /// </summary>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> GetCoastalCoords()
     {
         var width = GetWidth();
@@ -157,16 +181,27 @@ public class GetMapCoords : MonoBehaviour
         return returnList;
     }
 
+
+    /// <summary>
+    /// Returns the width of the level
+    /// </summary>
     public int GetWidth()
     {
         return TileGridController.Instance.GridWidth;
     }
 
+    /// <summary>
+    /// Returns the height of the level
+    /// </summary>
     public int GetHeight()
     {
         return TileGridController.Instance.GridHeight;
     }
 
+    /// <summary>
+    /// Gets the coordinates for all the obstacle tiles.
+    /// </summary>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> GetObstacleCoords()
     {
         var returnList = new List<List<int>>();
@@ -188,7 +223,14 @@ public class GetMapCoords : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Returns a list of grouped coordinates indicating the set of vertically adjacent obstacle tiles
+    /// </summary>
+    /// <param name="startSection">The z tile coordinate to start looking for vertically adjacent obstacle tiles</param>
+    /// <param name="stopSection">The z tile coordinate to stop looking for vertically adjacent obstacle tiles</param>
+    /// <param name="verticalStart">The x tile coordinate to start looking for vertically adjacent obstacle tiles</param>
+    /// <param name="verticalStop">The x tile coordinate to stop looking for vertically adjacent obstacle tiles</param>
+    /// <returns></returns>
     public List<List<List<int>>> GetVerticalGroupObjects(int startSection, int stopSection, int verticalStart, int verticalStop)
     {
         _grid = TileGridController.Instance.GetGrid();
@@ -233,6 +275,14 @@ public class GetMapCoords : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Returns a list of grouped coordinates indicating the set of horizontally adjacent obstacle tiles
+    /// </summary>
+    /// <param name="startSection">The z tile coordinate to start looking for horizontally adjacent obstacle tiles</param>
+    /// <param name="stopSection">The z tile coordinate to stop looking for horizontally adjacent obstacle tiles</param>
+    /// <param name="verticalStart">The x tile coordinate to start looking for horizontally adjacent obstacle tiles</param>
+    /// <param name="verticalStop">The x tile coordinate to stop looking for horizontally adjacent obstacle tiles</param>
+    /// <returns></returns>
     public List<List<List<int>>> GetHorizontalGroupObjects(int startSection, int stopSection, int verticalStart, int verticalStop)
     {
 
@@ -282,6 +332,10 @@ public class GetMapCoords : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Gets the coordinates for all the grass tiles.
+    /// </summary>
+    /// <returns>A list of lists. The inner list represent a coordinate, and the outer list holds those coordinates.</returns>
     public List<List<int>> GetGrassTiles()
     {
         var returnList = new List<List<int>>();
