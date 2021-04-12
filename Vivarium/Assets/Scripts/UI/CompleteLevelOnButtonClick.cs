@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the Complete Level. Only accessible when there are no enemy characters left in a level.
+/// </summary>
 public class CompleteLevelOnButtonClick : MonoBehaviour
 {
     public Button ButtonReference;

@@ -6,6 +6,10 @@ using TMPro;
 
 namespace Assets.Scripts.UI
 {
+    /// <summary>
+    /// Handles rewards screen behaviors for the UI. This includes selecting and adding rewards and transitioning between the rewards screen and
+    /// the next level.
+    /// </summary>
     public class RewardsUIController : MonoBehaviour
     {
         public GameObject RewardScreen;
@@ -77,7 +81,9 @@ namespace Assets.Scripts.UI
             }
         }
 
-        //Disables the next level button if the reward screen requirements aren't met.
+        /// <summary>
+        /// Disables the next level button if the reward screen requirements aren't met.
+        /// </summary>
         public void CheckNextLevel()
         {
             if ((CharacterReward.rewardLevel && _selectedRewards.Count == 1) || (!(CharacterReward.rewardLevel) && _selectedRewards.Count == 2))
@@ -90,6 +96,11 @@ namespace Assets.Scripts.UI
             }
         }
 
+        /// <summary>
+        /// Determines which rewards are shown on the rewards screen.
+        /// </summary>
+        /// <param name="callback">Used for calling the next level.</param>
+        /// <param name="possibleRewards">LootTable for randomized item rewards</param>
         public void ShowRewardsScreen(System.Action callback, LootTable possibleRewards)
         {
             if (CharacterReward.rewardLevel)
@@ -172,6 +183,10 @@ namespace Assets.Scripts.UI
             }
         }
 
+        /// <summary>
+        /// Returns a list of rewards the player selects to be added to their inventory.
+        /// </summary>
+        /// <param name="possibleRewards">The full list of possible reward items.</param>
         public List<Item> GetSelectedReward(List<Item> possibleRewards)
         {
             List<Item> rewards = new List<Item>();
@@ -190,6 +205,10 @@ namespace Assets.Scripts.UI
             }
         }
 
+        /// <summary>
+        /// Finds every player character with an empty inventory and chooses a random one to give rewards to.
+        /// </summary>
+        /// <param name="reward">The reward item being given.</param>
         public CharacterController GetRandomCharacterWithEmptyInventory(Item reward)
         {
             var playerCharacters = TurnSystemManager.Instance?.PlayerController?.PlayerCharacters;
@@ -308,6 +327,10 @@ namespace Assets.Scripts.UI
             }
         }
 
+        /// <summary>
+        /// Handles character rewards being double clicked. When the proper amount of rewards are clicked and a double click happens, 
+        /// the next level is called.
+        /// </summary>
         public void DoubleClicked()
         {
             //Handles double clicking when the reward selection requirements aren't met.
