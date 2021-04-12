@@ -122,7 +122,6 @@ public class MoveController : MonoBehaviour
             return;
         }
 
-        Debug.Log(_breadthFirstSearch.GetPathToTile(toTile).Count);
         fromTile.CharacterControllerId = null;
         CommandController.Instance.ExecuteCommand(
             new MoveCommand(

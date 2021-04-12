@@ -4,6 +4,9 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Custom unity editor for <see cref="InventoryItemsView"/>.
+/// </summary>
 [CustomEditor(typeof(InventoryItemsView))]
 public class InventoryItemsViewInspector : Editor
 {

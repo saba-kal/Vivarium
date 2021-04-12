@@ -4,6 +4,9 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 
+/// <summary>
+/// Custom unity editor for <see cref="LevelGenerator"/>.
+/// </summary>
 [CustomEditor(typeof(LevelGenerator))]
 public class LevelGeneratorInspector : Editor
 {

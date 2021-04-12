@@ -32,7 +32,7 @@ public class UISoundManager : MonoBehaviour
     {
         _soundManager = SoundManager.GetInstance();
     }
-    
+
     private void OnInventorySlotClick(InventorySlot inventorySlot)
     {
         _soundManager.Play(Constants.BUTTON_CLICK_SOUND);
@@ -65,7 +65,7 @@ public class UISoundManager : MonoBehaviour
     /// <summary>
     /// Plays the consume sound effect.
     /// </summary>
-    /// /// /// <param name="characterController">The character controller of the character from OnConsumeClick.</param>
+    /// <param name="characterController">The character controller of the character from OnConsumeClick.</param>
     public void PlayConsume(CharacterController characterController)
     {
         _soundManager.Play(Constants.CONSUME_SOUND);
@@ -73,7 +73,7 @@ public class UISoundManager : MonoBehaviour
     /// <summary>
     /// Internal play function for the UI sound manager. Currently unused.
     /// </summary>
-    /// /// <param name="soundName">Plays the sound name</param>
+    /// <param name="soundName">Plays the sound name</param>
     public void Play(string soundName)
     {
         _soundManager.Play(soundName);
