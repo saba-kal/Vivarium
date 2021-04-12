@@ -12,7 +12,13 @@ public class MoveCameraCommand : ICommand
     private GameObject _camera;
     private System.Action _onMoveComplete;
 
-
+    /// <summary>
+    /// Command to move the camera
+    /// </summary>
+    /// <param name="destination">Coordinate that the camera moves to</param>
+    /// <param name="panSpeed">Movement speed of the camera</param>
+    /// <param name="focusCharacter">GameObject the camera becomes a child of</param>
+    /// <param name="onMoveComplete">Action that executes after camera moves</param>
     public MoveCameraCommand(
         Vector3 destination,
         float panSpeed,
@@ -26,6 +32,10 @@ public class MoveCameraCommand : ICommand
         _onMoveComplete = onMoveComplete;
     }
 
+    /// <summary>
+    /// Moves the camera
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Execute()
     {
         _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];

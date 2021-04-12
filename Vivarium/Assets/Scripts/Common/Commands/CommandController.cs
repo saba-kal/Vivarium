@@ -25,8 +25,10 @@ public class CommandController : MonoBehaviour
         StartCoroutine(CoroutineCoordinator());
     }
 
-    // possibly change frames
-    // add animation action to queue 
+    /// <summary>
+    /// Executes each command in the queue until the count is 0
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CoroutineCoordinator()
     {
         while (true)
@@ -40,16 +42,29 @@ public class CommandController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Add a command to the execution queue
+    /// </summary>
+    /// <param name="command">The command object to be executed</param>
     public void ExecuteCommand(ICommand command)
     {
         _coroutineQueue.Enqueue(command.Execute());
     }
 
+    /// <summary>
+    /// Add a coroutine to the execution queue
+    /// </summary>
+    /// <param name="coroutine">The coroutine to be executed</param>
     public void ExecuteCoroutine(IEnumerator coroutine)
     {
         _coroutineQueue.Enqueue(coroutine);
     }
 
+
+    /// <summary>
+    /// Checks if the coroutine queue is still executing
+    /// </summary>
+    /// <returns></returns>
     public bool CommandsAreExecuting()
     {
         return _coroutineQueue.Count > 0;

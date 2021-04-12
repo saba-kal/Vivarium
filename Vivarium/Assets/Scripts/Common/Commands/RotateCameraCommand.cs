@@ -7,7 +7,11 @@ public class RotateCameraCommand : ICommand
     private Quaternion _zoomCameraRotation;
     private GameObject _mainCamera;
 
-
+    /// <summary>
+    /// Command to rotate the camera
+    /// </summary>
+    /// <param name="mainCameraRotation">Rotation for the main camera</param>
+    /// <param name="zoomCameraRotation">Rotation for Zoom container</param>
     public RotateCameraCommand(
         Quaternion mainCameraRotation,
         Quaternion zoomCameraRotation

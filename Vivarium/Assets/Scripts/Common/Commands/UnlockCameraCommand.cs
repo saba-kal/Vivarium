@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UnlockCameraCommand : ICommand
 {
+    /// <summary>
+    /// Command to unlock the camera
+    /// </summary>
     public IEnumerator Execute()
     {
         var _mainCamera = GameObject.FindGameObjectsWithTag("MasterCamera")[0];

@@ -28,11 +28,18 @@ public class CameraRotater : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Locks the Camera Rotater, prevents the Camera Rotater from being affected by player input. 
+    /// </summary>
     public void lockCameraRotater()
     {
         isCameraLock = true;
     }
 
+
+    /// <summary>
+    /// Unlocks the Camera Rotater, allows the Camera Rotater to be affected by player input. 
+    /// </summary>
     public void unlockCameraRotater()
     {
         isCameraLock = false;

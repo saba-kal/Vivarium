@@ -73,6 +73,10 @@ public class CameraZoomer : MonoBehaviour
         return transform.position.y / maxZoom;
     }
 
+
+    /// <summary>
+    /// Locks the Camera Zoomer, prevents the Camera Zoomer from being affected by player input. 
+    /// </summary>
     public void lockCameraZoom()
     {
         isCameraLock = true;
