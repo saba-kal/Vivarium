@@ -71,13 +71,16 @@ $(function() {
 <div class="title">ActionController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p> 
+ <a href="class_action_controller.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ActionController:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_action_controller.png" usemap="#ActionController_map" alt=""/>
   <map id="ActionController_map" name="ActionController_map">
-<area href="interface_i_action_controller.html" alt="IActionController" shape="rect" coords="195,0,380,24"/>
+<area href="interface_i_action_controller.html" title="Handles logic behind executing weapon attacks." alt="IActionController" shape="rect" coords="195,0,380,24"/>
 <area href="class_arc_projectile_action_controller.html" alt="ArcProjectileActionController" shape="rect" coords="292,112,477,136"/>
 <area href="class_giant_lazer_action_controller.html" alt="GiantLazerActionController" shape="rect" coords="292,168,477,192"/>
 <area href="class_knock_back_action_controller.html" title="Action controller for knocking back units when they are attacked." alt="KnockBackActionController" shape="rect" coords="292,224,477,248"/>
@@ -96,19 +99,20 @@ Public Member Functions</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (<a class="el" href="class_tile.html">Tile</a> targetTile, System.Action onActionComplete=null)</td></tr>
 <tr class="separator:ae70c5ccdf91083d532a7a5951977ff44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c8b0fcaf8a3f9fd5ed6547d91b40661"><td class="memItemLeft" align="right" valign="top"><a id="a9c8b0fcaf8a3f9fd5ed6547d91b40661"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateAffectedTiles</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a9c8b0fcaf8a3f9fd5ed6547d91b40661">CalculateAffectedTiles</a> ()</td></tr>
+<tr class="memdesc:a9c8b0fcaf8a3f9fd5ed6547d91b40661"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the tiles that the attack can affect. <br /></td></tr>
 <tr class="separator:a9c8b0fcaf8a3f9fd5ed6547d91b40661"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a428c94de127cd657d139e885abc01d84"><td class="memItemLeft" align="right" valign="top"><a id="a428c94de127cd657d139e885abc01d84"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateAffectedTiles</b> (int x, int y)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a428c94de127cd657d139e885abc01d84">CalculateAffectedTiles</a> (int x, int y)</td></tr>
 <tr class="separator:a428c94de127cd657d139e885abc01d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a357d85add00fcbc240da1d16d52ad784"><td class="memItemLeft" align="right" valign="top"><a id="a357d85add00fcbc240da1d16d52ad784"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAffectedTiles</b> ()</td></tr>
+<tr class="memitem:a357d85add00fcbc240da1d16d52ad784"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a357d85add00fcbc240da1d16d52ad784">GetAffectedTiles</a> ()</td></tr>
+<tr class="memdesc:a357d85add00fcbc240da1d16d52ad784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tiles that this action can attack. CalculateAffectedTiles must be called first.  <a href="class_action_controller.html#a357d85add00fcbc240da1d16d52ad784">More...</a><br /></td></tr>
 <tr class="separator:a357d85add00fcbc240da1d16d52ad784"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac218a5e7b7c2e1bccbb0422722d14b4"><td class="memItemLeft" align="right" valign="top"><a id="aac218a5e7b7c2e1bccbb0422722d14b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DisableSound</b> ()</td></tr>
+<tr class="memitem:aac218a5e7b7c2e1bccbb0422722d14b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#aac218a5e7b7c2e1bccbb0422722d14b4">DisableSound</a> ()</td></tr>
+<tr class="memdesc:aac218a5e7b7c2e1bccbb0422722d14b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the action sound effect.  <a href="class_action_controller.html#aac218a5e7b7c2e1bccbb0422722d14b4">More...</a><br /></td></tr>
 <tr class="separator:aac218a5e7b7c2e1bccbb0422722d14b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4381fbf0e29c961ce32dd395c99f9c8f"><td class="memItemLeft" align="right" valign="top"><a id="a4381fbf0e29c961ce32dd395c99f9c8f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>EnableSound</b> ()</td></tr>
+<tr class="memitem:a4381fbf0e29c961ce32dd395c99f9c8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a4381fbf0e29c961ce32dd395c99f9c8f">EnableSound</a> ()</td></tr>
+<tr class="memdesc:a4381fbf0e29c961ce32dd395c99f9c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the action sound effect.  <a href="class_action_controller.html#a4381fbf0e29c961ce32dd395c99f9c8f">More...</a><br /></td></tr>
 <tr class="separator:a4381fbf0e29c961ce32dd395c99f9c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -162,6 +166,90 @@ Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#16
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_delay</b> = 0f</td></tr>
 <tr class="separator:a5f915037a0f9e9c33968808f46afaf1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"></div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aac218a5e7b7c2e1bccbb0422722d14b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac218a5e7b7c2e1bccbb0422722d14b4">&#9670;&nbsp;</a></span>DisableSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActionController.DisableSound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Disables the action sound effect. </p>
+
+</div>
+</div>
+<a id="a4381fbf0e29c961ce32dd395c99f9c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4381fbf0e29c961ce32dd395c99f9c8f">&#9670;&nbsp;</a></span>EnableSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActionController.EnableSound </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enables the action sound effect. </p>
+
+</div>
+</div>
+<a id="a357d85add00fcbc240da1d16d52ad784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a357d85add00fcbc240da1d16d52ad784">&#9670;&nbsp;</a></span>GetAffectedTiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a>&gt; ActionController.GetAffectedTiles </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the tiles that this action can attack. CalculateAffectedTiles must be called first. </p>
+<dl class="section return"><dt>Returns</dt><dd>Position-to-tile dictionary of tiles.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Actions/ActionControllers/ActionController.cs</li>
 </ul>

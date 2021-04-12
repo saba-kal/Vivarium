@@ -69,6 +69,9 @@ $(function() {
 <div class="title">HealthBar Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles the health bar UI of characters. Used for both health and shields.  
+ <a href="class_health_bar.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for HealthBar:</div>
 <div class="dyncontent">
@@ -78,14 +81,14 @@ Inheritance diagram for HealthBar:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a255bda7cd38b2dd60d6bf8ff8963ee3e"><td class="memItemLeft" align="right" valign="top"><a id="a255bda7cd38b2dd60d6bf8ff8963ee3e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMaxHealth</b> (float maxHealth)</td></tr>
+<tr class="memitem:a255bda7cd38b2dd60d6bf8ff8963ee3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_health_bar.html#a255bda7cd38b2dd60d6bf8ff8963ee3e">SetMaxHealth</a> (float maxHealth)</td></tr>
+<tr class="memdesc:a255bda7cd38b2dd60d6bf8ff8963ee3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the max health a health bar can have.  <a href="class_health_bar.html#a255bda7cd38b2dd60d6bf8ff8963ee3e">More...</a><br /></td></tr>
 <tr class="separator:a255bda7cd38b2dd60d6bf8ff8963ee3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41f4dc9ba668c43ec645b999cd410fa5"><td class="memItemLeft" align="right" valign="top"><a id="a41f4dc9ba668c43ec645b999cd410fa5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHealth</b> (float health)</td></tr>
+<tr class="memitem:a41f4dc9ba668c43ec645b999cd410fa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_health_bar.html#a41f4dc9ba668c43ec645b999cd410fa5">SetHealth</a> (float health)</td></tr>
+<tr class="memdesc:a41f4dc9ba668c43ec645b999cd410fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current health a health bar has.  <a href="class_health_bar.html#a41f4dc9ba668c43ec645b999cd410fa5">More...</a><br /></td></tr>
 <tr class="separator:a41f4dc9ba668c43ec645b999cd410fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08a4d09a760b6484550d293e20013f2c"><td class="memItemLeft" align="right" valign="top"><a id="a08a4d09a760b6484550d293e20013f2c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowChangeHealthEffect</b> (float healthChangeAmount)</td></tr>
+<tr class="memitem:a08a4d09a760b6484550d293e20013f2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_health_bar.html#a08a4d09a760b6484550d293e20013f2c">ShowChangeHealthEffect</a> (float healthChangeAmount)</td></tr>
+<tr class="memdesc:a08a4d09a760b6484550d293e20013f2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a visual effect on the health bar when the current health value changes.  <a href="class_health_bar.html#a08a4d09a760b6484550d293e20013f2c">More...</a><br /></td></tr>
 <tr class="separator:a08a4d09a760b6484550d293e20013f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -115,6 +118,111 @@ Color&#160;</td><td class="memItemRight" valign="bottom"><b>PositiveHealthChange
 Color&#160;</td><td class="memItemRight" valign="bottom"><b>NegativeHealthChangeColor</b> = Color.red</td></tr>
 <tr class="separator:ad8800db5b8549c8606e6297986bff7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles the health bar UI of characters. Used for both health and shields. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a41f4dc9ba668c43ec645b999cd410fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f4dc9ba668c43ec645b999cd410fa5">&#9670;&nbsp;</a></span>SetHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HealthBar.SetHealth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>health</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the current health a health bar has. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">health</td><td>The health value to set current health to.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a255bda7cd38b2dd60d6bf8ff8963ee3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a255bda7cd38b2dd60d6bf8ff8963ee3e">&#9670;&nbsp;</a></span>SetMaxHealth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HealthBar.SetMaxHealth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxHealth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the max health a health bar can have. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">maxHealth</td><td>The max health to set to.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08a4d09a760b6484550d293e20013f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a4d09a760b6484550d293e20013f2c">&#9670;&nbsp;</a></span>ShowChangeHealthEffect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HealthBar.ShowChangeHealthEffect </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>healthChangeAmount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displays a visual effect on the health bar when the current health value changes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">healthChangeAmount</td><td>The number amount of health that is changed from the current health.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/UI/HealthBar.cs</li>
 </ul>

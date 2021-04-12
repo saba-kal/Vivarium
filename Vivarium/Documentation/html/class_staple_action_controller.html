@@ -78,7 +78,7 @@ Inheritance diagram for StapleActionController:</div>
   <img src="class_staple_action_controller.png" usemap="#StapleActionController_map" alt=""/>
   <map id="StapleActionController_map" name="StapleActionController_map">
 <area href="class_action_controller.html" alt="ActionController" shape="rect" coords="74,56,213,80"/>
-<area href="interface_i_action_controller.html" alt="IActionController" shape="rect" coords="149,0,288,24"/>
+<area href="interface_i_action_controller.html" title="Handles logic behind executing weapon attacks." alt="IActionController" shape="rect" coords="149,0,288,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -117,19 +117,20 @@ Additional Inherited Members</h2></td></tr>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> (<a class="el" href="class_tile.html">Tile</a> targetTile, System.Action onActionComplete=null)</td></tr>
 <tr class="separator:ae70c5ccdf91083d532a7a5951977ff44 inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c8b0fcaf8a3f9fd5ed6547d91b40661 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="a9c8b0fcaf8a3f9fd5ed6547d91b40661"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateAffectedTiles</b> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a9c8b0fcaf8a3f9fd5ed6547d91b40661">CalculateAffectedTiles</a> ()</td></tr>
+<tr class="memdesc:a9c8b0fcaf8a3f9fd5ed6547d91b40661 inherit pub_methods_class_action_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the tiles that the attack can affect. <br /></td></tr>
 <tr class="separator:a9c8b0fcaf8a3f9fd5ed6547d91b40661 inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a428c94de127cd657d139e885abc01d84 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="a428c94de127cd657d139e885abc01d84"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateAffectedTiles</b> (int x, int y)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a428c94de127cd657d139e885abc01d84">CalculateAffectedTiles</a> (int x, int y)</td></tr>
 <tr class="separator:a428c94de127cd657d139e885abc01d84 inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a357d85add00fcbc240da1d16d52ad784 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="a357d85add00fcbc240da1d16d52ad784"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAffectedTiles</b> ()</td></tr>
+<tr class="memitem:a357d85add00fcbc240da1d16d52ad784 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a357d85add00fcbc240da1d16d52ad784">GetAffectedTiles</a> ()</td></tr>
+<tr class="memdesc:a357d85add00fcbc240da1d16d52ad784 inherit pub_methods_class_action_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tiles that this action can attack. CalculateAffectedTiles must be called first.  <a href="class_action_controller.html#a357d85add00fcbc240da1d16d52ad784">More...</a><br /></td></tr>
 <tr class="separator:a357d85add00fcbc240da1d16d52ad784 inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac218a5e7b7c2e1bccbb0422722d14b4 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="aac218a5e7b7c2e1bccbb0422722d14b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DisableSound</b> ()</td></tr>
+<tr class="memitem:aac218a5e7b7c2e1bccbb0422722d14b4 inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#aac218a5e7b7c2e1bccbb0422722d14b4">DisableSound</a> ()</td></tr>
+<tr class="memdesc:aac218a5e7b7c2e1bccbb0422722d14b4 inherit pub_methods_class_action_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the action sound effect.  <a href="class_action_controller.html#aac218a5e7b7c2e1bccbb0422722d14b4">More...</a><br /></td></tr>
 <tr class="separator:aac218a5e7b7c2e1bccbb0422722d14b4 inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4381fbf0e29c961ce32dd395c99f9c8f inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="a4381fbf0e29c961ce32dd395c99f9c8f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>EnableSound</b> ()</td></tr>
+<tr class="memitem:a4381fbf0e29c961ce32dd395c99f9c8f inherit pub_methods_class_action_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_action_controller.html#a4381fbf0e29c961ce32dd395c99f9c8f">EnableSound</a> ()</td></tr>
+<tr class="memdesc:a4381fbf0e29c961ce32dd395c99f9c8f inherit pub_methods_class_action_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the action sound effect.  <a href="class_action_controller.html#a4381fbf0e29c961ce32dd395c99f9c8f">More...</a><br /></td></tr>
 <tr class="separator:a4381fbf0e29c961ce32dd395c99f9c8f inherit pub_methods_class_action_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_class_action_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_action_controller')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_action_controller.html">ActionController</a></td></tr>
 <tr class="memitem:a91d542df9ce7ba5c6c52cffd701d27ed inherit pub_attribs_class_action_controller"><td class="memItemLeft" align="right" valign="top"><a id="a91d542df9ce7ba5c6c52cffd701d27ed"></a>
