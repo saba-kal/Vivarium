@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// The toggle used for turning enemy threat ranges on and off.
+/// </summary>
 [RequireComponent(typeof(Toggle))]
 public class ThreatRangeToggle : MonoBehaviour
 {

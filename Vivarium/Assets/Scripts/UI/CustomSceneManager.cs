@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manages multiple scenes and loads a main scene with additive scenes.
+/// </summary>
 public class CustomSceneManager : MonoBehaviour
 {
 
@@ -25,6 +28,10 @@ public class CustomSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads a scene up based on the sceneCollectionIndex.
+    /// </summary>
+    /// <param name="sceneCollectionIndex">The index of the scenes to cycle through.</param>
     public void LoadScene(int sceneCollectionIndex)
     {
         if (sceneCollectionIndex < 0 || sceneCollectionIndex >= AvailableScenes.Count)
