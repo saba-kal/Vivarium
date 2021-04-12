@@ -4,9 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
+/// <summary>
+/// Generates a list of actions based on a given ActionsGenerationProfile.
+/// </summary>
 public class ActionsGenerator
 {
-
+    /// <summary>
+    /// Generates a list of actions based on a given ActionsGenerationProfile.
+    /// </summary>
+    /// <param name="actionsProfile">An <see cref="ActionsGenerationProfile"/> containing the information used to generate the actions.</param>
+    /// <returns>A list of randomly generated <see cref="Action"/>.</returns>
     public List<Action> GenerateActions(ActionsGenerationProfile actionsProfile)
     {
         if (actionsProfile.MinNumberOfActions < 0 ||

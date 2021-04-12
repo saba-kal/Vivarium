@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// <see cref="ActionViewer"/> Action viewer specifically for the Pierce Action.
+///  Required to the uniqueness in tiles affected by this action.
+/// </summary>
 public class PierceActionViewer : ActionViewer
 {
     private void Start()
@@ -16,6 +20,8 @@ public class PierceActionViewer : ActionViewer
             MoveActionAoeOverMouse();
         }
     }
+
+    /// <inheritdoc cref="ActionViewer.DisplayAction(float, Dictionary{(int, int), Tile})"/>
     new public void DisplayAction(float areaOfAffect, Dictionary<(int, int), Tile> activeActionTiles)
     {
         if (_characterController == null)
@@ -30,6 +36,7 @@ public class PierceActionViewer : ActionViewer
         ShowActionRange();
     }
 
+    /// <inheritdoc cref="ActionViewer.HideAction"/>
     new public void HideAction()
     {
         _actionIsDisplayed = false;
@@ -66,6 +73,7 @@ public class PierceActionViewer : ActionViewer
             characterGridTile.GridY);
     }
 
+    /// <inheritdoc cref="ActionViewer.ActionIsWithinRange(Tile)"/>
     new public bool ActionIsWithinRange(Tile targetTile)
     {
         return _activeActionTiles.ContainsKey((targetTile.GridX, targetTile.GridY));
@@ -76,6 +84,7 @@ public class PierceActionViewer : ActionViewer
         TileGridController.Instance.HighlightTiles(_activeActionTiles, RANGE_COLOR);
     }
 
+    /// <inheritdoc cref="ActionViewer.GetAffectedTiles"/>
     new public Dictionary<(int, int), Tile> GetAffectedTiles()
     {
         return _activeActionTiles;
