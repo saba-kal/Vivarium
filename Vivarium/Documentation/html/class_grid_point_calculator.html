@@ -69,6 +69,9 @@ $(function() {
 <div class="title">GridPointCalculator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Calculates point values for each tile on the grid so that <a class="el" href="class_a_i_controller.html" title="Handles AI logic for single character.">AIController</a> knows which tiles are valuable and which ones are dangerous.  
+ <a href="class_grid_point_calculator.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GridPointCalculator:</div>
 <div class="dyncontent">
@@ -78,14 +81,14 @@ Inheritance diagram for GridPointCalculator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8afff651395f064f7c1908eff97400c1"><td class="memItemLeft" align="right" valign="top"><a id="a8afff651395f064f7c1908eff97400c1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateGridPoints</b> (<a class="el" href="class_character_controller.html">CharacterController</a> aiCharacter)</td></tr>
+<tr class="memitem:a8afff651395f064f7c1908eff97400c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid_point_calculator.html#a8afff651395f064f7c1908eff97400c1">CalculateGridPoints</a> (<a class="el" href="class_character_controller.html">CharacterController</a> aiCharacter)</td></tr>
+<tr class="memdesc:a8afff651395f064f7c1908eff97400c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates grid point values for a given AI character.  <a href="class_grid_point_calculator.html#a8afff651395f064f7c1908eff97400c1">More...</a><br /></td></tr>
 <tr class="separator:a8afff651395f064f7c1908eff97400c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af914b135c68a69e6ebdbd30d375d7ac7"><td class="memItemLeft" align="right" valign="top"><a id="af914b135c68a69e6ebdbd30d375d7ac7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PreviewGridPoints</b> ()</td></tr>
+<tr class="memitem:af914b135c68a69e6ebdbd30d375d7ac7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid_point_calculator.html#af914b135c68a69e6ebdbd30d375d7ac7">PreviewGridPoints</a> ()</td></tr>
+<tr class="memdesc:af914b135c68a69e6ebdbd30d375d7ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows grid point values using <a class="el" href="class_text_label.html" title="Shows a text label on a grid cell.">TextLabel</a>.  <a href="class_grid_point_calculator.html#af914b135c68a69e6ebdbd30d375d7ac7">More...</a><br /></td></tr>
 <tr class="separator:af914b135c68a69e6ebdbd30d375d7ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c25905d78159bd3a645f449fe71e904"><td class="memItemLeft" align="right" valign="top"><a id="a9c25905d78159bd3a645f449fe71e904"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePreview</b> ()</td></tr>
+<tr class="memitem:a9c25905d78159bd3a645f449fe71e904"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid_point_calculator.html#a9c25905d78159bd3a645f449fe71e904">UpdatePreview</a> ()</td></tr>
+<tr class="memdesc:a9c25905d78159bd3a645f449fe71e904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the previewed grid point values (they don't automatically update when points change).  <a href="class_grid_point_calculator.html#a9c25905d78159bd3a645f449fe71e904">More...</a><br /></td></tr>
 <tr class="separator:a9c25905d78159bd3a645f449fe71e904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -97,6 +100,97 @@ Public Attributes</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>ShowPreview</b></td></tr>
 <tr class="separator:aca2e2db943de4170d6e2beb703cf45b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Calculates point values for each tile on the grid so that <a class="el" href="class_a_i_controller.html" title="Handles AI logic for single character.">AIController</a> knows which tiles are valuable and which ones are dangerous. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8afff651395f064f7c1908eff97400c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8afff651395f064f7c1908eff97400c1">&#9670;&nbsp;</a></span>CalculateGridPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridPointCalculator.CalculateGridPoints </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_character_controller.html">CharacterController</a>&#160;</td>
+          <td class="paramname"><em>aiCharacter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates grid point values for a given AI character. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aiCharacter</td><td>The <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> to calculate the points for.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af914b135c68a69e6ebdbd30d375d7ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af914b135c68a69e6ebdbd30d375d7ac7">&#9670;&nbsp;</a></span>PreviewGridPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridPointCalculator.PreviewGridPoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shows grid point values using <a class="el" href="class_text_label.html" title="Shows a text label on a grid cell.">TextLabel</a>. </p>
+
+</div>
+</div>
+<a id="a9c25905d78159bd3a645f449fe71e904"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c25905d78159bd3a645f449fe71e904">&#9670;&nbsp;</a></span>UpdatePreview()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GridPointCalculator.UpdatePreview </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the previewed grid point values (they don't automatically update when points change). </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/AI/GridPointCalculator.cs</li>
 </ul>

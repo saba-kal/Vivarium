@@ -71,6 +71,9 @@ $(function() {
 <div class="title">TurnSystemManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls the turn-based system between player and AI.  
+ <a href="class_turn_system_manager.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for TurnSystemManager:</div>
 <div class="dyncontent">
@@ -83,14 +86,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a533538d803f81b8dc165eafc376b1fe8"><td class="memItemLeft" align="right" valign="top"><a id="a533538d803f81b8dc165eafc376b1fe8"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>TurnStart</b> ()</td></tr>
 <tr class="separator:a533538d803f81b8dc165eafc376b1fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f2ae8c5a6f23c7cbbe336b00b9e502a"><td class="memItemLeft" align="right" valign="top"><a id="a3f2ae8c5a6f23c7cbbe336b00b9e502a"></a>
-<a class="el" href="class_character_controller.html">CharacterController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetCharacterController</b> (string id)</td></tr>
+<tr class="memitem:a3f2ae8c5a6f23c7cbbe336b00b9e502a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_character_controller.html">CharacterController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_turn_system_manager.html#a3f2ae8c5a6f23c7cbbe336b00b9e502a">GetCharacterController</a> (string id)</td></tr>
+<tr class="memdesc:a3f2ae8c5a6f23c7cbbe336b00b9e502a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for a given ID.  <a href="class_turn_system_manager.html#a3f2ae8c5a6f23c7cbbe336b00b9e502a">More...</a><br /></td></tr>
 <tr class="separator:a3f2ae8c5a6f23c7cbbe336b00b9e502a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c66fbb0d83185593e94c7f50485d0ac"><td class="memItemLeft" align="right" valign="top"><a id="a9c66fbb0d83185593e94c7f50485d0ac"></a>
-List&lt; <a class="el" href="class_character_controller.html">CharacterController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetCharacterWithIds</b> (List&lt; string &gt; ids, CharacterSearchType characterSearchType)</td></tr>
+<tr class="memitem:a9c66fbb0d83185593e94c7f50485d0ac"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_character_controller.html">CharacterController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_turn_system_manager.html#a9c66fbb0d83185593e94c7f50485d0ac">GetCharacterWithIds</a> (List&lt; string &gt; ids, CharacterSearchType characterSearchType)</td></tr>
+<tr class="memdesc:a9c66fbb0d83185593e94c7f50485d0ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a list of <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for given list of IDs.  <a href="class_turn_system_manager.html#a9c66fbb0d83185593e94c7f50485d0ac">More...</a><br /></td></tr>
 <tr class="separator:a9c66fbb0d83185593e94c7f50485d0ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e3de83801595c1027578d874cba65e"><td class="memItemLeft" align="right" valign="top"><a id="a07e3de83801595c1027578d874cba65e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsPlayersTurn</b> ()</td></tr>
+<tr class="memitem:a07e3de83801595c1027578d874cba65e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_turn_system_manager.html#a07e3de83801595c1027578d874cba65e">IsPlayersTurn</a> ()</td></tr>
+<tr class="memdesc:a07e3de83801595c1027578d874cba65e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not it is currently the player's turn.  <a href="class_turn_system_manager.html#a07e3de83801595c1027578d874cba65e">More...</a><br /></td></tr>
 <tr class="separator:a07e3de83801595c1027578d874cba65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -114,6 +117,118 @@ Events</h2></td></tr>
 static TurnStart&#160;</td><td class="memItemRight" valign="bottom"><b>OnTurnStart</b></td></tr>
 <tr class="separator:a05c3239d095e7269f40511dbdeb99cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Controls the turn-based system between player and AI. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3f2ae8c5a6f23c7cbbe336b00b9e502a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2ae8c5a6f23c7cbbe336b00b9e502a">&#9670;&nbsp;</a></span>GetCharacterController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_character_controller.html">CharacterController</a> TurnSystemManager.GetCharacterController </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for a given ID. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The string ID of the character.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a>. If none were found, null is returned.</dd></dl>
+
+</div>
+</div>
+<a id="a9c66fbb0d83185593e94c7f50485d0ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c66fbb0d83185593e94c7f50485d0ac">&#9670;&nbsp;</a></span>GetCharacterWithIds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_character_controller.html">CharacterController</a>&gt; TurnSystemManager.GetCharacterWithIds </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>ids</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharacterSearchType&#160;</td>
+          <td class="paramname"><em>characterSearchType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a list of <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for given list of IDs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>List of character IDs to search.</td></tr>
+    <tr><td class="paramname">characterSearchType</td><td>Type of characters to search.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of <a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a>.</dd></dl>
+
+</div>
+</div>
+<a id="a07e3de83801595c1027578d874cba65e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07e3de83801595c1027578d874cba65e">&#9670;&nbsp;</a></span>IsPlayersTurn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool TurnSystemManager.IsPlayersTurn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets whether or not it is currently the player's turn. </p>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not it is currently the player's turn.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/TurnSystem/TurnSystemManager.cs</li>
 </ul>

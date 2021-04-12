@@ -69,31 +69,193 @@ $(function() {
 <div class="title">PathNode Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Used by <a class="el" href="class_a_star.html" title="Class for executing the A* path finding algorithm.">AStar</a> to represent individual path nodes.  
+ <a href="class_path_node.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2301bfadc2fcf98e1b6acc9ac7c4a2f1"><td class="memItemLeft" align="right" valign="top"><a id="a2301bfadc2fcf98e1b6acc9ac7c4a2f1"></a>
-static <a class="el" href="class_path_node.html">PathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FromTile</b> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+<tr class="memitem:a2301bfadc2fcf98e1b6acc9ac7c4a2f1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_path_node.html">PathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#a2301bfadc2fcf98e1b6acc9ac7c4a2f1">FromTile</a> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+<tr class="memdesc:a2301bfadc2fcf98e1b6acc9ac7c4a2f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="class_path_node.html" title="Used by AStar to represent individual path nodes.">PathNode</a> from a <a class="el" href="class_tile.html" title="Represents data on each cell of the grid.">Tile</a>.  <a href="class_path_node.html#a2301bfadc2fcf98e1b6acc9ac7c4a2f1">More...</a><br /></td></tr>
 <tr class="separator:a2301bfadc2fcf98e1b6acc9ac7c4a2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ac375c502497f187e83c0797a553b6988"><td class="memItemLeft" align="right" valign="top"><a id="ac375c502497f187e83c0797a553b6988"></a>
-<a class="el" href="class_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GridTile</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ac375c502497f187e83c0797a553b6988"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#ac375c502497f187e83c0797a553b6988">GridTile</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac375c502497f187e83c0797a553b6988"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_tile.html" title="Represents data on each cell of the grid.">Tile</a> this path node references.  <a href="class_path_node.html#ac375c502497f187e83c0797a553b6988">More...</a><br /></td></tr>
 <tr class="separator:ac375c502497f187e83c0797a553b6988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4f126ac88a170ff56eed7a0744565b2"><td class="memItemLeft" align="right" valign="top"><a id="ab4f126ac88a170ff56eed7a0744565b2"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GCost</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ab4f126ac88a170ff56eed7a0744565b2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#ab4f126ac88a170ff56eed7a0744565b2">GCost</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab4f126ac88a170ff56eed7a0744565b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The movement cost to move from the starting point to a given tile on the grid  <a href="class_path_node.html#ab4f126ac88a170ff56eed7a0744565b2">More...</a><br /></td></tr>
 <tr class="separator:ab4f126ac88a170ff56eed7a0744565b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf3df20369b8dec515b3a8a71dd22a67"><td class="memItemLeft" align="right" valign="top"><a id="abf3df20369b8dec515b3a8a71dd22a67"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>HCost</b><code> [get, set]</code></td></tr>
+<tr class="memitem:abf3df20369b8dec515b3a8a71dd22a67"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#abf3df20369b8dec515b3a8a71dd22a67">HCost</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:abf3df20369b8dec515b3a8a71dd22a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">The estimated movement cost to move from that given square on the grid to the final destination.  <a href="class_path_node.html#abf3df20369b8dec515b3a8a71dd22a67">More...</a><br /></td></tr>
 <tr class="separator:abf3df20369b8dec515b3a8a71dd22a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69b331a1528d23d9f4fd8c9cebb403d4"><td class="memItemLeft" align="right" valign="top"><a id="a69b331a1528d23d9f4fd8c9cebb403d4"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>FCost</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a69b331a1528d23d9f4fd8c9cebb403d4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#a69b331a1528d23d9f4fd8c9cebb403d4">FCost</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a69b331a1528d23d9f4fd8c9cebb403d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sum of GCost and HCost.  <a href="class_path_node.html#a69b331a1528d23d9f4fd8c9cebb403d4">More...</a><br /></td></tr>
 <tr class="separator:a69b331a1528d23d9f4fd8c9cebb403d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fba8d755d0fb9a570a59b0f34013bcb"><td class="memItemLeft" align="right" valign="top"><a id="a0fba8d755d0fb9a570a59b0f34013bcb"></a>
-<a class="el" href="class_path_node.html">PathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PreviousNode</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a0fba8d755d0fb9a570a59b0f34013bcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_path_node.html">PathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_path_node.html#a0fba8d755d0fb9a570a59b0f34013bcb">PreviousNode</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a0fba8d755d0fb9a570a59b0f34013bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The previous node on the path.  <a href="class_path_node.html#a0fba8d755d0fb9a570a59b0f34013bcb">More...</a><br /></td></tr>
 <tr class="separator:a0fba8d755d0fb9a570a59b0f34013bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Used by <a class="el" href="class_a_star.html" title="Class for executing the A* path finding algorithm.">AStar</a> to represent individual path nodes. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2301bfadc2fcf98e1b6acc9ac7c4a2f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2301bfadc2fcf98e1b6acc9ac7c4a2f1">&#9670;&nbsp;</a></span>FromTile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_path_node.html">PathNode</a> PathNode.FromTile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_tile.html">Tile</a>&#160;</td>
+          <td class="paramname"><em>tile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="class_path_node.html" title="Used by AStar to represent individual path nodes.">PathNode</a> from a <a class="el" href="class_tile.html" title="Represents data on each cell of the grid.">Tile</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tile</td><td>The tile to create the path node from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="class_path_node.html">.</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a69b331a1528d23d9f4fd8c9cebb403d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69b331a1528d23d9f4fd8c9cebb403d4">&#9670;&nbsp;</a></span>FCost</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PathNode.FCost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sum of GCost and HCost. </p>
+
+</div>
+</div>
+<a id="ab4f126ac88a170ff56eed7a0744565b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f126ac88a170ff56eed7a0744565b2">&#9670;&nbsp;</a></span>GCost</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PathNode.GCost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The movement cost to move from the starting point to a given tile on the grid </p>
+
+</div>
+</div>
+<a id="ac375c502497f187e83c0797a553b6988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac375c502497f187e83c0797a553b6988">&#9670;&nbsp;</a></span>GridTile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tile.html">Tile</a> PathNode.GridTile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_tile.html" title="Represents data on each cell of the grid.">Tile</a> this path node references. </p>
+
+</div>
+</div>
+<a id="abf3df20369b8dec515b3a8a71dd22a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf3df20369b8dec515b3a8a71dd22a67">&#9670;&nbsp;</a></span>HCost</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PathNode.HCost</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The estimated movement cost to move from that given square on the grid to the final destination. </p>
+
+</div>
+</div>
+<a id="a0fba8d755d0fb9a570a59b0f34013bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fba8d755d0fb9a570a59b0f34013bcb">&#9670;&nbsp;</a></span>PreviousNode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_path_node.html">PathNode</a> PathNode.PreviousNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The previous node on the path. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/AI/AStar.cs</li>
 </ul>

@@ -69,42 +69,47 @@ $(function() {
 <div class="title">BigCharacterMoveController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_move_controller.html" title="Handles logic for character movement on the grid.">MoveController</a> for characters that take up more the one tile on the grid.  
+ <a href="class_big_character_move_controller.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BigCharacterMoveController:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_big_character_move_controller.png" usemap="#BigCharacterMoveController_map" alt=""/>
   <map id="BigCharacterMoveController_map" name="BigCharacterMoveController_map">
-<area href="class_move_controller.html" alt="MoveController" shape="rect" coords="0,56,175,80"/>
+<area href="class_move_controller.html" title="Handles logic for character movement on the grid." alt="MoveController" shape="rect" coords="0,56,175,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab2b1aa77e42d2acc7531fd5d2d9b514f"><td class="memItemLeft" align="right" valign="top">override Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_move_controller.html#ab2b1aa77e42d2acc7531fd5d2d9b514f">CalculateAvailableMoves</a> ()</td></tr>
-<tr class="memdesc:ab2b1aa77e42d2acc7531fd5d2d9b514f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates all tiles that this character can move to.  <a href="class_big_character_move_controller.html#ab2b1aa77e42d2acc7531fd5d2d9b514f">More...</a><br /></td></tr>
+<tr class="memitem:ab2b1aa77e42d2acc7531fd5d2d9b514f"><td class="memItemLeft" align="right" valign="top"><a id="ab2b1aa77e42d2acc7531fd5d2d9b514f"></a>
+override Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_move_controller.html#ab2b1aa77e42d2acc7531fd5d2d9b514f">CalculateAvailableMoves</a> ()</td></tr>
+<tr class="memdesc:ab2b1aa77e42d2acc7531fd5d2d9b514f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates all tiles that this character can move to. <br /></td></tr>
 <tr class="separator:ab2b1aa77e42d2acc7531fd5d2d9b514f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbd7bfa429182a4e67250c3f4459b73f"><td class="memItemLeft" align="right" valign="top"><a id="abbd7bfa429182a4e67250c3f4459b73f"></a>
-override void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveToTile</b> (<a class="el" href="class_tile.html">Tile</a> fromTile, <a class="el" href="class_tile.html">Tile</a> toTile, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_move_controller.html#abbd7bfa429182a4e67250c3f4459b73f">MoveToTile</a> (<a class="el" href="class_tile.html">Tile</a> fromTile, <a class="el" href="class_tile.html">Tile</a> toTile, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memdesc:abbd7bfa429182a4e67250c3f4459b73f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves character to a tile. <br /></td></tr>
 <tr class="separator:abbd7bfa429182a4e67250c3f4459b73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_move_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_move_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_move_controller.html">MoveController</a></td></tr>
-<tr class="memitem:a1bca6b1ddc5c65d8f750f0fa2b0569e5 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1bca6b1ddc5c65d8f750f0fa2b0569e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>HideMoveRadius</b> ()</td></tr>
+<tr class="memitem:a1bca6b1ddc5c65d8f750f0fa2b0569e5 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#a1bca6b1ddc5c65d8f750f0fa2b0569e5">HideMoveRadius</a> ()</td></tr>
+<tr class="memdesc:a1bca6b1ddc5c65d8f750f0fa2b0569e5 inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hides character move range.  <a href="class_move_controller.html#a1bca6b1ddc5c65d8f750f0fa2b0569e5">More...</a><br /></td></tr>
 <tr class="separator:a1bca6b1ddc5c65d8f750f0fa2b0569e5 inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6a184f10da52bcbfeaa6c93c317e096 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad6a184f10da52bcbfeaa6c93c317e096"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowMoveRadius</b> ()</td></tr>
+<tr class="memitem:ad6a184f10da52bcbfeaa6c93c317e096 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#ad6a184f10da52bcbfeaa6c93c317e096">ShowMoveRadius</a> ()</td></tr>
+<tr class="memdesc:ad6a184f10da52bcbfeaa6c93c317e096 inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows character move range on teh grid.  <a href="class_move_controller.html#ad6a184f10da52bcbfeaa6c93c317e096">More...</a><br /></td></tr>
 <tr class="separator:ad6a184f10da52bcbfeaa6c93c317e096 inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6b207dabf23f966a198896538185b47 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="af6b207dabf23f966a198896538185b47"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableMoves</b> ()</td></tr>
+<tr class="memitem:af6b207dabf23f966a198896538185b47 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#af6b207dabf23f966a198896538185b47">GetAvailableMoves</a> ()</td></tr>
+<tr class="memdesc:af6b207dabf23f966a198896538185b47 inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the tiles the character can move to.  <a href="class_move_controller.html#af6b207dabf23f966a198896538185b47">More...</a><br /></td></tr>
 <tr class="separator:af6b207dabf23f966a198896538185b47 inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a591adb5f3e82238d2e9e39fa4b2011e2 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="a591adb5f3e82238d2e9e39fa4b2011e2"></a>
-virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsAbleToMoveToTile</b> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+<tr class="memitem:a591adb5f3e82238d2e9e39fa4b2011e2 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#a591adb5f3e82238d2e9e39fa4b2011e2">IsAbleToMoveToTile</a> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+<tr class="memdesc:a591adb5f3e82238d2e9e39fa4b2011e2 inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the character can move to a specific tile.  <a href="class_move_controller.html#a591adb5f3e82238d2e9e39fa4b2011e2">More...</a><br /></td></tr>
 <tr class="separator:a591adb5f3e82238d2e9e39fa4b2011e2 inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2100800342fe0e29e76f6c44886ccb8a inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="a2100800342fe0e29e76f6c44886ccb8a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveAlongPath</b> (List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memitem:a2100800342fe0e29e76f6c44886ccb8a inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#a2100800342fe0e29e76f6c44886ccb8a">MoveAlongPath</a> (List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memdesc:a2100800342fe0e29e76f6c44886ccb8a inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves character along a tile path.  <a href="class_move_controller.html#a2100800342fe0e29e76f6c44886ccb8a">More...</a><br /></td></tr>
 <tr class="separator:a2100800342fe0e29e76f6c44886ccb8a inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1460cdc88cbbb681147b8743f3ddca31 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1460cdc88cbbb681147b8743f3ddca31"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetWaterTilesInRadius</b> ()</td></tr>
+<tr class="memitem:a1460cdc88cbbb681147b8743f3ddca31 inherit pub_methods_class_move_controller"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_controller.html#a1460cdc88cbbb681147b8743f3ddca31">GetWaterTilesInRadius</a> ()</td></tr>
+<tr class="memdesc:a1460cdc88cbbb681147b8743f3ddca31 inherit pub_methods_class_move_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the water tiles located inside the move range of the character.  <a href="class_move_controller.html#a1460cdc88cbbb681147b8743f3ddca31">More...</a><br /></td></tr>
 <tr class="separator:a1460cdc88cbbb681147b8743f3ddca31 inherit pub_methods_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -132,38 +137,9 @@ Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#16
 <a class="el" href="class_breadth_first_search.html">BreadthFirstSearch</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_breadthFirstSearch</b></td></tr>
 <tr class="separator:ac429290855299089a09b724d31dc75e5 inherit pro_attribs_class_move_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab2b1aa77e42d2acc7531fd5d2d9b514f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2b1aa77e42d2acc7531fd5d2d9b514f">&#9670;&nbsp;</a></span>CalculateAvailableMoves()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a>&gt; BigCharacterMoveController.CalculateAvailableMoves </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Calculates all tiles that this character can move to. </p>
-<dl class="section return"><dt>Returns</dt><dd>Position-to-tile dictionary containing all the tiles the character can move to.</dd></dl>
-
-<p>Reimplemented from <a class="el" href="class_move_controller.html#a957b32fdeae197c75216cfebc9225b29">MoveController</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_move_controller.html" title="Handles logic for character movement on the grid.">MoveController</a> for characters that take up more the one tile on the grid. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Characters/BigCharacters/BigCharacterMoveController.cs</li>
 </ul>
 </div><!-- contents -->
