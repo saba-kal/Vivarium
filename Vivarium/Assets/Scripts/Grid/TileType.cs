@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// The terrain type of a tile.
+/// </summary>
 [Serializable]
 public enum TileType
 {

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
+/// <summary>
+/// Controls the turn-based system between player and AI.
+/// </summary>
 public class TurnSystemManager : MonoBehaviour
 {
     public static TurnSystemManager Instance { get; private set; }
@@ -94,11 +97,22 @@ public class TurnSystemManager : MonoBehaviour
         mainCamera.GetComponent<MasterCameraScript>().CameraMoveToReset();
     }
 
+    /// <summary>
+    /// Gets a <see cref="CharacterController"/> for a given ID.
+    /// </summary>
+    /// <param name="id">The string ID of the character.</param>
+    /// <returns>The result <see cref="CharacterController"/>. If none were found, null is returned.</returns>
     public CharacterController GetCharacterController(string id)
     {
         return GetCharacterWithIds(new List<string> { id }, CharacterSearchType.Both).FirstOrDefault();
     }
 
+    /// <summary>
+    /// Gets a list of <see cref="CharacterController"/> for given list of IDs.
+    /// </summary>
+    /// <param name="ids">List of character IDs to search.</param>
+    /// <param name="characterSearchType">Type of characters to search.</param>
+    /// <returns>List of <see cref="CharacterController"/>.</returns>
     public List<CharacterController> GetCharacterWithIds(List<string> ids, CharacterSearchType characterSearchType)
     {
         var characters = new List<CharacterController>();
@@ -115,6 +129,10 @@ public class TurnSystemManager : MonoBehaviour
         return characters.Where(character => ids.Contains(character.Id)).ToList();
     }
 
+    /// <summary>
+    /// Gets whether or not it is currently the player's turn.
+    /// </summary>
+    /// <returns>Whether or not it is currently the player's turn.</returns>
     public bool IsPlayersTurn()
     {
         return _isPlayersTurn;

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+/// <summary>
+/// Handles AI logic for single character.
+/// </summary>
 public class AIController : MonoBehaviour
 {
     private const int MAX_MOVE_CALC_ITERATIONS = 50;
@@ -63,6 +66,10 @@ public class AIController : MonoBehaviour
         _playerCharacters = playerCharacters;
     }
 
+    /// <summary>
+    /// Moves the AI to the tile with the highest point value.
+    /// </summary>
+    /// <param name="onComplete">Callback for when the move is complete.</param>
     public virtual void Move(
         System.Action onComplete)
     {
@@ -326,12 +333,18 @@ public class AIController : MonoBehaviour
         return; //Meant to be overridden.
     }
 
+    /// <summary>
+    /// Significantly speeds up enemy turn phase.
+    /// </summary>
     public void turnOnSkipEnemyPhase()
     {
         skipEnemyPhase = true;
         Debug.Log(this.gameObject.name + " set to: " + skipEnemyPhase);
     }
 
+    /// <summary>
+    /// Restores the turn speed for enemy.
+    /// </summary>
     public void turnOffSkipEnemyPhase()
     {
         skipEnemyPhase = false;

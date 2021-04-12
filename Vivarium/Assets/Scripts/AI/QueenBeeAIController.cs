@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// <see cref="AIController"/> for the Queen Bee character.
+/// </summary>
 public class QueenBeeAIController : AIController
 {
     private const string PHASE1_ANIM_KEY = "phase1";
@@ -62,6 +65,7 @@ public class QueenBeeAIController : AIController
         _minionSummonActionController.SkipCommandQueue = false;
     }
 
+    /// <inheritdoc cref="AIController.Move(System.Action)"/>
     public override void Move(
         System.Action onComplete)
     {

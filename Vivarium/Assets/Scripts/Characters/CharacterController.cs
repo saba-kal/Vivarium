@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using UnityEditor.UIElements;
 using UnityEngine;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Handles logic for how a <see cref="Character"/> interacts with the game.
+/// </summary>
 public class CharacterController : MonoBehaviour
 {
     public delegate void Death(CharacterController characterController);
@@ -65,6 +63,9 @@ public class CharacterController : MonoBehaviour
         PlaceSelfInGrid();
     }
 
+    /// <summary>
+    /// Sets this character as the selected one.
+    /// </summary>
     public void Select()
     {
         _isSelected = true;
@@ -80,6 +81,9 @@ public class CharacterController : MonoBehaviour
         TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
     }
 
+    /// <summary>
+    /// De-selects the character.
+    /// </summary>
     public void Deselect()
     {
         _isSelected = false;
@@ -89,11 +93,20 @@ public class CharacterController : MonoBehaviour
         OnDeselect?.Invoke(this);
     }
 
+    /// <summary>
+    /// Gets whether or not this character is able to move.
+    /// </summary>
+    /// <returns>Whether or not this character is able to move.</returns>
     public bool IsAbleToMove()
     {
         return !_hasMoved;
     }
 
+    /// <summary>
+    /// Gets whether or not this character is able to move to a specific <see cref="Tile"/>.
+    /// </summary>
+    /// <param name="tile">The tile to move to.</param>
+    /// <returns></returns>
     public virtual bool IsAbleToMoveToTile(Tile tile)
     {
         return
@@ -103,12 +116,21 @@ public class CharacterController : MonoBehaviour
             string.IsNullOrEmpty(tile.CharacterControllerId);
     }
 
+    /// <summary>
+    /// Gets whether or not this character can attack.
+    /// </summary>
+    /// <returns>Whether or not this character can attack.</returns>
     public bool IsAbleToAttack()
     {
         return !_hasAttacked;
     }
 
-    // potential
+    /// <summary>
+    /// Moves the character to a specific tile.
+    /// </summary>
+    /// <param name="tile">The tile to move to.</param>
+    /// <param name="onMoveComplete">Callback for when the movement is complete.</param>
+    /// <param name="skipMovement">Boolean flag for skipping the move animation.</param>
     public virtual void MoveToTile(Tile tile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         var oldPosition = transform.position;
@@ -137,6 +159,12 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves character along a tile path.
+    /// </summary>
+    /// <param name="path">The path to move along.</param>
+    /// <param name="onMoveComplete">Callback for when the movement is complete.</param>
+    /// <param name="skipMovement">Boolean flag for skipping the move animation.</param>
     public void MoveAlongPath(List<Tile> path, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (path == null || path.Count == 0)
@@ -162,6 +190,12 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executes a given <see cref="Action"/>.
+    /// </summary>
+    /// <param name="attack">The <see cref="Action"> to execute.</param>
+    /// <param name="targetTile">The target tile to execute the action on.</param>
+    /// <param name="onActionComplete">Callback for when action execution is complete.</param>
     public void PerformAction(Action attack, Tile targetTile, System.Action onActionComplete = null)
     {
         var actionController = GetActionController(attack);
@@ -169,6 +203,12 @@ public class CharacterController : MonoBehaviour
         _hasAttacked = true;
     }
 
+    /// <summary>
+    /// Character takes damage.
+    /// </summary>
+    /// <param name="damage">The damage amount.</param>
+    /// <param name="instantKill">If true, character will be instantly killed regardless of damage amount.</param>
+    /// <returns>Whether or not the character was killed.</returns>
     public bool TakeDamage(float damage, bool instantKill = false)
     {
         if (_healthController == null)
@@ -190,11 +230,19 @@ public class CharacterController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Sets whether or not this character has previously moved.
+    /// </summary>
+    /// <param name="hasMoved">Whether or not the character has moved.</param>
     public void SetHasMoved(bool hasMoved)
     {
         _hasMoved = hasMoved;
     }
 
+    /// <summary>
+    /// Sets whether or not this character has previously attacked.
+    /// </summary>
+    /// <param name="hasMoved">Whether or not the character has attacked.</param>
     public void SetHasAttacked(bool hasAttacked)
     {
         _hasAttacked = hasAttacked;
@@ -207,25 +255,45 @@ public class CharacterController : MonoBehaviour
         GetGridPosition().CharacterControllerId = Id;
     }
 
+    /// <summary>
+    /// Hides the character's move range on the grid.
+    /// </summary>
     public void HideMoveRadius()
     {
         _moveController.HideMoveRadius();
     }
 
+    /// <summary>
+    /// Shows the character's move range on the grid.
+    /// </summary>
     public void ShowMoveRadius()
     {
         _moveController.ShowMoveRadius();
     }
 
+    /// <summary>
+    /// Calculates all the tiles that this character can move to.
+    /// </summary>
+    /// <returns>Position-to-tile dictionary of all the tiles the character can move to.</returns>
     public Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
         return _moveController.CalculateAvailableMoves();
     }
+
+    /// <summary>
+    /// Gets all the tiles that this character can move to.
+    /// </summary>
+    /// <returns>Position-to-tile dictionary of all the tiles the character can move to.</returns>
     public Dictionary<(int, int), Tile> GetAvailableMoves()
     {
         return _moveController.GetAvailableMoves();
     }
 
+    /// <summary>
+    /// Gets the action controller for a specific action.
+    /// </summary>
+    /// <param name="action">The action to get the controller for.</param>
+    /// <returns>An <see cref="ActionController"/>.</returns>
     public ActionController GetActionController(Action action)
     {
         foreach (var actionController in _actionControllers)
@@ -244,11 +312,20 @@ public class CharacterController : MonoBehaviour
         return newActionController;
     }
 
+    /// <summary>
+    /// Gets the tile that the character is sitting on.
+    /// </summary>
+    /// <returns>The <see cref="Tile"/> the character is on.</returns>
     public Tile GetGridPosition()
     {
         return TileGridController.Instance.GetGrid().GetValue(transform.position);
     }
 
+    /// <summary>
+    /// Gets the action viewer for a specific action.
+    /// </summary>
+    /// <param name="action">The action to get the viewer for.</param>
+    /// <returns>An <see cref="ActionViewer"/>.</returns>
     public ActionViewer GetActionViewer(Action action)
     {
         foreach (var actionViewer in _actionViewers)
@@ -267,6 +344,10 @@ public class CharacterController : MonoBehaviour
         return newActionViewer;
     }
 
+    /// <summary>
+    /// Equips an item.
+    /// </summary>
+    /// <param name="inventoryItem">The item to equip.</param>
     public void Equip(InventoryItem inventoryItem)
     {
         var item = inventoryItem.Item;
@@ -297,6 +378,9 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes the weapon model to match the equipped item.
+    /// </summary>
     public void SwitchWeaponModel()
     {
         var weapon = Character.Weapon;
@@ -348,6 +432,11 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets characters that are adjacent to this character.
+    /// </summary>
+    /// <param name="characterSearchType">The type of characters to get.</param>
+    /// <returns>List of characters adjacent to this character.</returns>
     public List<CharacterController> GetAdjacentCharacters(CharacterSearchType characterSearchType)
     {
         var grid = TileGridController.Instance.GetGrid();
@@ -381,6 +470,9 @@ public class CharacterController : MonoBehaviour
         return TurnSystemManager.Instance.GetCharacterWithIds(adjacentCharacterIds, characterSearchType);
     }
 
+    /// <summary>
+    /// Destroys this character.
+    /// </summary>
     public void DestroyCharacter()
     {
         DetachCamera();
@@ -399,6 +491,9 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject, 4f);
     }
 
+    /// <summary>
+    /// Detaches camera from the character.
+    /// </summary>
     public void DetachCamera()
     {
         for (int x = 0; x < this.transform.childCount; x++)
@@ -418,6 +513,10 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Consumes an item.
+    /// </summary>
+    /// <param name="inventoryItem">The item to consume.</param>
     public void Consume(InventoryItem inventoryItem)
     {
         var item = inventoryItem.Item;
@@ -456,6 +555,10 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Heals the character.
+    /// </summary>
+    /// <param name="healAmount">The amount to character.</param>
     public void Heal(float healAmount)
     {
         if (_healthController != null)
@@ -464,15 +567,28 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increases the character's attack.
+    /// </summary>
+    /// <param name="attackAmount">The attack amount.</param>
     public void AtkBuff(float attackAmount)
     {
         Character.AttackDamage += attackAmount;
     }
 
+    /// <summary>
+    /// Increases the character's move range.
+    /// </summary>
+    /// <param name="attackAmount">The move range amount.</param>
     public void MovBuff(float moveAmount)
     {
         Character.MoveRange += moveAmount;
     }
+
+    /// <summary>
+    /// Regenerates the character's shield.
+    /// </summary>
+    /// <param name="shieldAmount">Amount of shield to regenerate.</param>
     public void RegenShield(float shieldAmount)
     {
         if (_healthController != null)
@@ -481,16 +597,29 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the character's <see cref="HealthController"/>.
+    /// </summary>
+    /// <returns>The character's <see cref="HealthController"/>.</returns>
     public HealthController GetHealthController()
     {
         return _healthController;
     }
 
+    /// <summary>
+    /// Gets how much damage the character can do.
+    /// </summary>
+    /// <returns>How much damage the character can do.</returns>
     public float GetAttackDamage()
     {
         return _attackDamage;
     }
 
+    /// <summary>
+    /// Gets whether or not an item is equipped by this character.
+    /// </summary>
+    /// <param name="inventoryItem">The item to check if its equipped.</param>
+    /// <returns>Whether or not an item is equipped.</returns>
     public bool ItemIsEquipped(InventoryItem inventoryItem)
     {
         var item = inventoryItem.Item;

@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles cheat console logic.
+/// </summary>
 public class ConsoleController : MonoBehaviour
 {
     private const float STAT_BUFF_AMOUNT = 1000f;

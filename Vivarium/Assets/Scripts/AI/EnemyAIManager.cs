@@ -4,6 +4,9 @@ using System.Collections;
 using System.Threading;
 using System.Linq;
 
+/// <summary>
+/// Manages all the <see cref="AIController"/> on a given level.
+/// </summary>
 public class EnemyAIManager : MonoBehaviour
 {
     public delegate void FinishExecute();
@@ -26,6 +29,9 @@ public class EnemyAIManager : MonoBehaviour
         LevelGenerator.OnLevelGenerationComplete -= Initialize;
     }
 
+    /// <summary>
+    /// Significantly speeds up enemy turn phase.
+    /// </summary>
     public void turnOnSkipEnemyPhase()
     {
         skipEnemyPhase = true;
@@ -35,6 +41,9 @@ public class EnemyAIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restores the turn speed for enemy.
+    /// </summary>
     public void turnOffSkipEnemyPhase()
     {
         skipEnemyPhase = false;
@@ -66,6 +75,9 @@ public class EnemyAIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes all <see cref="AIController"/>.
+    /// </summary>
     public void Initialize()
     {
         foreach (var aiCharacter in AICharacters.ToList())
@@ -80,6 +92,9 @@ public class EnemyAIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executes each <see cref="AIController"/> one by one.
+    /// </summary>
     public void Execute()
     {
         StartCoroutine(ExecuteAIControllers());
@@ -133,6 +148,9 @@ public class EnemyAIManager : MonoBehaviour
         OnFinishExecute?.Invoke();
     }
 
+    /// <summary>
+    /// Removes the hasAttacked and hasMoved flags from <see cref="CharacterController"/>.
+    /// </summary>
     public void EnableCharacters()
     {
         foreach (var character in AICharacters)

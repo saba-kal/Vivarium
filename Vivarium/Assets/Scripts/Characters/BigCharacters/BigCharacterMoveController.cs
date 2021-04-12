@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// <see cref="MoveController"/> for characters that take up more the one tile on the grid.
+/// </summary>
 public class BigCharacterMoveController : MoveController
 {
 
@@ -15,12 +18,14 @@ public class BigCharacterMoveController : MoveController
         _characterTileSize = _bigCharacterController.GetSize();
     }
 
+    /// <inheritdoc cref="MoveController.CalculateAvailableMoves"/>
     public override Dictionary<(int, int), Tile> CalculateAvailableMoves()
     {
         //TODO: Override this method to handle different character sizes. Currently, big characters can phase through single tile passages.
         return base.CalculateAvailableMoves();
     }
 
+    /// <inheritdoc cref="MoveController.MoveToTile(Tile, Tile, System.Action, bool)"/>
     public override void MoveToTile(Tile fromTile, Tile toTile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         if (fromTile == null || toTile == null)

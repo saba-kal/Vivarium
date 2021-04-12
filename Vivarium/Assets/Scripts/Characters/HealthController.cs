@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Handles logic related to character health.
+/// </summary>
 public class HealthController : MonoBehaviour
 {
     public HealthBar HealthBar;
@@ -12,6 +15,13 @@ public class HealthController : MonoBehaviour
     private float _maxShield;
     private bool _hasTakenDamage = false;
 
+    /// <summary>
+    /// Sets the health stats for this character.
+    /// </summary>
+    /// <param name="currentHealth">The current health that the character has.</param>
+    /// <param name="maxHealth">The maximum amount of health that the character can have.</param>
+    /// <param name="shieldHealth">The current shield that the character has.</param>
+    /// <param name="maxShield">The maximum amount of shield that the character can have.</param>
     public void SetHealthStats(float currentHealth, float maxHealth, float shieldHealth, float maxShield)
     {
         _currentHealth = currentHealth;
@@ -58,6 +68,10 @@ public class HealthController : MonoBehaviour
         return _currentHealth < 1;
     }
 
+    /// <summary>
+    /// Heals the character for the given amount.
+    /// </summary>
+    /// <param name="heal">Amount to heal.</param>
     public void Healing(float heal)
     {
         if (_currentHealth + heal <= _maxHealth)
@@ -73,6 +87,10 @@ public class HealthController : MonoBehaviour
         HealthBar.ShowChangeHealthEffect(heal);
     }
 
+    /// <summary>
+    /// Regenerates the character's shield for the given amount.
+    /// </summary>
+    /// <param name="shieldAmount">Amount to regenerate.</param>
     public void RegenerateShield(float shieldAmount)
     {
         if (_currentShield + shieldAmount <= _maxShield)
@@ -88,6 +106,10 @@ public class HealthController : MonoBehaviour
         UpdateShieldDisplay();
     }
 
+    /// <summary>
+    /// Increases the maximum shield amount the character can have.
+    /// </summary>
+    /// <param name="newMaxShield">The new max shield.</param>
     public void UpgradMaxShield(float newMaxShield)
     {
         if (_currentShield == _maxShield || _currentShield > newMaxShield)
@@ -113,16 +135,27 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the character's current health.
+    /// </summary>
+    /// <returns>The health amount.</returns>
     public float GetCurrentHealth()
     {
         return _currentHealth;
     }
 
+    /// <summary>
+    /// Gets the character's current shield.
+    /// </summary>
+    /// <returns>The shield amount.</returns>
     public float GetCurrentShield()
     {
         return _currentShield;
     }
 
+    /// <summary>
+    /// Removes shield from the character's health.
+    /// </summary>
     public void RemoveShield()
     {
         _maxShield = 0;
