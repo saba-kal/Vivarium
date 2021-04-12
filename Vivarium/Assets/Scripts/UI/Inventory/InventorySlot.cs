@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Handles the properties of an inventory slot
+/// </summary>
 public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public delegate void SlotClick(InventorySlot inventorySlot);
@@ -41,6 +44,11 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         SlotHighlight.SetActive(false);
     }
 
+    /// <summary>
+    /// Defines the item in the inventory slot
+    /// </summary>
+    /// <param name="inventoryItem">The item that the inventory slot will holdIn</param>
+    /// <param name="selectedCharacter">The character that holds the inventory slot</param>
     public void SetItem(InventoryItem inventoryItem, CharacterController selectedCharacter = null)
     {
         _inventoryItem = inventoryItem;
@@ -126,16 +134,25 @@ public class InventorySlot : MonoBehaviour, IDragHandler, IEndDragHandler, IBegi
         _duplicateIcon.transform.SetSiblingIndex(Icon.transform.GetSiblingIndex());
     }
 
+    /// <summary>
+    /// Displays the equipment overlay for the inventory slot
+    /// </summary>
     public void DisplayEquipOverlay()
     {
         EquipOverlay.SetActive(true);
     }
 
+    /// <summary>
+    /// Hides the equipment overlay for the inventory slot
+    /// </summary>
     public void HideEquipOverlay()
     {
         EquipOverlay.SetActive(false);
     }
 
+    /// <summary>
+    /// Clears the inventory slot
+    /// </summary>
     public void Clear()
     {
         _inventoryItem = null;
