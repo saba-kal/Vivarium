@@ -3,9 +3,16 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
+/// <summary>
+/// Generates a list of actions based on a given AttributesGenerationProfile.
+/// </summary>
 public class AttributesGenerator
 {
-
+    /// <summary>
+    /// Generates a list of actions based on a given AttributesGenerationProfile.
+    /// </summary>
+    /// <param name="attributeProfile"><see cref="AttributesGenerationProfile"/> containing the information used to generate the attributes.</param>
+    /// <returns>A list of randomly generated <see cref="Attribute"/>.</returns>
     public List<Attribute> GenerateAttributes(AttributesGenerationProfile attributeProfile)
     {
         if (attributeProfile == null)

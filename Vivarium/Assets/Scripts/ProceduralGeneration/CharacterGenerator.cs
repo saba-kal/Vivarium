@@ -2,8 +2,17 @@
 using System.Collections;
 using System;
 
+/// <summary>
+/// Generates a character GameObject based on a given CharacterGenerationProfile.
+/// </summary>
 public class CharacterGenerator
 {
+    /// <summary>
+    /// Generates a character GameObject based on a given CharacterGenerationProfile.
+    /// </summary>
+    /// <param name="characterProfile"><see cref="CharacterGenerationProfile"/> containing the information used to generate the character.</param>
+    /// <param name="isEnemy">a bool representing whether or not the character is an enemy.</param>
+    /// <returns>A GameObject with components containing the character data, <see cref="MoveController"/>, and <see cref="AIController"/>.</returns>
     public GameObject GenerateCharacter(CharacterGenerationProfile characterProfile, bool isEnemy)
     {
         var characterData = GenerateCharacterData(characterProfile);

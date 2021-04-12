@@ -2,6 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Randomly generates levels based on a given <see cref="LevelGenerationProfile"/>.
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
     public delegate void LevelGenerationComplete();
@@ -36,6 +39,9 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroys the previous level and generates a new one.
+    /// </summary>
     public void GenerateLevel()
     {
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
@@ -56,6 +62,9 @@ public class LevelGenerator : MonoBehaviour
         OnLevelGenerationComplete?.Invoke();
     }
 
+    /// <summary>
+    /// Destroys the GameObject containing the current level and resets the <see cref="PlayerController"/> if necessary.
+    /// </summary>
     public void DestroyExistingLevel()
     {
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
@@ -79,12 +88,18 @@ public class LevelGenerator : MonoBehaviour
         _possibleEnemySpawnTiles.Clear();
     }
 
+    /// <summary>
+    /// Sets up a GameObject to contain a level.
+    /// </summary>
     public void SetupLevelContainer()
     {
         _levelContainer = new GameObject("Level");
         _levelContainer.tag = Constants.LEVEL_CONTAINER_TAG;
     }
 
+    /// <summary>
+    /// Sets up the <see cref="PlayerController"/> if it has not been done already.
+    /// </summary>
     public void SetupPlayerController()
     {
         if (PlayerController == null)

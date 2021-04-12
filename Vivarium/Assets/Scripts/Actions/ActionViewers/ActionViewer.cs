@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Makes the effect of a selected action visible to the player through tile highlights.
+/// </summary>
 public class ActionViewer : MonoBehaviour
 {
     public Action ActionReference;
@@ -27,6 +30,11 @@ public class ActionViewer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies tile highlights to the tiles possibly effected by the selected action.
+    /// </summary>
+    /// <param name="areaOfAffect">Radius of tiles around the target tile that would also be effected. Determined by the action.</param>
+    /// <param name="activeActionTiles">Dictionary containing all tiles within range of the action, along with their coordinates.</param>
     public void DisplayAction(float areaOfAffect, Dictionary<(int, int), Tile> activeActionTiles)
     {
         if (_characterController == null)
@@ -41,6 +49,9 @@ public class ActionViewer : MonoBehaviour
         ShowActionRange();
     }
 
+    /// <summary>
+    /// Removes the tile highlights related to an action when it is deselected
+    /// </summary>
     public void HideAction()
     {
         _actionIsDisplayed = false;
@@ -75,6 +86,11 @@ public class ActionViewer : MonoBehaviour
             AOE_COLOR);
     }
 
+    /// <summary>
+    /// Checks if a tile is within range of the selected action.
+    /// </summary>
+    /// <param name="targetTile">The tile that is being checked.</param>
+    /// <returns>Returns true if tile is in range, otherwise returns false.</returns>
     public bool ActionIsWithinRange(Tile targetTile)
     {
         return _activeActionTiles.ContainsKey((targetTile.GridX, targetTile.GridY));
@@ -85,6 +101,10 @@ public class ActionViewer : MonoBehaviour
         TileGridController.Instance.HighlightTiles(_activeActionTiles, RANGE_COLOR);
     }
 
+    /// <summary>
+    /// Gets the tiles that are within range of the currently selected action.
+    /// </summary>
+    /// <returns>Dictionary of these tiles, along with their coordinates.</returns>
     public Dictionary<(int, int), Tile> GetAffectedTiles()
     {
         return _activeActionTiles;
