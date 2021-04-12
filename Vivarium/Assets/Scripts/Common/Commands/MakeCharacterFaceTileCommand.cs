@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Command object to make a character face a tile
+/// </summary>
 public class MakeCharacterFaceTileCommand : ICommand
 {
     private CharacterController _characterController;

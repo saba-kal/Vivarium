@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles all the camera controls
+/// </summary>
 public class MasterCameraScript : MonoBehaviour
 {
     private bool isCameraLock;

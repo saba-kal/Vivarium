@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles rotating the camera
+/// </summary>
 public class CameraRotater : MonoBehaviour
 {
     public float rotateSpeed;

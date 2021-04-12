@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles Moving the Camera in a horizontal and vertical direction
+/// </summary>
 public class Camera_Mover : MonoBehaviour
 {
     private bool isCameraLock;

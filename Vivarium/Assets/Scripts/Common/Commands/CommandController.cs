@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Object the adds commands to the queue
+/// </summary>
 public class CommandController : MonoBehaviour
 {
     public static CommandController Instance { get; private set; }

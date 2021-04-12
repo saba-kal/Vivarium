@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Command to pause the queue 
+/// </summary>
 public class WaitCommand : ICommand
 {
     /// <summary>

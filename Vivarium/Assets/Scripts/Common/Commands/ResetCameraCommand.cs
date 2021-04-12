@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Command to reset the camera
+/// </summary>
 public class ResetCameraCommand : ICommand
 {
     GameObject _mainCamera;

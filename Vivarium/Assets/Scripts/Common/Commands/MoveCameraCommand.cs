@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Commannd to move the camera
+/// </summary>
 public class MoveCameraCommand : ICommand
 {
     private float _panSpeed;

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Command to rotate the camera
+/// </summary>
 public class RotateCameraCommand : ICommand
 {
     private Quaternion _mainCameraRotation;

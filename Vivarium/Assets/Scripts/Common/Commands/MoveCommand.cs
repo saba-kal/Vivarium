@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Command to move a game object
+/// </summary>
 public class MoveCommand : ICommand
 {
     private GameObject _gameObject;
