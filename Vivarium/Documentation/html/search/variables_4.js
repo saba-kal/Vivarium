@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flavor_673',['Flavor',['../class_character.html#a5b78e0b1d39bbdd4f7507079e2d2ba30',1,'Character']]]
+  ['environmentheuristics_846',['EnvironmentHeuristics',['../class_a_i_character_heuristics.html#aa71ce4980b42917c44d7e3a17e0bab89',1,'AICharacterHeuristics']]]
 ];

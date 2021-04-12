@@ -69,6 +69,9 @@ $(function() {
 <div class="title">CommandController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Object the adds commands to the queue  
+ <a href="class_command_controller.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for CommandController:</div>
 <div class="dyncontent">
@@ -78,14 +81,14 @@ Inheritance diagram for CommandController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab4607399aa571d65dfda648af7128aa8"><td class="memItemLeft" align="right" valign="top"><a id="ab4607399aa571d65dfda648af7128aa8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteCommand</b> (<a class="el" href="interface_i_command.html">ICommand</a> command)</td></tr>
+<tr class="memitem:ab4607399aa571d65dfda648af7128aa8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_controller.html#ab4607399aa571d65dfda648af7128aa8">ExecuteCommand</a> (<a class="el" href="interface_i_command.html">ICommand</a> command)</td></tr>
+<tr class="memdesc:ab4607399aa571d65dfda648af7128aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a command to the execution queue  <a href="class_command_controller.html#ab4607399aa571d65dfda648af7128aa8">More...</a><br /></td></tr>
 <tr class="separator:ab4607399aa571d65dfda648af7128aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed96c16f917738555452b31d3f38093"><td class="memItemLeft" align="right" valign="top"><a id="a4ed96c16f917738555452b31d3f38093"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteCoroutine</b> (IEnumerator coroutine)</td></tr>
+<tr class="memitem:a4ed96c16f917738555452b31d3f38093"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_controller.html#a4ed96c16f917738555452b31d3f38093">ExecuteCoroutine</a> (IEnumerator coroutine)</td></tr>
+<tr class="memdesc:a4ed96c16f917738555452b31d3f38093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a coroutine to the execution queue  <a href="class_command_controller.html#a4ed96c16f917738555452b31d3f38093">More...</a><br /></td></tr>
 <tr class="separator:a4ed96c16f917738555452b31d3f38093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebe340771243a51699fdc7c18e7dffe7"><td class="memItemLeft" align="right" valign="top"><a id="aebe340771243a51699fdc7c18e7dffe7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CommandsAreExecuting</b> ()</td></tr>
+<tr class="memitem:aebe340771243a51699fdc7c18e7dffe7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_controller.html#aebe340771243a51699fdc7c18e7dffe7">CommandsAreExecuting</a> ()</td></tr>
+<tr class="memdesc:aebe340771243a51699fdc7c18e7dffe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the coroutine queue is still executing  <a href="class_command_controller.html#aebe340771243a51699fdc7c18e7dffe7">More...</a><br /></td></tr>
 <tr class="separator:aebe340771243a51699fdc7c18e7dffe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
@@ -94,6 +97,105 @@ Properties</h2></td></tr>
 static <a class="el" href="class_command_controller.html">CommandController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b><code> [get]</code></td></tr>
 <tr class="separator:a212639da23d6327be849a7acc9e1b23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Object the adds commands to the queue </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aebe340771243a51699fdc7c18e7dffe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebe340771243a51699fdc7c18e7dffe7">&#9670;&nbsp;</a></span>CommandsAreExecuting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CommandController.CommandsAreExecuting </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if the coroutine queue is still executing </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab4607399aa571d65dfda648af7128aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4607399aa571d65dfda648af7128aa8">&#9670;&nbsp;</a></span>ExecuteCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandController.ExecuteCommand </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_i_command.html">ICommand</a>&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a command to the execution queue </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command object to be executed</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ed96c16f917738555452b31d3f38093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed96c16f917738555452b31d3f38093">&#9670;&nbsp;</a></span>ExecuteCoroutine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommandController.ExecuteCoroutine </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerator&#160;</td>
+          <td class="paramname"><em>coroutine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add a coroutine to the execution queue </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coroutine</td><td>The coroutine to be executed</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Common/Commands/CommandController.cs</li>
 </ul>

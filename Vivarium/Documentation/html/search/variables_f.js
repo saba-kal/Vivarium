@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weapon_705',['Weapon',['../class_character.html#a2764f78bfafe9b1f5084f259db9d65cf',1,'Character']]]
+  ['rewardcharacters_915',['RewardCharacters',['../class_level_generation_profile.html#aebb8abb0371787bd88e02a9f5f709e71',1,'LevelGenerationProfile']]]
 ];

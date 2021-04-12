@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['id_674',['Id',['../class_character.html#accf67948e7c9b0da64c77b21bc51185d',1,'Character']]],
-  ['inventoryposition_675',['InventoryPosition',['../class_inventory_item.html#a3b4c81c1ccc8afc5f18b6c5891c0f84d',1,'InventoryItem']]],
-  ['item_676',['Item',['../class_inventory_item.html#a3532a1523d882a2aab85cd4334679a13',1,'InventoryItem']]]
+  ['flavor_847',['Flavor',['../class_character.html#a5b78e0b1d39bbdd4f7507079e2d2ba30',1,'Character']]]
 ];

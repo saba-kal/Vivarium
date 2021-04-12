@@ -68,25 +68,135 @@ $(function() {
 <div class="title">MoveCommand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Command to move a game object  
+ <a href="class_move_command.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MoveCommand:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_move_command.png" usemap="#MoveCommand_map" alt=""/>
   <map id="MoveCommand_map" name="MoveCommand_map">
-<area href="interface_i_command.html" alt="ICommand" shape="rect" coords="0,0,99,24"/>
+<area href="interface_i_command.html" title="Defines a command that will execute in the command queue" alt="ICommand" shape="rect" coords="0,0,99,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a96ad69260934f4be3ff901ca9c217f67"><td class="memItemLeft" align="right" valign="top"><a id="a96ad69260934f4be3ff901ca9c217f67"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MoveCommand</b> (GameObject gameObject, List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, float speed, System.Action onMoveComplete=null, bool roatationEnabled=true, bool skipMovement=false)</td></tr>
+<tr class="memitem:a96ad69260934f4be3ff901ca9c217f67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_command.html#a96ad69260934f4be3ff901ca9c217f67">MoveCommand</a> (GameObject gameObject, List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, float speed, System.Action onMoveComplete=null, bool roatationEnabled=true, bool skipMovement=false)</td></tr>
+<tr class="memdesc:a96ad69260934f4be3ff901ca9c217f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to move a gameObject  <a href="class_move_command.html#a96ad69260934f4be3ff901ca9c217f67">More...</a><br /></td></tr>
 <tr class="separator:a96ad69260934f4be3ff901ca9c217f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0efaca94b1f7c05fff6d9cd276774f95"><td class="memItemLeft" align="right" valign="top"><a id="a0efaca94b1f7c05fff6d9cd276774f95"></a>
-IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> ()</td></tr>
+<tr class="memitem:a0efaca94b1f7c05fff6d9cd276774f95"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_command.html#a0efaca94b1f7c05fff6d9cd276774f95">Execute</a> ()</td></tr>
+<tr class="memdesc:a0efaca94b1f7c05fff6d9cd276774f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the gameobject  <a href="class_move_command.html#a0efaca94b1f7c05fff6d9cd276774f95">More...</a><br /></td></tr>
 <tr class="separator:a0efaca94b1f7c05fff6d9cd276774f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Command to move a game object </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a96ad69260934f4be3ff901ca9c217f67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96ad69260934f4be3ff901ca9c217f67">&#9670;&nbsp;</a></span>MoveCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MoveCommand.MoveCommand </td>
+          <td>(</td>
+          <td class="paramtype">GameObject&#160;</td>
+          <td class="paramname"><em>gameObject</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.Action&#160;</td>
+          <td class="paramname"><em>onMoveComplete</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>roatationEnabled</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>skipMovement</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to move a gameObject </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameObject</td><td>The game object to move</td></tr>
+    <tr><td class="paramname">path</td><td>The list of tiles that the game object will move to</td></tr>
+    <tr><td class="paramname">speed</td><td>The speed in which the game obejct will move</td></tr>
+    <tr><td class="paramname">onMoveComplete</td><td>an action that will occur when the movement is complete</td></tr>
+    <tr><td class="paramname">roatationEnabled</td><td>a boolean indicating if the game object will rotate when moving</td></tr>
+    <tr><td class="paramname">skipMovement</td><td>a boolean indicating if moving the object is to be shown</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0efaca94b1f7c05fff6d9cd276774f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efaca94b1f7c05fff6d9cd276774f95">&#9670;&nbsp;</a></span>Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator MoveCommand.Execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves the gameobject </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="interface_i_command.html">ICommand</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Common/Commands/MoveCommand.cs</li>
 </ul>

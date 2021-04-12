@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['quaternaryhighlightprefab_694',['QuaternaryHighlightPrefab',['../class_grid_visual_settings.html#a8606ddb2929677c942ed9ca56f632f25',1,'GridVisualSettings']]],
-  ['quinaryhighlightprefab_695',['QuinaryHighlightPrefab',['../class_grid_visual_settings.html#aaffe2f9f0c8a7228501129992493ff45',1,'GridVisualSettings']]]
+  ['navigabletiles_885',['NavigableTiles',['../class_character.html#a6ad2aab62f7beb5cd07b55f7784d6efd',1,'Character.NavigableTiles()'],['../class_character_generation_profile.html#aabf31836181f190c993e1af41775aa57',1,'CharacterGenerationProfile.NavigableTiles()']]]
 ];

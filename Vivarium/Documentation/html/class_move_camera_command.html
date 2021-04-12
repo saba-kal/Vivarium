@@ -68,25 +68,121 @@ $(function() {
 <div class="title">MoveCameraCommand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Commannd to move the camera  
+ <a href="class_move_camera_command.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MoveCameraCommand:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_move_camera_command.png" usemap="#MoveCameraCommand_map" alt=""/>
   <map id="MoveCameraCommand_map" name="MoveCameraCommand_map">
-<area href="interface_i_command.html" alt="ICommand" shape="rect" coords="0,0,143,24"/>
+<area href="interface_i_command.html" title="Defines a command that will execute in the command queue" alt="ICommand" shape="rect" coords="0,0,143,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7136d53d9ecd96bedbf6c83a9d38d74d"><td class="memItemLeft" align="right" valign="top"><a id="a7136d53d9ecd96bedbf6c83a9d38d74d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MoveCameraCommand</b> (Vector3 destination, float panSpeed, GameObject focusCharacter=null, System.Action onMoveComplete=null)</td></tr>
+<tr class="memitem:a7136d53d9ecd96bedbf6c83a9d38d74d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_camera_command.html#a7136d53d9ecd96bedbf6c83a9d38d74d">MoveCameraCommand</a> (Vector3 destination, float panSpeed, GameObject focusCharacter=null, System.Action onMoveComplete=null)</td></tr>
+<tr class="memdesc:a7136d53d9ecd96bedbf6c83a9d38d74d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command to move the camera  <a href="class_move_camera_command.html#a7136d53d9ecd96bedbf6c83a9d38d74d">More...</a><br /></td></tr>
 <tr class="separator:a7136d53d9ecd96bedbf6c83a9d38d74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eab2969b6a220f2a59e9a28e2b342c0"><td class="memItemLeft" align="right" valign="top"><a id="a2eab2969b6a220f2a59e9a28e2b342c0"></a>
-IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> ()</td></tr>
+<tr class="memitem:a2eab2969b6a220f2a59e9a28e2b342c0"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_move_camera_command.html#a2eab2969b6a220f2a59e9a28e2b342c0">Execute</a> ()</td></tr>
+<tr class="memdesc:a2eab2969b6a220f2a59e9a28e2b342c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the camera  <a href="class_move_camera_command.html#a2eab2969b6a220f2a59e9a28e2b342c0">More...</a><br /></td></tr>
 <tr class="separator:a2eab2969b6a220f2a59e9a28e2b342c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Commannd to move the camera </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7136d53d9ecd96bedbf6c83a9d38d74d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7136d53d9ecd96bedbf6c83a9d38d74d">&#9670;&nbsp;</a></span>MoveCameraCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MoveCameraCommand.MoveCameraCommand </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>panSpeed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GameObject&#160;</td>
+          <td class="paramname"><em>focusCharacter</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">System.Action&#160;</td>
+          <td class="paramname"><em>onMoveComplete</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Command to move the camera </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destination</td><td>Coordinate that the camera moves to</td></tr>
+    <tr><td class="paramname">panSpeed</td><td>Movement speed of the camera</td></tr>
+    <tr><td class="paramname">focusCharacter</td><td>GameObject the camera becomes a child of</td></tr>
+    <tr><td class="paramname">onMoveComplete</td><td><a class="el" href="class_action.html" title="Each action represents one thing, typically an attack, that can be done using a weapon.">Action</a> that executes after camera moves</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2eab2969b6a220f2a59e9a28e2b342c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eab2969b6a220f2a59e9a28e2b342c0">&#9670;&nbsp;</a></span>Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator MoveCameraCommand.Execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves the camera </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="interface_i_command.html">ICommand</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Common/Commands/MoveCameraCommand.cs</li>
 </ul>

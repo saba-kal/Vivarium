@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['secondaryhighlightprefab_696',['SecondaryHighlightPrefab',['../class_grid_visual_settings.html#a6002ee4a5e79d193edb0a0de2d02613f',1,'GridVisualSettings']]],
-  ['selfheuristics_697',['SelfHeuristics',['../class_a_i_character_heuristics.html#a841b9fda0ed4973201c23a3381962efd',1,'AICharacterHeuristics']]],
-  ['shield_698',['Shield',['../class_character.html#a0ef4f0feb08bb6b5eb4893e5b791e47d',1,'Character']]],
-  ['showpreview_699',['ShowPreview',['../class_a_i_settings.html#a71c9c4c5e7f05dcd710b3b330fa8f64f',1,'AISettings']]],
-  ['steps_700',['Steps',['../class_b_f_s_tile.html#ad523d28a3c9a4e04a5b1cdf2cc1193cd',1,'BFSTile']]]
+  ['objectivenearbytilespoints_886',['ObjectiveNearbyTilesPoints',['../class_environment_heuristics.html#a379e50657b7177443a43f62b645df56a',1,'EnvironmentHeuristics']]],
+  ['objectivepoints_887',['ObjectivePoints',['../class_environment_heuristics.html#a70d9161b3b62f7b4aa65ee237a65fc35',1,'EnvironmentHeuristics']]],
+  ['objectivepointsrange_888',['ObjectivePointsRange',['../class_environment_heuristics.html#a730e463b7b6ef971d58a22c3d3d3577c',1,'EnvironmentHeuristics']]],
+  ['objectivespawnvariation_889',['ObjectiveSpawnVariation',['../class_grid_generation_profile.html#a05523e0cdcf1ff38b7d3f61ed6bf5831',1,'GridGenerationProfile']]],
+  ['obstaclespawnchance_890',['ObstacleSpawnChance',['../class_grid_generation_profile.html#ac7a2d03131a7180f05610ef9be894e96',1,'GridGenerationProfile']]],
+  ['onlevelstartheal_891',['OnLevelStartHeal',['../class_level_generation_profile.html#a3b63b317553e24c9a3fc24f4856ac7d8',1,'LevelGenerationProfile']]],
+  ['onlevelstartshieldregen_892',['OnLevelStartShieldRegen',['../class_level_generation_profile.html#a11468c10ebf9d0f84fa6b1dfae8f384d',1,'LevelGenerationProfile']]],
+  ['opponentadjacencypoints_893',['OpponentAdjacencyPoints',['../class_opponent_heuristics.html#aa9cf07d355bda6109537913c8105bcdc',1,'OpponentHeuristics']]],
+  ['opponentareaofattackpoints_894',['OpponentAreaOfAttackPoints',['../class_opponent_heuristics.html#a3d52313fd397e33b272d6fd00dddce2f',1,'OpponentHeuristics']]],
+  ['opponentheuristics_895',['OpponentHeuristics',['../class_a_i_character_heuristics.html#a73d5e4d72fd1e524181e439bc4917697',1,'AICharacterHeuristics']]],
+  ['opponentproximitypoints_896',['OpponentProximityPoints',['../class_opponent_heuristics.html#a92fc55314212e5246df7548c141e8cab',1,'OpponentHeuristics']]]
 ];

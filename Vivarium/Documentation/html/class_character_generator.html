@@ -68,13 +68,65 @@ $(function() {
 <div class="title">CharacterGenerator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Generates a character GameObject based on a given <a class="el" href="class_character_generation_profile.html" title="A profile used to generate random Characters.">CharacterGenerationProfile</a>.  
+ <a href="class_character_generator.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a110c542c422e90bc73c2f6ecfac3e9ad"><td class="memItemLeft" align="right" valign="top"><a id="a110c542c422e90bc73c2f6ecfac3e9ad"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>GenerateCharacter</b> (<a class="el" href="class_character_generation_profile.html">CharacterGenerationProfile</a> characterProfile, bool isEnemy)</td></tr>
+<tr class="memitem:a110c542c422e90bc73c2f6ecfac3e9ad"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_generator.html#a110c542c422e90bc73c2f6ecfac3e9ad">GenerateCharacter</a> (<a class="el" href="class_character_generation_profile.html">CharacterGenerationProfile</a> characterProfile, bool isEnemy)</td></tr>
+<tr class="memdesc:a110c542c422e90bc73c2f6ecfac3e9ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a character GameObject based on a given <a class="el" href="class_character_generation_profile.html" title="A profile used to generate random Characters.">CharacterGenerationProfile</a>.  <a href="class_character_generator.html#a110c542c422e90bc73c2f6ecfac3e9ad">More...</a><br /></td></tr>
 <tr class="separator:a110c542c422e90bc73c2f6ecfac3e9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Generates a character GameObject based on a given <a class="el" href="class_character_generation_profile.html" title="A profile used to generate random Characters.">CharacterGenerationProfile</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a110c542c422e90bc73c2f6ecfac3e9ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a110c542c422e90bc73c2f6ecfac3e9ad">&#9670;&nbsp;</a></span>GenerateCharacter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject CharacterGenerator.GenerateCharacter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_character_generation_profile.html">CharacterGenerationProfile</a>&#160;</td>
+          <td class="paramname"><em>characterProfile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isEnemy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates a character GameObject based on a given <a class="el" href="class_character_generation_profile.html" title="A profile used to generate random Characters.">CharacterGenerationProfile</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">characterProfile</td><td><a class="el" href="class_character_generation_profile.html" title="A profile used to generate random Characters.">CharacterGenerationProfile</a> containing the information used to generate the character.</td></tr>
+    <tr><td class="paramname">isEnemy</td><td>a bool representing whether or not the character is an enemy.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A GameObject with components containing the character data, <a class="el" href="class_move_controller.html" title="Handles logic for character movement on the grid.">MoveController</a>, and <a class="el" href="class_a_i_controller.html" title="Handles AI logic for single character.">AIController</a>.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/ProceduralGeneration/CharacterGenerator.cs</li>
 </ul>

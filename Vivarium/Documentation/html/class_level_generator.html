@@ -70,6 +70,9 @@ $(function() {
 <div class="title">LevelGenerator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Randomly generates levels based on a given <a class="el" href="class_level_generation_profile.html" title="A profile used to generate a level randomly.">LevelGenerationProfile</a>.  
+ <a href="class_level_generator.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for LevelGenerator:</div>
 <div class="dyncontent">
@@ -82,17 +85,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab7227e063611a7f88b0e4e31a1ad0f4a"><td class="memItemLeft" align="right" valign="top"><a id="ab7227e063611a7f88b0e4e31a1ad0f4a"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>LevelGenerationComplete</b> ()</td></tr>
 <tr class="separator:ab7227e063611a7f88b0e4e31a1ad0f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b21afee4181b9f0b4e5bc011355a73"><td class="memItemLeft" align="right" valign="top"><a id="af5b21afee4181b9f0b4e5bc011355a73"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>GenerateLevel</b> ()</td></tr>
+<tr class="memitem:af5b21afee4181b9f0b4e5bc011355a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_generator.html#af5b21afee4181b9f0b4e5bc011355a73">GenerateLevel</a> ()</td></tr>
+<tr class="memdesc:af5b21afee4181b9f0b4e5bc011355a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the previous level and generates a new one.  <a href="class_level_generator.html#af5b21afee4181b9f0b4e5bc011355a73">More...</a><br /></td></tr>
 <tr class="separator:af5b21afee4181b9f0b4e5bc011355a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a16cbb894529c4f0ec3098bfbbce4fe"><td class="memItemLeft" align="right" valign="top"><a id="a5a16cbb894529c4f0ec3098bfbbce4fe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DestroyExistingLevel</b> ()</td></tr>
+<tr class="memitem:a5a16cbb894529c4f0ec3098bfbbce4fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_generator.html#a5a16cbb894529c4f0ec3098bfbbce4fe">DestroyExistingLevel</a> ()</td></tr>
+<tr class="memdesc:a5a16cbb894529c4f0ec3098bfbbce4fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the GameObject containing the current level and resets the <a class="el" href="class_player_controller.html">PlayerController</a> if necessary.  <a href="class_level_generator.html#a5a16cbb894529c4f0ec3098bfbbce4fe">More...</a><br /></td></tr>
 <tr class="separator:a5a16cbb894529c4f0ec3098bfbbce4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d60f7742e5848eaf5b433a985a2dae4"><td class="memItemLeft" align="right" valign="top"><a id="a6d60f7742e5848eaf5b433a985a2dae4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupLevelContainer</b> ()</td></tr>
+<tr class="memitem:a6d60f7742e5848eaf5b433a985a2dae4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_generator.html#a6d60f7742e5848eaf5b433a985a2dae4">SetupLevelContainer</a> ()</td></tr>
+<tr class="memdesc:a6d60f7742e5848eaf5b433a985a2dae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a GameObject to contain a level.  <a href="class_level_generator.html#a6d60f7742e5848eaf5b433a985a2dae4">More...</a><br /></td></tr>
 <tr class="separator:a6d60f7742e5848eaf5b433a985a2dae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad31ebaa72529265fe2f2dc9b6fcc461a"><td class="memItemLeft" align="right" valign="top"><a id="ad31ebaa72529265fe2f2dc9b6fcc461a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupPlayerController</b> ()</td></tr>
+<tr class="memitem:ad31ebaa72529265fe2f2dc9b6fcc461a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_level_generator.html#ad31ebaa72529265fe2f2dc9b6fcc461a">SetupPlayerController</a> ()</td></tr>
+<tr class="memdesc:ad31ebaa72529265fe2f2dc9b6fcc461a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the <a class="el" href="class_player_controller.html">PlayerController</a> if it has not been done already.  <a href="class_level_generator.html#ad31ebaa72529265fe2f2dc9b6fcc461a">More...</a><br /></td></tr>
 <tr class="separator:ad31ebaa72529265fe2f2dc9b6fcc461a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -122,6 +125,117 @@ Events</h2></td></tr>
 static LevelGenerationComplete&#160;</td><td class="memItemRight" valign="bottom"><b>OnLevelGenerationComplete</b></td></tr>
 <tr class="separator:a8c5cb0893b08c1aa53e7bd557a94423b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Randomly generates levels based on a given <a class="el" href="class_level_generation_profile.html" title="A profile used to generate a level randomly.">LevelGenerationProfile</a>. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5a16cbb894529c4f0ec3098bfbbce4fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a16cbb894529c4f0ec3098bfbbce4fe">&#9670;&nbsp;</a></span>DestroyExistingLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelGenerator.DestroyExistingLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroys the GameObject containing the current level and resets the <a class="el" href="class_player_controller.html">PlayerController</a> if necessary. </p>
+
+</div>
+</div>
+<a id="af5b21afee4181b9f0b4e5bc011355a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5b21afee4181b9f0b4e5bc011355a73">&#9670;&nbsp;</a></span>GenerateLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelGenerator.GenerateLevel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destroys the previous level and generates a new one. </p>
+
+</div>
+</div>
+<a id="a6d60f7742e5848eaf5b433a985a2dae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d60f7742e5848eaf5b433a985a2dae4">&#9670;&nbsp;</a></span>SetupLevelContainer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelGenerator.SetupLevelContainer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets up a GameObject to contain a level. </p>
+
+</div>
+</div>
+<a id="ad31ebaa72529265fe2f2dc9b6fcc461a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31ebaa72529265fe2f2dc9b6fcc461a">&#9670;&nbsp;</a></span>SetupPlayerController()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LevelGenerator.SetupPlayerController </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets up the <a class="el" href="class_player_controller.html">PlayerController</a> if it has not been done already. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/ProceduralGeneration/LevelGenerator.cs</li>
 </ul>
