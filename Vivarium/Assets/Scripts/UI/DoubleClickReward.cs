@@ -4,9 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Handles different click amounts on the rewards screen.
+/// </summary>
 public class DoubleClickReward : MonoBehaviour, IPointerClickHandler
 {
     public RewardsUIController RewardsUIController;
+
+    /// <summary>
+    /// Checks if a reward was clicked once, twice or multiple times.
+    /// </summary>
+    /// <param name="eventData">Used for finding out how many clicks occur.</param>
     public void OnPointerClick(PointerEventData eventData)
     {
         int clickCount = eventData.clickCount;

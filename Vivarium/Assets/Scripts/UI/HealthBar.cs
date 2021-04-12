@@ -5,6 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// Handles the health bar UI of characters. Used for both health and shields.
+/// </summary>
 [RequireComponent(typeof(Slider))]
 public class HealthBar : MonoBehaviour
 {
@@ -47,6 +50,10 @@ public class HealthBar : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Changes the max health a health bar can have. 
+    /// </summary>
+    /// <param name="maxHealth">The max health to set to.</param>
     public void SetMaxHealth(float maxHealth)
     {
         _maxHealth = maxHealth;
@@ -54,6 +61,10 @@ public class HealthBar : MonoBehaviour
         UpdateHealthBarText();
     }
 
+    /// <summary>
+    /// Changes the current health a health bar has.
+    /// </summary>
+    /// <param name="health">The health value to set current health to.</param>
     public void SetHealth(float health)
     {
         _currentHealth = health;
@@ -68,7 +79,10 @@ public class HealthBar : MonoBehaviour
             HealthBarText.text = $"{_currentHealth:n0}/{_maxHealth:n0}";
         }
     }
-
+    /// <summary>
+    /// Displays a visual effect on the health bar when the current health value changes.
+    /// </summary>
+    /// <param name="healthChangeAmount">The number amount of health that is changed from the current health.</param>
     public void ShowChangeHealthEffect(float healthChangeAmount)
     {
         var healthChangeEffect = Instantiate(HealthChangeEffectPrefab, transform);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Used for disabling buttons from being interacted with.
+/// </summary>
 public class DisableButton : MonoBehaviour
 {
     public Button _button;
