@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 using System.Linq;
 
+/// <summary>
+/// Calculates point values for each tile on the grid so that <see cref="AIController"/>
+/// knows which tiles are valuable and which ones are dangerous.
+/// </summary>
 public class GridPointCalculator : MonoBehaviour
 {
     public TextLabel TextLabelPrefab;
@@ -14,7 +18,6 @@ public class GridPointCalculator : MonoBehaviour
     private CharacterController _currentAiCharacter;
     private Dictionary<(int, int), CharacterController> _playerCharacters;
     private Dictionary<(int, int), CharacterController> _aiCharacters;
-
 
     //Debugging data.
     private Dictionary<(int, int), TextLabel> _tilePointsLabels = new Dictionary<(int, int), TextLabel>();
@@ -27,6 +30,10 @@ public class GridPointCalculator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates grid point values for a given AI character.
+    /// </summary>
+    /// <param name="aiCharacter">The <see cref="CharacterController"/> to calculate the points for.</param>
     public void CalculateGridPoints(CharacterController aiCharacter)
     {
         if (aiCharacter.Character.Type == CharacterType.BeeHive)
@@ -416,6 +423,9 @@ public class GridPointCalculator : MonoBehaviour
 
     #region Debugging Functions
 
+    /// <summary>
+    /// Shows grid point values using <see cref="TextLabel"/>.
+    /// </summary>
     public void PreviewGridPoints()
     {
         if (TextLabelPrefab == null)
@@ -449,6 +459,9 @@ public class GridPointCalculator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the previewed grid point values (they don't automatically update when points change).
+    /// </summary>
     public void UpdatePreview()
     {
         var grid = TileGridController.Instance.GetGrid();

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Collections;
 using Unity.Jobs;
 
+/// <summary>
+/// Handles logic that displays the enemy threat range on the grid.
+/// Threat range represents all the tiles that AI characters can move to and attack.
+/// </summary>
 public class EnemyThreatRangeViewer : MonoBehaviour
 {
     public GameObject TileHighlightPrefab;
@@ -53,6 +57,9 @@ public class EnemyThreatRangeViewer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates the enemy threat range.
+    /// </summary>
     public void CalculateThreatRange()
     {
         _isInitialCalculation = true;
@@ -205,9 +212,23 @@ public class EnemyThreatRangeViewer : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Used by <see cref="EnemyThreatRangeViewer"/> to calculate the threat range.
+/// </summary>
 public class ThreatRangeTile
 {
+    /// <summary>
+    /// The reference tile.
+    /// </summary>
     public Tile Tile { get; set; }
+
+    /// <summary>
+    /// ID of the <see cref="CharacterController"/> on the tile. Null if no characters exist on the tile.
+    /// </summary>
     public string CharacterControllerId { get; set; }
+
+    /// <summary>
+    /// The tile game object.
+    /// </summary>
     public GameObject TileObject { get; set; }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Type of entity that a tile can spawn.
+/// </summary>
 [Serializable]
 public enum TileSpawnType
 {

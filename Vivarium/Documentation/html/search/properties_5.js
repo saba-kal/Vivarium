@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['name_456',['Name',['../class_flavor_text.html#a106511fa31895409fd19948e343545d4',1,'FlavorText.Name()'],['../class_flavor_text_data.html#aaafaceadd3ae94b43ade731e2ef237d7',1,'FlavorTextData.Name()']]]
+  ['gcost_712',['GCost',['../class_path_node.html#ab4f126ac88a170ff56eed7a0744565b2',1,'PathNode']]],
+  ['gridtile_713',['GridTile',['../class_path_node.html#ac375c502497f187e83c0797a553b6988',1,'PathNode']]],
+  ['gridx_714',['GridX',['../class_tile.html#ae93cb777648e7a04e6afaea8d526e956',1,'Tile']]],
+  ['gridy_715',['GridY',['../class_tile.html#ad7d9ac9de96a190f94b0db4f6410fc66',1,'Tile']]]
 ];

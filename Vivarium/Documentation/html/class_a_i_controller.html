@@ -71,14 +71,17 @@ $(function() {
 <div class="title">AIController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles AI logic for single character.  
+ <a href="class_a_i_controller.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for AIController:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_a_i_controller.png" usemap="#AIController_map" alt=""/>
   <map id="AIController_map" name="AIController_map">
-<area href="class_bee_hive_a_i_controller.html" alt="BeeHiveAIController" shape="rect" coords="0,112,140,136"/>
-<area href="class_queen_bee_a_i_controller.html" alt="QueenBeeAIController" shape="rect" coords="150,112,290,136"/>
+<area href="class_bee_hive_a_i_controller.html" title="AIController for the bee hive character. Since bee hives cannot move or perform actions,..." alt="BeeHiveAIController" shape="rect" coords="0,112,140,136"/>
+<area href="class_queen_bee_a_i_controller.html" title="AIController for the Queen Bee character." alt="QueenBeeAIController" shape="rect" coords="150,112,290,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -90,17 +93,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac2aa6323ce856243b238f708d1dc629d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i_controller.html#ac2aa6323ce856243b238f708d1dc629d">InitializeTurn</a> (List&lt; <a class="el" href="class_character_controller.html">CharacterController</a> &gt; playerCharacters)</td></tr>
 <tr class="memdesc:ac2aa6323ce856243b238f708d1dc629d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes AI per turn.  <a href="class_a_i_controller.html#ac2aa6323ce856243b238f708d1dc629d">More...</a><br /></td></tr>
 <tr class="separator:ac2aa6323ce856243b238f708d1dc629d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73c109f71657a03b4e81f7888d07b249"><td class="memItemLeft" align="right" valign="top"><a id="a73c109f71657a03b4e81f7888d07b249"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Move</b> (System.Action onComplete)</td></tr>
+<tr class="memitem:a73c109f71657a03b4e81f7888d07b249"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i_controller.html#a73c109f71657a03b4e81f7888d07b249">Move</a> (System.Action onComplete)</td></tr>
+<tr class="memdesc:a73c109f71657a03b4e81f7888d07b249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the AI to the tile with the highest point value.  <a href="class_a_i_controller.html#a73c109f71657a03b4e81f7888d07b249">More...</a><br /></td></tr>
 <tr class="separator:a73c109f71657a03b4e81f7888d07b249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ea136931934a06115d132c366fd9085"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i_controller.html#a3ea136931934a06115d132c366fd9085">PerformAction</a> (System.Action onComplete)</td></tr>
 <tr class="memdesc:a3ea136931934a06115d132c366fd9085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the best possible action at the current position and executes it.  <a href="class_a_i_controller.html#a3ea136931934a06115d132c366fd9085">More...</a><br /></td></tr>
 <tr class="separator:a3ea136931934a06115d132c366fd9085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affc4cd2d292a34adc92be2f523ea653e"><td class="memItemLeft" align="right" valign="top"><a id="affc4cd2d292a34adc92be2f523ea653e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>turnOnSkipEnemyPhase</b> ()</td></tr>
+<tr class="memitem:affc4cd2d292a34adc92be2f523ea653e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i_controller.html#affc4cd2d292a34adc92be2f523ea653e">turnOnSkipEnemyPhase</a> ()</td></tr>
+<tr class="memdesc:affc4cd2d292a34adc92be2f523ea653e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Significantly speeds up enemy turn phase.  <a href="class_a_i_controller.html#affc4cd2d292a34adc92be2f523ea653e">More...</a><br /></td></tr>
 <tr class="separator:affc4cd2d292a34adc92be2f523ea653e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32861c740a41c671d6215df1ac38bf4"><td class="memItemLeft" align="right" valign="top"><a id="ac32861c740a41c671d6215df1ac38bf4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>turnOffSkipEnemyPhase</b> ()</td></tr>
+<tr class="memitem:ac32861c740a41c671d6215df1ac38bf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i_controller.html#ac32861c740a41c671d6215df1ac38bf4">turnOffSkipEnemyPhase</a> ()</td></tr>
+<tr class="memdesc:ac32861c740a41c671d6215df1ac38bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restores the turn speed for enemy.  <a href="class_a_i_controller.html#ac32861c740a41c671d6215df1ac38bf4">More...</a><br /></td></tr>
 <tr class="separator:ac32861c740a41c671d6215df1ac38bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -151,7 +154,9 @@ List&lt; <a class="el" href="class_character_controller.html">CharacterControlle
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>_mainCamera</b></td></tr>
 <tr class="separator:a2901dcdba05cd8ed8f56f9e271a30a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles AI logic for single character. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abd7ea6ad9c5b7aeb01f7dae811dda2ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd7ea6ad9c5b7aeb01f7dae811dda2ad">&#9670;&nbsp;</a></span>Initialize()</h2>
 
@@ -214,6 +219,42 @@ GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>_mainCamera</b>
 
 </div>
 </div>
+<a id="a73c109f71657a03b4e81f7888d07b249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73c109f71657a03b4e81f7888d07b249">&#9670;&nbsp;</a></span>Move()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AIController.Move </td>
+          <td>(</td>
+          <td class="paramtype">System.Action&#160;</td>
+          <td class="paramname"><em>onComplete</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves the AI to the tile with the highest point value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">onComplete</td><td>Callback for when the move is complete.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_queen_bee_a_i_controller.html#a117da600679aaa1e8910c76bde7512aa">QueenBeeAIController</a>, and <a class="el" href="class_bee_hive_a_i_controller.html#ab6551d08c798fab97cf5914a9d605609">BeeHiveAIController</a>.</p>
+
+</div>
+</div>
 <a id="a3ea136931934a06115d132c366fd9085"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ea136931934a06115d132c366fd9085">&#9670;&nbsp;</a></span>PerformAction()</h2>
 
@@ -247,6 +288,60 @@ GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>_mainCamera</b>
 </dl>
 
 <p>Reimplemented in <a class="el" href="class_queen_bee_a_i_controller.html#ac322544e47a58f8474567e0d3c8f9ed1">QueenBeeAIController</a>, and <a class="el" href="class_bee_hive_a_i_controller.html#a6896a5f6b40942b4c5e3c518a464b936">BeeHiveAIController</a>.</p>
+
+</div>
+</div>
+<a id="ac32861c740a41c671d6215df1ac38bf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac32861c740a41c671d6215df1ac38bf4">&#9670;&nbsp;</a></span>turnOffSkipEnemyPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIController.turnOffSkipEnemyPhase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restores the turn speed for enemy. </p>
+
+</div>
+</div>
+<a id="affc4cd2d292a34adc92be2f523ea653e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc4cd2d292a34adc92be2f523ea653e">&#9670;&nbsp;</a></span>turnOnSkipEnemyPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AIController.turnOnSkipEnemyPhase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Significantly speeds up enemy turn phase. </p>
 
 </div>
 </div>

@@ -70,69 +70,778 @@ $(function() {
 <div class="title">Grid&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles all game grid logic.  
+ <a href="class_grid.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid_1_1_on_grid_cell_changed_event_args.html">OnGridCellChangedEventArgs</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains method arguments for when a grid cell changes.  <a href="class_grid_1_1_on_grid_cell_changed_event_args.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a459b35308d87b0ee03894ee6e12fc07f"><td class="memItemLeft" align="right" valign="top"><a id="a459b35308d87b0ee03894ee6e12fc07f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Grid</b> (int width, int height, float cellSize, Vector3 originPosition, Func&lt; int, int, <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;, T &gt; createGridObject)</td></tr>
+<tr class="memitem:a459b35308d87b0ee03894ee6e12fc07f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a459b35308d87b0ee03894ee6e12fc07f">Grid</a> (int width, int height, float cellSize, Vector3 originPosition, Func&lt; int, int, <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;, T &gt; createGridObject)</td></tr>
+<tr class="memdesc:a459b35308d87b0ee03894ee6e12fc07f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="class_grid.html#a459b35308d87b0ee03894ee6e12fc07f">More...</a><br /></td></tr>
 <tr class="separator:a459b35308d87b0ee03894ee6e12fc07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90b0de694a394bedb5c91ed4ecc1846f"><td class="memItemLeft" align="right" valign="top"><a id="a90b0de694a394bedb5c91ed4ecc1846f"></a>
-Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorldPosition</b> (int x, int y)</td></tr>
+<tr class="memitem:a90b0de694a394bedb5c91ed4ecc1846f"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a90b0de694a394bedb5c91ed4ecc1846f">GetWorldPosition</a> (int x, int y)</td></tr>
+<tr class="memdesc:a90b0de694a394bedb5c91ed4ecc1846f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the world position of a grid cell using grid coordinates.  <a href="class_grid.html#a90b0de694a394bedb5c91ed4ecc1846f">More...</a><br /></td></tr>
 <tr class="separator:a90b0de694a394bedb5c91ed4ecc1846f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff6aee827ad649a4c5c3699c1bb3fab"><td class="memItemLeft" align="right" valign="top"><a id="aaff6aee827ad649a4c5c3699c1bb3fab"></a>
-Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>GetWorldPositionCentered</b> (int x, int y)</td></tr>
+<tr class="memitem:aaff6aee827ad649a4c5c3699c1bb3fab"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#aaff6aee827ad649a4c5c3699c1bb3fab">GetWorldPositionCentered</a> (int x, int y)</td></tr>
+<tr class="memdesc:aaff6aee827ad649a4c5c3699c1bb3fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the centered world position of a grid cell using grid coordinates.  <a href="class_grid.html#aaff6aee827ad649a4c5c3699c1bb3fab">More...</a><br /></td></tr>
 <tr class="separator:aaff6aee827ad649a4c5c3699c1bb3fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6803a65542b3dcce1561ac17e4149909"><td class="memItemLeft" align="right" valign="top"><a id="a6803a65542b3dcce1561ac17e4149909"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>GetGridCoordinates</b> (Vector3 worldPosition, out int x, out int y)</td></tr>
+<tr class="memitem:a6803a65542b3dcce1561ac17e4149909"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a6803a65542b3dcce1561ac17e4149909">GetGridCoordinates</a> (Vector3 worldPosition, out int x, out int y)</td></tr>
+<tr class="memdesc:a6803a65542b3dcce1561ac17e4149909"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the grid coordinates of a grid cell using world position.  <a href="class_grid.html#a6803a65542b3dcce1561ac17e4149909">More...</a><br /></td></tr>
 <tr class="separator:a6803a65542b3dcce1561ac17e4149909"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3544103fc8a1ec9670c05d3e1f6d3e58"><td class="memItemLeft" align="right" valign="top"><a id="a3544103fc8a1ec9670c05d3e1f6d3e58"></a>
-Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>ConvertToGridCellPosition</b> (Vector3 worldPosition)</td></tr>
+<tr class="memitem:a3544103fc8a1ec9670c05d3e1f6d3e58"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a3544103fc8a1ec9670c05d3e1f6d3e58">ConvertToGridCellPosition</a> (Vector3 worldPosition)</td></tr>
+<tr class="memdesc:a3544103fc8a1ec9670c05d3e1f6d3e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a slightly off center world position to be centered in a grid cell.  <a href="class_grid.html#a3544103fc8a1ec9670c05d3e1f6d3e58">More...</a><br /></td></tr>
 <tr class="separator:a3544103fc8a1ec9670c05d3e1f6d3e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65295f32ceaeafbac94b561bbbd6664c"><td class="memItemLeft" align="right" valign="top"><a id="a65295f32ceaeafbac94b561bbbd6664c"></a>
-T[,]&#160;</td><td class="memItemRight" valign="bottom"><b>GetGrid</b> ()</td></tr>
+<tr class="memitem:a65295f32ceaeafbac94b561bbbd6664c"><td class="memItemLeft" align="right" valign="top">T[,]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a65295f32ceaeafbac94b561bbbd6664c">GetGrid</a> ()</td></tr>
+<tr class="memdesc:a65295f32ceaeafbac94b561bbbd6664c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the 2D grid array.  <a href="class_grid.html#a65295f32ceaeafbac94b561bbbd6664c">More...</a><br /></td></tr>
 <tr class="separator:a65295f32ceaeafbac94b561bbbd6664c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7d2d658fc9a916d636cf466130e6e2f"><td class="memItemLeft" align="right" valign="top"><a id="aa7d2d658fc9a916d636cf466130e6e2f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetValue</b> (int x, int y, T value)</td></tr>
+<tr class="memitem:aa7d2d658fc9a916d636cf466130e6e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#aa7d2d658fc9a916d636cf466130e6e2f">SetValue</a> (int x, int y, T value)</td></tr>
+<tr class="memdesc:aa7d2d658fc9a916d636cf466130e6e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific grid cell using grid coordinates.  <a href="class_grid.html#aa7d2d658fc9a916d636cf466130e6e2f">More...</a><br /></td></tr>
 <tr class="separator:aa7d2d658fc9a916d636cf466130e6e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae548ecd4239b45037de63cee8e41886e"><td class="memItemLeft" align="right" valign="top"><a id="ae548ecd4239b45037de63cee8e41886e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetValue</b> (Vector3 worldPosition, T value)</td></tr>
+<tr class="memitem:ae548ecd4239b45037de63cee8e41886e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ae548ecd4239b45037de63cee8e41886e">SetValue</a> (Vector3 worldPosition, T value)</td></tr>
+<tr class="memdesc:ae548ecd4239b45037de63cee8e41886e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a specific grid cell using world coordinates.  <a href="class_grid.html#ae548ecd4239b45037de63cee8e41886e">More...</a><br /></td></tr>
 <tr class="separator:ae548ecd4239b45037de63cee8e41886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dc7f1b135d62b3d37b8f94186be9bd1"><td class="memItemLeft" align="right" valign="top"><a id="a8dc7f1b135d62b3d37b8f94186be9bd1"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> (int x, int y)</td></tr>
+<tr class="memitem:a8dc7f1b135d62b3d37b8f94186be9bd1"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a8dc7f1b135d62b3d37b8f94186be9bd1">GetValue</a> (int x, int y)</td></tr>
+<tr class="memdesc:a8dc7f1b135d62b3d37b8f94186be9bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a grid cell value using grid coordinates.  <a href="class_grid.html#a8dc7f1b135d62b3d37b8f94186be9bd1">More...</a><br /></td></tr>
 <tr class="separator:a8dc7f1b135d62b3d37b8f94186be9bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bfec2c9b16bd85d4cd7f6219997d72a"><td class="memItemLeft" align="right" valign="top"><a id="a8bfec2c9b16bd85d4cd7f6219997d72a"></a>
-T&#160;</td><td class="memItemRight" valign="bottom"><b>GetValue</b> (Vector3 worldPosition)</td></tr>
+<tr class="memitem:a8bfec2c9b16bd85d4cd7f6219997d72a"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a8bfec2c9b16bd85d4cd7f6219997d72a">GetValue</a> (Vector3 worldPosition)</td></tr>
+<tr class="memdesc:a8bfec2c9b16bd85d4cd7f6219997d72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a grid cell value using world position.  <a href="class_grid.html#a8bfec2c9b16bd85d4cd7f6219997d72a">More...</a><br /></td></tr>
 <tr class="separator:a8bfec2c9b16bd85d4cd7f6219997d72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f1dc92f07aa99bc968bb88e02188f96"><td class="memItemLeft" align="right" valign="top"><a id="a8f1dc92f07aa99bc968bb88e02188f96"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>TriggerGridCellChange</b> (int x, int y)</td></tr>
+<tr class="memitem:a8f1dc92f07aa99bc968bb88e02188f96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a8f1dc92f07aa99bc968bb88e02188f96">TriggerGridCellChange</a> (int x, int y)</td></tr>
+<tr class="memdesc:a8f1dc92f07aa99bc968bb88e02188f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers the grid cell change event.  <a href="class_grid.html#a8f1dc92f07aa99bc968bb88e02188f96">More...</a><br /></td></tr>
 <tr class="separator:a8f1dc92f07aa99bc968bb88e02188f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2317ce4f23a479cfbeb07b1b6af3085"><td class="memItemLeft" align="right" valign="top"><a id="ac2317ce4f23a479cfbeb07b1b6af3085"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PreviewGrid</b> ()</td></tr>
+<tr class="memitem:ac2317ce4f23a479cfbeb07b1b6af3085"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ac2317ce4f23a479cfbeb07b1b6af3085">PreviewGrid</a> ()</td></tr>
+<tr class="memdesc:ac2317ce4f23a479cfbeb07b1b6af3085"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previews the grid using Gizmo lines.  <a href="class_grid.html#ac2317ce4f23a479cfbeb07b1b6af3085">More...</a><br /></td></tr>
 <tr class="separator:ac2317ce4f23a479cfbeb07b1b6af3085"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a728c79671661f9b16b1200bd4ac88fc0"><td class="memItemLeft" align="right" valign="top"><a id="a728c79671661f9b16b1200bd4ac88fc0"></a>
-List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLine</b> (Vector3 fromPosition, Vector3 toPosition)</td></tr>
+<tr class="memitem:a728c79671661f9b16b1200bd4ac88fc0"><td class="memItemLeft" align="right" valign="top">List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a728c79671661f9b16b1200bd4ac88fc0">GetLine</a> (Vector3 fromPosition, Vector3 toPosition)</td></tr>
+<tr class="memdesc:a728c79671661f9b16b1200bd4ac88fc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a line on the grid.  <a href="class_grid.html#a728c79671661f9b16b1200bd4ac88fc0">More...</a><br /></td></tr>
 <tr class="separator:a728c79671661f9b16b1200bd4ac88fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85a03ac0f6e1ce960fb0a2e9ce3c65dd"><td class="memItemLeft" align="right" valign="top"><a id="a85a03ac0f6e1ce960fb0a2e9ce3c65dd"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetCellSize</b> ()</td></tr>
+<tr class="memitem:a85a03ac0f6e1ce960fb0a2e9ce3c65dd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a85a03ac0f6e1ce960fb0a2e9ce3c65dd">GetCellSize</a> ()</td></tr>
+<tr class="memdesc:a85a03ac0f6e1ce960fb0a2e9ce3c65dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the width and height of any given cell.  <a href="class_grid.html#a85a03ac0f6e1ce960fb0a2e9ce3c65dd">More...</a><br /></td></tr>
 <tr class="separator:a85a03ac0f6e1ce960fb0a2e9ce3c65dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50492fa8a42ddfe6152e2d78c303d392"><td class="memItemLeft" align="right" valign="top"><a id="a50492fa8a42ddfe6152e2d78c303d392"></a>
-Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>GetOrigin</b> ()</td></tr>
+<tr class="memitem:a50492fa8a42ddfe6152e2d78c303d392"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#a50492fa8a42ddfe6152e2d78c303d392">GetOrigin</a> ()</td></tr>
+<tr class="memdesc:a50492fa8a42ddfe6152e2d78c303d392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the grid's origin position.  <a href="class_grid.html#a50492fa8a42ddfe6152e2d78c303d392">More...</a><br /></td></tr>
 <tr class="separator:a50492fa8a42ddfe6152e2d78c303d392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9fe25e024ce71196561e8639e50eeed"><td class="memItemLeft" align="right" valign="top"><a id="ae9fe25e024ce71196561e8639e50eeed"></a>
-List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAdjacentTiles</b> (int x, int y, bool includeDiagonals=false)</td></tr>
+<tr class="memitem:ae9fe25e024ce71196561e8639e50eeed"><td class="memItemLeft" align="right" valign="top">List&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#ae9fe25e024ce71196561e8639e50eeed">GetAdjacentTiles</a> (int x, int y, bool includeDiagonals=false)</td></tr>
+<tr class="memdesc:ae9fe25e024ce71196561e8639e50eeed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets grid cells adjacent to the given x and y coordinates.  <a href="class_grid.html#ae9fe25e024ce71196561e8639e50eeed">More...</a><br /></td></tr>
 <tr class="separator:ae9fe25e024ce71196561e8639e50eeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
 Events</h2></td></tr>
-<tr class="memitem:aeb83b32252137b3ed8b685e6fabe90bd"><td class="memItemLeft" align="right" valign="top"><a id="aeb83b32252137b3ed8b685e6fabe90bd"></a>
-EventHandler&lt; <a class="el" href="class_grid_1_1_on_grid_cell_changed_event_args.html">OnGridCellChangedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnGridCellChanged</b></td></tr>
+<tr class="memitem:aeb83b32252137b3ed8b685e6fabe90bd"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_grid_1_1_on_grid_cell_changed_event_args.html">OnGridCellChangedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_grid.html#aeb83b32252137b3ed8b685e6fabe90bd">OnGridCellChanged</a></td></tr>
+<tr class="memdesc:aeb83b32252137b3ed8b685e6fabe90bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event gets called every time a grid cell changes.  <a href="class_grid.html#aeb83b32252137b3ed8b685e6fabe90bd">More...</a><br /></td></tr>
 <tr class="separator:aeb83b32252137b3ed8b685e6fabe90bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles all game grid logic. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The type for each grid square.</td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a459b35308d87b0ee03894ee6e12fc07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a459b35308d87b0ee03894ee6e12fc07f">&#9670;&nbsp;</a></span>Grid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.<a class="el" href="class_grid.html">Grid</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cellSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>originPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Func&lt; int, int, <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;, T &gt;&#160;</td>
+          <td class="paramname"><em>createGridObject</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>Width of the grid.</td></tr>
+    <tr><td class="paramname">height</td><td>Height of the grid.</td></tr>
+    <tr><td class="paramname">cellSize</td><td>The height and width of each grid cell.</td></tr>
+    <tr><td class="paramname">originPosition</td><td>The center position of the grid.</td></tr>
+    <tr><td class="paramname">createGridObject</td><td>Callback function for initializing each grid cell.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3544103fc8a1ec9670c05d3e1f6d3e58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3544103fc8a1ec9670c05d3e1f6d3e58">&#9670;&nbsp;</a></span>ConvertToGridCellPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.ConvertToGridCellPosition </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>worldPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts a slightly off center world position to be centered in a grid cell. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPosition</td><td>The slightly off center world position.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Centered world position.</dd></dl>
+
+</div>
+</div>
+<a id="ae9fe25e024ce71196561e8639e50eeed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9fe25e024ce71196561e8639e50eeed">&#9670;&nbsp;</a></span>GetAdjacentTiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;T&gt; <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetAdjacentTiles </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>includeDiagonals</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets grid cells adjacent to the given x and y coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x coordinate of the grid cell.</td></tr>
+    <tr><td class="paramname">y</td><td>The y coordinate of the grid cell.</td></tr>
+    <tr><td class="paramname">includeDiagonals</td><td>Whether or not to also get diagonal grid cells.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of adjacent grid cells.</dd></dl>
+
+</div>
+</div>
+<a id="a85a03ac0f6e1ce960fb0a2e9ce3c65dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a03ac0f6e1ce960fb0a2e9ce3c65dd">&#9670;&nbsp;</a></span>GetCellSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetCellSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the width and height of any given cell. </p>
+<dl class="section return"><dt>Returns</dt><dd>The width and height of a grid cell.</dd></dl>
+
+</div>
+</div>
+<a id="a65295f32ceaeafbac94b561bbbd6664c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65295f32ceaeafbac94b561bbbd6664c">&#9670;&nbsp;</a></span>GetGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T [,] <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetGrid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the 2D grid array. </p>
+<dl class="section return"><dt>Returns</dt><dd>2D array of grid cells.</dd></dl>
+
+</div>
+</div>
+<a id="a6803a65542b3dcce1561ac17e4149909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6803a65542b3dcce1561ac17e4149909">&#9670;&nbsp;</a></span>GetGridCoordinates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetGridCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>worldPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the grid coordinates of a grid cell using world position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPosition</td><td>The world position.</td></tr>
+    <tr><td class="paramname">x</td><td>The x position.</td></tr>
+    <tr><td class="paramname">y</td><td>The y position.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a728c79671661f9b16b1200bd4ac88fc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728c79671661f9b16b1200bd4ac88fc0">&#9670;&nbsp;</a></span>GetLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;T&gt; <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetLine </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>fromPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>toPosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a line on the grid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fromPosition</td><td>Start world position of the line.</td></tr>
+    <tr><td class="paramname">toPosition</td><td>End world position of the line.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of grid cells that form the line.</dd></dl>
+
+</div>
+</div>
+<a id="a50492fa8a42ddfe6152e2d78c303d392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50492fa8a42ddfe6152e2d78c303d392">&#9670;&nbsp;</a></span>GetOrigin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetOrigin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the grid's origin position. </p>
+<dl class="section return"><dt>Returns</dt><dd>The grid's origin position.</dd></dl>
+
+</div>
+</div>
+<a id="a8dc7f1b135d62b3d37b8f94186be9bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc7f1b135d62b3d37b8f94186be9bd1">&#9670;&nbsp;</a></span>GetValue() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a grid cell value using grid coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x coordinate of the grid cell.</td></tr>
+    <tr><td class="paramname">y</td><td>The y coordinate of the grid cell.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value located in the given x and y positions.</dd></dl>
+
+</div>
+</div>
+<a id="a8bfec2c9b16bd85d4cd7f6219997d72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bfec2c9b16bd85d4cd7f6219997d72a">&#9670;&nbsp;</a></span>GetValue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetValue </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>worldPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a grid cell value using world position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPosition</td><td>The world coordinates.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value located in the given world positions.</dd></dl>
+
+</div>
+</div>
+<a id="a90b0de694a394bedb5c91ed4ecc1846f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90b0de694a394bedb5c91ed4ecc1846f">&#9670;&nbsp;</a></span>GetWorldPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetWorldPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the world position of a grid cell using grid coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x position of the grid cell.</td></tr>
+    <tr><td class="paramname">y</td><td>The y position of the grid cell.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>World position of the grid cell.</dd></dl>
+
+</div>
+</div>
+<a id="aaff6aee827ad649a4c5c3699c1bb3fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff6aee827ad649a4c5c3699c1bb3fab">&#9670;&nbsp;</a></span>GetWorldPositionCentered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.GetWorldPositionCentered </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the centered world position of a grid cell using grid coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x position of the grid cell.</td></tr>
+    <tr><td class="paramname">y</td><td>The y position of the grid cell.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>World position of the grid cell.</dd></dl>
+
+</div>
+</div>
+<a id="ac2317ce4f23a479cfbeb07b1b6af3085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2317ce4f23a479cfbeb07b1b6af3085">&#9670;&nbsp;</a></span>PreviewGrid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.PreviewGrid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Previews the grid using Gizmo lines. </p>
+
+</div>
+</div>
+<a id="aa7d2d658fc9a916d636cf466130e6e2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7d2d658fc9a916d636cf466130e6e2f">&#9670;&nbsp;</a></span>SetValue() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a specific grid cell using grid coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x coordinate of the grid cell.</td></tr>
+    <tr><td class="paramname">y</td><td>The y coordinate of the grid cell.</td></tr>
+    <tr><td class="paramname">value</td><td>The value to set.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae548ecd4239b45037de63cee8e41886e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae548ecd4239b45037de63cee8e41886e">&#9670;&nbsp;</a></span>SetValue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.SetValue </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>worldPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a specific grid cell using world coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldPosition</td><td>The world coordinates.</td></tr>
+    <tr><td class="paramname">value</td><td>The value to set.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8f1dc92f07aa99bc968bb88e02188f96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1dc92f07aa99bc968bb88e02188f96">&#9670;&nbsp;</a></span>TriggerGridCellChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.TriggerGridCellChange </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Triggers the grid cell change event. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>x coordinate of the cell that changed.</td></tr>
+    <tr><td class="paramname">y</td><td>y coordinate of the cell that changed.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Event Documentation</h2>
+<a id="aeb83b32252137b3ed8b685e6fabe90bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb83b32252137b3ed8b685e6fabe90bd">&#9670;&nbsp;</a></span>OnGridCellChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EventHandler&lt;<a class="el" href="class_grid_1_1_on_grid_cell_changed_event_args.html">OnGridCellChangedEventArgs</a>&gt; <a class="el" href="class_grid.html">Grid</a>&lt; T &gt;.OnGridCellChanged</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Event gets called every time a grid cell changes. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Grid/Grid.cs</li>
 </ul>

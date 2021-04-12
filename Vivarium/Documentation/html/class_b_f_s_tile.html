@@ -68,19 +68,73 @@ $(function() {
 <div class="title">BFSTile Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Used by <a class="el" href="class_breadth_first_search.html" title="Class for executing the Breadth-first Search path finding algorithm.">BreadthFirstSearch</a> to represent individual tiles.  
+ <a href="class_b_f_s_tile.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6f3fd9061f32422ae3a6839c7cf51364"><td class="memItemLeft" align="right" valign="top"><a id="a6f3fd9061f32422ae3a6839c7cf51364"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Visited</b> = false</td></tr>
+<tr class="memitem:a6f3fd9061f32422ae3a6839c7cf51364"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_f_s_tile.html#a6f3fd9061f32422ae3a6839c7cf51364">Visited</a> = false</td></tr>
+<tr class="memdesc:a6f3fd9061f32422ae3a6839c7cf51364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not this tile was visited by <a class="el" href="class_breadth_first_search.html" title="Class for executing the Breadth-first Search path finding algorithm.">BreadthFirstSearch</a>.  <a href="class_b_f_s_tile.html#a6f3fd9061f32422ae3a6839c7cf51364">More...</a><br /></td></tr>
 <tr class="separator:a6f3fd9061f32422ae3a6839c7cf51364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad523d28a3c9a4e04a5b1cdf2cc1193cd"><td class="memItemLeft" align="right" valign="top"><a id="ad523d28a3c9a4e04a5b1cdf2cc1193cd"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>Steps</b> = 0</td></tr>
+<tr class="memitem:ad523d28a3c9a4e04a5b1cdf2cc1193cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_f_s_tile.html#ad523d28a3c9a4e04a5b1cdf2cc1193cd">Steps</a> = 0</td></tr>
+<tr class="memdesc:ad523d28a3c9a4e04a5b1cdf2cc1193cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of steps that was taken to reach this tile.  <a href="class_b_f_s_tile.html#ad523d28a3c9a4e04a5b1cdf2cc1193cd">More...</a><br /></td></tr>
 <tr class="separator:ad523d28a3c9a4e04a5b1cdf2cc1193cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18018dc4a387a3fa87fa61ff8ab86106"><td class="memItemLeft" align="right" valign="top"><a id="a18018dc4a387a3fa87fa61ff8ab86106"></a>
-List&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> = new List&lt;<a class="el" href="class_tile.html">Tile</a>&gt;()</td></tr>
+<tr class="memitem:a18018dc4a387a3fa87fa61ff8ab86106"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_b_f_s_tile.html#a18018dc4a387a3fa87fa61ff8ab86106">Path</a> = new List&lt;<a class="el" href="class_tile.html">Tile</a>&gt;()</td></tr>
+<tr class="memdesc:a18018dc4a387a3fa87fa61ff8ab86106"><td class="mdescLeft">&#160;</td><td class="mdescRight">The path required to reach this tile.  <a href="class_b_f_s_tile.html#a18018dc4a387a3fa87fa61ff8ab86106">More...</a><br /></td></tr>
 <tr class="separator:a18018dc4a387a3fa87fa61ff8ab86106"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Used by <a class="el" href="class_breadth_first_search.html" title="Class for executing the Breadth-first Search path finding algorithm.">BreadthFirstSearch</a> to represent individual tiles. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a18018dc4a387a3fa87fa61ff8ab86106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18018dc4a387a3fa87fa61ff8ab86106">&#9670;&nbsp;</a></span>Path</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_tile.html">Tile</a>&gt; BFSTile.Path = new List&lt;<a class="el" href="class_tile.html">Tile</a>&gt;()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The path required to reach this tile. </p>
+
+</div>
+</div>
+<a id="ad523d28a3c9a4e04a5b1cdf2cc1193cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad523d28a3c9a4e04a5b1cdf2cc1193cd">&#9670;&nbsp;</a></span>Steps</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BFSTile.Steps = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The number of steps that was taken to reach this tile. </p>
+
+</div>
+</div>
+<a id="a6f3fd9061f32422ae3a6839c7cf51364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f3fd9061f32422ae3a6839c7cf51364">&#9670;&nbsp;</a></span>Visited</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BFSTile.Visited = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether or not this tile was visited by <a class="el" href="class_breadth_first_search.html" title="Class for executing the Breadth-first Search path finding algorithm.">BreadthFirstSearch</a>. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Characters/BreadthFirstSearch.cs</li>
 </ul>

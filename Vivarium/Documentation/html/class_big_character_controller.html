@@ -70,26 +70,31 @@ $(function() {
 <div class="title">BigCharacterController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for characters that take up more the one tile on the grid.  
+ <a href="class_big_character_controller.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BigCharacterController:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_big_character_controller.png" usemap="#BigCharacterController_map" alt=""/>
   <map id="BigCharacterController_map" name="BigCharacterController_map">
-<area href="class_character_controller.html" alt="CharacterController" shape="rect" coords="0,56,143,80"/>
+<area href="class_character_controller.html" title="Handles logic for how a Character interacts with the game." alt="CharacterController" shape="rect" coords="0,56,143,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaa7c73d482ea8a78e35c1ba6c9dd2bcb"><td class="memItemLeft" align="right" valign="top"><a id="aaa7c73d482ea8a78e35c1ba6c9dd2bcb"></a>
-override void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveToTile</b> (<a class="el" href="class_tile.html">Tile</a> tile, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_controller.html#aaa7c73d482ea8a78e35c1ba6c9dd2bcb">MoveToTile</a> (<a class="el" href="class_tile.html">Tile</a> tile, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memdesc:aaa7c73d482ea8a78e35c1ba6c9dd2bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the character to a specific tile. <br /></td></tr>
 <tr class="separator:aaa7c73d482ea8a78e35c1ba6c9dd2bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8428dbbd1419f56add7f5aee169daa3"><td class="memItemLeft" align="right" valign="top"><a id="ad8428dbbd1419f56add7f5aee169daa3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="memitem:ad8428dbbd1419f56add7f5aee169daa3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_controller.html#ad8428dbbd1419f56add7f5aee169daa3">GetSize</a> ()</td></tr>
+<tr class="memdesc:ad8428dbbd1419f56add7f5aee169daa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of the character.  <a href="class_big_character_controller.html#ad8428dbbd1419f56add7f5aee169daa3">More...</a><br /></td></tr>
 <tr class="separator:ad8428dbbd1419f56add7f5aee169daa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c595ca3b9e271cc036c6211db6ca04e"><td class="memItemLeft" align="right" valign="top"><a id="a8c595ca3b9e271cc036c6211db6ca04e"></a>
-override bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsAbleToMoveToTile</b> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_big_character_controller.html#a8c595ca3b9e271cc036c6211db6ca04e">IsAbleToMoveToTile</a> (<a class="el" href="class_tile.html">Tile</a> tile)</td></tr>
+<tr class="memdesc:a8c595ca3b9e271cc036c6211db6ca04e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this character is able to move to a specific <a class="el" href="class_tile.html" title="Represents data on each cell of the grid.">Tile</a>. <br /></td></tr>
 <tr class="separator:a8c595ca3b9e271cc036c6211db6ca04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_character_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_character_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_character_controller.html">CharacterController</a></td></tr>
 <tr class="memitem:abd7d2ec82e9d4f9c9a21d78e69c9d78f inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="abd7d2ec82e9d4f9c9a21d78e69c9d78f"></a>
@@ -107,59 +112,59 @@ delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>DeselectEven
 <tr class="memitem:abbfa920159a09e9eb503667437324134 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="abbfa920159a09e9eb503667437324134"></a>
 delegate void&#160;</td><td class="memItemRight" valign="bottom"><b>DamageTaken</b> (<a class="el" href="class_character_controller.html">CharacterController</a> characterController)</td></tr>
 <tr class="separator:abbfa920159a09e9eb503667437324134 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad86279adace8c4998e4c21adb5edcf01 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad86279adace8c4998e4c21adb5edcf01"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Select</b> ()</td></tr>
+<tr class="memitem:ad86279adace8c4998e4c21adb5edcf01 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#ad86279adace8c4998e4c21adb5edcf01">Select</a> ()</td></tr>
+<tr class="memdesc:ad86279adace8c4998e4c21adb5edcf01 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets this character as the selected one.  <a href="class_character_controller.html#ad86279adace8c4998e4c21adb5edcf01">More...</a><br /></td></tr>
 <tr class="separator:ad86279adace8c4998e4c21adb5edcf01 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17bbac8bdc00a0adc42e7dac1a92b3cb inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a17bbac8bdc00a0adc42e7dac1a92b3cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Deselect</b> ()</td></tr>
+<tr class="memitem:a17bbac8bdc00a0adc42e7dac1a92b3cb inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a17bbac8bdc00a0adc42e7dac1a92b3cb">Deselect</a> ()</td></tr>
+<tr class="memdesc:a17bbac8bdc00a0adc42e7dac1a92b3cb inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">De-selects the character.  <a href="class_character_controller.html#a17bbac8bdc00a0adc42e7dac1a92b3cb">More...</a><br /></td></tr>
 <tr class="separator:a17bbac8bdc00a0adc42e7dac1a92b3cb inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51eee6a1533cdf43af9ab0c754dd16ba inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a51eee6a1533cdf43af9ab0c754dd16ba"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsAbleToMove</b> ()</td></tr>
+<tr class="memitem:a51eee6a1533cdf43af9ab0c754dd16ba inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a51eee6a1533cdf43af9ab0c754dd16ba">IsAbleToMove</a> ()</td></tr>
+<tr class="memdesc:a51eee6a1533cdf43af9ab0c754dd16ba inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this character is able to move.  <a href="class_character_controller.html#a51eee6a1533cdf43af9ab0c754dd16ba">More...</a><br /></td></tr>
 <tr class="separator:a51eee6a1533cdf43af9ab0c754dd16ba inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fb5d2d1b8b3880627c3af4aaac06d3a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a4fb5d2d1b8b3880627c3af4aaac06d3a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsAbleToAttack</b> ()</td></tr>
+<tr class="memitem:a4fb5d2d1b8b3880627c3af4aaac06d3a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a4fb5d2d1b8b3880627c3af4aaac06d3a">IsAbleToAttack</a> ()</td></tr>
+<tr class="memdesc:a4fb5d2d1b8b3880627c3af4aaac06d3a inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this character can attack.  <a href="class_character_controller.html#a4fb5d2d1b8b3880627c3af4aaac06d3a">More...</a><br /></td></tr>
 <tr class="separator:a4fb5d2d1b8b3880627c3af4aaac06d3a inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0668a8c34a676c961bd59e35fcf664cd inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a0668a8c34a676c961bd59e35fcf664cd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MoveAlongPath</b> (List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memitem:a0668a8c34a676c961bd59e35fcf664cd inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a0668a8c34a676c961bd59e35fcf664cd">MoveAlongPath</a> (List&lt; <a class="el" href="class_tile.html">Tile</a> &gt; path, System.Action onMoveComplete=null, bool skipMovement=false)</td></tr>
+<tr class="memdesc:a0668a8c34a676c961bd59e35fcf664cd inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves character along a tile path.  <a href="class_character_controller.html#a0668a8c34a676c961bd59e35fcf664cd">More...</a><br /></td></tr>
 <tr class="separator:a0668a8c34a676c961bd59e35fcf664cd inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15e2d3248beff0b6c64a4195ca844dd3 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a15e2d3248beff0b6c64a4195ca844dd3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PerformAction</b> (<a class="el" href="class_action.html">Action</a> attack, <a class="el" href="class_tile.html">Tile</a> targetTile, System.Action onActionComplete=null)</td></tr>
+<tr class="memitem:a15e2d3248beff0b6c64a4195ca844dd3 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a15e2d3248beff0b6c64a4195ca844dd3">PerformAction</a> (<a class="el" href="class_action.html">Action</a> attack, <a class="el" href="class_tile.html">Tile</a> targetTile, System.Action onActionComplete=null)</td></tr>
+<tr class="memdesc:a15e2d3248beff0b6c64a4195ca844dd3 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a given <a class="el" href="class_action.html">Action</a>.  <a href="class_character_controller.html#a15e2d3248beff0b6c64a4195ca844dd3">More...</a><br /></td></tr>
 <tr class="separator:a15e2d3248beff0b6c64a4195ca844dd3 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52879df95047a2b59d8ab1579341e398 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a52879df95047a2b59d8ab1579341e398"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>TakeDamage</b> (float damage, bool instantKill=false)</td></tr>
+<tr class="memitem:a52879df95047a2b59d8ab1579341e398 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a52879df95047a2b59d8ab1579341e398">TakeDamage</a> (float damage, bool instantKill=false)</td></tr>
+<tr class="memdesc:a52879df95047a2b59d8ab1579341e398 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_character.html" title="Holds data that represents a playable or enemy character.">Character</a> takes damage.  <a href="class_character_controller.html#a52879df95047a2b59d8ab1579341e398">More...</a><br /></td></tr>
 <tr class="separator:a52879df95047a2b59d8ab1579341e398 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55497d9c01aee8a1754d6c18e59c97ea inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a55497d9c01aee8a1754d6c18e59c97ea"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHasMoved</b> (bool hasMoved)</td></tr>
+<tr class="memitem:a55497d9c01aee8a1754d6c18e59c97ea inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a55497d9c01aee8a1754d6c18e59c97ea">SetHasMoved</a> (bool hasMoved)</td></tr>
+<tr class="memdesc:a55497d9c01aee8a1754d6c18e59c97ea inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not this character has previously moved.  <a href="class_character_controller.html#a55497d9c01aee8a1754d6c18e59c97ea">More...</a><br /></td></tr>
 <tr class="separator:a55497d9c01aee8a1754d6c18e59c97ea inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1cee49b4285c546707cdc792cd30fe3 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="aa1cee49b4285c546707cdc792cd30fe3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHasAttacked</b> (bool hasAttacked)</td></tr>
+<tr class="memitem:aa1cee49b4285c546707cdc792cd30fe3 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#aa1cee49b4285c546707cdc792cd30fe3">SetHasAttacked</a> (bool hasAttacked)</td></tr>
+<tr class="memdesc:aa1cee49b4285c546707cdc792cd30fe3 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not this character has previously attacked.  <a href="class_character_controller.html#aa1cee49b4285c546707cdc792cd30fe3">More...</a><br /></td></tr>
 <tr class="separator:aa1cee49b4285c546707cdc792cd30fe3 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f89ea45501051cc3701ef9b20c6239e inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a7f89ea45501051cc3701ef9b20c6239e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>HideMoveRadius</b> ()</td></tr>
+<tr class="memitem:a7f89ea45501051cc3701ef9b20c6239e inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a7f89ea45501051cc3701ef9b20c6239e">HideMoveRadius</a> ()</td></tr>
+<tr class="memdesc:a7f89ea45501051cc3701ef9b20c6239e inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hides the character's move range on the grid.  <a href="class_character_controller.html#a7f89ea45501051cc3701ef9b20c6239e">More...</a><br /></td></tr>
 <tr class="separator:a7f89ea45501051cc3701ef9b20c6239e inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed9f112db9a68b393cf4a9ef146ea67 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a4ed9f112db9a68b393cf4a9ef146ea67"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowMoveRadius</b> ()</td></tr>
+<tr class="memitem:a4ed9f112db9a68b393cf4a9ef146ea67 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a4ed9f112db9a68b393cf4a9ef146ea67">ShowMoveRadius</a> ()</td></tr>
+<tr class="memdesc:a4ed9f112db9a68b393cf4a9ef146ea67 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows the character's move range on the grid.  <a href="class_character_controller.html#a4ed9f112db9a68b393cf4a9ef146ea67">More...</a><br /></td></tr>
 <tr class="separator:a4ed9f112db9a68b393cf4a9ef146ea67 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a80a2d224d6d1a02c5edd401de97998 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1a80a2d224d6d1a02c5edd401de97998"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>CalculateAvailableMoves</b> ()</td></tr>
+<tr class="memitem:a1a80a2d224d6d1a02c5edd401de97998 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a1a80a2d224d6d1a02c5edd401de97998">CalculateAvailableMoves</a> ()</td></tr>
+<tr class="memdesc:a1a80a2d224d6d1a02c5edd401de97998 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates all the tiles that this character can move to.  <a href="class_character_controller.html#a1a80a2d224d6d1a02c5edd401de97998">More...</a><br /></td></tr>
 <tr class="separator:a1a80a2d224d6d1a02c5edd401de97998 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc9668883d4cc0cd50b33b2f2fd45450 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="acc9668883d4cc0cd50b33b2f2fd45450"></a>
-Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAvailableMoves</b> ()</td></tr>
+<tr class="memitem:acc9668883d4cc0cd50b33b2f2fd45450 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">Dictionary&lt;(int, int), <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#acc9668883d4cc0cd50b33b2f2fd45450">GetAvailableMoves</a> ()</td></tr>
+<tr class="memdesc:acc9668883d4cc0cd50b33b2f2fd45450 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the tiles that this character can move to.  <a href="class_character_controller.html#acc9668883d4cc0cd50b33b2f2fd45450">More...</a><br /></td></tr>
 <tr class="separator:acc9668883d4cc0cd50b33b2f2fd45450 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a571ff44a7eee08bc184ad568b19d056a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a571ff44a7eee08bc184ad568b19d056a"></a>
-<a class="el" href="class_action_controller.html">ActionController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetActionController</b> (<a class="el" href="class_action.html">Action</a> action)</td></tr>
+<tr class="memitem:a571ff44a7eee08bc184ad568b19d056a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action_controller.html">ActionController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a571ff44a7eee08bc184ad568b19d056a">GetActionController</a> (<a class="el" href="class_action.html">Action</a> action)</td></tr>
+<tr class="memdesc:a571ff44a7eee08bc184ad568b19d056a inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the action controller for a specific action.  <a href="class_character_controller.html#a571ff44a7eee08bc184ad568b19d056a">More...</a><br /></td></tr>
 <tr class="separator:a571ff44a7eee08bc184ad568b19d056a inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82f4f5f848161afd06ee5902602666ef inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a82f4f5f848161afd06ee5902602666ef"></a>
-<a class="el" href="class_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetGridPosition</b> ()</td></tr>
+<tr class="memitem:a82f4f5f848161afd06ee5902602666ef inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a82f4f5f848161afd06ee5902602666ef">GetGridPosition</a> ()</td></tr>
+<tr class="memdesc:a82f4f5f848161afd06ee5902602666ef inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile that the character is sitting on.  <a href="class_character_controller.html#a82f4f5f848161afd06ee5902602666ef">More...</a><br /></td></tr>
 <tr class="separator:a82f4f5f848161afd06ee5902602666ef inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a719c37b4a3786e68fd697c7bd0eb5c6e inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a719c37b4a3786e68fd697c7bd0eb5c6e"></a>
-<a class="el" href="class_action_viewer.html">ActionViewer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetActionViewer</b> (<a class="el" href="class_action.html">Action</a> action)</td></tr>
+<tr class="memitem:a719c37b4a3786e68fd697c7bd0eb5c6e inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_action_viewer.html">ActionViewer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a719c37b4a3786e68fd697c7bd0eb5c6e">GetActionViewer</a> (<a class="el" href="class_action.html">Action</a> action)</td></tr>
+<tr class="memdesc:a719c37b4a3786e68fd697c7bd0eb5c6e inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the action viewer for a specific action.  <a href="class_character_controller.html#a719c37b4a3786e68fd697c7bd0eb5c6e">More...</a><br /></td></tr>
 <tr class="separator:a719c37b4a3786e68fd697c7bd0eb5c6e inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec8834bc56d64049b098fc785d08c1a8 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="aec8834bc56d64049b098fc785d08c1a8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Equip</b> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memitem:aec8834bc56d64049b098fc785d08c1a8 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#aec8834bc56d64049b098fc785d08c1a8">Equip</a> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memdesc:aec8834bc56d64049b098fc785d08c1a8 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equips an item.  <a href="class_character_controller.html#aec8834bc56d64049b098fc785d08c1a8">More...</a><br /></td></tr>
 <tr class="separator:aec8834bc56d64049b098fc785d08c1a8 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3094c6fa1931d0fb536c640b8e9e9e83 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a3094c6fa1931d0fb536c640b8e9e9e83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SwitchWeaponModel</b> ()</td></tr>
+<tr class="memitem:a3094c6fa1931d0fb536c640b8e9e9e83 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a3094c6fa1931d0fb536c640b8e9e9e83">SwitchWeaponModel</a> ()</td></tr>
+<tr class="memdesc:a3094c6fa1931d0fb536c640b8e9e9e83 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the weapon model to match the equipped item.  <a href="class_character_controller.html#a3094c6fa1931d0fb536c640b8e9e9e83">More...</a><br /></td></tr>
 <tr class="separator:a3094c6fa1931d0fb536c640b8e9e9e83 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4ce47b98e1b859f751cbb314eda34e9 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#ad4ce47b98e1b859f751cbb314eda34e9">UnequipAllItems</a> ()</td></tr>
 <tr class="memdesc:ad4ce47b98e1b859f751cbb314eda34e9 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unequips all items that the character may have equipped.  <a href="class_character_controller.html#ad4ce47b98e1b859f751cbb314eda34e9">More...</a><br /></td></tr>
@@ -167,38 +172,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SwitchWeaponModel</b>
 <tr class="memitem:a571990ea7c643c928da32f110711b3b7 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a571990ea7c643c928da32f110711b3b7">Unequip</a> (<a class="el" href="class_item.html">Item</a> item)</td></tr>
 <tr class="memdesc:a571990ea7c643c928da32f110711b3b7 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uniquips a specific item.  <a href="class_character_controller.html#a571990ea7c643c928da32f110711b3b7">More...</a><br /></td></tr>
 <tr class="separator:a571990ea7c643c928da32f110711b3b7 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad333ffe566a804f0d9f34229d44870f4 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad333ffe566a804f0d9f34229d44870f4"></a>
-List&lt; <a class="el" href="class_character_controller.html">CharacterController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetAdjacentCharacters</b> (CharacterSearchType characterSearchType)</td></tr>
+<tr class="memitem:ad333ffe566a804f0d9f34229d44870f4 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_character_controller.html">CharacterController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#ad333ffe566a804f0d9f34229d44870f4">GetAdjacentCharacters</a> (CharacterSearchType characterSearchType)</td></tr>
+<tr class="memdesc:ad333ffe566a804f0d9f34229d44870f4 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets characters that are adjacent to this character.  <a href="class_character_controller.html#ad333ffe566a804f0d9f34229d44870f4">More...</a><br /></td></tr>
 <tr class="separator:ad333ffe566a804f0d9f34229d44870f4 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a847ed176c756f328dad7fbf4c3f528d2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a847ed176c756f328dad7fbf4c3f528d2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DestroyCharacter</b> ()</td></tr>
+<tr class="memitem:a847ed176c756f328dad7fbf4c3f528d2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a847ed176c756f328dad7fbf4c3f528d2">DestroyCharacter</a> ()</td></tr>
+<tr class="memdesc:a847ed176c756f328dad7fbf4c3f528d2 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this character.  <a href="class_character_controller.html#a847ed176c756f328dad7fbf4c3f528d2">More...</a><br /></td></tr>
 <tr class="separator:a847ed176c756f328dad7fbf4c3f528d2 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07b353bbf154726c19ae1118c3905930 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a07b353bbf154726c19ae1118c3905930"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DetachCamera</b> ()</td></tr>
+<tr class="memitem:a07b353bbf154726c19ae1118c3905930 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a07b353bbf154726c19ae1118c3905930">DetachCamera</a> ()</td></tr>
+<tr class="memdesc:a07b353bbf154726c19ae1118c3905930 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detaches camera from the character.  <a href="class_character_controller.html#a07b353bbf154726c19ae1118c3905930">More...</a><br /></td></tr>
 <tr class="separator:a07b353bbf154726c19ae1118c3905930 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85fbf97ebfda056873898d5a8403538a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a85fbf97ebfda056873898d5a8403538a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Consume</b> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memitem:a85fbf97ebfda056873898d5a8403538a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a85fbf97ebfda056873898d5a8403538a">Consume</a> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memdesc:a85fbf97ebfda056873898d5a8403538a inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consumes an item.  <a href="class_character_controller.html#a85fbf97ebfda056873898d5a8403538a">More...</a><br /></td></tr>
 <tr class="separator:a85fbf97ebfda056873898d5a8403538a inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04e9401cba1b9b3d35b78c159bfabb3a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a04e9401cba1b9b3d35b78c159bfabb3a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Heal</b> (float healAmount)</td></tr>
+<tr class="memitem:a04e9401cba1b9b3d35b78c159bfabb3a inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a04e9401cba1b9b3d35b78c159bfabb3a">Heal</a> (float healAmount)</td></tr>
+<tr class="memdesc:a04e9401cba1b9b3d35b78c159bfabb3a inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heals the character.  <a href="class_character_controller.html#a04e9401cba1b9b3d35b78c159bfabb3a">More...</a><br /></td></tr>
 <tr class="separator:a04e9401cba1b9b3d35b78c159bfabb3a inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57abd4cdb1547a3aa1bc93e91497f575 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a57abd4cdb1547a3aa1bc93e91497f575"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AtkBuff</b> (float attackAmount)</td></tr>
+<tr class="memitem:a57abd4cdb1547a3aa1bc93e91497f575 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a57abd4cdb1547a3aa1bc93e91497f575">AtkBuff</a> (float attackAmount)</td></tr>
+<tr class="memdesc:a57abd4cdb1547a3aa1bc93e91497f575 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the character's attack.  <a href="class_character_controller.html#a57abd4cdb1547a3aa1bc93e91497f575">More...</a><br /></td></tr>
 <tr class="separator:a57abd4cdb1547a3aa1bc93e91497f575 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65cd7e9cbbaaea7e88b63b92797ae8e2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a65cd7e9cbbaaea7e88b63b92797ae8e2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>MovBuff</b> (float moveAmount)</td></tr>
+<tr class="memitem:a65cd7e9cbbaaea7e88b63b92797ae8e2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a65cd7e9cbbaaea7e88b63b92797ae8e2">MovBuff</a> (float moveAmount)</td></tr>
+<tr class="memdesc:a65cd7e9cbbaaea7e88b63b92797ae8e2 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the character's move range.  <a href="class_character_controller.html#a65cd7e9cbbaaea7e88b63b92797ae8e2">More...</a><br /></td></tr>
 <tr class="separator:a65cd7e9cbbaaea7e88b63b92797ae8e2 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17fa1f7c07742c1d2d8690e395cd0e4f inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a17fa1f7c07742c1d2d8690e395cd0e4f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>RegenShield</b> (float shieldAmount)</td></tr>
+<tr class="memitem:a17fa1f7c07742c1d2d8690e395cd0e4f inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a17fa1f7c07742c1d2d8690e395cd0e4f">RegenShield</a> (float shieldAmount)</td></tr>
+<tr class="memdesc:a17fa1f7c07742c1d2d8690e395cd0e4f inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regenerates the character's shield.  <a href="class_character_controller.html#a17fa1f7c07742c1d2d8690e395cd0e4f">More...</a><br /></td></tr>
 <tr class="separator:a17fa1f7c07742c1d2d8690e395cd0e4f inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb6b7df888057c025557b198252bd0e0 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="acb6b7df888057c025557b198252bd0e0"></a>
-<a class="el" href="class_health_controller.html">HealthController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetHealthController</b> ()</td></tr>
+<tr class="memitem:acb6b7df888057c025557b198252bd0e0 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_health_controller.html">HealthController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#acb6b7df888057c025557b198252bd0e0">GetHealthController</a> ()</td></tr>
+<tr class="memdesc:acb6b7df888057c025557b198252bd0e0 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the character's <a class="el" href="class_health_controller.html" title="Handles logic related to character health.">HealthController</a>.  <a href="class_character_controller.html#acb6b7df888057c025557b198252bd0e0">More...</a><br /></td></tr>
 <tr class="separator:acb6b7df888057c025557b198252bd0e0 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70957a3bd92c251ae0819d49677ba83c inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a70957a3bd92c251ae0819d49677ba83c"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>GetAttackDamage</b> ()</td></tr>
+<tr class="memitem:a70957a3bd92c251ae0819d49677ba83c inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a70957a3bd92c251ae0819d49677ba83c">GetAttackDamage</a> ()</td></tr>
+<tr class="memdesc:a70957a3bd92c251ae0819d49677ba83c inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets how much damage the character can do.  <a href="class_character_controller.html#a70957a3bd92c251ae0819d49677ba83c">More...</a><br /></td></tr>
 <tr class="separator:a70957a3bd92c251ae0819d49677ba83c inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61d37699e1925e12947700e580a9abd2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top"><a id="a61d37699e1925e12947700e580a9abd2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ItemIsEquipped</b> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memitem:a61d37699e1925e12947700e580a9abd2 inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#a61d37699e1925e12947700e580a9abd2">ItemIsEquipped</a> (<a class="el" href="class_inventory_item.html">InventoryItem</a> inventoryItem)</td></tr>
+<tr class="memdesc:a61d37699e1925e12947700e580a9abd2 inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not an item is equipped by this character.  <a href="class_character_controller.html#a61d37699e1925e12947700e580a9abd2">More...</a><br /></td></tr>
 <tr class="separator:a61d37699e1925e12947700e580a9abd2 inherit pub_methods_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af87ff7fc9d636e1a6bb64c821d3b245c inherit pub_methods_class_character_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_character_controller.html#af87ff7fc9d636e1a6bb64c821d3b245c">IsStunned</a> (float newMoveRange=0)</td></tr>
 <tr class="memdesc:af87ff7fc9d636e1a6bb64c821d3b245c inherit pub_methods_class_character_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stuns a character by reducing move range to 0.  <a href="class_character_controller.html#af87ff7fc9d636e1a6bb64c821d3b245c">More...</a><br /></td></tr>
@@ -272,6 +277,37 @@ static DeselectEvent&#160;</td><td class="memItemRight" valign="bottom"><b>OnDes
 static DamageTaken&#160;</td><td class="memItemRight" valign="bottom"><b>OnDamageTaken</b></td></tr>
 <tr class="separator:a4d40a76df402c8d58e6f86764cae5782 inherit events_class_character_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_character_controller.html" title="Handles logic for how a Character interacts with the game.">CharacterController</a> for characters that take up more the one tile on the grid. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad8428dbbd1419f56add7f5aee169daa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8428dbbd1419f56add7f5aee169daa3">&#9670;&nbsp;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BigCharacterController.GetSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the size of the character. </p>
+<dl class="section return"><dt>Returns</dt><dd>The tile width/height of the character.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Assets/Scripts/Characters/BigCharacters/BigCharacterController.cs</li>
 </ul>
