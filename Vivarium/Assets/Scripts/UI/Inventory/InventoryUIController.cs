@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 
+/// <summary>
+/// Handles the Inventory UI
+/// </summary>
 public class InventoryUIController : MonoBehaviour
 {
     public static InventoryUIController Instance { get; private set; }
@@ -48,6 +51,9 @@ public class InventoryUIController : MonoBehaviour
         InventoryView.SetOnClickCallback(OnInventorySlotClick);
     }
 
+    /// <summary>
+    /// Updates the display for the character inventory
+    /// </summary>
     public void UpdateDisplay()
     {
         if (_selectedCharacterController != null)
@@ -56,6 +62,10 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Displays the character's inventory
+    /// </summary>
+    /// <param name="selectedCharacterController">The character controller that holds the inventory</param>
     public void DisplayCharacterInventory(CharacterController selectedCharacterController)
     {
         if (selectedCharacterController == null)
@@ -72,6 +82,11 @@ public class InventoryUIController : MonoBehaviour
         UpdateButtons();
     }
 
+
+    /// <summary>
+    /// Handles the event when a player clicks on an inventory slot
+    /// </summary>
+    /// <param name="inventorySlot">The inventory slot being clicked</param>
     private void OnInventorySlotClick(InventorySlot inventorySlot)
     {
         _selectedItemSlot = inventorySlot;
@@ -84,6 +99,9 @@ public class InventoryUIController : MonoBehaviour
         UpdateButtons();
     }
 
+    /// <summary>
+    /// Handles the player clicking the consume button
+    /// </summary>
     private void OnConsumeButtonClick()
     {
         if (_selectedItemSlot == null)
@@ -111,6 +129,9 @@ public class InventoryUIController : MonoBehaviour
         OnConsumeClick?.Invoke(_selectedCharacterController);
     }
 
+    /// <summary>
+    /// Handles the player clicking on the equip button
+    /// </summary>
     private void OnEquipButtonClick()
     {
         if (_selectedItemSlot.GetItem().Item == null)
@@ -136,6 +157,9 @@ public class InventoryUIController : MonoBehaviour
         OnEquipClick?.Invoke(_selectedCharacterController);
     }
 
+    /// <summary>
+    /// Updates the accesibility of the buttons
+    /// </summary>
     private void UpdateButtons()
     {
         if (_selectedCharacterController != null && _selectedCharacterController.IsEnemy)
