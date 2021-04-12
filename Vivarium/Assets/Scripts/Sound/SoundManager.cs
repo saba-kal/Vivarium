@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls volume, playing/pausing, and other settings for the sounds in the game
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
     public List<SoundClip> Sounds;
@@ -30,6 +33,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays a sound clip
+    /// </summary>
+    /// <param name="soundName">Name of a sound clip</param>
     public void Play(string soundName)
     {
         if (_soundBank.ContainsKey(soundName))
@@ -42,6 +49,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stops a sound clip from playing
+    /// </summary>
+    /// <param name="soundName">Name of a sound clip</param>
     public void Stop(string soundName)
     {
         if (_soundBank.ContainsKey(soundName))
@@ -54,6 +65,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Pauses a sound clip
+    /// </summary>
+    /// <param name="soundName"></param>
     public void Pause(string soundName)
     {
         if (_soundBank.ContainsKey(soundName))
@@ -66,6 +81,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resumes a paused sound clip
+    /// </summary>
+    /// <param name="soundName">Name of a sound clip</param>
     public void Resume(string soundName)
     {
         if (_soundBank.ContainsKey(soundName))
@@ -78,11 +97,19 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns a sound manager
+    /// </summary>
+    /// <returns></returns>
     public static SoundManager GetInstance()
     {
         return FindObjectOfType<SoundManager>();
     }
 
+    /// <summary>
+    /// Changes the volume of the sound clip
+    /// </summary>
+    /// <param name="volumeFloat">The volume of a sound clip</param>
     public void SetVolume(float volumeFloat)
     {
         foreach (var source in _soundBank.Values)

@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// Assigns a button clicking sound to each of the buttons in the game
+/// </summary>
 public class AssignAllButtonSounds : MonoBehaviour
 {
     // Use this for initialization
