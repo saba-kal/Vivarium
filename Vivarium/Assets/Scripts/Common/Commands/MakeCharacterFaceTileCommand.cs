@@ -1,12 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+///  Command object to make a character face a tile
+/// </summary>
 public class MakeCharacterFaceTileCommand : ICommand
 {
     private CharacterController _characterController;
     private Tile _targetTile;
     private bool _isInstant;
 
+    /// <summary>
+    /// Command to make a character face a tile
+    /// </summary>
+    /// <param name="characterController">Character controller </param>
+    /// <param name="targetTile">Tile the cahracter faces</param>
+    /// <param name="isInstant"></param>
     public MakeCharacterFaceTileCommand(
         CharacterController characterController,
         Tile targetTile,
@@ -17,6 +26,10 @@ public class MakeCharacterFaceTileCommand : ICommand
         _isInstant = isInstant;
     }
 
+    /// <summary>
+    /// Makes the character face a tile
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Execute()
     {
         var grid = TileGridController.Instance.GetGrid();

@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// Command to move a game object
+/// </summary>
 public class MoveCommand : ICommand
 {
     private GameObject _gameObject;
@@ -17,6 +20,16 @@ public class MoveCommand : ICommand
     private bool _isRotating = false;
     private bool _skipMovement = false;
 
+
+    /// <summary>
+    /// Command to move a gameObject
+    /// </summary>
+    /// <param name="gameObject">The game object to move</param>
+    /// <param name="path">The list of tiles that the game object will move to</param>
+    /// <param name="speed">The speed in which the game obejct will move</param>
+    /// <param name="onMoveComplete">an action that will occur when the movement is complete</param>
+    /// <param name="roatationEnabled">a boolean indicating if the game object will rotate when moving</param>
+    /// <param name="skipMovement">a boolean indicating if moving the object is to be shown</param>
     public MoveCommand(
         GameObject gameObject,
         List<Tile> path,
@@ -37,6 +50,11 @@ public class MoveCommand : ICommand
         _moveAnimationId = System.Enum.GetName(typeof(AnimationType), AnimationType.move);
     }
 
+
+    /// <summary>
+    /// Moves the gameobject
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator Execute()
     {
         if (_path == null || _path.Count == 0)
