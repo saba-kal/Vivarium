@@ -102,6 +102,8 @@ public class QueenBeeAIController : AIController
                     TargetTile = targetTile,
                     ExecuteAction = (action, target, onActionComplete) =>
                     {
+                        var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+                        mainCamera.GetComponent<MasterCameraScript>().EnterSeeActionCommand();
                         EnterCameraFocusCommand();
                         if (action.ControllerType == ActionControllerType.MinionSummon)
                         {
@@ -111,6 +113,7 @@ public class QueenBeeAIController : AIController
                         {
                             _aiCharacter.PerformAction(action, target, onActionComplete);
                         }
+                        CommandController.Instance.ExecuteCommand(new WaitCommand(2f));
                     }
                 });
 

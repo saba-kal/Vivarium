@@ -97,8 +97,11 @@ public class AIController : MonoBehaviour
     {
         if (AICanAttack(out var attack, out var targetTile))
         {
+            var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+            mainCamera.GetComponent<MasterCameraScript>().EnterSeeActionCommand();
             EnterCameraFocusCommand();
             _aiCharacter.PerformAction(attack, targetTile, onComplete);
+            CommandController.Instance.ExecuteCommand(new WaitCommand(2f));
         }
         else
         {

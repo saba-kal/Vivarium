@@ -198,18 +198,18 @@ public class CharacterController : MonoBehaviour
     /// <param name="onActionComplete">Callback for when action execution is complete.</param>
     public void PerformAction(Action attack, Tile targetTile, System.Action onActionComplete = null)
     {
-        var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+        //var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
 
-        var cameraZoomer = mainCamera.GetComponent<MasterCameraScript>().GetCameraZoomer();
-        var cameraZoomerPosition = cameraZoomer.GetComponent<CameraZoomer>().getCameraZoomPosition();
-        mainCamera.GetComponent<MasterCameraScript>().EnterSeeActionCommand();
+        //var cameraZoomer = mainCamera.GetComponent<MasterCameraScript>().GetCameraZoomer();
+        //var cameraZoomerPosition = cameraZoomer.GetComponent<CameraZoomer>().getCameraZoomPosition();
+        //mainCamera.GetComponent<MasterCameraScript>().EnterSeeActionCommand();
 
 
         var actionController = GetActionController(attack);
         actionController.Execute(targetTile, onActionComplete);
         _hasAttacked = true;
 
-        mainCamera.GetComponent<MasterCameraScript>().EnterSetZoomCameraPositionCommand(cameraZoomerPosition);
+       // mainCamera.GetComponent<MasterCameraScript>().EnterSetZoomCameraPositionCommand(cameraZoomerPosition);
     }
 
     /// <summary>

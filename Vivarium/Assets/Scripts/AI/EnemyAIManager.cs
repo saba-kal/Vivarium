@@ -124,6 +124,10 @@ public class EnemyAIManager : MonoBehaviour
                     actionIsComplete = true;
                 };
 
+                var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+                mainCamera.GetComponent<MasterCameraScript>().EnterSetZoomCameraPositionCommand(new Vector3(0, 6, -5));
+                CommandController.Instance.ExecuteCommand(new WaitCommand(1f));
+
                 aiController.Move(callback);
                 while (!actionIsComplete)
                 {

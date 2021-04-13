@@ -113,11 +113,10 @@ public class ActionController : MonoBehaviour, IActionController
             ExecuteActionOnCharacter(targetCharacter);
         }
 
-        //yield return new WaitForSeconds(10f);
         yield return null;
     }
 
-    protected virtual void InstantiateParticleAffect(Tile tile, CharacterController targetCharacter)
+    protected GameObject InstantiateParticleAffect(Tile tile, CharacterController targetCharacter)
     {
         if (ActionReference.ParticleEffect == null ||
             tile.CharacterControllerId == null ||
@@ -126,18 +125,19 @@ public class ActionController : MonoBehaviour, IActionController
             targetCharacter.IsEnemy == _characterController.IsEnemy)
         {
             //return null;
-            return;
+            return null;
         }
 
-        //var particleAffect = Instantiate(ActionReference.ParticleEffect);
-        //particleAffect.gameObject.name = $"ParticleAffect_{tile.GridX}_{tile.GridY}";
-        //particleAffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
-        //particleAffect.Play();
-        //Destroy(particleAffect.gameObject, ParticleAffectLifetime);
+        var particleAffect = Instantiate(ActionReference.ParticleEffect);
+        particleAffect.gameObject.name = $"ParticleAffect_{tile.GridX}_{tile.GridY}";
+        particleAffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
+        particleAffect.Play();
+        Destroy(particleAffect.gameObject, ParticleAffectLifetime);
 
-        CommandController.Instance.ExecuteCommand(new CreateParticleEffectCommand(ActionReference.ParticleEffect, ParticleAffectLifetime, tile));
+        return particleAffect.gameObject;
 
-        //return particleAffect.gameObject;
+        //CommandController.Instance.ExecuteCommand(new CreateParticleEffectCommand(ActionReference.ParticleEffect, ParticleAffectLifetime, tile));
+
     }
 
     protected virtual void ExecuteActionOnCharacter(CharacterController targetCharacter)
