@@ -47,12 +47,13 @@ public class ActionController : MonoBehaviour, IActionController
     // Looks at the action's animation type and performs the animation accordingly 
     protected virtual void PerformAnimation()
     {
-        var animationType = ActionReference.AnimType;
-        var animationTypeName = Enum.GetName(typeof(AnimationType), animationType);
+        CommandController.Instance.ExecuteCommand(new PerformAnimationCommand(gameObject, ActionReference.AnimType));
+        //var animationType = ActionReference.AnimType;
+        //var animationTypeName = Enum.GetName(typeof(AnimationType), animationType);
 
-        //var childObject = gameObject.transform.GetChild(0).gameObject;
-        Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
-        myAnimator.SetTrigger(animationTypeName);
+        ////var childObject = gameObject.transform.GetChild(0).gameObject;
+        //Animator myAnimator = gameObject.GetComponentInChildren<Animator>();
+        //myAnimator.SetTrigger(animationTypeName);
     }
 
     protected virtual void ExecuteAction(Dictionary<(int, int), Tile> affectedTiles)
@@ -112,10 +113,11 @@ public class ActionController : MonoBehaviour, IActionController
             ExecuteActionOnCharacter(targetCharacter);
         }
 
+        //yield return new WaitForSeconds(10f);
         yield return null;
     }
 
-    protected virtual GameObject InstantiateParticleAffect(Tile tile, CharacterController targetCharacter)
+    protected virtual void InstantiateParticleAffect(Tile tile, CharacterController targetCharacter)
     {
         if (ActionReference.ParticleEffect == null ||
             tile.CharacterControllerId == null ||
@@ -123,16 +125,19 @@ public class ActionController : MonoBehaviour, IActionController
             targetCharacter.Id == _characterController.Id ||
             targetCharacter.IsEnemy == _characterController.IsEnemy)
         {
-            return null;
+            //return null;
+            return;
         }
 
-        var particleAffect = Instantiate(ActionReference.ParticleEffect);
-        particleAffect.gameObject.name = $"ParticleAffect_{tile.GridX}_{tile.GridY}";
-        particleAffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
-        particleAffect.Play();
-        Destroy(particleAffect.gameObject, ParticleAffectLifetime);
+        //var particleAffect = Instantiate(ActionReference.ParticleEffect);
+        //particleAffect.gameObject.name = $"ParticleAffect_{tile.GridX}_{tile.GridY}";
+        //particleAffect.transform.position = TileGridController.Instance.GetGrid().GetWorldPositionCentered(tile.GridX, tile.GridY);
+        //particleAffect.Play();
+        //Destroy(particleAffect.gameObject, ParticleAffectLifetime);
 
-        return particleAffect.gameObject;
+        CommandController.Instance.ExecuteCommand(new CreateParticleEffectCommand(ActionReference.ParticleEffect, ParticleAffectLifetime, tile));
+
+        //return particleAffect.gameObject;
     }
 
     protected virtual void ExecuteActionOnCharacter(CharacterController targetCharacter)

@@ -56,12 +56,19 @@ public class CameraZoomer : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Sets the zoom of the camera
+    /// </summary>
     public void setZoom(float inputZoom)
     {
+        transform.position = new Vector3(0, 0, 0);
         transform.Translate(Vector3.forward * -inputZoom);
     }
 
+
+    /// <summary>
+    /// Gets the zoom percentage
+    /// </summary>
     public float getCurrentZoomPercent()
     {
         return transform.position.y / maxZoom;
@@ -76,8 +83,17 @@ public class CameraZoomer : MonoBehaviour
         isCameraLock = true;
     }
 
+    /// <summary>
+    /// Unlocks the Camera Zoomer, allows the Camera Zoomer to be affected by player input. 
+    /// </summary>
     public void unlockCameraZoom()
     {
         isCameraLock = false;
     }
+
+    public Vector3 getCameraZoomPosition()
+    {
+        return transform.localPosition;
+    }
+
 }

@@ -150,6 +150,7 @@ public class MasterCameraScript : MonoBehaviour
     /// </summary>
     public void ResetZoom()
     {
+        CameraZoomer.transform.localPosition = new Vector3(0, 0, 0);
         CameraZoomer.GetComponent<CameraZoomer>().setZoom(resetZoomOut);
     }
 
@@ -168,11 +169,12 @@ public class MasterCameraScript : MonoBehaviour
     /// <summary>
     /// loads the saved camera position
     /// </summary>
-    public void loadCameraPosition()
+    public void loadCameraState()
     {
         this.transform.position = previousMasterCameraPosition;
-
+        this.transform.rotation = previousMasterCameraRotation;
         CameraZoomer.transform.position = previousZoomPosition;
+        CameraZoomer.transform.rotation = CameraZoomer.transform.rotation;
     }
 
     /// <summary>
@@ -204,12 +206,16 @@ public class MasterCameraScript : MonoBehaviour
         );
 
         CommandController.Instance.ExecuteCommand(
-        new MoveCameraCommand(previousMasterCameraPosition, PanSpeed)
+        new LoadCameraStateCommand()
         );
 
-        CommandController.Instance.ExecuteCommand(
-            new RotateCameraCommand(previousMasterCameraRotation, previousZoomRotation)
-        );
+        //CommandController.Instance.ExecuteCommand(
+        //new MoveCameraCommand(previousMasterCameraPosition, PanSpeed)
+        //);
+
+        //CommandController.Instance.ExecuteCommand(
+        //    new RotateCameraCommand(previousMasterCameraRotation, previousZoomRotation)
+        //);
         CommandController.Instance.ExecuteCommand(
         new UnlockCameraCommand()
         );
@@ -281,6 +287,32 @@ public class MasterCameraScript : MonoBehaviour
     public GameObject GetCameraZoomer()
     {
         return CameraZoomer;
+    }
+
+    /// <summary>
+    /// Adds the command to position the camera to see the character and target
+    /// </summary>
+    public void EnterSeeActionCommand()
+    {
+        CommandController.Instance.ExecuteCommand(new ZoomCameraCommand(resetZoomOut));
+    }
+
+
+    /// <summary>
+    /// Adds the command to adjust the zoom of the camera
+    /// </summary>
+    public void EnterZoomCommand(int zoom)
+    {
+        CommandController.Instance.ExecuteCommand(new ZoomCameraCommand(zoom));
+    }
+
+
+    /// <summary>
+    /// Adds the command to adjust the zoom of the camera
+    /// </summary>
+    public void EnterSetZoomCameraPositionCommand(Vector3 position)
+    {
+        CommandController.Instance.ExecuteCommand(new SetZoomCameraPositionCommand(position));
     }
 
 
