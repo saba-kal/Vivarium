@@ -198,6 +198,7 @@ public class CharacterController : MonoBehaviour
     /// <param name="onActionComplete">Callback for when action execution is complete.</param>
     public void PerformAction(Action attack, Tile targetTile, System.Action onActionComplete = null)
     {
+
         var actionController = GetActionController(attack);
         actionController.Execute(targetTile, onActionComplete);
         _hasAttacked = true;
