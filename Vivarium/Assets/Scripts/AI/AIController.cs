@@ -98,7 +98,6 @@ public class AIController : MonoBehaviour
         if (AICanAttack(out var attack, out var targetTile))
         {
             EnterCameraFocusCommand();
-
             _aiCharacter.PerformAction(attack, targetTile, onComplete);
         }
         else

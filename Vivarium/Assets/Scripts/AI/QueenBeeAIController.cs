@@ -103,25 +103,12 @@ public class QueenBeeAIController : AIController
                     ExecuteAction = (action, target, onActionComplete) =>
                     {
                         EnterCameraFocusCommand();
-
-                        var Grid = TileGridController.Instance.GetGrid();
-                        var targetPos = Grid.GetWorldPosition(target.GridX, target.GridY);
-                        var pos = new Vector3((this.transform.position.x + targetPos.x) / 2, (this.transform.position.y + targetPos.y) / 2, (this.transform.position.z + targetPos.z) / 2);
-                        var distance = Mathf.Sqrt(Mathf.Pow(this.transform.position.x - targetPos.x, 2) + Mathf.Pow(this.transform.position.y - targetPos.y, 2) + Mathf.Pow(this.transform.position.z - targetPos.z, 2));
-                        CommandController.Instance.ExecuteCommand(
-                        new MoveCameraCommand(targetPos, 25)
-                        );
-                        //CommandController.Instance.ExecuteCommand(
-                        //new SetZoomCommand(distance)
-                        //);
-
                         if (action.ControllerType == ActionControllerType.MinionSummon)
                         {
                             SummonBee(target, onActionComplete);
                         }
                         else
                         {
-
                             _aiCharacter.PerformAction(action, target, onActionComplete);
                         }
                     }
