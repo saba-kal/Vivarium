@@ -182,13 +182,13 @@ public class MasterCameraScript : MonoBehaviour
     public void EnterCameraFocusCommand(GameObject Character)
     {
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand(0.3f)
+        new WaitCommand()
         );
         CommandController.Instance.ExecuteCommand(
         new MoveCameraCommand(Character.transform.position, PanSpeed, Character)
         );
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand(0.3f)
+        new WaitCommand()
         );
     }
 
@@ -200,7 +200,7 @@ public class MasterCameraScript : MonoBehaviour
     {
         this.gameObject.transform.parent = null;
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand(0.3f)
+        new WaitCommand()
         );
 
         CommandController.Instance.ExecuteCommand(
