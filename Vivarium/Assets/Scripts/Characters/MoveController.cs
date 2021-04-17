@@ -68,7 +68,7 @@ public class MoveController : MonoBehaviour
         _breadthFirstSearch = new BreadthFirstSearch(_grid);
 
         var moveRadius = StatCalculator.CalculateStat(_characterController.Character, StatType.MoveRadius);
-        _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
+        _breadthFirstSearch.Execute(tile, Mathf.RoundToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 
         _waterInRadius = new Dictionary<(int, int), Tile>();
