@@ -9,8 +9,11 @@ public class TutorialManager : MonoBehaviour
     public Queue<string> tutorialPrompts;
     public GameObject screen;
     public Button nextButton;
+    public Button skipButton;
+    public Button backButton;
     private static bool IsTutorial = false;
     private int index;
+    private int maxVisitedIndex;
 
     private bool wPress = false;
     private bool aPress = false;
@@ -20,6 +23,8 @@ public class TutorialManager : MonoBehaviour
     private bool ePress = false;
     private bool scrollIn = false;
     private bool scrollOut = false;
+    private bool objectiveShown = false;
+    private bool cameraReset = false;
 
     private CharacterController enemy;
     private CharacterController player;
@@ -31,31 +36,44 @@ public class TutorialManager : MonoBehaviour
         nextButton.interactable = false;
         enemy = LevelManager.Instance.LevelGenerator.GetEnemyAIManager().AICharacters[0];
         player = LevelManager.Instance.LevelGenerator.PlayerCharacters[0];
+        backButton.interactable = false;
     }
 
     private void Update()
     {
-        if(IsTutorial)
+        if(IsTutorial && index == maxVisitedIndex)
         {
             switch (index)
             {
                 case 0:
-                    Index0();
+                    CameraPan();
                     break;
                 case 1:
-                    Index1();
+                    CameraRotate();
                     break;
                 case 2:
-                    Index2();
+                    CameraZoom();
                     break;
                 case 3:
-                    Index3();
+                    SelectEnemy();
                     break;
                 case 5:
-                    Index5();
+                    SelectPlayer();
                     break;
                 case 6:
-                    Index6();
+                    MoveCharacter();
+                    break;
+                case 7:
+                    SelectAction();
+                    break;
+                case 8:
+                    DamageEnemy();
+                    break;
+                case 10:
+                    ShowObjective();
+                    break;
+                case 11:
+                    LastPrompt();
                     break;
             }
         }
@@ -73,7 +91,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index0()
+    private void CameraPan()
     {
         if (Input.GetKeyDown("w"))
         {
@@ -97,7 +115,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index1()
+    private void CameraRotate()
     {
         if (Input.GetKeyDown("q"))
         {
@@ -113,7 +131,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index2()
+    private void CameraZoom()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0)
         {
@@ -129,7 +147,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index3()
+    private void SelectEnemy()
     {
         if(enemy.getIsSelected())
         {
@@ -137,7 +155,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void Index4()
+    public void EnemyThreatRange()
     {
         if(index == 4)
         {
@@ -145,7 +163,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index5()
+    private void SelectPlayer()
     {
         if(player.getIsSelected())
         {
@@ -153,12 +171,70 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void Index6()
+    private void MoveCharacter()
     {
         if (!player.IsAbleToMove())
         {
             nextButton.interactable = true;
         }
+    }
+
+    public void SelectAction()
+    {
+        if(PlayerController.Instance.GetActionIsSelected())
+        {
+            nextButton.interactable = true;
+        }
+    }
+
+    private void DamageEnemy()
+    {
+        if(enemy.GetHealthController().GetCurrentHealth() < enemy.Character.MaxHealth)
+        {
+            nextButton.interactable = true;
+        }
+    }
+
+    public void EndTurn()
+    {
+        if(IsTutorial)
+        {
+            if(index == 9)
+            {
+                nextButton.interactable = true;
+            }
+        }
+    }
+
+    private void ShowObjective()
+    {
+        if(!objectiveShown)
+        {
+            GameObject objective = LevelManager.Instance.LevelGenerationProfiles[0].VisualSettings.LevelObjectivePrefab;
+            var grid = TileGridController.Instance.GetGrid();
+            var position = grid.GetWorldPositionCentered(25, 25);
+            var camera = GameObject.FindGameObjectWithTag("MasterCamera");
+            camera.GetComponent<MasterCameraScript>().ResetCamera();
+
+            CommandController.Instance.ExecuteCommand(new WaitCommand());
+            CommandController.Instance.ExecuteCommand(new MoveCameraCommand(position, 50));
+            CommandController.Instance.ExecuteCommand(new UnlockCameraCommand());
+
+            objectiveShown = true;
+        }
+        nextButton.interactable = true;
+    }
+
+    private void LastPrompt()
+    {
+        if(!cameraReset)
+        {
+            var camera = GameObject.FindGameObjectWithTag("MasterCamera");
+            camera.GetComponent<MasterCameraScript>().ResetCamera();
+            nextButton.interactable = true;
+            cameraReset = true;
+        }
+
     }
 
     public void Skip()
@@ -184,26 +260,57 @@ public class TutorialManager : MonoBehaviour
     {
         var tutorialManager = TutorialManager.Instance;
         var screen = tutorialManager.screen;
+        var skipButton = tutorialManager.skipButton;
         if (screen != null)
         {
             if (IsTutorial)
             {
                 screen.SetActive(true);
+                skipButton.gameObject.SetActive(true);
             }
             else
             {
                 screen.SetActive(false);
+                skipButton.gameObject.SetActive(false);
             }
         }
     }
 
     public void UpdateIndex(int num)
     {
+        if (num > 0 && index == maxVisitedIndex)
+        {
+            maxVisitedIndex += num;
+        }
         index += num;
+        if(index == 6 && player.getIsSelected() && player.IsAbleToMove())
+        {
+            UpdateTileHighlights();
+        }
     }
 
     public int GetCurrentIndex()
     {
         return index;
+    }
+
+    public int GetMaxVisitedIndex()
+    {
+        return maxVisitedIndex;
+    }
+
+    public bool MoveRestrictionsApply()
+    {
+        return IsTutorial &&
+            index == 6 &&
+            player.getIsSelected() &&
+            player.IsAbleToMove();
+    }
+
+    public void UpdateTileHighlights()
+    {
+        var moveController = player.GetMoveController();
+        moveController.HideMoveRadius();
+        moveController.ShowMoveRadius();
     }
 }

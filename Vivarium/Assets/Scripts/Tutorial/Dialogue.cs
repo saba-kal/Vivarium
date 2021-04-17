@@ -30,7 +30,7 @@ public class Dialogue : MonoBehaviour
         prompts.Add("Left clicking an enemy (outlined in purple) shows their movement range and inventory");
         prompts.Add("Checking the \"Enemy Threat Range\" box toggles on or off tile highlights that show where an enemy could attack after moving");
         prompts.Add("Left clicking your character (outlined in white) selects it");
-        prompts.Add("The highlighted tiles are all the places your character can move. Left click a tile next to the enemy while your character is selected to move there.");
+        prompts.Add("The highlighted tiles are all the places your character can move. Left click the tile next to the enemy while your character is selected to move there.");
         prompts.Add("Select an action from the action menu to perform that action. Click \"Slash\" on the right");
         prompts.Add("With your attack selected, select an enemy in range to attack them. Tiles within your range are highlighted in red");
         prompts.Add("Each character can only use one action and one movement per turn.  Clicking \"End Turn\" allows enemies to take their next turn");
@@ -40,29 +40,66 @@ public class Dialogue : MonoBehaviour
 
     public void NextPrompt()
     {
+        var tutorialManager = TutorialManager.Instance;
+        if (index == 0)
+        {
+            tutorialManager.backButton.interactable = true;
+        }
         if (index < prompts.Count - 1)
         {
             index++;
-            TutorialManager.Instance.UpdateIndex(1);
+            tutorialManager.UpdateIndex(1);
             textDisplay.text = prompts[index];
+            UnityEngine.Debug.Log(index+" "+tutorialManager.GetMaxVisitedIndex());
+            if(index == tutorialManager.GetMaxVisitedIndex())
+            {
+                nextButton.interactable = false;
+            }
             if (index == prompts.Count - 1)
             {
-                UpdateButtons();
+                UpdateButtons(true);
             }
-            nextButton.interactable = false;
+
         }
         else if (index == prompts.Count - 1)
         {
             EndLevel();
         }
-
     }
 
-    private void UpdateButtons()
+    public void PreviousPrompt()
     {
-        buttonText.text = "End Tutorial";
-        skipButton.SetActive(false);
-        //Update to remove skip tutorial button
+        var tutorialManager = TutorialManager.Instance;
+        if (index == prompts.Count - 1)
+        {
+            UpdateButtons(false);
+        }
+        index--;
+        tutorialManager.UpdateIndex(-1);
+        textDisplay.text = prompts[index];
+        if(index == 0)
+        {
+            tutorialManager.backButton.interactable = false;
+        }
+        tutorialManager.nextButton.interactable = true;
+    }
+
+    private void UpdateButtons(bool end)
+    {
+        var tutorialManager = TutorialManager.Instance;
+        if(end)
+        {
+            buttonText.text = "End Tutorial";
+            tutorialManager.nextButton.interactable = true;
+        }
+        else
+        {
+            buttonText.text = "Next";
+        }
+        if (index == 0)
+        {
+            tutorialManager.backButton.gameObject.SetActive(false);
+        }
     }
 
     public void EndLevel()

@@ -378,6 +378,11 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    public bool GetActionIsSelected()
+    {
+        return _actionIsSelected;
+    }
+
     #region UI events
 
     private void OnTrade(CharacterController characterController)
