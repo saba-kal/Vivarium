@@ -302,7 +302,7 @@ public class TutorialManager : MonoBehaviour
     public bool MoveRestrictionsApply()
     {
         return IsTutorial &&
-            index == 6 &&
+            maxVisitedIndex == 6 &&
             player.getIsSelected() &&
             player.IsAbleToMove();
     }
