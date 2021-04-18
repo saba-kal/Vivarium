@@ -378,6 +378,10 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Checks if an action has been selected by the player
+    /// </summary>
+    /// <returns>true if an action is selected, otherwise false</returns>
     public bool GetActionIsSelected()
     {
         return _actionIsSelected;

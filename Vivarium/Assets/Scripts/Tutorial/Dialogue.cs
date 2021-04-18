@@ -4,6 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// Used to display prompts for the tutorial
+/// </summary>
 public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textDisplay;
@@ -21,6 +24,9 @@ public class Dialogue : MonoBehaviour
         textDisplay.text = prompts[0];
     }
 
+    /// <summary>
+    /// Hard codes the prompts for the tutorial
+    /// </summary>
     public void CreatePrompts()
     {
         prompts = new List<string>();
@@ -38,6 +44,9 @@ public class Dialogue : MonoBehaviour
         prompts.Add("Remember, if a character dies before you make it to the exit, it doesn't come back and you've lost that character forever. Good luck and have fun!");
     }
 
+    /// <summary>
+    /// Called by the next button to load the next tutorial prompt
+    /// </summary>
     public void NextPrompt()
     {
         var tutorialManager = TutorialManager.Instance;
@@ -67,6 +76,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called by the back button to load the previous tutorial prompt
+    /// </summary>
     public void PreviousPrompt()
     {
         var tutorialManager = TutorialManager.Instance;
@@ -102,6 +114,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ends tutorial
+    /// </summary>
     public void EndLevel()
     {
         dialogBox.SetActive(false);

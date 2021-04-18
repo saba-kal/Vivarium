@@ -98,7 +98,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void CheckIsTutorial()
+    private void CheckIsTutorial()
     {
         TutorialManager.SetIsTutorial(LevelProfile.IsTutorial);
     }
@@ -427,6 +427,10 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the current enemy AI manager
+    /// </summary>
+    /// <returns><see cref="EnemyAIManager"/></returns>
     public EnemyAIManager GetEnemyAIManager()
     {
         return _enemyAIManager;

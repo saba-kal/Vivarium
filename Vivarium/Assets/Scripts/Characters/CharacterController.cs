@@ -619,6 +619,10 @@ public class CharacterController : MonoBehaviour
         _equippedShieldPosition = itemPosition;
     }
 
+    /// <summary>
+    /// Checks whether this character is currently selected by the user
+    /// </summary>
+    /// <returns>true if the character is selected, otherwise false</returns>
     public bool getIsSelected()
     {
         return _isSelected;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages everything related to the tutorial.  Forces the player to complete the prompted action before continuing.
+/// </summary>
 public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance { get; private set; }
@@ -155,6 +158,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows the player to continue the tutorial if the enemy threat range box is selected at the appropriate time
+    /// </summary>
     public void EnemyThreatRange()
     {
         if(index == 4)
@@ -179,6 +185,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows the player to continue the tutorial if an action is selected at the appropriate time
+    /// </summary>
     public void SelectAction()
     {
         if(PlayerController.Instance.GetActionIsSelected())
@@ -195,6 +204,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows the player to continue the tutorial if their turn is ended at the appropriate time
+    /// </summary>
     public void EndTurn()
     {
         if(IsTutorial)
@@ -237,6 +249,9 @@ public class TutorialManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Skips tutorial
+    /// </summary>
     public void Skip()
     {
         var levelManager = LevelManager.Instance;
@@ -246,16 +261,27 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks if the player is currently playing the tutorial
+    /// </summary>
+    /// <returns>true if they are in the tutorial, otherwise false</returns>
     public static bool GetIsTutorial()
     {
         return IsTutorial;
     }
 
+    /// <summary>
+    /// Sets whether or not the current level is the tutorial
+    /// </summary>
+    /// <param name="isTutorial">true to set it to the tutorial, false to set it to a normal level</param>
     public static void SetIsTutorial(bool isTutorial)
     {
         IsTutorial = isTutorial;
     }
 
+    /// <summary>
+    /// Updates the tutorial UI to be active only when appropriate
+    /// </summary>
     public static void UpdateScreen()
     {
         var tutorialManager = TutorialManager.Instance;
@@ -276,6 +302,10 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adjusts the index signifying the current tutorial prompt being shown to the player
+    /// </summary>
+    /// <param name="num">The amount that the index is adjusted by</param>
     public void UpdateIndex(int num)
     {
         if (num > 0 && index == maxVisitedIndex)
@@ -289,16 +319,28 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the current index signifying the current tutorial prompt being show to the player
+    /// </summary>
+    /// <returns>The index of the current prompt</returns>
     public int GetCurrentIndex()
     {
         return index;
     }
 
+    /// <summary>
+    /// Gets the largest index of all tutorial prompts seen by the player
+    /// </summary>
+    /// <returns>Largest index of all tutorial prompts seen by the player</returns>
     public int GetMaxVisitedIndex()
     {
         return maxVisitedIndex;
     }
 
+    /// <summary>
+    /// Checks if the movement of the player character must be restricted for the sake of the tutorial
+    /// </summary>
+    /// <returns>true if their movement should be restricted, otherwise false</returns>
     public bool MoveRestrictionsApply()
     {
         return IsTutorial &&
@@ -307,6 +349,9 @@ public class TutorialManager : MonoBehaviour
             player.IsAbleToMove();
     }
 
+    /// <summary>
+    /// Updates the tile highlights related to player movement
+    /// </summary>
     public void UpdateTileHighlights()
     {
         var moveController = player.GetMoveController();

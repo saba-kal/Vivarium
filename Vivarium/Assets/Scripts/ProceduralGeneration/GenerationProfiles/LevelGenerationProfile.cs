@@ -31,5 +31,8 @@ public class LevelGenerationProfile : ScriptableObject
 
     public AISettings AISettings;
 
+    /// <summary>
+    /// Shows if this is for the tutorial
+    /// </summary>
     public bool IsTutorial;
 }
