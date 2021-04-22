@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 
+/// <summary>
+/// <see cref="CharacterController"/> for characters that take up more the one tile on the grid.
+/// </summary>
 public class BigCharacterController : CharacterController
 {
     public int CharacterTileSize = 1;
@@ -40,16 +43,22 @@ public class BigCharacterController : CharacterController
         }
     }
 
+    /// <inheritdoc cref="CharacterController.MoveToTile(Tile, System.Action, bool)"/>
     public override void MoveToTile(Tile tile, System.Action onMoveComplete = null, bool skipMovement = false)
     {
         base.MoveToTile(tile, onMoveComplete);
     }
 
+    /// <summary>
+    /// Gets the size of the character.
+    /// </summary>
+    /// <returns>The tile width/height of the character.</returns>
     public int GetSize()
     {
         return CharacterTileSize;
     }
 
+    /// <inheritdoc cref="CharacterController.IsAbleToMoveToTile(Tile)"/>
     public override bool IsAbleToMoveToTile(Tile tile)
     {
         if (tile == null)

@@ -9,7 +9,7 @@ public static class Constants
     public const float AI_DELAY_BETWEEN_ACTIONS = 0.1f;
     public const float PROJECTILE_SPEED = 25f;
     public const int MAX_CHARACTER_ITEMS = 3;
-    public const int MAX_PLAYER_ITEMS = 20;
+    public const int MAX_PLAYER_ITEMS = 21;
     public const float CAMERA_FOLLOW_SKEW = 8f;
     public const float PROJECTILE_HEIGHT = 0.5f;
     public const float AOE_CALCULATION_OFFSET = 0.01f;
@@ -22,6 +22,7 @@ public static class Constants
     public const string CANVAS_TAG = "InGameUICanvas";
     public const string MELEE_WEAPON_TAG = "WeaponMelee";
     public const string RANGED_WEAPON_TAG = "WeaponRanged";
+    public const string BUTTON_INDICATOR_TAG = "ButtonIndicator";
 
     //Common sound names.
     public const string GRID_CELL_CLICK_SOUND = "GridCellClick";

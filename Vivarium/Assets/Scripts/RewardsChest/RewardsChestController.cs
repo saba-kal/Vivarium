@@ -3,6 +3,9 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 
+/// <summary>
+/// Controller for chest animations, adding a chest to a level, and distributing reward when a player is nearby
+/// </summary>
 public class RewardsChestController : MonoBehaviour
 {
     public static RewardsChestController Instance;
@@ -91,6 +94,11 @@ public class RewardsChestController : MonoBehaviour
             _rewardsChests.TryGetValue((tile.GridX - 1, tile.GridY), out rewardsChest);
     }
 
+    /// <summary>
+    /// Adds a chest to a level and checks to see if one exists already
+    /// </summary>
+    /// <param name="tile">List of the available tiles a chest can spawn on</param>
+    /// <param name="loot">Loot table with a list of available rewards from a chest</param>
     public void AddChest(Tile tile, LootTable loot)
     {
         if (RewardsChestPrefab == null)
@@ -113,11 +121,19 @@ public class RewardsChestController : MonoBehaviour
         _rewardsChests.Add((tile.GridX, tile.GridY), rewardsChest);
     }
 
+    /// <summary>
+    /// Initializes the grid
+    /// </summary>
+    /// <param name="grid">The grid of tiles of a level</param>
     public void SetGrid(Grid<Tile> grid)
     {
         _grid = grid;
     }
 
+    /// <summary>
+    /// Disables the chest after it's opened and gives the nearest character an item if they can take it
+    /// </summary>
+    /// <param name="characterController">Controller that keeps track of character specific details</param>
     public void OpenChest(Tile tile, CharacterController characterController)
     {
         if (tile == null || characterController == null ||

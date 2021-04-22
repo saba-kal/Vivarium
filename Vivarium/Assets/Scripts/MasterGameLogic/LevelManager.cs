@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// Handles player progression between levels.
+/// </summary>
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
@@ -52,6 +55,9 @@ public class LevelManager : MonoBehaviour
         //TODO: implement loading here.
     }
 
+    /// <summary>
+    /// Completes the current level and generates the next level.
+    /// </summary>
     public void CompleteLevel()
     {
         if (PlayerData.CurrentLevelIndex + 1 >= LevelGenerationProfiles.Count)
@@ -59,20 +65,36 @@ public class LevelManager : MonoBehaviour
             Debug.Log("You beat the game.");
             UIController.Instance.GameOver("YOU WIN");
         }
+        else if (TutorialManager.GetIsTutorial())
+        {
+            PlayerData.CurrentLevelIndex++;
+            StartLevel(PlayerData.CurrentLevelIndex);
+            TutorialManager.UpdateScreen();
+        }
         else
         {
             PlayerData.CurrentLevelIndex++;
             UIController.Instance.RewardsUIController.ShowRewardsScreen(() =>
             {
                 Debug.Log("Level complete. Generating next level...");
-                LevelGenerator.LevelProfile = LevelGenerationProfiles[PlayerData.CurrentLevelIndex];
-                LevelGenerator.GenerateLevel();
-                LevelGenerator.PlayerController.EnableCharacters();
-                LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
-                LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
+                StartLevel(PlayerData.CurrentLevelIndex);
                 PrepMenuUIController.Instance.Display();
             }, LevelGenerator.LevelProfile.PossilbleRewards);
         }
+    }
+
+    /// <summary>
+    /// Generates and starts a specific level.
+    /// </summary>
+    /// <param name="level">The level number to start.</param>
+    public void StartLevel(int level)
+    {
+        PlayerData.CurrentLevelIndex = level;
+        LevelGenerator.LevelProfile = LevelGenerationProfiles[level];
+        LevelGenerator.GenerateLevel();
+        LevelGenerator.PlayerController.EnableCharacters();
+        LevelGenerator.PlayerController.HealCharacters(LevelGenerator.LevelProfile.OnLevelStartHeal);
+        LevelGenerator.PlayerController.RegenCharacterShields(LevelGenerator.LevelProfile.OnLevelStartShieldRegen);
     }
 
     private void GameOver()

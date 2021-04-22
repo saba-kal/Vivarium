@@ -3,6 +3,9 @@ using UnityEditor;
 using NUnit.Framework;
 using System.Collections.Generic;
 
+/// <summary>
+/// Custom unity editor for <see cref="GridPointCalculator"/>.
+/// </summary>
 [CustomEditor(typeof(GridPointCalculator))]
 public class GridPointCalculatorInspector : Editor
 {

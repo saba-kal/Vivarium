@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool _actionIsSelected = false;
     private bool _tradeIsSelected = false;
     private Action _selectedAction;
+    private UndoMoveController undomoveController;
 
     private void Awake()
     {
@@ -376,6 +377,15 @@ public class PlayerController : MonoBehaviour
 
         characterController = null;
         return false;
+    }
+
+    /// <summary>
+    /// Checks if an action has been selected by the player
+    /// </summary>
+    /// <returns>true if an action is selected, otherwise false</returns>
+    public bool GetActionIsSelected()
+    {
+        return _actionIsSelected;
     }
 
     #region UI events

@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: StrongNailHammer
   m_EditorClassIdentifier: 
   Id: StrongNailHammer
-  Name: Strong Nail Hammer
-  Description: A hammer made from a nail that can knock enemies back.
   ItemFlavorText: {fileID: 11400000, guid: ed5bd754778646845af71c129c9a9699, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: b34400a74e4a81842b915056de5dd204, type: 3}
+  Icon: {fileID: 21300000, guid: acf9482537478dc43a28749a737561ce, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// When a character is selected, changes the position of the camera.
+/// </summary>
 public class UICameraController : MonoBehaviour
 {
     private void Start()

@@ -2,6 +2,9 @@
 using System.Collections;
 using TMPro;
 
+/// <summary>
+/// Shows the current level number. Displayed in the top right of the UI.
+/// </summary>
 public class DisplayCurrentLevel : MonoBehaviour
 {
     public TextMeshProUGUI LevelDisplayText;
@@ -9,6 +12,13 @@ public class DisplayCurrentLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LevelDisplayText.text = $"Level: {PlayerData.CurrentLevelIndex + 1}";
+        if (TutorialManager.GetIsTutorial())
+        {
+            LevelDisplayText.text = $"Level: Tutorial";
+        }
+        else
+        {
+            LevelDisplayText.text = $"Level: {PlayerData.CurrentLevelIndex}";
+        }
     }
 }

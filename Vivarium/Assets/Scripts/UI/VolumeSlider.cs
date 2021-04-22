@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls the sound based on the volume slider UI bar.
+/// </summary>
 public class VolumeSlider : MonoBehaviour
 {
     public Slider VolumeSliderElem;

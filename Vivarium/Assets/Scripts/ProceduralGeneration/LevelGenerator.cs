@@ -2,6 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Randomly generates levels based on a given <see cref="LevelGenerationProfile"/>.
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
     public delegate void LevelGenerationComplete();
@@ -36,17 +39,22 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroys the previous level and generates a new one.
+    /// </summary>
     public void GenerateLevel()
     {
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
+        mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
+        CheckIsTutorial();
         SetupLevelContainer();
         SetupPlayerController();
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
-        this.GetComponent<GenerateObstacles>().generateEnvironment();
+        this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
             this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
@@ -55,6 +63,9 @@ public class LevelGenerator : MonoBehaviour
         OnLevelGenerationComplete?.Invoke();
     }
 
+    /// <summary>
+    /// Destroys the GameObject containing the current level and resets the <see cref="PlayerController"/> if necessary.
+    /// </summary>
     public void DestroyExistingLevel()
     {
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
@@ -76,14 +87,44 @@ public class LevelGenerator : MonoBehaviour
             PlayerController = playerController.GetComponent<PlayerController>();
         }
         _possibleEnemySpawnTiles.Clear();
+
+        //Clears player characters only after tutorial
+        if (TutorialManager.GetIsTutorial())
+        {
+            var characterControllers = new List<CharacterController>();
+            foreach (var characterController in PlayerCharacters)
+            {
+                if (characterController.gameObject.activeSelf)
+                {
+                    Destroy(characterController.gameObject, 0.1f);
+                }
+                characterControllers.Add(characterController);
+            }
+
+            foreach (var characterController in characterControllers)
+            {
+                PlayerCharacters.Remove(characterController);
+            }
+        }
     }
 
+    private void CheckIsTutorial()
+    {
+        TutorialManager.SetIsTutorial(LevelProfile.IsTutorial);
+    }
+
+    /// <summary>
+    /// Sets up a GameObject to contain a level.
+    /// </summary>
     public void SetupLevelContainer()
     {
         _levelContainer = new GameObject("Level");
         _levelContainer.tag = Constants.LEVEL_CONTAINER_TAG;
     }
 
+    /// <summary>
+    /// Sets up the <see cref="PlayerController"/> if it has not been done already.
+    /// </summary>
     public void SetupPlayerController()
     {
         if (PlayerController == null)
@@ -127,13 +168,13 @@ public class LevelGenerator : MonoBehaviour
                 switch (_grid.GetValue(i, j).SpawnType)
                 {
                     case TileSpawnType.Player:
-                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possiblePlayerSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Enemy:
-                        _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleEnemySpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Boss:
-                        _possibleBossSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleBossSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                 }
             }
@@ -157,16 +198,16 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0)
+        if (PlayerCharacters.Count == 0 || !TutorialManager.GetIsTutorial())
         {
             GeneratePlayerCharacters();
         }
 
         if (CharacterReward.rewardLevel)
         {
-            if (PlayerData.CurrentLevelIndex != 0)
+            if (!TutorialManager.GetIsTutorial())
             {
-                CharacterReward.selectedCharacter.SetActive(true);
+                CharacterReward.selectedCharacter?.SetActive(true);
 
                 foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {
@@ -301,10 +342,21 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
-        var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
-        var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
+        Tile tile;
+        int tileXPosition;
+        int tileYPosition;
+        if(TutorialManager.GetIsTutorial() && characterController.IsEnemy)
+        {
+            tile = _possibleEnemySpawnTiles.Values.ToList()[0];
+        }
+        else
+        {
+            tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
+            tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
-        var tile = _grid.GetValue(tileXPosition, tileYPosition);
+            tile = _grid.GetValue(tileXPosition, tileYPosition);
+        }
+
         var iterations = 0;
 
         while (!CharacterCanSpawnOnTile(tile, characterController) &&
@@ -389,5 +441,19 @@ public class LevelGenerator : MonoBehaviour
         {
             rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
         }
+    }
+
+    /// <summary>
+    /// Gets the current enemy AI manager
+    /// </summary>
+    /// <returns><see cref="EnemyAIManager"/></returns>
+    public EnemyAIManager GetEnemyAIManager()
+    {
+        return _enemyAIManager;
+    }
+
+    public Dictionary<(int, int), Tile> GetPossibleEnemySpawnTiles()
+    {
+        return _possibleEnemySpawnTiles;
     }
 }

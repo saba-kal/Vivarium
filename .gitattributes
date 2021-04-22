@@ -121,3 +121,6 @@
 *.DAT filter=lfs diff=lfs merge=lfs -text
 *.exe filter=lfs diff=lfs merge=lfs -text
 
+#exlcuded LFS files/directories
+Vivarium/Documentation/html/* -filter=lfs -diff=lfs -merge=lfs -text
+

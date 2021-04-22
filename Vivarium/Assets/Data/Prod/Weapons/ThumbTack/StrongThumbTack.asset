@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: StrongThumbTack
   m_EditorClassIdentifier: 
   Id: StrongThumbTack
-  Name: Strong Thumb Tack
-  Description: Skewer enemies to deal great damage at the cost of being able to move.
   ItemFlavorText: {fileID: 11400000, guid: 0be6482ac94f15c41b789856f7e0b842, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: f82d5330431a79647b248d186cda5ae1, type: 3}
+  Icon: {fileID: 21300000, guid: a88ab5f348b8f0f49b9b70c796b09590, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: NailHammer
   m_EditorClassIdentifier: 
   Id: NailHammer738
-  Name: Nail Hammer
-  Description: A hammer made from a nail that can knock enemies back.
   ItemFlavorText: {fileID: 11400000, guid: 27670f8d9ebd47d4ba5822818ab2da85, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: 1fb83e22c99463042a795239c3032437, type: 3}
+  Icon: {fileID: 21300000, guid: d5794ed381b3d31439f38fa9e69f917f, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
+/// <inheritdoc cref="IActionController"/>
 public class ActionController : MonoBehaviour, IActionController
 {
     public Action ActionReference;
@@ -169,6 +170,7 @@ public class ActionController : MonoBehaviour, IActionController
         }
     }
 
+    /// <inheritdoc cref="IActionController.CalculateAffectedTiles"/>
     public virtual void CalculateAffectedTiles()
     {
         if (_characterController == null)
@@ -180,6 +182,7 @@ public class ActionController : MonoBehaviour, IActionController
         CalculateAffectedTiles(x, y);
     }
 
+    /// <inheritdoc cref="IActionController.CalculateAffectedTiles"/>
     public virtual void CalculateAffectedTiles(int x, int y)
     {
         var minRange = StatCalculator.CalculateStat(ActionReference, StatType.AttackMinRange);
@@ -187,16 +190,26 @@ public class ActionController : MonoBehaviour, IActionController
         _tilesActionCanAffect = TileGridController.Instance.GetTilesInRadius(x, y, minRange, maxRange);
     }
 
+    /// <summary>
+    /// Gets the tiles that this action can attack. CalculateAffectedTiles must be called first.
+    /// </summary>
+    /// <returns>Position-to-tile dictionary of tiles.</returns>
     public Dictionary<(int, int), Tile> GetAffectedTiles()
     {
         return _tilesActionCanAffect;
     }
 
+    /// <summary>
+    /// Disables the action sound effect.
+    /// </summary>
     public void DisableSound()
     {
         _soundDisabled = true;
     }
 
+    /// <summary>
+    /// Enables the action sound effect.
+    /// </summary>
     public void EnableSound()
     {
         _soundDisabled = false;

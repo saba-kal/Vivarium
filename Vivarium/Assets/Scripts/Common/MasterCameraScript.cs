@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles all the camera controls
+/// </summary>
 public class MasterCameraScript : MonoBehaviour
 {
     private bool isCameraLock;
@@ -56,8 +59,16 @@ public class MasterCameraScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Refreshes the list of player characters the camera can focus on
+    /// </summary>
+    public void refreshFocusCharacters()
+    {
+        focusCharacters = GameObject.FindGameObjectsWithTag("PlayerCharacter");
+    }
 
-    public void checkFocusOnExistingCharacter(KeyCode keycode, int characterIndex)
+
+    private void checkFocusOnExistingCharacter(KeyCode keycode, int characterIndex)
     {
         if (Input.GetKeyDown(keycode))
         {
@@ -69,7 +80,9 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Moves the camera based on the WASD input and the height of the camera. 
+    /// </summary>
     public void checkMoveCamera()
     {
         var zoomPercent = CameraZoomer.GetComponent<CameraZoomer>().getCurrentZoomPercent();
@@ -106,25 +119,9 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
-    private GameObject pivotTile;
-
-    public void rayCastPivot()
-    {
-        int layer_mask = LayerMask.GetMask("FocusPlane");
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, layer_mask))
-        {
-
-            if (!(GameObject.ReferenceEquals(pivotTile, hit.transform.gameObject)))
-            {
-                this.transform.position = new Vector3(hit.transform.position.x, this.transform.position.y, hit.transform.position.z);
-                pivotTile = hit.transform.gameObject;
-            }
-        }
-    }
-
-
+    /// <summary>
+    /// Resets the camera to the default position and rotation
+    /// </summary>
     public void ResetCamera()
     {
         RemoveFocus();
@@ -140,17 +137,25 @@ public class MasterCameraScript : MonoBehaviour
         TurnSystemManager.Instance?.PlayerController.DeselectCharacter();
     }
 
+    /// <summary>
+    /// Unparents the focus gameobject from the camera
+    /// </summary>
     public void RemoveFocus()
     {
         this.gameObject.transform.parent = null;
     }
 
+    /// <summary>
+    /// Resets the Camera zoom to the default zoom
+    /// </summary>
     public void ResetZoom()
     {
         CameraZoomer.GetComponent<CameraZoomer>().setZoom(resetZoomOut);
     }
 
-
+    /// <summary>
+    /// saves the camera position
+    /// </summary>
     public void saveCameraPosition()
     {
         //var newTransform = new Transform();
@@ -160,40 +165,44 @@ public class MasterCameraScript : MonoBehaviour
         previousZoomRotation = CameraZoomer.transform.rotation;
     }
 
+    /// <summary>
+    /// loads the saved camera position
+    /// </summary>
     public void loadCameraPosition()
     {
         this.transform.position = previousMasterCameraPosition;
-        //this.transform.rotation = previousMasterCameraPosition;
 
         CameraZoomer.transform.position = previousZoomPosition;
-        //CameraZoomer.transform.rotation = previousZoomPosition;
     }
 
-
+    /// <summary>
+    /// Adds the command to focus the camera on a character to the execution queue
+    /// </summary>
+    /// <param name="Character">The gameobject the camera will focus on during the command execution</param>
     public void EnterCameraFocusCommand(GameObject Character)
     {
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand()
+        new WaitCommand(0.3f)
         );
         CommandController.Instance.ExecuteCommand(
         new MoveCameraCommand(Character.transform.position, PanSpeed, Character)
         );
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand()
+        new WaitCommand(0.3f)
         );
     }
 
 
+    /// <summary>
+    /// Adds the command to reset the camera to the execution queue.
+    /// </summary>
     public void CameraMoveToReset()
     {
         this.gameObject.transform.parent = null;
         CommandController.Instance.ExecuteCommand(
-        new WaitCommand()
+        new WaitCommand(0.3f)
         );
-        //loadCameraPosition();
-        //CommandController.Instance.ExecuteCommand(
-        //new MoveCameraCommand(new Vector3(0, 0, 0), PanSpeed)
-        //);
+
         CommandController.Instance.ExecuteCommand(
         new MoveCameraCommand(previousMasterCameraPosition, PanSpeed)
         );
@@ -207,6 +216,10 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Changes the focus of the camera to a game object
+    /// </summary>
+    /// <param name="character">The gameobject to be focused on</param>
     public void ChangeFocus(GameObject character)
     {
         if (character != null) // for when character dies
@@ -229,6 +242,9 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Prevents the Camera from being affected by player input
+    /// </summary>
     public void lockCamera()
     {
         isCameraLock = true;
@@ -238,6 +254,9 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Allows the Camera to be affected by player input
+    /// </summary>
     public void unlockCamera()
     {
         isCameraLock = false;
@@ -247,12 +266,18 @@ public class MasterCameraScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Returns the Camera Mover Object
+    /// </summary>
     public GameObject GetCameraMover()
     {
         return CameraMover;
     }
 
 
+    /// <summary>
+    /// Returns the Camera Zoomer Object
+    /// </summary>
     public GameObject GetCameraZoomer()
     {
         return CameraZoomer;

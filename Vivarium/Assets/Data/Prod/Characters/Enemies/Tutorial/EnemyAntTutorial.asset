@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3816b6b7aafb843994695c7ae2c877, type: 3}
+  m_Name: EnemyAntTutorial
+  m_EditorClassIdentifier: 
+  PossibleModels:
+  - {fileID: 106819821670323034, guid: 62b5f05c0b434534a907397e6ea76758, type: 3}
+  PossiblePortraits: []
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 641452da588ade643929340be7a1dad4, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 22eb017b21802db4c958781d91ee95e5, type: 2}
+  Type: 0
+  MaxSummons: 6
+  StartingSummons: 3
+  ActionsPerTurn: 2
+  MinMaxHealth: 30
+  MaxMaxHealth: 30
+  MinAttackDamage: 1
+  MaxAttackDamage: 2
+  MinMoveRange: 2
+  MaxMoveRange: 2
+  MaxItems: 3
+  Aggro: 0
+  NavigableTiles: 00000000
+  CanMoveThroughCharacters: 0
+  WeaponProfile: {fileID: 11400000, guid: cb197bca525e85f4c81fd9f52f8247bf, type: 2}
+  ShieldProfile: {fileID: 0}
+  AttributeProfile: {fileID: 0}
+  AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
+  CharacterLootTable: {fileID: 0}
+  AnimationController: {fileID: 0}

@@ -8,12 +8,21 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
+/// <summary>
+/// Generates a <see cref="Grid"/> of <see cref="Tile"/> based on a given GridGenerationProfile.
+/// </summary>
 public class GridGenerator
 {
 
     private const int MAX_PATH_CREATION_ITERATIONS = 100;
     private bool _includeBossSpawn;
 
+    /// <summary>
+    /// Generates a <see cref="Grid"/> of <see cref="Tile"/> based on a given GridGenerationProfile.
+    /// </summary>
+    /// <param name="gridProfile"><see cref="GridGenerationProfile"/> containing the information used to generate the grid.</param>
+    /// <param name="includeBossSpawn">A bool representing whether or not a boss will be spawned on the grid.</param>
+    /// <returns>A randomly generated <see cref="Grid"/>of <see cref="Tile"/> that will be used for a single level.</returns>
     public Grid<Tile> Generate(GridGenerationProfile gridProfile, bool includeBossSpawn)
     {
         _includeBossSpawn = includeBossSpawn;
@@ -149,7 +158,6 @@ public class GridGenerator
 
     private void SetPossibleObjectiveTiles(Grid<Tile> grid, int objectiveVariation)
     {
-
         for (int i = 0; i <= objectiveVariation; i++)
         {
             for (int j = 0; j <= objectiveVariation; j++)
@@ -161,32 +169,53 @@ public class GridGenerator
 
     private void SetPossiblePlayerSpawn(Grid<Tile> grid)
     {
-        for (int i = 0; i <= 3; i++)
+        if (TutorialManager.GetIsTutorial())
         {
-            for (int j = 0; j <= 3; j++)
+            grid.GetValue(2, 2).SpawnType = TileSpawnType.Player;
+            for (int i = 0; i <= 5; i++)
             {
-                grid.GetValue(i, j).SpawnType = TileSpawnType.Player;
-                grid.GetValue(i, j).Type = TileType.Grass;
+                for (int j = 0; j <= 5; j++)
+                {
+                    grid.GetValue(i, j).Type = TileType.Grass;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= 3; i++)
+            {
+                for (int j = 0; j <= 3; j++)
+                {
+                    grid.GetValue(i, j).SpawnType = TileSpawnType.Player;
+                    grid.GetValue(i, j).Type = TileType.Grass;
+                }
             }
         }
     }
 
     private void SetPossibleEnemySpawn(Grid<Tile> grid)
     {
-        var maxX = grid.GetGrid().GetLength(0);
-        var maxY = grid.GetGrid().GetLength(1);
-        for (int i = 0; i < maxX; i++)
+        if (TutorialManager.GetIsTutorial())
         {
-            for (int j = 0; j < maxY; j++)
+            grid.GetValue(4, 4).SpawnType = TileSpawnType.Enemy;
+        }
+        else
+        {
+            var maxX = grid.GetGrid().GetLength(0);
+            var maxY = grid.GetGrid().GetLength(1);
+            for (int i = 0; i < maxX; i++)
             {
-                //.25 is the percentage of one axis on the grid that will not allow enemies to spawn
-                //1/4 * 1/4 = 1/16 of the grid that enemies cannot spawn at the start
-                //This is to keep enemies from spawning too close to player characters
-                if (i >= maxX * .25 || j >= maxY * .25)
+                for (int j = 0; j < maxY; j++)
                 {
-                    if (grid.GetValue(i, j).SpawnType != TileSpawnType.Objective)
+                    //.25 is the percentage of one axis on the grid that will not allow enemies to spawn
+                    //1/4 * 1/4 = 1/16 of the grid that enemies cannot spawn at the start
+                    //This is to keep enemies from spawning too close to player characters
+                    if (i >= maxX * .25 || j >= maxY * .25)
                     {
-                        grid.GetValue(i, j).SpawnType = TileSpawnType.Enemy;
+                        if (grid.GetValue(i, j).SpawnType != TileSpawnType.Objective)
+                        {
+                            grid.GetValue(i, j).SpawnType = TileSpawnType.Enemy;
+                        }
                     }
                 }
             }
@@ -299,7 +328,12 @@ public class GridGenerator
         }
     }
 
-    private List<Tile> GetPathToObjective(Grid<Tile> grid)
+    /// <summary>
+    /// Finds a path of grass tiles for the player to get to the objective.
+    /// </summary>
+    /// <param name="grid"><see cref="Grid"/> of <see cref="Tile"/> for the current level.</param>
+    /// <returns>List of <see cref="Tile"/> representing the most direct path of grass tiles from the player spawn to the objective.</returns>
+    public List<Tile> GetPathToObjective(Grid<Tile> grid)
     {
         var objectiveTile = grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1);
 

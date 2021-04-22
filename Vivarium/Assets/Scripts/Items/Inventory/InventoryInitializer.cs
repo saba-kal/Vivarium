@@ -3,10 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Initializes the inventories of the player characters and gives them starting items
+/// </summary>
 public class InventoryInitializer : MonoBehaviour
 {
     public List<InventoryItem> StartingItems;
 
+    /// <summary>
+    /// Places the starting items and shield in the player character inventories
+    /// </summary>
+    /// <param name="placeEquippedItems">A bool to check if the starter items are placed in the player inventories</param>
     public void Initialize(bool placeEquippedItems)
     {
         var turnSystemManager = TurnSystemManager.Instance;
