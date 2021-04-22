@@ -130,6 +130,7 @@ public class ConsoleController : MonoBehaviour
 
         Debug.Log($"Setting level to {level}.");
         LevelManager.Instance.StartLevel(level);
+        TutorialManager.UpdateScreen();
     }
 
     private void InfiniteMove()

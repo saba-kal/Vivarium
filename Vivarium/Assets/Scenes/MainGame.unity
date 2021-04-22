@@ -26396,7 +26396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TreasureChestPrefab: {fileID: 7846288545998904556, guid: 22fea9e1de97343439d78f9068486c68, type: 3}
-  LevelProfile: {fileID: 11400000, guid: fba05a5e1b671434f9ebe87fe0e591b2, type: 2}
+  LevelProfile: {fileID: 11400000, guid: f30fe7e5715deb64f81b04042f9ece77, type: 2}
   PlayerCharacters: []
   PlayerController: {fileID: 457365067}
   GenerateLevelOnStart: 1
@@ -26429,6 +26429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelGenerator: {fileID: 542098715}
   LevelGenerationProfiles:
+  - {fileID: 11400000, guid: f30fe7e5715deb64f81b04042f9ece77, type: 2}
   - {fileID: 11400000, guid: fba05a5e1b671434f9ebe87fe0e591b2, type: 2}
   - {fileID: 11400000, guid: b88734bec84ce374da7263ad733de2fa, type: 2}
   - {fileID: 11400000, guid: 0209fc1b948bcdf42aa84a1d4ba23f02, type: 2}
