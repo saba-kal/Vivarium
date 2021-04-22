@@ -12,17 +12,26 @@ public class TileGridView : MonoBehaviour
     public TileGridController GridController;
     public List<TileDisplayInfo> TileInfos;
     public GameObject LevelObjectivePrefab;
+    public GameObject GridObject;
+    public Material GridMaterial;
 
     private Grid<Tile> _grid;
+    private MeshFilter _meshFilter;
+    private MeshRenderer _meshRenderer;
+    private Vector3 _gridOrigin;
 
     /// <summary>
     /// Creates 3D representation of the grid.
     /// </summary>
-    public void CreateGridMesh()
+    public void CreateGridMesh(Vector3 gridOrigin)
     {
+        _gridOrigin = gridOrigin;
+
         DestroyGridMesh();
         GetGridData();
-        CreateTiles();
+        //CreateTiles();
+        CreateGridObject();
+        GenerateMesh();
     }
 
     private void GetGridData()
@@ -87,6 +96,65 @@ public class TileGridView : MonoBehaviour
         {
             DestroyImmediate(tile);
         }
+    }
+
+
+    private void CreateGridObject()
+    {
+        var gridMeshObject = new GameObject("GridMesh");
+        gridMeshObject.transform.SetParent(transform);
+        gridMeshObject.transform.position = _gridOrigin;
+
+        _meshFilter = gridMeshObject.AddComponent<MeshFilter>();
+        _meshRenderer = gridMeshObject.AddComponent<MeshRenderer>();
+    }
+
+    private void GenerateMesh()
+    {
+        var vertices = new List<Vector3>();
+        var triangles = new List<int>();
+
+        var width = _grid.GetGrid().GetLength(0);
+        var height = _grid.GetGrid().GetLength(1);
+        //width = 2;
+        //height = 2;
+
+        var vertexIndex = 0;
+        for (var x = 0; x < width; x++)
+        {
+            for (var y = 0; y < height; y++)
+            {
+                if (_grid.GetValue(x, y).Type == TileType.Water)
+                {
+                    continue;
+                }
+
+                //4 vertices define a square.
+                vertices.Add(new Vector3(x, 0, y));
+                vertices.Add(new Vector3(x, 0, y + 1));
+                vertices.Add(new Vector3(x + 1, 0, y + 1));
+                vertices.Add(new Vector3(x + 1, 0, y));
+
+                //triangle 1.
+                triangles.Add(vertexIndex);
+                triangles.Add(vertexIndex + 1);
+                triangles.Add(vertexIndex + 2);
+
+                //triangle 2.
+                triangles.Add(vertexIndex);
+                triangles.Add(vertexIndex + 2);
+                triangles.Add(vertexIndex + 3);
+
+                vertexIndex += 4;
+            }
+        }
+
+
+        var mesh = new Mesh();
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+
+        _meshFilter.mesh = mesh;
     }
 }
 

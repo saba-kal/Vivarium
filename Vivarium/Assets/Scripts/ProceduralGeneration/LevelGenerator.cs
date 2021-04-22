@@ -54,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
-        this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
+        //this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
             this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
@@ -154,7 +154,7 @@ public class LevelGenerator : MonoBehaviour
         tileGridView.GridController = _gridController;
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
         tileGridView.LevelObjectivePrefab = LevelProfile.VisualSettings.LevelObjectivePrefab;
-        tileGridView.CreateGridMesh();
+        tileGridView.CreateGridMesh(_gridController.GridOrigin);
         GeneratePossibleSpawnTiles();
     }
 
@@ -345,7 +345,7 @@ public class LevelGenerator : MonoBehaviour
         Tile tile;
         int tileXPosition;
         int tileYPosition;
-        if(TutorialManager.GetIsTutorial() && characterController.IsEnemy)
+        if (TutorialManager.GetIsTutorial() && characterController.IsEnemy)
         {
             tile = _possibleEnemySpawnTiles.Values.ToList()[0];
         }
