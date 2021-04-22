@@ -28,13 +28,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
-  MinPlayerCharacters: 3
-  MaxPlayerCharacters: 3
+  MinPlayerCharacters: 7
+  MaxPlayerCharacters: 7
   GuaranteedPlayerCharacters: []
   PossiblePlayerCharacters:
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
   - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: a4ae352bd44a9cf4896c4dc4471f553b, type: 2}
+  - {fileID: 11400000, guid: 7116a7dbe36857b4ab1982e9a4a0c447, type: 2}
+  - {fileID: 11400000, guid: daed7eb291ac1734389d0fc6f20679ef, type: 2}
   StartingItems:
   - Count: 3
     InventoryPosition: 2

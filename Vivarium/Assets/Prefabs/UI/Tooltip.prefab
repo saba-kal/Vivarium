@@ -342,7 +342,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 10
+  m_PixelsPerUnitMultiplier: 20
 --- !u!1 &7133363744151205148
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a489a0bd3d525b4883e6abe5aa75a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 
   TooltipTitle: {fileID: 7133363742851003974}
   TooltipDescription: {fileID: 7133363743249213034}
   BaseHeight: 75

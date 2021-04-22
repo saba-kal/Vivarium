@@ -2,23 +2,17 @@
 using System.Collections;
 using System.Runtime.CompilerServices;
 
+/// <summary>
+/// Handles zooming in the camera
+/// </summary>
 public class CameraZoomer : MonoBehaviour
 {
     private bool isCameraLock;
-    //public float PanSpeed = 20f;
     public float cameraZoomSpeed;
     public float maxZoom;
     public float minZoom;
-    //public float ZoomPositionSpeed = 10f;
-    //public float ZoomRotationSpeed = 50f;
-
-   //public Vector3 MinZoomPosition;
-    //public Vector3 MaxZoomPosition;
-    //public Vector3 MinZoomRotation;
-    //public Vector3 MaxZoomRotation;
 
     private float _currentZoomPercent = 0;
-    //private float _currentZPercent = 0;
 
     private Camera _camera;
 
@@ -73,6 +67,10 @@ public class CameraZoomer : MonoBehaviour
         return transform.position.y / maxZoom;
     }
 
+
+    /// <summary>
+    /// Locks the Camera Zoomer, prevents the Camera Zoomer from being affected by player input. 
+    /// </summary>
     public void lockCameraZoom()
     {
         isCameraLock = true;

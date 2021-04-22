@@ -2,10 +2,17 @@
 using System.Collections;
 using TMPro;
 
+/// <summary>
+/// Shows a text label on a grid cell.
+/// </summary>
 public class TextLabel : MonoBehaviour
 {
     public TextMeshProUGUI TextObject;
 
+    /// <summary>
+    /// Sets the text to show.
+    /// </summary>
+    /// <param name="text">The text to show.</param>
     public void SetText(string text)
     {
         TextObject.text = text;

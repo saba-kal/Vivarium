@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Creates the proper ActionController and ActionViewer for a given action.
+/// </summary>
 public class ActionFactory
 {
+    /// <summary>
+    /// Creates the proper ActionController and ActionViewer for a given action.
+    /// </summary>
+    /// <param name="gameObject">The base gameObject which is used in the creation of the ActionViewer and ActionController.</param>
+    /// <param name="action">The action that the ActionController and ActionViewer are being created for.</param>
+    /// <param name="actionController">Output variable containing the ActionController created within the method.</param>
+    /// <param name="actionViewer">Output variable containing the ActionViewer created within the method.</param>
     public static void Create(
         GameObject gameObject,
         Action action,

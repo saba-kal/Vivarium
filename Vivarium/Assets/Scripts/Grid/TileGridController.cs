@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+/// <summary>
+/// Handles how a <see cref="Grid{T}"/> interacts with the game world.
+/// </summary>
 public class TileGridController : MonoBehaviour
 {
     public delegate void GridCellClick(Tile tile);
@@ -48,6 +51,10 @@ public class TileGridController : MonoBehaviour
         HandleMouseClick();
     }
 
+    /// <summary>
+    /// Initializes the grid.
+    /// </summary>
+    /// <param name="grid">The grid object to initialize. If null, one is created.</param>
     public void Initialize(Grid<Tile> grid = null)
     {
         if (grid == null && string.IsNullOrEmpty(GridData))
@@ -84,12 +91,19 @@ public class TileGridController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clears all grid save data.
+    /// </summary>
     public void ClearGridData()
     {
         GridData = null;
         _grid = null;
     }
 
+    /// <summary>
+    /// Gets whether or not the grid has been generated.
+    /// </summary>
+    /// <returns>Whether or not the grid has been generated.</returns>
     public bool GridIsGenerated()
     {
         return GridData != null && _grid != null;
@@ -161,11 +175,19 @@ public class TileGridController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the <see cref="Grid{T}"/> associated with this grid controller.
+    /// </summary>
+    /// <returns></returns>
     public Grid<Tile> GetGrid()
     {
         return _grid;
     }
 
+    /// <summary>
+    /// Removes any highlights that may be on the grid.
+    /// </summary>
+    /// <param name="highlightRank">The color rank of the highlight.</param>
     public void RemoveHighlights(GridHighlightRank highlightRank)
     {
         if (_gridHighlightObjects.TryGetValue(highlightRank, out var highlightObjects))
@@ -182,6 +204,15 @@ public class TileGridController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Highlights a circle of tiles on the grid.
+    /// </summary>
+    /// <param name="x">X coordinate of the center of the circle.</param>
+    /// <param name="y">Y coordinate of the center of the circle.</param>
+    /// <param name="minRadius">Minimum radius of the circle. Tiles below this radius are not highlighted.</param>
+    /// <param name="maxRadius">Maximum radius of the circle. Tiles above this radius are not highlighted.</param>
+    /// <param name="highlightRank">The color rank of the highlight.</param>
+    /// <returns>Position-to-tile dictionary of all the highlighted tiles.</returns>
     public Dictionary<(int, int), Tile> HighlightRadius(int x, int y, float minRadius, float maxRadius, GridHighlightRank highlightRank)
     {
         return HighlightRadius(x, y, minRadius, maxRadius, highlightRank, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y);
@@ -230,7 +261,25 @@ public class TileGridController : MonoBehaviour
         return existingHighlightedTiles;
     }
 
-    public Dictionary<(int, int), Tile> HighlightColumn(int x, int y, float minColumn, float maxColumn, GridHighlightRank highlightRank, int characterPositionX, int characterPositionY)
+    /// <summary>
+    /// Highlights column of tiles.
+    /// </summary>
+    /// <param name="x">Start x position of the column.</param>
+    /// <param name="y">Start x position of the column.</param>
+    /// <param name="minColumn">Minimum column height.</param>
+    /// <param name="maxColumn">Maximum column height.</param>
+    /// <param name="highlightRank">The color rank of the highlight.</param>
+    /// <param name="characterPositionX">X position of the character requesting the highlight.</param>
+    /// <param name="characterPositionY">Y position of the character requesting the highlight.</param>
+    /// <returns>Position-to-tile dictionary of all the highlighted tiles.</returns>
+    public Dictionary<(int, int), Tile> HighlightColumn(
+        int x,
+        int y,
+        float minColumn,
+        float maxColumn,
+        GridHighlightRank highlightRank,
+        int characterPositionX,
+        int characterPositionY)
     {
         return HighlightColumn(x, y, minColumn, maxColumn, highlightRank, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y, characterPositionX, characterPositionY);
     }
@@ -294,6 +343,14 @@ public class TileGridController : MonoBehaviour
         return existingHighlightedTiles;
     }
 
+    /// <summary>
+    /// Gets tile in a circle radius.
+    /// </summary>
+    /// <param name="x">X coordinate of the center of the circle.</param>
+    /// <param name="y">Y coordinate of the center of the circle.</param>
+    /// <param name="minRadius">Minimum radius of the circle. Tiles below this radius are not highlighted.</param>
+    /// <param name="maxRadius">Maximum radius of the circle. Tiles above this radius are not highlighted.</param>
+    /// <returns>Position-to-tile dictionary of the tiles.</returns>
     public Dictionary<(int, int), Tile> GetTilesInRadius(int x, int y, float minRadius, float maxRadius)
     {
         return GetTilesInRadius(x, y, minRadius, maxRadius, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y);
@@ -340,6 +397,16 @@ public class TileGridController : MonoBehaviour
         return tilesInRadius;
     }
 
+    /// <summary>
+    /// Gets column of tiles.
+    /// </summary>
+    /// <param name="x">Start x position of the column.</param>
+    /// <param name="y">Start x position of the column.</param>
+    /// <param name="minColumn">Minimum column height.</param>
+    /// <param name="maxColumn">Maximum column height.</param>
+    /// <param name="characterPositionX">X position of the character requesting the highlight.</param>
+    /// <param name="characterPositionY">Y position of the character requesting the highlight.</param>
+    /// <returns>Position-to-tile dictionary of the tiles.</returns>
     public Dictionary<(int, int), Tile> GetTilesInColumn(int x, int y, float minColumn, float maxColumn, int characterPositionX, int characterPositionY)
     {
         return GetTilesInColumn(x, y, minColumn, maxColumn, new Dictionary<(int, int), Tile>(), new Dictionary<(int, int), Tile>(), x, y, characterPositionX, characterPositionY);
@@ -402,11 +469,21 @@ public class TileGridController : MonoBehaviour
         return tilesInColumn;
     }
 
+    /// <summary>
+    /// Highlights a dictionary of tiles.
+    /// </summary>
+    /// <param name="tiles">The position-to-tile dictionary of tiles to highlight.</param>
+    /// <param name="highlightRank">The color rank of the highlight.</param>
     public void HighlightTiles(Dictionary<(int, int), Tile> tiles, GridHighlightRank highlightRank)
     {
         HighlightTiles(tiles.Values.ToList(), highlightRank);
     }
 
+    /// <summary>
+    /// Highlights a list of tiles.
+    /// </summary>
+    /// <param name="tiles">THe list of tiles to highlight.</param>
+    /// <param name="highlightRank">The color rank of the highlight.</param>
     public void HighlightTiles(List<Tile> tiles, GridHighlightRank highlightRank)
     {
         foreach (var tile in tiles)
@@ -451,30 +528,11 @@ public class TileGridController : MonoBehaviour
         }
     }
 
-    public Tile GetClosestTile(
-        Vector3 fromPosition,
-        Vector3 toPosition,
-        float range,
-        out float resultDistance)
-    {
-        var gridTileInLine = _grid.GetLine(fromPosition, toPosition);
-        Tile closestTile = null;
-        resultDistance = float.MaxValue;
-
-        foreach (var tile in gridTileInLine)
-        {
-            var tileWorldPos = _grid.GetWorldPositionCentered(tile.GridX, tile.GridY);
-            var distance = Vector3.Distance(tileWorldPos, fromPosition);
-            if (distance < range && !TileContainsCharacter(tile))
-            {
-                closestTile = tile;
-                resultDistance = distance;
-            }
-        }
-
-        return closestTile;
-    }
-
+    /// <summary>
+    /// Determines whether or not a tile contains a character.
+    /// </summary>
+    /// <param name="tile">The tile to check if there is a character.</param>
+    /// <returns>Whether or not the given tile contains a character.</returns>
     public bool TileContainsCharacter(Tile tile)
     {
         foreach (var character in _allCharacters)
@@ -489,11 +547,23 @@ public class TileGridController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Gets the tile that the mouse is hovering over.
+    /// </summary>
+    /// <returns>Tile that the mouse is hovering over.</returns>
     public Tile GetMouseHoverTile()
     {
         return _mouseHoverTile;
     }
 
+    /// <summary>
+    /// Gets tiles adjacent to the given tile.
+    /// </summary>
+    /// <param name="tile">The tile to get adjacent tiles of.</param>
+    /// <param name="type">Type of tiles to get.</param>
+    /// <param name="includeDiagonals">Whether or not to also get diagonal tiles.</param>
+    /// <param name="excludedTiles">Tiles to exclude from the result.</param>
+    /// <returns>List of tiles adjacent to the given tile.</returns>
     public List<Tile> GetAdjacentTiles(
         Tile tile,
         TileType type,

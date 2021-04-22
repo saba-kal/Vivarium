@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Custom unity editor for <see cref="TileGridView"/>.
+/// </summary>
 [CustomEditor(typeof(TileGridView))]
 public class TileGridViewInspector : Editor
 {

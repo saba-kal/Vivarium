@@ -2,6 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Randomly generates levels based on a given <see cref="LevelGenerationProfile"/>.
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
     public delegate void LevelGenerationComplete();
@@ -36,9 +39,13 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroys the previous level and generates a new one.
+    /// </summary>
     public void GenerateLevel()
     {
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
+        mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
         CheckIsTutorial();
@@ -47,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
-        this.GetComponent<GenerateObstacles>().generateEnvironment();
+        this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
             this.GetComponent<EnemyThreatRangeViewer>()?.CalculateThreatRange();
@@ -56,6 +63,9 @@ public class LevelGenerator : MonoBehaviour
         OnLevelGenerationComplete?.Invoke();
     }
 
+    /// <summary>
+    /// Destroys the GameObject containing the current level and resets the <see cref="PlayerController"/> if necessary.
+    /// </summary>
     public void DestroyExistingLevel()
     {
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
@@ -103,12 +113,18 @@ public class LevelGenerator : MonoBehaviour
         TutorialManager.SetIsTutorial(LevelProfile.IsTutorial);
     }
 
+    /// <summary>
+    /// Sets up a GameObject to contain a level.
+    /// </summary>
     public void SetupLevelContainer()
     {
         _levelContainer = new GameObject("Level");
         _levelContainer.tag = Constants.LEVEL_CONTAINER_TAG;
     }
 
+    /// <summary>
+    /// Sets up the <see cref="PlayerController"/> if it has not been done already.
+    /// </summary>
     public void SetupPlayerController()
     {
         if (PlayerController == null)
@@ -152,13 +168,13 @@ public class LevelGenerator : MonoBehaviour
                 switch (_grid.GetValue(i, j).SpawnType)
                 {
                     case TileSpawnType.Player:
-                        _possiblePlayerSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possiblePlayerSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Enemy:
-                        _possibleEnemySpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleEnemySpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                     case TileSpawnType.Boss:
-                        _possibleBossSpawnTiles.Add((i, j), _grid.GetValue(i, j));
+                        _possibleBossSpawnTiles[(i, j)] = _grid.GetValue(i, j);
                         break;
                 }
             }
@@ -191,7 +207,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (!TutorialManager.GetIsTutorial())
             {
-                CharacterReward.selectedCharacter.SetActive(true);
+                CharacterReward.selectedCharacter?.SetActive(true);
 
                 foreach (var characterGameObject in CharacterReward.characterGameObjects)
                 {

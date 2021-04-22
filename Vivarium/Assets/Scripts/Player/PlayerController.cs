@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool _actionIsSelected = false;
     private bool _tradeIsSelected = false;
     private Action _selectedAction;
+    private UndoMoveController undomoveController;
 
     private void Awake()
     {

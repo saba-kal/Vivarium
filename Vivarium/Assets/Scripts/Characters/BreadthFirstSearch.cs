@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 
+/// <summary>
+/// Class for executing the Breadth-first Search path finding algorithm.
+/// </summary>
 public class BreadthFirstSearch
 {
     private Tile[,] _grid;
@@ -9,12 +12,23 @@ public class BreadthFirstSearch
     private Dictionary<(int, int), Tile> _visitedTiles;
     private readonly bool _ignoreCharacters = false;
 
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="grid">The grid to execute path finding on. If null, one will be retrieved from the singleton.</param>
+    /// <param name="ignoreCharacters">If true, path finding will ignore character positions.</param>
     public BreadthFirstSearch(Grid<Tile> grid = null, bool ignoreCharacters = false)
     {
         Reset(grid);
         _ignoreCharacters = ignoreCharacters;
     }
 
+    /// <summary>
+    /// Executes the Breadth-first Search path finding algorithm.
+    /// </summary>
+    /// <param name="startingTile">The tile to start on.</param>
+    /// <param name="maxSteps">The number of steps to take before stopping calculation.</param>
+    /// <param name="navigableTiles">List of <see cref="TileType"/> to navigate.</param>
     public void Execute(Tile startingTile, int maxSteps, List<TileType> navigableTiles)
     {
         var queue = new Queue<Tile>();
@@ -69,7 +83,7 @@ public class BreadthFirstSearch
         _bfsGrid[x, y].Steps = _bfsGrid[fromTile.GridX, fromTile.GridY].Steps + 1;
 
         //Number of steps must be less than the character's move range.
-        if (_bfsGrid[x, y].Steps < maxSteps)
+        if (_bfsGrid[x, y].Steps <= maxSteps)
         {
             _bfsGrid[x, y].Visited = true;
             //Store the path it takes to get to the tile. This will later be used to move the character object.
@@ -82,16 +96,29 @@ public class BreadthFirstSearch
         return false;
     }
 
+    /// <summary>
+    /// Gets the calculated path.
+    /// </summary>
+    /// <param name="toTile">The destination tile.</param>
+    /// <returns>A list of <see cref="Tile"> representing the computed path.</returns>
     public List<Tile> GetPathToTile(Tile toTile)
     {
         return _bfsGrid[toTile.GridX, toTile.GridY].Path;
     }
 
+    /// <summary>
+    /// Gets all visited <see cref="Tile"/>.
+    /// </summary>
+    /// <returns>Position-to-tile dictionary of all visited <see cref="Tile"/>.</returns>
     public Dictionary<(int, int), Tile> GetVisitedTiles()
     {
         return _visitedTiles;
     }
 
+    /// <summary>
+    /// Resets the path finding algorithm.
+    /// </summary>
+    /// <param name="grid">If provided, the new grid to represent after the reset.</param>
     public void Reset(Grid<Tile> grid = null)
     {
         if (grid != null)
@@ -114,9 +141,23 @@ public class BreadthFirstSearch
     }
 }
 
+/// <summary>
+/// Used by <see cref="BreadthFirstSearch"/> to represent individual tiles.
+/// </summary>
 public class BFSTile
 {
+    /// <summary>
+    /// Whether or not this tile was visited by <see cref="BreadthFirstSearch"/>.
+    /// </summary>
     public bool Visited = false;
+
+    /// <summary>
+    /// The number of steps that was taken to reach this tile.
+    /// </summary>
     public int Steps = 0;
+
+    /// <summary>
+    /// The path required to reach this tile.
+    /// </summary>
     public List<Tile> Path = new List<Tile>();
 }

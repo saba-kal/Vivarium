@@ -2,6 +2,9 @@
 using System.Collections;
 using TMPro;
 
+/// <summary>
+/// Logic for what the tool tip displays. 
+/// </summary>
 public class TooltipView : MonoBehaviour
 {
     public string Id;
@@ -9,6 +12,10 @@ public class TooltipView : MonoBehaviour
     public TextMeshProUGUI TooltipDescription;
     public float BaseHeight = 100f;
 
+    /// <summary>
+    /// Displays the stats for an action
+    /// </summary>
+    /// <param name="action">The action to be displayed by the tool tip</param>
     public void DisplayAction(Action action)
     {
         var maxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
@@ -33,6 +40,10 @@ public class TooltipView : MonoBehaviour
         Id = $"Action - {action.Id}";
     }
 
+    /// <summary>
+    /// Displays the stats for an item
+    /// </summary>
+    /// <param name="item">The item to be displayed by the tool tip</param>
     public void DisplayItem(Item item)
     {
         TooltipTitle.text = item.Flavor.Name;
@@ -52,6 +63,10 @@ public class TooltipView : MonoBehaviour
         Id = $"Item - {item.Id}";
     }
 
+    /// <summary>
+    /// Displays the stats of the character
+    /// </summary>
+    /// <param name="character">The character to be displayed by the tool tip</param>
     public void DisplayCharacter(Character character)
     {
         TooltipTitle.text = character.Flavor.Name;
@@ -64,6 +79,10 @@ public class TooltipView : MonoBehaviour
         Id = $"Character - {character.Id}";
     }
 
+    /// <summary>
+    /// Displays the stats of a weapon
+    /// </summary>
+    /// <param name="weapon">The weapon to be displayed by the tool tip</param>
     private void DisplayWeaponStats(Weapon weapon)
     {
         var weaponStats = "\n\n<size=120%>Actions:</size>";
@@ -86,11 +105,18 @@ public class TooltipView : MonoBehaviour
         TooltipDescription.text += weaponStats;
     }
 
+    /// <summary>
+    /// Displays the stats of a shield
+    /// </summary>
+    /// <param name="shield">The shield to be displayed by the tool tip</param>
     private void DisplayShieldStats(Shield shield)
     {
         TooltipDescription.text += $"\n - Shield amount: {shield.Health:n0}";
     }
 
+    /// <summary>
+    /// Calculates the height of the tool tip based on the title and description
+    /// </summary>
     private void CalculateTooltipHeight()
     {
         var rectTransform = transform as RectTransform;

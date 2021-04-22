@@ -4,6 +4,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+/// <summary>
+/// Creates the visual game objects that represent the grid.
+/// </summary>
 public class TileGridView : MonoBehaviour
 {
     public TileGridController GridController;
@@ -12,6 +15,9 @@ public class TileGridView : MonoBehaviour
 
     private Grid<Tile> _grid;
 
+    /// <summary>
+    /// Creates 3D representation of the grid.
+    /// </summary>
     public void CreateGridMesh()
     {
         DestroyGridMesh();
@@ -71,6 +77,9 @@ public class TileGridView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroys all the game objects created by this class.
+    /// </summary>
     public void DestroyGridMesh()
     {
         var tiles = GameObject.FindGameObjectsWithTag(Constants.TILE_GRID_TAG);

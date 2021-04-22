@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+/// <summary>
+/// Handles UI functionality for the preparation menu screen.
+/// </summary>
 public class PrepMenuUIController : MonoBehaviour
 {
     public static PrepMenuUIController Instance { get; private set; }
@@ -13,11 +16,11 @@ public class PrepMenuUIController : MonoBehaviour
     public Button PlayButton;
     public Button PreviewMapButton;
     public Button PreviewBackButton;
-    public Button PauseButton;
+    public Button UndoMoveButton;
     public Button EndTurnButton;
-    public GameObject PlayerInventoryOutline;
 
     private List<CharacterDetailsProfile> _existingProfiles = new List<CharacterDetailsProfile>();
+    private MasterCameraScript _masterCamera;
 
     private void Awake()
     {
@@ -48,32 +51,44 @@ public class PrepMenuUIController : MonoBehaviour
         PreviewMapButton.onClick.AddListener(() =>
         {
             PrepMenu.SetActive(false);
+            PreviewBackButton.gameObject.SetActive(true);
+            _masterCamera?.unlockCamera();
         });
         PreviewBackButton.onClick.AddListener(() =>
         {
             PrepMenu.SetActive(true);
+            PreviewBackButton.gameObject.SetActive(false);
+            _masterCamera?.lockCamera();
         });
         PlayButton.onClick.AddListener(() =>
         {
             TurnSystemManager.Instance.PlayerController.EnableCharacters();
             PreviewBackButton.gameObject.SetActive(false);
-            PauseButton?.gameObject.SetActive(true);
+            UndoMoveButton?.gameObject.SetActive(true);
             EndTurnButton?.gameObject.SetActive(true);
+            _masterCamera?.unlockCamera();
         });
+
+
+        var mainCamera = GameObject.FindGameObjectWithTag("MasterCamera");
+        _masterCamera = mainCamera.GetComponent<MasterCameraScript>();
     }
 
+    /// <summary>
+    /// Displays the prep menu screen.
+    /// </summary>
     public void Display()
     {
         TurnSystemManager.Instance.PlayerController.DisableCharacters();
-        PreviewBackButton.gameObject.SetActive(true);
-        PauseButton?.gameObject.SetActive(false);
+        PreviewBackButton.gameObject.SetActive(false);
+        UndoMoveButton?.gameObject.SetActive(false);
         EndTurnButton?.gameObject.SetActive(false);
-        PlayerInventoryOutline.SetActive(false);
         CleanupExistingPrepMenu();
         PrepMenu.SetActive(true);
         DisplayCharacters();
         PlayerInventoryView.Display();
         ValidateInventories();
+        _masterCamera?.lockCamera();
     }
 
     private void CleanupExistingPrepMenu()
@@ -123,15 +138,6 @@ public class PrepMenuUIController : MonoBehaviour
 
     private void OnInvetorySlotDrag(InventorySlot inventorySlot)
     {
-        if (RectTransformUtility.RectangleContainsScreenPoint(PlayerInventoryView.transform as RectTransform, Input.mousePosition))
-        {
-            PlayerInventoryOutline.SetActive(true);
-        }
-        else
-        {
-            PlayerInventoryOutline.SetActive(false);
-        }
-
         foreach (var profileObject in _existingProfiles)
         {
             if (CharacterHasRoomForItem(inventorySlot.GetItem(), profileObject.GetCharacter()) &&

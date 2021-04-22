@@ -22,7 +22,6 @@ public class UnitInspectionController : MonoBehaviour
 
     public GameObject ActionButtonsContainer;
     public Button ActionButtonPrefab;
-    public GameObject SelectedButtonIndicatorPrefab;
 
     public TextMeshProUGUI UnitNameText;
     public TextMeshProUGUI UnitStatsText;
@@ -160,12 +159,25 @@ public class UnitInspectionController : MonoBehaviour
 
     private void UpdateSelectedActionIndicator(Button selectedAction)
     {
-        if (_selectedButtonIndicator == null)
+        SetSelectedIndicatorEnabled(_moveButton, false);
+        SetSelectedIndicatorEnabled(_tradeButton, false);
+        foreach (var actionButton in _weaponActionButtons)
         {
-            _selectedButtonIndicator = Instantiate(SelectedButtonIndicatorPrefab);
+            SetSelectedIndicatorEnabled(actionButton, false);
         }
 
-        _selectedButtonIndicator.transform.SetParent(selectedAction.transform, false);
+        SetSelectedIndicatorEnabled(selectedAction, true);
+    }
+
+    private void SetSelectedIndicatorEnabled(Button actionButton, bool enabled)
+    {
+        if (actionButton == null)
+        {
+            return;
+        }
+
+        var indicator = Utils.FindObjectWithTag(actionButton.gameObject, Constants.BUTTON_INDICATOR_TAG);
+        indicator?.SetActive(enabled);
     }
 
     /// <summary>
@@ -189,6 +201,19 @@ public class UnitInspectionController : MonoBehaviour
         _charactersWithDisabledActions = new List<string>();
         _charactersWithDisabledMoves = new List<string>();
         _charactersWithDisabledTrade = new List<string>();
+    }
+
+    /// <summary>
+    /// Enables the move action for a character.
+    /// </summary>
+    /// <param name="characterId">The ID of the character to enable move for.</param>
+    public void EnableMoveForCharacter(string characterId)
+    {
+        var isSuccessful = _charactersWithDisabledMoves.Remove(characterId);
+        if (isSuccessful && _characterController != null)
+        {
+            Display(_characterController);
+        }
     }
 
     /// <summary>

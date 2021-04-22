@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays hover text for UI elements
+/// </summary>
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
@@ -83,46 +86,77 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         tooltipRectTransform.transform.position = new Vector2(xPosition, yPosition);
     }
 
+    /// <summary>
+    /// Hides tool tip popup
+    /// </summary>
     public void HideTooltip()
     {
         _activeTooltip = null;
         _mouseIsHoveringOverElement = false;
     }
 
+    /// <summary>
+    /// Defines the item for the tool tip to describe
+    /// </summary>
+    /// <param name="item">The item that the tool tip will describe</param>
     public void SetTooltipData(Item item)
     {
         _type = TooltipType.Item;
         ItemToShow = item;
     }
 
+    /// <summary>
+    /// Defines the action the tool tip will describe
+    /// </summary>
+    /// <param name="action">The action that the tool tip will describe</param>
     public void SetTooltipData(Action action)
     {
         _type = TooltipType.Action;
         ActionToShow = action;
     }
 
+    /// <summary>
+    /// Defines the character the tool tip will describe
+    /// </summary>
+    /// <param name="character">The character the tool tip will describe</param>
     public void SetTooltipData(Character character)
     {
         _type = TooltipType.Character;
         CharacterToShow = character;
     }
 
+    /// <summary>
+    /// Detects if the mouse is pointing at a UI element
+    /// </summary>
+    /// <param name="eventData">The mouse point event</param>
     public void OnPointerEnter(PointerEventData eventData)
     {
         _mouseIsHoveringOverElement = true;
     }
 
+    /// <summary>
+    /// Detects if the mouse is no longer pointing at a UI element
+    /// </summary>
+    /// <param name="eventData">the mouse point event</param>
     public void OnPointerExit(PointerEventData eventData)
     {
         _mouseIsHoveringOverElement = false;
     }
 
+    /// <summary>
+    /// Sees if the tool tip can display the data
+    /// </summary>
+    /// <returns>Returns a bool depending on if the tool tip can display data</returns>
     public bool CanDisplayData()
     {
         return (ItemToShow != null || ActionToShow != null) &&
             _mouseIsHoveringOverElement;
     }
 
+    /// <summary>
+    /// Defines the gameobject the tool tip UI will appear on
+    /// </summary>
+    /// <param name="activeTooltip"></param>
     public void SetActive(GameObject activeTooltip)
     {
         _activeTooltip = activeTooltip;

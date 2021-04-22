@@ -31,6 +31,7 @@ public class TutorialManager : MonoBehaviour
 
     private CharacterController enemy;
     private CharacterController player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +45,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Update()
     {
-        if(IsTutorial && index == maxVisitedIndex)
+        if (IsTutorial && index == maxVisitedIndex)
         {
             switch (index)
             {
@@ -136,11 +137,11 @@ public class TutorialManager : MonoBehaviour
 
     private void CameraZoom()
     {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             scrollIn = true;
         }
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             scrollOut = true;
         }
@@ -152,7 +153,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SelectEnemy()
     {
-        if(enemy.getIsSelected())
+        if (enemy.getIsSelected())
         {
             nextButton.interactable = true;
         }
@@ -163,7 +164,7 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     public void EnemyThreatRange()
     {
-        if(index == 4)
+        if (index == 4)
         {
             nextButton.interactable = true;
         }
@@ -171,7 +172,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SelectPlayer()
     {
-        if(player.getIsSelected())
+        if (player.getIsSelected())
         {
             nextButton.interactable = true;
         }
@@ -190,7 +191,7 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     public void SelectAction()
     {
-        if(PlayerController.Instance.GetActionIsSelected())
+        if (PlayerController.Instance.GetActionIsSelected())
         {
             nextButton.interactable = true;
         }
@@ -198,7 +199,7 @@ public class TutorialManager : MonoBehaviour
 
     private void DamageEnemy()
     {
-        if(enemy.GetHealthController().GetCurrentHealth() < enemy.Character.MaxHealth)
+        if (enemy.GetHealthController().GetCurrentHealth() < enemy.Character.MaxHealth)
         {
             nextButton.interactable = true;
         }
@@ -209,9 +210,9 @@ public class TutorialManager : MonoBehaviour
     /// </summary>
     public void EndTurn()
     {
-        if(IsTutorial)
+        if (IsTutorial)
         {
-            if(index == 9)
+            if (index == 9)
             {
                 nextButton.interactable = true;
             }
@@ -220,7 +221,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ShowObjective()
     {
-        if(!objectiveShown)
+        if (!objectiveShown)
         {
             GameObject objective = LevelManager.Instance.LevelGenerationProfiles[0].VisualSettings.LevelObjectivePrefab;
             var grid = TileGridController.Instance.GetGrid();
@@ -228,7 +229,7 @@ public class TutorialManager : MonoBehaviour
             var camera = GameObject.FindGameObjectWithTag("MasterCamera");
             camera.GetComponent<MasterCameraScript>().ResetCamera();
 
-            CommandController.Instance.ExecuteCommand(new WaitCommand());
+            CommandController.Instance.ExecuteCommand(new WaitCommand(0.5f));
             CommandController.Instance.ExecuteCommand(new MoveCameraCommand(position, 50));
             CommandController.Instance.ExecuteCommand(new UnlockCameraCommand());
 
@@ -239,7 +240,7 @@ public class TutorialManager : MonoBehaviour
 
     private void LastPrompt()
     {
-        if(!cameraReset)
+        if (!cameraReset)
         {
             var camera = GameObject.FindGameObjectWithTag("MasterCamera");
             camera.GetComponent<MasterCameraScript>().ResetCamera();
@@ -313,7 +314,7 @@ public class TutorialManager : MonoBehaviour
             maxVisitedIndex += num;
         }
         index += num;
-        if(index == 6 && player.getIsSelected() && player.IsAbleToMove())
+        if (index == 6 && player.getIsSelected() && player.IsAbleToMove())
         {
             UpdateTileHighlights();
         }

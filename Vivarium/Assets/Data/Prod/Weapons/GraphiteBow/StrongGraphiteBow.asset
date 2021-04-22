@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: StrongGraphiteBow
   m_EditorClassIdentifier: 
   Id: StrongGraphiteBow
-  Name: Strong Graphite Bow
-  Description: A bow that allows the player to fire attacks from long range
   ItemFlavorText: {fileID: 11400000, guid: 4385a00a0c5ffc841ac0f4a7aca612c1, type: 2}
   Type: 1
-  Icon: {fileID: 21300000, guid: c8df95be2204f404aa7292d27615ded6, type: 3}
+  Icon: {fileID: 21300000, guid: 28d882832974317479b63447ce0ab8b7, type: 3}
   Model: {fileID: 0}
   CanBeStacked: 0
   Attributes: []

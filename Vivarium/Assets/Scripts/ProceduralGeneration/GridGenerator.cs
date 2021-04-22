@@ -8,12 +8,21 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
+/// <summary>
+/// Generates a <see cref="Grid"/> of <see cref="Tile"/> based on a given GridGenerationProfile.
+/// </summary>
 public class GridGenerator
 {
 
     private const int MAX_PATH_CREATION_ITERATIONS = 100;
     private bool _includeBossSpawn;
 
+    /// <summary>
+    /// Generates a <see cref="Grid"/> of <see cref="Tile"/> based on a given GridGenerationProfile.
+    /// </summary>
+    /// <param name="gridProfile"><see cref="GridGenerationProfile"/> containing the information used to generate the grid.</param>
+    /// <param name="includeBossSpawn">A bool representing whether or not a boss will be spawned on the grid.</param>
+    /// <returns>A randomly generated <see cref="Grid"/>of <see cref="Tile"/> that will be used for a single level.</returns>
     public Grid<Tile> Generate(GridGenerationProfile gridProfile, bool includeBossSpawn)
     {
         _includeBossSpawn = includeBossSpawn;
@@ -319,7 +328,12 @@ public class GridGenerator
         }
     }
 
-    private List<Tile> GetPathToObjective(Grid<Tile> grid)
+    /// <summary>
+    /// Finds a path of grass tiles for the player to get to the objective.
+    /// </summary>
+    /// <param name="grid"><see cref="Grid"/> of <see cref="Tile"/> for the current level.</param>
+    /// <returns>List of <see cref="Tile"/> representing the most direct path of grass tiles from the player spawn to the objective.</returns>
+    public List<Tile> GetPathToObjective(Grid<Tile> grid)
     {
         var objectiveTile = grid.GetValue(grid.GetGrid().GetLength(0) - 1, grid.GetGrid().GetLength(1) - 1);
 

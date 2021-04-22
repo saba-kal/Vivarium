@@ -2,26 +2,59 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Utility to calculate the stat of character, actions, and interactions betwene character and actions
+/// </summary>
 public static class StatCalculator
 {
+    /// <summary>
+    /// Calculates the stat of an action
+    /// </summary>
+    /// <param name="action">Action involved in stat calculation</param>
+    /// <param name="statType">The stype of stat</param>
+    /// <param name="calcType">The type of calculation</param>
+    /// <returns></returns>
     public static float CalculateStat(Action action, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromAction(action, statType);
         return CalculateStat(baseValue, statType, action.Attributes, calcType);
     }
 
+    /// <summary>
+    /// Calculates the stat of a character
+    /// </summary>
+    /// <param name="character"></param>
+    /// <param name="statType"></param>
+    /// <param name="calcType"></param>
+    /// <returns></returns>
     public static float CalculateStat(Character character, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromCharacter(character, statType);
         return CalculateStat(baseValue, statType, character.Attributes, calcType);
     }
 
+    /// <summary>
+    /// Calculates the stat of a character interacting with an action
+    /// </summary>
+    /// <param name="character"></param>
+    /// <param name="action"></param>
+    /// <param name="statType"></param>
+    /// <param name="calcType"></param>
+    /// <returns></returns>
     public static float CalculateStat(Character character, Action action, StatType statType, StatCalculationType calcType = StatCalculationType.Default)
     {
         var baseValue = GetStatFromCharacter(character, statType) + GetStatFromAction(action, statType);
         return CalculateStat(baseValue, statType, character.Attributes.Concat(action.Attributes).ToList(), calcType);
     }
 
+    /// <summary>
+    /// Calculates a stat
+    /// </summary>
+    /// <param name="baseValue">The value of the state</param>
+    /// <param name="statType">The stype of stat</param>
+    /// <param name="attributes">The attributes of the stat</param>
+    /// <param name="calcType">the calculation type</param>
+    /// <returns></returns>
     public static float CalculateStat(float baseValue, StatType statType, List<Attribute> attributes, StatCalculationType calcType)
     {
         var statMultiplier = 1f;
@@ -96,6 +129,9 @@ public static class StatCalculator
     }
 }
 
+/// <summary>
+/// Types of Stat Calculations
+/// </summary>
 public enum StatCalculationType
 {
     Default = 0,
