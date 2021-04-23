@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 595739c55897a134d9f5bfc3d9234b5a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a4c85a1bea0255945a237d6e7be9ce0e, type: 2}
+      objectReference: {fileID: 2100000, guid: b83ef088dc6a3c9409b4d3efdb42871a, type: 2}
     - target: {fileID: 919132149155446097, guid: 595739c55897a134d9f5bfc3d9234b5a, type: 3}
       propertyPath: m_Name
       value: rafflesia
