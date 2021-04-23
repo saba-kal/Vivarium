@@ -171,13 +171,10 @@ public class GenerateObstacles : MonoBehaviour
             }
         }
 
-
-
-
         generateObstacles(underObstaclePrefab, obstacleCoords, -0.6f, true, 0, false, false);
-        generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, 0, true, false);
+        //generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, 0, true, false);
 
-        generateGroundWithPathToObjective();
+        //generateGroundWithPathToObjective();
     }
 
     private void generateGroundWithPathToObjective()

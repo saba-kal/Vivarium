@@ -18,3 +18,4 @@ MonoBehaviour:
   QuaternaryHighlightPrefab: {fileID: 2123069177681682684, guid: 11944e7951e6d8242b423f6a103b224e, type: 3}
   QuinaryHighlightPrefab: {fileID: 1290396168030185797, guid: 61659e4a5bd2ee64d9327e3674d52503, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
+  GridMaterial: {fileID: 2100000, guid: e5ef016762e4c6d4eaf75021047291ce, type: 2}
