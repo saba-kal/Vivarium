@@ -31,7 +31,6 @@ public class TileGridView : MonoBehaviour
 
         DestroyGridMesh();
         GetGridData();
-        //CreateTiles();
         CreateGridObject();
         GenerateMesh();
     }
@@ -45,46 +44,6 @@ public class TileGridView : MonoBehaviour
         else
         {
             Debug.LogError("The tile grid view is missing a reference to the grid controller or the grid is not yet generated.");
-        }
-    }
-
-    private void CreateTiles()
-    {
-        if (TileInfos.Count == 0)
-        {
-            Debug.LogError($"There are no prefabs that can be used to generate the grids. Ensure that the TileInfos field is not empty.");
-            return;
-        }
-
-        var gridArray = _grid.GetGrid();
-        for (int x = 0; x < gridArray.GetLength(0); x++)
-        {
-            for (int y = 0; y < gridArray.GetLength(1); y++)
-            {
-                var tileInfo = TileInfos.FirstOrDefault(t => t.Type == gridArray[x, y].Type);
-                if (tileInfo == null)
-                {
-                    Debug.LogError($"Unable to find tile of type {gridArray[x, y].Type}");
-                    return;
-                }
-
-                var tileObject = Instantiate(tileInfo.TilePrefab, transform);
-                tileObject.transform.position = _grid.GetWorldPositionCentered(x, y);
-
-                if (_grid.GetValue(x, y).IsObjective)
-                {
-                    if (GridSettings.LevelObjectivePrefab != null)
-                    {
-                        var objectiveWorldPosition = _grid.GetWorldPositionCentered(x, y);
-                        var objective = Instantiate(GridSettings.LevelObjectivePrefab, transform);
-                        objective.transform.position = objectiveWorldPosition;
-                    }
-                    else
-                    {
-                        Debug.LogError("Unable to spawn objective model because the prefab is null.");
-                    }
-                }
-            }
         }
     }
 
@@ -110,6 +69,7 @@ public class TileGridView : MonoBehaviour
         _meshFilter = gridMeshObject.AddComponent<MeshFilter>();
         _meshRenderer = gridMeshObject.AddComponent<MeshRenderer>();
         _meshRenderer.material = GridSettings.GridMaterial;
+        CreateTexture();
     }
 
     private void GenerateMesh()
@@ -117,8 +77,6 @@ public class TileGridView : MonoBehaviour
 
         var width = _grid.GetGrid().GetLength(0);
         var height = _grid.GetGrid().GetLength(1);
-        //width = 10;
-        //height = 10;
 
         _vertices = new List<Vector3>();
         _triangles = new List<int>();
@@ -223,47 +181,47 @@ public class TileGridView : MonoBehaviour
         //    return;
         //}
 
-        if (top?.Type == TileType.Grass)
+        if (top != null && top?.Type != TileType.Water)
         {
             square2.height2 = 0;
             square2.height3 = 0;
             square3.height2 = 0;
             square3.height3 = 0;
         }
-        if (topRight?.Type == TileType.Grass)
+        if (topRight != null && topRight?.Type != TileType.Water)
         {
             square3.height3 = 0;
         }
-        if (right?.Type == TileType.Grass)
+        if (right != null && right?.Type != TileType.Water)
         {
             square3.height3 = 0;
             square3.height4 = 0;
             square4.height3 = 0;
             square4.height4 = 0;
         }
-        if (bottomRight?.Type == TileType.Grass)
+        if (bottomRight != null && bottomRight?.Type != TileType.Water)
         {
             square4.height4 = 0;
         }
-        if (bottom?.Type == TileType.Grass)
+        if (bottom != null && bottom?.Type != TileType.Water)
         {
             square1.height1 = 0;
             square1.height4 = 0;
             square4.height1 = 0;
             square4.height4 = 0;
         }
-        if (bottomLeft?.Type == TileType.Grass)
+        if (bottomLeft != null && bottomLeft?.Type != TileType.Water)
         {
             square1.height1 = 0;
         }
-        if (left?.Type == TileType.Grass)
+        if (left != null && left?.Type != TileType.Water)
         {
             square1.height1 = 0;
             square1.height2 = 0;
             square2.height1 = 0;
             square2.height2 = 0;
         }
-        if (topLeft?.Type == TileType.Grass)
+        if (topLeft != null && topLeft?.Type != TileType.Water)
         {
             square2.height2 = 0;
         }
@@ -308,46 +266,41 @@ public class TileGridView : MonoBehaviour
         vertexIndex += 4;
     }
 
-    private void GetShoreLineHeightValues(
-        int x, int y,
-        out float height1,
-        out float height2,
-        out float height3,
-        out float height4)
+
+    private void CreateTexture()
     {
-        height1 = -1;
-        height2 = -1;
-        height3 = -1;
-        height4 = -1;
+        var width = _grid.GetGrid().GetLength(0);
+        var height = _grid.GetGrid().GetLength(1);
 
-        var right = _grid.GetValue(x + 1, y);
-        var bottom = _grid.GetValue(x, y - 1);
-        var left = _grid.GetValue(x - 1, y);
-        var top = _grid.GetValue(x, y + 1);
+        var aStar = new AStar(new List<TileType> { TileType.Grass }, true, _grid);
+        var pathToObjective = aStar.Execute(_grid.GetValue(0, 0), _grid.GetValue(width - 1, height - 1))?
+            .ToDictionary(tile => (tile.GridX, tile.GridY));
 
-        if (right?.Type == TileType.Grass)
+        if (pathToObjective == null)
         {
-            height3 = 0;
-            height4 = 0;
+            return;
         }
 
-        if (bottom?.Type == TileType.Grass)
+        var texture = new Texture2D(width, height, TextureFormat.RGB24, false);
+        for (var x = 0; x < width; x++)
         {
-            height1 = 0;
-            height4 = 0;
+            for (var y = 0; y < height; y++)
+            {
+                if (pathToObjective.ContainsKey((x, y)))
+                {
+                    texture.SetPixel(x, y, Color.black);
+                }
+                else
+                {
+                    texture.SetPixel(x, y, Color.white);
+                }
+            }
         }
 
-        if (left?.Type == TileType.Grass)
-        {
-            height1 = 0;
-            height2 = 0;
-        }
+        texture.name = "ObjectivePathMask";
+        texture.Apply();
 
-        if (top?.Type == TileType.Grass)
-        {
-            height2 = 0;
-            height3 = 0;
-        }
+        _meshRenderer.sharedMaterial.SetTexture(texture.name, texture);
     }
 }
 
