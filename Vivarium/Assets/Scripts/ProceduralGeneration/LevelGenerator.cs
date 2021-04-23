@@ -71,6 +71,12 @@ public class LevelGenerator : MonoBehaviour
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
         if (levelContainer != null)
         {
+            var profileCamera = levelContainer.GetComponentInChildren<UICameraController>();
+            if (profileCamera != null)
+            {
+                profileCamera.transform.SetParent(null, false);
+            }
+
             DestroyImmediate(levelContainer);
         }
 
@@ -96,7 +102,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (characterController.gameObject.activeSelf)
                 {
-                    Destroy(characterController.gameObject, 0.1f);
+                    characterController.DestroyCharacter(0.1f);
                 }
                 characterControllers.Add(characterController);
             }
@@ -214,8 +220,9 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (!characterGameObject.activeSelf)
                     {
-                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
-                        Destroy(characterGameObject, 0.1f);
+                        var characterController = characterGameObject.GetComponent<CharacterController>();
+                        PlayerCharacters.Remove(characterController);
+                        characterController.DestroyCharacter(0.1f);
                     }
                 }
             }

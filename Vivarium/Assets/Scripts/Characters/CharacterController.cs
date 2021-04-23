@@ -140,7 +140,7 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
-        if(!FollowsTutorialRestrictions(tile))
+        if (!FollowsTutorialRestrictions(tile))
         {
             Debug.Log("Attempted to move to a tile other than the one instructed");
             return;
@@ -167,12 +167,12 @@ public class CharacterController : MonoBehaviour
 
     private bool FollowsTutorialRestrictions(Tile tile)
     {
-        if(TutorialManager.GetIsTutorial())
+        if (TutorialManager.GetIsTutorial())
         {
             var grid = TileGridController.Instance.GetGrid();
             Tile enemyTile = LevelManager.Instance.LevelGenerator.GetPossibleEnemySpawnTiles().Values.ToList()[0];
             Tile requiredTile = grid.GetValue(enemyTile.GridX, enemyTile.GridY - 1);
-            if(TutorialManager.Instance.GetCurrentIndex() == 6)
+            if (TutorialManager.Instance.GetCurrentIndex() == 6)
             {
                 if (requiredTile == tile)
                 {
@@ -183,7 +183,7 @@ public class CharacterController : MonoBehaviour
                     return false;
                 }
             }
-            else if(TutorialManager.Instance.GetCurrentIndex() < 6)
+            else if (TutorialManager.Instance.GetCurrentIndex() < 6)
             {
                 return false;
             }
@@ -521,7 +521,22 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         PerformDeathAnimation();
-        Destroy(gameObject, 4f);
+        DestroyCharacter(4f);
+    }
+
+    /// <summary>
+    /// Destroys character after a certain amount of time.
+    /// </summary>
+    /// <param name="time"></param>
+    public void DestroyCharacter(float time)
+    {
+        var profileCamera = GetComponentInChildren<UICameraController>();
+        if (profileCamera != null)
+        {
+            profileCamera.transform.SetParent(null, false);
+        }
+
+        Destroy(gameObject, time);
     }
 
     /// <summary>
