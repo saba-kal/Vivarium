@@ -153,8 +153,9 @@ public class LevelGenerator : MonoBehaviour
         var tileGridView = grid.AddComponent<TileGridView>();
         tileGridView.GridController = _gridController;
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
-        tileGridView.LevelObjectivePrefab = LevelProfile.VisualSettings.LevelObjectivePrefab;
-        tileGridView.CreateGridMesh();
+        tileGridView.GridSettings = LevelProfile.VisualSettings;
+
+        tileGridView.CreateGridMesh(_gridController.GridOrigin);
         GeneratePossibleSpawnTiles();
     }
 
@@ -345,7 +346,7 @@ public class LevelGenerator : MonoBehaviour
         Tile tile;
         int tileXPosition;
         int tileYPosition;
-        if(TutorialManager.GetIsTutorial() && characterController.IsEnemy)
+        if (TutorialManager.GetIsTutorial() && characterController.IsEnemy)
         {
             tile = _possibleEnemySpawnTiles.Values.ToList()[0];
         }
