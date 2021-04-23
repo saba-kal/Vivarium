@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WeakWeapons
   m_EditorClassIdentifier: 
   PossibleWeapons:
+  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}
+  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}
   - {fileID: 11400000, guid: 0f77ac115c0e5f5419402c96369510af, type: 2}
-  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}
-  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}
-  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}
   - {fileID: 11400000, guid: 0ba77f0e79c6f5a4a9311fc60aa3ecea, type: 2}
+  - {fileID: 11400000, guid: 45f4a9e496964e1469dfdcb11ec0e36a, type: 2}

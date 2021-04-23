@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Stab
-  Description: A simple stab that deals damage to one target.
+  Description: A simple stab that deals damage to a single target.
