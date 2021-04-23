@@ -175,6 +175,7 @@ public class GenerateObstacles : MonoBehaviour
         //generateObstacles(pebbleFillerPrefab, obstacleCoords, 0, false, 0, true, false);
 
         //generateGroundWithPathToObjective();
+        generateSimpleVisualObjects();
     }
 
     private void generateGroundWithPathToObjective()
@@ -207,6 +208,12 @@ public class GenerateObstacles : MonoBehaviour
         var filteredGrassCoords = this.GetComponent<GetMapCoords>().FilterCoords(grassCoords, pathCoords);
         generateObstacles(grassBlockPrefab, filteredGrassCoords, 0, false, 0, false);
         generateMultObstacles(simpleEnvironmentPrefabs, filteredGrassCoords, 0, true, 8);
+    }
+
+    private void generateSimpleVisualObjects()
+    {
+        var grassCoords = this.GetComponent<GetMapCoords>().GetGrassTiles();
+        generateMultObstacles(simpleEnvironmentPrefabs, grassCoords, 0, true, 8);
     }
 
     private void generateGroupObstacles(List<List<List<int>>> groupedObstacleCoords, string direction)

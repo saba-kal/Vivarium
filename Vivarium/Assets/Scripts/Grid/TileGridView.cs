@@ -17,6 +17,8 @@ public class TileGridView : MonoBehaviour
     private Grid<Tile> _grid;
     private MeshFilter _meshFilter;
     private MeshRenderer _meshRenderer;
+    private MeshCollider _meshCollider;
+
     private Vector3 _gridOrigin;
     private List<Vector3> _vertices = new List<Vector3>();
     private List<int> _triangles = new List<int>();
@@ -66,6 +68,7 @@ public class TileGridView : MonoBehaviour
         gridMeshObject.transform.SetParent(transform);
         gridMeshObject.transform.position = _gridOrigin;
 
+        _meshCollider = gridMeshObject.AddComponent<MeshCollider>();
         _meshFilter = gridMeshObject.AddComponent<MeshFilter>();
         _meshRenderer = gridMeshObject.AddComponent<MeshRenderer>();
         _meshRenderer.material = GridSettings.GridMaterial;
@@ -115,6 +118,7 @@ public class TileGridView : MonoBehaviour
         mesh.uv = _uv.ToArray();
 
         _meshFilter.mesh = mesh;
+        _meshCollider.sharedMesh = mesh;
     }
 
     private void CreateWaterFloorSquares(
