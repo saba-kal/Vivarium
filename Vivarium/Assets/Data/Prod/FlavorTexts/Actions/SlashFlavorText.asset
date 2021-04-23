@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Slash
-  Description: A simple slash that deals damage to one target.
+  Description: A simple slash that deals damage to a single target.

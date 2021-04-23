@@ -20,7 +20,7 @@ public class TileGridViewInspector : Editor
 
         if (GUILayout.Button("Generate Grid Mesh"))
         {
-            gridView.CreateGridMesh();
+            gridView.CreateGridMesh(new Vector3(-12.5f, 0, 12.5f));
         }
     }
 }

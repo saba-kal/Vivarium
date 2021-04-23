@@ -12,6 +12,7 @@ public class MoveController : MonoBehaviour
     protected CharacterController _characterController;
     protected Dictionary<(int, int), Tile> _availableMoves = new Dictionary<(int, int), Tile>();
     protected Dictionary<(int, int), Tile> _waterInRadius = new Dictionary<(int, int), Tile>();
+    protected Dictionary<(int, int), Tile> _restrictedMoves = new Dictionary<(int, int), Tile>();
     protected BreadthFirstSearch _breadthFirstSearch;
 
     void Start()
@@ -43,9 +44,25 @@ public class MoveController : MonoBehaviour
     public void ShowMoveRadius()
     {
         HideMoveRadius();
-        CalculateAvailableMoves();
-        TileGridController.Instance.HighlightTiles(_availableMoves, GridHighlightRank.Primary);
-        TileGridController.Instance.HighlightTiles(_waterInRadius, GridHighlightRank.Quaternary);
+        if(TutorialRestrictionsApply())
+        {
+            CalculateAvailableMovesTutorial();
+            TileGridController.Instance.HighlightTiles(_availableMoves, GridHighlightRank.Primary);
+            TileGridController.Instance.HighlightTiles(_restrictedMoves, GridHighlightRank.Quaternary);
+        }
+        else
+        {
+            CalculateAvailableMoves();
+            TileGridController.Instance.HighlightTiles(_availableMoves, GridHighlightRank.Primary);
+            TileGridController.Instance.HighlightTiles(_waterInRadius, GridHighlightRank.Quaternary);
+        }
+
+    }
+
+    private bool TutorialRestrictionsApply()
+    {
+        var tutorialManager = TutorialManager.Instance;
+        return tutorialManager.MoveRestrictionsApply();
     }
 
     /// <summary>
@@ -68,7 +85,7 @@ public class MoveController : MonoBehaviour
         _breadthFirstSearch = new BreadthFirstSearch(_grid);
 
         var moveRadius = StatCalculator.CalculateStat(_characterController.Character, StatType.MoveRadius);
-        _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
+        _breadthFirstSearch.Execute(tile, Mathf.RoundToInt(moveRadius), _characterController.Character.NavigableTiles);
         _availableMoves = _breadthFirstSearch.GetVisitedTiles();
 
         _waterInRadius = new Dictionary<(int, int), Tile>();
@@ -84,6 +101,24 @@ public class MoveController : MonoBehaviour
         {
             _availableMoves.Remove(location.Key);
         }
+
+        return _availableMoves;
+    }
+
+    public virtual Dictionary<(int, int), Tile> CalculateAvailableMovesTutorial()
+    {
+        var tile = _grid.GetValue(transform.position);
+        _grid = TileGridController.Instance.GetGrid();
+        _breadthFirstSearch = new BreadthFirstSearch(_grid);
+        var moveRadius = StatCalculator.CalculateStat(_characterController.Character, StatType.MoveRadius);
+        _breadthFirstSearch.Execute(tile, Mathf.FloorToInt(moveRadius), _characterController.Character.NavigableTiles);
+        _restrictedMoves = _breadthFirstSearch.GetVisitedTiles();
+
+        _availableMoves = new Dictionary<(int, int), Tile>();
+        tile = _grid.GetValue(4, 3);
+        _availableMoves.Add((4,3), tile);
+
+        _restrictedMoves.Remove((4,3));
 
         return _availableMoves;
     }

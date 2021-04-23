@@ -36,4 +36,9 @@ public class GridVisualSettings : ScriptableObject
     /// Prefab that represents the level objective.
     /// </summary>
     public GameObject LevelObjectivePrefab;
+
+    /// <summary>
+    /// The material for the grid mesh.
+    /// </summary>
+    public Material GridMaterial;
 }
