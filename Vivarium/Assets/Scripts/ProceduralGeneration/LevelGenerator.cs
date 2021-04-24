@@ -47,6 +47,12 @@ public class LevelGenerator : MonoBehaviour
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
+        var decorations = GameObject.FindGameObjectsWithTag("Decorator");
+        for (var i = 0; i < decorations.Length; i++)
+        {
+            decorations[i].GetComponent<SpawnDecoration>().DeSpawnGameObject();
+        }
+
         DestroyExistingLevel();
         CheckIsTutorial();
         SetupLevelContainer();
@@ -54,6 +60,12 @@ public class LevelGenerator : MonoBehaviour
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
+
+        for (var i = 0; i < decorations.Length; i++)
+        {
+            decorations[i].GetComponent<SpawnDecoration>().SpawnRandomDecoration();
+        }
+
         this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
