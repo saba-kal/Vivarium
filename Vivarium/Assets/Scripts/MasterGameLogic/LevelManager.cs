@@ -65,6 +65,12 @@ public class LevelManager : MonoBehaviour
             Debug.Log("You beat the game.");
             UIController.Instance.GameOver("YOU WIN");
         }
+        else if (TutorialManager.GetIsTutorial())
+        {
+            PlayerData.CurrentLevelIndex++;
+            StartLevel(PlayerData.CurrentLevelIndex);
+            TutorialManager.UpdateScreen();
+        }
         else
         {
             PlayerData.CurrentLevelIndex++;
@@ -72,7 +78,6 @@ public class LevelManager : MonoBehaviour
             {
                 Debug.Log("Level complete. Generating next level...");
                 StartLevel(PlayerData.CurrentLevelIndex);
-                LevelGenerator.GenerateLevel();
                 PrepMenuUIController.Instance.Display();
             }, LevelGenerator.LevelProfile.PossilbleRewards);
         }

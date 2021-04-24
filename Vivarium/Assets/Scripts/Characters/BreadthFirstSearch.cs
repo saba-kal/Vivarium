@@ -83,7 +83,7 @@ public class BreadthFirstSearch
         _bfsGrid[x, y].Steps = _bfsGrid[fromTile.GridX, fromTile.GridY].Steps + 1;
 
         //Number of steps must be less than the character's move range.
-        if (_bfsGrid[x, y].Steps < maxSteps)
+        if (_bfsGrid[x, y].Steps <= maxSteps)
         {
             _bfsGrid[x, y].Visited = true;
             //Store the path it takes to get to the tile. This will later be used to move the character object.

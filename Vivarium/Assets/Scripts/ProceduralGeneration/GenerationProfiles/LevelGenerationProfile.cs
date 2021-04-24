@@ -97,4 +97,9 @@ public class LevelGenerationProfile : ScriptableObject
     /// <see cref="AISettings"/> regarding the enemy character AI.
     /// </summary>
     public AISettings AISettings;
+
+    /// <summary>
+    /// Shows if this is for the tutorial
+    /// </summary>
+    public bool IsTutorial;
 }

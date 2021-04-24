@@ -48,6 +48,7 @@ public class LevelGenerator : MonoBehaviour
         mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
         DestroyExistingLevel();
+        CheckIsTutorial();
         SetupLevelContainer();
         SetupPlayerController();
         GenerateGrid();
@@ -70,6 +71,12 @@ public class LevelGenerator : MonoBehaviour
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
         if (levelContainer != null)
         {
+            var profileCamera = levelContainer.GetComponentInChildren<UICameraController>();
+            if (profileCamera != null)
+            {
+                profileCamera.transform.SetParent(null, false);
+            }
+
             DestroyImmediate(levelContainer);
         }
 
@@ -86,6 +93,30 @@ public class LevelGenerator : MonoBehaviour
             PlayerController = playerController.GetComponent<PlayerController>();
         }
         _possibleEnemySpawnTiles.Clear();
+
+        //Clears player characters only after tutorial
+        if (TutorialManager.GetIsTutorial())
+        {
+            var characterControllers = new List<CharacterController>();
+            foreach (var characterController in PlayerCharacters)
+            {
+                if (characterController.gameObject.activeSelf)
+                {
+                    characterController.DestroyCharacter(0.1f);
+                }
+                characterControllers.Add(characterController);
+            }
+
+            foreach (var characterController in characterControllers)
+            {
+                PlayerCharacters.Remove(characterController);
+            }
+        }
+    }
+
+    private void CheckIsTutorial()
+    {
+        TutorialManager.SetIsTutorial(LevelProfile.IsTutorial);
     }
 
     /// <summary>
@@ -128,8 +159,9 @@ public class LevelGenerator : MonoBehaviour
         var tileGridView = grid.AddComponent<TileGridView>();
         tileGridView.GridController = _gridController;
         tileGridView.TileInfos = LevelProfile.GridProfile.TileInfos;
-        tileGridView.LevelObjectivePrefab = LevelProfile.VisualSettings.LevelObjectivePrefab;
-        tileGridView.CreateGridMesh();
+        tileGridView.GridSettings = LevelProfile.VisualSettings;
+
+        tileGridView.CreateGridMesh(_gridController.GridOrigin);
         GeneratePossibleSpawnTiles();
     }
 
@@ -173,14 +205,14 @@ public class LevelGenerator : MonoBehaviour
         }
 
         GenerateEnemyCharacters();
-        if (PlayerCharacters.Count == 0)
+        if (PlayerCharacters.Count == 0 || !TutorialManager.GetIsTutorial())
         {
             GeneratePlayerCharacters();
         }
 
         if (CharacterReward.rewardLevel)
         {
-            if (PlayerData.CurrentLevelIndex != 0)
+            if (!TutorialManager.GetIsTutorial())
             {
                 CharacterReward.selectedCharacter?.SetActive(true);
 
@@ -188,8 +220,9 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (!characterGameObject.activeSelf)
                     {
-                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
-                        Destroy(characterGameObject, 0.1f);
+                        var characterController = characterGameObject.GetComponent<CharacterController>();
+                        PlayerCharacters.Remove(characterController);
+                        characterController.DestroyCharacter(0.1f);
                     }
                 }
             }
@@ -317,10 +350,21 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
-        var tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
-        var tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
+        Tile tile;
+        int tileXPosition;
+        int tileYPosition;
+        if (TutorialManager.GetIsTutorial() && characterController.IsEnemy)
+        {
+            tile = _possibleEnemySpawnTiles.Values.ToList()[0];
+        }
+        else
+        {
+            tileXPosition = Random.Range(0, _grid.GetGrid().GetLength(0));
+            tileYPosition = Random.Range(0, _grid.GetGrid().GetLength(1));
 
-        var tile = _grid.GetValue(tileXPosition, tileYPosition);
+            tile = _grid.GetValue(tileXPosition, tileYPosition);
+        }
+
         var iterations = 0;
 
         while (!CharacterCanSpawnOnTile(tile, characterController) &&
@@ -405,5 +449,19 @@ public class LevelGenerator : MonoBehaviour
         {
             rewardsChestController.AddChest(treasureChestSpawns[i], LevelProfile.TreasureChests[i]);
         }
+    }
+
+    /// <summary>
+    /// Gets the current enemy AI manager
+    /// </summary>
+    /// <returns><see cref="EnemyAIManager"/></returns>
+    public EnemyAIManager GetEnemyAIManager()
+    {
+        return _enemyAIManager;
+    }
+
+    public Dictionary<(int, int), Tile> GetPossibleEnemySpawnTiles()
+    {
+        return _possibleEnemySpawnTiles;
     }
 }

@@ -21,10 +21,10 @@ MonoBehaviour:
   MaxSummons: 6
   StartingSummons: 3
   ActionsPerTurn: 2
-  MinMaxHealth: 127
-  MaxMaxHealth: 168
-  MinAttackDamage: 23
-  MaxAttackDamage: 32
+  MinMaxHealth: 135
+  MaxMaxHealth: 178
+  MinAttackDamage: 24
+  MaxAttackDamage: 34
   MinMoveRange: 7
   MaxMoveRange: 7
   MaxItems: 3

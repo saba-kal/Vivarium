@@ -140,6 +140,12 @@ public class CharacterController : MonoBehaviour
             return;
         }
 
+        if (!FollowsTutorialRestrictions(tile))
+        {
+            Debug.Log("Attempted to move to a tile other than the one instructed");
+            return;
+        }
+
         if (_moveController != null)
         {
             _moveController.MoveToTile(GetGridPosition(), tile, () =>
@@ -157,6 +163,32 @@ public class CharacterController : MonoBehaviour
         {
             Debug.LogWarning($"Character \"{gameObject.name}\": Cannot not move because character is missing a move controller.");
         }
+    }
+
+    private bool FollowsTutorialRestrictions(Tile tile)
+    {
+        if (TutorialManager.GetIsTutorial())
+        {
+            var grid = TileGridController.Instance.GetGrid();
+            Tile enemyTile = LevelManager.Instance.LevelGenerator.GetPossibleEnemySpawnTiles().Values.ToList()[0];
+            Tile requiredTile = grid.GetValue(enemyTile.GridX, enemyTile.GridY - 1);
+            if (TutorialManager.Instance.GetCurrentIndex() == 6)
+            {
+                if (requiredTile == tile)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (TutorialManager.Instance.GetCurrentIndex() < 6)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /// <summary>
@@ -489,7 +521,22 @@ public class CharacterController : MonoBehaviour
             Debug.LogError("Unable to remove character ID from grid because current grid cell position is null.");
         }
         PerformDeathAnimation();
-        Destroy(gameObject, 4f);
+        DestroyCharacter(4f);
+    }
+
+    /// <summary>
+    /// Destroys character after a certain amount of time.
+    /// </summary>
+    /// <param name="time"></param>
+    public void DestroyCharacter(float time)
+    {
+        var profileCamera = GetComponentInChildren<UICameraController>();
+        if (profileCamera != null)
+        {
+            profileCamera.transform.SetParent(null, false);
+        }
+
+        Destroy(gameObject, time);
     }
 
     /// <summary>
@@ -716,5 +763,14 @@ public class CharacterController : MonoBehaviour
     public void SetEquippedShieldPosition(int itemPosition)
     {
         _equippedShieldPosition = itemPosition;
+    }
+
+    /// <summary>
+    /// Checks whether this character is currently selected by the user
+    /// </summary>
+    /// <returns>true if the character is selected, otherwise false</returns>
+    public bool getIsSelected()
+    {
+        return _isSelected;
     }
 }
