@@ -27,6 +27,11 @@ public class MasterCameraScript : MonoBehaviour
     public Quaternion previousMasterCameraRotation;
     public Transform testTransform;
 
+    public float maxForward;
+    public float maxBackward;
+    public float maxLeft;
+    public float maxRight;
+
     void Start()
     {
         ResetCamera();
@@ -38,6 +43,23 @@ public class MasterCameraScript : MonoBehaviour
 
     void Update()
     {
+        if (this.gameObject.transform.position.z > maxForward)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, maxForward);
+        }
+        if (this.gameObject.transform.position.z < maxBackward)
+        {
+            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, maxBackward);
+        }
+        if (this.gameObject.transform.position.x > maxRight)
+        {
+            this.gameObject.transform.position = new Vector3(maxRight, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        }
+        if (this.gameObject.transform.position.x < maxLeft)
+        {
+            this.gameObject.transform.position = new Vector3(maxLeft, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        }
+
 
         if (!isCameraLock)
         {
@@ -92,6 +114,7 @@ public class MasterCameraScript : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
+
                 this.transform.position += this.transform.forward * moveSpeed * Time.deltaTime * zoomPercent;
                 //rayCastPivot();
 
