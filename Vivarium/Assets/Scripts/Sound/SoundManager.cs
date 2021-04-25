@@ -109,13 +109,4 @@ public class SoundManager : MonoBehaviour
     {
         return FindObjectOfType<SoundManager>();
     }
-
-    /// <summary>
-    /// Changes the volume of the sound clip
-    /// </summary>
-    /// <param name="volumeFloat">The volume of a sound clip</param>
-    public void SetVolume(float volumeFloat)
-    {
-        AudioMixer.SetFloat("MasterVolume", volumeFloat);
-    }
 }

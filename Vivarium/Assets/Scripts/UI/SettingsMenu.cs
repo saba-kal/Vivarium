@@ -52,6 +52,7 @@ public class SettingsMenu : MonoBehaviour
         {
             QualitySettings.SetQualityLevel(index);
         });
+        GraphicsDropdown.RefreshShownValue();
     }
 
     private void SetupFullsceeenToggle()
@@ -60,6 +61,7 @@ public class SettingsMenu : MonoBehaviour
         {
             Screen.fullScreen = isFullscreen;
         });
+        FullscreenToggle.isOn = Screen.fullScreen;
     }
 
     private void SetupResolutionDropdown()
@@ -69,25 +71,36 @@ public class SettingsMenu : MonoBehaviour
         var resolutionOptions = new List<string>();
 
         var currentResolutionIndex = 0;
-        for (var i = 0; i < Screen.resolutions.Length; i++)
+        var resIndex = 0;
+        var addedResolutions = new List<(int, int)>();
+
+        foreach (var resolution in Screen.resolutions)
         {
-            var resolution = Screen.resolutions[i];
+            if (addedResolutions.Contains((resolution.width, resolution.height)))
+            {
+                continue;
+            }
+            addedResolutions.Add((resolution.width, resolution.height));
+
             resolutionOptions.Add($"{resolution.width} x {resolution.height}");
 
-            if (resolution.width == Screen.currentResolution.width &&
-                resolution.height == Screen.currentResolution.height)
+            if (resolution.width == Screen.width &&
+                resolution.height == Screen.height)
             {
-                currentResolutionIndex = i;
+                currentResolutionIndex = resIndex;
             }
+
+            resIndex++;
         }
 
         ResolutionDropdown.AddOptions(resolutionOptions);
         ResolutionDropdown.value = currentResolutionIndex;
+        ResolutionDropdown.RefreshShownValue();
 
         ResolutionDropdown.onValueChanged.AddListener((resolutionIndex) =>
         {
-            var newResolution = Screen.resolutions[resolutionIndex];
-            Screen.SetResolution(newResolution.width, newResolution.height, Screen.fullScreen);
+            var newResolution = addedResolutions[resolutionIndex];
+            Screen.SetResolution(newResolution.Item1, newResolution.Item2, Screen.fullScreen);
         });
     }
 }
