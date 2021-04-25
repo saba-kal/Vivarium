@@ -165,6 +165,11 @@ public class AIController : MonoBehaviour
                 foreach (var targetTile in tilesThatCanAttacked.Values)
                 {
                     var areaOfAffect = StatCalculator.CalculateStat(attack, StatType.AttackAOE);
+                    if (attack.ControllerType == ActionControllerType.Pierce)
+                    {
+                        areaOfAffect = 0f;
+                    }
+
                     var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
                     var damageOnAffectedTiles = 0f;
 
