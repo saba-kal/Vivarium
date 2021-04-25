@@ -324,10 +324,25 @@ public class PlayerController : MonoBehaviour
 
         deadCharacterController.DestroyCharacter();
 
-        if (PlayerCharacters.Count == 0)
+        int activeCharacters = NumberOfActiveCharacters();
+
+        if (activeCharacters == 0)
         {
             OnAllCharactersDead?.Invoke();
         }
+    }
+
+    private int NumberOfActiveCharacters()
+    {
+        int activeCharacters = 0;
+        for (var i = 0; i < PlayerCharacters.Count; i++)
+        {
+            if (PlayerCharacters[i].gameObject.activeSelf)
+            {
+                activeCharacters++;
+            }
+        }
+        return activeCharacters;
     }
 
     public void HealCharacters(float healAmount)
