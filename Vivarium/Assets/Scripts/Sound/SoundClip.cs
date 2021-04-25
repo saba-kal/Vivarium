@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Represents sound clips used
@@ -38,4 +39,9 @@ public class SoundClip
     /// A check to see if the sound clip should be looped during the game
     /// </summary>
     public bool Loop = false;
+
+    /// <summary>
+    /// The audio mixer group this sound clip outputs to.
+    /// </summary>
+    public AudioMixerGroup AudioMixerGroup;
 }

@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Controls volume, playing/pausing, and other settings for the sounds in the game
 /// </summary>
 public class SoundManager : MonoBehaviour
 {
+    public AudioMixer AudioMixer;
     public List<SoundClip> Sounds;
+
     private Dictionary<string, AudioSource> _soundBank;
 
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class SoundManager : MonoBehaviour
             audioSource.volume = sound.Volume;
             audioSource.pitch = sound.Pitch;
             audioSource.loop = sound.Loop;
+            audioSource.outputAudioMixerGroup = sound.AudioMixerGroup;
 
             if (sound.PlayOnAwake)
             {
@@ -112,9 +116,6 @@ public class SoundManager : MonoBehaviour
     /// <param name="volumeFloat">The volume of a sound clip</param>
     public void SetVolume(float volumeFloat)
     {
-        foreach (var source in _soundBank.Values)
-        {
-            source.volume = volumeFloat;
-        }
+        AudioMixer.SetFloat("MasterVolume", volumeFloat);
     }
 }

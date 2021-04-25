@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f29a7a904bab2b46bc78c20bf8f2c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioMixer: {fileID: 0}
   Sounds:
   - Name: TestAttackSound
     Clip: {fileID: 8300000, guid: 0d2be639490a2314991539d1de7e14a2, type: 3}
@@ -50,51 +51,60 @@ MonoBehaviour:
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: ButtonClick
     Clip: {fileID: 8300000, guid: 9f046b15deebed54bafd15b7a2692d1c, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: ItemEquip
     Clip: {fileID: 8300000, guid: 9f046b15deebed54bafd15b7a2692d1c, type: 3}
     Volume: 1
     Pitch: 0.63
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: Consume
     Clip: {fileID: 8300000, guid: c33026f9eee645e49a1b687e3183e86d, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: 0}
   - Name: GridCellClick
     Clip: {fileID: 8300000, guid: c054302fba9428b488af9da913e28a38, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: Death
     Clip: {fileID: 8300000, guid: ed7d505375f477e41a8ee54057c711f1, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: DamageTaken
     Clip: {fileID: 8300000, guid: acf91075f70ed2348ade0f1e4ea7383d, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: Walk
     Clip: {fileID: 8300000, guid: 7cc02cb2effaa93438f1132daca39705, type: 3}
     Volume: 1
     Pitch: 1.3
     PlayOnAwake: 0
     Loop: 1
+    AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: BGM
     Clip: {fileID: 8300000, guid: dafd8b8b27316b347b76ef44776726a1, type: 3}
     Volume: 1
     Pitch: 1
     PlayOnAwake: 1
     Loop: 1
+    AudioMixerGroup: {fileID: 890340923316228111, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
