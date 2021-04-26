@@ -103,12 +103,12 @@ public class RewardsUIController : MonoBehaviour
     {
         if (CharacterReward.rewardLevel)
         {
-            RewardsText.text = "Choose a reward";
+            RewardsText.text = "Choose a new ally!";
             CharacterRewardsScreen(callback);
         }
         else
         {
-            RewardsText.text = "Choose two rewards";
+            RewardsText.text = "Choose two rewards!";
             ItemRewardsScreen(callback, possibleRewards);
         }
     }
