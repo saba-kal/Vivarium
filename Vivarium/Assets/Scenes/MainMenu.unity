@@ -948,7 +948,7 @@ MonoBehaviour:
   Sounds:
   - Name: ButtonClick
     Clip: {fileID: 8300000, guid: 9f046b15deebed54bafd15b7a2692d1c, type: 3}
-    Volume: 1
+    Volume: 0.5
     Pitch: 1
     PlayOnAwake: 0
     Loop: 0
