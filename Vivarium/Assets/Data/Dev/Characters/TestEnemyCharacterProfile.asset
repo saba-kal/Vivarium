@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 8985031486325489120, guid: 23cf77a74bf93634fbca15a26c1c7947, type: 3}
-  PossibleNames:
-  - Enemy McEnemyFace
-  - Enemy Guy
   PossiblePortraits:
   - {fileID: 0}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 9ebf725b74e436947819e844ed1dbea0, type: 2}
+  Type: 0
+  MaxSummons: 6
+  StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 50
   MaxMaxHealth: 200
   MinAttackDamage: 0
@@ -26,11 +29,12 @@ MonoBehaviour:
   MinMoveRange: 8
   MaxMoveRange: 8
   MaxItems: 3
+  Aggro: 0
   NavigableTiles: 00000000
+  CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: 85ffc7df4015aa84c865f560bc084f33, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
   AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}
