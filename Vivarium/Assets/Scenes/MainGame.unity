@@ -15136,6 +15136,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterCamera_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 6607868575061344053, guid: 0fb81e80c52185143a60ab6482a24cd9, type: 3}
+      propertyPath: maxForward
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607868575061344053, guid: 0fb81e80c52185143a60ab6482a24cd9, type: 3}
+      propertyPath: maxBackward
+      value: -9
+      objectReference: {fileID: 0}
     - target: {fileID: 8342079525643595292, guid: 0fb81e80c52185143a60ab6482a24cd9, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 55
