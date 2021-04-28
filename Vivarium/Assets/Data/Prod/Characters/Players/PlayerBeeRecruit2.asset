@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 1448550247729942650, guid: 47b24cc9201a94a489c8583029f54ffb, type: 3}
-  PossibleNames:
-  - Brave Bee
-  - Curious Bee
   PossiblePortraits:
-  - {fileID: 21300000, guid: a5424d79c1df88740b8447afde98e4f0, type: 3}
+  - {fileID: 21300000, guid: f57b64d4c3a7ba24eba9636f66e15c17, type: 3}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   CharacterFlavorText: {fileID: 11400000, guid: 411e5cc90e7d3864e8374cdfeb87f1a1, type: 2}
   Type: 0
