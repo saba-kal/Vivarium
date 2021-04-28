@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 /// <summary>
 /// Handles rewards screen behaviors for the UI. This includes selecting and adding rewards and transitioning between the rewards screen and
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 public class RewardsUIController : MonoBehaviour
 {
     public GameObject RewardScreen;
+    public TextMeshProUGUI RewardsText;
     public Button NextLevel;
     public Button Option1;
     public Button Option2;
@@ -101,10 +103,12 @@ public class RewardsUIController : MonoBehaviour
     {
         if (CharacterReward.rewardLevel)
         {
+            RewardsText.text = "Choose a new ally!";
             CharacterRewardsScreen(callback);
         }
         else
         {
+            RewardsText.text = "Choose two rewards!";
             ItemRewardsScreen(callback, possibleRewards);
         }
     }

@@ -15,8 +15,8 @@ MonoBehaviour:
   GridProfile: {fileID: 11400000, guid: 5f1f18164184ed542bdfb32625adc9dc, type: 2}
   VisualSettings: {fileID: 11400000, guid: 47b38dfe92b45e24d9f0bc6e4ac46afa, type: 2}
   BossCharacter: {fileID: 0}
-  MinEnemyCharacters: 1
-  MaxEnemyCharacters: 1
+  MinEnemyCharacters: 5
+  MaxEnemyCharacters: 5
   PossibleEnemyCharacters:
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
   - {fileID: 11400000, guid: 97994072da93be044ba522447d7e3373, type: 2}
@@ -40,9 +40,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7116a7dbe36857b4ab1982e9a4a0c447, type: 2}
   - {fileID: 11400000, guid: daed7eb291ac1734389d0fc6f20679ef, type: 2}
   StartingItems:
-  - Count: 3
+  - Count: 1
     InventoryPosition: 2
-    Item: {fileID: 11400000, guid: 07c8d52cb5cfcb7449cf5e199829df05, type: 2}
+    Item: {fileID: 11400000, guid: 30c60ce394d10884b819d34aa06fc85e, type: 2}
   OnLevelStartHeal: 500
   OnLevelStartShieldRegen: 500
   PossilbleRewards: {fileID: 11400000, guid: 85e6b6a7ece9cc2469dabc863f96c2c7, type: 2}
@@ -55,3 +55,4 @@ MonoBehaviour:
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 0}
+  IsTutorial: 0

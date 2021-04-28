@@ -14,21 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleModels:
   - {fileID: 6229483223496328122, guid: 6cea4ba6c47274549b99a9f292e07cb8, type: 3}
-  PossibleNames:
-  - Player McPlayerFace
-  - Player  Guy
   PossiblePortraits:
   - {fileID: 21300000, guid: 96bfcdf4824f88f449d81977fdc297f4, type: 3}
+  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterFlavorText: {fileID: 11400000, guid: 5a9572e3db45c424db3c2adc7fadfa59, type: 2}
+  Type: 0
+  MaxSummons: 6
+  StartingSummons: 3
+  ActionsPerTurn: 2
   MinMaxHealth: 50
   MaxMaxHealth: 200
   MinAttackDamage: 0
   MaxAttackDamage: 0
   MinMoveRange: 3
   MaxMoveRange: 7
+  MaxItems: 3
+  Aggro: 0
   NavigableTiles: 00000000
+  CanMoveThroughCharacters: 0
   WeaponProfile: {fileID: 11400000, guid: 85ffc7df4015aa84c865f560bc084f33, type: 2}
   ShieldProfile: {fileID: 0}
   AttributeProfile: {fileID: 11400000, guid: 52269f38cdf62b745a3fd74d2bb57723, type: 2}
   AICharacterHeuristics: {fileID: 0}
-  HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
+  CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}

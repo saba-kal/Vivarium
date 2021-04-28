@@ -32,37 +32,16 @@ public class ProjectileActionController : ActionController
                 targetTile,
                 true));
 
-        var line = grid.GetLine(
-            grid.GetWorldPosition(startTile.GridX, startTile.GridY),
-            grid.GetWorldPosition(targetTile.GridX, targetTile.GridY));
+        var areaOfAffect = StatCalculator.CalculateStat(ActionReference, StatType.AttackAOE);
+        var affectedTiles = TileGridController.Instance.GetTilesInRadius(targetTile.GridX, targetTile.GridY, 0, areaOfAffect);
 
-        var affectedTiles = new Dictionary<(int, int), Tile>();
-        foreach (var tile in line)
-        {
-            if (!tile.Equals(startTile) && !affectedTiles.ContainsKey((tile.GridX, tile.GridY)))
-            {
-                affectedTiles.Add((tile.GridX, tile.GridY), tile);
-                if (tile.Type == TileType.Obstacle || !string.IsNullOrEmpty(tile.CharacterControllerId))
-                {
-                    break;
-                }
-            }
-        }
-
-        if (!affectedTiles.ContainsKey((targetTile.GridX, targetTile.GridY)))
-        {
-            onActionComplete?.Invoke();
-            return;
-        }
-
-        var endTile = affectedTiles.LastOrDefault();
-        if (ActionReference.ProjectilePrefab != null && !endTile.Equals(default(KeyValuePair<(int, int), Tile>)))
+        if (ActionReference.ProjectilePrefab != null)
         {
             PerformAnimation();
             _skipAnimation = true;
 
             var startPosition = grid.GetWorldPositionCentered(startTile.GridX, startTile.GridY);
-            var endPosition = grid.GetWorldPositionCentered(endTile.Value.GridX, endTile.Value.GridY);
+            var endPosition = grid.GetWorldPositionCentered(targetTile.GridX, targetTile.GridY);
             CommandController.Instance.ExecuteCoroutine(AnimateProjectile(ActionReference.ProjectilePrefab, startPosition, endPosition, () =>
             {
                 ExecuteAction(affectedTiles);

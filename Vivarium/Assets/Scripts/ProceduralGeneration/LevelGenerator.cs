@@ -47,6 +47,12 @@ public class LevelGenerator : MonoBehaviour
         mainCamera.GetComponent<MasterCameraScript>().ResetCamera();
         mainCamera.GetComponent<MasterCameraScript>().refreshFocusCharacters();
         this.GetComponent<GenerateObstacles>().clearObjects();
+        var decorations = GameObject.FindGameObjectsWithTag("Decorator");
+        for (var i = 0; i < decorations.Length; i++)
+        {
+            decorations[i].GetComponent<SpawnDecoration>().DeSpawnGameObject();
+        }
+
         DestroyExistingLevel();
         CheckIsTutorial();
         SetupLevelContainer();
@@ -54,6 +60,12 @@ public class LevelGenerator : MonoBehaviour
         GenerateGrid();
         GenerateCharacters();
         GenerateGameMaster();
+
+        for (var i = 0; i < decorations.Length; i++)
+        {
+            decorations[i].GetComponent<SpawnDecoration>().SpawnRandomDecoration();
+        }
+
         this.GetComponent<GenerateObstacles>().generateEnvironment(LevelProfile);
         if (_isInitialGeneration)
         {
@@ -71,6 +83,12 @@ public class LevelGenerator : MonoBehaviour
         var levelContainer = GameObject.FindGameObjectWithTag(Constants.LEVEL_CONTAINER_TAG);
         if (levelContainer != null)
         {
+            var profileCamera = levelContainer.GetComponentInChildren<UICameraController>();
+            if (profileCamera != null)
+            {
+                profileCamera.transform.SetParent(null, false);
+            }
+
             DestroyImmediate(levelContainer);
         }
 
@@ -96,7 +114,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (characterController.gameObject.activeSelf)
                 {
-                    Destroy(characterController.gameObject, 0.1f);
+                    characterController.DestroyCharacter(0.1f);
                 }
                 characterControllers.Add(characterController);
             }
@@ -214,8 +232,9 @@ public class LevelGenerator : MonoBehaviour
                 {
                     if (!characterGameObject.activeSelf)
                     {
-                        PlayerCharacters.Remove(characterGameObject.GetComponent<CharacterController>());
-                        Destroy(characterGameObject, 0.1f);
+                        var characterController = characterGameObject.GetComponent<CharacterController>();
+                        PlayerCharacters.Remove(characterController);
+                        characterController.DestroyCharacter(0.1f);
                     }
                 }
             }

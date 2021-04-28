@@ -15,6 +15,7 @@ TagManager:
   - WeaponRanged
   - WeaponMelee
   - ButtonIndicator
+  - Decorator
   layers:
   - Default
   - TransparentFX

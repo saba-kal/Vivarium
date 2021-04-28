@@ -103,10 +103,20 @@ MonoBehaviour:
   CameraMover: {fileID: 6607868575061344010}
   CameraZoomer: {fileID: 8993827713557554822}
   focusZoomOut: 8
+  resetZoomOut: 25
   gameTilt: 50
   PanSpeed: 100
-  moveSpeed: 15
+  moveSpeed: 45
   focusCharacters: []
+  previousZoomPosition: {x: 0, y: 0, z: 0}
+  previousZoomRotation: {x: 0, y: 0, z: 0, w: 0}
+  previousMasterCameraPosition: {x: 0, y: 0, z: 0}
+  previousMasterCameraRotation: {x: 0, y: 0, z: 0, w: 0}
+  testTransform: {fileID: 0}
+  maxForward: 20
+  maxBackward: -15
+  maxLeft: -30
+  maxRight: 30
 --- !u!65 &6607868575061344009
 BoxCollider:
   m_ObjectHideFlags: 0
