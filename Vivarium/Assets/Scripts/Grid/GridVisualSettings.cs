@@ -41,4 +41,8 @@ public class GridVisualSettings : ScriptableObject
     /// The material for the grid mesh.
     /// </summary>
     public Material GridMaterial;
+
+    public GameObject DebugGroundTile;
+    public GameObject DebugWaterTile;
+    public GameObject DebugWallTile;
 }

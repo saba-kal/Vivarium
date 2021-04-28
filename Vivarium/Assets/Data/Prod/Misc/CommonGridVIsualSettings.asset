@@ -19,3 +19,6 @@ MonoBehaviour:
   QuinaryHighlightPrefab: {fileID: 1290396168030185797, guid: 61659e4a5bd2ee64d9327e3674d52503, type: 3}
   LevelObjectivePrefab: {fileID: 3216991795991035275, guid: 8dea899688bb03e46830ab4d1042f4dc, type: 3}
   GridMaterial: {fileID: 2100000, guid: e5ef016762e4c6d4eaf75021047291ce, type: 2}
+  DebugGroundTile: {fileID: 36316076695038348, guid: e3d3a999ad5a56b4087730131f40f557, type: 3}
+  DebugWaterTile: {fileID: 5500598784865716459, guid: 1b63a3db2f2d4804195047d78ff063ab, type: 3}
+  DebugWallTile: {fileID: 8991417628590138911, guid: 86324139f2f21ea41be460a03ca358f9, type: 3}

@@ -26,7 +26,7 @@ public class GridGenerator
     public Grid<Tile> Generate(GridGenerationProfile gridProfile, bool includeBossSpawn)
     {
         _includeBossSpawn = includeBossSpawn;
-
+        UE.Random.InitState(10);
         var width = UE.Random.Range(gridProfile.MinGridWidth, gridProfile.MaxGridWidth);
         var height = UE.Random.Range(gridProfile.MinGridHeight, gridProfile.MaxGridHeight);
         var cellSize = gridProfile.GridCellSize;

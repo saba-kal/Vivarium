@@ -35,6 +35,7 @@ public class TileGridView : MonoBehaviour
         GetGridData();
         CreateGridObject();
         GenerateMesh();
+        //CreateDebugGrid();
     }
 
     private void GetGridData()
@@ -305,6 +306,36 @@ public class TileGridView : MonoBehaviour
         texture.Apply();
 
         _meshRenderer.sharedMaterial.SetTexture(texture.name, texture);
+    }
+
+    private void CreateDebugGrid()
+    {
+        var width = _grid.GetGrid().GetLength(0);
+        var height = _grid.GetGrid().GetLength(1);
+        for (var x = 0; x < width; x++)
+        {
+            for (var y = 0; y < height; y++)
+            {
+                GameObject tileObject = null;
+                switch (_grid.GetValue(x, y).Type)
+                {
+                    case TileType.Grass:
+                        tileObject = Instantiate(GridSettings.DebugGroundTile, transform);
+                        break;
+                    case TileType.Water:
+                        tileObject = Instantiate(GridSettings.DebugWaterTile, transform);
+                        break;
+                    case TileType.Obstacle:
+                        tileObject = Instantiate(GridSettings.DebugWallTile, transform);
+                        break;
+                }
+
+                if (tileObject != null)
+                {
+                    tileObject.transform.position = _grid.GetWorldPositionCentered(x, y);
+                }
+            }
+        }
     }
 }
 
