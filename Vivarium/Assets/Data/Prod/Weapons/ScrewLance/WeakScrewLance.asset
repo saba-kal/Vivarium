@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakScrewLance
   m_EditorClassIdentifier: 
   Id: WeakScrewLance
-  Name: Weak Screw Lance
-  Description: A lance made from a screw.
   ItemFlavorText: {fileID: 11400000, guid: 69edace265e69c44397a672c52d43cc1, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: d0642cd163dbdaf4ba58e00121938563, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: 13e371da307c3ac49b9aac92d6e00097, type: 2}
+  WeaponModel: {fileID: 10733180162613902, guid: d662de6402ce00942bd759282783cfd6, type: 3}

@@ -61,6 +61,16 @@ public class CharacterController : MonoBehaviour
         _rangedWeapon = Utils.FindObjectWithTag(gameObject, Constants.RANGED_WEAPON_TAG);
         SwitchWeaponModel();
         PlaceSelfInGrid();
+        Debug.Log(gameObject.name);
+        Debug.Log(gameObject.transform.childCount);
+        DisplayEquipment(Character.Weapon);
+        Debug.Log("INITIAL WEAPON: " + Character.Weapon);
+        //var weaponSpawn = gameObject.GetComponentInChildren<ShowWeaponScript>();
+        //if (weaponSpawn != null)
+        //{
+        //    weaponSpawn.SpawnRandomWeapon();
+        //}
+
     }
 
     /// <summary>
@@ -377,6 +387,7 @@ public class CharacterController : MonoBehaviour
         return newActionViewer;
     }
 
+
     /// <summary>
     /// Equips an item.
     /// </summary>
@@ -400,7 +411,9 @@ public class CharacterController : MonoBehaviour
         if (item.Type == ItemType.Weapon)
         {
             Character.Weapon = (Weapon)item;
-            SwitchWeaponModel();
+            Debug.Log("MY WEAPON: " + Character.Weapon);
+            DisplayEquipment(Character.Weapon);
+            //SwitchWeaponModel();
             _equippedWeaponPosition = inventoryItem.InventoryPosition;
         }
         else if (item.Type == ItemType.Shield)
@@ -410,6 +423,18 @@ public class CharacterController : MonoBehaviour
             _equippedShieldPosition = inventoryItem.InventoryPosition;
         }
     }
+
+    private void DisplayEquipment(Weapon weapon)
+    {
+        //FindChildGameObjectsWithTag();
+        var weaponSpawn = gameObject.GetComponentInChildren<ShowWeaponScript>();
+        if (weaponSpawn != null)
+        {
+            weaponSpawn.SetWeapon(weapon.WeaponModel);
+        }
+    }
+
+
 
     /// <summary>
     /// Changes the weapon model to match the equipped item.

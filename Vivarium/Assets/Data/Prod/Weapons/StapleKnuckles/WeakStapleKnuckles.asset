@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakStapleKnuckles
   m_EditorClassIdentifier: 
   Id: WeakStapleKnuckles
-  Name: Weak Staple Knuckles
-  Description: A staple which can pin enemies in place.
   ItemFlavorText: {fileID: 11400000, guid: 64b87b348a2751d44a610ece6ff31eb1, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 08d58fee46e0cb045bd74653e98e4cca, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: ce253eccff8db5a41872acd90d97a928, type: 2}
+  WeaponModel: {fileID: 1718086305670888668, guid: 0402a3b641140ee48a3bcb8031d57999, type: 3}

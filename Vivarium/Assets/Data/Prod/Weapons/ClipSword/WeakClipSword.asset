@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakClipSword
   m_EditorClassIdentifier: 
   Id: WeakClipSword
-  Name: Weak Clip Sword
-  Description: A paper clip fashioned into a sword.
   ItemFlavorText: {fileID: 11400000, guid: dbd37e3d7d91ab049b57f8e733f58d17, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 170c39436d565ac4aa59098db5bf8acc, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: c2b79561ce109294a9f93a73cc320f60, type: 2}
+  WeaponModel: {fileID: 5423932113001503124, guid: 6ec602d18112d9f4cb609f5de7183057, type: 3}

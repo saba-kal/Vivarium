@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakThumbTack
   m_EditorClassIdentifier: 
   Id: WeakThumbTack
-  Name: Weak Thumb Tack
-  Description: Skewer enemies to deal great damage at the cost of being able to move.
   ItemFlavorText: {fileID: 11400000, guid: b017ead889382f341bb40ea0f4d2461a, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: e70f8c3b1a7a7f7478a5a9d2d02fb2cf, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: c56a4c3b9f315e14d98a0814838c3212, type: 2}
+  WeaponModel: {fileID: 919132149155446097, guid: 2087883c861e97a44871cca7bc178a97, type: 3}

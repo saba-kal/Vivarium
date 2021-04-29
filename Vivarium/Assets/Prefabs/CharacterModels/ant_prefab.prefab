@@ -221,8 +221,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.2592931, y: 0.00000005122274, z: 0.15788418}
+    m_Center: {x: -0.13457222, y: -0.23212416, z: 0.0494823}
+    m_Extent: {x: 0.12472089, y: 0.23212422, z: 0.20736648}
   m_DirtyAABB: 0
 --- !u!183 &6254351299669495983
 Cloth:
@@ -3509,7 +3509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &108127523367275735
 Transform:
   m_ObjectHideFlags: 0
@@ -4125,7 +4125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124151348600662420
 Transform:
   m_ObjectHideFlags: 0

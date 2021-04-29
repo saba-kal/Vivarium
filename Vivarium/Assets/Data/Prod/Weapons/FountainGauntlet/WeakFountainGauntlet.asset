@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: WeakFountainGauntlet
   m_EditorClassIdentifier: 
   Id: WeakFountainGauntlet
-  Name: Weak Fountain Gauntlet
-  Description: Can Rend to pull an enemy to the attackers spot and move the user
-    to where they were.
   ItemFlavorText: {fileID: 11400000, guid: a3efda3d4dafc5041b51893d84cfddaf, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 5b14f5bc27f512b4aacf135ee1740ae1, type: 3}
@@ -24,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: 6e7e4392de3ce9c49b3410e7417745ea, type: 2}
+  WeaponModel: {fileID: 8873463912888421433, guid: 7e8c54c67252c3b43b4c2cce977da8e6, type: 3}

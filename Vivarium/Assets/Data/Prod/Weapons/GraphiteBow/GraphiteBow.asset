@@ -16,9 +16,10 @@ MonoBehaviour:
   ItemFlavorText: {fileID: 11400000, guid: 8b18b87308df0aa479944b7d30591121, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 8d12270129e1a6043851e6ad0ddc25ec, type: 3}
-  Model: {fileID: 0}
+  Model: {fileID: 3923554182140758309, guid: 637f49ce9765fce499e6c04dfbf9463c, type: 3}
   CanBeStacked: 0
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: b2a703ff5de5a59418c2189bc82d4211, type: 2}
   - {fileID: 11400000, guid: b25cabebb44312f499132862c6cda1f6, type: 2}
+  WeaponModel: {fileID: 3923554182140758309, guid: 637f49ce9765fce499e6c04dfbf9463c, type: 3}
