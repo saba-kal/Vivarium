@@ -133,4 +133,6 @@ public class CharacterGenerationProfile : ScriptableObject
     /// </summary>
     [Header("Animation")]
     public RuntimeAnimatorController AnimationController;
+
+    public string unitType;
 }
