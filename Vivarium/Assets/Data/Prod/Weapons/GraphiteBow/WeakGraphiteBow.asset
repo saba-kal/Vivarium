@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakGraphiteBow
   m_EditorClassIdentifier: 
   Id: WeakGraphiteBow
-  Name: Weak Graphite Bow
-  Description: A bow that allows the player to fire attacks from long range
   ItemFlavorText: {fileID: 11400000, guid: 500638a648b5dc74c8f1bd9b734babbe, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 23ec05e6204d7b24f8d1bac68b3f60a4, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: 8daac75d9273f4d46b6246bb0cd19965, type: 2}
+  WeaponModel: {fileID: 7097813968922819656, guid: 8643338619a52604c9f7448e21bd7a20, type: 3}
