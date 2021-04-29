@@ -22,4 +22,4 @@ MonoBehaviour:
   Actions:
   - {fileID: 11400000, guid: 1b24a0e2cce6c054bbcbd1385bb2ab7d, type: 2}
   - {fileID: 11400000, guid: 55cee4b64bc44d24aba20c5002125d75, type: 2}
-  WeaponModel: {fileID: 1718086305670888668, guid: 0402a3b641140ee48a3bcb8031d57999, type: 3}
+  WeaponModel: {fileID: 6128883680873124133, guid: a4395148fbc45734786335df7cb6c56b, type: 3}

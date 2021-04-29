@@ -23,14 +23,14 @@ public class ShowWeaponScript : MonoBehaviour
         obj.transform.SetParent(this.gameObject.transform);
     }
 
-    public void SetWeapon(GameObject weaponModel)
+    public void SetWeapon(GameObject weaponModel, Character character)
     {
         Destroy(currentWeaponModel);
         if (weaponModel == null)
         {
             return;
         }
-        currentWeaponModel = GameObject.Instantiate(weaponModel, this.transform);
+        currentWeaponModel = GameObject.Instantiate(weaponModel.GetComponent<WeaponChooser>().GetWeaponOrientation(character), this.transform);
         currentWeaponModel.transform.SetParent(this.gameObject.transform);
     }
 

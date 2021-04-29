@@ -430,7 +430,7 @@ public class CharacterController : MonoBehaviour
         var weaponSpawn = gameObject.GetComponentInChildren<ShowWeaponScript>();
         if (weaponSpawn != null)
         {
-            weaponSpawn.SetWeapon(weapon.WeaponModel);
+            weaponSpawn.SetWeapon(weapon.WeaponModel, Character);
         }
     }
 
