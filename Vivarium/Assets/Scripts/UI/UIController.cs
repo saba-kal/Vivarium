@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour
             EndTurnButton.interactable = false;
             UndoButton.interactable = false;
         }
-        else
+        else if(!TutorialManager.Instance.KeepEndTurnButtonDisabled())
         {
             EndTurnButton.interactable = true;
             UndoButton.interactable = UndoMoveController.Instance.IsUndoTrue;

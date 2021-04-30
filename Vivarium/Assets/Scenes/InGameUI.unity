@@ -14350,6 +14350,7 @@ MonoBehaviour:
   nextButton: {fileID: 1998085172}
   skipButton: {fileID: 58843034}
   backButton: {fileID: 644258296}
+  endTurnButton: {fileID: 748127745}
 --- !u!4 &536971556224607995
 Transform:
   m_ObjectHideFlags: 0
