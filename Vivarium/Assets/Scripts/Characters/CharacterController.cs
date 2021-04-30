@@ -424,13 +424,30 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    private void DisplayEquipment(Weapon weapon)
+    /// <summary>
+    /// Displays the equipment of the character
+    /// </summary>
+    /// <param name="weapon">the weapon to display</param>
+    public void DisplayEquipment(Weapon weapon)
     {
         //FindChildGameObjectsWithTag();
         var weaponSpawn = gameObject.GetComponentInChildren<ShowWeaponScript>();
         if (weaponSpawn != null)
         {
             weaponSpawn.SetWeapon(weapon.WeaponModel, Character);
+        }
+    }
+
+    /// <summary>
+    /// Displays the equipment of the character
+    /// </summary>
+    public void DisplayEquipment()
+    {
+        //FindChildGameObjectsWithTag();
+        var weaponSpawn = gameObject.GetComponentInChildren<ShowWeaponScript>();
+        if (weaponSpawn != null)
+        {
+            weaponSpawn.SetWeapon(Character.Weapon.WeaponModel, Character);
         }
     }
 

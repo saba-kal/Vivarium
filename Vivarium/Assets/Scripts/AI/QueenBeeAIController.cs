@@ -188,6 +188,7 @@ public class QueenBeeAIController : AIController
 
         _minionSummonActionController.SetOnCharacterSummon(newCharacterController =>
         {
+            newCharacterController.DisplayEquipment();
             _summonedBees.Add(newCharacterController);
         });
         _minionSummonActionController.Execute(targetTile, onComplete);

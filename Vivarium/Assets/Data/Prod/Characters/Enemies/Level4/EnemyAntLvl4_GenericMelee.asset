@@ -37,3 +37,4 @@ MonoBehaviour:
   AICharacterHeuristics: {fileID: 11400000, guid: f2ef779011c975348b9364cd82523da0, type: 2}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}
+  unitType: ant
