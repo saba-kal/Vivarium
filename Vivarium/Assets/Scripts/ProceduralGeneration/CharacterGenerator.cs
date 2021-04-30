@@ -40,7 +40,7 @@ public class CharacterGenerator
 
         characterGameObject.AddComponent<MoveController>();
 
-        CreateHealthBar(characterGameObject, characterProfile);
+        CreateHealthBar(characterGameObject, characterProfile, characterController);
 
         if (isEnemy)
         {
@@ -99,7 +99,8 @@ public class CharacterGenerator
 
     private void CreateHealthBar(
         GameObject characterGameObject,
-        CharacterGenerationProfile characterProfile)
+        CharacterGenerationProfile characterProfile,
+        CharacterController characterController)
     {
         var healthController = characterGameObject.AddComponent<HealthController>();
 
@@ -107,6 +108,7 @@ public class CharacterGenerator
         healthBarObject.transform.SetParent(characterGameObject.transform);
 
         var healthBars = healthBarObject.GetComponentsInChildren<HealthBar>();
+        var icons = healthBarObject.GetComponentsInChildren<HealthBarIcon>();
         foreach (var healthbar in healthBars)
         {
             if (healthbar.isShieldBar)
@@ -117,6 +119,11 @@ public class CharacterGenerator
             {
                 healthController.HealthBar = healthbar;
             }
+        }
+
+        foreach (var icon in icons)
+        {
+            icon.SetCharacterController(characterController);
         }
     }
 
