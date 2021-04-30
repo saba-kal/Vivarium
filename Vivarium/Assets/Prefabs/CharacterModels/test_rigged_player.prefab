@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712960362435112877}
   - component: {fileID: 6710561877277373912}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea5621c104f77224ba1f68ab85b8410b, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1474607895478976235}
   - component: {fileID: 1440137495944176136}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: test_rigged_player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ Animator:
   m_GameObject: {fileID: 2250969398597837905}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4d173b85ae74bc24d95607a4b197e825, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4602158043616751731}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dont_look
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3454890696391677335}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7961790519105269537}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
