@@ -222,8 +222,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.2592931, y: 0.00000005122274, z: 0.15788418}
+    m_Center: {x: -0.16294801, y: -0.2465034, z: 0.02377662}
+    m_Extent: {x: 0.0963451, y: 0.24650346, z: 0.1816608}
   m_DirtyAABB: 0
 --- !u!183 &6254351299669495983
 Cloth:
@@ -4156,7 +4156,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8030069402706194886}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
