@@ -9,9 +9,9 @@ public class HealthBarIcon : MonoBehaviour
     public bool isActionIcon;
     public Image Icon;
 
-    public CharacterController _characterController;
+    private CharacterController _characterController;
 
-    private void Update()
+    void Update()
     {
         bool move = CheckOnMove();
         bool action = CheckOnAction();
