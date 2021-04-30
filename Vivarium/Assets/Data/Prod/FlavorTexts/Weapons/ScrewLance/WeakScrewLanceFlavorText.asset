@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Weak Screw Lance
-  Description: A lance made from a screw. Can pull enemies around you.
+  Description: A lance made from a screw.

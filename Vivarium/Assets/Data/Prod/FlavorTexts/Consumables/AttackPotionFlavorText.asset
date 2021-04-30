@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Attack Potion
-  Description: A strange blue liquid in a vial. Permanently increases attack by 7.
+  Description: A strange yellow liquid in a vial. Permanently increases attack by
+    7.
