@@ -30,8 +30,8 @@ TagManager:
   - BadGlass
   - NoDirectionalLight
   - outside_objects
-  - 
-  - 
+  - normalCharacter
+  - focusCharacter
   - 
   - 
   - 
