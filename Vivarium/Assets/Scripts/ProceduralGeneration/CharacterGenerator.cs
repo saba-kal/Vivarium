@@ -92,6 +92,7 @@ public class CharacterGenerator
         character.Type = characterProfile.Type;
         character.CanMoveThroughCharacters = characterProfile.CanMoveThroughCharacters;
         character.Aggro = characterProfile.Aggro;
+        character.unitType = characterProfile.unitType;
 
         return character;
     }

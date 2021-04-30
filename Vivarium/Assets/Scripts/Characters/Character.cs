@@ -87,4 +87,9 @@ public class Character
     /// How much this character can attract AI's attention.
     /// </summary>
     public int Aggro;
+
+    /// <summary>
+    /// The type of unit the character is
+    /// </summary>
+    public string unitType;
 }

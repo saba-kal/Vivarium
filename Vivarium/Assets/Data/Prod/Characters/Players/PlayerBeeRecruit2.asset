@@ -38,3 +38,4 @@ MonoBehaviour:
   AICharacterHeuristics: {fileID: 0}
   CharacterLootTable: {fileID: 11400000, guid: 97b902ee64b77ed4688225bacdfbaca6, type: 2}
   AnimationController: {fileID: 0}
+  unitType: bee

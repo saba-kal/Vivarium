@@ -16,6 +16,7 @@ TagManager:
   - WeaponMelee
   - ButtonIndicator
   - Decorator
+  - WeaponModelSpawn
   layers:
   - Default
   - TransparentFX

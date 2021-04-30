@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakNailHammer
   m_EditorClassIdentifier: 
   Id: WeakNailHammer
-  Name: Weak Nail Hammer
-  Description: A hammer made from a nail that can knock enemies back.
   ItemFlavorText: {fileID: 11400000, guid: ca5f36c16c38d204da64ad677002a4ce, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 520c8d158cde71f4187a37c6450f7e70, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: ec1ee37b932ac6b458075e64a89f5c5d, type: 2}
+  WeaponModel: {fileID: 640147623217058446, guid: c04d0fa4066bacd41892bbe80782f000, type: 3}
