@@ -154,6 +154,13 @@ public class ActionController : MonoBehaviour, IActionController
             return;
         }
 
+        StartCoroutine(PlayeSoundDelayed());
+    }
+
+    private IEnumerator PlayeSoundDelayed()
+    {
+        var delay = Mathf.Clamp(ActionReference.ActionTriggerDelay - 0.3f, 0f, 100f);
+        yield return new WaitForSeconds(delay);
         SoundManager.GetInstance()?.Play(ActionReference.SoundName);
     }
 

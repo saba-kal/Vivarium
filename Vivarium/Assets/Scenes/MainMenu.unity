@@ -971,7 +971,7 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   Sounds:
   - Name: ButtonClick
-    Clip: {fileID: 8300000, guid: 9f046b15deebed54bafd15b7a2692d1c, type: 3}
+    Clip: {fileID: 8300000, guid: c1f54dd0a394b30458982f8d409f7969, type: 3}
     Volume: 0.5
     Pitch: 1
     PlayOnAwake: 0

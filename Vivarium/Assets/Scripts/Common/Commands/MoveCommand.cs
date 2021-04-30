@@ -77,7 +77,6 @@ public class MoveCommand : ICommand
             if (_isRotating && _rotationEnabled)
             {
                 FaceMovementDirection(_gameObject.transform.position, targetPosition);
-                _soundManager?.Pause(Constants.WALK_SOUND);
             }
             else
             {
@@ -87,7 +86,6 @@ public class MoveCommand : ICommand
                 }
                 else
                 {
-                    _soundManager?.Resume(Constants.WALK_SOUND);
                     _gameObject.transform.position = Vector3.MoveTowards(_gameObject.transform.position, targetPosition, Time.deltaTime * _speed);
                 }
 
