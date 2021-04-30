@@ -978,8 +978,8 @@ MonoBehaviour:
     Loop: 0
     AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: BGM
-    Clip: {fileID: 8300000, guid: 02ce9b9c357f8974a9ce817fa97d1e2d, type: 3}
-    Volume: 0.15
+    Clip: {fileID: 8300000, guid: 259fc76dbb876da409d506e719a3ff98, type: 3}
+    Volume: 0.5
     Pitch: 1
     PlayOnAwake: 1
     Loop: 1
