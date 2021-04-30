@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Weak Graphite Bow
-  Description: A bow that allows the player to fire attacks from long range
+  Description: A bow that can shoot from long range but not through walls.

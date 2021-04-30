@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Small Attack Potion
-  Description: A strange blue liquid in a vial. Permanently increases attack by 4.
+  Description: A strange yellow liquid in a vial. Permanently increases attack by
+    4.
