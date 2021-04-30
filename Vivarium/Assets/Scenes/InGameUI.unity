@@ -8326,6 +8326,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Next
       objectReference: {fileID: 0}
+    - target: {fileID: 8400641587543478731, guid: a3236504331991649ad5f75d762ad467, type: 3}
+      propertyPath: m_overflowMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3236504331991649ad5f75d762ad467, type: 3}
 --- !u!1 &1157698357
@@ -14534,7 +14538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &763171307804415862
 CanvasRenderer:
   m_ObjectHideFlags: 0
