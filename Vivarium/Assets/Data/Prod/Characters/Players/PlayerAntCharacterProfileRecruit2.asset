@@ -15,7 +15,7 @@ MonoBehaviour:
   PossibleModels:
   - {fileID: 106819821670323034, guid: 6eded9c7965df7e48b98221dda61e1d8, type: 3}
   PossiblePortraits:
-  - {fileID: 21300000, guid: 16f88b77cc7309a42a9839c4b277318b, type: 3}
+  - {fileID: 21300000, guid: 3cfad471ccaea444f831142b935d8b20, type: 3}
   HealthBarPrefab: {fileID: 1578279264111162628, guid: 006f466cb2f328e48a7aed5840c9c2b0, type: 3}
   CharacterFlavorText: {fileID: 11400000, guid: 5a9572e3db45c424db3c2adc7fadfa59, type: 2}
   Type: 0
@@ -38,3 +38,4 @@ MonoBehaviour:
   AICharacterHeuristics: {fileID: 0}
   CharacterLootTable: {fileID: 11400000, guid: 97b902ee64b77ed4688225bacdfbaca6, type: 2}
   AnimationController: {fileID: 0}
+  unitType: ant

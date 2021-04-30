@@ -15,4 +15,7 @@ public class Weapon : Item
     
     //Adds a field that determines the type of weapon and action the object will have
     public List<Action> Actions;
+
+    // The visual model depicting the weapon
+    public GameObject WeaponModel;
 }
