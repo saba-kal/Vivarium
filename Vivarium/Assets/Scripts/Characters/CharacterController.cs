@@ -78,17 +78,20 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void Select()
     {
-        _isSelected = true;
-        if (!_hasMoved)
+        if(!GetGridPosition().IsObjective || IsEnemy)
         {
-            ShowMoveRadius();
-        }
-        UIController.Instance.ShowCharacterInfo(this);
-        OnSelect?.Invoke(this);
+            _isSelected = true;
+            if (!_hasMoved)
+            {
+                ShowMoveRadius();
+            }
+            UIController.Instance.ShowCharacterInfo(this);
+            OnSelect?.Invoke(this);
 
-        Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
-        tempDict.Add((0, 0), GetGridPosition());
-        TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
+            Dictionary<(int, int), Tile> tempDict = new Dictionary<(int, int), Tile>();
+            tempDict.Add((0, 0), GetGridPosition());
+            TileGridController.Instance.HighlightTiles(tempDict, GridHighlightRank.Secondary);
+        }
     }
 
     /// <summary>
