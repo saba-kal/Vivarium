@@ -43,6 +43,11 @@ public class MasterCameraScript : MonoBehaviour
 
     void Update()
     {
+        if (focusCharacters.Length <= 0 || (focusCharacters.Length > 0 && focusCharacters[0] == null))
+        {
+            focusCharacters = GameObject.FindGameObjectsWithTag("PlayerCharacter");
+        }
+
         if (this.gameObject.transform.position.z > maxForward)
         {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, maxForward);

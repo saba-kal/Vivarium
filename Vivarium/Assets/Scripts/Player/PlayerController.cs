@@ -409,17 +409,20 @@ public class PlayerController : MonoBehaviour
     {
         DeselectTrade();
         DisableActions(characterController.Id, DisableActionsOnTrade);
+        characterController.SetHasAttacked(true);
     }
 
     private void OnConsume(CharacterController characterController)
     {
         DisableActions(characterController.Id, DisableActionsOnConsume);
+        characterController.SetHasAttacked(true);
     }
 
     private void OnEquip(CharacterController characterController)
     {
         DeselectAction();
         DisableActions(characterController.Id, DisableActionsOnEquip);
+        characterController.SetHasAttacked(true);
     }
 
     private void DisableActions(string characterId, bool disableActions)

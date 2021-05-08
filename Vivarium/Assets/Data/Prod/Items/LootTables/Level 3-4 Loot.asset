@@ -14,34 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroppableItems:
   - Item: {fileID: 11400000, guid: 2638506d994fdab43845bd7b091d9b00, type: 2}
-    ChanceToDrop: 0.34
+    ChanceToDrop: 0.5
   - Item: {fileID: 11400000, guid: 613e046d8fe94bd4488394fefadb70d9, type: 2}
-    ChanceToDrop: 0.48
+    ChanceToDrop: 0.6
   - Item: {fileID: 11400000, guid: d365b6b76079ae14d8a86463a28e20dc, type: 2}
-    ChanceToDrop: 0.21
+    ChanceToDrop: 0.6
   - Item: {fileID: 11400000, guid: 319316a1d009dc14cbab56f18b3ee78a, type: 2}
-    ChanceToDrop: 0.53
+    ChanceToDrop: 0.8
   - Item: {fileID: 11400000, guid: 491c2ff5bbcc41347967af1c1a796c5d, type: 2}
-    ChanceToDrop: 0.45
+    ChanceToDrop: 0.6
   - Item: {fileID: 11400000, guid: a3c492610485f6347b44fc07edc9e616, type: 2}
-    ChanceToDrop: 0.42
+    ChanceToDrop: 0.5
   - Item: {fileID: 11400000, guid: deda35c0e7bd01f4c900edcb5ab4db92, type: 2}
-    ChanceToDrop: 0.38
+    ChanceToDrop: 0.6
   - Item: {fileID: 11400000, guid: 14fd7acf46353e143bafd1f714ee70b0, type: 2}
-    ChanceToDrop: 0.3
+    ChanceToDrop: 0.6
   - Item: {fileID: 11400000, guid: d050d83cdc310ce4cba73f3a5cc5c94c, type: 2}
-    ChanceToDrop: 0.29
+    ChanceToDrop: 0.25
   - Item: {fileID: 11400000, guid: 512c3ea5a5a6cc44ab02c6c834c4cfc7, type: 2}
-    ChanceToDrop: 0.58
+    ChanceToDrop: 0.3
   - Item: {fileID: 11400000, guid: 759a203df04910a4aa83033274c56489, type: 2}
-    ChanceToDrop: 0.11
+    ChanceToDrop: 0.3
   - Item: {fileID: 11400000, guid: 30c60ce394d10884b819d34aa06fc85e, type: 2}
-    ChanceToDrop: 0.63
+    ChanceToDrop: 0.4
   - Item: {fileID: 11400000, guid: d96cf790f5d3bc64181bbc1a3cfb18ce, type: 2}
-    ChanceToDrop: 0.45
+    ChanceToDrop: 0.3
   - Item: {fileID: 11400000, guid: bc267c8902ed62a45af43cdbf8f0ca20, type: 2}
-    ChanceToDrop: 0.52
+    ChanceToDrop: 0.25
   - Item: {fileID: 11400000, guid: 35711071a24c85b41b28b5a40b315754, type: 2}
-    ChanceToDrop: 0.38
+    ChanceToDrop: 0.3
   - Item: {fileID: 11400000, guid: f3b4adb553bc62d478de88ad6ac6103c, type: 2}
-    ChanceToDrop: 0.2
+    ChanceToDrop: 0.3

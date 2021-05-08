@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     public Button nextButton;
     public Button skipButton;
     public Button backButton;
+    public Button endTurnButton;
     private static bool IsTutorial = false;
     private int index;
     private int maxVisitedIndex;
@@ -41,6 +42,7 @@ public class TutorialManager : MonoBehaviour
         enemy = LevelManager.Instance.LevelGenerator.GetEnemyAIManager().AICharacters[0];
         player = LevelManager.Instance.LevelGenerator.PlayerCharacters[0];
         backButton.interactable = false;
+        endTurnButton.interactable = false;
     }
 
     private void Update()
@@ -72,6 +74,9 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 8:
                     DamageEnemy();
+                    break;
+                case 9:
+                    UnlockEndTurnButton();
                     break;
                 case 10:
                     ShowObjective();
@@ -203,6 +208,11 @@ public class TutorialManager : MonoBehaviour
         {
             nextButton.interactable = true;
         }
+    }
+
+    private void UnlockEndTurnButton()
+    {
+        endTurnButton.interactable = true;
     }
 
     /// <summary>
@@ -358,5 +368,10 @@ public class TutorialManager : MonoBehaviour
         var moveController = player.GetMoveController();
         moveController.HideMoveRadius();
         moveController.ShowMoveRadius();
+    }
+
+    public bool KeepEndTurnButtonDisabled()
+    {
+        return IsTutorial && maxVisitedIndex < 9;
     }
 }

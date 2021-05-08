@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WeakExactoCleaver
   m_EditorClassIdentifier: 
   Id: WeakExactoCleaver
-  Name: Weak Exacto Cleaver
-  Description: Can Cleave to do a small AOE attack centered on the attacker.
   ItemFlavorText: {fileID: 11400000, guid: f8bdd70b220165549a3d16755d3d9be2, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: ee96af5bdc27e3248b5bcffa728a5e3b, type: 3}
@@ -23,3 +21,4 @@ MonoBehaviour:
   Attributes: []
   Actions:
   - {fileID: 11400000, guid: b5c3b25d66229064eba860cb4ecb40a3, type: 2}
+  WeaponModel: {fileID: 8129022957687310969, guid: 174916ad7264c364b820b9dd09a50914, type: 3}

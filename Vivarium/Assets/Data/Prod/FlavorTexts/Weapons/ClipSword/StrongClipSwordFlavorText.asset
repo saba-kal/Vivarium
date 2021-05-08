@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StrongClipSwordFlavorText
   m_EditorClassIdentifier: 
   PossibleNames:
-  - Weak Clip Sword
+  - Strong Clip Sword
   Description: A paper clip fashioned into a sword that can pierce two enemies at
     once.

@@ -19,6 +19,8 @@ public class RewardsUIController : MonoBehaviour
     public Image Option2Icon;
     public Image Option3Icon;
 
+    public GameObject PlayerButtons;
+
     private List<int> _selectedRewards = new List<int>();
     private System.Action _nextLevelCallback;
     private List<Item> _rewards = new List<Item>();
@@ -111,6 +113,7 @@ public class RewardsUIController : MonoBehaviour
             RewardsText.text = "Choose two rewards!";
             ItemRewardsScreen(callback, possibleRewards);
         }
+        PlayerButtons.SetActive(false);
     }
     private void CharacterRewardsScreen(System.Action callback)
     {
