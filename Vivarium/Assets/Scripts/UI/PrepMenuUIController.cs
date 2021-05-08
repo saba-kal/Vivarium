@@ -18,6 +18,7 @@ public class PrepMenuUIController : MonoBehaviour
     public Button PreviewBackButton;
     public Button UndoMoveButton;
     public Button EndTurnButton;
+    public GameObject PlayerButtons;
 
     private List<CharacterDetailsProfile> _existingProfiles = new List<CharacterDetailsProfile>();
     private MasterCameraScript _masterCamera;
@@ -67,6 +68,7 @@ public class PrepMenuUIController : MonoBehaviour
             UndoMoveButton?.gameObject.SetActive(true);
             EndTurnButton?.gameObject.SetActive(true);
             _masterCamera?.unlockCamera();
+            PlayerButtons.SetActive(true);
         });
 
 
