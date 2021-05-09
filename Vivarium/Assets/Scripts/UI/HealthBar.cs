@@ -76,7 +76,7 @@ public class HealthBar : MonoBehaviour
     {
         if (HealthBarText != null)
         {
-            HealthBarText.text = $"{_currentHealth:n0}/{_maxHealth:n0}";
+            HealthBarText.text = $"{_currentHealth:n0}";
         }
     }
     /// <summary>
