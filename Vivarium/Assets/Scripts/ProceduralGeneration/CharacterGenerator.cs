@@ -55,6 +55,7 @@ public class CharacterGenerator
                     queenBeeAi.MaxSummons = characterProfile.MaxSummons;
                     queenBeeAi.StartingSummons = characterProfile.StartingSummons;
                     queenBeeAi.ActionsPerTurn = characterProfile.ActionsPerTurn;
+                    queenBeeAi.StartSummonDelay = characterProfile.StartSummonDelay;
                     break;
                 case CharacterType.Normal:
                 default:

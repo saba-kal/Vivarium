@@ -52,6 +52,11 @@ public class CharacterGenerationProfile : ScriptableObject
     public int ActionsPerTurn = 2;
 
     /// <summary>
+    /// Delay in seconds until the queen bee summons minions at the start of a level.
+    /// </summary>
+    public float StartSummonDelay = 5f;
+
+    /// <summary>
     /// The minimum value of the character's health when at full health.
     /// </summary>
     [Header("Stats")]

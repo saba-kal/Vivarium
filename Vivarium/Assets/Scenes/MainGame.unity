@@ -15167,7 +15167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993827713301383447, guid: 0fb81e80c52185143a60ab6482a24cd9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.95881975
+      value: 0.8482259
       objectReference: {fileID: 0}
     - target: {fileID: 8993827713301383447, guid: 0fb81e80c52185143a60ab6482a24cd9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -36190,42 +36190,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[0].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0df36f803dc1c4342b627eb5f3473ff1, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[1].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c1f54dd0a394b30458982f8d409f7969, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[2].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8f8f1e4183200c24d9f30cebab5f54f1, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[3].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: df70bd4681d33734e91f742219308f4e, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[4].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: c1f54dd0a394b30458982f8d409f7969, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[7].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 47419a1a2a72b21479740eedd5fef71b, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[8].Clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 259fc76dbb876da409d506e719a3ff98, type: 3}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[7].Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5814518999666247296, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
-      propertyPath: Sounds.Array.data[8].Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5814518999666247297, guid: 0bd513e6b6a09044b9153a334b6a7794, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -98087,7 +98051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167c3df4cdc5cd5429a7d93798b819ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 10
+  Duration: 13
 --- !u!1 &345121969590584090
 GameObject:
   m_ObjectHideFlags: 0
