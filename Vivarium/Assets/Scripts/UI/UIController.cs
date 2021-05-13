@@ -22,7 +22,6 @@ public class UIController : MonoBehaviour
     public UnitInspectionController UnitInspectionController;
     public Button EndTurnButton;
     public Button UndoButton;
-    public float SpaceBetweenButtons = 2f;
 
     private void Awake()
     {
@@ -52,7 +51,7 @@ public class UIController : MonoBehaviour
             EndTurnButton.interactable = false;
             UndoButton.interactable = false;
         }
-        else if(!TutorialManager.Instance.KeepEndTurnButtonDisabled())
+        else if (!TutorialManager.Instance.KeepEndTurnButtonDisabled())
         {
             EndTurnButton.interactable = true;
             UndoButton.interactable = UndoMoveController.Instance.IsUndoTrue;
