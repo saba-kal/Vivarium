@@ -48,3 +48,5 @@ MonoBehaviour:
   AISettings:
     ShowPreview: 0
     PreviewLabelPrefab: {fileID: 5877540446992640782, guid: 427aef6db6df35048995236a4d845c1d, type: 3}
+  IsTutorial: 0
+  CutSceneName: 

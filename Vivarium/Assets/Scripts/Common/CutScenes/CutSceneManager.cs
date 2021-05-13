@@ -78,11 +78,14 @@ public class CutSceneManager : MonoBehaviour
     {
         var cutSceneDuration = cutScene.GetComponent<CutScene>()?.Duration ?? 0f;
 
-        yield return new WaitForSeconds(cutSceneDuration);
+        yield return new WaitForSeconds(cutSceneDuration - 1);
+
+        _uiVisible = true;
+
+        yield return new WaitForSeconds(1);
 
         cutScene.SetActive(false);
         MainVirtualCamera.gameObject.SetActive(true);
-        _uiVisible = true;
     }
 
     private void SetUIVisible(bool isVisible)
