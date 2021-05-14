@@ -13,6 +13,7 @@ public class QueenBeeAIController : AIController
     public int MaxSummons;
     public int StartingSummons;
     public int ActionsPerTurn;
+    public float StartSummonDelay = 5f;
 
     private QueenBeePhase _phase = QueenBeePhase.Defend;
     private List<BeeHiveAIController> _beeHives = null;
@@ -47,6 +48,15 @@ public class QueenBeeAIController : AIController
 
     private void PerformStartOfLevelSummon()
     {
+        StartCoroutine(PerformStartOfLevelSummon(StartSummonDelay));
+    }
+
+    private IEnumerator PerformStartOfLevelSummon(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        SoundManager.GetInstance()?.Play(Constants.QUEEN_BEE_ROAR);
+
         _minionSummonActionController.DisableSound();
         _minionSummonActionController.SkipCommandQueue = true;
         var excludedTileSpawns = new Dictionary<(int, int), Tile>();

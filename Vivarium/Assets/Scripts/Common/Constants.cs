@@ -32,4 +32,5 @@ public static class Constants
     public const string BUTTON_CLICK_SOUND = "ButtonClick";
     public const string EQUIP_SOUND = "ItemEquip";
     public const string CONSUME_SOUND = "Consume";
+    public const string QUEEN_BEE_ROAR = "QueenBeeRoar";
 }
