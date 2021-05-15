@@ -102,7 +102,7 @@ MonoBehaviour:
     Loop: 1
     AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
   - Name: BGM
-    Clip: {fileID: 8300000, guid: 259fc76dbb876da409d506e719a3ff98, type: 3}
+    Clip: {fileID: 8300000, guid: 2eb029cc69319a942b0fd005ce5b4242, type: 3}
     Volume: 0.5
     Pitch: 1
     PlayOnAwake: 1
@@ -115,3 +115,10 @@ MonoBehaviour:
     PlayOnAwake: 0
     Loop: 0
     AudioMixerGroup: {fileID: -3584057880400524459, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}
+  - Name: BossBGM
+    Clip: {fileID: 8300000, guid: f327399b495cd6e4fb7f2276fdee6bea, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    PlayOnAwake: 0
+    Loop: 1
+    AudioMixerGroup: {fileID: 890340923316228111, guid: 8a7a96e1341b93241862ca48a67bd255, type: 2}

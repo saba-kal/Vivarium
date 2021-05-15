@@ -30,6 +30,7 @@ public class QueenBeeAIController : AIController
         PerformStartOfLevelSummon();
         _animator = GetComponentInChildren<Animator>();
         _animator?.SetBool(PHASE1_ANIM_KEY, true);
+        PlayBossMusic();
     }
 
     private void GetQueenBeeActions()
@@ -73,6 +74,18 @@ public class QueenBeeAIController : AIController
         }
         _minionSummonActionController.EnableSound();
         _minionSummonActionController.SkipCommandQueue = false;
+    }
+
+    private void PlayBossMusic()
+    {
+        var soundManager = SoundManager.GetInstance();
+        if (soundManager == null)
+        {
+            return;
+        }
+
+        soundManager.Stop(Constants.BGM_SOUND);
+        soundManager.Play(Constants.BOSS_BGM_SOUND);
     }
 
     /// <inheritdoc cref="AIController.Move(System.Action)"/>
