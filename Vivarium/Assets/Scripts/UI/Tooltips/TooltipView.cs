@@ -114,6 +114,12 @@ public class TooltipView : MonoBehaviour
         TooltipDescription.text += $"\n - Shield amount: {shield.Health:n0}";
     }
 
+    public void DisplayGenericText(string providedText)
+    {
+        TooltipTitle.text = "";
+        TooltipDescription.text = providedText;
+        CalculateTooltipHeight();
+    }
     /// <summary>
     /// Calculates the height of the tool tip based on the title and description
     /// </summary>

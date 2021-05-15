@@ -5,5 +5,6 @@ public enum TooltipType
 {
     Action = 0,
     Item = 1,
-    Character = 2
+    Character = 2,
+    Text =3
 }

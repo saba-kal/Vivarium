@@ -10,9 +10,10 @@ using UnityEngine.UI;
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject TooltipViewPrefab;
+    public string TextToShow;
+    public TooltipType Type;
 
     private GameObject _activeTooltip;
-    private TooltipType _type;
     private Item ItemToShow;
     private Action ActionToShow;
     private Character CharacterToShow;
@@ -51,7 +52,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return;
         }
 
-        switch (_type)
+        switch (Type)
         {
             case TooltipType.Action:
                 tooltipView.DisplayAction(ActionToShow);
@@ -61,6 +62,9 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case TooltipType.Character:
                 tooltipView.DisplayCharacter(CharacterToShow);
+                break;
+            case TooltipType.Text:
+                tooltipView.DisplayGenericText(TextToShow);
                 break;
         }
     }
@@ -101,7 +105,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <param name="item">The item that the tool tip will describe</param>
     public void SetTooltipData(Item item)
     {
-        _type = TooltipType.Item;
+        Type = TooltipType.Item;
         ItemToShow = item;
     }
 
@@ -111,7 +115,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <param name="action">The action that the tool tip will describe</param>
     public void SetTooltipData(Action action)
     {
-        _type = TooltipType.Action;
+        Type = TooltipType.Action;
         ActionToShow = action;
     }
 
@@ -121,8 +125,14 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <param name="character">The character the tool tip will describe</param>
     public void SetTooltipData(Character character)
     {
-        _type = TooltipType.Character;
+        Type = TooltipType.Character;
         CharacterToShow = character;
+    }
+
+    public void SetTooltipData(string text)
+    {
+        Type = TooltipType.Text;
+        TextToShow = text;
     }
 
     /// <summary>
@@ -149,7 +159,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     /// <returns>Returns a bool depending on if the tool tip can display data</returns>
     public bool CanDisplayData()
     {
-        return (ItemToShow != null || ActionToShow != null) &&
+        return (ItemToShow != null || ActionToShow != null || !string.IsNullOrWhiteSpace(TextToShow)) &&
             _mouseIsHoveringOverElement;
     }
 
