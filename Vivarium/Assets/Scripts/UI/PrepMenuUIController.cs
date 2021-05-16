@@ -69,6 +69,7 @@ public class PrepMenuUIController : MonoBehaviour
             EndTurnButton?.gameObject.SetActive(true);
             _masterCamera?.unlockCamera();
             PlayerButtons.SetActive(true);
+            UndoMoveController.Instance.IsUndoTrue = false;
         });
 
 
