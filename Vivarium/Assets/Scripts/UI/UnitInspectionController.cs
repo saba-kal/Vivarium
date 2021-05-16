@@ -155,6 +155,12 @@ public class UnitInspectionController : MonoBehaviour
 
         var buttonText = _tradeButton.GetComponentInChildren<TextMeshProUGUI>();
         buttonText.text = TradeButtonText;
+
+        var tooltip = _tradeButton.GetComponent<Tooltip>();
+        if (tooltip != null)
+        {
+            tooltip.SetTooltipData("Trade items with an adjacent character");
+        }
     }
 
     private void UpdateSelectedActionIndicator(Button selectedAction)

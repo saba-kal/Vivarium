@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 /// <summary>
 /// Logic for what the tool tip displays. 
 /// </summary>
 public class TooltipView : MonoBehaviour
 {
+    public int TitleFontSize = 20;
     public string Id;
-    public TextMeshProUGUI TooltipTitle;
     public TextMeshProUGUI TooltipDescription;
     public float BaseHeight = 100f;
 
@@ -20,8 +21,8 @@ public class TooltipView : MonoBehaviour
     {
         var maxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
 
-        TooltipTitle.text = action.Flavor.Name;
-        TooltipDescription.text = action.Flavor.Description;
+        TooltipDescription.text = BuildTitle(action.Flavor.Name);
+        TooltipDescription.text += action.Flavor.Description;
 
         var minDamage = StatCalculator.CalculateStat(action, StatType.Damage, StatCalculationType.Min);
         var maxDamage = StatCalculator.CalculateStat(action, StatType.Damage, StatCalculationType.Max);
@@ -46,8 +47,8 @@ public class TooltipView : MonoBehaviour
     /// <param name="item">The item to be displayed by the tool tip</param>
     public void DisplayItem(Item item)
     {
-        TooltipTitle.text = item.Flavor.Name;
-        TooltipDescription.text = item.Flavor.Description;
+        TooltipDescription.text = BuildTitle(item.Flavor.Name);
+        TooltipDescription.text += item.Flavor.Description;
 
         switch (item.Type)
         {
@@ -69,8 +70,8 @@ public class TooltipView : MonoBehaviour
     /// <param name="character">The character to be displayed by the tool tip</param>
     public void DisplayCharacter(Character character)
     {
-        TooltipTitle.text = character.Flavor.Name;
-        TooltipDescription.text = "Weapon: " + character.Weapon.Flavor.Name + "\n";
+        TooltipDescription.text = BuildTitle(character.Flavor.Name);
+        TooltipDescription.text += "Weapon: " + character.Weapon.Flavor.Name + "\n";
         TooltipDescription.text += "Health: " + (int)character.MaxHealth + "\n";
         TooltipDescription.text += "Base attack: " + (int)character.AttackDamage + "\n";
         TooltipDescription.text += "Movement: " + (int)character.MoveRange + "\n";
@@ -85,7 +86,7 @@ public class TooltipView : MonoBehaviour
     /// <param name="weapon">The weapon to be displayed by the tool tip</param>
     private void DisplayWeaponStats(Weapon weapon)
     {
-        var weaponStats = "\n\n<size=120%>Actions:</size>";
+        var weaponStats = $"\n\n<size={TitleFontSize}>Actions:</size>";
         foreach (var action in weapon.Actions)
         {
             var maxRange = StatCalculator.CalculateStat(action, StatType.AttackMaxRange);
@@ -114,6 +115,13 @@ public class TooltipView : MonoBehaviour
         TooltipDescription.text += $"\n - Shield amount: {shield.Health:n0}";
     }
 
+    public void DisplayGenericText(string providedText)
+    {
+        TooltipDescription.text = providedText;
+        CalculateTooltipHeight();
+        Id = Guid.NewGuid().ToString();
+    }
+
     /// <summary>
     /// Calculates the height of the tool tip based on the title and description
     /// </summary>
@@ -121,5 +129,10 @@ public class TooltipView : MonoBehaviour
     {
         var rectTransform = transform as RectTransform;
         rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, BaseHeight + TooltipDescription.preferredHeight);
+    }
+
+    private string BuildTitle(string titleText)
+    {
+        return $"<size={TitleFontSize}>{titleText}</size>\n\n";
     }
 }

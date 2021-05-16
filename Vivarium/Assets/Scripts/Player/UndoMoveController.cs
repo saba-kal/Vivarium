@@ -55,15 +55,12 @@ public class UndoMoveController : MonoBehaviour
         DisableUndo();
     }
 
-    public void DisableUndo()
+    private void DisableUndo(CharacterController unused)
     {
-        recordedCharacter = null;
-        recordedPosition = Vector3.zero;
-        UIController.Instance.UndoButton.interactable = false;
-        IsUndoTrue = false;
+        DisableUndo();
     }
 
-    private void DisableUndo(CharacterController unused)
+    public void DisableUndo()
     {
         recordedCharacter = null;
         recordedPosition = Vector3.zero;

@@ -389,6 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!114 &25710666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,6 +1529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!114 &131845019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2418,6 +2422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!1001 &268326824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2428,6 +2434,14 @@ PrefabInstance:
     - target: {fileID: 2426565256720326958, guid: a3236504331991649ad5f75d762ad467, type: 3}
       propertyPath: m_Name
       value: ConsumeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993942592196311218, guid: a3236504331991649ad5f75d762ad467, type: 3}
+      propertyPath: Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993942592196311218, guid: a3236504331991649ad5f75d762ad467, type: 3}
+      propertyPath: TextToShow
+      value: Use a consumable item. The item will be gone forever.
       objectReference: {fileID: 0}
     - target: {fileID: 7132176352793290628, guid: a3236504331991649ad5f75d762ad467, type: 3}
       propertyPath: m_Pivot.x
@@ -4920,6 +4934,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!114 &694455392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6021,6 +6037,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!114 &846504410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8720,6 +8738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!114 &1207533491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10819,6 +10839,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!1 &1716212917
 GameObject:
   m_ObjectHideFlags: 0
@@ -12740,6 +12762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!1001 &1944198294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14763,6 +14787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TooltipViewPrefab: {fileID: 7133363744151205148, guid: 2a77303a68b39a943825a22fe3f7a9ff, type: 3}
+  TextToShow: 
+  Type: 0
 --- !u!224 &7132176351475242660
 RectTransform:
   m_ObjectHideFlags: 0
