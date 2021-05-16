@@ -32,25 +32,11 @@ public class HealthBarIcon : MonoBehaviour
 
     private bool CheckOnAction()
     {
-        if (_characterController.IsAbleToAttack() == false)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return _characterController.IsAbleToAttack();
     }
 
     private bool CheckOnMove()
     {
-        if (_characterController.IsAbleToMove() == false)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return _characterController.IsAbleToMove();
     }
 }
