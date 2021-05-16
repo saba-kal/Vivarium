@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleNames:
   - Pierce
-  Description: The user lunges with their sword, attacking two spaces in front of
-    them and bypassing walls.
+  Description: The user lunges with their sword, attacking three spaces in front
+    of them and bypassing walls.

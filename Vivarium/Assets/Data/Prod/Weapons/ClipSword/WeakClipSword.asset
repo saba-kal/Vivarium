@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeakClipSword
   m_EditorClassIdentifier: 
   Id: WeakClipSword
-  ItemFlavorText: {fileID: 11400000, guid: dbd37e3d7d91ab049b57f8e733f58d17, type: 2}
+  ItemFlavorText: {fileID: 11400000, guid: f97c7f95f280e414ba4c2865664b081b, type: 2}
   Type: 1
   Icon: {fileID: 21300000, guid: 170c39436d565ac4aa59098db5bf8acc, type: 3}
   Model: {fileID: 0}

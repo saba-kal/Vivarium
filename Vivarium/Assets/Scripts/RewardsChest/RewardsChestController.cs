@@ -148,6 +148,7 @@ public class RewardsChestController : MonoBehaviour
 
         InventoryManager.PlaceCharacterItem(characterController.Id, item);
         UIController.Instance.ShowCharacterInfo(characterController);
+        UndoMoveController.Instance.DisableUndo();
     }
 
     private void RemoveChest(RewardsChest rewardsChest)

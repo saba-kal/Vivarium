@@ -281,7 +281,7 @@ public class UnitInspectionController : MonoBehaviour
                 statText = "Attack: ";
                 break;
             case StatType.MoveRadius:
-                statText = "Range: ";
+                statText = "Movement: ";
                 break;
             default:
                 return $"UNABLE TO BUILD RANGE TEXT FOR STAT {statType}";

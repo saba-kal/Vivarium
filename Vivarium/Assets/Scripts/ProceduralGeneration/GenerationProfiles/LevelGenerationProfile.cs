@@ -102,4 +102,9 @@ public class LevelGenerationProfile : ScriptableObject
     /// Shows if this is for the tutorial
     /// </summary>
     public bool IsTutorial;
+
+    /// <summary>
+    /// Name of the cut scene to play at the start of the level, if one exists.
+    /// </summary>
+    public string CutSceneName;
 }

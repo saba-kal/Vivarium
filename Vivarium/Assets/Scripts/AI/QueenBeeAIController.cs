@@ -13,6 +13,7 @@ public class QueenBeeAIController : AIController
     public int MaxSummons;
     public int StartingSummons;
     public int ActionsPerTurn;
+    public float StartSummonDelay = 5f;
 
     private QueenBeePhase _phase = QueenBeePhase.Defend;
     private List<BeeHiveAIController> _beeHives = null;
@@ -29,6 +30,7 @@ public class QueenBeeAIController : AIController
         PerformStartOfLevelSummon();
         _animator = GetComponentInChildren<Animator>();
         _animator?.SetBool(PHASE1_ANIM_KEY, true);
+        PlayBossMusic();
     }
 
     private void GetQueenBeeActions()
@@ -47,6 +49,15 @@ public class QueenBeeAIController : AIController
 
     private void PerformStartOfLevelSummon()
     {
+        StartCoroutine(PerformStartOfLevelSummon(StartSummonDelay));
+    }
+
+    private IEnumerator PerformStartOfLevelSummon(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        SoundManager.GetInstance()?.Play(Constants.QUEEN_BEE_ROAR);
+
         _minionSummonActionController.DisableSound();
         _minionSummonActionController.SkipCommandQueue = true;
         var excludedTileSpawns = new Dictionary<(int, int), Tile>();
@@ -63,6 +74,18 @@ public class QueenBeeAIController : AIController
         }
         _minionSummonActionController.EnableSound();
         _minionSummonActionController.SkipCommandQueue = false;
+    }
+
+    private void PlayBossMusic()
+    {
+        var soundManager = SoundManager.GetInstance();
+        if (soundManager == null)
+        {
+            return;
+        }
+
+        soundManager.Stop(Constants.BGM_SOUND);
+        soundManager.Play(Constants.BOSS_BGM_SOUND);
     }
 
     /// <inheritdoc cref="AIController.Move(System.Action)"/>

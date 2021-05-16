@@ -14,6 +14,7 @@ public class LevelGenerator : MonoBehaviour
     public LevelGenerationProfile LevelProfile;
     public List<CharacterController> PlayerCharacters;
     public PlayerController PlayerController;
+    public CutSceneManager CutSceneManager;
     public bool GenerateLevelOnStart = false;
 
     private const int MAX_SPAWN_ITERATIONS = 1000;
@@ -73,6 +74,11 @@ public class LevelGenerator : MonoBehaviour
             _isInitialGeneration = false;
         }
         OnLevelGenerationComplete?.Invoke();
+
+        if (!string.IsNullOrWhiteSpace(LevelProfile.CutSceneName))
+        {
+            CutSceneManager?.ActivateCutScene(LevelProfile.CutSceneName);
+        }
     }
 
     /// <summary>

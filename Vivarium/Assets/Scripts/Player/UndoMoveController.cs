@@ -55,7 +55,7 @@ public class UndoMoveController : MonoBehaviour
         DisableUndo();
     }
 
-    private void DisableUndo()
+    public void DisableUndo()
     {
         recordedCharacter = null;
         recordedPosition = Vector3.zero;

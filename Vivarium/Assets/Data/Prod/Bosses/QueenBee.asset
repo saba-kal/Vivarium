@@ -22,6 +22,7 @@ MonoBehaviour:
   MaxSummons: 10000
   StartingSummons: 3
   ActionsPerTurn: 2
+  StartSummonDelay: 6.5
   MinMaxHealth: 400
   MaxMaxHealth: 400
   MinAttackDamage: 20
@@ -38,3 +39,4 @@ MonoBehaviour:
   AICharacterHeuristics: {fileID: 11400000, guid: 4fc505e385c75b44c83579b002c2e085, type: 2}
   CharacterLootTable: {fileID: 0}
   AnimationController: {fileID: 0}
+  unitType: 
