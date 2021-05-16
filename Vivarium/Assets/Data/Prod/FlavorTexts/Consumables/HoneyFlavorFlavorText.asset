@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HoneyFlavorFlavorText
   m_EditorClassIdentifier: 
   PossibleNames:
-  - Honey
+  - Drop of Honey
   Description: A sweet, healing drop of honey that will restore 70 health
