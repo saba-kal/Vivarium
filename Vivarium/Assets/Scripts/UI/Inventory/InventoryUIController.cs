@@ -110,17 +110,18 @@ public class InventoryUIController : MonoBehaviour
             return;
         }
 
-        if (_selectedItemSlot.GetItem().Item.Type != ItemType.Consumable)
+        var inventoryItem = _selectedItemSlot.GetItem();
+        if (inventoryItem.Item.Type != ItemType.Consumable)
         {
-            Debug.LogError($"Cannot consume {_selectedItemSlot.GetItem().Item.Flavor.Name} because it is not a consumable type.");
+            Debug.LogError($"Cannot consume {inventoryItem.Item.Flavor.Name} because it is not a consumable type.");
             return;
         }
 
-        _selectedCharacterController.Consume(_selectedItemSlot.GetItem());
+        _selectedCharacterController.Consume(inventoryItem);
         if (InventoryManager.GetCharacterItem(
             _selectedCharacterController.Id,
-            _selectedItemSlot.GetItem().Item.Id,
-            _selectedItemSlot.GetItem().InventoryPosition) == null)
+            inventoryItem.Item.Id,
+            inventoryItem.InventoryPosition) == null)
         {
             ConsumeButton.interactable = false;
         }

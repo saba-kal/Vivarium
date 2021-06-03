@@ -423,6 +423,9 @@ public class PlayerController : MonoBehaviour
         {
             characterController.SetHasAttacked(true);
         }
+
+        DeselectAction();
+        characterController.Select();
     }
 
     private void OnEquip(CharacterController characterController)

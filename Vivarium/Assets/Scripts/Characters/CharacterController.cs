@@ -78,7 +78,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void Select()
     {
-        if(!GetGridPosition().IsObjective || IsEnemy)
+        if (!GetGridPosition().IsObjective || IsEnemy)
         {
             _isSelected = true;
             if (!_hasMoved)
